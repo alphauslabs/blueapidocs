@@ -30,7 +30,12 @@
       }
     },
     {
-      "name": "AwsCost"
+      "name": "AwsCost",
+      "description": "Base URL: https://api.alphaus.cloud/m/blue/awscost",
+      "externalDocs": {
+        "description": "Find out more about AwsCost service",
+        "url": "https://alphauslabs.github.io/blueapi/"
+      }
     },
     {
       "name": "GlobalConfig"
