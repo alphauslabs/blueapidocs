@@ -1308,7 +1308,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "The metadata (key/value pair) of the organization. If hierarchy is supported, it will be\nseparated by '/', such as 'metakey/subkey=value'. Supported metadata include 'createTime'."
+          "description": "The metadata (key/value pair) of the organization. If hierarchy is supported, it will be\nseparated by '/', such as 'metakey/subkey=value'. Supported metadata include 'createTime', and 'status'."
         }
       },
       "description": "Org resource definition."
