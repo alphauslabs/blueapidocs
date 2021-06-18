@@ -53,7 +53,7 @@
   "paths": {
     "/iam/v1/users": {
       "get": {
-        "summary": "Lists users.",
+        "summary": "Lists all subusers.",
         "operationId": "Iam_ListUsers",
         "responses": {
           "200": {
