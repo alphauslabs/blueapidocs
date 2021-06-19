@@ -14,10 +14,10 @@
   },
   "tags": [
     {
-      "name": "OrgApi",
+      "name": "Organization",
       "description": "Base URL: https://api.alphaus.cloud/m/blue",
       "externalDocs": {
-        "description": "Find out more about OrgApi service",
+        "description": "Find out more about Organization service",
         "url": "https://alphauslabs.github.io/blueapi/"
       }
     },
@@ -288,7 +288,7 @@
     "/org/v1": {
       "get": {
         "summary": "Gets information about the caller's organization.",
-        "operationId": "OrgApi_GetOrg",
+        "operationId": "Organization_GetOrg",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -304,12 +304,12 @@
           }
         },
         "tags": [
-          "OrgApi"
+          "Organization"
         ]
       },
       "delete": {
         "summary": "Deletes the organization.",
-        "operationId": "OrgApi_DeleteOrg",
+        "operationId": "Organization_DeleteOrg",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -325,12 +325,12 @@
           }
         },
         "tags": [
-          "OrgApi"
+          "Organization"
         ]
       },
       "post": {
         "summary": "Creates the organization account.",
-        "operationId": "OrgApi_CreateOrg",
+        "operationId": "Organization_CreateOrg",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -356,14 +356,14 @@
           }
         ],
         "tags": [
-          "OrgApi"
+          "Organization"
         ]
       }
     },
     "/org/v1/masteraccts": {
       "get": {
         "summary": "Lists master accounts that belongs to the caller's organization.",
-        "operationId": "OrgApi_ListMasterAccounts",
+        "operationId": "Organization_ListMasterAccounts",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -379,14 +379,14 @@
           }
         },
         "tags": [
-          "OrgApi"
+          "Organization"
         ]
       }
     },
     "/org/v1/masteraccts/{id}": {
       "get": {
         "summary": "Get master account. This call includes all of the account's metadata. See\nhttps://alphauslabs.github.io/blueapi/ for the list of supported attributes.",
-        "operationId": "OrgApi_GetMasterAccount",
+        "operationId": "Organization_GetMasterAccount",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -410,14 +410,14 @@
           }
         ],
         "tags": [
-          "OrgApi"
+          "Organization"
         ]
       }
     },
     "/org/v1/metadata": {
       "put": {
         "summary": "Updates organization metadata. See https://alphauslabs.github.io/blueapi/\nfor the list of supported attributes.",
-        "operationId": "OrgApi_UpdateMetadata",
+        "operationId": "Organization_UpdateMetadata",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -443,14 +443,14 @@
           }
         ],
         "tags": [
-          "OrgApi"
+          "Organization"
         ]
       }
     },
     "/org/v1/passwd": {
       "put": {
         "summary": "Updates the organization password.",
-        "operationId": "OrgApi_UpdatePassword",
+        "operationId": "Organization_UpdatePassword",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -476,14 +476,14 @@
           }
         ],
         "tags": [
-          "OrgApi"
+          "Organization"
         ]
       }
     },
     "/org/v1:sendVerification": {
       "post": {
         "summary": "Sends (or resends) the verification email. Only valid for unverified\norganizations. The verification key will be valid for a day.",
-        "operationId": "OrgApi_SendVerification",
+        "operationId": "Organization_SendVerification",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -509,14 +509,14 @@
           }
         ],
         "tags": [
-          "OrgApi"
+          "Organization"
         ]
       }
     },
     "/org/v1:verify": {
       "post": {
         "summary": "Verifies an organization using the key received from the verification email.\nThe verification key is only valid for a day.",
-        "operationId": "OrgApi_VerifyOrg",
+        "operationId": "Organization_VerifyOrg",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -542,7 +542,7 @@
           }
         ],
         "tags": [
-          "OrgApi"
+          "Organization"
         ]
       }
     },
@@ -1308,7 +1308,7 @@
           "type": "string"
         }
       },
-      "description": "Request message for OrgApi.CreateOrg rpc."
+      "description": "Request message for Organization.CreateOrg rpc."
     },
     "v1CreateOrgResponse": {
       "type": "object",
@@ -1320,7 +1320,7 @@
           "type": "string"
         }
       },
-      "description": "Response message for OrgApi.CreateOrg rpc."
+      "description": "Response message for Organization.CreateOrg rpc."
     },
     "v1Fee": {
       "type": "object",
@@ -1364,7 +1364,7 @@
           }
         }
       },
-      "description": "Response message for OrgApi.ListMasterAccounts rpc."
+      "description": "Response message for Organization.ListMasterAccounts rpc."
     },
     "v1ListOperationsResponse": {
       "type": "object",
@@ -1445,7 +1445,7 @@
     },
     "v1SendVerificationRequest": {
       "type": "object",
-      "description": "Request message for OrgApi.SendVerification rpc."
+      "description": "Request message for Organization.SendVerification rpc."
     },
     "v1StreamListConfigResponse": {
       "type": "object",
@@ -1470,7 +1470,7 @@
           "type": "string"
         }
       },
-      "description": "Request message for OrgApi.UpdateMetadata rpc."
+      "description": "Request message for Organization.UpdateMetadata rpc."
     },
     "v1UpdatePasswordRequest": {
       "type": "object",
@@ -1482,7 +1482,7 @@
           "type": "string"
         }
       },
-      "description": "Request message for OrgApi.UpdatePassword rpc."
+      "description": "Request message for Organization.UpdatePassword rpc."
     },
     "v1VerifyOrgRequest": {
       "type": "object",
@@ -1491,7 +1491,7 @@
           "type": "string"
         }
       },
-      "description": "Request message for OrgApi.VerifyOrg rpc."
+      "description": "Request message for Organization.VerifyOrg rpc."
     }
   },
   "externalDocs": {
