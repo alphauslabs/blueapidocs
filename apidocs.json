@@ -285,7 +285,7 @@
         ]
       }
     },
-    "/org/v1/me": {
+    "/org/v1": {
       "get": {
         "summary": "Gets information about the caller's organization.",
         "operationId": "OrgApi_GetOrg",
@@ -360,7 +360,7 @@
         ]
       }
     },
-    "/org/v1/me/masteraccts": {
+    "/org/v1/masteraccts": {
       "get": {
         "summary": "Lists master accounts that belongs to the caller's organization.",
         "operationId": "OrgApi_ListMasterAccounts",
@@ -383,7 +383,7 @@
         ]
       }
     },
-    "/org/v1/me/masteraccts/{id}": {
+    "/org/v1/masteraccts/{id}": {
       "get": {
         "summary": "Get master account. This call includes all of the account's metadata. See\nhttps://alphauslabs.github.io/blueapi/ for the list of supported attributes.",
         "operationId": "OrgApi_GetMasterAccount",
@@ -414,7 +414,7 @@
         ]
       }
     },
-    "/org/v1/me/metadata": {
+    "/org/v1/metadata": {
       "put": {
         "summary": "Updates organization metadata. See https://alphauslabs.github.io/blueapi/\nfor the list of supported attributes.",
         "operationId": "OrgApi_UpdateMetadata",
@@ -447,7 +447,7 @@
         ]
       }
     },
-    "/org/v1/me/passwd": {
+    "/org/v1/passwd": {
       "put": {
         "summary": "Updates the organization password.",
         "operationId": "OrgApi_UpdatePassword",
@@ -480,7 +480,7 @@
         ]
       }
     },
-    "/org/v1/me:sendVerification": {
+    "/org/v1:sendVerification": {
       "post": {
         "summary": "Sends (or resends) the verification email. Only valid for unverified\norganizations. The verification key will be valid for a day.",
         "operationId": "OrgApi_SendVerification",
@@ -513,7 +513,7 @@
         ]
       }
     },
-    "/org/v1/me:verifyOrg": {
+    "/org/v1:verifyOrg": {
       "post": {
         "summary": "Verifies an organization using the key received from the verification email.\nThe verification key is only valid for a day.",
         "operationId": "OrgApi_VerifyOrg",
