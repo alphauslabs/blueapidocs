@@ -618,25 +618,6 @@
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "startTime": {
-                  "type": "string",
-                  "description": "Optional. Timestamp to start streaming data from. If not set, the first day of the\ncurrent month will be used. Format: yyyymmdd."
-                },
-                "endTime": {
-                  "type": "string",
-                  "description": "Optional. Timestamp to end the streaming data. If not set, current date will be used.\nFormat: yyyymmdd."
-                }
-              },
-              "description": "Request message for Cost.ReadAccountAdjustments."
-            }
           }
         ],
         "tags": [
@@ -685,29 +666,6 @@
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "startTime": {
-                  "type": "string",
-                  "description": "Optional. Timestamp to start streaming data from. If not set, the first day of the\ncurrent month will be used. Format: yyyymmdd."
-                },
-                "endTime": {
-                  "type": "string",
-                  "description": "Optional. Timestamp to end the streaming data. If not set, current date will be used.\nFormat: yyyymmdd."
-                },
-                "awsOptions": {
-                  "$ref": "#/definitions/v1AwsOptions",
-                  "description": "Optional. AWS-specific request options."
-                }
-              },
-              "description": "Request message for Cost.ReadAccountCosts."
-            }
           }
         ],
         "tags": [
@@ -749,25 +707,6 @@
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "startTime": {
-                  "type": "string",
-                  "description": "Optional. Timestamp to start streaming data from. If not set, the first day of the\ncurrent month will be used. Format: yyyymmdd."
-                },
-                "endTime": {
-                  "type": "string",
-                  "description": "Optional. Timestamp to end the streaming data. If not set, current date will be used.\nFormat: yyyymmdd."
-                }
-              },
-              "description": "Request message for Cost.ReadAdjustments."
-            }
           }
         ],
         "tags": [
@@ -816,25 +755,6 @@
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "startTime": {
-                  "type": "string",
-                  "description": "Optional. Timestamp to start streaming data from. If not set, the first day of the\ncurrent month will be used. Format: yyyymmdd."
-                },
-                "endTime": {
-                  "type": "string",
-                  "description": "Optional. Timestamp to end the streaming data. If not set, current date will be used.\nFormat: yyyymmdd."
-                }
-              },
-              "description": "Request message for Cost.ReadBillingGroupAdjustments."
-            }
           }
         ],
         "tags": [
@@ -883,29 +803,6 @@
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "startTime": {
-                  "type": "string",
-                  "description": "Optional. Timestamp to start streaming data from. If not set, the first day of the\ncurrent month will be used. Format: yyyymmd."
-                },
-                "endTime": {
-                  "type": "string",
-                  "description": "Optional. Timestamp to end the streaming data. If not set, current date will be used.\nFormat: yyyymmdd."
-                },
-                "awsOptions": {
-                  "$ref": "#/definitions/v1AwsOptions",
-                  "description": "Optional. AWS-specific request options."
-                }
-              },
-              "description": "Request message for Cost.ReadBillingGroupCosts."
-            }
           }
         ],
         "tags": [
@@ -947,29 +844,6 @@
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "startTime": {
-                  "type": "string",
-                  "description": "Optional. Timestamp to start streaming data from. If not set, the first day of the\ncurrent month will be used. Format: yyyymmdd."
-                },
-                "endTime": {
-                  "type": "string",
-                  "description": "Optional. Timestamp to end the streaming data. If not set, current date will be used.\nFormat: yyyymmd."
-                },
-                "awsOptions": {
-                  "$ref": "#/definitions/v1AwsOptions",
-                  "description": "Optional. AWS-specific request options."
-                }
-              },
-              "description": "Request message for Cost.ReadCosts."
-            }
           }
         ],
         "tags": [
