@@ -628,13 +628,11 @@
               "properties": {
                 "startTime": {
                   "type": "string",
-                  "format": "date-time",
-                  "description": "Optional. Timestamp to start streaming data from. If not set, the first day of the\ncurrent month will be used."
+                  "description": "Optional. Timestamp to start streaming data from. If not set, the first day of the\ncurrent month will be used. Format: yyyymmdd."
                 },
                 "endTime": {
                   "type": "string",
-                  "format": "date-time",
-                  "description": "Optional. Timestamp to end the streaming data. If not set, current date will be used."
+                  "description": "Optional. Timestamp to end the streaming data. If not set, current date will be used.\nFormat: yyyymmdd."
                 }
               },
               "description": "Request message for Cost.ReadAccountAdjustments."
@@ -697,13 +695,11 @@
               "properties": {
                 "startTime": {
                   "type": "string",
-                  "format": "date-time",
-                  "description": "Optional. Timestamp to start streaming data from. If not set, the first day of the\ncurrent month will be used."
+                  "description": "Optional. Timestamp to start streaming data from. If not set, the first day of the\ncurrent month will be used. Format: yyyymmdd."
                 },
                 "endTime": {
                   "type": "string",
-                  "format": "date-time",
-                  "description": "Optional. Timestamp to end the streaming data. If not set, current date will be used."
+                  "description": "Optional. Timestamp to end the streaming data. If not set, current date will be used.\nFormat: yyyymmdd."
                 },
                 "awsOptions": {
                   "$ref": "#/definitions/v1AwsOptions",
@@ -763,13 +759,11 @@
               "properties": {
                 "startTime": {
                   "type": "string",
-                  "format": "date-time",
-                  "description": "Optional. Timestamp to start streaming data from. If not set, the first day of the\ncurrent month will be used."
+                  "description": "Optional. Timestamp to start streaming data from. If not set, the first day of the\ncurrent month will be used. Format: yyyymmdd."
                 },
                 "endTime": {
                   "type": "string",
-                  "format": "date-time",
-                  "description": "Optional. Timestamp to end the streaming data. If not set, current date will be used."
+                  "description": "Optional. Timestamp to end the streaming data. If not set, current date will be used.\nFormat: yyyymmdd."
                 }
               },
               "description": "Request message for Cost.ReadAdjustments."
@@ -832,13 +826,11 @@
               "properties": {
                 "startTime": {
                   "type": "string",
-                  "format": "date-time",
-                  "description": "Optional. Timestamp to start streaming data from. If not set, the first day of the\ncurrent month will be used."
+                  "description": "Optional. Timestamp to start streaming data from. If not set, the first day of the\ncurrent month will be used. Format: yyyymmdd."
                 },
                 "endTime": {
                   "type": "string",
-                  "format": "date-time",
-                  "description": "Optional. Timestamp to end the streaming data. If not set, current date will be used."
+                  "description": "Optional. Timestamp to end the streaming data. If not set, current date will be used.\nFormat: yyyymmdd."
                 }
               },
               "description": "Request message for Cost.ReadBillingGroupAdjustments."
@@ -901,13 +893,11 @@
               "properties": {
                 "startTime": {
                   "type": "string",
-                  "format": "date-time",
-                  "description": "Optional. Timestamp to start streaming data from. If not set, the first day of the\ncurrent month will be used."
+                  "description": "Optional. Timestamp to start streaming data from. If not set, the first day of the\ncurrent month will be used. Format: yyyymmd."
                 },
                 "endTime": {
                   "type": "string",
-                  "format": "date-time",
-                  "description": "Optional. Timestamp to end the streaming data. If not set, current date will be used."
+                  "description": "Optional. Timestamp to end the streaming data. If not set, current date will be used.\nFormat: yyyymmdd."
                 },
                 "awsOptions": {
                   "$ref": "#/definitions/v1AwsOptions",
@@ -967,13 +957,11 @@
               "properties": {
                 "startTime": {
                   "type": "string",
-                  "format": "date-time",
-                  "description": "Optional. Timestamp to start streaming data from. If not set, the first day of the\ncurrent month will be used."
+                  "description": "Optional. Timestamp to start streaming data from. If not set, the first day of the\ncurrent month will be used. Format: yyyymmdd."
                 },
                 "endTime": {
                   "type": "string",
-                  "format": "date-time",
-                  "description": "Optional. Timestamp to end the streaming data. If not set, current date will be used."
+                  "description": "Optional. Timestamp to end the streaming data. If not set, current date will be used.\nFormat: yyyymmd."
                 },
                 "awsOptions": {
                   "$ref": "#/definitions/v1AwsOptions",
