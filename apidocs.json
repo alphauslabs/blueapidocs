@@ -33,8 +33,8 @@
       "name": "Cost",
       "description": "Base URL: https://api.alphaus.cloud/m/blue/cost",
       "externalDocs": {
-        "description": "Find out more about Cost service",
-        "url": "https://alphauslabs.github.io/blueapi/"
+        "description": "Cost service definition",
+        "url": "https://github.com/alphauslabs/blueapi/blob/main/cost/v1/cost.proto"
       }
     },
     {
@@ -792,7 +792,7 @@
     },
     "/v1/{vendor}/costs:readCosts": {
       "post": {
-        "summary": "Reads the usage-based cost details of an organization (Ripple) or company (Wave).\nAt the moment, the supported {vendor} is 'aws'. If datetime range parameters are\nnot set, month-to-date (current month) will be returned.",
+        "summary": "Reads the usage-based cost details of an organization (Ripple) or company (Wave).\nAt the moment, the supported {vendor} is 'aws'. If datetime range parameters are\nnot set, month-to-date (current month) will be returned. Date range parameters\nare 'start_time' and 'end_time, with the 'yyyymmdd' format.",
         "operationId": "Cost_ReadCosts",
         "responses": {
           "200": {
