@@ -17,23 +17,23 @@
       "name": "Organization",
       "description": "Base URL: https://api.alphaus.cloud/m/blue",
       "externalDocs": {
-        "description": "Find out more about Organization service",
-        "url": "https://alphauslabs.github.io/blueapi/"
+        "description": "Service definition",
+        "url": "https://github.com/alphauslabs/blueapi/blob/main/org/v1/org.proto"
       }
     },
     {
       "name": "Iam",
       "description": "Base URL: https://api.alphaus.cloud/m/blue",
       "externalDocs": {
-        "description": "Find out more about Iam service",
-        "url": "https://alphauslabs.github.io/blueapi/"
+        "description": "Service definition",
+        "url": "https://github.com/alphauslabs/blueapi/blob/main/iam/v1/iam.proto"
       }
     },
     {
       "name": "Cost",
       "description": "Base URL: https://api.alphaus.cloud/m/blue/cost",
       "externalDocs": {
-        "description": "Cost service definition",
+        "description": "Service definition",
         "url": "https://github.com/alphauslabs/blueapi/blob/main/cost/v1/cost.proto"
       }
     },
