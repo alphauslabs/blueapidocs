@@ -18,7 +18,7 @@
       "description": "Base URL: https://api.alphaus.cloud/m/blue",
       "externalDocs": {
         "description": "Service definition",
-        "url": "https://github.com/alphauslabs/blueapi/blob/main/org/v1/org.proto"
+        "url": "https://github.com/alphauslabs/blueapi/tree/main/org/"
       }
     },
     {
@@ -26,7 +26,7 @@
       "description": "Base URL: https://api.alphaus.cloud/m/blue",
       "externalDocs": {
         "description": "Service definition",
-        "url": "https://github.com/alphauslabs/blueapi/blob/main/iam/v1/iam.proto"
+        "url": "https://github.com/alphauslabs/blueapi/tree/main/iam/"
       }
     },
     {
@@ -34,7 +34,7 @@
       "description": "Base URL: https://api.alphaus.cloud/m/blue/cost",
       "externalDocs": {
         "description": "Service definition",
-        "url": "https://github.com/alphauslabs/blueapi/blob/main/cost/v1/cost.proto"
+        "url": "https://github.com/alphauslabs/blueapi/tree/main/cost/"
       }
     },
     {
