@@ -1265,7 +1265,7 @@
       "properties": {
         "id": {
           "type": "string",
-          "description": "Ip filter id. Note that this id is transcient and is not fixed."
+          "description": "Ip filter item id. Note that this id is transcient and is not fixed. However,\nyou can use any of this id's permutations to endpoints that accept this id\nwithout issues, such as the 'DELETE:/iam/vx/ipfilters/{id}' endpoint."
         },
         "scope": {
           "type": "string",
