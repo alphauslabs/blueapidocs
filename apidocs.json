@@ -38,9 +38,6 @@
       }
     },
     {
-      "name": "GlobalConfig"
-    },
-    {
       "name": "Operations"
     }
   ],
@@ -612,37 +609,6 @@
         ]
       }
     },
-    "/ripple/v1/config": {
-      "get": {
-        "operationId": "GlobalConfig_StreamReadRippleConfig",
-        "responses": {
-          "200": {
-            "description": "A successful response.(streaming responses)",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "result": {
-                  "$ref": "#/definitions/v1StreamListConfigResponse"
-                },
-                "error": {
-                  "$ref": "#/definitions/rpcStatus"
-                }
-              },
-              "title": "Stream result of v1StreamListConfigResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "tags": [
-          "GlobalConfig"
-        ]
-      }
-    },
     "/v1/{vendor}/accounts/{name}/adjustments:readAccountAdjustments": {
       "post": {
         "summary": "Reads the non-usaged-based details of an AWS account. This API covers non-usage-based\nadjustments, such as Fees, Credits, Discounts, Tax, Upfront Fees, etc. At the moment,\nthe supported {vendor} is 'aws'. If datetime range parameters are not set, month-to-date\n(current month) will be returned.",
@@ -916,37 +882,6 @@
           "Cost"
         ]
       }
-    },
-    "/wave/v1/config": {
-      "get": {
-        "operationId": "GlobalConfig_StreamReadWaveConfig",
-        "responses": {
-          "200": {
-            "description": "A successful response.(streaming responses)",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "result": {
-                  "$ref": "#/definitions/v1StreamListConfigResponse"
-                },
-                "error": {
-                  "$ref": "#/definitions/rpcStatus"
-                }
-              },
-              "title": "Stream result of v1StreamListConfigResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "tags": [
-          "GlobalConfig"
-        ]
-      }
     }
   },
   "definitions": {
@@ -1187,24 +1122,6 @@
       },
       "description": "AWS-specific options."
     },
-    "v1Config": {
-      "type": "object",
-      "properties": {
-        "featureId": {
-          "type": "string",
-          "description": "The feature name."
-        },
-        "featureName": {
-          "type": "string",
-          "description": "Required. The feature id."
-        },
-        "enabled": {
-          "type": "boolean",
-          "description": "The feature enabled or disabled.\nSet value to enable or disable the use of the feature."
-        }
-      },
-      "description": "Response message for Config."
-    },
     "v1CostItem": {
       "type": "object",
       "properties": {
@@ -1337,19 +1254,6 @@
         }
       },
       "description": "Response message for Iam.ListUsers rpc."
-    },
-    "v1StreamListConfigResponse": {
-      "type": "object",
-      "properties": {
-        "config": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1Config"
-          },
-          "title": "A list of global configs"
-        }
-      },
-      "description": "Response message for GlobalConfig.Config."
     },
     "v1UpdateMetadataRequest": {
       "type": "object",
