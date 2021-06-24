@@ -604,6 +604,16 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1VerifyOrgRequest"
+            }
+          }
+        ],
         "tags": [
           "Organization"
         ]
@@ -1278,6 +1288,15 @@
         }
       },
       "description": "Request message for Organization.UpdatePassword rpc."
+    },
+    "v1VerifyOrgRequest": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        }
+      },
+      "description": "Request message for Organization.VerifyOrg rpc."
     }
   },
   "externalDocs": {
