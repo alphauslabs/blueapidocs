@@ -74,7 +74,7 @@
         ]
       },
       "post": {
-        "summary": "Creates an IP filter. At the moment, this API is only available for root users.",
+        "summary": "Creates an IP filter item for IP blacklisting or whitelisting. At the moment,\nthis API is only available for root users.",
         "operationId": "Iam_CreateIpFilter",
         "responses": {
           "200": {
