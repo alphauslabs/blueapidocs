@@ -673,39 +673,6 @@
         ]
       }
     },
-    "/v1/aws:calculateCosts": {
-      "post": {
-        "summary": "Triggers monthly calculations for costs and invoice at either organization or billing group level.",
-        "operationId": "Cost_CalculateCosts",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/blueapiapiOperation"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1CalculateCostsRequest"
-            }
-          }
-        ],
-        "tags": [
-          "Cost"
-        ]
-      }
-    },
     "/v1/aws:importCurFiles": {
       "post": {
         "summary": "Initiates an ondemand import of all registered CUR files.",
@@ -1098,6 +1065,57 @@
           "Cost"
         ]
       }
+    },
+    "/v1/{vendor}:calculateCosts": {
+      "post": {
+        "summary": "Triggers monthly calculations for costs and invoice at either organization or billing group level.",
+        "operationId": "Cost_CalculateCosts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/blueapiapiOperation"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. Valid values are 'aws', 'azure', and 'gcp'.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "billing_group": {
+                  "type": "string",
+                  "description": "Optional. If set to a particular billing group, calculate for that billing group.\nIf empty, calculate for the whole organization."
+                },
+                "month": {
+                  "type": "string",
+                  "description": "Optional. The month to calculate. If empty, it defaults to the previous month.\nFormat is 'yyyymm'. For example, June 2021 will be '202106'."
+                }
+              },
+              "description": "Request message for the Cost.CalculateCosts rpc."
+            }
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      }
     }
   },
   "definitions": {
@@ -1347,20 +1365,6 @@
         }
       },
       "description": "AWS-specific options."
-    },
-    "v1CalculateCostsRequest": {
-      "type": "object",
-      "properties": {
-        "billing_group": {
-          "type": "string",
-          "description": "Optional. If set to a particular billing group, calculate for that billing group.\nIf empty, calculate for the whole organization."
-        },
-        "month": {
-          "type": "string",
-          "description": "Optional. The month to calculate. If empty, it defaults to the previous month.\nFormat is 'yyyymm'. For example, June 2021 will be '202106'."
-        }
-      },
-      "description": "Request message for the Cost.CalculateCosts rpc."
     },
     "v1CostItem": {
       "type": "object",
