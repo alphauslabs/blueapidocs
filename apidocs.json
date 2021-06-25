@@ -351,7 +351,7 @@
             "required": true,
             "schema": {
               "type": "object",
-              "description": "Request message for Operations.CancelOperation."
+              "description": "Request message for the Operations.CancelOperation rpc."
             }
           }
         ],
@@ -668,6 +668,62 @@
             "type": "string"
           }
         ],
+        "tags": [
+          "Cost"
+        ]
+      }
+    },
+    "/v1/aws:calculateCosts": {
+      "post": {
+        "summary": "Triggers monthly calculations for costs and invoice at either organization or billing group level.",
+        "operationId": "Cost_CalculateCosts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/blueapiapiOperation"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CalculateCostsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      }
+    },
+    "/v1/aws:importCurFiles": {
+      "post": {
+        "summary": "Initiates an ondemand import of all registered CUR files.",
+        "operationId": "Cost_ImportCurFiles",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/blueapiapiOperation"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
         "tags": [
           "Cost"
         ]
@@ -1292,6 +1348,20 @@
       },
       "description": "AWS-specific options."
     },
+    "v1CalculateCostsRequest": {
+      "type": "object",
+      "properties": {
+        "billing_group": {
+          "type": "string",
+          "description": "Optional. If set to a particular billing group, calculate for that billing group.\nIf empty, calculate for the whole organization."
+        },
+        "month": {
+          "type": "string",
+          "description": "Optional. The month to calculate. If empty, it defaults to the previous month.\nFormat is 'yyyymm'. For example, June 2021 will be '202106'."
+        }
+      },
+      "description": "Request message for the Cost.CalculateCosts rpc."
+    },
     "v1CostItem": {
       "type": "object",
       "properties": {
@@ -1321,7 +1391,7 @@
           "description": "Optional. If valid subuser, filter is for this subuser; root_user value is discarded.\nIf both root_user and sub_user inputs are empty, filter is at global scope."
         }
       },
-      "description": "Request message for Iam.CreateIpFilter rpc."
+      "description": "Request message for the Iam.CreateIpFilter rpc."
     },
     "v1CreateManagementAccountRequest": {
       "type": "object",
@@ -1351,7 +1421,7 @@
           "description": "Required. Role ARN."
         }
       },
-      "description": "Request message for Cost.CreateManagementAccount rpc."
+      "description": "Request message for the Cost.CreateManagementAccount rpc."
     },
     "v1CreateOrgRequest": {
       "type": "object",
@@ -1363,7 +1433,7 @@
           "type": "string"
         }
       },
-      "description": "Request message for Organization.CreateOrg rpc."
+      "description": "Request message for the Organization.CreateOrg rpc."
     },
     "v1CreateOrgResponse": {
       "type": "object",
@@ -1375,7 +1445,7 @@
           "type": "string"
         }
       },
-      "description": "Response message for Organization.CreateOrg rpc."
+      "description": "Response message for the Organization.CreateOrg rpc."
     },
     "v1IpFilter": {
       "type": "object",
@@ -1412,7 +1482,7 @@
           }
         }
       },
-      "description": "Response message for Iam.ListIpFilters rpc."
+      "description": "Response message for the Iam.ListIpFilters rpc."
     },
     "v1ListManagementAccountsResponse": {
       "type": "object",
@@ -1424,7 +1494,7 @@
           }
         }
       },
-      "description": "Response message for Organization.ListManagementAccounts rpc."
+      "description": "Response message for the Organization.ListManagementAccounts rpc."
     },
     "v1ListUsersResponse": {
       "type": "object",
@@ -1436,7 +1506,7 @@
           }
         }
       },
-      "description": "Response message for Iam.ListUsers rpc."
+      "description": "Response message for the Iam.ListUsers rpc."
     },
     "v1UpdateMetadataRequest": {
       "type": "object",
@@ -1448,7 +1518,7 @@
           "type": "string"
         }
       },
-      "description": "Request message for Organization.UpdateMetadata rpc."
+      "description": "Request message for the Organization.UpdateMetadata rpc."
     },
     "v1UpdatePasswordRequest": {
       "type": "object",
@@ -1460,7 +1530,7 @@
           "type": "string"
         }
       },
-      "description": "Request message for Organization.UpdatePassword rpc."
+      "description": "Request message for the Organization.UpdatePassword rpc."
     },
     "v1VerifyOrgRequest": {
       "type": "object",
@@ -1469,7 +1539,7 @@
           "type": "string"
         }
       },
-      "description": "Request message for Organization.VerifyOrg rpc."
+      "description": "Request message for the Organization.VerifyOrg rpc."
     }
   },
   "externalDocs": {
