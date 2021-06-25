@@ -673,7 +673,7 @@
         ]
       }
     },
-    "/v1/{vendor}/accounts/{name}/adjustments:read": {
+    "/v1/{vendor}/accounts/{id}/adjustments:read": {
       "post": {
         "summary": "Reads the non-usaged-based details of an AWS account. This API covers non-usage-based\nadjustments, such as Fees, Credits, Discounts, Tax, Upfront Fees, etc. At the moment,\nthe supported {vendor} is 'aws'. If datetime range parameters are not set, month-to-date\n(current month) will be returned.",
         "operationId": "Cost_ReadAccountAdjustments",
@@ -709,7 +709,7 @@
             "type": "string"
           },
           {
-            "name": "name",
+            "name": "id",
             "description": "Required. The AWS account id to stream.",
             "in": "path",
             "required": true,
@@ -721,7 +721,7 @@
         ]
       }
     },
-    "/v1/{vendor}/accounts/{name}/costs:read": {
+    "/v1/{vendor}/accounts/{id}/costs:read": {
       "post": {
         "summary": "Reads the usage-based cost details of an account. At the moment, the supported\n{vendor} is 'aws'. If datetime range parameters are not set, month-to-date\n(current month) will be returned.",
         "operationId": "Cost_ReadAccountCosts",
@@ -757,8 +757,8 @@
             "type": "string"
           },
           {
-            "name": "name",
-            "description": "Required. The account to stream.",
+            "name": "id",
+            "description": "Required. The account id to stream.",
             "in": "path",
             "required": true,
             "type": "string"
@@ -769,7 +769,7 @@
         ]
       }
     },
-    "/v1/{vendor}/accounts/{name}/tagcosts:read": {
+    "/v1/{vendor}/accounts/{id}/tagcosts:read": {
       "post": {
         "summary": "Reads the usage-based tag costs of an AWS account. At the moment, the supported {vendor} is \n'aws'. If datetime range parameters are not set, month-to-date (current month) will be returned.",
         "operationId": "Cost_ReadAccountTagCosts",
@@ -805,7 +805,7 @@
             "type": "string"
           },
           {
-            "name": "name",
+            "name": "id",
             "description": "Required. The AWS account id to stream.",
             "in": "path",
             "required": true,
