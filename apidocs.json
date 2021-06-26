@@ -580,7 +580,7 @@
         ]
       },
       "post": {
-        "summary": "Registers an AWS management account. See https://docs.aws.amazon.com/cur/latest/userguide/cur-create.html\nfor more information. Requirements include: Additional report details = 'Include Resource IDS' enabled,\nPrefix = non-empty (recommendation only), Time granularity = 'Hourly', File format = 'text/csv'.",
+        "summary": "Registers an AWS management account. See [https://docs.aws.amazon.com/cur/latest/userguide/cur-create.html]\nfor more information. Requirements include: Additional report details = 'Include Resource IDS' enabled,\nPrefix = non-empty (recommendation only), Time granularity = 'Hourly', File format = 'text/csv'.",
         "operationId": "Cost_CreateManagementAccount",
         "responses": {
           "200": {
