@@ -195,7 +195,7 @@
     },
     "/iam/v1/whoami": {
       "get": {
-        "summary": "Gets user information about the caller. This call includes all of the user metadata.\nSee https://alphauslabs.github.io/blueapi/ for the list of supported attributes.",
+        "summary": "Gets user information about the caller. This call includes all of the user metadata.\nSee [here](https://alphauslabs.github.io/blueapi/) for the list of supported attributes.",
         "operationId": "Iam_WhoAmI",
         "responses": {
           "200": {
