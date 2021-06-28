@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Alphaus: Blue API",
-    "version": "v0.x_beta",
+    "version": "v0.beta",
     "contact": {
       "name": "Alphaus: Blue API",
       "url": "https://alphauslabs.github.io/blueapi/"
