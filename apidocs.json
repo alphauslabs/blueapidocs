@@ -2151,7 +2151,7 @@
         },
         "filter": {
           "type": "string",
-          "description": "Optional. A comma-separated list of management accounts to import. If empty,\nall CURs associated will all your management accounts will be imported."
+          "description": "Optional. A comma-separated list of management accounts to import. If empty,\nall CURs associated with all your management accounts will be imported."
         }
       },
       "description": "Request message for the Cost.ImportCurFiles rpc."
