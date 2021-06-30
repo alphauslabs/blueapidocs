@@ -393,7 +393,7 @@
         "parameters": [
           {
             "name": "parent",
-            "description": "Optional. The name of the operation's parent resource.",
+            "description": "Optional. The name of the operation's parent resource. Not used at the moment.",
             "in": "query",
             "required": false,
             "type": "string"
