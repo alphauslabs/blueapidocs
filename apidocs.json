@@ -1734,9 +1734,9 @@
     "apiUser": {
       "type": "object",
       "properties": {
-        "name": {
+        "id": {
           "type": "string",
-          "description": "User's unique name (or id)."
+          "description": "User's unique id."
         },
         "parent": {
           "type": "string",
