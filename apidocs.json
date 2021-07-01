@@ -974,6 +974,33 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "billingGroupId": {
+                  "type": "string",
+                  "description": "Optional. If set, reads the non-usage-based adjustment details of this billing group.\nValid only if `accountId` is not set. If both `billingGroupId` and `accountId` are not\nset, reads the adjustment details of the whole organization.\nOnly valid for Ripple users. Implied for Wave(Pro) users."
+                },
+                "accountId": {
+                  "type": "string",
+                  "description": "Optional. If set, reads the non-usaged-based adjustment details of this account. Also\ninvalidates the `billingGroupId` value even if set. If both `billingGroupId` and\n`accountId` are not set, reads the adjustment details of the whole organization."
+                },
+                "startTime": {
+                  "type": "string",
+                  "description": "Optional. Timestamp to start streaming data from. If not set, the first day of the\ncurrent month will be used. Format: `yyyymmdd`."
+                },
+                "endTime": {
+                  "type": "string",
+                  "description": "Optional. Timestamp to end the streaming data. If not set, current date will be used.\nFormat: `yyyymmdd`."
+                }
+              },
+              "description": "Request message for the Cost.ReadAdjustments rpc."
+            }
           }
         ],
         "tags": [
@@ -1198,6 +1225,37 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "billingGroupId": {
+                  "type": "string",
+                  "description": "Optional. If set, reads the usage-based cost details of this billing group. Valid only\nif `accountId` is not set. If both `billingGroupId` and `accountId` are not set,\nreads the usage-based cost details of the whole organization.\nOnly valid for Ripple users. Implied for Wave(Pro) users."
+                },
+                "accountId": {
+                  "type": "string",
+                  "description": "Optional. If set, reads the usage-based cost details of this account. Also invalidates\nthe `billingGroupId` value even if set. If both `billingGroupId` and `accountId` are\nnot set, reads the usage-based cost details of the whole organization."
+                },
+                "startTime": {
+                  "type": "string",
+                  "description": "Optional. Timestamp to start streaming data from. If not set, the first day of the\ncurrent month will be used. Format: yyyymmdd."
+                },
+                "endTime": {
+                  "type": "string",
+                  "description": "Optional. Timestamp to end the streaming data. If not set, current date will be used.\nFormat: `yyyymmd`."
+                },
+                "awsOptions": {
+                  "$ref": "#/definitions/v1AwsOptions",
+                  "description": "Optional. AWS-specific request options."
+                }
+              },
+              "description": "Request message for the Cost.ReadCosts rpc."
+            }
           }
         ],
         "tags": [
