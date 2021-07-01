@@ -406,7 +406,7 @@
     },
     "/ops/v1/{name}": {
       "get": {
-        "summary": "Gets the latest state of a long-running operation.  Clients can use this method\nto poll the operation result at intervals as recommended by the API service.",
+        "summary": "Gets the latest state of a long-running operation. You can use this method to\npoll the operation result at intervals.",
         "operationId": "Operations_GetOperation",
         "responses": {
           "200": {
