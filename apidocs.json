@@ -30,6 +30,14 @@
       }
     },
     {
+      "name": "Billing",
+      "description": "Base URL: https://api.alphaus.cloud/m/billing",
+      "externalDocs": {
+        "description": "Service definition",
+        "url": "https://github.com/alphauslabs/blueapi/tree/main/billing/"
+      }
+    },
+    {
       "name": "Cost",
       "description": "Base URL: https://api.alphaus.cloud/m/blue/cost",
       "externalDocs": {
@@ -889,6 +897,38 @@
         ],
         "tags": [
           "Cost"
+        ]
+      }
+    },
+    "/v1/billinggroups": {
+      "get": {
+        "summary": "Lists all billing groups.",
+        "operationId": "Billing_ListBillingGroups",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1BillingGroup"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of v1BillingGroup"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Billing"
         ]
       }
     },
@@ -1837,6 +1877,23 @@
         }
       },
       "description": "AWS-specific options."
+    },
+    "v1BillingGroup": {
+      "type": "object",
+      "properties": {
+        "companyId": {
+          "type": "string",
+          "description": "The billing group's internal company id."
+        },
+        "billingGroupId": {
+          "type": "string",
+          "description": "The billing group id."
+        },
+        "billingGroupName": {
+          "type": "string",
+          "description": "The billing group name."
+        }
+      }
     },
     "v1CostItem": {
       "type": "object",
