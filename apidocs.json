@@ -1351,14 +1351,14 @@
           },
           {
             "name": "fromDate",
-            "description": "Optional. Starting date to get data.\nIf from_date is less than current date, historical costs are included.\nIf from_date is greater than current date, only forecasted costs are returned.\nFormat: `yyyymmdd`.",
+            "description": "Optional. Starting date to get data.\nIf from_date is less than current date, historical costs are included.\nIf from_date is greater than current date, only forecasted costs are returned.\nFormat: `yyyy-mm-dd`.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "toDate",
-            "description": "Optional. Last date to get forecast cost. \nCurrently, we only support 90 days forecasting from the first day of current month.\nFormat: `yyyymmdd`.",
+            "description": "Optional. Last date to get forecast cost. \nCurrently, we only support 90 days forecasting from the first day of current month.\nFormat: `yyyy-mm-dd`.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -1554,8 +1554,7 @@
           "type": "string"
         },
         "date": {
-          "type": "string",
-          "format": "date-time"
+          "type": "string"
         },
         "historicalCost": {
           "type": "number",
@@ -1580,8 +1579,7 @@
           "type": "string"
         },
         "date": {
-          "type": "string",
-          "format": "date-time"
+          "type": "string"
         },
         "accumulatedCost": {
           "type": "number",
