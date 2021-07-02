@@ -741,7 +741,7 @@
     },
     "/v1/aws/managementaccts": {
       "get": {
-        "summary": "Lists AWS management accounts.",
+        "summary": "Lists AWS management accounts (formerly known as master or payer accounts).",
         "operationId": "Cost_ListManagementAccounts",
         "responses": {
           "200": {
