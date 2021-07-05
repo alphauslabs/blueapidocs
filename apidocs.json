@@ -2197,10 +2197,16 @@
       "type": "object",
       "properties": {
         "email": {
-          "type": "string"
+          "type": "string",
+          "title": "Required. Organization's email"
         },
         "description": {
-          "type": "string"
+          "type": "string",
+          "title": "Required. Organization's description or company name"
+        },
+        "password": {
+          "type": "string",
+          "description": "Optional. User can decide to let the system generates the password."
         }
       },
       "description": "Request message for the Organization.CreateOrg rpc."
