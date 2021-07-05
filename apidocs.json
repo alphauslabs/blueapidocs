@@ -30,19 +30,19 @@
       }
     },
     {
-      "name": "Billing",
-      "description": "Base URL: https://api.alphaus.cloud/m/blue/billing",
-      "externalDocs": {
-        "description": "Service definition",
-        "url": "https://github.com/alphauslabs/blueapi/tree/main/billing/"
-      }
-    },
-    {
       "name": "Cost",
       "description": "Base URL: https://api.alphaus.cloud/m/blue/cost",
       "externalDocs": {
         "description": "Service definition",
         "url": "https://github.com/alphauslabs/blueapi/tree/main/cost/"
+      }
+    },
+    {
+      "name": "Billing",
+      "description": "Base URL: https://api.alphaus.cloud/m/blue/billing",
+      "externalDocs": {
+        "description": "Service definition",
+        "url": "https://github.com/alphauslabs/blueapi/tree/main/billing/"
       }
     },
     {
