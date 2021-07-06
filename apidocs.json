@@ -1172,7 +1172,7 @@
         "parameters": [
           {
             "name": "vendor",
-            "description": "Required. Valid values are `aws`, `azure`, and `gcp`.",
+            "description": "Required. At the moment, only `aws` is supported.",
             "in": "path",
             "required": true,
             "type": "string"
@@ -1240,7 +1240,7 @@
         "parameters": [
           {
             "name": "vendor",
-            "description": "Required. Valid values are `aws`, `azure`, and `gcp`.",
+            "description": "Required. At the moment, only `aws` is supported.",
             "in": "path",
             "required": true,
             "type": "string"
@@ -1288,7 +1288,7 @@
         "parameters": [
           {
             "name": "vendor",
-            "description": "Required. Valid values are `aws`, `azure`, and `gcp`.",
+            "description": "Required. At the moment, only `aws` is supported.",
             "in": "path",
             "required": true,
             "type": "string"
@@ -1371,7 +1371,7 @@
         "parameters": [
           {
             "name": "vendor",
-            "description": "Required. Valid values are `aws`, `azure`, and `gcp`.",
+            "description": "Required. At the moment, only `aws` is supported.",
             "in": "path",
             "required": true,
             "type": "string"
@@ -1412,7 +1412,7 @@
         "parameters": [
           {
             "name": "vendor",
-            "description": "Required. Valid values are `aws`, `azure`, and `gcp`.",
+            "description": "Required. At the moment, only `aws` is supported.",
             "in": "path",
             "required": true,
             "type": "string"
@@ -1469,7 +1469,7 @@
         "parameters": [
           {
             "name": "vendor",
-            "description": "Required. Valid values are `aws`, `azure`, and `gcp`.",
+            "description": "Required. At the moment, only `aws` is supported.",
             "in": "path",
             "required": true,
             "type": "string"
@@ -1532,7 +1532,7 @@
         "parameters": [
           {
             "name": "vendor",
-            "description": "Required. Valid values are `aws`, `azure`, and `gcp`.",
+            "description": "Required. At the moment, only `aws` is supported.",
             "in": "path",
             "required": true,
             "type": "string"
@@ -1599,7 +1599,7 @@
         "parameters": [
           {
             "name": "vendor",
-            "description": "Required. Valid values are `aws`, `azure`, and `gcp`.",
+            "description": "Required. At the moment, only `aws` is supported.",
             "in": "path",
             "required": true,
             "type": "string"
@@ -1638,7 +1638,7 @@
         "parameters": [
           {
             "name": "vendor",
-            "description": "Required. Valid values are `aws`, `azure`, and `gcp`.",
+            "description": "Required. At the moment, only `aws` is supported.",
             "in": "path",
             "required": true,
             "type": "string"
