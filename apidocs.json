@@ -1275,6 +1275,57 @@
         ]
       }
     },
+    "/v1/{vendor}/costs:calculate": {
+      "post": {
+        "summary": "Triggers monthly calculations for costs and invoices at either organization or billing group level.",
+        "operationId": "Cost_CalculateCosts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/blueapiapiOperation"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "billingInternalId": {
+                  "type": "string",
+                  "description": "Optional. If set to a particular billing group, calculate for that billing group.\nIf empty, calculate for all billing groups.\n\nAt the moment, for AWS, this is only valid for account type billing groups, not\ntag billing groups. If a tag billing group is provided, it is discarded and the\ncalculation is done for the whole organization."
+                },
+                "month": {
+                  "type": "string",
+                  "description": "Optional. The UTC month to calculate. If empty, it defaults to the previous month.\nFormat is `yyyymm`. For example, June 2021 will be `202106`."
+                }
+              },
+              "description": "Request message for the Cost.CalculateCosts rpc."
+            }
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      }
+    },
     "/v1/{vendor}/costs:read": {
       "post": {
         "summary": "Reads the usage-based cost details of an organization (Ripple) or billing group (Wave).\nAt the moment, the supported {vendor} is 'aws'. If datetime range parameters are\nnot set, month-to-date (current month) will be returned.",
@@ -1654,57 +1705,6 @@
             "in": "query",
             "required": false,
             "type": "string"
-          }
-        ],
-        "tags": [
-          "Cost"
-        ]
-      }
-    },
-    "/v1/{vendor}:calculateCosts": {
-      "post": {
-        "summary": "Triggers monthly calculations for costs and invoices at either organization or billing group level.",
-        "operationId": "Cost_CalculateCosts",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/blueapiapiOperation"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "vendor",
-            "description": "Required. At the moment, only `aws` is supported.",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "billingInternalId": {
-                  "type": "string",
-                  "description": "Optional. If set to a particular billing group, calculate for that billing group.\nIf empty, calculate for all billing groups.\n\nAt the moment, for AWS, this is only valid for account type billing groups, not\ntag billing groups. If a tag billing group is provided, it is discarded and the\ncalculation is done for the whole organization."
-                },
-                "month": {
-                  "type": "string",
-                  "description": "Optional. The UTC month to calculate. If empty, it defaults to the previous month.\nFormat is `yyyymm`. For example, June 2021 will be `202106`."
-                }
-              },
-              "description": "Request message for the Cost.CalculateCosts rpc."
-            }
           }
         ],
         "tags": [
