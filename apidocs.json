@@ -2019,13 +2019,21 @@
           "type": "number",
           "format": "double"
         },
-        "currency": {
+        "baseCurrency": {
+          "type": "string"
+        },
+        "targetCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "targetCurrency": {
           "type": "string"
         },
         "tagId": {
           "type": "string"
         }
-      }
+      },
+      "description": "Usage-based lineitem cost representation in AWS."
     },
     "blueapiapiOperation": {
       "type": "object",
