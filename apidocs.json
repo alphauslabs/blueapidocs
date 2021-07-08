@@ -1938,8 +1938,7 @@
           "type": "string"
         },
         "date": {
-          "type": "string",
-          "format": "date-time"
+          "type": "string"
         },
         "type": {
           "type": "string"
@@ -1953,6 +1952,20 @@
         "cost": {
           "type": "number",
           "format": "double"
+        },
+        "baseCurrency": {
+          "type": "string"
+        },
+        "exchangeRate": {
+          "type": "number",
+          "format": "double"
+        },
+        "targetCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "targetCurrency": {
+          "type": "string"
         }
       }
     },
