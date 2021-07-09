@@ -2410,6 +2410,10 @@
         "toCurrency": {
           "type": "string",
           "description": "Optional. Set to US dollars (USD) by default (AWS CUR's default currency). You can\nset it to the desired three-letter currency symbol (i.e. JPY, EUR, GBP), in which\ncase, it will use the latest exchange rates provided by https://fixer.io. If you\nprefer a custom exchange rate, you can append the rate to the currency's three-letter\nsymbol. For example, `JPY:110.622` for the Japanese Yen. Note that the exchange rate\nshould be against the US dollar (USD)."
+        },
+        "forceLatest": {
+          "type": "boolean",
+          "description": "Optional. If set to true, always get the up-to-date calculation results. This data\nisn't necessarily in-sync with your invoice data as AWS could still have updated your\nCUR files even after you created your invoices. By default, returned data are those\nthat are always in-sync with your invoices.\n\nThis field is discarded for Wave(Pro) users. You will always get the latest data that\nis in-sync with your invoices."
         }
       },
       "description": "AWS-specific options for ReadCostsRequest."
