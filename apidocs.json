@@ -1052,7 +1052,7 @@
     },
     "/v1/{vendor}/billinggroups/{id}/nontagcosts:read": {
       "post": {
-        "summary": "Reads the usage-based non tag costs of a billing group. At the moment, the supported {vendor} is \n'aws'. If datetime range parameters are not set, month-to-date (current month) will be returned.",
+        "summary": "(Deprecated, use cost.ReadNonTagCosts instead) Reads the usage-based non tag costs of a billing group.\nAt the moment, the supported {vendor} is 'aws'. If datetime range parameters are not set, month-to-date \n(current month) will be returned.",
         "operationId": "Cost_ReadBillingGroupNonTagCosts",
         "responses": {
           "200": {
@@ -1100,7 +1100,7 @@
     },
     "/v1/{vendor}/billinggroups/{id}/tagcosts:read": {
       "post": {
-        "summary": "Reads the usage-based tag costs of a billing group. At the moment, the supported {vendor} is \n'aws'. If datetime range parameters are not set, month-to-date (current month) will be returned.",
+        "summary": "(Deprecated, use cost.ReadTagCosts instead) Reads the usage-based tag costs of a billing group. \nAt the moment, the supported {vendor} is 'aws'. If datetime range parameters are not set, month-to-date \n(current month) will be returned.",
         "operationId": "Cost_ReadBillingGroupTagCosts",
         "responses": {
           "200": {
@@ -1508,6 +1508,70 @@
         ]
       }
     },
+    "/v1/{vendor}/nontagcosts:read": {
+      "post": {
+        "summary": "Reads the usage-based non tag costs of a billing group. At the moment, the supported {vendor} is \n'aws'. If datetime range parameters are not set, month-to-date (current month) will be returned.",
+        "operationId": "Cost_ReadNonTagCosts",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1CostItem"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of v1CostItem"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "billingInternalId": {
+                  "type": "string",
+                  "description": "Required. The billing internal id to stream."
+                },
+                "startTime": {
+                  "type": "string",
+                  "description": "Optional. Timestamp to start streaming data from. If not set, the first day of the\ncurrent month will be used. Format: `yyyymmdd`."
+                },
+                "endTime": {
+                  "type": "string",
+                  "description": "Optional. Timestamp to end the streaming data. If not set, current date will be used.\nFormat: `yyyymmdd`."
+                }
+              },
+              "description": "Request message for the Cost.ReadNonTagCosts rpc."
+            }
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      }
+    },
     "/v1/{vendor}/payers": {
       "get": {
         "summary": "Lists vendor payer accounts. For AWS, these are management accounts (formerly known\nas master or payer accounts); for Azure, these are subscriptions, for GCP, these\nare projects.",
@@ -1709,6 +1773,70 @@
             "in": "query",
             "required": false,
             "type": "string"
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      }
+    },
+    "/v1/{vendor}/tagcosts:read": {
+      "post": {
+        "summary": "Reads the usage-based tag costs of a billing group. At the moment, the supported {vendor} is \n'aws'. If datetime range parameters are not set, month-to-date (current month) will be returned.",
+        "operationId": "Cost_ReadTagCosts",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1CostItem"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of v1CostItem"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "billingInternalId": {
+                  "type": "string",
+                  "description": "Required. The billing internal id to stream."
+                },
+                "startTime": {
+                  "type": "string",
+                  "description": "Optional. Timestamp to start streaming data from. If not set, the first day of the\ncurrent month will be used. Format: `yyyymmdd`."
+                },
+                "endTime": {
+                  "type": "string",
+                  "description": "Optional. Timestamp to end the streaming data. If not set, current date will be used.\nFormat: `yyyymmdd`."
+                }
+              },
+              "description": "Request message for the Cost.ReadTagCosts rpc."
+            }
           }
         ],
         "tags": [
