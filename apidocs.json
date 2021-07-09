@@ -52,6 +52,14 @@
         "description": "Service definition",
         "url": "https://github.com/alphauslabs/blueapi/tree/main/operations/"
       }
+    },
+    {
+      "name": "Preferences",
+      "description": "Base URL: https://api.alphaus.cloud/m/blue/prefs",
+      "externalDocs": {
+        "description": "Service definition",
+        "url": "https://github.com/alphauslabs/blueapi/tree/main/preferences/"
+      }
     }
   ],
   "consumes": [
@@ -736,6 +744,29 @@
         ],
         "tags": [
           "Organization"
+        ]
+      }
+    },
+    "/v1": {
+      "get": {
+        "summary": "Gets current preferences.",
+        "operationId": "Preferences_GetPreferences",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Preference"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Preferences"
         ]
       }
     },
@@ -2510,6 +2541,9 @@
           "description": "The IP filter value. Should be in CIDR format."
         }
       }
+    },
+    "v1Preference": {
+      "type": "object"
     },
     "v1ReadAdjustmentsRequestAwsOptions": {
       "type": "object",
