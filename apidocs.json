@@ -1833,6 +1833,10 @@
                 "endTime": {
                   "type": "string",
                   "description": "Optional. Timestamp to end the streaming data. If not set, current date will be used.\nFormat: `yyyymmdd`."
+                },
+                "groupByMonths": {
+                  "type": "boolean",
+                  "description": "Optional. Group services and costs by months in the range of `startTime` and `endTime`.\nIf not set, daily data will be returned."
                 }
               },
               "description": "Request message for the Cost.ReadNonTagCosts rpc."
@@ -2105,6 +2109,10 @@
                 "endTime": {
                   "type": "string",
                   "description": "Optional. Timestamp to end the streaming data. If not set, current date will be used.\nFormat: `yyyymmdd`."
+                },
+                "groupByMonths": {
+                  "type": "boolean",
+                  "description": "Optional. Group services and costs by months in the range of `startTime` and `endTime`.\nIf not set, daily data will be returned."
                 }
               },
               "description": "Request message for the Cost.ReadTagCosts rpc."
