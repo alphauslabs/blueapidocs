@@ -2928,7 +2928,11 @@
       "properties": {
         "groupByColumns": {
           "type": "string",
-          "description": "Optional. A comma-separated list of columns to aggregate the data into. Valid values\nare `productCode`, `serviceCode`, `region`, `zone`, `usageType`, `instanceType`,\n`operation`, `invoiceId`, `description`, and `resourceId`. A special value of `none`\nis also supported, which means no additional columns will be queried, which translates\nto data aggregated daily per account.\n\nFor example, if you only want the services and region data, you can set this field to\n`productCode,region`. Your input sequence doesn't matter (although the sequence above\nis recommended) as the actual sequence is already fixed in the return data (see the\ndefinition in https://github.com/alphauslabs/blueapi/blob/main/api/aws/cost.proto),\nwhich is generic to specific, top to bottom. Invalid values are discarded. Excluded\ncolumns will be empty."
+          "description": "Optional. A comma-separated list of columns to aggregate the data into. Valid values\nare `productCode`, `serviceCode`, `region`, `zone`, `usageType`, `instanceType`,\n`operation`, `invoiceId`, `description`, and `resourceId`. A special value of `none`\nis also supported, which means no additional columns will be queried, which translates\nto data aggregated daily (or monthly, see `groupByMonth`) per account.\n\nFor example, if you only want the services and region data, you can set this field to\n`productCode,region`. Your input sequence doesn't matter (although the sequence above\nis recommended) as the actual sequence is already fixed in the return data (see the\ndefinition in https://github.com/alphauslabs/blueapi/blob/main/api/aws/cost.proto),\nwhich is generic to specific, top to bottom. Invalid values are discarded. Excluded\ncolumns will be empty."
+        },
+        "groupByMonth": {
+          "type": "boolean",
+          "description": "Optional. If set to true, return data grouped by month. At the moment, it only supports\n`productCode` column when enabled; meaning, costs per account per service per month.\nIf you want data that is grouped per account per month, set this to `true`, then set\n`groupByColumns` to `none`."
         },
         "includeTags": {
           "type": "boolean",
