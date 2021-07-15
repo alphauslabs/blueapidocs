@@ -437,6 +437,10 @@
             "schema": {
               "type": "object",
               "properties": {
+                "newName": {
+                  "type": "string",
+                  "description": "Optional. If set, update the current name to this."
+                },
                 "permissions": {
                   "type": "array",
                   "items": {
