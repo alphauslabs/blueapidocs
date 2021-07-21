@@ -2644,9 +2644,6 @@
         "targetCurrency": {
           "type": "string"
         },
-        "tagId": {
-          "type": "string"
-        },
         "effectiveCost": {
           "type": "number",
           "format": "double"
@@ -2662,6 +2659,9 @@
         "targetAmortizedCost": {
           "type": "number",
           "format": "double"
+        },
+        "tagId": {
+          "type": "string"
         }
       }
     },
