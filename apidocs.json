@@ -2366,14 +2366,6 @@
         "costForecast": {
           "type": "number",
           "format": "double"
-        },
-        "upperBound": {
-          "type": "number",
-          "format": "double"
-        },
-        "lowerBound": {
-          "type": "number",
-          "format": "double"
         }
       }
     },
@@ -2388,10 +2380,6 @@
           "format": "double"
         },
         "costForecast": {
-          "type": "number",
-          "format": "double"
-        },
-        "budget": {
           "type": "number",
           "format": "double"
         },
@@ -3037,6 +3025,10 @@
       "properties": {
         "id": {
           "type": "string"
+        },
+        "budget": {
+          "type": "number",
+          "format": "double"
         },
         "data": {
           "type": "array",
