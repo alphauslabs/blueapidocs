@@ -1484,6 +1484,202 @@
         ]
       }
     },
+    "/v1/{vendor}/budget/{budgetId}": {
+      "delete": {
+        "summary": "Removes monthly budget for the account/acctgroup id from database.",
+        "operationId": "Cost_DeleteAccountBudget",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "budgetId",
+            "description": "Required. Budget Id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      },
+      "put": {
+        "summary": "Updates monthly budget for the account/acctgroup id.",
+        "operationId": "Cost_UpdateAccountBudget",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "budgetId",
+            "description": "Required. Account or AccountGroup Id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/apiBudget"
+                }
+              },
+              "title": "Request message for UpdateAccountBudget"
+            }
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      }
+    },
+    "/v1/{vendor}/budget/{level}": {
+      "post": {
+        "summary": "Creates monthly budget for the account/acctgroup id.",
+        "operationId": "Cost_CreateAccountBudget",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateAccountBudgetResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "level",
+            "description": "Required. 'account' or 'acctgroup'",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/apiBudget"
+                }
+              },
+              "title": "Request message for CreateAccountBudget"
+            }
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      }
+    },
+    "/v1/{vendor}/budget/{level}/{id}": {
+      "get": {
+        "summary": "Fetches monthly budget for the account/acctgroup id.",
+        "operationId": "Cost_GetAccountBudget",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetAccountBudgetResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "level",
+            "description": "Required. 'account' or 'acctgroup'",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "Required. Account or AccountGroup Id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "year",
+            "description": "Optional. Default is current year\nFormat: yyyy.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      }
+    },
     "/v1/{vendor}/calculations/history": {
       "get": {
         "summary": "Lists vendor costs calculations history and statuses.",
@@ -2313,6 +2509,26 @@
         }
       }
     },
+    "apiBudget": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "year": {
+          "type": "string",
+          "title": "Format: yyyy"
+        },
+        "monthlyBudget": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "format": "double"
+          },
+          "title": "key: mm, value: 00.00"
+        }
+      }
+    },
     "apiForecastData": {
       "type": "object",
       "properties": {
@@ -2843,6 +3059,19 @@
       },
       "description": "Response message wrapper for cloud costs."
     },
+    "v1CreateAccountBudgetResponse": {
+      "type": "object",
+      "properties": {
+        "budgetId": {
+          "type": "string",
+          "title": "Budget Id"
+        },
+        "isSuccess": {
+          "type": "boolean"
+        }
+      },
+      "title": "Response message for CreateAccountBudget"
+    },
     "v1CreateAccountRequestAwsOptions": {
       "type": "object",
       "properties": {
@@ -3028,6 +3257,15 @@
         }
       },
       "description": "Response message for the Iam.CreateUserRoleMapping rpc."
+    },
+    "v1GetAccountBudgetResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/apiBudget"
+        }
+      },
+      "title": "Response message for GetAccountBudget"
     },
     "v1GetCalculatorConfigResponse": {
       "type": "object",
