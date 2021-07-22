@@ -1549,7 +1549,7 @@
           },
           {
             "name": "budgetId",
-            "description": "Required. Account or AccountGroup Id",
+            "description": "Required. Budget Id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -1566,59 +1566,6 @@
                 }
               },
               "title": "Request message for UpdateAccountBudget"
-            }
-          }
-        ],
-        "tags": [
-          "Cost"
-        ]
-      }
-    },
-    "/v1/{vendor}/budget/{level}": {
-      "post": {
-        "summary": "Creates monthly budget for the account/acctgroup id.",
-        "operationId": "Cost_CreateAccountBudget",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1CreateAccountBudgetResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "vendor",
-            "description": "Required. At the moment, only `aws` is supported.",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "level",
-            "description": "Required. 'account' or 'acctgroup'",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "$ref": "#/definitions/apiBudget"
-                }
-              },
-              "title": "Request message for CreateAccountBudget"
             }
           }
         ],
@@ -1673,6 +1620,64 @@
             "in": "query",
             "required": false,
             "type": "string"
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      },
+      "post": {
+        "summary": "Creates monthly budget for the account/acctgroup id.",
+        "operationId": "Cost_CreateAccountBudget",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateAccountBudgetResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "level",
+            "description": "Required. 'account' or 'acctgroup'",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "Required. Account or AccountGroup Id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/apiBudget"
+                }
+              },
+              "title": "Request message for CreateAccountBudget"
+            }
           }
         ],
         "tags": [
@@ -3065,9 +3070,6 @@
         "budgetId": {
           "type": "string",
           "title": "Budget Id"
-        },
-        "isSuccess": {
-          "type": "boolean"
         }
       },
       "title": "Response message for CreateAccountBudget"
