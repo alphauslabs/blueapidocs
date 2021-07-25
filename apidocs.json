@@ -2551,17 +2551,11 @@
         "id": {
           "type": "string"
         },
-        "year": {
-          "type": "string",
-          "title": "Format: yyyy"
-        },
         "monthlyBudget": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "number",
-            "format": "double"
-          },
-          "title": "key: mm, value: 00.00"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiMonthlyBudget"
+          }
         }
       }
     },
@@ -2627,6 +2621,10 @@
         "date": {
           "type": "string"
         },
+        "costPrev": {
+          "type": "number",
+          "format": "double"
+        },
         "costAccumulated": {
           "type": "number",
           "format": "double"
@@ -2640,6 +2638,19 @@
           "format": "double"
         },
         "lowerBound": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "apiMonthlyBudget": {
+      "type": "object",
+      "properties": {
+        "yearMonth": {
+          "type": "string",
+          "title": "Format: yyyymm"
+        },
+        "amount": {
           "type": "number",
           "format": "double"
         }
