@@ -2551,6 +2551,10 @@
         "id": {
           "type": "string"
         },
+        "fiscalYear": {
+          "type": "string",
+          "title": "Format: yyyy"
+        },
         "monthlyBudget": {
           "type": "array",
           "items": {
