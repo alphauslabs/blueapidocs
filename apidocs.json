@@ -3194,9 +3194,94 @@
         "exchangeRateType": {
           "type": "string",
           "title": "Optional. Exchange rate type, payer or billing group"
+        },
+        "invoices": {
+          "$ref": "#/definitions/v1CreateBillingGroupRequestInvoice",
+          "title": "Invoice settings"
         }
       },
       "description": "Request message for the Billing.CreateBillingGroup rpc."
+    },
+    "v1CreateBillingGroupRequestInvoice": {
+      "type": "object",
+      "properties": {
+        "aws": {
+          "$ref": "#/definitions/v1CreateBillingGroupRequestInvoiceVendor",
+          "title": "AWS invoice settings"
+        },
+        "azure": {
+          "$ref": "#/definitions/v1CreateBillingGroupRequestInvoiceVendor",
+          "title": "Azure invoice settings"
+        },
+        "gcp": {
+          "$ref": "#/definitions/v1CreateBillingGroupRequestInvoiceVendor",
+          "title": "GCP invoice settings"
+        }
+      },
+      "title": "Vendor invoice setttings"
+    },
+    "v1CreateBillingGroupRequestInvoiceVendor": {
+      "type": "object",
+      "properties": {
+        "calcType": {
+          "type": "string"
+        },
+        "discountRate": {
+          "type": "number",
+          "format": "double"
+        },
+        "substitutionFee": {
+          "type": "string"
+        },
+        "substitutionFix": {
+          "type": "number",
+          "format": "double"
+        },
+        "substitutionRate": {
+          "type": "number",
+          "format": "double"
+        },
+        "supportFee": {
+          "type": "string"
+        },
+        "supportRate": {
+          "type": "number",
+          "format": "double"
+        },
+        "supportFix": {
+          "type": "number",
+          "format": "double"
+        },
+        "taxRate": {
+          "type": "number",
+          "format": "double"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "discountTargetUsage": {
+          "type": "string"
+        },
+        "substitutionFeeTargetUsage": {
+          "type": "string"
+        },
+        "discountCalcLogic": {
+          "type": "string"
+        },
+        "substitutionFeeCalcTarget": {
+          "type": "string"
+        },
+        "substitutionFeeCalcType": {
+          "type": "string"
+        },
+        "supportAmountTarget": {
+          "type": "string"
+        },
+        "supportFeeCalcTarget": {
+          "type": "string"
+        }
+      },
+      "title": "Specific settings per vendor"
     },
     "v1CreateIpFilterRequest": {
       "type": "object",
