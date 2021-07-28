@@ -2900,7 +2900,8 @@
           "type": "string"
         },
         "resourceId": {
-          "type": "string"
+          "type": "string",
+          "description": "At the moment, this is not yet supported, always empty."
         },
         "tags": {
           "type": "object",
