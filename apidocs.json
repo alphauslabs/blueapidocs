@@ -2027,6 +2027,13 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "date",
+            "description": "Optional. Default is current month. \nFormat: yyyymm.",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -2072,6 +2079,13 @@
             "description": "Required. Account or AccountGroup Id",
             "in": "path",
             "required": true,
+            "type": "string"
+          },
+          {
+            "name": "date",
+            "description": "Optional. Default is current month. \nFormat: yyyymm.",
+            "in": "query",
+            "required": false,
             "type": "string"
           }
         ],
