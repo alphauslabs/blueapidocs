@@ -3516,6 +3516,9 @@
           "items": {
             "$ref": "#/definitions/apiMonthOnMonthCostForecast"
           }
+        },
+        "timestamp": {
+          "type": "string"
         }
       },
       "title": "Response message for GetMonthOnMonthCostForecast"
@@ -3535,6 +3538,9 @@
           "items": {
             "$ref": "#/definitions/apiMonthToDateCostForecast"
           }
+        },
+        "timestamp": {
+          "type": "string"
         }
       },
       "title": "Response message for GetMonthToDateCostForecast"
@@ -3550,6 +3556,9 @@
           "items": {
             "$ref": "#/definitions/apiMonthlyCostForecast"
           }
+        },
+        "timestamp": {
+          "type": "string"
         }
       },
       "title": "Response message for GetMonthlyCostForecast"
