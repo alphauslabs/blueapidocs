@@ -2512,8 +2512,11 @@
           "description": "The account name."
         },
         "metadata": {
-          "$ref": "#/definitions/protobufAny",
-          "description": "The attributes (key/value pair) of the account. At the moment,\nthis maps to `AccountMetadataV1`."
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiKeyValue"
+          },
+          "description": "The attributes (key/value pair) of the account."
         }
       }
     },
@@ -2610,6 +2613,17 @@
         "lowerBound": {
           "type": "number",
           "format": "double"
+        }
+      }
+    },
+    "apiKeyValue": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
         }
       }
     },
