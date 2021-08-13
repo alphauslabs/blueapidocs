@@ -2391,6 +2391,10 @@
                 "groupByMonths": {
                   "type": "boolean",
                   "description": "Optional. Group services and costs by months in the range of `startTime` and `endTime`.\nIf not set, daily data will be returned."
+                },
+                "awsOptions": {
+                  "$ref": "#/definitions/v1ReadTagCostsRequestAwsOptions",
+                  "description": "Optional. Valid only for the `aws` vendor. AWS-specific options."
                 }
               },
               "description": "Request message for the Cost.ReadTagCosts rpc."
@@ -3655,6 +3659,15 @@
         }
       },
       "description": "A map of \"key:value\" column filters. Dependent on `groupByColumns` and/or `groupByMonth`.\nThe key indicates the column name while the value is the filter value prefixed by either\n\"eq:\" (equal), \"re:\" (regular expressions based on https://github.com/google/re2), or\n\"!re:\" (reverse \"re:\"). Multiple map items will use the logical 'and' operator, e.g.\nmapfilter1 \u0026\u0026 mapfilter2 \u0026\u0026 mapfilter3, etc.\n\nFor example, if you like to filter `productCode` to return only `AmazonEC2`, set to\n`{\"productCode\":\"eq:AmazonEC2\"}`. You can also use a regular expression like \n`{\"productCode\":\"re:AmazonEC2|AmazonRDS\"}`, which means return all AmazonEC2 or AmazonRDS\nlineitems. Or reverse regexp, such as `{\"productCode\":\"!re:^AmazonEC2$\"}`, which means\nreturn all items except `AmazonEC2`."
+    },
+    "v1ReadTagCostsRequestAwsOptions": {
+      "type": "object",
+      "properties": {
+        "tagId": {
+          "type": "string",
+          "description": "Optional. If set, only return data for this tagId."
+        }
+      }
     },
     "v1UpdateMetadataRequest": {
       "type": "object",
