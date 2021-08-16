@@ -1389,9 +1389,9 @@
             "schema": {
               "type": "object",
               "properties": {
-                "billingInternalId": {
+                "groupId": {
                   "type": "string",
-                  "description": "Optional. If set, reads the non-usage-based adjustment details of this billing group.\nValid only if `accountId` is not set. If both `billingInternalId` and `accountId` are\nnot set, reads the adjustment details of the whole organization. Only valid for\nRipple users. Implied (or discarded) for Wave(Pro) users."
+                  "description": "Optional. At the moment, only billing internal ids are supported. If set, reads the\nnon-usage-based adjustment details of this group. Valid only if `accountId` is not set.\nIf both `groupId` and `accountId` are not set, reads the adjustment details of the whole\norganization. Only valid for Ripple users. Implied (or discarded) for Wave(Pro) users."
                 },
                 "accountId": {
                   "type": "string",
