@@ -2742,7 +2742,7 @@
         "account": {
           "type": "string"
         },
-        "billingGroupId": {
+        "groupId": {
           "type": "string"
         },
         "date": {
