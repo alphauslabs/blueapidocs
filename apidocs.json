@@ -2477,6 +2477,26 @@
         }
       }
     },
+    "apiAccountGroup": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The AccountGroup id."
+        },
+        "name": {
+          "type": "string",
+          "description": "The AccountGroup name."
+        },
+        "metadata": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiKeyValue"
+          },
+          "description": "The attributes (key/value pair) of the AccountGroup."
+        }
+      }
+    },
     "apiApiClient": {
       "type": "object",
       "properties": {
@@ -3601,6 +3621,14 @@
     },
     "v1ListAccountGroupsResponse": {
       "type": "object",
+      "properties": {
+        "accountGroups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiAccountGroup"
+          }
+        }
+      },
       "description": "Response message for the Admin.ListAccountGroups rpc."
     },
     "v1ListCalculationsHistoryAwsResponse": {
