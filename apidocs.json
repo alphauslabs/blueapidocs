@@ -1181,6 +1181,37 @@
         ]
       }
     },
+    "/v1/billinggroup/{billingInternalId}": {
+      "get": {
+        "summary": "Get Billing Group by ID",
+        "operationId": "Billing_GetBillingGroup",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetBillingGroupResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "billingInternalId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      }
+    },
     "/v1/billinggroups": {
       "get": {
         "summary": "Lists all billing groups.",
@@ -3143,6 +3174,13 @@
         "billingGroupName": {
           "type": "string",
           "description": "The billing group name."
+        },
+        "accounts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiAccount"
+          },
+          "title": "List of all accounts"
         }
       }
     },
@@ -3528,6 +3566,15 @@
         }
       },
       "description": "Response message for the Admin.GetAccountGroup rpc."
+    },
+    "v1GetBillingGroupResponse": {
+      "type": "object",
+      "properties": {
+        "billingGroup": {
+          "$ref": "#/definitions/v1BillingGroup"
+        }
+      },
+      "description": "Response message for the Billing.GetBillingGroup rpc."
     },
     "v1GetCalculatorConfigResponse": {
       "type": "object",
