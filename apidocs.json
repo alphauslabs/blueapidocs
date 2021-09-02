@@ -83,6 +83,37 @@
     "application/json"
   ],
   "paths": {
+    "/admin/v1/acctgroup/{id}": {
+      "get": {
+        "summary": "Get Accout Group by Id",
+        "operationId": "Admin_GetAccountGroup",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetAccountGroupResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Admin"
+        ]
+      }
+    },
     "/admin/v1/acctgroups": {
       "get": {
         "summary": "Lists all account groups.",
@@ -2494,6 +2525,12 @@
             "$ref": "#/definitions/apiKeyValue"
           },
           "description": "The attributes (key/value pair) of the AccountGroup."
+        },
+        "accounts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiAccount"
+          }
         }
       }
     },
@@ -3482,6 +3519,15 @@
         }
       },
       "title": "Response message for GetAccountBudget"
+    },
+    "v1GetAccountGroupResponse": {
+      "type": "object",
+      "properties": {
+        "acctGroup": {
+          "$ref": "#/definitions/apiAccountGroup"
+        }
+      },
+      "description": "Response message for the Admin.GetAccountGroup rpc."
     },
     "v1GetCalculatorConfigResponse": {
       "type": "object",
