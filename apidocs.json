@@ -1189,8 +1189,8 @@
         ]
       },
       "put": {
-        "summary": "Work-in-progress. Updates an existing key:value data (string) in your store.",
-        "operationId": "KvStore_UpdateString",
+        "summary": "Work-in-progress. Updates an existing key:value data (bytes) in your store.",
+        "operationId": "KvStore_Update",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1211,7 +1211,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v1KeyValueStr"
+              "$ref": "#/definitions/kvstorev1KeyValue"
             }
           }
         ],
@@ -1486,6 +1486,37 @@
       "post": {
         "summary": "Work-in-progress. Writes a key:value data (string) to your store.",
         "operationId": "KvStore_WriteString",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1KeyValueStr"
+            }
+          }
+        ],
+        "tags": [
+          "KvStore"
+        ]
+      },
+      "put": {
+        "summary": "Work-in-progress. Updates an existing key:value data (string) in your store.",
+        "operationId": "KvStore_UpdateString",
         "responses": {
           "200": {
             "description": "A successful response.",
