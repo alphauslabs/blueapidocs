@@ -1158,7 +1158,7 @@
     },
     "/v1": {
       "post": {
-        "summary": "WORK-IN-PROGRESS. Writes a new (or update an existing) key:value data in your store.",
+        "summary": "Writes a new (or update an existing) key:value data in your store.",
         "operationId": "KvStore_Write",
         "responses": {
           "200": {
@@ -1318,7 +1318,7 @@
     },
     "/v1/keys": {
       "get": {
-        "summary": "WORK-IN-PROGRESS. Scans keys from your store.",
+        "summary": "Scans keys from your store.",
         "operationId": "KvStore_Scan",
         "responses": {
           "200": {
@@ -1359,7 +1359,7 @@
     },
     "/v1/keys/{key}": {
       "get": {
-        "summary": "WORK-IN-PROGRESS. Reads a key from your store.",
+        "summary": "Reads a key from your store.",
         "operationId": "KvStore_Read",
         "responses": {
           "200": {
@@ -1389,7 +1389,7 @@
         ]
       },
       "delete": {
-        "summary": "WORK-IN-PROGRESS. Deletes a key from your store. Using a `-` (hyphen) as {key} input\ntranslates to all keys to be deleted.",
+        "summary": "Deletes a key from your store. Using a `-` (hyphen) as {key} input\ntranslates to all keys to be deleted.",
         "operationId": "KvStore_Delete",
         "responses": {
           "200": {
