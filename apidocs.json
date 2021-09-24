@@ -2591,7 +2591,7 @@
     },
     "/v1/{vendor}/recommendations/{orgId}": {
       "post": {
-        "summary": "Get cost opmtimization recommendations for Organization ID",
+        "summary": "WORK-IN-PROGRESS\nGet cost opmtimization recommendations for Organization ID",
         "operationId": "Cost_GetRecommendations",
         "responses": {
           "200": {
