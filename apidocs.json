@@ -2591,7 +2591,7 @@
     },
     "/v1/{vendor}/recommendations/{orgId}": {
       "post": {
-        "summary": "WORK-IN-PROGRESS\nGet cost opmtimization recommendations for Organization ID",
+        "summary": "WORK-IN-PROGRESS: Get cost opmtimization recommendations for an organization (or MSP).",
         "operationId": "Cost_GetRecommendations",
         "responses": {
           "200": {
