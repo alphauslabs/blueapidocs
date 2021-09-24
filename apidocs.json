@@ -2589,6 +2589,67 @@
         ]
       }
     },
+    "/v1/{vendor}/recommendations/{orgId}": {
+      "post": {
+        "summary": "Get cost opmtimization recommendations for Organization ID",
+        "operationId": "Cost_GetRecommendations",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetRecommendationsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "orgId",
+            "description": "Required. Organization Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "accounts": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Required. List of Account Ids."
+                },
+                "awsOptions": {
+                  "$ref": "#/definitions/v1GetRecommendationsRequestAwsOptions",
+                  "title": "Required if vendor = 'aws'"
+                }
+              },
+              "title": "Request message for GetRecommendations"
+            }
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      }
+    },
     "/v1/{vendor}/tagcosts:read": {
       "post": {
         "summary": "Reads the usage-based tag costs of a billing group. At the moment, the supported {vendor} is \n'aws'. If datetime range parameters are not set, month-to-date (current month) will be returned.",
@@ -3008,6 +3069,26 @@
         }
       }
     },
+    "awsAwsRecommendations": {
+      "type": "object",
+      "properties": {
+        "summary": {
+          "$ref": "#/definitions/awsReservationRecommendationSummary"
+        },
+        "riRecommendations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/awsRiRecommendation"
+          }
+        },
+        "spRecommendations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/awsSpRecommendation"
+          }
+        }
+      }
+    },
     "awsCalculatorConfig": {
       "type": "object",
       "properties": {
@@ -3160,6 +3241,134 @@
         "convertedToAdjustments": {
           "type": "boolean",
           "description": "If the product code is converted to Adjustments or not."
+        }
+      }
+    },
+    "awsReservationRecommendationSummary": {
+      "type": "object",
+      "properties": {
+        "totalNormalizedUnit": {
+          "type": "number",
+          "format": "double"
+        },
+        "totalOnDemandCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "totalDiscountedCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "totalDiscountedMonthlyCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "totalDiscountedYearlyCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "reductionRate": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "awsRiRecommendation": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "string"
+        },
+        "productCode": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        },
+        "instanceType": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "string",
+          "format": "int64"
+        },
+        "normalizedUnit": {
+          "type": "number",
+          "format": "double"
+        },
+        "operatingSystem": {
+          "type": "string"
+        },
+        "preInstalledSW": {
+          "type": "string"
+        },
+        "tenancy": {
+          "type": "string"
+        },
+        "ondemandCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "discountedCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "monthlyDiscountedCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "yearlyDiscountedCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "reductionRate": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "awsSpRecommendation": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "string"
+        },
+        "spProductFamily": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        },
+        "instanceFamily": {
+          "type": "string"
+        },
+        "ondemandCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "commitment": {
+          "type": "number",
+          "format": "double"
+        },
+        "normalizedUnit": {
+          "type": "number",
+          "format": "double"
+        },
+        "discountedCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "monthlyDiscountedCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "yearlyDiscountedCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "reductionRate": {
+          "type": "number",
+          "format": "double"
         }
       }
     },
@@ -3781,6 +3990,60 @@
         }
       },
       "description": "Response message for the Cost.GetPayerAccountImportHistory rpc."
+    },
+    "v1GetRecommendationsRequestAwsOptions": {
+      "type": "object",
+      "properties": {
+        "recommendationType": {
+          "type": "string",
+          "description": "Required. Valid values: 'reservation', 'rightsizing', 'scheduling'\nOnly 'reservation' is supported for now."
+        },
+        "type": {
+          "type": "string",
+          "title": "For recommendationType = 'reservation'\nOptional. Valid values: 'combined', 'individual'\nDefault: 'combined'"
+        },
+        "services": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "For recommendationType = 'reservation'\nOptional. List of Services\nDefault: All services with Reserved Instance or Savings Plan"
+        },
+        "term": {
+          "type": "string",
+          "title": "For recommendationType = 'reservation'\nOptional. Valid values: '1yr', '3yr'\nDefault: '1yr'"
+        },
+        "offeringClass": {
+          "type": "string",
+          "title": "For recommendationType = 'reservation'\nOptional. Valid values: 'standard', 'convertible'\nDefault: 'standard'"
+        },
+        "paymentOption": {
+          "type": "string",
+          "title": "For recommendationType = 'reservation'\nOptional. Valid values: 'allUpfront', 'partialUpfront', 'noUpfront'\nDefault: 'allUpfront'"
+        },
+        "riCoverage": {
+          "type": "number",
+          "format": "double",
+          "title": "For recommendationType = 'reservation'\nOptional. Percentage of the usage (in NormalizedUnits) to be covered by Reserved Instance\nDefault: 100"
+        },
+        "spCoverage": {
+          "type": "number",
+          "format": "double",
+          "title": "For recommendationType = 'reservation'\nOptional. Percentage of the usage (in NormalizedUnits) to be covered by Savings Plan\nDefault: 100 - riCoverage"
+        }
+      }
+    },
+    "v1GetRecommendationsResponse": {
+      "type": "object",
+      "properties": {
+        "orgId": {
+          "type": "string"
+        },
+        "awsRecommendations": {
+          "$ref": "#/definitions/awsAwsRecommendations"
+        }
+      },
+      "title": "Request message for GetRecommendations"
     },
     "v1ImportCurFilesRequest": {
       "type": "object",
