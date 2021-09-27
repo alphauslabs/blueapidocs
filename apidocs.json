@@ -1135,7 +1135,7 @@
     },
     "/prefs/v1": {
       "get": {
-        "summary": "Gets current preferences.",
+        "summary": "WORK-IN-PROGRESS: Gets current preferences.",
         "operationId": "Preferences_GetPreferences",
         "responses": {
           "200": {
