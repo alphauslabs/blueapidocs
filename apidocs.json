@@ -2682,6 +2682,86 @@
         ]
       }
     },
+    "/v1/{vendor}/reduction/{orgId}": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Get cost reduction details for an organization (or MSP).",
+        "operationId": "Cost_GetCostReduction",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetCostReductionResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "orgId",
+            "description": "Required. Organization Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "reductionDisplay": {
+                  "type": "string",
+                  "title": "Required. Valid values: 'all', 'reservation', 'savingsplan'"
+                },
+                "period": {
+                  "type": "string",
+                  "description": "Optional. The month to display the cost reduction details. If not set,\nmonth-to-date will be used. Format: yyyymm."
+                },
+                "payerId": {
+                  "type": "string",
+                  "description": "Optional. Payer Id."
+                },
+                "groupId": {
+                  "type": "string",
+                  "description": "Optional. Billing group Id."
+                },
+                "accounts": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Optional. List of Account Ids."
+                },
+                "services": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Optional. List of services."
+                }
+              },
+              "title": "Request message for GetCostReduction"
+            }
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      }
+    },
     "/v1/{vendor}/tagcosts:read": {
       "post": {
         "summary": "Reads the usage-based tag costs of a billing group. At the moment, the supported {vendor} is \n'aws'. If datetime range parameters are not set, month-to-date (current month) will be returned.",
@@ -3101,6 +3181,26 @@
         }
       }
     },
+    "awsAwsCostReductions": {
+      "type": "object",
+      "properties": {
+        "summary": {
+          "$ref": "#/definitions/awsCostReductionSummary"
+        },
+        "riCostReductions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/awsRiCostReduction"
+          }
+        },
+        "spCostReductions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/awsSpCostReduction"
+          }
+        }
+      }
+    },
     "awsAwsRecommendations": {
       "type": "object",
       "properties": {
@@ -3278,6 +3378,23 @@
         }
       }
     },
+    "awsCostReductionSummary": {
+      "type": "object",
+      "properties": {
+        "totalOnDemandCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "totalActualCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "totalSavings": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
     "awsExcludedServiceFromUsage": {
       "type": "object",
       "properties": {
@@ -3319,6 +3436,35 @@
           "format": "double"
         },
         "reductionRate": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "awsRiCostReduction": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "string"
+        },
+        "arn": {
+          "type": "string"
+        },
+        "offeringClass": {
+          "type": "string"
+        },
+        "productCode": {
+          "type": "string"
+        },
+        "ondemandCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "actualCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "savings": {
           "type": "number",
           "format": "double"
         }
@@ -3385,6 +3531,35 @@
           "format": "double"
         },
         "reductionRate": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "awsSpCostReduction": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "string"
+        },
+        "arn": {
+          "type": "string"
+        },
+        "offeringClass": {
+          "type": "string"
+        },
+        "productCode": {
+          "type": "string"
+        },
+        "ondemandCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "actualCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "savings": {
           "type": "number",
           "format": "double"
         }
@@ -3974,6 +4149,18 @@
         }
       },
       "description": "Response message for the Cost.GetCalculatorStatus rpc."
+    },
+    "v1GetCostReductionResponse": {
+      "type": "object",
+      "properties": {
+        "orgId": {
+          "type": "string"
+        },
+        "awsCostReductions": {
+          "$ref": "#/definitions/awsAwsCostReductions"
+        }
+      },
+      "title": "Request message for GetCostReduction"
     },
     "v1GetForecastsResponse": {
       "type": "object",
