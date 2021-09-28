@@ -3522,7 +3522,11 @@
           "type": "number",
           "format": "double"
         },
-        "monthlyDiscountedCost": {
+        "monthlyAmortizedCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "monthlyRecurringCost": {
           "type": "number",
           "format": "double"
         },
@@ -3531,6 +3535,10 @@
           "format": "double"
         },
         "reductionRate": {
+          "type": "number",
+          "format": "double"
+        },
+        "estimatedMonthlySavings": {
           "type": "number",
           "format": "double"
         }
@@ -3601,6 +3609,10 @@
           "format": "double"
         },
         "yearlyDiscountedCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "estimatedMonthlySavings": {
           "type": "number",
           "format": "double"
         },
