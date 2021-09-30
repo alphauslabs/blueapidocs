@@ -4273,12 +4273,23 @@
           "type": "string",
           "title": "For recommendationType = 'reservation'\nOptional. Valid values: 'combined', 'individual'\nDefault: 'combined'"
         },
-        "services": {
+        "riServices": {
           "type": "array",
           "items": {
             "type": "string"
           },
-          "title": "For recommendationType = 'reservation'\nOptional. List of Services\nDefault: All services with Reserved Instance or Savings Plan"
+          "title": "For recommendationType = 'reservation'\nOptional. List of Services [\"AmazonEC2\", \"AmazonRDS\", \"AmazonElastiCache\", \"AmazonES\"]\nDefault: All services with Reserved Instance"
+        },
+        "spServices": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "For recommendationType = 'reservation'\nOptional. List of Services [\"AmazonECS\", \"AmazonEKS\", \"AWSLambda\"]\nDefault: All services with Savings Plans except AmazonEC2"
+        },
+        "purchaseEC2SavingsPlan": {
+          "type": "boolean",
+          "title": "For recommendationType = 'reservation'\nOptional. If set to \"true\", recommends EC2 Instance Savings Plan that will cover usage not covered by RI\nDefault: false"
         },
         "term": {
           "type": "string",
@@ -4296,15 +4307,10 @@
           "type": "string",
           "title": "For recommendationType = 'reservation'\nOptional. Valid values: 'shared', 'dedicated'\nDefault: 'shared'"
         },
-        "riCoverage": {
+        "coveragePercentage": {
           "type": "number",
           "format": "double",
-          "title": "For recommendationType = 'reservation'\nOptional. Percentage of the usage (in NormalizedUnits) to be covered by Reserved Instance\nDefault: 100"
-        },
-        "spCoverage": {
-          "type": "number",
-          "format": "double",
-          "title": "For recommendationType = 'reservation'\nOptional. Percentage of the usage (in NormalizedUnits) to be covered by Savings Plan\nDefault: 100 - riCoverage"
+          "title": "For recommendationType = 'reservation'\nOptional. Percentage of the usage (in NormalizedUnits) to be covered by Reserved Instance or Savings Plan\nDefault: 100"
         }
       }
     },
