@@ -3226,6 +3226,12 @@
           "items": {
             "$ref": "#/definitions/awsSpRecommendation"
           }
+        },
+        "estimatedCoverage": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/awsReservationEstimatedCoverage"
+          }
         }
       }
     },
@@ -3444,13 +3450,32 @@
         }
       }
     },
-    "awsReservationRecommendationSummary": {
+    "awsReservationEstimatedCoverage": {
       "type": "object",
       "properties": {
-        "totalNormalizedUnit": {
+        "accountId": {
+          "type": "string"
+        },
+        "productCode": {
+          "type": "string"
+        },
+        "riCoverage": {
           "type": "number",
           "format": "double"
         },
+        "ec2SpCoverage": {
+          "type": "number",
+          "format": "double"
+        },
+        "computeSpCoverage": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "awsReservationRecommendationSummary": {
+      "type": "object",
+      "properties": {
         "totalOnDemandCost": {
           "type": "number",
           "format": "double"
@@ -3468,6 +3493,10 @@
           "format": "double"
         },
         "reductionRate": {
+          "type": "number",
+          "format": "double"
+        },
+        "totalEstimatedMonthlySavings": {
           "type": "number",
           "format": "double"
         }
@@ -4437,14 +4466,14 @@
           "items": {
             "type": "string"
           },
-          "title": "For recommendationType = 'reservation'\nOptional. List of Services [\"AmazonEC2\", \"AmazonRDS\", \"AmazonElastiCache\", \"AmazonES\"]\nDefault: All services with Reserved Instance"
+          "title": "For recommendationType = 'reservation'\nOptional. List of Services [\"AmazonEC2\", \"AmazonRDS\", \"AmazonElastiCache\", \"AmazonES\"]\nDefault: Empty list"
         },
         "spServices": {
           "type": "array",
           "items": {
             "type": "string"
           },
-          "title": "For recommendationType = 'reservation'\nOptional. List of Services [\"AmazonECS\", \"AmazonEKS\", \"AWSLambda\"]\nDefault: All services with Savings Plans except AmazonEC2"
+          "title": "For recommendationType = 'reservation'\nOptional. List of Services [\"AmazonECS\", \"AmazonEKS\", \"AWSLambda\"]\nDefault: Empty list"
         },
         "purchaseEC2SavingsPlan": {
           "type": "boolean",
