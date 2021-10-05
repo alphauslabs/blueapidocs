@@ -1969,6 +1969,13 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "month",
+            "description": "Optional. The UTC month to query. Format is `yyyymm`.\nFor example, June 2021 will be `202106`.",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -2844,6 +2851,20 @@
     }
   },
   "definitions": {
+    "GetCalculatorStatusResponseAwsStatus": {
+      "type": "object",
+      "properties": {
+        "lastCompleted": {
+          "type": "string",
+          "description": "The last timestamp in UTC of the completed calculation at org-level for the\nqueried month. Format is RFC3339."
+        },
+        "currentProgress": {
+          "type": "number",
+          "format": "double",
+          "description": "Calculation completion state in percent, i.e. 70 means 70%. If the queried\nmonth doesn't have an ongoing calculation, this field is set to 100."
+        }
+      }
+    },
     "apiAccount": {
       "type": "object",
       "properties": {
@@ -3251,25 +3272,6 @@
         }
       },
       "description": "AWS's calculation engine configuration(s)."
-    },
-    "awsCalculatorStatus": {
-      "type": "object",
-      "properties": {
-        "lastMonthlyRun": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "Timestamp in UTC of the last completed calculation at org level for a given month.\nKey is month in `yyyy-mm` format, value is timestamp in RFC3339 format."
-        },
-        "isRunning": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "boolean"
-          },
-          "description": "Whether the calculator is still running for a given month.\nKey is month in `yyyy-mm` format, value is true or false."
-        }
-      }
     },
     "awsCost": {
       "type": "object",
@@ -4345,7 +4347,8 @@
       "type": "object",
       "properties": {
         "aws": {
-          "$ref": "#/definitions/awsCalculatorStatus"
+          "$ref": "#/definitions/GetCalculatorStatusResponseAwsStatus",
+          "description": "AWS-specific calculator status."
         }
       },
       "description": "Response message for the Cost.GetCalculatorStatus rpc."
