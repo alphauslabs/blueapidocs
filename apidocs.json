@@ -2691,7 +2691,7 @@
     },
     "/v1/{vendor}/reduction/{orgId}:read": {
       "post": {
-        "summary": "WORK-IN-PROGRESS: Get cost reduction details for an organization (or MSP).",
+        "summary": "Get cost reduction details for an organization (or MSP).",
         "operationId": "Cost_GetCostReduction",
         "responses": {
           "200": {
@@ -2732,6 +2732,10 @@
                 "reductionDisplay": {
                   "type": "string",
                   "title": "Required. Valid values: 'all', 'reservation', 'savingsplan'"
+                },
+                "includeDetails": {
+                  "type": "boolean",
+                  "title": "Optional. If set to \"true\", details of the RI or SP list is returned.\nDefault: false"
                 },
                 "fromDate": {
                   "type": "string",
@@ -3405,7 +3409,7 @@
           "type": "number",
           "format": "double"
         },
-        "totalActualCost": {
+        "totalEffectiveCost": {
           "type": "number",
           "format": "double"
         },
@@ -3417,7 +3421,7 @@
           "type": "number",
           "format": "double"
         },
-        "totalRiActualCost": {
+        "totalRiEffectiveCost": {
           "type": "number",
           "format": "double"
         },
@@ -3429,7 +3433,7 @@
           "type": "number",
           "format": "double"
         },
-        "totalSpActualCost": {
+        "totalSpEffectiveCost": {
           "type": "number",
           "format": "double"
         },
@@ -3570,7 +3574,7 @@
           "type": "string"
         },
         "remove": {
-          "type": "string"
+          "type": "boolean"
         },
         "scope": {
           "type": "string"
@@ -3591,7 +3595,7 @@
           "type": "string"
         },
         "disabled": {
-          "type": "string"
+          "type": "boolean"
         },
         "normalizationFactor": {
           "type": "number",
@@ -3609,7 +3613,7 @@
           "type": "number",
           "format": "double"
         },
-        "actualCost": {
+        "effectiveCost": {
           "type": "number",
           "format": "double"
         },
@@ -3757,7 +3761,7 @@
           "type": "number",
           "format": "double"
         },
-        "actualCost": {
+        "effectiveCost": {
           "type": "number",
           "format": "double"
         },
