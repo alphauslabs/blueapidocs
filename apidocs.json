@@ -3927,7 +3927,7 @@
           "items": {
             "$ref": "#/definitions/apiAccount"
           },
-          "title": "List of all accounts under payer id"
+          "description": "List of all members under this payer."
         }
       },
       "description": "Payer resource definition."
