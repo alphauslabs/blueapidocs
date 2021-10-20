@@ -2505,7 +2505,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/apiAccount"
+              "$ref": "#/definitions/ripplePayer"
             }
           },
           "default": {
@@ -3904,6 +3904,34 @@
       },
       "description": "Org resource definition."
     },
+    "ripplePayer": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The payer account id."
+        },
+        "name": {
+          "type": "string",
+          "description": "The payer account name."
+        },
+        "metadata": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/blueapiapiKeyValue"
+          },
+          "description": "The attributes (key/value pair) of the account."
+        },
+        "customers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiAccount"
+          },
+          "title": "List of all customers/accounts under payer id"
+        }
+      },
+      "description": "Payer resource definition."
+    },
     "rpcStatus": {
       "type": "object",
       "properties": {
@@ -4477,7 +4505,7 @@
           "items": {
             "type": "string"
           },
-          "title": "For recommendationType = 'reservation'\nOptional. List of Services [\"AmazonEC2\", \"AmazonRDS\", \"AmazonElastiCache\", \"AmazonES\"]\nDefault: Empty list"
+          "title": "For recommendationType = 'reservation'\nOptional. List of Services [\"AmazonEC2\", \"AmazonRDS\", \"AmazonElastiCache\", \"AmazonES\", \"AmazonRedshift\"]\nDefault: Empty list"
         },
         "spServices": {
           "type": "array",
