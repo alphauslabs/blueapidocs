@@ -3922,12 +3922,12 @@
           },
           "description": "The attributes (key/value pair) of the account."
         },
-        "customers": {
+        "members": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/apiAccount"
           },
-          "title": "List of all customers/accounts under payer id"
+          "title": "List of all accounts under payer id"
         }
       },
       "description": "Payer resource definition."
