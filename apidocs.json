@@ -372,7 +372,7 @@
         ]
       }
     },
-    "/iam/v1/grouprootusers/{id}/features/{product}": {
+    "/iam/v1/grouprootusers/{id}/features": {
       "get": {
         "summary": "WORK IN PROGRESS:\nRetrieves the features available to a user on an Alphaus product. Currently,\nonly values of \"wave\" and \"aqua\" are supported for {product}. For a list of\nvalid feature flags, see our documentation at https://alphauslabs.github.io/blueapi/apis/iam.html.",
         "operationId": "Iam_GetFeatureFlags",
@@ -393,12 +393,6 @@
         "parameters": [
           {
             "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "product",
             "in": "path",
             "required": true,
             "type": "string"
@@ -428,12 +422,6 @@
         "parameters": [
           {
             "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "product",
             "in": "path",
             "required": true,
             "type": "string"
@@ -3184,19 +3172,14 @@
     "apiFeatureFlags": {
       "type": "object",
       "properties": {
-        "product": {
-          "type": "string",
-          "description": "The product. Acceptable values include \"wave\" or \"aqua\"."
-        },
         "meta": {
           "type": "object",
           "additionalProperties": {
             "type": "boolean"
-          },
-          "description": "A mapping between feature names and whether or not those features are enabled\r\nfor the user. Omitted flags should be considered false. For a full list of\r\nflags, see https://alphauslabs.github.io/blueapi/apis/groups.html."
+          }
         }
       },
-      "description": "This object describes the features enabled for a particular root user and product."
+      "description": "Describes the features and whether or not they are enabled for a particular user."
     },
     "apiForecastData": {
       "type": "object",
@@ -3257,13 +3240,9 @@
           "type": "string",
           "description": "This field describes what type of group to which the user belongs.\r\nThis field will contain either a value of \"billing_group\" or \"access_group\"."
         },
-        "waveMeta": {
+        "meta": {
           "$ref": "#/definitions/apiFeatureFlags",
-          "description": "A collection of feature flags for Wave and whether or not they should be\r\nenabled. For a full list of such flags, see https://alphauslabs.github.io/blueapi/apis/groups.html."
-        },
-        "aquaMeta": {
-          "$ref": "#/definitions/apiFeatureFlags",
-          "description": "A collection of feature flags for Aqua and whether or not they should be\r\nenabled. For a full list of such flags, see https://alphauslabs.github.io/blueapi/apis/groups.html."
+          "description": "A collection of feature flags and whether or not they should be enabled. \r\nFor a full list of such flags, see https://alphauslabs.github.io/blueapi/apis/groups.html."
         },
         "passwordUpdateTime": {
           "type": "string",
@@ -4486,13 +4465,12 @@
           "type": "boolean",
           "description": "Whether or not a notification should be sent to the provided email after\nthe user has been created."
         },
-        "waveFeatureFlags": {
-          "$ref": "#/definitions/apiFeatureFlags",
-          "description": "A collection of feature flags for Wave and whether or not they should be enabled.\nAny omitted values will be treated as being disabled. For a full list of such\nflags, see https://alphauslabs.github.io/blueapi/apis/iam.html."
-        },
-        "aquaFeatureFlags": {
-          "$ref": "#/definitions/apiFeatureFlags",
-          "description": "A collection of feature flags for Aqua and whether or not they should be enabled.\nAny omitted values will be treated as being disabled. For a full list of such\nflags, see https://alphauslabs.github.io/blueapi/apis/iam.html."
+        "meta": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "boolean"
+          },
+          "description": "A collection of feature flags and whether or not they should be enabled. Andy\nomitted values will be treated as being disabled. For a full list of such\nflags, see https://alphauslabs.github.io/blueapi/apis/iam.html."
         }
       },
       "title": "Request message for the Iam.CreateGroupRootUser rpc"
