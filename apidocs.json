@@ -1100,7 +1100,7 @@
     },
     "/org/v1/passwd": {
       "put": {
-        "summary": "WORK-IN-PROGRESS: Updates the organization password.",
+        "summary": "Updates the organization password.",
         "operationId": "Organization_UpdatePassword",
         "responses": {
           "200": {
