@@ -1073,7 +1073,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/rippleOrg"
+              "properties": {}
             }
           },
           "default": {
@@ -1106,7 +1106,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/rippleOrg"
+              "properties": {}
             }
           },
           "default": {
