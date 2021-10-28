@@ -374,7 +374,7 @@
     },
     "/iam/v1/grouprootusers/{id}/features": {
       "get": {
-        "summary": "WORK IN PROGRESS:\nRetrieves the features available to a user on an Alphaus product. Currently,\nonly values of \"wave\" and \"aqua\" are supported for {product}. For a list of\nvalid feature flags, see our documentation at https://alphauslabs.github.io/blueapi/apis/iam.html.",
+        "summary": "WORK IN PROGRESS:\nRetrieves the features available to a user on an Alphaus product. For a list of\nvalid feature flags, see our documentation at https://alphauslabs.github.io/blueapi/apis/iam.html.",
         "operationId": "Iam_GetFeatureFlags",
         "responses": {
           "200": {
@@ -403,7 +403,7 @@
         ]
       },
       "put": {
-        "summary": "WORK IN PROGRESS:\nUpdates the features available to a user on an Alphaus product. Currently,\nonly values of \"wave\" and \"aqua\" are supported for {product}. For a list of\nvalid feature flags, see our documentation at https://alphauslabs.github.io/blueapi/apis/iam.html.",
+        "summary": "WORK IN PROGRESS:\nUpdates the features available to a user on an Alphaus product. For a list of\nvalid feature flags, see our documentation at https://alphauslabs.github.io/blueapi/apis/iam.html.",
         "operationId": "Iam_UpdateFeatureFlags",
         "responses": {
           "200": {
@@ -434,10 +434,7 @@
               "type": "object",
               "properties": {
                 "featureFlags": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "type": "boolean"
-                  }
+                  "$ref": "#/definitions/apiFeatureFlags"
                 }
               },
               "title": "Request message for the Iam.UpdateFeatureFlags rpc"
@@ -3172,11 +3169,137 @@
     "apiFeatureFlags": {
       "type": "object",
       "properties": {
-        "meta": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "boolean"
-          }
+        "dashboardGraph": {
+          "type": "boolean",
+          "title": "Control view-access to the Wave dashboard graph"
+        },
+        "usageAccount": {
+          "type": "boolean",
+          "title": "Control access to the Accounts pane under usage reports on Wave"
+        },
+        "usageAccountGraph": {
+          "type": "boolean",
+          "title": "Control view-access to the Account-level graph under usage reports on Wave"
+        },
+        "usageAccountMenuAccountEdit": {
+          "type": "boolean",
+          "title": "Control edit-access to Accounts under usage reports on Wave"
+        },
+        "usageAccountMenuBudget": {
+          "type": "boolean",
+          "title": "Control view-access to budget settings for an Account under usage reports on Wave"
+        },
+        "usageAccountMenuBudgetEdit": {
+          "type": "boolean",
+          "title": "Control edit-access to budget settings for an Account under usage reports on Wave"
+        },
+        "usageAccountMenuFeesFee": {
+          "type": "boolean",
+          "title": "Control view-access to the fees menu for an Account under usage reports on Wave"
+        },
+        "usageAccountMenuFeesCredit": {
+          "type": "boolean",
+          "title": "Control view-access to credits for an Account under usage reports on Wave"
+        },
+        "usageAccountMenuFeesRefund": {
+          "type": "boolean",
+          "title": "Control view-access to refunds for an Account under usage reports on Wave"
+        },
+        "usageAccountMenuFeesOtherFees": {
+          "type": "boolean",
+          "title": "Control view-access to other fees for an Account under usage reports on Wave"
+        },
+        "usageReportDownload": {
+          "type": "boolean",
+          "title": "Control download-access to usage report on Wave"
+        },
+        "usageGroup": {
+          "type": "boolean",
+          "title": "Control access to the Groups pane under usage reports on Wave"
+        },
+        "usageGroupGraph": {
+          "type": "boolean",
+          "title": "Control view-access to the Group-level graph under usage reports on Wave"
+        },
+        "usageTag": {
+          "type": "boolean",
+          "title": "Control view-access to the Tags pane under usage reports on Wave"
+        },
+        "usageTagGraph": {
+          "type": "boolean",
+          "title": "Control view-access to the Tag-level graph under usage reports on Wave"
+        },
+        "usageCrosstag": {
+          "type": "boolean",
+          "title": "Control view-access to the Tags pane for crosstag groups under usage reports on Wave"
+        },
+        "usageCrosstagGraph": {
+          "type": "boolean",
+          "title": "Control view-access to the Tag-level graph for crosstag groups under usage reports on Wave"
+        },
+        "riPurchased": {
+          "type": "boolean",
+          "title": "Control view-access to purchased reservations under reserved instances on Wave"
+        },
+        "riUtilization": {
+          "type": "boolean",
+          "title": "Control access to RI utilization under reserved instances on Wave"
+        },
+        "riRecommendation": {
+          "type": "boolean",
+          "title": "Control access to RI recommendations on Wave"
+        },
+        "spPurchased": {
+          "type": "boolean",
+          "title": "Control access to purchased savings plans on Wave"
+        },
+        "invoice": {
+          "type": "boolean",
+          "title": "Control access to the invoice on Wave"
+        },
+        "invoiceDownloadCsvDiscount": {
+          "type": "boolean",
+          "title": "Control download-access to the discounted invoice CSV on Wave"
+        },
+        "invoiceDownloadCsvMerged": {
+          "type": "boolean",
+          "title": "Control download-access to the merged invoice CSV on Wave"
+        },
+        "openApi": {
+          "type": "boolean",
+          "title": "Control access to API tokens on Wave"
+        },
+        "usersManagement": {
+          "type": "boolean",
+          "title": "Control access to sub-user management on Wave"
+        },
+        "aqDashboard": {
+          "type": "boolean",
+          "title": "Control access to the dashboard on Aqua"
+        },
+        "aqCoverageRatio": {
+          "type": "boolean",
+          "title": "Control access to the Coverage Ratio pane on Aqua"
+        },
+        "aqRiManagement": {
+          "type": "boolean",
+          "title": "Control access to the RI management pane on Aqua"
+        },
+        "aqSpManagement": {
+          "type": "boolean",
+          "title": "Control access to the savings plan management pane on Aqua"
+        },
+        "aqRiSpInstances": {
+          "type": "boolean",
+          "title": "Control access to RI and savings plan recommendations on Aqua"
+        },
+        "aqRightSizing": {
+          "type": "boolean",
+          "title": "Control access to right-sizing on Aqua"
+        },
+        "aqScheduling": {
+          "type": "boolean",
+          "title": "Control access to scheduling on Aqua"
         }
       },
       "description": "Describes the features and whether or not they are enabled for a particular user."
@@ -4470,11 +4593,8 @@
           "description": "Whether or not a notification should be sent to the provided email after\nthe user has been created."
         },
         "meta": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "boolean"
-          },
-          "description": "A collection of feature flags and whether or not they should be enabled. Andy\nomitted values will be treated as being disabled. For a full list of such\nflags, see https://alphauslabs.github.io/blueapi/apis/iam.html."
+          "$ref": "#/definitions/apiFeatureFlags",
+          "description": "A collection of feature flags and whether or not they should be enabled. For\na full list of such flags, see https://alphauslabs.github.io/blueapi/apis/iam.html."
         }
       },
       "title": "Request message for the Iam.CreateGroupRootUser rpc"
