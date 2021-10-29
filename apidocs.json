@@ -5236,7 +5236,7 @@
     "v1ListIdentityProvidersResponse": {
       "type": "object",
       "properties": {
-        "idps": {
+        "data": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/ListIdentityProvidersResponseIdentityProvider"
