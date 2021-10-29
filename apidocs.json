@@ -3039,6 +3039,87 @@
           "Cost"
         ]
       }
+    },
+    "/v1/{vendor}/utilization/{orgId}": {
+      "get": {
+        "summary": "WORK-IN-PROGRESS: Get the utilization details for an organization (or MSP).",
+        "operationId": "Cost_GetUtilization",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetUtilizationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "orgId",
+            "description": "Required. Organization Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "description": "Required. For AWS, \"ri\" or \"sp\".",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "fromDate",
+            "description": "Optional. The start date of the displayed data. If not set, the first day of the\ncurrent month will be used. Format: yyyy-mm-dd.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "toDate",
+            "description": "Optional. The end date of the displayed data. If not set, current date will be\nused. Format: yyyy-mm-dd.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "payerId",
+            "description": "Optional. Payer Id.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "billingInternalId",
+            "description": "Optional. Billing group Id.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "groupId",
+            "description": "Optional. Account group Id.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      }
     }
   },
   "definitions": {
@@ -3162,6 +3243,40 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/apiMonthlyBudget"
+          }
+        }
+      }
+    },
+    "apiChartData": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string"
+        },
+        "cost": {
+          "type": "number",
+          "format": "double"
+        },
+        "profit": {
+          "type": "number",
+          "format": "double"
+        },
+        "utilization": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "apiData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "chartData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiChartData"
           }
         }
       }
@@ -3588,6 +3703,17 @@
         },
         "filter": {
           "type": "string"
+        }
+      }
+    },
+    "apiUtilizations": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiData"
+          }
         }
       }
     },
@@ -4821,7 +4947,7 @@
           "$ref": "#/definitions/awsAwsCostReductions"
         }
       },
-      "title": "Request message for GetCostReduction"
+      "title": "Response message for GetCostReduction"
     },
     "v1GetForecastsResponse": {
       "type": "object",
@@ -4970,6 +5096,18 @@
         }
       },
       "title": "Request message for GetRecommendations"
+    },
+    "v1GetUtilizationResponse": {
+      "type": "object",
+      "properties": {
+        "orgId": {
+          "type": "string"
+        },
+        "utilizations": {
+          "$ref": "#/definitions/apiUtilizations"
+        }
+      },
+      "title": "Response message for GetUtilization"
     },
     "v1ImportCurFilesRequest": {
       "type": "object",
