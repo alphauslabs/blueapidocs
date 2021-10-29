@@ -3415,6 +3415,10 @@
         "aqScheduling": {
           "type": "boolean",
           "title": "Control access to scheduling on Aqua"
+        },
+        "reportFilters": {
+          "type": "boolean",
+          "title": "Control access to the report filters pane in Wave Pro"
         }
       },
       "description": "Describes the features and whether or not they are enabled for a particular user."
