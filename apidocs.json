@@ -446,6 +446,29 @@
         ]
       }
     },
+    "/iam/v1/idps": {
+      "get": {
+        "summary": "WORK-IN-PROGRESS: Lists all SSO Identity Providers (IdP).",
+        "operationId": "Iam_ListIdentityProviders",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListIdentityProvidersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Iam"
+        ]
+      }
+    },
     "/iam/v1/ipfilters": {
       "get": {
         "summary": "Lists all IP filters. At the moment, this API is only available to root users.",
@@ -3141,6 +3164,14 @@
         }
       }
     },
+    "ListIdentityProvidersResponsesamlInfo": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "type": "string"
+        }
+      }
+    },
     "apiAccount": {
       "type": "object",
       "properties": {
@@ -5184,6 +5215,24 @@
         }
       },
       "description": "Response message for the Cost.ListCalculationsHistory rpc."
+    },
+    "v1ListIdentityProvidersResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "saml": {
+          "$ref": "#/definitions/ListIdentityProvidersResponsesamlInfo"
+        }
+      },
+      "description": "Response message for the Iam.ListIdentityProviders rpc."
     },
     "v1ListPermissionsResponse": {
       "type": "object",
