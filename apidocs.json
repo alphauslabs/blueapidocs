@@ -3436,10 +3436,6 @@
           "type": "boolean",
           "title": "Control access to sub-user management on Wave"
         },
-        "aqDashboard": {
-          "type": "boolean",
-          "title": "Control access to the dashboard on Aqua"
-        },
         "aqCoverageRatio": {
           "type": "boolean",
           "title": "Control access to the Coverage Ratio pane on Aqua"
