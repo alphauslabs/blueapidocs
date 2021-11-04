@@ -3375,20 +3375,10 @@
         "utilization": {
           "type": "number",
           "format": "double"
-        }
-      }
-    },
-    "apiData": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
         },
-        "chartData": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/apiChartData"
-          }
+        "commitment": {
+          "type": "number",
+          "format": "double"
         }
       }
     },
@@ -3817,13 +3807,16 @@
         }
       }
     },
-    "apiUtilizations": {
+    "apiUtilizationData": {
       "type": "object",
       "properties": {
-        "data": {
+        "id": {
+          "type": "string"
+        },
+        "chartData": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/apiData"
+            "$ref": "#/definitions/apiChartData"
           }
         }
       }
@@ -5232,8 +5225,11 @@
         "orgId": {
           "type": "string"
         },
-        "utilizations": {
-          "$ref": "#/definitions/apiUtilizations"
+        "utilizationData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiUtilizationData"
+          }
         }
       },
       "title": "Response message for GetUtilization"
