@@ -3364,6 +3364,9 @@
         "date": {
           "type": "string"
         },
+        "service": {
+          "type": "string"
+        },
         "cost": {
           "type": "number",
           "format": "double"
