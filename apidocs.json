@@ -4086,15 +4086,18 @@
         "productCode": {
           "type": "string"
         },
-        "riCoverage": {
+        "instanceFamily": {
+          "type": "string"
+        },
+        "riUsageCoverage": {
           "type": "number",
           "format": "double"
         },
-        "ec2SpCoverage": {
+        "ec2SpUsageCoverage": {
           "type": "number",
           "format": "double"
         },
-        "computeSpCoverage": {
+        "computeSpCostCoverage": {
           "type": "number",
           "format": "double"
         }
