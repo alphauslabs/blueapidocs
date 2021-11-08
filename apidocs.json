@@ -4097,7 +4097,11 @@
           "type": "number",
           "format": "double"
         },
-        "computeSpCostCoverage": {
+        "computeSpOnDemandCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "computeSpDiscountedCost": {
           "type": "number",
           "format": "double"
         }
@@ -4314,6 +4318,10 @@
         "estimatedMonthlySavings": {
           "type": "number",
           "format": "double"
+        },
+        "daysBeforeBreakEven": {
+          "type": "number",
+          "format": "double"
         }
       }
     },
@@ -4435,6 +4443,10 @@
           "format": "double"
         },
         "reductionRate": {
+          "type": "number",
+          "format": "double"
+        },
+        "daysBeforeBreakEven": {
           "type": "number",
           "format": "double"
         }
