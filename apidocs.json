@@ -4110,19 +4110,15 @@
     "awsReservationRecommendationSummary": {
       "type": "object",
       "properties": {
-        "totalOnDemandCost": {
+        "totalMonthlyOnDemandCost": {
           "type": "number",
           "format": "double"
         },
-        "totalDiscountedCost": {
+        "totalEstimatedMonthlySavings": {
           "type": "number",
           "format": "double"
         },
-        "totalDiscountedMonthlyCost": {
-          "type": "number",
-          "format": "double"
-        },
-        "totalDiscountedYearlyCost": {
+        "totalMonthlyDiscountedCost": {
           "type": "number",
           "format": "double"
         },
@@ -4130,7 +4126,11 @@
           "type": "number",
           "format": "double"
         },
-        "totalEstimatedMonthlySavings": {
+        "totalUpfrontCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "totalRecurringMonthlyCost": {
           "type": "number",
           "format": "double"
         }
