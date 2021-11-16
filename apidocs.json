@@ -2383,6 +2383,182 @@
         ]
       }
     },
+    "/v1/{vendor}/coverage/ondemand/{orgId}:read": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Get ondemand cost details for an organization (or MSP).",
+        "operationId": "Cost_GetCoverageOndemand",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetCoverageOndemandResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "orgId",
+            "description": "Required. Organization Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "period": {
+                  "type": "string",
+                  "title": "Required. Available values: day, hour"
+                },
+                "fromDate": {
+                  "type": "string",
+                  "description": "Optional. The start date of the displayed data. If not set, the first day of the\ncurrent month will be used. Format: yyyy-mm-dd."
+                },
+                "toDate": {
+                  "type": "string",
+                  "description": "Optional. The end date of the displayed data. If not set, current date will be\nused. Format: yyyy-mm-dd."
+                },
+                "payerId": {
+                  "type": "string",
+                  "description": "Optional. Payer Id."
+                },
+                "billingInternalId": {
+                  "type": "string",
+                  "description": "Optional. Billing group Id."
+                },
+                "groupId": {
+                  "type": "string",
+                  "description": "Optional. Account group Id."
+                },
+                "accounts": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Optional. List of Account Ids."
+                },
+                "services": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Optional. List of services."
+                }
+              },
+              "title": "Request message for GetCoverageOndemand"
+            }
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      }
+    },
+    "/v1/{vendor}/coverage/options/{orgId}:read": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Get coverage options details for an organization (or MSP).",
+        "operationId": "Cost_GetCoverageOptions",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetCoverageOptionsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "orgId",
+            "description": "Required. Organization Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "period": {
+                  "type": "string",
+                  "title": "Required. Available values: day, hour"
+                },
+                "fromDate": {
+                  "type": "string",
+                  "description": "Optional. The start date of the displayed data. If not set, the first day of the\ncurrent month will be used. Format: yyyy-mm-dd."
+                },
+                "toDate": {
+                  "type": "string",
+                  "description": "Optional. The end date of the displayed data. If not set, current date will be\nused. Format: yyyy-mm-dd."
+                },
+                "payerId": {
+                  "type": "string",
+                  "description": "Optional. Payer Id."
+                },
+                "billingInternalId": {
+                  "type": "string",
+                  "description": "Optional. Billing group Id."
+                },
+                "groupId": {
+                  "type": "string",
+                  "description": "Optional. Account group Id."
+                },
+                "accounts": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Optional. List of Account Ids."
+                },
+                "services": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Optional. List of services."
+                }
+              },
+              "title": "Request message for GetCoverageOptions"
+            }
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      }
+    },
     "/v1/{vendor}/forecasts": {
       "get": {
         "summary": "Fetches cost forecasts for the specified billing group.\nIncludes historical cost (up to previous month) and forecasted cost (up to three months for now).",
@@ -3704,6 +3880,73 @@
         "lowerBound": {
           "type": "number",
           "format": "double"
+        }
+      }
+    },
+    "apiOndemandChart": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string"
+        },
+        "service": {
+          "type": "string"
+        },
+        "normalizedUsage": {
+          "type": "number",
+          "format": "double"
+        },
+        "ondemandCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "usage": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "apiOndemandData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "ondemandChart": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiOndemandChart"
+          }
+        }
+      }
+    },
+    "apiOptionsChart": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string"
+        },
+        "coverage": {
+          "type": "number",
+          "format": "double"
+        },
+        "usage": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "apiOptionsData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "optionsChart": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiOptionsChart"
+          }
         }
       }
     },
@@ -5088,6 +5331,36 @@
         }
       },
       "title": "Response message for GetCostReduction"
+    },
+    "v1GetCoverageOndemandResponse": {
+      "type": "object",
+      "properties": {
+        "orgId": {
+          "type": "string"
+        },
+        "ondemandData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiOndemandData"
+          }
+        }
+      },
+      "title": "Response message for GetCoverageOndemand"
+    },
+    "v1GetCoverageOptionsResponse": {
+      "type": "object",
+      "properties": {
+        "orgId": {
+          "type": "string"
+        },
+        "optionsData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiOptionsData"
+          }
+        }
+      },
+      "title": "Response message for GetCoverageOptions"
     },
     "v1GetForecastsResponse": {
       "type": "object",
