@@ -4514,13 +4514,18 @@
           "format": "double"
         },
         "operatingSystem": {
-          "type": "string"
+          "type": "string",
+          "title": "for amazon ec2 only"
         },
         "preInstalledSW": {
           "type": "string"
         },
         "tenancy": {
           "type": "string"
+        },
+        "dbEngine": {
+          "type": "string",
+          "title": "for amazon rds only"
         },
         "ondemandCost": {
           "type": "number",
