@@ -2586,7 +2586,7 @@
             "type": "string"
           },
           {
-            "name": "companyId",
+            "name": "billingInternalId",
             "description": "Optional. Company Id of Billing Group to retrieve.\nDefault value is user's Company Id.",
             "in": "query",
             "required": false,
@@ -3198,7 +3198,7 @@
                   "type": "string",
                   "description": "Optional. Payer Id."
                 },
-                "companyId": {
+                "billingInternalId": {
                   "type": "string",
                   "description": "Optional. Billing group Id."
                 },
@@ -3505,7 +3505,7 @@
     "apiBillingGroupForecast": {
       "type": "object",
       "properties": {
-        "companyId": {
+        "billingInternalId": {
           "type": "string"
         },
         "data": {
@@ -4394,7 +4394,7 @@
         "customerName": {
           "type": "string"
         },
-        "companyId": {
+        "billingInternalId": {
           "type": "string"
         },
         "billingGroupId": {
