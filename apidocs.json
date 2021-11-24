@@ -1462,6 +1462,37 @@
         ]
       }
     },
+    "/v1/accessgroups/{accessGroupId}": {
+      "get": {
+        "summary": "Gets an access group.",
+        "operationId": "Billing_GetAccessGroup",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetAccessGroupResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accessGroupId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      }
+    },
     "/v1/aws/cur:import": {
       "post": {
         "summary": "Initiates an ondemand import of all registered CUR files. See\n[https://help.alphaus.cloud/en/articles/3612555-ripple-aws-things-you-need-to-prepare-before-starting]\nfor more information.",
@@ -4834,6 +4865,31 @@
       },
       "description": "The `Status` type defines a logical error model that is suitable for\ndifferent programming environments, including REST APIs and RPC APIs. It is\nused by [gRPC](https://github.com/grpc). Each `Status` message contains\nthree pieces of data: error code, error message, and error details.\n\nYou can find out more about this error model and how to work with it in the\n[API Design Guide](https://cloud.google.com/apis/design/errors)."
     },
+    "v1AccessGroup": {
+      "type": "object",
+      "properties": {
+        "accessGroupId": {
+          "type": "string",
+          "description": "The ID of the access group."
+        },
+        "accessGroupName": {
+          "type": "string",
+          "description": "The name of the access group."
+        },
+        "accessGroupDescription": {
+          "type": "string",
+          "description": "A description of the access group."
+        },
+        "billingGroups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1BillingGroup"
+          },
+          "description": "A list of billing groups contained in the access group."
+        }
+      },
+      "description": "Defines the fields associated with a Wave access group."
+    },
     "v1BillingGroup": {
       "type": "object",
       "properties": {
@@ -5278,6 +5334,15 @@
         }
       },
       "description": "Response message for the Iam.CreateUserRoleMapping rpc."
+    },
+    "v1GetAccessGroupResponse": {
+      "type": "object",
+      "properties": {
+        "accessGroup": {
+          "$ref": "#/definitions/v1AccessGroup"
+        }
+      },
+      "description": "Response message for the Billing.GetAccessGroup rpc."
     },
     "v1GetAccountBudgetResponse": {
       "type": "object",
