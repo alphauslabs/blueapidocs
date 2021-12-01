@@ -4518,6 +4518,10 @@
         "savings": {
           "type": "number",
           "format": "double"
+        },
+        "breakEven": {
+          "type": "string",
+          "title": "for break even point date"
         }
       }
     },
@@ -4675,6 +4679,10 @@
         "savings": {
           "type": "number",
           "format": "double"
+        },
+        "breakEven": {
+          "type": "string",
+          "title": "for break even point date"
         }
       }
     },
