@@ -154,7 +154,7 @@
         ]
       }
     },
-    "/admin/v1/aws/crossacctaccess/default": {
+    "/admin/v1/aws/xacct/default": {
       "get": {
         "summary": "Gets a CloudFormation launch url for enabling cross-account access to your account's billing information.\nUpon successful deployment, you need to validate the access by calling 'POST /admin/v1/aws/crossacctaccess/default'.",
         "operationId": "Admin_GetDefaultBillingInfoTemplateUrl",
@@ -217,7 +217,7 @@
         ]
       }
     },
-    "/admin/v1/aws/crossacctaccess/default/{target}": {
+    "/admin/v1/aws/xacct/default/{target}": {
       "get": {
         "summary": "Gets the current role attached to input account.",
         "operationId": "Admin_GetDefaultBillingInfo",
@@ -249,7 +249,7 @@
         ]
       },
       "delete": {
-        "summary": "WORK-IN-PROGRESS: Deletes the current role attached to this target account. This does not delete the\nCloudFormation deployment in your account.",
+        "summary": "Deletes the current role attached to this target account. This does not delete the\nCloudFormation deployment in your account.",
         "operationId": "Admin_DeleteDefaultBillingInfoRole",
         "responses": {
           "200": {
