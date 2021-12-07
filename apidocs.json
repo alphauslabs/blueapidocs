@@ -2124,6 +2124,59 @@
         ]
       }
     },
+    "/v1/{vendor}/bep/{orgId}": {
+      "get": {
+        "summary": "WORK-IN-PROGRESS: Get the breakeven point details for the RI or SP.",
+        "operationId": "Cost_GetBreakevenPoint",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetBreakevenPointResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "orgId",
+            "description": "Required. Organization Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "description": "Required. For AWS, \"ri\" or \"sp\".",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "arn",
+            "description": "Required. RI/SP Arn.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      }
+    },
     "/v1/{vendor}/budget/{budgetId}": {
       "delete": {
         "summary": "Removes monthly budget for the account/acctgroup id from database.",
@@ -3720,33 +3773,6 @@
         }
       }
     },
-    "apiChartData": {
-      "type": "object",
-      "properties": {
-        "date": {
-          "type": "string"
-        },
-        "service": {
-          "type": "string"
-        },
-        "cost": {
-          "type": "number",
-          "format": "double"
-        },
-        "profit": {
-          "type": "number",
-          "format": "double"
-        },
-        "utilization": {
-          "type": "number",
-          "format": "double"
-        },
-        "commitment": {
-          "type": "number",
-          "format": "double"
-        }
-      }
-    },
     "apiFeatureFlags": {
       "type": "object",
       "properties": {
@@ -4248,8 +4274,37 @@
         "chartData": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/apiChartData"
+            "$ref": "#/definitions/blueapiapiChartData"
           }
+        }
+      }
+    },
+    "apiawsChartData": {
+      "type": "object",
+      "properties": {
+        "publicOndemand": {
+          "type": "number",
+          "format": "double"
+        },
+        "actualOndemand": {
+          "type": "number",
+          "format": "double"
+        },
+        "riUsage": {
+          "type": "number",
+          "format": "double"
+        },
+        "utilization": {
+          "type": "number",
+          "format": "double"
+        },
+        "upperRatio": {
+          "type": "number",
+          "format": "double"
+        },
+        "lowerRatio": {
+          "type": "number",
+          "format": "double"
         }
       }
     },
@@ -4260,6 +4315,33 @@
           "type": "array",
           "items": {
             "type": "string"
+          }
+        }
+      }
+    },
+    "awsAwsCostBreakeven": {
+      "type": "object",
+      "properties": {
+        "arn": {
+          "type": "string"
+        },
+        "startDate": {
+          "type": "string"
+        },
+        "endDate": {
+          "type": "string"
+        },
+        "breakEvenPoint": {
+          "type": "string"
+        },
+        "riCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "chartData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiawsChartData"
           }
         }
       }
@@ -4889,6 +4971,33 @@
           "format": "double"
         },
         "daysBeforeBreakEven": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "blueapiapiChartData": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string"
+        },
+        "service": {
+          "type": "string"
+        },
+        "cost": {
+          "type": "number",
+          "format": "double"
+        },
+        "profit": {
+          "type": "number",
+          "format": "double"
+        },
+        "utilization": {
+          "type": "number",
+          "format": "double"
+        },
+        "commitment": {
           "type": "number",
           "format": "double"
         }
@@ -5577,6 +5686,18 @@
         }
       },
       "description": "Response message for the Billing.GetBillingGroup rpc."
+    },
+    "v1GetBreakevenPointResponse": {
+      "type": "object",
+      "properties": {
+        "orgId": {
+          "type": "string"
+        },
+        "awsCostBreakeven": {
+          "$ref": "#/definitions/awsAwsCostBreakeven"
+        }
+      },
+      "title": "Response message for GetBreakevenPoint"
     },
     "v1GetCalculatorConfigResponse": {
       "type": "object",
