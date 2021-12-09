@@ -4314,6 +4314,9 @@
     "apiawsChartData": {
       "type": "object",
       "properties": {
+        "date": {
+          "type": "string"
+        },
         "publicOndemand": {
           "type": "number",
           "format": "double"
@@ -4327,14 +4330,6 @@
           "format": "double"
         },
         "utilization": {
-          "type": "number",
-          "format": "double"
-        },
-        "upperRatio": {
-          "type": "number",
-          "format": "double"
-        },
-        "lowerRatio": {
           "type": "number",
           "format": "double"
         }
@@ -4367,6 +4362,14 @@
           "type": "string"
         },
         "riCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "upperRatio": {
+          "type": "number",
+          "format": "double"
+        },
+        "lowerRatio": {
           "type": "number",
           "format": "double"
         },
