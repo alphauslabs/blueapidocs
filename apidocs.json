@@ -1879,6 +1879,48 @@
         ]
       }
     },
+    "/v1/aws/calchistory:read": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Reads the calculation history of each accounts in your billing groups. Only available in Ripple.",
+        "operationId": "Billing_ListAwsCalculationHistory",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1AwsCalculationHistory"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of v1AwsCalculationHistory"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ListAwsCalculationHistoryRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      }
+    },
     "/v1/aws/cur:import": {
       "post": {
         "summary": "Initiates an ondemand import of all registered CUR files. See\n[https://help.alphaus.cloud/en/articles/3612555-ripple-aws-things-you-need-to-prepare-before-starting]\nfor more information.",
@@ -2120,13 +2162,13 @@
               "type": "object",
               "properties": {
                 "result": {
-                  "$ref": "#/definitions/apiAccount"
+                  "$ref": "#/definitions/blueapiapiAccount"
                 },
                 "error": {
                   "$ref": "#/definitions/rpcStatus"
                 }
               },
-              "title": "Stream result of apiAccount"
+              "title": "Stream result of blueapiapiAccount"
             }
           },
           "default": {
@@ -2156,7 +2198,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/apiAccount"
+              "$ref": "#/definitions/blueapiapiAccount"
             }
           },
           "default": {
@@ -2215,7 +2257,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/apiAccount"
+              "$ref": "#/definitions/blueapiapiAccount"
             }
           },
           "default": {
@@ -3341,13 +3383,13 @@
               "type": "object",
               "properties": {
                 "result": {
-                  "$ref": "#/definitions/apiAccount"
+                  "$ref": "#/definitions/blueapiapiAccount"
                 },
                 "error": {
                   "$ref": "#/definitions/rpcStatus"
                 }
               },
-              "title": "Stream result of apiAccount"
+              "title": "Stream result of blueapiapiAccount"
             }
           },
           "default": {
@@ -3377,7 +3419,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/apiAccount"
+              "$ref": "#/definitions/blueapiapiAccount"
             }
           },
           "default": {
@@ -3855,6 +3897,19 @@
     }
   },
   "definitions": {
+    "AccountHistory": {
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "type": "string",
+          "description": "Calculation timestamp in UTC, RFC3339."
+        },
+        "trigger": {
+          "type": "string",
+          "description": "Calculation trigger. Either `invoice` or `cur`."
+        }
+      }
+    },
     "GetCalculatorStatusResponseAwsStatus": {
       "type": "object",
       "properties": {
@@ -3898,26 +3953,6 @@
         }
       }
     },
-    "apiAccount": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "description": "The account id."
-        },
-        "name": {
-          "type": "string",
-          "description": "The account name."
-        },
-        "metadata": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/blueapiapiKeyValue"
-          },
-          "description": "The attributes (key/value pair) of the account."
-        }
-      }
-    },
     "apiAccountGroup": {
       "type": "object",
       "properties": {
@@ -3939,7 +3974,7 @@
         "accounts": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/apiAccount"
+            "$ref": "#/definitions/blueapiapiAccount"
           }
         }
       }
@@ -5283,6 +5318,26 @@
         }
       }
     },
+    "blueapiapiAccount": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The account id."
+        },
+        "name": {
+          "type": "string",
+          "description": "The account name."
+        },
+        "metadata": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/blueapiapiKeyValue"
+          },
+          "description": "The attributes (key/value pair) of the account."
+        }
+      }
+    },
     "blueapiapiChartData": {
       "type": "object",
       "properties": {
@@ -5415,7 +5470,7 @@
         "members": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/apiAccount"
+            "$ref": "#/definitions/blueapiapiAccount"
           },
           "description": "List of all members under this payer."
         }
@@ -5469,6 +5524,38 @@
       },
       "description": "Defines the fields associated with a Wave access group."
     },
+    "v1AwsCalculationHistory": {
+      "type": "object",
+      "properties": {
+        "billingInternalId": {
+          "type": "string"
+        },
+        "month": {
+          "type": "string"
+        },
+        "accounts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1AwsCalculationHistoryAccount"
+          }
+        }
+      },
+      "description": "Streaming response message for the Billing.ListAwsCalculationHistory rpc."
+    },
+    "v1AwsCalculationHistoryAccount": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "string"
+        },
+        "history": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AccountHistory"
+          }
+        }
+      }
+    },
     "v1BillingGroup": {
       "type": "object",
       "properties": {
@@ -5487,7 +5574,7 @@
         "accounts": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/apiAccount"
+            "$ref": "#/definitions/blueapiapiAccount"
           },
           "title": "List of all accounts"
         }
@@ -6328,6 +6415,16 @@
         }
       },
       "description": "Response message for the Admin.ListAccountGroups rpc."
+    },
+    "v1ListAwsCalculationHistoryRequest": {
+      "type": "object",
+      "properties": {
+        "month": {
+          "type": "string",
+          "description": "Optional. If empty, defaults to current UTC month. Format: yyyymm."
+        }
+      },
+      "description": "Request message for the Billing.ListAwsCalculationHistory rpc."
     },
     "v1ListCalculationsHistoryAwsResponse": {
       "type": "object",
