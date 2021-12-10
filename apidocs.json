@@ -343,7 +343,7 @@
     },
     "/admin/v1/notification/channels": {
       "get": {
-        "summary": "WORK-IN-PROGRESS: List all notification channels for login user's organization or group",
+        "summary": "WORK-IN-PROGRESS: Lists all notification channels for login user's organization or group.",
         "operationId": "Admin_ListNotificationChannels",
         "responses": {
           "200": {
@@ -364,7 +364,7 @@
         ]
       },
       "post": {
-        "summary": "WORK-IN-PROGRESS: Create notification settings for login user's organization or group",
+        "summary": "WORK-IN-PROGRESS: Creates notification settings for login user's organization or group.",
         "operationId": "Admin_CreateNotificationChannel",
         "responses": {
           "200": {
@@ -397,7 +397,7 @@
     },
     "/admin/v1/notification/channels/{id}": {
       "get": {
-        "summary": "WORK-IN-PROGRESS: Get notification channel for login user's organization or group",
+        "summary": "WORK-IN-PROGRESS: Gets notification channel for login user's organization or group.",
         "operationId": "Admin_GetNotificationChannel",
         "responses": {
           "200": {
@@ -426,7 +426,7 @@
         ]
       },
       "delete": {
-        "summary": "WORK-IN-PROGRESS: Delete notification settings for login user's organization or group",
+        "summary": "WORK-IN-PROGRESS: Deletes notification settings for login user's organization or group.",
         "operationId": "Admin_DeleteNotificationChannel",
         "responses": {
           "200": {
@@ -456,7 +456,7 @@
         ]
       },
       "put": {
-        "summary": "WORK-IN-PROGRESS: Update notification settings for login user's organization or group",
+        "summary": "WORK-IN-PROGRESS: Updates notification settings for login user's organization or group.",
         "operationId": "Admin_UpdateNotificationChannel",
         "responses": {
           "200": {
@@ -488,7 +488,7 @@
     },
     "/admin/v1/notification/settings": {
       "get": {
-        "summary": "WORK-IN-PROGRESS: Get notification settings for login user's organization or group",
+        "summary": "WORK-IN-PROGRESS: Get notification settings for login user's organization or group.",
         "operationId": "Admin_GetNotificationSettings",
         "responses": {
           "200": {
@@ -509,7 +509,7 @@
         ]
       },
       "post": {
-        "summary": "WORK-IN-PROGRESS: Create or update notification settings for login user's organization or group",
+        "summary": "WORK-IN-PROGRESS: Creates or updates notification settings for login user's organization or group.",
         "operationId": "Admin_SaveNotificationSettings",
         "responses": {
           "200": {
