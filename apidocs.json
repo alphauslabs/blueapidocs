@@ -5580,8 +5580,93 @@
             "$ref": "#/definitions/blueapiapiAccount"
           },
           "title": "List of all accounts"
+        },
+        "invoiceSettings": {
+          "$ref": "#/definitions/v1BillingGroupInvoiceSettings",
+          "description": "The invoice settings for this billing group."
         }
       }
+    },
+    "v1BillingGroupInvoiceSettings": {
+      "type": "object",
+      "properties": {
+        "aws": {
+          "$ref": "#/definitions/v1BillingGroupVendoredInvoiceSetting",
+          "title": "AWS invoice settings"
+        },
+        "azure": {
+          "$ref": "#/definitions/v1BillingGroupVendoredInvoiceSetting",
+          "title": "Azure invoice settings"
+        },
+        "gcp": {
+          "$ref": "#/definitions/v1BillingGroupVendoredInvoiceSetting",
+          "title": "GCP invoice settings"
+        }
+      },
+      "description": "Invoice settings for a billing group."
+    },
+    "v1BillingGroupVendoredInvoiceSetting": {
+      "type": "object",
+      "properties": {
+        "calcType": {
+          "type": "string"
+        },
+        "discountRate": {
+          "type": "number",
+          "format": "double"
+        },
+        "substitutionFee": {
+          "type": "string"
+        },
+        "substitutionFix": {
+          "type": "number",
+          "format": "double"
+        },
+        "substitutionRate": {
+          "type": "number",
+          "format": "double"
+        },
+        "supportFee": {
+          "type": "string"
+        },
+        "supportRate": {
+          "type": "number",
+          "format": "double"
+        },
+        "supportFix": {
+          "type": "number",
+          "format": "double"
+        },
+        "taxRate": {
+          "type": "number",
+          "format": "double"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "discountTargetUsage": {
+          "type": "string"
+        },
+        "substitutionFeeTargetUsage": {
+          "type": "string"
+        },
+        "discountCalcLogic": {
+          "type": "string"
+        },
+        "substitutionFeeCalcTarget": {
+          "type": "string"
+        },
+        "substitutionFeeCalcType": {
+          "type": "string"
+        },
+        "supportAmountTarget": {
+          "type": "string"
+        },
+        "supportFeeCalcTarget": {
+          "type": "string"
+        }
+      },
+      "description": "Invoice settings that are vendor-specific for each billing group."
     },
     "v1CalculateCostsRequestAwsOptions": {
       "type": "object",
