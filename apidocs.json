@@ -174,8 +174,15 @@
         },
         "parameters": [
           {
+            "name": "type",
+            "description": "Optional. Valid values are `default`, `s3only`, and `apionly`. Set to `default` if empty.\n\n`default` - Template for setting up both CUR export and read-only access to cost information.\n\n`apionly` - Template for setting up ready-only access to cost information. Use if you already\nexported your CUR to Alphaus through other means (i.e. manual setup).\n\n`s3only` - A helper template for creating an S3 bucket to be used for CUR export.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "region",
-            "description": "Optional. Set to the desired target region code. Defaults to 'ap-northeast-1' (Tokyo).\nYou can still change the final target region in the CloudFormation console before\nthe stack creation. You can check https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions\nfor the region list.",
+            "description": "Optional. Set to the desired target region code. Defaults to 'us-east-1' (N. Virginia).\nYou can still change the final target region in the CloudFormation console before\nthe stack creation.",
             "in": "query",
             "required": false,
             "type": "string"
