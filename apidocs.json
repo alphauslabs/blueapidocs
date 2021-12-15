@@ -4639,7 +4639,7 @@
           "type": "number",
           "format": "double"
         },
-        "riUsage": {
+        "usageCost": {
           "type": "number",
           "format": "double"
         },
@@ -4672,10 +4672,33 @@
         "endDate": {
           "type": "string"
         },
+        "estimateEvenPoint": {
+          "type": "string"
+        },
         "breakEvenPoint": {
           "type": "string"
         },
-        "riCost": {
+        "purchaseCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "initialCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "estimateUsage": {
+          "type": "number",
+          "format": "double"
+        },
+        "currentPublicOd": {
+          "type": "number",
+          "format": "double"
+        },
+        "currentActualOd": {
+          "type": "number",
+          "format": "double"
+        },
+        "reduction": {
           "type": "number",
           "format": "double"
         },
