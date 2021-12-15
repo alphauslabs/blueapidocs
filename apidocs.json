@@ -156,7 +156,7 @@
     },
     "/admin/v1/aws/xacct/dca": {
       "get": {
-        "summary": "WORK-IN-PROGRESS: Gets a CloudFormation launch URL for enabling the default cross-account access to your account's cost information based on type.",
+        "summary": "Gets a CloudFormation launch URL for enabling the default cross-account access to your account's cost information based on type.\nSee comments on the type for more information on what each template does.",
         "operationId": "Admin_GetDefaultCostAccessTemplateUrl",
         "responses": {
           "200": {
@@ -175,14 +175,14 @@
         "parameters": [
           {
             "name": "type",
-            "description": "Optional. Valid values are `default`, `s3only`, and `apionly`. Defaults to `default` if empty.\n\n`default` - Template for setting up both CUR export and read-only access to cost information.\n\n`apionly` - Template for setting up ready-only access to cost information. Use if you already\nhave exported your CUR to Alphaus through other means (i.e. manual setup).\n\n`s3only` - A helper template for creating an S3 bucket to be used for CUR export.",
+            "description": "Optional. Valid values are `default`, `s3only`, and `apionly`. Defaults to `default` if empty.\n\n`default` - Template for setting up both CUR export and read-only access to cost information. If selected, you need to\ndeploy this template to `us-east-1` region as CloudFormation only supports the `AWS::CUR::ReportDefinition` in that\nregion at the moment. The target S3 bucket will also be created in that region. If you prefer your S3 bucket to be located\nin a different region, you can use the template from this API by setting the type to `s3only`. After your S3 bucket is\nready, call this API again (type is `default`) and set the `CurS3BucketOption` parameter to `USE_EXISTING`, then set your\nbucket name and region accordingly.\n\n`apionly` - Template for setting up ready-only access to cost information. Handy if you already have exported your CUR to\nAlphaus through other means (i.e. manual setup). This template is the same as the `default` type but without the CUR\nexport definitions. Although not required, we recommend you to deploy this template to allow us to query your cost-related\ninformation such as Reserved Instances, Saving Plans, etc. through the AWS API. At the moment, we only rely on CUR data\nwhich is a best-effort basis and sometimes not accurate.\n\n`s3only` - A helper template for creating an S3 bucket to be used for CUR export.\n\nAll templates are publicly available from the reponse link (`templateUrl`) if you want to audit the included permissions.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "region",
-            "description": "Optional. Set to the desired target region code. Defaults to `us-east-1` (N. Virginia).\nYou can still change the final target region in the CloudFormation console before\nthe stack creation.",
+            "description": "Optional. Set to the desired target region code. Defaults to `us-east-1` (N. Virginia). You can still change the final\ntarget region in the CloudFormation console before the stack creation. This parameter will only affect the resulting\n`launchUrl` in the response.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -193,7 +193,7 @@
         ]
       },
       "post": {
-        "summary": "WORK-IN-PROGRESS: Starts validation of a default cross-account access stack deployment.\nIf successful, the new IAM role will be registered to the target account.",
+        "summary": "Starts validation of a default cross-account access stack deployment. If successful, the\nIAM role created from the CloudFormation stack will be registered to the target.",
         "operationId": "Admin_CreateDefaultCostAccess",
         "responses": {
           "200": {
@@ -226,7 +226,7 @@
     },
     "/admin/v1/aws/xacct/dca/all:read": {
       "post": {
-        "summary": "WORK-IN-PROGRESS: Lists the default cross-account access role(s) attached to accounts under caller.",
+        "summary": "Lists the default cross-account access role(s) attached to accounts under caller.",
         "operationId": "Admin_ListDefaultCostAccess",
         "responses": {
           "200": {
@@ -258,7 +258,7 @@
     },
     "/admin/v1/aws/xacct/dca/{target}": {
       "get": {
-        "summary": "WORK-IN-PROGRESS: Gets the current default cross-account role attached to input account.",
+        "summary": "Gets the current default cross-account role attached to the input target.",
         "operationId": "Admin_GetDefaultCostAccess",
         "responses": {
           "200": {
@@ -288,7 +288,7 @@
         ]
       },
       "delete": {
-        "summary": "WORK-IN-PROGRESS: Deletes the current default cross-account access role attached to this target account.\nThis does not delete the CloudFormation deployment in your account.",
+        "summary": "Deletes the current default cross-account access role attached to this target account.\nThis does not delete the CloudFormation deployment in your account.",
         "operationId": "Admin_DeleteDefaultCostAccess",
         "responses": {
           "200": {
@@ -318,7 +318,7 @@
         ]
       },
       "put": {
-        "summary": "WORK-IN-PROGRESS: Starts an update to an existing default cross-account access CloudFormation for template changes, if any.",
+        "summary": "Starts an update to an existing default cross-account access CloudFormation stack for template changes, if any.\nOnly call this API if the status of your default cross-account access is 'outdated'.",
         "operationId": "Admin_UpdateDefaultCostAccess",
         "responses": {
           "200": {
