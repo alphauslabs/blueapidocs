@@ -2777,6 +2777,78 @@
         ]
       }
     },
+    "/v1/{vendor}/costattrs:read": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Reads the available cost attributes of an organization (Ripple) or billing group (Wave).\nSimilar to the `ReadCosts` API but without the aggregated usages and costs.\nAt the moment, the supported {vendor} is 'aws'. If datetime range parameters are\nnot set, month-to-date (current month) will be returned.",
+        "operationId": "Cost_ReadCostAttributes",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1CostAttributeItem"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of v1CostAttributeItem"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "groupId": {
+                  "type": "string",
+                  "description": "Optional. If set, reads the cost attributes of this group. Only valid for Ripple\nusers. Implied as the parent billing group for Wave(Pro) users.\n\nFor AWS Ripple, only billing internal ids are supported at the moment. Overriden when\n`accountId` is set to anything other than `*`. Set this and `accountId` to `*` to read\nthe cost attributes of the whole organization. Optional for AWS Wave(Pro)."
+                },
+                "accountId": {
+                  "type": "string",
+                  "description": "Optional. If set, reads the cost attributes of this account.\n\nFor AWS, setting this will override `groupId`. Set this and `groupId` to `*` to read the\ncost attributes of the whole organization."
+                },
+                "startTime": {
+                  "type": "string",
+                  "description": "Optional. The UTC date to start streaming data from. If not set, the first day of the\ncurrent month will be used. Format: yyyymmdd. The oldest supported date is 2020-01-01."
+                },
+                "endTime": {
+                  "type": "string",
+                  "description": "Optional. The UTC date to end the streaming data. If not set, current date will be\nused. Format: `yyyymmd`."
+                },
+                "awsOptions": {
+                  "$ref": "#/definitions/ReadCostAttributesRequestAwsOptions",
+                  "description": "Optional. Valid only for the `aws` vendor. AWS-specific options."
+                }
+              },
+              "description": "Request message for the Cost.ReadCostAttributes rpc."
+            }
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      }
+    },
     "/v1/{vendor}/costs:calculate": {
       "post": {
         "summary": "Triggers monthly calculations for costs and invoices at either organization or billing group level.\nFor the AWS calculator, aggregation is done at daily and monthly level. Also, all occurrences of the\ncharacter `|` (pipe) in the CUR descriptions and tag key/values are replaced with the `/` (forward-slash)\ncharacter. This is due to the `|` character having a special designation in the data processing workflows.",
@@ -4025,6 +4097,15 @@
         }
       }
     },
+    "ReadCostAttributesRequestAwsOptions": {
+      "type": "object",
+      "properties": {
+        "dimensions": {
+          "type": "string",
+          "description": "Optional. A comma-separated list of dimensions to query. Valid values\nare `productCode`, `serviceCode`, `region`, `zone`, `usageType`, `instanceType`,\n`operation`, `invoiceId`, `description`, `resourceId`, `tags`, and `costCategories`.\nSequence doesn't matter. An empty value implies all attributes will be returned."
+        }
+      }
+    },
     "apiAccountGroup": {
       "type": "object",
       "properties": {
@@ -4967,6 +5048,59 @@
         }
       }
     },
+    "awsCostAttribute": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "type": "string"
+        },
+        "groupId": {
+          "type": "string"
+        },
+        "productCode": {
+          "type": "string"
+        },
+        "serviceCode": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "zone": {
+          "type": "string"
+        },
+        "usageType": {
+          "type": "string"
+        },
+        "instanceType": {
+          "type": "string"
+        },
+        "operation": {
+          "type": "string"
+        },
+        "invoiceId": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "resourceId": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "costCategories": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "awsCostReductionSummary": {
       "type": "object",
       "properties": {
@@ -5787,6 +5921,15 @@
           "description": "Optional. If set to true, only calculate for tags-type billing groups. Discarded\nwhen the organization doesn't have any tag-based billing groups configured. If\nboth `accountsOnly` and `tagsOnly` are set to true, `accountsOnly` will prevail."
         }
       }
+    },
+    "v1CostAttributeItem": {
+      "type": "object",
+      "properties": {
+        "aws": {
+          "$ref": "#/definitions/awsCostAttribute"
+        }
+      },
+      "description": "Response message for the Cost.ReadCostAttributes rpc."
     },
     "v1CostItem": {
       "type": "object",
