@@ -3494,7 +3494,7 @@
         ]
       },
       "post": {
-        "summary": "Registers a vendor payer account.",
+        "summary": "Registers a vendor payer account. This is now deprecated for AWS payer accounts. To register an AWS payer account, check out the 'CreateDefaultCostAccess' API.",
         "operationId": "Cost_CreatePayerAccount",
         "responses": {
           "200": {
