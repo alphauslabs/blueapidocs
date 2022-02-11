@@ -2722,6 +2722,125 @@
         ]
       }
     },
+    "/v1/{vendor}/calculations/schedule": {
+      "get": {
+        "summary": "WORK-IN-PROGRESS: Gets the schedule of your monthly calculations. Only available in Ripple.",
+        "operationId": "Cost_GetCalculationsSchedule",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CalculationsSchedule"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      },
+      "delete": {
+        "summary": "WORK-IN-PROGRESS: Deletes the schedule of your monthly calculations. Only available in Ripple.",
+        "operationId": "Cost_DeleteCalculationsSchedule",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      },
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Creates a schedule of your monthly calculations.  Only available in Ripple.",
+        "operationId": "Cost_CreateCalculationsSchedule",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CalculationsSchedule"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "schedule": {
+                  "type": "string",
+                  "description": "Required. The desired schedule in UTC, using the [cron](https://man7.org/linux/man-pages/man5/crontab.5.html) format."
+                },
+                "notificationChannel": {
+                  "type": "string",
+                  "description": "Optional. The channel id to use for notifications. If not set, your default channel will be used. And if non-existent, an email-type notification channel will be created using your primary email address."
+                },
+                "force": {
+                  "type": "boolean",
+                  "description": "Optional. If set to true, force calculations to proceed regardless of run status."
+                },
+                "dryRun": {
+                  "type": "boolean",
+                  "description": "Optional. If set to true, skips the actual calculations. Useful as test, or reminder."
+                }
+              },
+              "description": "Request message for the Cost.CreateCalculationsSchedule rpc."
+            }
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      }
+    },
     "/v1/{vendor}/calculator/config": {
       "get": {
         "summary": "WORK-IN-PROGRESS: Gets the vendor cost calculator's current configuration.",
@@ -5969,6 +6088,31 @@
         "tagsOnly": {
           "type": "boolean",
           "description": "Optional. If set to true, only calculate for tags-type billing groups. Discarded when the organization doesn't have any tag-based billing groups configured. If both `accountsOnly` and `tagsOnly` are set to true, `accountsOnly` will prevail."
+        }
+      }
+    },
+    "v1CalculationsSchedule": {
+      "type": "object",
+      "properties": {
+        "schedule": {
+          "type": "string",
+          "description": "The desired schedule in UTC, using the [cron](https://man7.org/linux/man-pages/man5/crontab.5.html) format."
+        },
+        "nextRun": {
+          "type": "string",
+          "description": "The schedule for the next run in UTC."
+        },
+        "notificationChannel": {
+          "type": "string",
+          "description": "The channel id to use for notifications."
+        },
+        "force": {
+          "type": "boolean",
+          "description": "If set to true, force calculations to proceed regardless of run status."
+        },
+        "dryRun": {
+          "type": "boolean",
+          "description": "If set to true, skips the actual calculations."
         }
       }
     },
