@@ -4513,6 +4513,10 @@
         "reportFilters": {
           "type": "boolean",
           "title": "Control access to the report filters pane in Wave Pro"
+        },
+        "aquaLink": {
+          "type": "boolean",
+          "title": "Control access to Aqua from Wave Pro"
         }
       },
       "description": "Describes the features and whether or not they are enabled for a particular user."
