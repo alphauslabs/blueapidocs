@@ -3145,7 +3145,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1ListCostsFilterConditionResponse"
+              "$ref": "#/definitions/v1ListCostsFilterResponse"
             }
           },
           "default": {
@@ -3175,7 +3175,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1CreateCostsFilterConditionResponse"
+              "$ref": "#/definitions/v1CreateCostsFilterResponse"
             }
           },
           "default": {
@@ -3236,7 +3236,7 @@
                   "description": "Optional."
                 }
               },
-              "description": "Request message for the CreateCostsFilterCondition rpc."
+              "description": "Request message for the CreateCostsFilter rpc."
             }
           }
         ],
@@ -6475,7 +6475,7 @@
       },
       "title": "Specific settings per vendor"
     },
-    "v1CreateCostsFilterConditionResponse": {
+    "v1CreateCostsFilterResponse": {
       "type": "object",
       "properties": {
         "filterId": {
@@ -6483,7 +6483,7 @@
           "description": "Required."
         }
       },
-      "description": "Response message for the CreateCostsFilterCondition rpc."
+      "description": "Response message for the CreateCostsFilter rpc."
     },
     "v1CreateDefaultCostAccessRequest": {
       "type": "object",
@@ -7181,7 +7181,7 @@
       },
       "description": "Response message for the Cost.ListCalculatorRunningAccounts rpc."
     },
-    "v1ListCostsFilterConditionResponse": {
+    "v1ListCostsFilterResponse": {
       "type": "object",
       "properties": {
         "filterId": {
@@ -7221,7 +7221,7 @@
           }
         }
       },
-      "description": "Response message for the ListcostsFilterCondition rpc."
+      "description": "Response message for the ListcostsFilter rpc."
     },
     "v1ListIdentityProvidersResponse": {
       "type": "object",
