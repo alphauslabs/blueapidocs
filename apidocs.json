@@ -3137,6 +3137,153 @@
         ]
       }
     },
+    "/v1/{vendor}/costsfilter": {
+      "get": {
+        "summary": "WORK-IN-PROGRESS: Lists the usage-based cost filter condition.",
+        "operationId": "Cost_ListCostsFilter",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListCostsFilterConditionResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      },
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Creates the usage-based cost filter condition.",
+        "operationId": "Cost_CreateCostsFilter",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateCostsFilterConditionResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "accounts": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Optional."
+                },
+                "services": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Optional."
+                },
+                "crosstags": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Optional."
+                },
+                "costtags": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Optional."
+                },
+                "resources": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Optional."
+                }
+              },
+              "description": "Request message for the CreateCostsFilterCondition rpc."
+            }
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      }
+    },
+    "/v1/{vendor}/costsfilter/{filterId}": {
+      "delete": {
+        "summary": "WORK-IN-PROGRESS: Deletes the usage-based cost filter condition.",
+        "operationId": "Cost_DeleteCostsFilter",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "filterId",
+            "description": "Required. The filterId to delete.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      }
+    },
     "/v1/{vendor}/coverage/ondemand/{orgId}:read": {
       "post": {
         "summary": "WORK-IN-PROGRESS: Get ondemand cost details for an organization (or MSP).",
@@ -6328,6 +6475,16 @@
       },
       "title": "Specific settings per vendor"
     },
+    "v1CreateCostsFilterConditionResponse": {
+      "type": "object",
+      "properties": {
+        "filterId": {
+          "type": "string",
+          "description": "Required."
+        }
+      },
+      "description": "Response message for the CreateCostsFilterCondition rpc."
+    },
     "v1CreateDefaultCostAccessRequest": {
       "type": "object",
       "properties": {
@@ -7023,6 +7180,48 @@
         }
       },
       "description": "Response message for the Cost.ListCalculatorRunningAccounts rpc."
+    },
+    "v1ListCostsFilterConditionResponse": {
+      "type": "object",
+      "properties": {
+        "filterId": {
+          "type": "string"
+        },
+        "vendor": {
+          "type": "string"
+        },
+        "accounts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "services": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "crosstags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "costtags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Response message for the ListcostsFilterCondition rpc."
     },
     "v1ListIdentityProvidersResponse": {
       "type": "object",
