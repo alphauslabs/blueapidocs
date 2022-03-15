@@ -3167,7 +3167,7 @@
                 },
                 "accountId": {
                   "type": "string",
-                  "description": "Optional. If set, reads the usage-based cost details of this account.\n\nFor AWS, setting this will override `groupId`. Set this and `groupId` to `*` to read the usage-based cost details of the whole organization."
+                  "description": "Optional. You can set it to a single account or a comma-separated list of accounts.\n\nFor AWS, setting this will override `groupId`. Set this and `groupId` to `*` to read the usage-based cost details of the whole organization."
                 },
                 "startTime": {
                   "type": "string",
