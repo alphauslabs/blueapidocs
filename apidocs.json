@@ -3280,11 +3280,11 @@
                   "additionalProperties": {
                     "type": "string"
                   },
-                  "title": "Optional. For example, Set `tag key` and `tag name`, set to `{\"tag key\":\"tag name\"}`. To set multiple `{\"tag key1\":\"tag name1\", \"tag key2\":\"tag name2\"}`"
+                  "title": "Optional. \nFor example, Set \"tag name\" and \"tag value\", set to `{\"tag name\":\"tag value\"}`. To set multiple `{\"tag name1\":\"tag value1\", \"tag name2\":\"tag value2\"}`"
                 },
                 "resources": {
                   "type": "string",
-                  "description": "Optional. For example, to specify a resrouceId, set to \"resrouceId1\".To specify multiple resourceId, set to  \"resourceId1:resourceId2:resourceId3\"."
+                  "description": "Optional. \nFor example, to specify a resrouceId, set to \"resrouceId1\".To specify multiple resourceId, set to  \"resourceId1:resourceId2:resourceId3\"."
                 }
               },
               "description": "Request message for the CreateCostsFilter rpc."
