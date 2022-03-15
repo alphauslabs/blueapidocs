@@ -7304,40 +7304,10 @@
     "v1ListCostsFilterResponse": {
       "type": "object",
       "properties": {
-        "filterId": {
-          "type": "string"
-        },
-        "vendor": {
-          "type": "string"
-        },
-        "accounts": {
+        "costsFilter": {
           "type": "array",
           "items": {
-            "type": "string"
-          }
-        },
-        "services": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "crosstags": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "costtags": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "resources": {
-          "type": "array",
-          "items": {
-            "type": "string"
+            "$ref": "#/definitions/v1ListcostsFilterItem"
           }
         }
       },
@@ -7402,6 +7372,48 @@
         }
       },
       "description": "Response message for the Iam.ListUserRoleMappings rpc."
+    },
+    "v1ListcostsFilterItem": {
+      "type": "object",
+      "properties": {
+        "filterId": {
+          "type": "string"
+        },
+        "vendor": {
+          "type": "string"
+        },
+        "accounts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "services": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "crosstags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "costtags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Response message for the ListcostsFilterItem rpc."
     },
     "v1MapRole": {
       "type": "object",
