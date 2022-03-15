@@ -3259,35 +3259,32 @@
                   "items": {
                     "type": "string"
                   },
-                  "description": "Optional."
+                  "description": "Optional. List of Account Ids."
                 },
                 "services": {
                   "type": "array",
                   "items": {
                     "type": "string"
                   },
-                  "description": "Optional."
+                  "description": "Optional. List of Service Codes."
                 },
                 "crosstags": {
-                  "type": "array",
-                  "items": {
+                  "type": "object",
+                  "additionalProperties": {
                     "type": "string"
                   },
-                  "description": "Optional."
+                  "title": "Optional. Not supported"
                 },
                 "costtags": {
-                  "type": "array",
-                  "items": {
+                  "type": "object",
+                  "additionalProperties": {
                     "type": "string"
                   },
-                  "description": "Optional."
+                  "title": "Optional. For example, Set `tag key` and `tag name`, set to `{\"tag key\":\"tag name\"}`. To set multiple `{\"tag key1\":\"tag name1\", \"tag key2\":\"tag name2\"}`"
                 },
                 "resources": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  },
-                  "description": "Optional."
+                  "type": "string",
+                  "description": "Optional. For example, to specify a resrouceId, set to \"resrouceId1\".To specify multiple resourceId, set to  \"resourceId1:resourceId2:resourceId3\"."
                 }
               },
               "description": "Request message for the CreateCostsFilter rpc."
@@ -3327,7 +3324,7 @@
           },
           {
             "name": "filterId",
-            "description": "Required. The filterId to delete.",
+            "description": "Required. Filter Id to delete.",
             "in": "path",
             "required": true,
             "type": "string"
@@ -6578,7 +6575,7 @@
       "properties": {
         "filterId": {
           "type": "string",
-          "description": "Required."
+          "description": "Required. Filter Id."
         }
       },
       "description": "Response message for the CreateCostsFilter rpc."
@@ -7305,40 +7302,44 @@
       "type": "object",
       "properties": {
         "filterId": {
-          "type": "string"
+          "type": "string",
+          "description": "Required. Filter Id."
         },
         "vendor": {
-          "type": "string"
+          "type": "string",
+          "description": "Required. Vendor."
         },
         "accounts": {
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "description": "Required. List of Account Ids."
         },
         "services": {
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "description": "Required. List of Service Codes."
         },
         "crosstags": {
-          "type": "array",
-          "items": {
+          "type": "object",
+          "additionalProperties": {
             "type": "string"
-          }
+          },
+          "title": "Required. Not supported"
         },
         "costtags": {
-          "type": "array",
-          "items": {
+          "type": "object",
+          "additionalProperties": {
             "type": "string"
-          }
+          },
+          "title": "Required. Cost Tags"
         },
         "resources": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
+          "type": "string",
+          "title": "Required. Resources"
         }
       },
       "description": "Response message for the ListCostsFilter rpc."
