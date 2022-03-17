@@ -3254,37 +3254,17 @@
             "schema": {
               "type": "object",
               "properties": {
-                "accounts": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  },
-                  "description": "Optional. List of Account Ids."
-                },
-                "services": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  },
-                  "description": "Optional. List of Service Codes."
-                },
-                "crosstags": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "type": "string"
-                  },
-                  "title": "Optional. Not supported"
-                },
-                "costtags": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "type": "string"
-                  },
-                  "title": "Optional. \nFor example, Set \"tag name\" and \"tag value\", set to `{\"tag name\":\"tag value\"}`. To set multiple `{\"tag name1\":\"tag value1\", \"tag name2\":\"tag value2\"}`"
-                },
-                "resources": {
+                "groupId": {
                   "type": "string",
-                  "description": "Optional. \nFor example, to specify a resrouceId, set to \"resrouceId1\".To specify multiple resourceId, set to  \"resourceId1:resourceId2:resourceId3\"."
+                  "description": "Optional. If set, reads the usage-based cost details of this group. Only valid for Ripple users. Implied as the parent billing group for Wave(Pro) users.\n\nFor AWS Ripple, only billing internal ids are supported at the moment. Overriden when `accountId` is set to anything other than `*`. Set this and `accountId` to `*` to read the usage-based cost details of the whole organization. Optional for AWS Wave(Pro)."
+                },
+                "accountId": {
+                  "type": "string",
+                  "description": "Optional. You can set it to a single account or a comma-separated list of accounts.\n\nFor AWS, setting this will override `groupId`. Set this and `groupId` to `*` to read the usage-based cost details of the whole organization."
+                },
+                "awsOptions": {
+                  "$ref": "#/definitions/v1ReadCostsRequestAwsOptions",
+                  "description": "Optional. Valid only for the `aws` vendor. AWS-specific options."
                 }
               },
               "description": "Request message for the CreateCostsFilter rpc."
@@ -7309,37 +7289,17 @@
           "type": "string",
           "description": "Required. Vendor."
         },
-        "accounts": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "Required. List of Account Ids."
-        },
-        "services": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "Required. List of Service Codes."
-        },
-        "crosstags": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
-          "title": "Required. Not supported"
-        },
-        "costtags": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
-          "title": "Required. Cost Tags"
-        },
-        "resources": {
+        "groupId": {
           "type": "string",
-          "title": "Required. Resources"
+          "description": "Optional. If set, reads the usage-based cost details of this group. Only valid for Ripple users. Implied as the parent billing group for Wave(Pro) users.\n\nFor AWS Ripple, only billing internal ids are supported at the moment. Overriden when `accountId` is set to anything other than `*`. Set this and `accountId` to `*` to read the usage-based cost details of the whole organization. Optional for AWS Wave(Pro)."
+        },
+        "accountId": {
+          "type": "string",
+          "description": "Optional. You can set it to a single account or a comma-separated list of accounts.\n\nFor AWS, setting this will override `groupId`. Set this and `groupId` to `*` to read the usage-based cost details of the whole organization."
+        },
+        "awsOptions": {
+          "$ref": "#/definitions/v1ReadCostsRequestAwsOptions",
+          "description": "Optional. Valid only for the `aws` vendor. AWS-specific options."
         }
       },
       "description": "Response message for the ListCostsFilter rpc."
