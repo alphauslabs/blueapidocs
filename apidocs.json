@@ -3193,7 +3193,7 @@
     },
     "/v1/{vendor}/costsfilter": {
       "get": {
-        "summary": "WORK-IN-PROGRESS: Lists the usage-based cost filter condition.",
+        "summary": "Lists the usage-based cost filter condition. Only available in Wave.",
         "operationId": "Cost_ListCostsFilter",
         "responses": {
           "200": {
@@ -3223,7 +3223,7 @@
         ]
       },
       "post": {
-        "summary": "WORK-IN-PROGRESS: Creates the usage-based cost filter condition.",
+        "summary": "Creates the usage-based cost filter condition. Only available in Wave.",
         "operationId": "Cost_CreateCostsFilter",
         "responses": {
           "200": {
@@ -3298,7 +3298,7 @@
     },
     "/v1/{vendor}/costsfilter/{filterId}": {
       "delete": {
-        "summary": "WORK-IN-PROGRESS: Deletes the usage-based cost filter condition.",
+        "summary": "Deletes the usage-based cost filter condition. Only available in Wave.",
         "operationId": "Cost_DeleteCostsFilter",
         "responses": {
           "200": {
