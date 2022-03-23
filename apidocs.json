@@ -3149,68 +3149,6 @@
         ]
       }
     },
-    "/v1/{vendor}/costfilters/export/{filterId}": {
-      "post": {
-        "summary": "Exports the usage-based cost filter condition. Only available in Wave(Pro).",
-        "operationId": "Cost_ExportCostFiltersFile",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1ExportCostFiltersFileResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "vendor",
-            "description": "Required. At the moment, only `aws` is supported.",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "filterId",
-            "description": "Required. Filter Id.",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "startTime": {
-                  "type": "string",
-                  "description": "Optional. The UTC date to start streaming data from. If not set, the first day of the current month will be used. Format: `yyyymmdd`. The oldest supported date is `20200101`."
-                },
-                "endTime": {
-                  "type": "string",
-                  "description": "Optional. The UTC date to end the streaming data. If not set, current date will be used. Format: `yyyymmd`."
-                },
-                "groupByMonth": {
-                  "type": "boolean",
-                  "description": "Optional. If set to true, return data grouped by month within the date range. If you want data that is grouped per account per month, set this to `true`, then set `groupByColumns` to `none`."
-                }
-              },
-              "description": "Request message for the ExportCostFiltersFile rpc."
-            }
-          }
-        ],
-        "tags": [
-          "Cost"
-        ]
-      }
-    },
     "/v1/{vendor}/costfilters/{filterId}": {
       "delete": {
         "summary": "Deletes the usage-based cost filter condition. Only available in Wave(Pro).",
@@ -3250,7 +3188,7 @@
         ]
       },
       "put": {
-        "summary": "Updates the usage-based cost filter condition. Only available in Wave(Pro).",
+        "summary": "WORK-IN-PROGRESS: Updates the usage-based cost filter condition. Only available in Wave(Pro).",
         "operationId": "Cost_UpdateCostFilters",
         "responses": {
           "200": {
@@ -3302,6 +3240,68 @@
                 }
               },
               "description": "Request message for the UpdateCostFilters rpc."
+            }
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      }
+    },
+    "/v1/{vendor}/costfilters/{filterId}:export": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Exports the usage-based cost filter condition. Only available in Wave(Pro).",
+        "operationId": "Cost_ExportCostFiltersFile",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ExportCostFiltersFileResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "filterId",
+            "description": "Required. Filter Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "startTime": {
+                  "type": "string",
+                  "description": "Optional. The UTC date to start streaming data from. If not set, the first day of the current month will be used. Format: `yyyymmdd`. The oldest supported date is `20200101`."
+                },
+                "endTime": {
+                  "type": "string",
+                  "description": "Optional. The UTC date to end the streaming data. If not set, current date will be used. Format: `yyyymmd`."
+                },
+                "groupByMonth": {
+                  "type": "boolean",
+                  "description": "Optional. If set to true, return data grouped by month within the date range. If you want data that is grouped per account per month, set this to `true`, then set `groupByColumns` to `none`."
+                }
+              },
+              "description": "Request message for the ExportCostFiltersFile rpc."
             }
           }
         ],
