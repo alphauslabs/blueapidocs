@@ -3129,15 +3129,15 @@
               "properties": {
                 "groupId": {
                   "type": "string",
-                  "description": "Optional. If set, reads the usage-based cost details of this group. Only valid for Ripple users. Implied as the parent billing group for Wave(Pro) users.\n\nFor AWS Ripple, only billing internal ids are supported at the moment. Overriden when `accountId` is set to anything other than `*`. Set this and `accountId` to `*` to read the usage-based cost details of the whole organization. Optional for AWS Wave(Pro)."
+                  "description": "Required. If set, reads the usage-based cost details of this group. Only valid for Ripple users. Implied as the parent billing group for Wave(Pro) users.\n\nFor AWS Ripple, only billing internal ids are supported at the moment. Overriden when `accountId` is set to anything other than `*`. Set this and `accountId` to `*` to read the usage-based cost details of the whole organization. Optional for AWS Wave(Pro)."
                 },
                 "accountId": {
                   "type": "string",
-                  "description": "Optional. You can set it to a single account or a comma-separated list of accounts.\n\nFor AWS, setting this will override `groupId`. Set this and `groupId` to `*` to read the usage-based cost details of the whole organization."
+                  "description": "Required. You can set it to a single account or a comma-separated list of accounts.\n\nFor AWS, setting this will override `groupId`. Set this and `groupId` to `*` to read the usage-based cost details of the whole organization."
                 },
                 "awsOptions": {
                   "$ref": "#/definitions/v1ReadCostsRequestAwsOptions",
-                  "description": "Optional. Valid only for the `aws` vendor. AWS-specific options."
+                  "description": "Required. Valid only for the `aws` vendor. AWS-specific options."
                 }
               },
               "description": "Request message for the CreateCostFilters rpc."
@@ -3228,15 +3228,15 @@
               "properties": {
                 "groupId": {
                   "type": "string",
-                  "description": "Optional. If set, reads the usage-based cost details of this group. Only valid for Ripple users. Implied as the parent billing group for Wave(Pro) users.\n\nFor AWS Ripple, only billing internal ids are supported at the moment. Overriden when `accountId` is set to anything other than `*`. Set this and `accountId` to `*` to read the usage-based cost details of the whole organization. Optional for AWS Wave(Pro)."
+                  "description": "Required. If set, reads the usage-based cost details of this group. Only valid for Ripple users. Implied as the parent billing group for Wave(Pro) users.\n\nFor AWS Ripple, only billing internal ids are supported at the moment. Overriden when `accountId` is set to anything other than `*`. Set this and `accountId` to `*` to read the usage-based cost details of the whole organization. Optional for AWS Wave(Pro)."
                 },
                 "accountId": {
                   "type": "string",
-                  "description": "Optional. You can set it to a single account or a comma-separated list of accounts.\n\nFor AWS, setting this will override `groupId`. Set this and `groupId` to `*` to read the usage-based cost details of the whole organization."
+                  "description": "Required. You can set it to a single account or a comma-separated list of accounts.\n\nFor AWS, setting this will override `groupId`. Set this and `groupId` to `*` to read the usage-based cost details of the whole organization."
                 },
                 "awsOptions": {
                   "$ref": "#/definitions/v1ReadCostsRequestAwsOptions",
-                  "description": "Optional. Valid only for the `aws` vendor. AWS-specific options."
+                  "description": "Required. Valid only for the `aws` vendor. AWS-specific options."
                 }
               },
               "description": "Request message for the UpdateCostFilters rpc."
