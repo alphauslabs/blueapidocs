@@ -3064,6 +3064,252 @@
         ]
       }
     },
+    "/v1/{vendor}/costfilters": {
+      "get": {
+        "summary": "Lists the usage-based cost filter condition. Only available in Wave(Pro).",
+        "operationId": "Cost_ListCostFilters",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListCostFiltersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      },
+      "post": {
+        "summary": "Creates the usage-based cost filter condition. Only available in Wave(Pro).",
+        "operationId": "Cost_CreateCostFilters",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateCostFiltersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "groupId": {
+                  "type": "string",
+                  "description": "Optional. If set, reads the usage-based cost details of this group. Only valid for Ripple users. Implied as the parent billing group for Wave(Pro) users.\n\nFor AWS Ripple, only billing internal ids are supported at the moment. Overriden when `accountId` is set to anything other than `*`. Set this and `accountId` to `*` to read the usage-based cost details of the whole organization. Optional for AWS Wave(Pro)."
+                },
+                "accountId": {
+                  "type": "string",
+                  "description": "Optional. You can set it to a single account or a comma-separated list of accounts.\n\nFor AWS, setting this will override `groupId`. Set this and `groupId` to `*` to read the usage-based cost details of the whole organization."
+                },
+                "awsOptions": {
+                  "$ref": "#/definitions/v1ReadCostsRequestAwsOptions",
+                  "description": "Optional. Valid only for the `aws` vendor. AWS-specific options."
+                }
+              },
+              "description": "Request message for the CreateCostFilters rpc."
+            }
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      }
+    },
+    "/v1/{vendor}/costfilters/export/{filterId}": {
+      "post": {
+        "summary": "Exports the usage-based cost filter condition. Only available in Wave(Pro).",
+        "operationId": "Cost_ExportCostFiltersFile",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ExportCostFiltersFileResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "filterId",
+            "description": "Required. Filter Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "startTime": {
+                  "type": "string",
+                  "description": "Optional. The UTC date to start streaming data from. If not set, the first day of the current month will be used. Format: `yyyymmdd`. The oldest supported date is `20200101`."
+                },
+                "endTime": {
+                  "type": "string",
+                  "description": "Optional. The UTC date to end the streaming data. If not set, current date will be used. Format: `yyyymmd`."
+                },
+                "groupByMonth": {
+                  "type": "boolean",
+                  "description": "Optional. If set to true, return data grouped by month within the date range. If you want data that is grouped per account per month, set this to `true`, then set `groupByColumns` to `none`."
+                }
+              },
+              "description": "Request message for the ExportCostFiltersFile rpc."
+            }
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      }
+    },
+    "/v1/{vendor}/costfilters/{filterId}": {
+      "delete": {
+        "summary": "Deletes the usage-based cost filter condition. Only available in Wave(Pro).",
+        "operationId": "Cost_DeleteCostFilters",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "filterId",
+            "description": "Required. Filter Id to delete.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      },
+      "put": {
+        "summary": "Updates the usage-based cost filter condition. Only available in Wave(Pro).",
+        "operationId": "Cost_UpdateCostFilters",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateCostFiltersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "filterId",
+            "description": "Required. Filter Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "groupId": {
+                  "type": "string",
+                  "description": "Optional. If set, reads the usage-based cost details of this group. Only valid for Ripple users. Implied as the parent billing group for Wave(Pro) users.\n\nFor AWS Ripple, only billing internal ids are supported at the moment. Overriden when `accountId` is set to anything other than `*`. Set this and `accountId` to `*` to read the usage-based cost details of the whole organization. Optional for AWS Wave(Pro)."
+                },
+                "accountId": {
+                  "type": "string",
+                  "description": "Optional. You can set it to a single account or a comma-separated list of accounts.\n\nFor AWS, setting this will override `groupId`. Set this and `groupId` to `*` to read the usage-based cost details of the whole organization."
+                },
+                "awsOptions": {
+                  "$ref": "#/definitions/v1ReadCostsRequestAwsOptions",
+                  "description": "Optional. Valid only for the `aws` vendor. AWS-specific options."
+                }
+              },
+              "description": "Request message for the UpdateCostFilters rpc."
+            }
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      }
+    },
     "/v1/{vendor}/costs:calculate": {
       "post": {
         "summary": "Triggers monthly calculations for costs and invoices at either organization or billing group level. For the AWS calculator, aggregation is done at daily and monthly level. Also, all occurrences of the character `|` (pipe) in the CUR descriptions and tag key/values are replaced with the `/` (forward-slash) character. This is due to the `|` character having a special designation in the data processing workflows.",
@@ -3184,130 +3430,6 @@
               },
               "description": "Request message for the Cost.ReadCosts rpc."
             }
-          }
-        ],
-        "tags": [
-          "Cost"
-        ]
-      }
-    },
-    "/v1/{vendor}/costsfilter": {
-      "get": {
-        "summary": "Lists the usage-based cost filter condition. Only available in Wave.",
-        "operationId": "Cost_ListCostsFilter",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1ListCostsFilterResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "vendor",
-            "description": "Required. At the moment, only `aws` is supported.",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Cost"
-        ]
-      },
-      "post": {
-        "summary": "Creates the usage-based cost filter condition. Only available in Wave.",
-        "operationId": "Cost_CreateCostsFilter",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1CreateCostsFilterResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "vendor",
-            "description": "Required. At the moment, only `aws` is supported.",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "groupId": {
-                  "type": "string",
-                  "description": "Optional. If set, reads the usage-based cost details of this group. Only valid for Ripple users. Implied as the parent billing group for Wave(Pro) users.\n\nFor AWS Ripple, only billing internal ids are supported at the moment. Overriden when `accountId` is set to anything other than `*`. Set this and `accountId` to `*` to read the usage-based cost details of the whole organization. Optional for AWS Wave(Pro)."
-                },
-                "accountId": {
-                  "type": "string",
-                  "description": "Optional. You can set it to a single account or a comma-separated list of accounts.\n\nFor AWS, setting this will override `groupId`. Set this and `groupId` to `*` to read the usage-based cost details of the whole organization."
-                },
-                "awsOptions": {
-                  "$ref": "#/definitions/v1ReadCostsRequestAwsOptions",
-                  "description": "Optional. Valid only for the `aws` vendor. AWS-specific options."
-                }
-              },
-              "description": "Request message for the CreateCostsFilter rpc."
-            }
-          }
-        ],
-        "tags": [
-          "Cost"
-        ]
-      }
-    },
-    "/v1/{vendor}/costsfilter/{filterId}": {
-      "delete": {
-        "summary": "Deletes the usage-based cost filter condition. Only available in Wave.",
-        "operationId": "Cost_DeleteCostsFilter",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "properties": {}
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "vendor",
-            "description": "Required. At the moment, only `aws` is supported.",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "filterId",
-            "description": "Required. Filter Id to delete.",
-            "in": "path",
-            "required": true,
-            "type": "string"
           }
         ],
         "tags": [
@@ -6550,7 +6672,7 @@
       },
       "description": "Request message for the Admin.CreateCloudWatchMetricsStream rpc."
     },
-    "v1CreateCostsFilterResponse": {
+    "v1CreateCostFiltersResponse": {
       "type": "object",
       "properties": {
         "filterId": {
@@ -6558,7 +6680,7 @@
           "description": "Required. Filter Id."
         }
       },
-      "description": "Response message for the CreateCostsFilter rpc."
+      "description": "Response message for the CreateCostFilters rpc."
     },
     "v1CreateDefaultCostAccessRequest": {
       "type": "object",
@@ -6859,6 +6981,16 @@
         }
       },
       "description": "Response message for the Admin.GetDefaultCostAccess, Admin.CreateDefaultCostAccess rpc."
+    },
+    "v1ExportCostFiltersFileResponse": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "Required. URL of exported file."
+        }
+      },
+      "description": "Response message for the ExportCostFiltersFile rpc."
     },
     "v1GetAccessGroupResponse": {
       "type": "object",
@@ -7278,7 +7410,7 @@
       },
       "description": "Response message for the Cost.ListCalculatorRunningAccounts rpc."
     },
-    "v1ListCostsFilter": {
+    "v1ListCostFilters": {
       "type": "object",
       "properties": {
         "filterId": {
@@ -7302,19 +7434,19 @@
           "description": "Optional. Valid only for the `aws` vendor. AWS-specific options."
         }
       },
-      "description": "Response message for the ListCostsFilter rpc."
+      "description": "Response message for the ListCostFilters rpc."
     },
-    "v1ListCostsFilterResponse": {
+    "v1ListCostFiltersResponse": {
       "type": "object",
       "properties": {
-        "costsFilter": {
+        "costFilters": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/v1ListCostsFilter"
+            "$ref": "#/definitions/v1ListCostFilters"
           }
         }
       },
-      "description": "Response message for the ListCostsFilter rpc."
+      "description": "Response message for the ListCostFilters rpc."
     },
     "v1ListIdentityProvidersResponse": {
       "type": "object",
@@ -7485,6 +7617,16 @@
         }
       },
       "description": "Request message for the Admin.SaveNotificationSettings rpc."
+    },
+    "v1UpdateCostFiltersResponse": {
+      "type": "object",
+      "properties": {
+        "filterId": {
+          "type": "string",
+          "description": "Required. Filter Id."
+        }
+      },
+      "description": "Response message for the UpdateCostFilters rpc."
     },
     "v1UpdateMetadataRequest": {
       "type": "object",
