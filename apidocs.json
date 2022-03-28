@@ -3129,7 +3129,7 @@
               "properties": {
                 "filterName": {
                   "type": "string",
-                  "description": "Required. Filter Name."
+                  "title": "Required. Filter Name. Specify characters between 1 ~ 100"
                 },
                 "groupId": {
                   "type": "string",
@@ -3232,7 +3232,7 @@
               "properties": {
                 "filterName": {
                   "type": "string",
-                  "description": "Required. Filter Name."
+                  "title": "Required. Filter Name. Specify characters between 1 ~ 100"
                 },
                 "groupId": {
                   "type": "string",
