@@ -3192,7 +3192,7 @@
         ]
       },
       "put": {
-        "summary": "WORK-IN-PROGRESS: Updates the usage-based cost filter condition. Only available in Wave(Pro).",
+        "summary": "Updates the usage-based cost filter condition. Only available in Wave(Pro).",
         "operationId": "Cost_UpdateCostFilters",
         "responses": {
           "200": {
@@ -3258,7 +3258,7 @@
     },
     "/v1/{vendor}/costfilters/{filterId}:export": {
       "post": {
-        "summary": "WORK-IN-PROGRESS: Exports the usage-based cost filter condition. Only available in Wave(Pro).",
+        "summary": "Exports the usage-based cost filter condition. Only available in Wave(Pro).",
         "operationId": "Cost_ExportCostFiltersFile",
         "responses": {
           "200": {
