@@ -5864,6 +5864,9 @@
           "type": "string",
           "title": "for amazon rds only"
         },
+        "deploymentOption": {
+          "type": "string"
+        },
         "ondemandCost": {
           "type": "number",
           "format": "double"
