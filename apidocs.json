@@ -5904,15 +5904,15 @@
         },
         "date": {
           "type": "string",
-          "description": "For daily data, format is yyyy-mm-dd; for monthly, yyyy-mm."
+          "description": "For daily data, format is `yyyy-mm-dd`; for monthly, `yyyy-mm`."
         },
         "productCode": {
           "type": "string",
-          "description": "The CUR product code for an AWS service, such as AmazonEC2, AmazonRDS, etc."
+          "description": "The product code for an AWS service, such as `AmazonEC2`, `AmazonRDS`, etc."
         },
         "serviceCode": {
           "type": "string",
-          "description": "The CUR service code as provided in the CUR. Sometimes, this is the same as 'productCode', or a subset of 'productCode', or empty."
+          "description": "The CUR service code of the lineitem, if applicable. Sometimes, this is the same as `productCode`, or a subset of `productCode`, or empty."
         },
         "region": {
           "type": "string",
@@ -5975,22 +5975,22 @@
         },
         "baseCurrency": {
           "type": "string",
-          "description": "The base currency for cost, unblendedCost, effectiveCost, amortizedCost. Always set to USD, CUR's default currency."
+          "description": "The base currency for `cost`, `unblendedCost`, `effectiveCost`, `amortizedCost`. Always set to `USD`, CUR's default currency."
         },
         "exchangeRate": {
           "type": "number",
           "format": "double",
-          "description": "The exchange rate used to convert baseCurrency to targetCurrency."
+          "description": "The exchange rate used to convert `baseCurrency` to `targetCurrency`."
         },
         "targetCost": {
           "type": "number",
           "format": "double",
-          "description": "Converted cost."
+          "description": "Converted `cost`."
         },
         "targetUnblendedCost": {
           "type": "number",
           "format": "double",
-          "description": "Converted unblendedCost."
+          "description": "Converted `unblendedCost`."
         },
         "targetCurrency": {
           "type": "string",
@@ -6003,7 +6003,7 @@
         "targetEffectiveCost": {
           "type": "number",
           "format": "double",
-          "description": "Converted effectiveCost."
+          "description": "Converted `effectiveCost`."
         },
         "amortizedCost": {
           "type": "number",
@@ -6012,7 +6012,7 @@
         "targetAmortizedCost": {
           "type": "number",
           "format": "double",
-          "description": "Converted amortizedCost."
+          "description": "Converted `amortizedCost`."
         },
         "tagId": {
           "type": "string"
