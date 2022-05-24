@@ -47,6 +47,14 @@
       }
     },
     {
+      "name": "Cover",
+      "description": "(ALPHA) Cover API. Base URL: https://api.alphaus.cloud/m/blue/cover",
+      "externalDocs": {
+        "description": "Service definition",
+        "url": "https://github.com/alphauslabs/blueapi/tree/main/cover/"
+      }
+    },
+    {
       "name": "Billing",
       "description": "(BETA) Billing API. Base URL: https://api.alphaus.cloud/m/blue/billing",
       "externalDocs": {
@@ -2227,6 +2235,461 @@
         ],
         "tags": [
           "KvStore"
+        ]
+      }
+    },
+    "/v1/member/{orgId}": {
+      "get": {
+        "summary": "Get all the members/subusers of the company",
+        "operationId": "Cover_GetMembers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetMembersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "orgId",
+            "description": "Required. Organization Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      },
+      "post": {
+        "summary": "Create a member",
+        "operationId": "Cover_CreateMember",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateMemberResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "username": {
+                  "type": "string"
+                }
+              },
+              "title": "Request message for CreateMember"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
+    "/v1/member/{orgId}/invite": {
+      "get": {
+        "summary": "Invite members to the system",
+        "operationId": "Cover_InviteMember",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1InviteMemberResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
+    "/v1/member/{orgId}/reset_password/{userId}": {
+      "get": {
+        "summary": "Trigger reset password from Admin",
+        "operationId": "Cover_AdminResetPassword",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1AdminResetPasswordResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "orgId",
+            "description": "Required. Organization Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "description": "Required. User Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      },
+      "post": {
+        "summary": "Reset member's password",
+        "operationId": "Cover_ResetPassword",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ResetPasswordResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "orgId",
+            "description": "Required. Organization Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "description": "Required. User Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "password": {
+                  "type": "string"
+                }
+              },
+              "title": "Request message for ResetPassword"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
+    "/v1/member/{orgId}/{userId}": {
+      "get": {
+        "summary": "Get the details of the cover user",
+        "operationId": "Cover_GetMemberDetails",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetMemberDetailsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "orgId",
+            "description": "Required. Organization Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "description": "Required. User Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      },
+      "delete": {
+        "summary": "Deletes a cover user",
+        "operationId": "Cover_DeleteMember",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DeleteMemberResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "orgId",
+            "description": "Required. Organization Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "description": "Required. User Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
+    "/v1/view/{orgId}": {
+      "get": {
+        "summary": "Get all the views",
+        "operationId": "Cover_GetViews",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetViewsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "orgId",
+            "description": "Required. Organization Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
+    "/v1/view/{orgId}/{viewId}": {
+      "get": {
+        "summary": "Get the details of the current view",
+        "operationId": "Cover_GetCurrentView",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetCurrentViewResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "orgId",
+            "description": "Required. Organization Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "viewId",
+            "description": "Required. View Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      },
+      "delete": {
+        "summary": "Deletes a view",
+        "operationId": "Cover_DeleteView",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DeleteViewResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "orgId",
+            "description": "Required. Organization Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "viewId",
+            "description": "Required. User Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      },
+      "put": {
+        "summary": "Updates the view details",
+        "operationId": "Cover_UpdateView",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateViewResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "orgId",
+            "description": "Required. Organization Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "viewId",
+            "description": "Required. View Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "icon": {
+                  "type": "string"
+                },
+                "isPrivate": {
+                  "type": "boolean"
+                },
+                "isEditable": {
+                  "type": "boolean"
+                }
+              },
+              "title": "Request message for UpdateView"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
         ]
       }
     },
@@ -6140,6 +6603,214 @@
       },
       "description": "This resource represents a long-running operation that is the result of a\nnetwork API call."
     },
+    "coverCoverUser": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "avatar": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "colorTheme": {
+          "type": "string"
+        },
+        "initial": {
+          "type": "string"
+        },
+        "activated": {
+          "type": "boolean"
+        },
+        "isAdmin": {
+          "type": "boolean"
+        },
+        "userAttributes": {
+          "type": "string"
+        },
+        "locale": {
+          "type": "string"
+        },
+        "timezone": {
+          "type": "string"
+        },
+        "registered": {
+          "type": "string"
+        },
+        "ssoEnabled": {
+          "type": "boolean"
+        },
+        "mfaEnabled": {
+          "type": "boolean"
+        },
+        "appTheme": {
+          "type": "string"
+        },
+        "mainView": {
+          "type": "string"
+        },
+        "createdBy": {
+          "type": "string"
+        }
+      }
+    },
+    "coverCoverView": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "isPrivate": {
+          "type": "boolean"
+        },
+        "isEditable": {
+          "type": "boolean"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "createdBy": {
+          "$ref": "#/definitions/coverCoverUser"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedBy": {
+          "$ref": "#/definitions/coverCoverUser"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "layout": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/coverViewLayout"
+          }
+        },
+        "sideMenu": {
+          "$ref": "#/definitions/coverSideMenu"
+        },
+        "reportType": {
+          "type": "string"
+        }
+      }
+    },
+    "coverCoverViewMin": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "isPrivate": {
+          "type": "boolean"
+        },
+        "isEditable": {
+          "type": "boolean"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "created": {
+          "type": "string"
+        },
+        "updated": {
+          "type": "string"
+        }
+      }
+    },
+    "coverLayoutOptions": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "coverLayoutRequests": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "params": {
+          "type": "string"
+        },
+        "hash": {
+          "type": "string"
+        }
+      }
+    },
+    "coverSideMenu": {
+      "type": "object",
+      "properties": {
+        "favorite": {
+          "type": "string"
+        },
+        "isOpenedAdmin": {
+          "type": "boolean"
+        },
+        "isOpenedFeatures": {
+          "type": "boolean"
+        },
+        "isOpenedCostGroups": {
+          "type": "boolean"
+        }
+      }
+    },
+    "coverViewLayout": {
+      "type": "object",
+      "properties": {
+        "i": {
+          "type": "string"
+        },
+        "x": {
+          "type": "number",
+          "format": "double"
+        },
+        "y": {
+          "type": "number",
+          "format": "double"
+        },
+        "componentId": {
+          "type": "string"
+        },
+        "options": {
+          "$ref": "#/definitions/coverLayoutOptions"
+        },
+        "requests": {
+          "$ref": "#/definitions/coverLayoutRequests"
+        }
+      }
+    },
     "kvstorev1KeyValue": {
       "type": "object",
       "properties": {
@@ -6261,6 +6932,18 @@
         }
       },
       "description": "Defines the fields associated with a Wave access group."
+    },
+    "v1AdminResetPasswordResponse": {
+      "type": "object",
+      "properties": {
+        "orgId": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "title": "Response message for AdminResetPassword"
     },
     "v1AwsDailyRunHistory": {
       "type": "object",
@@ -6793,6 +7476,21 @@
       },
       "description": "Request message for the Iam.CreateIpFilter rpc."
     },
+    "v1CreateMemberResponse": {
+      "type": "object",
+      "properties": {
+        "orgId": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      },
+      "title": "Response message for CreateMember"
+    },
     "v1CreateNotificationChannelRequest": {
       "type": "object",
       "properties": {
@@ -7001,6 +7699,36 @@
       },
       "description": "Response message for the Admin.GetDefaultCostAccess, Admin.CreateDefaultCostAccess rpc."
     },
+    "v1DeleteMemberResponse": {
+      "type": "object",
+      "properties": {
+        "orgId": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "title": "Response message for DeleteMember"
+    },
+    "v1DeleteViewResponse": {
+      "type": "object",
+      "properties": {
+        "orgId": {
+          "type": "string"
+        },
+        "viewId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "Response message for DeleteView"
+    },
     "v1ExportCostFiltersFileResponse": {
       "type": "object",
       "properties": {
@@ -7132,6 +7860,18 @@
       },
       "title": "Response message for GetCoverageOptions"
     },
+    "v1GetCurrentViewResponse": {
+      "type": "object",
+      "properties": {
+        "orgId": {
+          "type": "string"
+        },
+        "coverView": {
+          "$ref": "#/definitions/coverCoverView"
+        }
+      },
+      "title": "Response message for GetCurrentView"
+    },
     "v1GetDefaultCostAccessTemplateUrlResponse": {
       "type": "object",
       "properties": {
@@ -7166,6 +7906,33 @@
         }
       },
       "description": "Response message for GetForecasts per billing group."
+    },
+    "v1GetMemberDetailsResponse": {
+      "type": "object",
+      "properties": {
+        "orgId": {
+          "type": "string"
+        },
+        "coverUser": {
+          "$ref": "#/definitions/coverCoverUser"
+        }
+      },
+      "title": "Response message for GetMemberDetails"
+    },
+    "v1GetMembersResponse": {
+      "type": "object",
+      "properties": {
+        "orgId": {
+          "type": "string"
+        },
+        "coverUser": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/coverCoverUser"
+          }
+        }
+      },
+      "title": "Response message for GetMembers"
     },
     "v1GetMonthOnMonthCostForecastResponse": {
       "type": "object",
@@ -7321,6 +8088,21 @@
       },
       "title": "Response message for GetUtilization"
     },
+    "v1GetViewsResponse": {
+      "type": "object",
+      "properties": {
+        "orgId": {
+          "type": "string"
+        },
+        "viewList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/coverCoverViewMin"
+          }
+        }
+      },
+      "title": "Response message for GetViews"
+    },
     "v1ImportCurFilesRequest": {
       "type": "object",
       "properties": {
@@ -7334,6 +8116,18 @@
         }
       },
       "description": "Request message for the Cost.ImportCurFiles rpc."
+    },
+    "v1InviteMemberResponse": {
+      "type": "object",
+      "properties": {
+        "orgId": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      },
+      "title": "Response message for InviteMember"
     },
     "v1IpFilter": {
       "type": "object",
@@ -7627,6 +8421,21 @@
         }
       }
     },
+    "v1ResetPasswordResponse": {
+      "type": "object",
+      "properties": {
+        "orgId": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "title": "Response message for ResetPassword"
+    },
     "v1SaveNotificationSettingsRequest": {
       "type": "object",
       "properties": {
@@ -7715,6 +8524,18 @@
         }
       },
       "description": "Response message for the Iam.UpdateUserRoleMapping rpc."
+    },
+    "v1UpdateViewResponse": {
+      "type": "object",
+      "properties": {
+        "orgId": {
+          "type": "string"
+        },
+        "viewId": {
+          "type": "string"
+        }
+      },
+      "title": "Response message for UpdateView"
     },
     "v1UsageCostsDrift": {
       "type": "object",
