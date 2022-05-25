@@ -5908,11 +5908,11 @@
         },
         "productCode": {
           "type": "string",
-          "description": "The product code for an AWS service, such as `AmazonEC2`, `AmazonRDS`, etc."
+          "description": "The product code for an AWS service, such as `AmazonEC2`, `AmazonRDS`, etc. This can also be an Alphaus-specified custom value."
         },
         "serviceCode": {
           "type": "string",
-          "description": "The CUR service code of the lineitem, if applicable. Sometimes, this is the same as `productCode`, or a subset of `productCode`, or empty."
+          "description": "The CUR service code of the lineitem, if applicable. Sometimes, this is the same as `productCode`, or a subset of `productCode`, empty, or an Alphaus-specified custom value."
         },
         "region": {
           "type": "string",
