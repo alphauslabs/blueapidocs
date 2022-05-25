@@ -5912,7 +5912,7 @@
         },
         "serviceCode": {
           "type": "string",
-          "description": "The CUR service code of the lineitem, if applicable. Sometimes, this is the same as `productCode`, or a subset of `productCode`, empty, or an Alphaus-specified custom value."
+          "description": "The CUR service code of the lineitem, if applicable. Sometimes, this is the same as `productCode`, a subset of `productCode`, an Alphaus-specified custom value, or empty."
         },
         "region": {
           "type": "string",
