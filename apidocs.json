@@ -2319,8 +2319,220 @@
         ]
       }
     },
+    "/v1/member/{orgId}/avatar/{username}": {
+      "put": {
+        "summary": "Modify user's avatar",
+        "operationId": "Cover_UpdateMemberAvatar",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateMemberAvatarResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "orgId",
+            "description": "Required. Organization Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "username",
+            "description": "Required. Username.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "avatar": {
+                  "type": "string"
+                }
+              },
+              "title": "Request message for UpdateMemberAvatar"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
+    "/v1/member/{orgId}/colortheme/{username}": {
+      "put": {
+        "summary": "Modify user's color theme",
+        "operationId": "Cover_UpdateMemberColorTheme",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateMemberColorThemeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "orgId",
+            "description": "Required. Organization Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "username",
+            "description": "Required. Username.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "colorTheme": {
+                  "type": "string"
+                }
+              },
+              "title": "Request message for UpdateMemberColorTheme"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
+    "/v1/member/{orgId}/email/{username}": {
+      "put": {
+        "summary": "Modify user's email",
+        "operationId": "Cover_UpdateMemberEmail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateMemberEmailResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "orgId",
+            "description": "Required. Organization Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "username",
+            "description": "Required. Username.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string"
+                }
+              },
+              "title": "Request message for UpdateMemberEmail"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
+    "/v1/member/{orgId}/icon/{username}": {
+      "put": {
+        "summary": "Modify user's icon",
+        "operationId": "Cover_UpdateMemberIcon",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateMemberIconResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "orgId",
+            "description": "Required. Organization Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "username",
+            "description": "Required. Username.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "icon": {
+                  "type": "string"
+                }
+              },
+              "title": "Request message for UpdateMemberIcon"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
     "/v1/member/{orgId}/invite": {
-      "get": {
+      "post": {
         "summary": "Invite members to the system",
         "operationId": "Cover_InviteMember",
         "responses": {
@@ -2345,10 +2557,18 @@
             "type": "string"
           },
           {
-            "name": "email",
-            "in": "query",
-            "required": false,
-            "type": "string"
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string"
+                }
+              },
+              "title": "Request message for InviteMember"
+            }
           }
         ],
         "tags": [
@@ -2356,7 +2576,7 @@
         ]
       }
     },
-    "/v1/member/{orgId}/reset_password/{userId}": {
+    "/v1/member/{orgId}/resetpassword/{username}": {
       "get": {
         "summary": "Trigger reset password from Admin",
         "operationId": "Cover_AdminResetPassword",
@@ -2383,8 +2603,8 @@
             "type": "string"
           },
           {
-            "name": "userId",
-            "description": "Required. User Id.",
+            "name": "username",
+            "description": "Required. Username.",
             "in": "path",
             "required": true,
             "type": "string"
@@ -2420,8 +2640,8 @@
             "type": "string"
           },
           {
-            "name": "userId",
-            "description": "Required. User Id.",
+            "name": "username",
+            "description": "Required. Username.",
             "in": "path",
             "required": true,
             "type": "string"
@@ -2435,6 +2655,9 @@
               "properties": {
                 "password": {
                   "type": "string"
+                },
+                "newPassword": {
+                  "type": "string"
                 }
               },
               "title": "Request message for ResetPassword"
@@ -2446,9 +2669,62 @@
         ]
       }
     },
-    "/v1/member/{orgId}/{userId}": {
+    "/v1/member/{orgId}/username/{username}": {
+      "put": {
+        "summary": "Modify username",
+        "operationId": "Cover_UpdateMemberUsername",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateMemberUsernameResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "orgId",
+            "description": "Required. Organization Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "username",
+            "description": "Required. Username.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "newUsername": {
+                  "type": "string"
+                }
+              },
+              "title": "Request message for UpdateMemberUsername"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
+    "/v1/member/{orgId}/{username}": {
       "get": {
-        "summary": "Get the details of the cover user",
+        "summary": "Get the details of the user",
         "operationId": "Cover_GetMemberDetails",
         "responses": {
           "200": {
@@ -2473,8 +2749,8 @@
             "type": "string"
           },
           {
-            "name": "userId",
-            "description": "Required. User Id.",
+            "name": "username",
+            "description": "Required. Username.",
             "in": "path",
             "required": true,
             "type": "string"
@@ -2485,7 +2761,7 @@
         ]
       },
       "delete": {
-        "summary": "Deletes a cover user",
+        "summary": "Deletes a user",
         "operationId": "Cover_DeleteMember",
         "responses": {
           "200": {
@@ -2510,8 +2786,8 @@
             "type": "string"
           },
           {
-            "name": "userId",
-            "description": "Required. User Id.",
+            "name": "username",
+            "description": "Required. Username.",
             "in": "path",
             "required": true,
             "type": "string"
@@ -2547,6 +2823,67 @@
             "in": "path",
             "required": true,
             "type": "string"
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      },
+      "post": {
+        "summary": "Create a view",
+        "operationId": "Cover_CreateView",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateViewResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "isPrivate": {
+                  "type": "boolean"
+                },
+                "isEditable": {
+                  "type": "boolean"
+                },
+                "icon": {
+                  "type": "string"
+                },
+                "username": {
+                  "type": "string"
+                },
+                "reportType": {
+                  "type": "string"
+                }
+              },
+              "title": "Request message for CreateView"
+            }
           }
         ],
         "tags": [
@@ -2619,7 +2956,7 @@
           },
           {
             "name": "viewId",
-            "description": "Required. User Id.",
+            "description": "Required. Username.",
             "in": "path",
             "required": true,
             "type": "string"
@@ -6613,12 +6950,57 @@
       },
       "description": "This resource represents a long-running operation that is the result of a\nnetwork API call."
     },
-    "coverCoverUser": {
+    "coverLayoutOptions": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "coverLayoutRequests": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string"
         },
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "params": {
+          "type": "string"
+        },
+        "hash": {
+          "type": "string"
+        }
+      }
+    },
+    "coverSideMenu": {
+      "type": "object",
+      "properties": {
+        "favorite": {
+          "type": "string"
+        },
+        "isOpenedAdmin": {
+          "type": "boolean"
+        },
+        "isOpenedFeatures": {
+          "type": "boolean"
+        },
+        "isOpenedCostGroups": {
+          "type": "boolean"
+        }
+      }
+    },
+    "coverUserData": {
+      "type": "object",
+      "properties": {
         "username": {
           "type": "string"
         },
@@ -6672,7 +7054,7 @@
         }
       }
     },
-    "coverCoverView": {
+    "coverViewData": {
       "type": "object",
       "properties": {
         "id": {
@@ -6694,13 +7076,13 @@
           "type": "string"
         },
         "createdBy": {
-          "$ref": "#/definitions/coverCoverUser"
+          "$ref": "#/definitions/coverUserData"
         },
         "createdAt": {
           "type": "string"
         },
         "updatedBy": {
-          "$ref": "#/definitions/coverCoverUser"
+          "$ref": "#/definitions/coverUserData"
         },
         "updatedAt": {
           "type": "string"
@@ -6716,83 +7098,6 @@
         },
         "reportType": {
           "type": "string"
-        }
-      }
-    },
-    "coverCoverViewMin": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "isPrivate": {
-          "type": "boolean"
-        },
-        "isEditable": {
-          "type": "boolean"
-        },
-        "icon": {
-          "type": "string"
-        },
-        "created": {
-          "type": "string"
-        },
-        "updated": {
-          "type": "string"
-        }
-      }
-    },
-    "coverLayoutOptions": {
-      "type": "object",
-      "properties": {
-        "title": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        }
-      }
-    },
-    "coverLayoutRequests": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "url": {
-          "type": "string"
-        },
-        "params": {
-          "type": "string"
-        },
-        "hash": {
-          "type": "string"
-        }
-      }
-    },
-    "coverSideMenu": {
-      "type": "object",
-      "properties": {
-        "favorite": {
-          "type": "string"
-        },
-        "isOpenedAdmin": {
-          "type": "boolean"
-        },
-        "isOpenedFeatures": {
-          "type": "boolean"
-        },
-        "isOpenedCostGroups": {
-          "type": "boolean"
         }
       }
     },
@@ -6818,6 +7123,35 @@
         },
         "requests": {
           "$ref": "#/definitions/coverLayoutRequests"
+        }
+      }
+    },
+    "coverViewList": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "isPrivate": {
+          "type": "boolean"
+        },
+        "isEditable": {
+          "type": "boolean"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "created": {
+          "type": "string"
+        },
+        "updated": {
+          "type": "string"
         }
       }
     },
@@ -6949,7 +7283,7 @@
         "orgId": {
           "type": "string"
         },
-        "userId": {
+        "username": {
           "type": "string"
         }
       },
@@ -7492,7 +7826,7 @@
         "orgId": {
           "type": "string"
         },
-        "userId": {
+        "username": {
           "type": "string"
         },
         "email": {
@@ -7671,6 +8005,18 @@
       },
       "description": "Response message for the Iam.CreateUserRoleMapping rpc."
     },
+    "v1CreateViewResponse": {
+      "type": "object",
+      "properties": {
+        "orgId": {
+          "type": "string"
+        },
+        "viewData": {
+          "$ref": "#/definitions/coverViewData"
+        }
+      },
+      "title": "Response message for CreateView"
+    },
     "v1DefaultCostAccess": {
       "type": "object",
       "properties": {
@@ -7713,9 +8059,6 @@
       "type": "object",
       "properties": {
         "orgId": {
-          "type": "string"
-        },
-        "userId": {
           "type": "string"
         },
         "username": {
@@ -7876,8 +8219,8 @@
         "orgId": {
           "type": "string"
         },
-        "coverView": {
-          "$ref": "#/definitions/coverCoverView"
+        "viewData": {
+          "$ref": "#/definitions/coverViewData"
         }
       },
       "title": "Response message for GetCurrentView"
@@ -7923,8 +8266,8 @@
         "orgId": {
           "type": "string"
         },
-        "coverUser": {
-          "$ref": "#/definitions/coverCoverUser"
+        "userData": {
+          "$ref": "#/definitions/coverUserData"
         }
       },
       "title": "Response message for GetMemberDetails"
@@ -7935,10 +8278,10 @@
         "orgId": {
           "type": "string"
         },
-        "coverUser": {
+        "userData": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/coverCoverUser"
+            "$ref": "#/definitions/coverUserData"
           }
         }
       },
@@ -8107,7 +8450,7 @@
         "viewList": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/coverCoverViewMin"
+            "$ref": "#/definitions/coverViewList"
           }
         }
       },
@@ -8437,9 +8780,6 @@
         "orgId": {
           "type": "string"
         },
-        "userId": {
-          "type": "string"
-        },
         "username": {
           "type": "string"
         }
@@ -8469,6 +8809,66 @@
         }
       },
       "description": "Response message for the UpdateCostFilters rpc."
+    },
+    "v1UpdateMemberAvatarResponse": {
+      "type": "object",
+      "properties": {
+        "orgId": {
+          "type": "string"
+        },
+        "avatar": {
+          "type": "string"
+        }
+      },
+      "title": "Response message for UpdateMemberAvatar"
+    },
+    "v1UpdateMemberColorThemeResponse": {
+      "type": "object",
+      "properties": {
+        "orgId": {
+          "type": "string"
+        },
+        "colorTheme": {
+          "type": "string"
+        }
+      },
+      "title": "Response message for UpdateMemberColorTheme"
+    },
+    "v1UpdateMemberEmailResponse": {
+      "type": "object",
+      "properties": {
+        "orgId": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      },
+      "title": "Response message for UpdateMemberEmail"
+    },
+    "v1UpdateMemberIconResponse": {
+      "type": "object",
+      "properties": {
+        "orgId": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        }
+      },
+      "title": "Response message for UpdateMemberIcon"
+    },
+    "v1UpdateMemberUsernameResponse": {
+      "type": "object",
+      "properties": {
+        "orgId": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "title": "Response message for UpdateMemberUsername"
     },
     "v1UpdateMetadataRequest": {
       "type": "object",
