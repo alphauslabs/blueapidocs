@@ -7721,7 +7721,10 @@
           "type": "boolean"
         },
         "attributes": {
-          "type": "string"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "locale": {
           "type": "string"
@@ -7794,7 +7797,10 @@
           "type": "boolean"
         },
         "attributes": {
-          "type": "string"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "locale": {
           "type": "string"
@@ -8862,9 +8868,6 @@
           "type": "boolean"
         },
         "icon": {
-          "type": "string"
-        },
-        "userId": {
           "type": "string"
         },
         "reportType": {
