@@ -77,6 +77,14 @@
         "description": "Service definition",
         "url": "https://github.com/alphauslabs/blueapi/tree/main/preferences/"
       }
+    },
+    {
+      "name": "Invoice",
+      "description": "(BETA) Invoice API. Base URL: https://api.alphaus.cloud/m/blue/invoice",
+      "externalDocs": {
+        "description": "Service definition",
+        "url": "https://github.com/alphauslabs/blueapi/tree/main/invoice/"
+      }
     }
   ],
   "host": "api.alphaus.cloud",
@@ -2626,6 +2634,113 @@
         ],
         "tags": [
           "Cover"
+        ]
+      }
+    },
+    "/v1/invoice/{yearMonth}:export": {
+      "post": {
+        "summary": "Exports a invoice.",
+        "operationId": "Invoice_ExportInvoiceFile",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ExportInvoiceFileResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "yearMonth",
+            "description": "Required.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "groupId": {
+                  "type": "string",
+                  "description": "Required."
+                },
+                "level": {
+                  "type": "string",
+                  "title": "Required. Account or Tag"
+                }
+              },
+              "description": "Response message for the ExportCostFiltersFile rpc."
+            }
+          }
+        ],
+        "tags": [
+          "Invoice"
+        ]
+      }
+    },
+    "/v1/invoice/{yearMonth}:read": {
+      "post": {
+        "summary": "Gets a invoice.",
+        "operationId": "Invoice_GetInvoice",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/apiInvoice"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of apiInvoice"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "yearMonth",
+            "description": "Required.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "groupId": {
+                  "type": "string",
+                  "description": "Required."
+                }
+              },
+              "description": "Request message for the Cost.GetInvoiceRequest rpc."
+            }
+          }
+        ],
+        "tags": [
+          "Invoice"
         ]
       }
     },
@@ -6132,6 +6247,41 @@
       },
       "description": "A map of \"key:value\" tag filters. The key indicates the tag key while the value is the filter tag value which can be prefixed by either \"eq:\" (equal), \"re:\" (regular expressions based on https://github.com/google/re2), or \"!re:\" (reverse \"re:\"). No prefix is the same as \"eq:\". Multiple map items will use the logical 'and' operator, e.g. mapfilter1 \u0026\u0026 mapfilter2 \u0026\u0026 mapfilter3, etc.\n\nFor example, if you want to query lineitems with the tag `project:MY_PROJECT`, set to `{\"project\":\"MY_PROJECT\"}`. You can also use regular expressions for tag values, such as `{\"name\":\"re:[A-Za-z0-9]*\"}`."
     },
+    "apiAccountDetails": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiUsageDetails"
+          }
+        },
+        "customDetails": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiCustomDetails"
+          }
+        },
+        "feeDetails": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiFeeDetails"
+          }
+        },
+        "total": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiAccountTotal"
+          }
+        }
+      }
+    },
     "apiAccountGroup": {
       "type": "object",
       "properties": {
@@ -6155,6 +6305,72 @@
           "items": {
             "$ref": "#/definitions/blueapiapiAccount"
           }
+        }
+      }
+    },
+    "apiAccountSupportPlan": {
+      "type": "object",
+      "properties": {
+        "awsEnterpriseOnRamp": {
+          "type": "boolean"
+        },
+        "awsBusiness": {
+          "type": "boolean"
+        },
+        "noSupport": {
+          "type": "boolean"
+        },
+        "awsDeveloper": {
+          "type": "boolean"
+        }
+      }
+    },
+    "apiAccountSupportPlanSettings": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "accounts": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "apiAccountTotal": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "apiAdditionalItems": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "unitCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "total": {
+          "type": "number",
+          "format": "double"
+        },
+        "quantity": {
+          "type": "number",
+          "format": "double"
         }
       }
     },
@@ -6215,6 +6431,21 @@
           "items": {
             "$ref": "#/definitions/apiMonthlyBudget"
           }
+        }
+      }
+    },
+    "apiCustomDetails": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "number",
+          "format": "double"
         }
       }
     },
@@ -6374,6 +6605,21 @@
       },
       "description": "Describes the features and whether or not they are enabled for a particular user."
     },
+    "apiFeeDetails": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
     "apiForecastData": {
       "type": "object",
       "properties": {
@@ -6407,6 +6653,17 @@
         "lowerBound": {
           "type": "number",
           "format": "double"
+        }
+      }
+    },
+    "apiGroupDetails": {
+      "type": "object",
+      "properties": {
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiGroupUsageDetails"
+          }
         }
       }
     },
@@ -6468,6 +6725,198 @@
         }
       },
       "description": "Describes the fields on an Alphaus root user for a billing group or access group."
+    },
+    "apiGroupUsageDetails": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "apiInvoice": {
+      "type": "object",
+      "properties": {
+        "aws": {
+          "$ref": "#/definitions/apiVendorDetail",
+          "title": "Invoice vendor detail by 'aws'"
+        },
+        "gcp": {
+          "$ref": "#/definitions/apiVendorDetail",
+          "title": "Invoice vendor detail by 'gcp'"
+        },
+        "azure": {
+          "$ref": "#/definitions/apiVendorDetail",
+          "title": "Invoice vendor detail by 'azure'"
+        }
+      }
+    },
+    "apiInvoiceSettings": {
+      "type": "object",
+      "properties": {
+        "accountSupportPlan": {
+          "$ref": "#/definitions/apiAccountSupportPlan"
+        },
+        "additionalItems": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiAdditionalItems"
+          }
+        },
+        "address": {
+          "type": "string"
+        },
+        "asps": {
+          "$ref": "#/definitions/apiAccountSupportPlanSettings"
+        },
+        "groupId": {
+          "type": "string"
+        },
+        "groupName": {
+          "type": "string"
+        },
+        "calculationType": {
+          "type": "string"
+        },
+        "contact": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "discountCalcLogic": {
+          "type": "string"
+        },
+        "discountRate": {
+          "type": "number",
+          "format": "double"
+        },
+        "discountTargetUsage": {
+          "type": "string"
+        },
+        "displayCost": {
+          "type": "string"
+        },
+        "dueDate": {
+          "type": "string"
+        },
+        "dueDateCustomDay": {
+          "type": "number",
+          "format": "double"
+        },
+        "dueDateDay": {
+          "type": "string"
+        },
+        "dueDateMonth": {
+          "type": "string"
+        },
+        "exchangeRate": {
+          "type": "number",
+          "format": "double"
+        },
+        "exchangeRateType": {
+          "type": "string"
+        },
+        "imageUrl": {
+          "type": "string"
+        },
+        "invoiceNo": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        },
+        "memo": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "postal": {
+          "type": "string"
+        },
+        "projectCode": {
+          "type": "string"
+        },
+        "projectCurrency": {
+          "type": "string"
+        },
+        "projectId": {
+          "type": "string"
+        },
+        "projectLabel": {
+          "type": "string"
+        },
+        "remarks": {
+          "type": "string"
+        },
+        "substitutionFee": {
+          "type": "string"
+        },
+        "substitutionFeeCalcTarget": {
+          "type": "string"
+        },
+        "substitutionFeeCalcType": {
+          "type": "string"
+        },
+        "substitutionFeeTargetUsage": {
+          "type": "string"
+        },
+        "substitutionFix": {
+          "type": "number",
+          "format": "double"
+        },
+        "substitutionRate": {
+          "type": "number",
+          "format": "double"
+        },
+        "supportFee": {
+          "type": "string"
+        },
+        "supportFeeCalcTarget": {
+          "type": "string"
+        },
+        "supportFix": {
+          "type": "number",
+          "format": "double"
+        },
+        "supportRate": {
+          "type": "number",
+          "format": "double"
+        },
+        "taxRate": {
+          "type": "number",
+          "format": "double"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "apiInvoiceTotal": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "number",
+          "format": "double"
+        }
+      }
     },
     "apiMSTeamsChannel": {
       "type": "object",
@@ -6752,6 +7201,21 @@
         }
       }
     },
+    "apiUsageDetails": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
     "apiUser": {
       "type": "object",
       "properties": {
@@ -6803,6 +7267,26 @@
           "items": {
             "$ref": "#/definitions/blueapiapiChartData"
           }
+        }
+      }
+    },
+    "apiVendorDetail": {
+      "type": "object",
+      "properties": {
+        "details": {
+          "$ref": "#/definitions/apiAccountDetails"
+        },
+        "groupDetails": {
+          "$ref": "#/definitions/apiGroupDetails"
+        },
+        "total": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiInvoiceTotal"
+          }
+        },
+        "settings": {
+          "$ref": "#/definitions/apiInvoiceSettings"
         }
       }
     },
@@ -9138,6 +9622,16 @@
       "title": "Response message for DeleteView"
     },
     "v1ExportCostFiltersFileResponse": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "Required. URL of exported file."
+        }
+      },
+      "description": "Response message for the ExportCostFiltersFile rpc."
+    },
+    "v1ExportInvoiceFileResponse": {
       "type": "object",
       "properties": {
         "url": {
