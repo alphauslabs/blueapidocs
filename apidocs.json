@@ -2637,7 +2637,7 @@
         ]
       }
     },
-    "/v1/invoice/{yearMonth}:export": {
+    "/v1/invoice/{date}:export": {
       "post": {
         "summary": "Exports a invoice.",
         "operationId": "Invoice_ExportInvoiceFile",
@@ -2657,8 +2657,8 @@
         },
         "parameters": [
           {
-            "name": "yearMonth",
-            "description": "Required.",
+            "name": "date",
+            "description": "Required. Month to get invoice. Format: `yyyymm`.",
             "in": "path",
             "required": true,
             "type": "string"
@@ -2688,24 +2688,15 @@
         ]
       }
     },
-    "/v1/invoice/{yearMonth}:read": {
+    "/v1/invoice/{date}:read": {
       "post": {
         "summary": "Gets a invoice.",
         "operationId": "Invoice_GetInvoice",
         "responses": {
           "200": {
-            "description": "A successful response.(streaming responses)",
+            "description": "A successful response.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "result": {
-                  "$ref": "#/definitions/apiInvoice"
-                },
-                "error": {
-                  "$ref": "#/definitions/rpcStatus"
-                }
-              },
-              "title": "Stream result of apiInvoice"
+              "$ref": "#/definitions/apiInvoice"
             }
           },
           "default": {
@@ -2717,8 +2708,8 @@
         },
         "parameters": [
           {
-            "name": "yearMonth",
-            "description": "Required.",
+            "name": "date",
+            "description": "Required. Month to get invoice. Format: `yyyymm`.",
             "in": "path",
             "required": true,
             "type": "string"
@@ -6659,11 +6650,16 @@
     "apiGroupDetails": {
       "type": "object",
       "properties": {
-        "details": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/apiGroupUsageDetails"
-          }
+        "name": {
+          "type": "string",
+          "title": "repeated GroupUsageDetails details = 1;"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "number",
+          "format": "double"
         }
       }
     },
@@ -6725,21 +6721,6 @@
         }
       },
       "description": "Describes the fields on an Alphaus root user for a billing group or access group."
-    },
-    "apiGroupUsageDetails": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "currency": {
-          "type": "string"
-        },
-        "amount": {
-          "type": "number",
-          "format": "double"
-        }
-      }
     },
     "apiInvoice": {
       "type": "object",
@@ -7274,10 +7255,16 @@
       "type": "object",
       "properties": {
         "details": {
-          "$ref": "#/definitions/apiAccountDetails"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiAccountDetails"
+          }
         },
         "groupDetails": {
-          "$ref": "#/definitions/apiGroupDetails"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiGroupDetails"
+          }
         },
         "total": {
           "type": "array",
