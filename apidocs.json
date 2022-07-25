@@ -2672,11 +2672,7 @@
               "properties": {
                 "groupId": {
                   "type": "string",
-                  "description": "Required."
-                },
-                "level": {
-                  "type": "string",
-                  "title": "Required. Account or Tag"
+                  "description": "Optional.\nFor Ripple, only billing internal ids are supported at the moment. You can set it to a single group or a comma-separated list of groups. ex) `group1,group2`. if want to set all group, set `*`. \nImplied as the parent billing group for Wave(Pro) users."
                 }
               },
               "description": "Response message for the ExportCostFiltersFile rpc."
@@ -6299,37 +6295,6 @@
         }
       }
     },
-    "apiAccountSupportPlan": {
-      "type": "object",
-      "properties": {
-        "awsEnterpriseOnRamp": {
-          "type": "boolean"
-        },
-        "awsBusiness": {
-          "type": "boolean"
-        },
-        "noSupport": {
-          "type": "boolean"
-        },
-        "awsDeveloper": {
-          "type": "boolean"
-        }
-      }
-    },
-    "apiAccountSupportPlanSettings": {
-      "type": "object",
-      "properties": {
-        "enabled": {
-          "type": "boolean"
-        },
-        "accounts": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          }
-        }
-      }
-    },
     "apiAccountTotal": {
       "type": "object",
       "properties": {
@@ -6340,26 +6305,6 @@
           "type": "string"
         },
         "amount": {
-          "type": "number",
-          "format": "double"
-        }
-      }
-    },
-    "apiAdditionalItems": {
-      "type": "object",
-      "properties": {
-        "label": {
-          "type": "string"
-        },
-        "unitCost": {
-          "type": "number",
-          "format": "double"
-        },
-        "total": {
-          "type": "number",
-          "format": "double"
-        },
-        "quantity": {
           "type": "number",
           "format": "double"
         }
@@ -6651,8 +6596,7 @@
       "type": "object",
       "properties": {
         "name": {
-          "type": "string",
-          "title": "repeated GroupUsageDetails details = 1;"
+          "type": "string"
         },
         "currency": {
           "type": "string"
@@ -6742,20 +6686,8 @@
     "apiInvoiceSettings": {
       "type": "object",
       "properties": {
-        "accountSupportPlan": {
-          "$ref": "#/definitions/apiAccountSupportPlan"
-        },
-        "additionalItems": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/apiAdditionalItems"
-          }
-        },
         "address": {
           "type": "string"
-        },
-        "asps": {
-          "$ref": "#/definitions/apiAccountSupportPlanSettings"
         },
         "groupId": {
           "type": "string"
@@ -6763,26 +6695,10 @@
         "groupName": {
           "type": "string"
         },
-        "calculationType": {
-          "type": "string"
-        },
         "contact": {
           "type": "string"
         },
         "currency": {
-          "type": "string"
-        },
-        "discountCalcLogic": {
-          "type": "string"
-        },
-        "discountRate": {
-          "type": "number",
-          "format": "double"
-        },
-        "discountTargetUsage": {
-          "type": "string"
-        },
-        "displayCost": {
           "type": "string"
         },
         "dueDate": {
@@ -6802,22 +6718,10 @@
           "type": "number",
           "format": "double"
         },
-        "exchangeRateType": {
-          "type": "string"
-        },
-        "imageUrl": {
-          "type": "string"
-        },
         "invoiceNo": {
           "type": "string"
         },
         "language": {
-          "type": "string"
-        },
-        "memo": {
-          "type": "string"
-        },
-        "name": {
           "type": "string"
         },
         "phone": {
@@ -6825,59 +6729,6 @@
         },
         "postal": {
           "type": "string"
-        },
-        "projectCode": {
-          "type": "string"
-        },
-        "projectCurrency": {
-          "type": "string"
-        },
-        "projectId": {
-          "type": "string"
-        },
-        "projectLabel": {
-          "type": "string"
-        },
-        "remarks": {
-          "type": "string"
-        },
-        "substitutionFee": {
-          "type": "string"
-        },
-        "substitutionFeeCalcTarget": {
-          "type": "string"
-        },
-        "substitutionFeeCalcType": {
-          "type": "string"
-        },
-        "substitutionFeeTargetUsage": {
-          "type": "string"
-        },
-        "substitutionFix": {
-          "type": "number",
-          "format": "double"
-        },
-        "substitutionRate": {
-          "type": "number",
-          "format": "double"
-        },
-        "supportFee": {
-          "type": "string"
-        },
-        "supportFeeCalcTarget": {
-          "type": "string"
-        },
-        "supportFix": {
-          "type": "number",
-          "format": "double"
-        },
-        "supportRate": {
-          "type": "number",
-          "format": "double"
-        },
-        "taxRate": {
-          "type": "number",
-          "format": "double"
         },
         "title": {
           "type": "string"
@@ -9626,7 +9477,7 @@
           "description": "Required. URL of exported file."
         }
       },
-      "description": "Response message for the ExportCostFiltersFile rpc."
+      "description": "Response message for the ExportInvoiceFile rpc."
     },
     "v1GetAccessGroupResponse": {
       "type": "object",
