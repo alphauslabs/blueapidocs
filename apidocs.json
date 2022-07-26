@@ -2637,6 +2637,100 @@
         ]
       }
     },
+    "/v1/invoice/{date}:export": {
+      "post": {
+        "summary": "Exports a invoice.",
+        "operationId": "Billing_ExportInvoiceFile",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/blueapibillingv1ExportInvoiceFileResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "date",
+            "description": "Required. Month to get invoice. Format: `yyyymm`.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "groupId": {
+                  "type": "string",
+                  "description": "Optional.\n\nFor Ripple, only billing internal ids are supported at the moment. You can set it to a single group or a comma-separated list of groups. ex) `group1,group2`. if want to set all group, set `*`. \n\nImplied as the parent billing group for Wave(Pro) users."
+                }
+              },
+              "description": "Response message for the ExportCostFiltersFile rpc."
+            }
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      }
+    },
+    "/v1/invoice/{date}:read": {
+      "post": {
+        "summary": "Gets a invoice.",
+        "operationId": "Billing_GetInvoice",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiInvoice"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "date",
+            "description": "Required. Month to get invoice. Format: `yyyymm`.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "groupId": {
+                  "type": "string",
+                  "description": "Required.\n\nFor Ripple, only billing internal ids are supported at the moment. You can set it to a single group\n\nImplied as the parent billing group for Wave(Pro) users."
+                }
+              },
+              "description": "Request message for the Cost.GetInvoiceRequest rpc."
+            }
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      }
+    },
     "/v1/keys": {
       "get": {
         "summary": "Scans key:value data from your store.",
@@ -3783,7 +3877,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1ExportInvoiceFileResponse"
+              "$ref": "#/definitions/blueapiinvoicev1ExportInvoiceFileResponse"
             }
           },
           "default": {
@@ -8011,6 +8105,26 @@
       },
       "description": "This resource represents a long-running operation that is the result of a\nnetwork API call."
     },
+    "blueapibillingv1ExportInvoiceFileResponse": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "Required. URL of exported file.\n\ncsv columns set `group vendor resourceId resourceName type serviceName currency cost`"
+        }
+      },
+      "description": "Response message for the ExportInvoiceFile rpc."
+    },
+    "blueapiinvoicev1ExportInvoiceFileResponse": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "Required. URL of exported file.\n\ncsv columns set `group vendor resourceId resourceName type serviceName currency cost`"
+        }
+      },
+      "description": "Response message for the ExportInvoiceFile rpc."
+    },
     "coverCombinations": {
       "type": "object",
       "properties": {
@@ -9470,16 +9584,6 @@
         }
       },
       "description": "Response message for the ExportCostFiltersFile rpc."
-    },
-    "v1ExportInvoiceFileResponse": {
-      "type": "object",
-      "properties": {
-        "url": {
-          "type": "string",
-          "description": "Required. URL of exported file.\n\ncsv columns set `group vendor resourceId resourceName type serviceName currency cost`"
-        }
-      },
-      "description": "Response message for the ExportInvoiceFile rpc."
     },
     "v1GetAccessGroupResponse": {
       "type": "object",
