@@ -6343,25 +6343,30 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/apiUsageDetails"
-          }
+          },
+          "title": "details: Vendor service fees included"
         },
         "customDetails": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/apiCustomDetails"
-          }
+          },
+          "title": "customDetails: Includes details of custom service and additional item data"
         },
         "feeDetails": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/apiFeeDetails"
-          }
+          },
+          "title": "feeDetails: Includes details of re-caluclated fee data"
         },
         "total": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/apiAccountTotal"
-          }
+          },
+          "description": "substitution\nsupportFee \nusageOnlyTotal\nusageTotal",
+          "title": "The keys included in the account total column have the following values"
         }
       }
     },
@@ -7205,22 +7210,26 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/apiAccountDetails"
-          }
+          },
+          "title": "details: Includes account-by-account details"
         },
         "groupDetails": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/apiGroupDetails"
-          }
+          },
+          "description": "groupDetails: Includes account-by-account details(custom service and additional item data)."
         },
         "total": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/apiInvoiceTotal"
-          }
+          },
+          "title": "total: Includes data on billing totals"
         },
         "settings": {
-          "$ref": "#/definitions/apiInvoiceSettings"
+          "$ref": "#/definitions/apiInvoiceSettings",
+          "title": "settings: Includes settings related to billing"
         }
       }
     },
