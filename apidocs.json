@@ -5068,7 +5068,7 @@
                 },
                 "endTime": {
                   "type": "string",
-                  "description": "Optional. The UTC date to end the streaming data. If not set, current date will be used. Format: `yyyymmd`."
+                  "description": "Optional. The UTC date to end the streaming data. If not set, current date will be used. Format: `yyyymmdd`."
                 },
                 "awsOptions": {
                   "$ref": "#/definitions/v1ReadCostsRequestAwsOptions",
