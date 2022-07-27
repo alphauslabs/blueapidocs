@@ -2631,7 +2631,7 @@
     },
     "/v1/invoice/{date}:export": {
       "post": {
-        "summary": "Exports a invoice.",
+        "summary": "Exports an invoice.",
         "operationId": "Billing_ExportInvoiceFile",
         "responses": {
           "200": {
@@ -2678,7 +2678,7 @@
     },
     "/v1/invoice/{date}:read": {
       "post": {
-        "summary": "Gets a invoice.",
+        "summary": "Gets an invoice.",
         "operationId": "Billing_GetInvoice",
         "responses": {
           "200": {
