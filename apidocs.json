@@ -40,7 +40,7 @@
     },
     {
       "name": "Cost",
-      "description": "(BETA) Cost API. Base URL: https://api.alphaus.cloud/m/blue/cost",
+      "description": "Cost API. Base URL: https://api.alphaus.cloud/m/blue/cost",
       "externalDocs": {
         "description": "Service definition",
         "url": "https://github.com/alphauslabs/blueapi/tree/main/cost/"
