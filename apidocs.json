@@ -6005,7 +6005,7 @@
     },
     "/v1/{vendor}/usagecostsdrift:read": {
       "post": {
-        "summary": "WORK-IN-PROGRESS: Returns a list of accounts that have been updated after invoice along with the differences in costs, if any. Only available in Ripple.",
+        "summary": "Returns a list of accounts that have been updated after invoice along with the differences in costs, if any. Only available in Ripple.",
         "operationId": "Billing_ListUsageCostsDrift",
         "responses": {
           "200": {
