@@ -32,7 +32,7 @@
     },
     {
       "name": "Admin",
-      "description": "(BETA) Admin API. Base URL: https://api.alphaus.cloud/m/blue",
+      "description": "Admin API. Base URL: https://api.alphaus.cloud/m/blue",
       "externalDocs": {
         "description": "Service definition",
         "url": "https://github.com/alphauslabs/blueapi/tree/main/admin/"
