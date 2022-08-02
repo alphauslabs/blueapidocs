@@ -5014,7 +5014,7 @@
     },
     "/v1/{vendor}/costs:read": {
       "post": {
-        "summary": "Reads the usage-based cost details of an organization (Ripple) or billing group (Wave). At the moment, the supported {vendor} is 'aws'. If datetime range parameters are not set, month-to-date (current month) will be returned.",
+        "summary": "Reads the usage-based cost details of an organization (Ripple) or billing group (Wave). At the moment, the supported {vendor} are 'aws' and 'gcp'. If datetime range parameters are not set, month-to-date (current month) will be returned.",
         "operationId": "Cost_ReadCosts",
         "responses": {
           "200": {
@@ -5042,7 +5042,7 @@
         "parameters": [
           {
             "name": "vendor",
-            "description": "Required. At the moment, only `aws` is supported.",
+            "description": "Required. At the moment, `aws` and `gcp` are supported.",
             "in": "path",
             "required": true,
             "type": "string"
