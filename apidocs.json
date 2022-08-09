@@ -4294,6 +4294,45 @@
         ]
       }
     },
+    "/v1/{vendor}/assets/{service}": {
+      "get": {
+        "summary": "WORK-IN-PROGRESS: Lists all assets per service.",
+        "operationId": "Cover_ListAssets",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListAssetsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "service",
+            "description": "Required. The service to query for resources.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
     "/v1/{vendor}/bep/{orgId}": {
       "get": {
         "summary": "WORK-IN-PROGRESS: Get the breakeven point details for the RI or SP.",
@@ -7541,6 +7580,17 @@
         }
       }
     },
+    "awsAsset": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string"
+        },
+        "properties": {
+          "type": "string"
+        }
+      }
+    },
     "awsAwsCostBreakeven": {
       "type": "object",
       "properties": {
@@ -10277,6 +10327,23 @@
         }
       },
       "description": "Response message for the Admin.ListAccountGroups rpc."
+    },
+    "v1ListAssetsResponse": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "assets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/awsAsset"
+          }
+        }
+      }
     },
     "v1ListAwsDailyRunHistoryRequest": {
       "type": "object",
