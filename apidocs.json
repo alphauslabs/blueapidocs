@@ -10559,7 +10559,7 @@
         },
         "groupAccounts": {
           "type": "boolean",
-          "description": "Optional. If set to true, group all input accounts into one. Valid only if `groupByMonth` is true."
+          "description": "Optional. If set to true, group all input accounts into one."
         },
         "filters": {
           "type": "array",
