@@ -10577,11 +10577,11 @@
         },
         "includeTags": {
           "type": "boolean",
-          "description": "Optional. If set to true, stream will include resource tags. Discarded when `groupByColumns` field is set or if `groupByMonth` is true."
+          "description": "Optional. If set to true, stream will include resource tags. Discarded when `groupByColumns` field is set to `none`."
         },
         "includeCostCategories": {
           "type": "boolean",
-          "description": "Optional. If set to true, stream will include resource cost category information. Discarded when `groupByColumns` field is set or if `groupByMonth` is true."
+          "description": "Optional. If set to true, stream will include resource cost category information. Discarded when `groupByColumns` field is set to `none`."
         },
         "toCurrency": {
           "type": "string",
