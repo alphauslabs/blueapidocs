@@ -4294,15 +4294,15 @@
         ]
       }
     },
-    "/v1/{vendor}/assets/{service}": {
-      "get": {
-        "summary": "WORK-IN-PROGRESS: Lists all assets per service.",
-        "operationId": "Cover_ListAssets",
+    "/v1/{vendor}/assets/discover": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Send request to discover resources in cloud.",
+        "operationId": "Cover_DiscoverResources",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1ListAssetsResponse"
+              "properties": {}
             }
           },
           "default": {
@@ -4321,11 +4321,107 @@
             "type": "string"
           },
           {
-            "name": "service",
-            "description": "Required. The service to query for resources.",
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "awsOptions": {
+                  "$ref": "#/definitions/v1DiscoverResourcesAwsOptions",
+                  "description": "Required. Valid only for the `aws` vendor. AWS-specific options."
+                }
+              },
+              "description": "Request message for the Assets.DiscoverResources rpc."
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
+    "/v1/{vendor}/assets/discover/requests": {
+      "get": {
+        "summary": "WORK-IN-PROGRESS: List all discovery requests and their status requested by the login user.",
+        "operationId": "Cover_ListDiscoveryRequests",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListDiscoveryRequestsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
             "in": "path",
             "required": true,
             "type": "string"
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
+    "/v1/{vendor}/assets:read": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Lists all assets per service.",
+        "operationId": "Cover_ListAssets",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/coverAsset"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of coverAsset"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "awsOptions": {
+                  "$ref": "#/definitions/v1ListAssetsAwsFilterOptions",
+                  "description": "Required. Valid only for the `aws` vendor. AWS-specific filter options."
+                }
+              },
+              "description": "Request message for the Asset.ListResources rpc."
+            }
           }
         ],
         "tags": [
@@ -7580,17 +7676,6 @@
         }
       }
     },
-    "awsAsset": {
-      "type": "object",
-      "properties": {
-        "identifier": {
-          "type": "string"
-        },
-        "properties": {
-          "type": "string"
-        }
-      }
-    },
     "awsAwsCostBreakeven": {
       "type": "object",
       "properties": {
@@ -8306,6 +8391,20 @@
       },
       "description": "This resource represents a long-running operation that is the result of a\nnetwork API call."
     },
+    "coverAsset": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "attributes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "coverCombinations": {
       "type": "object",
       "properties": {
@@ -8367,6 +8466,32 @@
         },
         "createdBy": {
           "$ref": "#/definitions/coverMemberUserData"
+        }
+      }
+    },
+    "coverDiscoverRequest": {
+      "type": "object",
+      "properties": {
+        "requestId": {
+          "type": "string"
+        },
+        "orgId": {
+          "type": "string"
+        },
+        "datetimeRequested": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "lastUpdate": {
+          "type": "string"
+        },
+        "attributes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
         }
       }
     },
@@ -9807,6 +9932,19 @@
       },
       "title": "Response message for DeleteView"
     },
+    "v1DiscoverResourcesAwsOptions": {
+      "type": "object",
+      "properties": {
+        "accounts": {
+          "type": "string",
+          "title": "Required. Comma-separated list of accounts"
+        },
+        "services": {
+          "type": "string",
+          "title": "Required. Comma-separated list of services"
+        }
+      }
+    },
     "v1ExportCostFiltersFileResponse": {
       "type": "object",
       "properties": {
@@ -10328,20 +10466,16 @@
       },
       "description": "Response message for the Admin.ListAccountGroups rpc."
     },
-    "v1ListAssetsResponse": {
+    "v1ListAssetsAwsFilterOptions": {
       "type": "object",
       "properties": {
-        "type": {
-          "type": "string"
+        "service": {
+          "type": "string",
+          "description": "Required. The service to query for resources."
         },
-        "name": {
-          "type": "string"
-        },
-        "assets": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/awsAsset"
-          }
+        "accounts": {
+          "type": "string",
+          "description": "Required. Comma-separated list of accounts."
         }
       }
     },
@@ -10443,6 +10577,17 @@
         }
       },
       "description": "Response message for the ListCostFilters rpc."
+    },
+    "v1ListDiscoveryRequestsResponse": {
+      "type": "object",
+      "properties": {
+        "requests": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/coverDiscoverRequest"
+          }
+        }
+      }
     },
     "v1ListIdentityProvidersResponse": {
       "type": "object",
