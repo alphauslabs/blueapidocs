@@ -7064,7 +7064,9 @@
       "type": "object",
       "properties": {
         "name": {
-          "type": "string"
+          "type": "string",
+          "description": "supportFee: \n   Total amount of Support Fee costs\n\nsubstitution: \n   Total amount of agency fee costs\n\ncharge: \n   Total amount of vendor usage fee costs\n\ndiscount: \n   Total amount after discounts. Inculuded Support fee costs\n\ndiscountWithSubstitution: \n   Total Discounts plus agency fee costs\n\nchargeTaxFree: \n   Amounts not included in consumption tax\n\nadditionalItem: \n   Total amount of additional item costs \n\ncustomService: \n   Total amount of custom service item costs \n\nsumOfBeforeTax: \n   Total amount before consumption tax\n\ntax: \n   Consumption tax amount on the total amount\n\ntotal: \n   Total billing amount including tax",
+          "title": "Key names related to the total. Each key is described in the following detail"
         },
         "currency": {
           "type": "string"
