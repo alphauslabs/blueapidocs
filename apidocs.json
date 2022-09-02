@@ -8471,32 +8471,6 @@
         }
       }
     },
-    "coverDiscoverRequest": {
-      "type": "object",
-      "properties": {
-        "requestId": {
-          "type": "string"
-        },
-        "orgId": {
-          "type": "string"
-        },
-        "datetimeRequested": {
-          "type": "string"
-        },
-        "status": {
-          "type": "string"
-        },
-        "lastUpdate": {
-          "type": "string"
-        },
-        "attributes": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          }
-        }
-      }
-    },
     "coverFavorites": {
       "type": "object",
       "properties": {
@@ -10586,7 +10560,7 @@
         "requests": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/coverDiscoverRequest"
+            "$ref": "#/definitions/blueapiapiOperation"
           }
         }
       }
