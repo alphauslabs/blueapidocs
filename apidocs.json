@@ -9130,6 +9130,10 @@
           "type": "string",
           "description": "The queried target account."
         },
+        "accountName": {
+          "type": "string",
+          "title": "The account name"
+        },
         "roleArn": {
           "type": "string",
           "description": "The role ARN that provides the cross-account access permissions."
@@ -9149,6 +9153,22 @@
         "templateUrl": {
           "type": "string",
           "description": "The latest template used to deploy the stack."
+        },
+        "bucketName": {
+          "type": "string",
+          "title": "The s3 bucket name"
+        },
+        "prefix": {
+          "type": "string",
+          "title": "Report path prefix"
+        },
+        "reportName": {
+          "type": "string",
+          "title": "The report name"
+        },
+        "registrationStatus": {
+          "type": "string",
+          "title": "The status of registration for CUR export, API access and Cloudwatch streaming"
         },
         "status": {
           "type": "string",
@@ -9456,6 +9476,10 @@
         "target": {
           "type": "string",
           "description": "Required. The target AWS account to validate."
+        },
+        "accountName": {
+          "type": "string",
+          "title": "Required. The account name"
         }
       },
       "description": "Request message for the CreateAccountAccess rpc."
