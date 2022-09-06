@@ -2521,6 +2521,37 @@
         ]
       }
     },
+    "/v1/costgroups/resolve/{costGroupId}": {
+      "get": {
+        "operationId": "Cover_ResolveCostGroupCombinations",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ResolveCostGroupCombinationsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "costGroupId",
+            "description": "Required. Cost Group Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
     "/v1/costgroups/{costGroupId}": {
       "get": {
         "summary": "Get the details of the cost group",
@@ -7779,6 +7810,20 @@
         }
       }
     },
+    "apicoverAccount": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
     "apigcpCost": {
       "type": "object",
       "properties": {
@@ -11082,6 +11127,20 @@
         }
       },
       "title": "Response message for ResetUserPassword"
+    },
+    "v1ResolveCostGroupCombinationsResponse": {
+      "type": "object",
+      "properties": {
+        "costgroupId": {
+          "type": "string"
+        },
+        "accounts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apicoverAccount"
+          }
+        }
+      }
     },
     "v1SaveNotificationSettingsRequest": {
       "type": "object",
