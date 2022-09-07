@@ -4397,7 +4397,7 @@
     },
     "/v1/{vendor}/adjustments:read": {
       "post": {
-        "summary": "Reads the non-usage-based details of an organization (Ripple) or billing group (Wave). This API covers non-usage-based adjustments, such as Fees, Credits, Discounts, Tax, Upfront Fees, etc. At the moment, the supported {vendor} is 'aws'. If datetime range parameters are not set, month-to-date (current month) will be returned.",
+        "summary": "Reads the non-usage-based details of an organization (Ripple) or billing group (Wave). This API covers non-usage-based adjustments, such as Fees, Credits, Discounts, Tax, Upfront Fees, etc. At the moment, the supported {vendor} is 'aws' or 'azure'. If datetime range parameters are not set, month-to-date (current month) will be returned.",
         "operationId": "Cost_ReadAdjustments",
         "responses": {
           "200": {
@@ -4425,7 +4425,7 @@
         "parameters": [
           {
             "name": "vendor",
-            "description": "Required. At the moment, only `aws` is supported.",
+            "description": "Required. At the moment, only `aws` or `azure` is supported.",
             "in": "path",
             "required": true,
             "type": "string"
@@ -7807,6 +7807,88 @@
         }
       }
     },
+    "apiazureCost": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "type": "string",
+          "description": "The account being queried."
+        },
+        "groupId": {
+          "type": "string",
+          "description": "The group id the account is associated with during the query."
+        },
+        "date": {
+          "type": "string",
+          "description": "For daily data, format is `yyyy-mm-dd`; for monthly, `yyyy-mm`."
+        },
+        "serviceName": {
+          "type": "string",
+          "description": "The service name, such as `Software License`, `Cognosys`, `SendGrid`, `New-Commerce ERP Software License`, etc."
+        },
+        "productName": {
+          "type": "string",
+          "description": "The product code for an Azure service, such as `Dsv4 Series Windows VM`, `CentOS 7.6`, etc."
+        },
+        "region": {
+          "type": "string",
+          "description": "The region of lineitem, if applicable."
+        },
+        "chargeType": {
+          "type": "string",
+          "description": "The charge type of lineitem, if applicable. Such as `New`, `CycleCharge`, `Prorate fees when cancel`, etc."
+        },
+        "description": {
+          "type": "string",
+          "description": "The description of lineitem, if applicable."
+        },
+        "billableQuantity": {
+          "type": "number",
+          "format": "double",
+          "description": "The billable quantity of lineitem, if applicable."
+        },
+        "effectiveUnitPrice": {
+          "type": "number",
+          "format": "double",
+          "description": "The effective unit price of lineitem, if applicable."
+        },
+        "cost": {
+          "type": "number",
+          "format": "double",
+          "description": "The true cost (calculated) for this lineitem."
+        },
+        "baseCurrency": {
+          "type": "string",
+          "description": "The base currency for `cost`."
+        },
+        "exchangeRate": {
+          "type": "number",
+          "format": "double",
+          "description": "The exchange rate used to convert `baseCurrency` to `targetCurrency`."
+        },
+        "targetCost": {
+          "type": "number",
+          "format": "double",
+          "description": "Converted `cost`."
+        },
+        "targetCurrency": {
+          "type": "string",
+          "description": "The currency set by `toCurrency`."
+        },
+        "timeInterval": {
+          "type": "string",
+          "description": "The time interval of lineitem, if applicable. Format is `yyyy-MM-ddThh:MM:ssZ/yyyy-mm-ddTHH:mm:ssZ` (for example 2020-09-16T00:00:00Z/2021-09-24T00:00:00Z)."
+        },
+        "billingType": {
+          "type": "string",
+          "description": "The billing type of lineitem, if applicable. Such as `MARKETPLACE`, `UPFRONT`, `Refund`, `Credit` and `OTHERS`."
+        },
+        "alternateId": {
+          "type": "string",
+          "description": "The alternate ID of lineitem, if applicable."
+        }
+      }
+    },
     "apicoverAccount": {
       "type": "object",
       "properties": {
@@ -9553,6 +9635,9 @@
         },
         "gcp": {
           "$ref": "#/definitions/apigcpCost"
+        },
+        "azure": {
+          "$ref": "#/definitions/apiazureCost"
         }
       },
       "description": "Response message wrapper for cloud costs."
