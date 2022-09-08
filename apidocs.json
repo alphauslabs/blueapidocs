@@ -47,14 +47,6 @@
       }
     },
     {
-      "name": "Cover",
-      "description": "(ALPHA) Cover API. Base URL: https://api.alphaus.cloud/m/blue/cover",
-      "externalDocs": {
-        "description": "Service definition",
-        "url": "https://github.com/alphauslabs/blueapi/tree/main/cover/"
-      }
-    },
-    {
       "name": "Billing",
       "description": "(BETA) Billing API. Base URL: https://api.alphaus.cloud/m/blue/billing",
       "externalDocs": {
@@ -68,6 +60,14 @@
       "externalDocs": {
         "description": "Service definition",
         "url": "https://github.com/alphauslabs/blueapi/tree/main/operations/"
+      }
+    },
+    {
+      "name": "Cover",
+      "description": "(ALPHA) Cover API. Base URL: https://api.alphaus.cloud/m/blue/cover",
+      "externalDocs": {
+        "description": "Service definition",
+        "url": "https://github.com/alphauslabs/blueapi/tree/main/cover/"
       }
     },
     {
