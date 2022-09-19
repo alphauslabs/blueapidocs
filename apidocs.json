@@ -702,8 +702,16 @@
         "parameters": [
           {
             "name": "id",
+            "description": "Required",
             "in": "path",
             "required": true,
+            "type": "string"
+          },
+          {
+            "name": "notificationType",
+            "description": "Required\nValid values: \n`invoice_calculation_start`, \n`invoice_calculation_end`, \n`cur_changed_after_invoicing`.",
+            "in": "query",
+            "required": false,
             "type": "string"
           }
         ],
@@ -734,6 +742,13 @@
             "description": "Required",
             "in": "path",
             "required": true,
+            "type": "string"
+          },
+          {
+            "name": "notificationType",
+            "description": "Required\nValid values: \n`invoice_calculation_start`, \n`invoice_calculation_end`, \n`cur_changed_after_invoicing`.",
+            "in": "query",
+            "required": false,
             "type": "string"
           }
         ],
