@@ -709,7 +709,7 @@
           },
           {
             "name": "notificationType",
-            "description": "Required\nValid values: \n`invoice_calculation_start`, \n`invoice_calculation_end`, \n`cur_changed_after_invoicing`.",
+            "description": "Required\nValid values: \n`InvoiceCalculationStarted`, \n`InvoiceCalculationFinished`, \n`CurUpdatedAfterInvoice`.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -746,7 +746,7 @@
           },
           {
             "name": "notificationType",
-            "description": "Required\nValid values: \n`invoice_calculation_start`, \n`invoice_calculation_end`, \n`cur_changed_after_invoicing`.",
+            "description": "Required\nValid values: \n`InvoiceCalculationStarted`, \n`InvoiceCalculationFinished`, \n`CurUpdatedAfterInvoice`.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -10166,7 +10166,7 @@
       "properties": {
         "notificationType": {
           "type": "string",
-          "description": "Required\nValid values: \n`invoice_calculation_start`, \n`invoice_calculation_end`, \n`cur_changed_after_invoicing`."
+          "description": "Required\nValid values: \n`InvoiceCalculationStarted`, \n`InvoiceCalculationFinished`, \n`CurUpdatedAfterInvoice`."
         },
         "channels": {
           "type": "array",
