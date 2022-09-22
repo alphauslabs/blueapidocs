@@ -2227,7 +2227,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "properties": {}
+              "$ref": "#/definitions/v1DeleteAccountAccessResponse"
             }
           },
           "default": {
@@ -10400,6 +10400,15 @@
         }
       },
       "description": "Response message for the Admin.GetDefaultCostAccess, Admin.CreateDefaultCostAccess rpc."
+    },
+    "v1DeleteAccountAccessResponse": {
+      "type": "object",
+      "properties": {
+        "targetId": {
+          "type": "string"
+        }
+      },
+      "description": "Response message for the DeleteAccountAccess rpc."
     },
     "v1DeleteCostGroupResponse": {
       "type": "object",
