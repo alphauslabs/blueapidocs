@@ -7994,6 +7994,10 @@
         "alternateId": {
           "type": "string",
           "description": "The alternate ID of lineitem, if applicable."
+        },
+        "domainName": {
+          "type": "string",
+          "description": "The domain name of lineitem, if applicable."
         }
       }
     },
