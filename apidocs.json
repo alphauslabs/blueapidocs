@@ -4359,7 +4359,7 @@
         "parameters": [
           {
             "name": "vendor",
-            "description": "Required. At the moment, only `aws` is supported.",
+            "description": "Required. At the moment, `aws` and `gcp` is supported.",
             "in": "path",
             "required": true,
             "type": "string"
@@ -4448,7 +4448,7 @@
         "parameters": [
           {
             "name": "vendor",
-            "description": "Required. At the moment, only `aws` is supported.",
+            "description": "Required. At the moment, `aws` and `gcp` is supported.",
             "in": "path",
             "required": true,
             "type": "string"
