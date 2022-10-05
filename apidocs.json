@@ -3885,6 +3885,184 @@
         ]
       }
     },
+    "/v1/servicediscounts/{groupId}/account": {
+      "delete": {
+        "summary": "WORK-IN-PROGRESS: Deletes the account invoice service discounts. Only available in Ripple.",
+        "operationId": "Billing_DeleteAccountInvoiceServiceDiscounts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "groupId",
+            "description": "Required.\n\nFor Ripple, only billing internal ids are supported at the moment. You can set it to a single group\n\nImplied as the parent billing group for Wave(Pro) users.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      },
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Registers the account invoice service discounts. Only available in Ripple.",
+        "operationId": "Billing_CreateAccountInvoiceServiceDiscounts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateAccountInvoiceServiceDiscountsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "groupId",
+            "description": "Required.\n\nFor Ripple, only billing internal ids are supported at the moment. You can set it to a single group\n\nImplied as the parent billing group for Wave(Pro) users.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "accounts": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/v1AccountServiceDiscounts"
+                  },
+                  "description": "Required."
+                }
+              },
+              "description": "Request message for the CreateAccountInvoiceServiceDiscounts rpc."
+            }
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      },
+      "put": {
+        "summary": "WORK-IN-PROGRESS: Updates the account invoice service discounts. Only available in Ripple.",
+        "operationId": "Billing_UpdateAccountInvoiceServiceDiscounts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateAccountInvoiceServiceDiscountsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "groupId",
+            "description": "Required.\n\nFor Ripple, only billing internal ids are supported at the moment. You can set it to a single group\n\nImplied as the parent billing group for Wave(Pro) users.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "accounts": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/v1AccountServiceDiscounts"
+                  },
+                  "description": "Required."
+                }
+              },
+              "description": "Request message for the UpdateAccountInvoiceServiceDiscounts rpc."
+            }
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      }
+    },
+    "/v1/servicediscounts/{groupId}/account:read": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Reads the account invoice service discounts. Only available in Ripple.",
+        "operationId": "Billing_ListAccountInvoiceServiceDiscounts",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1AccountInvoiceServiceDiscounts"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of v1AccountInvoiceServiceDiscounts"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "groupId",
+            "description": "Required.\n\nFor Ripple, only billing internal ids are supported at the moment. You can set it to a single group\n\nImplied as the parent billing group for Wave(Pro) users.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "description": "Request message for the ListAccountInvoiceServiceDiscounts rpc."
+            }
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      }
+    },
     "/v1/servicediscounts:read": {
       "post": {
         "summary": "WORK-IN-PROGRESS: Reads the invoice service discounts. Only available in Ripple.",
@@ -9496,6 +9674,33 @@
       },
       "description": "Response message for GetAccountAccess, CreateAccountAccess rpc."
     },
+    "v1AccountInvoiceServiceDiscounts": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Service discount id."
+        },
+        "account": {
+          "type": "string",
+          "description": "Account id."
+        }
+      },
+      "description": "Streaming response message for the AccountInvoiceServiceDiscounts rpc."
+    },
+    "v1AccountServiceDiscounts": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Service discount id."
+        },
+        "accountId": {
+          "type": "string",
+          "description": "Account id."
+        }
+      }
+    },
     "v1AddFavoriteRequest": {
       "type": "object",
       "properties": {
@@ -9792,6 +9997,18 @@
         }
       },
       "title": "Response message for CreateAccountBudget"
+    },
+    "v1CreateAccountInvoiceServiceDiscountsResponse": {
+      "type": "object",
+      "properties": {
+        "accounts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1AccountServiceDiscounts"
+          }
+        }
+      },
+      "description": "Response message for the CreateAccountInvoiceServiceDiscounts rpc."
     },
     "v1CreateAccountRequestAwsOptions": {
       "type": "object",
@@ -11485,6 +11702,18 @@
         }
       },
       "description": "Request message for the Admin.SaveNotificationSettings rpc."
+    },
+    "v1UpdateAccountInvoiceServiceDiscountsResponse": {
+      "type": "object",
+      "properties": {
+        "accounts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1AccountServiceDiscounts"
+          }
+        }
+      },
+      "description": "Response message for the UpdateAccountInvoiceServiceDiscounts rpc."
     },
     "v1UpdateCostFiltersResponse": {
       "type": "object",
