@@ -10518,7 +10518,7 @@
     "v1GetCostUsageRequest": {
       "type": "object",
       "properties": {
-        "costgroupId": {
+        "costGroupId": {
           "type": "string",
           "description": "Required. Cost Group Id."
         },
@@ -10915,22 +10915,18 @@
     "v1ListAssetsAwsFilterOptions": {
       "type": "object",
       "properties": {
-        "service": {
+        "services": {
           "type": "string",
-          "description": "Required. The service to query for resources."
-        },
-        "accounts": {
-          "type": "string",
-          "description": "Required. Comma-separated list of accounts."
+          "description": "Optional. Comma-separated list of services. If not set, all services are included."
         }
       }
     },
     "v1ListAssetsRequest": {
       "type": "object",
       "properties": {
-        "vendor": {
+        "costGroupId": {
           "type": "string",
-          "description": "Required. At the moment, only `aws` is supported."
+          "description": "Required. Cost Group Id."
         },
         "startTime": {
           "type": "string",
@@ -10942,7 +10938,7 @@
         },
         "awsOptions": {
           "$ref": "#/definitions/v1ListAssetsAwsFilterOptions",
-          "description": "Required. Valid only for the `aws` vendor. AWS-specific filter options."
+          "description": "Optional. For AWS-specific filter options."
         }
       },
       "description": "Request message for the Asset.ListResources rpc."
@@ -11357,7 +11353,7 @@
     "v1ResolveCostGroupCombinationsResponse": {
       "type": "object",
       "properties": {
-        "costgroupId": {
+        "costGroupId": {
           "type": "string"
         },
         "accounts": {
