@@ -3126,7 +3126,7 @@
                   "description": "Optional.\n\nFor Ripple, only billing internal ids are supported at the moment. You can set it to a single group or a comma-separated list of groups. ex) `group1,group2`. if want to set all group, set `*`. \n\nImplied as the parent billing group for Wave(Pro) users."
                 }
               },
-              "description": "Response message for the ExportCostFiltersFile rpc."
+              "description": "Request message for the ExportCostFiltersFile rpc."
             }
           }
         ],
@@ -3882,6 +3882,48 @@
         ],
         "tags": [
           "Cover"
+        ]
+      }
+    },
+    "/v1/servicediscounts:read": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Reads the invoice service discounts. Only available in Ripple.",
+        "operationId": "Billing_ListInvoiceServiceDiscounts",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1InvoiceServiceDiscounts"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of v1InvoiceServiceDiscounts"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ListInvoiceServiceDiscountsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Billing"
         ]
       }
     },
@@ -10875,6 +10917,32 @@
       },
       "title": "Response message for InviteMember"
     },
+    "v1InvoiceServiceDiscounts": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Service discount id."
+        },
+        "name": {
+          "type": "string",
+          "description": "Service discount name."
+        },
+        "description": {
+          "type": "string",
+          "description": "Service discount description."
+        },
+        "created": {
+          "type": "string",
+          "description": "create timestamp."
+        },
+        "updated": {
+          "type": "string",
+          "description": "update timestamp."
+        }
+      },
+      "description": "Streaming response message for the InvoiceServiceDiscounts rpc."
+    },
     "v1IpFilter": {
       "type": "object",
       "properties": {
@@ -11053,6 +11121,10 @@
         }
       },
       "description": "Response message for the Iam.ListIdentityProviders rpc."
+    },
+    "v1ListInvoiceServiceDiscountsRequest": {
+      "type": "object",
+      "description": "Request message for the ListInvoiceServiceDiscounts rpc."
     },
     "v1ListNotificationChannelsResponse": {
       "type": "object",
