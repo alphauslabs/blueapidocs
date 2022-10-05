@@ -10597,7 +10597,7 @@
           "description": "Optional. If not set, current date will be used. Format: `yyyymmdd`."
         },
         "groupByMonth": {
-          "type": "string",
+          "type": "boolean",
           "description": "Optional. If set to true, return data grouped by month within the date range. \nIf you want data that is grouped per account per month, set this to `true`, then set `groupByColumns` to `none`. \nYou can also use `groupByColumns` while setting this to true."
         },
         "limit": {
