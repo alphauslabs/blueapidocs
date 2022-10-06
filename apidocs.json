@@ -4215,6 +4215,114 @@
         ]
       }
     },
+    "/v1/views/layout/{viewId}": {
+      "put": {
+        "summary": "Updates the view's layout",
+        "operationId": "Cover_UpdateViewLayout",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateViewLayoutResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "viewId",
+            "description": "Required. View Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "layout": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/coverWidgetData"
+                  }
+                }
+              },
+              "title": "Request message for UpdateViewLayout"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
+    "/v1/views/layout/{viewId}/{widgetId}": {
+      "put": {
+        "summary": "Updates the view's widget",
+        "operationId": "Cover_UpdateViewWidget",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateViewWidgetResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "viewId",
+            "description": "Required. View Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "widgetId",
+            "description": "Required. Widget Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "options": {
+                  "$ref": "#/definitions/coverLayoutOptions"
+                },
+                "requests": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/coverLayoutRequests"
+                  }
+                }
+              },
+              "title": "Request message for UpdateViewWidget"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
     "/v1/views/publish": {
       "post": {
         "summary": "Publish current view",
@@ -9247,6 +9355,9 @@
           "items": {
             "$ref": "#/definitions/coverMemberCostGroup"
           }
+        },
+        "updatedAt": {
+          "type": "string"
         }
       }
     },
@@ -9371,6 +9482,9 @@
         },
         "createdBy": {
           "$ref": "#/definitions/coverMemberUserData"
+        },
+        "updatedAt": {
+          "type": "string"
         }
       }
     },
@@ -9424,28 +9538,11 @@
     "coverViewLayout": {
       "type": "object",
       "properties": {
-        "i": {
+        "widgetId": {
           "type": "string"
         },
-        "x": {
-          "type": "number",
-          "format": "double"
-        },
-        "y": {
-          "type": "number",
-          "format": "double"
-        },
-        "componentId": {
-          "type": "string"
-        },
-        "options": {
-          "$ref": "#/definitions/coverLayoutOptions"
-        },
-        "requests": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/coverLayoutRequests"
-          }
+        "widgetData": {
+          "$ref": "#/definitions/coverWidgetData"
         }
       }
     },
@@ -9475,6 +9572,34 @@
         },
         "updatedAt": {
           "type": "string"
+        }
+      }
+    },
+    "coverWidgetData": {
+      "type": "object",
+      "properties": {
+        "i": {
+          "type": "string"
+        },
+        "x": {
+          "type": "number",
+          "format": "double"
+        },
+        "y": {
+          "type": "number",
+          "format": "double"
+        },
+        "componentId": {
+          "type": "string"
+        },
+        "options": {
+          "$ref": "#/definitions/coverLayoutOptions"
+        },
+        "requests": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/coverLayoutRequests"
+          }
         }
       }
     },
@@ -12039,6 +12164,18 @@
       },
       "title": "Response message for UpdateUserTimezone"
     },
+    "v1UpdateViewLayoutResponse": {
+      "type": "object",
+      "properties": {
+        "layout": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/coverViewLayout"
+          }
+        }
+      },
+      "title": "Response message for UpdateViewLayout"
+    },
     "v1UpdateViewResponse": {
       "type": "object",
       "properties": {
@@ -12047,6 +12184,18 @@
         }
       },
       "title": "Response message for UpdateView"
+    },
+    "v1UpdateViewWidgetResponse": {
+      "type": "object",
+      "properties": {
+        "widgetId": {
+          "type": "string"
+        },
+        "widgetData": {
+          "$ref": "#/definitions/coverWidgetData"
+        }
+      },
+      "title": "Response message for UpdateViewWidget"
     },
     "v1UsageCostsDrift": {
       "type": "object",
