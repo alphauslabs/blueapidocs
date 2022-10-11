@@ -9573,7 +9573,7 @@
         "layout": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/coverViewLayout"
+            "$ref": "#/definitions/coverWidgetData"
           }
         },
         "sideMenu": {
@@ -9627,7 +9627,7 @@
     "coverWidgetData": {
       "type": "object",
       "properties": {
-        "i": {
+        "id": {
           "type": "string"
         },
         "x": {
