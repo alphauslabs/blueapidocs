@@ -4924,7 +4924,7 @@
     },
     "/v1/{vendor}/accounts:read": {
       "post": {
-        "summary": "WORK-IN-PROGRESS: Lists all account resource for vendor.",
+        "summary": "Lists all account resource for vendor.",
         "operationId": "Cost_ListAccountResources",
         "responses": {
           "200": {
