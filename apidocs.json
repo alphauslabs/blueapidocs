@@ -4782,13 +4782,6 @@
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "groupId",
-            "description": "Optional. The billing group internal id. Only valid for Ripple users.",
-            "in": "query",
-            "required": false,
-            "type": "string"
           }
         ],
         "tags": [
@@ -4922,6 +4915,62 @@
             "in": "path",
             "required": true,
             "type": "string"
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      }
+    },
+    "/v1/{vendor}/accounts:read": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Lists all account resource for vendor.",
+        "operationId": "Cost_ListAccountResources",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/apiAccountResource"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of apiAccountResource"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, `aws`,`gcp` and `azure` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "groupId": {
+                  "type": "string",
+                  "description": "Optional. The billing group internal id. Only valid for Ripple users."
+                }
+              },
+              "description": "Request message for the Cost.ListAccountResources rpc."
+            }
           }
         ],
         "tags": [
@@ -7189,6 +7238,38 @@
           "items": {
             "$ref": "#/definitions/blueapiapiAccount"
           }
+        }
+      }
+    },
+    "apiAccountResource": {
+      "type": "object",
+      "properties": {
+        "vendor": {
+          "type": "string",
+          "title": "The vendor"
+        },
+        "id": {
+          "type": "string",
+          "description": "The account id."
+        },
+        "name": {
+          "type": "string",
+          "description": "The account name."
+        },
+        "orgId": {
+          "type": "string",
+          "description": "The parent organization id."
+        },
+        "billingInternalId": {
+          "type": "string",
+          "description": "The parent billing internal id."
+        },
+        "metadata": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/blueapiapiKeyValue"
+          },
+          "description": "The attributes (key/value pair) of the account."
         }
       }
     },
