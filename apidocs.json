@@ -4782,6 +4782,13 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "groupId",
+            "description": "Optional. The billing group internal id. Only valid for Ripple users.",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
