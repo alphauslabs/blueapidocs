@@ -10056,7 +10056,7 @@
         "accounts": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/blueapiapiAccount"
+            "$ref": "#/definitions/apiAccountResource"
           },
           "title": "List of all accounts"
         },
