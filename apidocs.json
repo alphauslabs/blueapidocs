@@ -3887,7 +3887,7 @@
     },
     "/v1/servicediscounts/{groupId}/account": {
       "delete": {
-        "summary": "WORK-IN-PROGRESS: Deletes the account invoice service discounts. Only available in Ripple.",
+        "summary": "Deletes the account invoice service discounts. Only available in Ripple.",
         "operationId": "Billing_DeleteAccountInvoiceServiceDiscounts",
         "responses": {
           "200": {
@@ -3917,7 +3917,7 @@
         ]
       },
       "post": {
-        "summary": "WORK-IN-PROGRESS: Registers the account invoice service discounts. Only available in Ripple.",
+        "summary": "Registers the account invoice service discounts. Only available in Ripple.",
         "operationId": "Billing_CreateAccountInvoiceServiceDiscounts",
         "responses": {
           "200": {
@@ -3965,7 +3965,7 @@
         ]
       },
       "put": {
-        "summary": "WORK-IN-PROGRESS: Updates the account invoice service discounts. Only available in Ripple.",
+        "summary": "Updates the account invoice service discounts. Only available in Ripple.",
         "operationId": "Billing_UpdateAccountInvoiceServiceDiscounts",
         "responses": {
           "200": {
@@ -4015,7 +4015,7 @@
     },
     "/v1/servicediscounts/{groupId}/account:read": {
       "post": {
-        "summary": "WORK-IN-PROGRESS: Reads the account invoice service discounts. Only available in Ripple.",
+        "summary": "Reads the account invoice service discounts. Only available in Ripple.",
         "operationId": "Billing_ListAccountInvoiceServiceDiscounts",
         "responses": {
           "200": {
@@ -4065,7 +4065,7 @@
     },
     "/v1/servicediscounts/{groupId}/account:remove": {
       "put": {
-        "summary": "WORK-IN-PROGRESS: Removes the account invoice service discounts. Only available in Ripple.",
+        "summary": "Removes the account invoice service discounts. Only available in Ripple.",
         "operationId": "Billing_RemoveAccountInvoiceServiceDiscounts",
         "responses": {
           "200": {
@@ -4114,7 +4114,7 @@
     },
     "/v1/servicediscounts:read": {
       "post": {
-        "summary": "WORK-IN-PROGRESS: Reads the invoice service discounts. Only available in Ripple.",
+        "summary": "Reads the invoice service discounts. Only available in Ripple.",
         "operationId": "Billing_ListInvoiceServiceDiscounts",
         "responses": {
           "200": {
