@@ -4785,7 +4785,7 @@
           },
           {
             "name": "groupId",
-            "description": "Optional. The billing group internal id. Only valid for Ripple users.",
+            "description": "Optional. The billing group internal id. Only valid for Ripple users.\n\nNot available for GET method, only use POST method.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -4973,7 +4973,7 @@
               "properties": {
                 "groupId": {
                   "type": "string",
-                  "description": "Optional. The billing group internal id. Only valid for Ripple users."
+                  "description": "Optional. The billing group internal id. Only valid for Ripple users.\n\nNot available for GET method, only use POST method."
                 }
               },
               "description": "Request message for the Cost.ListAccounts rpc."
