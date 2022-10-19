@@ -4840,7 +4840,7 @@
           },
           {
             "name": "groupId",
-            "description": "Optional. The billing group internal id. Only valid for Ripple users.\n\nNot available for GET method, only use POST method.",
+            "description": "Optional. The billing group internal id. Only valid for Ripple users.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -4901,6 +4901,54 @@
               },
               "description": "Request message for the Cost.CreateAccount rpc."
             }
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      }
+    },
+    "/v1/{vendor}/accounts/groups/{groupId}": {
+      "get": {
+        "summary": "Lists all vendor accounts.",
+        "operationId": "Cost_ListAccounts2",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/blueapiapiAccount"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of blueapiapiAccount"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, `aws` and `gcp` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "groupId",
+            "description": "Optional. The billing group internal id. Only valid for Ripple users.",
+            "in": "path",
+            "required": true,
+            "type": "string"
           }
         ],
         "tags": [
@@ -4977,62 +5025,6 @@
             "in": "path",
             "required": true,
             "type": "string"
-          }
-        ],
-        "tags": [
-          "Cost"
-        ]
-      }
-    },
-    "/v1/{vendor}/accounts:read": {
-      "post": {
-        "summary": "Lists all vendor accounts.",
-        "operationId": "Cost_ListAccounts2",
-        "responses": {
-          "200": {
-            "description": "A successful response.(streaming responses)",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "result": {
-                  "$ref": "#/definitions/blueapiapiAccount"
-                },
-                "error": {
-                  "$ref": "#/definitions/rpcStatus"
-                }
-              },
-              "title": "Stream result of blueapiapiAccount"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "vendor",
-            "description": "Required. At the moment, `aws` and `gcp` is supported.",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "groupId": {
-                  "type": "string",
-                  "description": "Optional. The billing group internal id. Only valid for Ripple users.\n\nNot available for GET method, only use POST method."
-                }
-              },
-              "description": "Request message for the Cost.ListAccounts rpc."
-            }
           }
         ],
         "tags": [
