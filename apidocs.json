@@ -9673,6 +9673,25 @@
         }
       }
     },
+    "coverRecommendationDetail": {
+      "type": "object",
+      "properties": {
+        "recommendedResourceType": {
+          "type": "string"
+        },
+        "estimatedCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "estimatedSavings": {
+          "type": "number",
+          "format": "double"
+        },
+        "region": {
+          "type": "string"
+        }
+      }
+    },
     "coverRegistrationStatus": {
       "type": "object",
       "properties": {
@@ -9717,20 +9736,6 @@
           "type": "number",
           "format": "double"
         },
-        "recommendation": {
-          "type": "string"
-        },
-        "recommendedResourceType": {
-          "type": "string"
-        },
-        "recommendedPrice": {
-          "type": "number",
-          "format": "double"
-        },
-        "estimatedSavings": {
-          "type": "number",
-          "format": "double"
-        },
         "region": {
           "type": "string"
         },
@@ -9748,6 +9753,15 @@
         },
         "networkCapacity": {
           "type": "string"
+        },
+        "rightSizingType": {
+          "type": "string"
+        },
+        "recommendationDetail": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/coverRecommendationDetail"
+          }
         }
       }
     },
