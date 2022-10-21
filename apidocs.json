@@ -3111,6 +3111,64 @@
         ]
       }
     },
+    "/v1/invoice/{date}:create": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Creates an invoice. Only available in Ripple.",
+        "operationId": "Billing_CreateInvoice",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiInvoiceMessage"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "date",
+            "description": "Required. Month to get invoice. Format: `yyyymm`.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "vendor": {
+                  "type": "string",
+                  "description": "Required. At the moment, only `aws` is supported."
+                },
+                "allGroups": {
+                  "type": "boolean",
+                  "description": "Optional. You can set all billing groups.\n\nIf this parameter is not set, The list set to `groups` is used."
+                },
+                "groups": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Optional. You can set it to a list of billing internal group id"
+                }
+              },
+              "description": "Request message for the CreateInvoice rpc."
+            }
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      }
+    },
     "/v1/invoice/{date}:export": {
       "post": {
         "summary": "Exports an invoice.",
@@ -7680,6 +7738,19 @@
         "azure": {
           "$ref": "#/definitions/apiVendorDetail",
           "title": "Invoice vendor detail by 'azure'"
+        }
+      }
+    },
+    "apiInvoiceMessage": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "invoice generate request id"
+        },
+        "status": {
+          "type": "string",
+          "title": "invoice generate request status"
         }
       }
     },
