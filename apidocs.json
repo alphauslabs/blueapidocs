@@ -9516,6 +9516,10 @@
         "vpcId": {
           "type": "string",
           "description": "[EC2-VPC] The ID of the VPC in which the instance is running."
+        },
+        "date": {
+          "type": "string",
+          "title": "Format: `yyyy-mm`"
         }
       }
     },
