@@ -3106,6 +3106,16 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1GetEC2InstancesRequest"
+            }
+          }
+        ],
         "tags": [
           "Cover"
         ]
@@ -11499,6 +11509,31 @@
         }
       },
       "description": "Response message for the Admin.GetDefaultCostAccessTemplateUrl rpc."
+    },
+    "v1GetEC2InstancesRequest": {
+      "type": "object",
+      "properties": {
+        "costGroupId": {
+          "type": "string",
+          "description": "Required. Cost Group Id."
+        },
+        "startTime": {
+          "type": "string",
+          "description": "Optional. If not set, current month will be used. Format: `yyyymm`."
+        },
+        "endTime": {
+          "type": "string",
+          "description": "Optional. If not set, current month will be used. Format: `yyyymm`."
+        },
+        "filters": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. A map of \"key:value\" column filters."
+        }
+      },
+      "title": "Request message for GetEC2Instances"
     },
     "v1GetEC2InstancesResponse": {
       "type": "object",
