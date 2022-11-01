@@ -2457,6 +2457,14 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "fieldMask",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
         "tags": [
           "Billing"
         ]
