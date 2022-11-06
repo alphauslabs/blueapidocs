@@ -3129,6 +3129,38 @@
         ]
       }
     },
+    "/v1/invoice/status/{id}": {
+      "get": {
+        "summary": "WORK-IN-PROGRESS: Gets an invoice. Only available in Ripple.",
+        "operationId": "Billing_GetInvoiceStatus",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiInvoiceMessage"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Required. invoice generate request id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      }
+    },
     "/v1/invoice/{date}:create": {
       "post": {
         "summary": "WORK-IN-PROGRESS: Creates an invoice. Only available in Ripple.",
