@@ -4953,6 +4953,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "fieldMask",
+            "description": "Optional.",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -5057,6 +5064,13 @@
             "description": "Optional. The billing group internal id. Only valid for Ripple users.",
             "in": "path",
             "required": true,
+            "type": "string"
+          },
+          {
+            "name": "fieldMask",
+            "description": "Optional.",
+            "in": "query",
+            "required": false,
             "type": "string"
           }
         ],
