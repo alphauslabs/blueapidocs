@@ -2460,6 +2460,7 @@
         "parameters": [
           {
             "name": "fieldMask",
+            "description": "Optional. Get only the value that set fieldMask.\n\nsee more info: https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/field_mask.proto",
             "in": "query",
             "required": false,
             "type": "string"
@@ -7918,6 +7919,7 @@
         },
         "status": {
           "type": "string",
+          "description": "done: Invoicing is complete.\nrunning: Invoicing in progress.\nfaild: Invoicing is failure.",
           "title": "invoice generate request status"
         }
       }
