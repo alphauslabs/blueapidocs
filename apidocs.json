@@ -9506,6 +9506,9 @@
         "aws": {
           "$ref": "#/definitions/apiawsCost"
         },
+        "awsForecast": {
+          "$ref": "#/definitions/coverAwsCostForecast"
+        },
         "gcp": {
           "$ref": "#/definitions/apigcpCost"
         },
@@ -9538,6 +9541,49 @@
           "items": {
             "$ref": "#/definitions/coverResourceData"
           }
+        }
+      }
+    },
+    "coverAwsCostForecast": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string",
+          "description": "For daily data, format is `yyyy-mm-dd`; for monthly, `yyyy-mm`."
+        },
+        "account": {
+          "type": "string",
+          "description": "The account being queried."
+        },
+        "productCode": {
+          "type": "string",
+          "title": "The product code for an AWS service"
+        },
+        "cost": {
+          "type": "number",
+          "format": "float",
+          "title": "Forcasted cost based on true cost (calculated)"
+        },
+        "lowerBound": {
+          "type": "number",
+          "format": "float"
+        },
+        "upperBound": {
+          "type": "number",
+          "format": "float"
+        },
+        "unblendedCost": {
+          "type": "number",
+          "format": "float",
+          "title": "Forcasted cost based on unblended cost"
+        },
+        "unblendedLowerBound": {
+          "type": "number",
+          "format": "float"
+        },
+        "unblendedUpperBound": {
+          "type": "number",
+          "format": "float"
         }
       }
     },
@@ -11593,6 +11639,10 @@
         "awsOptions": {
           "$ref": "#/definitions/v1GetCostUsageRequestAwsOptions",
           "description": "Optional. Valid only for the `aws` vendor. AWS-specific options."
+        },
+        "includeCostForecast": {
+          "type": "boolean",
+          "title": "Optional. If set to true, include cost forecast for current month"
         }
       }
     },
