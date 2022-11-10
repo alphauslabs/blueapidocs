@@ -4551,7 +4551,7 @@
               "type": "object",
               "properties": {
                 "options": {
-                  "$ref": "#/definitions/coverLayoutOptions"
+                  "type": "object"
                 },
                 "requests": {
                   "type": "array",
@@ -9850,17 +9850,6 @@
         }
       }
     },
-    "coverLayoutOptions": {
-      "type": "object",
-      "properties": {
-        "title": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        }
-      }
-    },
     "coverLayoutRequests": {
       "type": "object",
       "properties": {
@@ -10266,7 +10255,7 @@
           "type": "string"
         },
         "options": {
-          "$ref": "#/definitions/coverLayoutOptions"
+          "type": "object"
         },
         "requests": {
           "type": "array",
