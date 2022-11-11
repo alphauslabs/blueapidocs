@@ -9561,29 +9561,29 @@
         },
         "cost": {
           "type": "number",
-          "format": "float",
+          "format": "double",
           "title": "Forcasted cost based on true cost (calculated)"
         },
         "lowerBound": {
           "type": "number",
-          "format": "float"
+          "format": "double"
         },
         "upperBound": {
           "type": "number",
-          "format": "float"
+          "format": "double"
         },
         "unblendedCost": {
           "type": "number",
-          "format": "float",
+          "format": "double",
           "title": "Forcasted cost based on unblended cost"
         },
         "unblendedLowerBound": {
           "type": "number",
-          "format": "float"
+          "format": "double"
         },
         "unblendedUpperBound": {
           "type": "number",
-          "format": "float"
+          "format": "double"
         }
       }
     },
