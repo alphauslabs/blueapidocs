@@ -7933,7 +7933,7 @@
         },
         "status": {
           "type": "string",
-          "description": "done: Invoicing is complete.\nrunning: Invoicing in progress.\nfaild: Invoicing is failure.",
+          "description": "done: Invoicing is complete.\nrunning: Invoicing in progress.\nfailed: Invoicing is failure.",
           "title": "invoice generate request status"
         }
       }
