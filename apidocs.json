@@ -8705,6 +8705,10 @@
           "type": "string",
           "description": "For daily data, format is `yyyy-mm-dd`; for monthly, `yyyy-mm`."
         },
+        "invoiceMonth": {
+          "type": "string",
+          "description": "The invoice.month of the lineitem, if applicable."
+        },
         "service": {
           "type": "string",
           "description": "The service.Description of the lineitem, if applicable."
@@ -12439,6 +12443,10 @@
             "$ref": "#/definitions/v1ReadCostsRequestGcpOptionsFilters"
           },
           "description": "Optional. A list of filtering options. See [ReadCostsRequestGcpOptionsFilters] for more information on each filter item. Multiple filter items will use the logical 'or' operator, e.g. filter1 || filter2 || filter3, etc."
+        },
+        "includeInvoiceMonth": {
+          "type": "boolean",
+          "description": "Optional. If set to true, stream will include invoice month. Discarded when `groupByColumns` field is set to `none`."
         },
         "noCache": {
           "type": "boolean",
