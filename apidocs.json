@@ -8730,6 +8730,15 @@
           "format": "double",
           "description": "The usage.amount of the lineitem, if applicable."
         },
+        "usagePricingUnit": {
+          "type": "number",
+          "format": "double",
+          "description": "The usage.pricing_unit of the lineitem, if applicable."
+        },
+        "usagePricingAmount": {
+          "type": "string",
+          "description": "The usage.amount_in_pricing_units of the lineitem, if applicable."
+        },
         "baseCurrency": {
           "type": "string",
           "description": "The currency of the lineitem, if applicable."
