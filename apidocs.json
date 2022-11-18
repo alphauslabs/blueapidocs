@@ -8727,18 +8727,9 @@
         },
         "usageUnit": {
           "type": "string",
-          "description": "The usage.unit of the lineitem, if applicable."
-        },
-        "usageAmount": {
-          "type": "number",
-          "format": "double",
-          "description": "The usage.amount of the lineitem, if applicable."
-        },
-        "usagePricingUnit": {
-          "type": "string",
           "description": "The usage.pricing_unit of the lineitem, if applicable."
         },
-        "usagePricingAmount": {
+        "usageAmount": {
           "type": "number",
           "format": "double",
           "description": "The usage.amount_in_pricing_units of the lineitem, if applicable."
