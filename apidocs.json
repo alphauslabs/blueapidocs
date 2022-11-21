@@ -7155,10 +7155,6 @@
                   "type": "string",
                   "description": "Required. The resource Id."
                 },
-                "resourceType": {
-                  "type": "string",
-                  "description": "Required. The recommended resource type."
-                },
                 "region": {
                   "type": "string",
                   "description": "Required. Resource region."
@@ -9957,25 +9953,6 @@
         }
       }
     },
-    "coverRecommendationDetail": {
-      "type": "object",
-      "properties": {
-        "recommendedResourceType": {
-          "type": "string"
-        },
-        "estimatedCost": {
-          "type": "number",
-          "format": "double"
-        },
-        "estimatedSavings": {
-          "type": "number",
-          "format": "double"
-        },
-        "region": {
-          "type": "string"
-        }
-      }
-    },
     "coverRegistrationStatus": {
       "type": "object",
       "properties": {
@@ -10002,20 +9979,34 @@
         "resourceId": {
           "type": "string"
         },
-        "resourceName": {
+        "region": {
+          "type": "string"
+        },
+        "recommendation": {
           "type": "string"
         },
         "resourceType": {
           "type": "string"
         },
-        "consumedService": {
+        "recommendedResourceType": {
           "type": "string"
         },
-        "currentPrice": {
+        "currentCost": {
           "type": "number",
           "format": "double"
         },
-        "region": {
+        "estimatedCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "estimatedSavings": {
+          "type": "number",
+          "format": "double"
+        },
+        "resourceName": {
+          "type": "string"
+        },
+        "consumedService": {
           "type": "string"
         },
         "maxCpuUtilization": {
@@ -10032,15 +10023,6 @@
         },
         "networkCapacity": {
           "type": "string"
-        },
-        "rightSizingType": {
-          "type": "string"
-        },
-        "recommendationDetail": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/coverRecommendationDetail"
-          }
         },
         "status": {
           "type": "string"
@@ -12590,9 +12572,6 @@
           "type": "string"
         },
         "resourceId": {
-          "type": "string"
-        },
-        "resourceType": {
           "type": "string"
         },
         "region": {
