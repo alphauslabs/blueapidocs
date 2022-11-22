@@ -8721,6 +8721,14 @@
           "type": "string",
           "description": "The location.zone of the lineitem, if applicable."
         },
+        "creditsType": {
+          "type": "string",
+          "description": "The credits.type of the lineitem, if applicable."
+        },
+        "creditsName": {
+          "type": "string",
+          "description": "The credits.name of the lineitem, if applicable."
+        },
         "usageUnit": {
           "type": "string",
           "description": "The usage.pricing_unit of the lineitem, if applicable."
