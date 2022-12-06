@@ -7251,6 +7251,116 @@
         ]
       }
     },
+    "/v1/{vendor}/tags": {
+      "get": {
+        "summary": "WORK-IN-PROGRESS: Lists all vendor tags.",
+        "operationId": "Cost_ListTags",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/apiCostTag"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of apiCostTag"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "groupId",
+            "description": "Optional. The billing group internal id. Only valid for Ripple users.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "fieldMask",
+            "description": "Optional.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      }
+    },
+    "/v1/{vendor}/tags/groups/{groupId}": {
+      "get": {
+        "summary": "WORK-IN-PROGRESS: Lists all vendor tags.",
+        "operationId": "Cost_ListTags2",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/apiCostTag"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of apiCostTag"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "groupId",
+            "description": "Optional. The billing group internal id. Only valid for Ripple users.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "fieldMask",
+            "description": "Optional.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      }
+    },
     "/v1/{vendor}/usagecostsdrift:read": {
       "post": {
         "summary": "Returns a list of accounts that have been updated after invoice along with the differences in costs, if any. Only available in Ripple.",
@@ -7614,6 +7724,34 @@
           "items": {
             "$ref": "#/definitions/apiMonthlyBudget"
           }
+        }
+      }
+    },
+    "apiCostTag": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The costtag id."
+        },
+        "vendor": {
+          "type": "string",
+          "title": "The vendor"
+        },
+        "orgId": {
+          "type": "string",
+          "description": "The parent organization id."
+        },
+        "billingInternalId": {
+          "type": "string",
+          "description": "The parent billing internal id."
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/blueapiapiKeyValue"
+          },
+          "description": "The attributes (key/value pair) of the costtag."
         }
       }
     },
