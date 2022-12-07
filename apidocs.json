@@ -10752,6 +10752,13 @@
           },
           "title": "List of all accounts"
         },
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiCostTag"
+          },
+          "title": "List of all tags"
+        },
         "invoiceSettings": {
           "$ref": "#/definitions/v1BillingGroupInvoiceSettings",
           "description": "The invoice settings for this billing group."
