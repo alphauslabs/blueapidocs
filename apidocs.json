@@ -7253,7 +7253,7 @@
     },
     "/v1/{vendor}/tags": {
       "get": {
-        "summary": "WORK-IN-PROGRESS: Lists all vendor tags.",
+        "summary": "Lists all vendor tags.",
         "operationId": "Cost_ListTags",
         "responses": {
           "200": {
@@ -7308,7 +7308,7 @@
     },
     "/v1/{vendor}/tags/groups/{groupId}": {
       "get": {
-        "summary": "WORK-IN-PROGRESS: Lists all vendor tags.",
+        "summary": "Lists all vendor tags.",
         "operationId": "Cost_ListTags2",
         "responses": {
           "200": {
