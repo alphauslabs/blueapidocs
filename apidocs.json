@@ -7744,11 +7744,15 @@
         },
         "vendor": {
           "type": "string",
-          "title": "The vendor"
+          "description": "The vendor."
         },
         "accountId": {
           "type": "string",
-          "title": "The account id"
+          "description": "The account id."
+        },
+        "logic": {
+          "type": "string",
+          "title": "The logic.(and/or)"
         },
         "tags": {
           "type": "array",
