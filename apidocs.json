@@ -7734,10 +7734,6 @@
           "type": "string",
           "description": "The costtag id."
         },
-        "vendor": {
-          "type": "string",
-          "title": "The vendor"
-        },
         "orgId": {
           "type": "string",
           "description": "The parent organization id."
@@ -7745,6 +7741,14 @@
         "billingInternalId": {
           "type": "string",
           "description": "The parent billing internal id."
+        },
+        "vendor": {
+          "type": "string",
+          "title": "The vendor"
+        },
+        "accountId": {
+          "type": "string",
+          "title": "The account id"
         },
         "tags": {
           "type": "array",
