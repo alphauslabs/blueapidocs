@@ -11290,6 +11290,12 @@
         },
         "name": {
           "type": "string"
+        },
+        "costgroups": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "title": "Request message for CreateMember"
@@ -12720,8 +12726,8 @@
     "v1ResetUserPasswordResponse": {
       "type": "object",
       "properties": {
-        "userId": {
-          "type": "string"
+        "userData": {
+          "$ref": "#/definitions/coverUserData"
         }
       },
       "title": "Response message for ResetUserPassword"
@@ -12890,8 +12896,8 @@
     "v1UpdateUserAppThemeResponse": {
       "type": "object",
       "properties": {
-        "appTheme": {
-          "type": "string"
+        "userData": {
+          "$ref": "#/definitions/coverUserData"
         }
       },
       "title": "Response message for UpdateUserAppTheme"
@@ -12911,11 +12917,8 @@
     "v1UpdateUserAttributesResponse": {
       "type": "object",
       "properties": {
-        "attributes": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
+        "userData": {
+          "$ref": "#/definitions/coverUserData"
         }
       },
       "title": "Response message for UpdateUserAttributes"
@@ -12932,8 +12935,8 @@
     "v1UpdateUserAvatarResponse": {
       "type": "object",
       "properties": {
-        "avatar": {
-          "type": "string"
+        "userData": {
+          "$ref": "#/definitions/coverUserData"
         }
       },
       "title": "Response message for UpdateUserAvatar"
@@ -12950,8 +12953,8 @@
     "v1UpdateUserColorThemeResponse": {
       "type": "object",
       "properties": {
-        "colorTheme": {
-          "type": "string"
+        "userData": {
+          "$ref": "#/definitions/coverUserData"
         }
       },
       "title": "Response message for UpdateUserColorTheme"
@@ -12968,8 +12971,8 @@
     "v1UpdateUserEmailResponse": {
       "type": "object",
       "properties": {
-        "email": {
-          "type": "string"
+        "userData": {
+          "$ref": "#/definitions/coverUserData"
         }
       },
       "title": "Response message for UpdateUserEmail"
@@ -12986,8 +12989,8 @@
     "v1UpdateUserIconResponse": {
       "type": "object",
       "properties": {
-        "icon": {
-          "type": "string"
+        "userData": {
+          "$ref": "#/definitions/coverUserData"
         }
       },
       "title": "Response message for UpdateUserIcon"
@@ -13004,8 +13007,8 @@
     "v1UpdateUserLocaleResponse": {
       "type": "object",
       "properties": {
-        "locale": {
-          "type": "string"
+        "userData": {
+          "$ref": "#/definitions/coverUserData"
         }
       },
       "title": "Response message for UpdateUserLocale"
@@ -13022,8 +13025,8 @@
     "v1UpdateUserMainViewResponse": {
       "type": "object",
       "properties": {
-        "viewId": {
-          "type": "string"
+        "userData": {
+          "$ref": "#/definitions/coverUserData"
         }
       },
       "title": "Response message for UpdateUserMainView"
@@ -13040,8 +13043,8 @@
     "v1UpdateUserNameResponse": {
       "type": "object",
       "properties": {
-        "name": {
-          "type": "string"
+        "userData": {
+          "$ref": "#/definitions/coverUserData"
         }
       },
       "title": "Response message for UpdateUserName"
@@ -13099,8 +13102,8 @@
     "v1UpdateUserTimezoneResponse": {
       "type": "object",
       "properties": {
-        "timezone": {
-          "type": "string"
+        "userData": {
+          "$ref": "#/definitions/coverUserData"
         }
       },
       "title": "Response message for UpdateUserTimezone"
