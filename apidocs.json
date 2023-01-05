@@ -5102,22 +5102,13 @@
     },
     "/v1/{vendor}/accounts": {
       "get": {
-        "summary": "Lists all vendor accounts.",
-        "operationId": "Cost_ListAccounts",
+        "summary": "Get list of registered accounts",
+        "operationId": "Cover_GetAccounts",
         "responses": {
           "200": {
-            "description": "A successful response.(streaming responses)",
+            "description": "A successful response.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "result": {
-                  "$ref": "#/definitions/blueapiapiAccount"
-                },
-                "error": {
-                  "$ref": "#/definitions/googlerpcStatus"
-                }
-              },
-              "title": "Stream result of blueapiapiAccount"
+              "$ref": "#/definitions/v1GetAccountsResponse"
             }
           },
           "default": {
@@ -5130,28 +5121,14 @@
         "parameters": [
           {
             "name": "vendor",
-            "description": "Required. At the moment, `aws` and `gcp` is supported.",
+            "description": "Required. Cloud vendor.",
             "in": "path",
             "required": true,
-            "type": "string"
-          },
-          {
-            "name": "groupId",
-            "description": "Optional. The billing group internal id. Only valid for Ripple users.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "fieldMask",
-            "description": "Optional.",
-            "in": "query",
-            "required": false,
             "type": "string"
           }
         ],
         "tags": [
-          "Cost"
+          "Cover"
         ]
       },
       "post": {
@@ -6875,22 +6852,13 @@
     },
     "/v1/{vendor}/payers": {
       "get": {
-        "summary": "Lists vendor payer accounts. For AWS, these are management accounts (formerly known as master or payer accounts); for Azure, these are subscriptions, for GCP, these are projects.",
-        "operationId": "Cost_ListPayerAccounts",
+        "summary": "Get list of all payers",
+        "operationId": "Cover_GetPayers",
         "responses": {
           "200": {
-            "description": "A successful response.(streaming responses)",
+            "description": "A successful response.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "result": {
-                  "$ref": "#/definitions/blueapiapiAccount"
-                },
-                "error": {
-                  "$ref": "#/definitions/googlerpcStatus"
-                }
-              },
-              "title": "Stream result of blueapiapiAccount"
+              "$ref": "#/definitions/v1GetPayersResponse"
             }
           },
           "default": {
@@ -6903,24 +6871,24 @@
         "parameters": [
           {
             "name": "vendor",
-            "description": "Required. At the moment, only `aws` is supported.",
+            "description": "Required. Cloud vendor.",
             "in": "path",
             "required": true,
             "type": "string"
           }
         ],
         "tags": [
-          "Cost"
+          "Cover"
         ]
       },
       "post": {
-        "summary": "DEPRECATED: Registers a vendor payer account. This is now deprecated for AWS payer accounts. To register an AWS payer account, check out the 'CreateDefaultCostAccess' API.",
-        "operationId": "Cost_CreatePayerAccount",
+        "summary": "Assign payer to a linked account",
+        "operationId": "Cover_AssignPayer",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/blueapiapiAccount"
+              "$ref": "#/definitions/v1AssignPayerResponse"
             }
           },
           "default": {
@@ -6933,7 +6901,7 @@
         "parameters": [
           {
             "name": "vendor",
-            "description": "Required. At the moment, only `aws` is supported.",
+            "description": "Required. Cloud vendor.",
             "in": "path",
             "required": true,
             "type": "string"
@@ -6945,17 +6913,21 @@
             "schema": {
               "type": "object",
               "properties": {
-                "awsOptions": {
-                  "$ref": "#/definitions/v1CreatePayerAccountRequestAwsOptions",
-                  "description": "Required for the `aws` vendor. AWS-specific options."
+                "accountId": {
+                  "type": "string",
+                  "description": "Required. Account Id."
+                },
+                "payerId": {
+                  "type": "string",
+                  "description": "Required. The Payer Id."
                 }
               },
-              "description": "Request message for the Cost.CreatePayerAccount rpc."
+              "title": "Request message for AssignPayer"
             }
           }
         ],
         "tags": [
-          "Cost"
+          "Cover"
         ]
       }
     },
@@ -7350,6 +7322,38 @@
               },
               "title": "Request message for TerminateResource"
             }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
+    "/v1/{vendor}/services": {
+      "get": {
+        "summary": "Get list of supported services",
+        "operationId": "Cover_GetServices",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetServicesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. Cloud vendor.",
+            "in": "path",
+            "required": true,
+            "type": "string"
           }
         ],
         "tags": [
@@ -10908,6 +10912,18 @@
       },
       "title": "Response message for AssignCostGroupMember"
     },
+    "v1AssignPayerResponse": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "string"
+        },
+        "payerId": {
+          "type": "string"
+        }
+      },
+      "title": "Response message for AssignPayer"
+    },
     "v1AwsDailyRunHistory": {
       "type": "object",
       "properties": {
@@ -11905,6 +11921,18 @@
       },
       "description": "Response message for the Admin.GetAccountGroup rpc."
     },
+    "v1GetAccountsResponse": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "Response message for GetAccounts"
+    },
     "v1GetBillingGroupResponse": {
       "type": "object",
       "properties": {
@@ -12286,6 +12314,18 @@
       },
       "description": "Response message for the Cost.GetPayerAccountImportHistory rpc."
     },
+    "v1GetPayersResponse": {
+      "type": "object",
+      "properties": {
+        "payerId": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "Response message for GetPayers"
+    },
     "v1GetRecommendationsRequestAwsOptions": {
       "type": "object",
       "properties": {
@@ -12357,6 +12397,18 @@
         }
       },
       "title": "Response message for GetRightSizingRecommendation"
+    },
+    "v1GetServicesResponse": {
+      "type": "object",
+      "properties": {
+        "services": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "Response message for GetServices"
     },
     "v1GetUserDetailsResponse": {
       "type": "object",
