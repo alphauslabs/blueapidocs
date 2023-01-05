@@ -3354,6 +3354,10 @@
                     "type": "string"
                   },
                   "title": "Optional. You can set it to a list of billing internal group id"
+                },
+                "enabled": {
+                  "type": "boolean",
+                  "description": "Required. You can set display or hiding.\n\nIf true, Hiding Invoice. If false, Display Invoice."
                 }
               },
               "description": "Request message for the UpdateInvoicePreviews rpc."
