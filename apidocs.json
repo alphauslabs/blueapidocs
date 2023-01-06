@@ -4153,37 +4153,6 @@
         ]
       }
     },
-    "/v1/members/{userId}/activation": {
-      "get": {
-        "summary": "Check user activation status",
-        "operationId": "Cover_CheckUserActivation",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1CheckUserActivationResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "userId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Cover"
-        ]
-      }
-    },
     "/v1/members/{userId}/costgroup": {
       "get": {
         "summary": "Get the cost group to which the member is attached",
@@ -10912,6 +10881,9 @@
         "userId": {
           "type": "string"
         },
+        "previousPassword": {
+          "type": "string"
+        },
         "password": {
           "type": "string"
         },
@@ -11182,18 +11154,6 @@
           "description": "The current state of this schedule. Normally set to \"OK\", or empty if no issues. Otherwise, will contain an error string."
         }
       }
-    },
-    "v1CheckUserActivationResponse": {
-      "type": "object",
-      "properties": {
-        "userId": {
-          "type": "string"
-        },
-        "activated": {
-          "type": "boolean"
-        }
-      },
-      "title": "Response message for CheckUserActivation"
     },
     "v1CloudWatchMetricsStream": {
       "type": "object",
@@ -11982,7 +11942,7 @@
     "v1GetAccountsResponse": {
       "type": "object",
       "properties": {
-        "accountId": {
+        "accounts": {
           "type": "array",
           "items": {
             "type": "string"
@@ -12375,7 +12335,7 @@
     "v1GetPayersResponse": {
       "type": "object",
       "properties": {
-        "payerId": {
+        "payers": {
           "type": "array",
           "items": {
             "type": "string"
