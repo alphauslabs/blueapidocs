@@ -11289,6 +11289,9 @@
       "properties": {
         "id": {
           "type": "string"
+        },
+        "createTime": {
+          "type": "string"
         }
       }
     },
@@ -11534,24 +11537,29 @@
       "type": "object",
       "properties": {
         "accountId": {
-          "type": "string"
+          "type": "string",
+          "description": "Optional. The account to which the modifier is applied. A comma-separated list of accounts is also valid."
         },
         "groupId": {
-          "type": "string"
+          "type": "string",
+          "description": "Optional. The group to which the modifier is applied. Accepts billing internal ids. A comma-separated list of billing internal ids is also valid."
         },
         "payerId": {
-          "type": "string"
+          "type": "string",
+          "description": "Optional. The payer id to which the modifier is applied. A comma-separated list of payer ids is also valid."
         },
         "qualifiers": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/AwsOptionsQualifier"
-          }
+          },
+          "description": "Optional. Conditional qualifiers to further filter the modifier targets."
         },
         "single": {
           "$ref": "#/definitions/AwsOptionsSingle"
         }
-      }
+      },
+      "description": "AWS-specific options definition."
     },
     "v1CreateCalculatorCostModifierResponse": {
       "type": "object",
