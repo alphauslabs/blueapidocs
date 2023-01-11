@@ -5879,6 +5879,122 @@
         ]
       }
     },
+    "/v1/{vendor}/calculator/config/costmods": {
+      "get": {
+        "summary": "WORK-IN-PROGRESS: Lists the cost calculator's cost modifiers. At the moment, the supported {vendor} is 'aws'. Only available in Ripple.",
+        "operationId": "Cost_ListCalculatorCostModifiers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListCalculatorCostModifiersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      },
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Creates a cost modifier. A cost modifier allows you to manipulate the cost per lineitem. At the moment, the supported {vendor} is 'aws'. Only available in Ripple.",
+        "operationId": "Cost_CreateCalculatorCostModifier",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateCalculatorCostModifierResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "awsOptions": {
+                  "$ref": "#/definitions/v1CreateCalculatorCostModifierRequestAwsOptions",
+                  "description": "Required if `{vendor}` is `aws`. AWS-specific options."
+                }
+              },
+              "description": "Request message for the Cost.CreateCalculatorCostModifier rpc."
+            }
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      }
+    },
+    "/v1/{vendor}/calculator/config/costmods/{id}": {
+      "delete": {
+        "summary": "WORK-IN-PROGRESS: Deletes a cost modifier. At the moment, the supported {vendor} is 'aws'. Only available in Ripple.",
+        "operationId": "Cost_DeleteCalculatorCostModifier",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "Required. The id of the modifier to delete.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      }
+    },
     "/v1/{vendor}/calculator/running:read": {
       "post": {
         "summary": "Lists the vendor calculator's queued accounts for calculation. If result is non-empty, it means calculation is still in progress for the returned accounts. Only available in Ripple.",
@@ -5994,7 +6110,7 @@
                   "description": "Optional. The UTC date to end the streaming data. If not set, current date will be used. Format: `yyyymmdd`."
                 },
                 "awsOptions": {
-                  "$ref": "#/definitions/ReadCostAttributesRequestAwsOptions",
+                  "$ref": "#/definitions/v1ReadCostAttributesRequestAwsOptions",
                   "description": "Optional. Valid only for the `aws` vendor. AWS-specific options."
                 }
               },
@@ -7726,6 +7842,28 @@
         }
       }
     },
+    "AwsOptionsQualifier": {
+      "type": "object",
+      "properties": {
+        "and": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "AwsOptionsSingle": {
+      "type": "object",
+      "properties": {
+        "modifier": {
+          "type": "string"
+        },
+        "descriptionModifier": {
+          "type": "string"
+        }
+      }
+    },
     "IdentityProvidersamlInfo": {
       "type": "object",
       "properties": {
@@ -7769,15 +7907,6 @@
         },
         "saml": {
           "$ref": "#/definitions/IdentityProvidersamlInfo"
-        }
-      }
-    },
-    "ReadCostAttributesRequestAwsOptions": {
-      "type": "object",
-      "properties": {
-        "dimensions": {
-          "type": "string",
-          "description": "Optional. A comma-separated list of dimensions to query. Valid values are `productCode`, `serviceCode`, `region`, `zone`, `usageType`, `instanceType`, `operation`, `invoiceId`, `description`, `resourceId`, `tags`, and `costCategories`. Sequence doesn't matter. An empty value implies all attributes will be returned."
         }
       }
     },
@@ -11155,6 +11284,14 @@
         }
       }
     },
+    "v1CalculatorCostModifier": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    },
     "v1CloudWatchMetricsStream": {
       "type": "object",
       "properties": {
@@ -11392,6 +11529,38 @@
         }
       },
       "title": "Specific settings per vendor"
+    },
+    "v1CreateCalculatorCostModifierRequestAwsOptions": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "string"
+        },
+        "groupId": {
+          "type": "string"
+        },
+        "payerId": {
+          "type": "string"
+        },
+        "qualifiers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AwsOptionsQualifier"
+          }
+        },
+        "single": {
+          "$ref": "#/definitions/AwsOptionsSingle"
+        }
+      }
+    },
+    "v1CreateCalculatorCostModifierResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "description": "Response message for the Cost.CreateCalculatorCostModifier rpc."
     },
     "v1CreateCloudWatchMetricsStreamRequest": {
       "type": "object",
@@ -12645,6 +12814,18 @@
       },
       "description": "Response message for the Cost.ListCalculationsSchedules rpc."
     },
+    "v1ListCalculatorCostModifiersResponse": {
+      "type": "object",
+      "properties": {
+        "aws": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1CalculatorCostModifier"
+          }
+        }
+      },
+      "description": "Response message for the Cost.ListCalculatorCostModifiers rpc."
+    },
     "v1ListCalculatorRunningAccountsResponse": {
       "type": "object",
       "properties": {
@@ -12857,6 +13038,15 @@
         "toCurrency": {
           "type": "string",
           "description": "Optional. Set to US dollars (USD) by default (AWS CUR's default currency). You can set it to the desired three-letter currency symbol (i.e. JPY, EUR, GBP), in which case, it will use the latest exchange rates provided by https://fixer.io. If you prefer a custom exchange rate, you can append the rate to the currency's three-letter symbol. For example, `JPY:110.622` for the Japanese Yen. Note that the exchange rate should be against the US dollar (USD)."
+        }
+      }
+    },
+    "v1ReadCostAttributesRequestAwsOptions": {
+      "type": "object",
+      "properties": {
+        "dimensions": {
+          "type": "string",
+          "description": "Optional. A comma-separated list of dimensions to query. Valid values are `productCode`, `serviceCode`, `region`, `zone`, `usageType`, `instanceType`, `operation`, `invoiceId`, `description`, `resourceId`, `tags`, and `costCategories`. Sequence doesn't matter. An empty value implies all attributes will be returned."
         }
       }
     },
