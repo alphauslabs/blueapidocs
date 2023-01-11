@@ -7851,18 +7851,38 @@
             "type": "string"
           }
         }
-      }
+      },
+      "description": "A map of \"key:value\" attribute filters. The key indicates the column name while the value is the filter value prefixed by either \"eq:\" (equal), \"re:\" (regular expressions based on https://github.com/google/re2), or \"!re:\" (reverse \"re:\"). No prefix is the same as \"eq:\". Multiple map items will use the logical 'and' operator, e.g. mapfilter1 \u0026\u0026 mapfilter2 \u0026\u0026 mapfilter3, etc.\n\nFor example, if you like apply your modifiers to `productCode:AmazonEC2`, set to `{\"productCode\":\"eq:AmazonEC2\"}` or `{\"productCode\":\"AmazonEC2\"}`. You can also use a regular expression like `{\"productCode\":\"re:AmazonEC2|AmazonRDS\"}`, which means apply to all AmazonEC2 or AmazonRDS lineitems. Or reverse regexp, such as `{\"productCode\":\"!re:^AmazonEC2$\"}`, which means apply to all items except `AmazonEC2`. Valid keys are `productCode`, `serviceCode`, `region`, `zone`, `usageType`, `instanceType`, `operation`, `invoiceId`, `description`, and `resourceId`."
     },
-    "AwsOptionsSingle": {
+    "AwsOptionsSimple": {
       "type": "object",
       "properties": {
         "modifier": {
-          "type": "string"
+          "type": "string",
+          "description": "Modulo `%` is also supported. If both sides are integers, the resulting value is also an integer. Otherwise, the result will be a floating point number.\nExamples:\n `3 % 2` -\u003e 1\n `7.8 % 5` -\u003e 2.8\n\nNegation negates the number on the right.\nExamples:\n `3 + -2` -\u003e 1\n `-(1 + 2) -\u003e -3`\n\nYou can use the `{{cost}}` variable to reference the original lineitem cost. For example, if you want to add $10 to the cost, you can use the formula: `{{cost}} + 10`. For trueunblended-type billing groups, `{{cost}}` refers to the calculated trueunblended cost.\n\nThe `{{usage}}` variable can also refer to the usage amount of a lineitem. For example, if you want to use a different rate of $1.5, you can use the formula: `{{usage}} * 1.5`.",
+          "title": "Required. A simple arithmetic-based modifier. Supported operators are `+`, `-`, `*`, and `/`. Operator precedence follows the [C/C++](https://en.cppreference.com/w/cpp/language/operator_precedence) rules. You can also use parenthesis `()` to control precedence.\nExamples:\n `1 + 2 * 3`\n `(1 + 2) * 3`"
         },
-        "descriptionModifier": {
-          "type": "string"
+        "descriptionPrefix": {
+          "type": "string",
+          "description": "Optional. Add a prefix to the original description."
+        },
+        "descriptionSuffix": {
+          "type": "string",
+          "description": "Optional. Add a suffix to the original description."
+        },
+        "descriptionReplace": {
+          "type": "string",
+          "description": "Optional. Replace the original description with the input."
+        },
+        "descriptionReplaceMatch": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Replace matching occurences with the input. The key part is the regular expression matcher based on https://github.com/google/re2, while the value is the replacement."
         }
-      }
+      },
+      "description": "A simple modifier."
     },
     "IdentityProvidersamlInfo": {
       "type": "object",
@@ -11553,13 +11573,13 @@
           "items": {
             "$ref": "#/definitions/AwsOptionsQualifier"
           },
-          "description": "Optional. Conditional qualifiers to further filter the modifier targets."
+          "description": "Optional. Conditional qualifiers to further filter the modifier targets. Multiple qualifiers use the the logical `or` operator; `qualifiers[0] || qualifiers[1] || qualifiers[n]`."
         },
-        "single": {
-          "$ref": "#/definitions/AwsOptionsSingle"
+        "simple": {
+          "$ref": "#/definitions/AwsOptionsSimple"
         }
       },
-      "description": "AWS-specific options definition."
+      "description": "AWS-specific options definition. For overlapping cost modifier targets, the latest modifier will be applied. For example, you created a modifier for a specific account. Then you created another modifier for a billing group that includes that same account. In that case, the modifier for the billing group will be applied to the first account."
     },
     "v1CreateCalculatorCostModifierResponse": {
       "type": "object",
