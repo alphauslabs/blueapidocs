@@ -7860,7 +7860,7 @@
         "modifier": {
           "type": "string",
           "description": "Modulo `%` is also supported. If both sides are integers, the resulting value is also an integer. Otherwise, the result will be a floating point number.\nExamples:\n `3 % 2` -\u003e 1\n `7.8 % 5` -\u003e 2.8\n\nNegation negates the number on the right.\nExamples:\n `3 + -2` -\u003e 1\n `-(1 + 2) -\u003e -3`\n\nYou can use the `{{cost}}` variable to reference the original lineitem cost. For example, if you want to add $10 to the cost, you can use the formula: `{{cost}} + 10`. For trueunblended-type billing groups, `{{cost}}` refers to the calculated trueunblended cost.\n\nThe `{{usage}}` variable can also refer to the usage amount of a lineitem. For example, if you want to use a different rate of $1.5, you can use the formula: `{{usage}} * 1.5`.",
-          "title": "Required. A simple arithmetic-based modifier. Supported operators are `+`, `-`, `*`, and `/`. Operator precedence follows the [C/C++](https://en.cppreference.com/w/cpp/language/operator_precedence) rules. You can also use parenthesis `()` to control precedence.\nExamples:\n `1 + 2 * 3`\n `(1 + 2) * 3`"
+          "title": "Required. A simple arithmetic-based modifier. Supported operators are `+`, `-`, `*`, and `/`. Operator precedence follows the C/C++ rules described in https://en.cppreference.com/w/cpp/language/operator_precedence. You can also use parenthesis `()` to control precedence.\nExamples:\n `1 + 2 * 3`\n `(1 + 2) * 3`"
         },
         "descriptionPrefix": {
           "type": "string",
@@ -11573,7 +11573,7 @@
           "items": {
             "$ref": "#/definitions/AwsOptionsQualifier"
           },
-          "description": "Optional. Conditional qualifiers to further filter the modifier targets. Multiple qualifiers use the the logical `or` operator; `qualifiers[0] || qualifiers[1] || qualifiers[n]`."
+          "description": "Optional. Conditional qualifiers to further filter the modifier targets. Multiple qualifiers use the logical `or` operator; `qualifiers[0] || qualifiers[1] || qualifiers[n]`."
         },
         "simple": {
           "$ref": "#/definitions/AwsOptionsSimple"
