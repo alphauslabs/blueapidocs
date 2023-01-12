@@ -7578,22 +7578,13 @@
     },
     "/v1/{vendor}/tags": {
       "get": {
-        "summary": "Lists all vendor tags.",
-        "operationId": "Cost_ListTags",
+        "summary": "Get list of available tags",
+        "operationId": "Cover_GetTags",
         "responses": {
           "200": {
-            "description": "A successful response.(streaming responses)",
+            "description": "A successful response.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "result": {
-                  "$ref": "#/definitions/apiCostTag"
-                },
-                "error": {
-                  "$ref": "#/definitions/googlerpcStatus"
-                }
-              },
-              "title": "Stream result of apiCostTag"
+              "$ref": "#/definitions/v1GetTagsResponse"
             }
           },
           "default": {
@@ -7606,28 +7597,14 @@
         "parameters": [
           {
             "name": "vendor",
-            "description": "Required. At the moment, only `aws` is supported.",
+            "description": "Required. Cloud vendor.",
             "in": "path",
             "required": true,
-            "type": "string"
-          },
-          {
-            "name": "groupId",
-            "description": "Optional. The billing group internal id. Only valid for Ripple users.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "fieldMask",
-            "description": "Optional.",
-            "in": "query",
-            "required": false,
             "type": "string"
           }
         ],
         "tags": [
-          "Cost"
+          "Cover"
         ]
       }
     },
@@ -10967,6 +10944,10 @@
           "type": "string",
           "description": "The account type. Payer or linked account."
         },
+        "payerId": {
+          "type": "string",
+          "description": "The payer account of the account."
+        },
         "roleArn": {
           "type": "string",
           "description": "The role ARN that provides the cross-account access permissions."
@@ -12644,6 +12625,18 @@
         }
       },
       "title": "Response message for GetServices"
+    },
+    "v1GetTagsResponse": {
+      "type": "object",
+      "properties": {
+        "tags": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "Response message for GetTags"
     },
     "v1GetUserDetailsResponse": {
       "type": "object",
