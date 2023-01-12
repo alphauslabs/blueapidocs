@@ -5943,7 +5943,7 @@
               "type": "object",
               "properties": {
                 "awsOptions": {
-                  "$ref": "#/definitions/v1CreateCalculatorCostModifierRequestAwsOptions",
+                  "$ref": "#/definitions/v1CalculatorCostModifierAwsOptions",
                   "description": "Required if `{vendor}` is `aws`. AWS-specific options."
                 }
               },
@@ -6110,7 +6110,7 @@
                   "description": "Optional. The UTC date to end the streaming data. If not set, current date will be used. Format: `yyyymmdd`."
                 },
                 "awsOptions": {
-                  "$ref": "#/definitions/v1ReadCostAttributesRequestAwsOptions",
+                  "$ref": "#/definitions/ReadCostAttributesRequestAwsOptions",
                   "description": "Optional. Valid only for the `aws` vendor. AWS-specific options."
                 }
               },
@@ -7842,7 +7842,7 @@
         }
       }
     },
-    "AwsOptionsQualifier": {
+    "CalculatorCostModifierAwsOptionsQualifier": {
       "type": "object",
       "properties": {
         "and": {
@@ -7854,7 +7854,7 @@
       },
       "description": "A map of \"key:value\" attribute filters. The key indicates the column name while the value is the filter value prefixed by either \"eq:\" (equal), \"re:\" (regular expressions based on https://github.com/google/re2), or \"!re:\" (reverse \"re:\"). No prefix is the same as \"eq:\". Multiple map items will use the logical 'and' operator, e.g. mapfilter1 \u0026\u0026 mapfilter2 \u0026\u0026 mapfilter3, etc.\n\nFor example, if you like apply your modifiers to `productCode:AmazonEC2`, set to `{\"productCode\":\"eq:AmazonEC2\"}` or `{\"productCode\":\"AmazonEC2\"}`. You can also use a regular expression like `{\"productCode\":\"re:AmazonEC2|AmazonRDS\"}`, which means apply to all AmazonEC2 or AmazonRDS lineitems. Or reverse regexp, such as `{\"productCode\":\"!re:^AmazonEC2$\"}`, which means apply to all items except `AmazonEC2`. Valid keys are `productCode`, `serviceCode`, `region`, `zone`, `usageType`, `instanceType`, `operation`, `invoiceId`, `description`, and `resourceId`."
     },
-    "AwsOptionsSimple": {
+    "CalculatorCostModifierAwsOptionsSimple": {
       "type": "object",
       "properties": {
         "modifier": {
@@ -7911,6 +7911,15 @@
         },
         "saml": {
           "$ref": "#/definitions/IdentityProvidersamlInfo"
+        }
+      }
+    },
+    "ReadCostAttributesRequestAwsOptions": {
+      "type": "object",
+      "properties": {
+        "dimensions": {
+          "type": "string",
+          "description": "Optional. A comma-separated list of dimensions to query. Valid values are `productCode`, `serviceCode`, `region`, `zone`, `usageType`, `instanceType`, `operation`, `invoiceId`, `description`, `resourceId`, `tags`, and `costCategories`. Sequence doesn't matter. An empty value implies all attributes will be returned."
         }
       }
     },
@@ -11320,8 +11329,39 @@
         },
         "createTime": {
           "type": "string"
+        },
+        "modifier": {
+          "$ref": "#/definitions/v1CalculatorCostModifierAwsOptions"
         }
       }
+    },
+    "v1CalculatorCostModifierAwsOptions": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "string",
+          "description": "Optional. The account to which the modifier is applied. A comma-separated list of accounts is also valid."
+        },
+        "groupId": {
+          "type": "string",
+          "description": "Optional. The group to which the modifier is applied. Accepts billing internal ids. A comma-separated list of billing internal ids is also valid."
+        },
+        "payerId": {
+          "type": "string",
+          "description": "Optional. The payer id to which the modifier is applied. A comma-separated list of payer ids is also valid."
+        },
+        "qualifiers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CalculatorCostModifierAwsOptionsQualifier"
+          },
+          "description": "Optional. Conditional qualifiers to further filter the modifier targets. Multiple qualifiers use the logical `or` operator; `qualifiers[0] || qualifiers[1] || qualifiers[n]`."
+        },
+        "simple": {
+          "$ref": "#/definitions/CalculatorCostModifierAwsOptionsSimple"
+        }
+      },
+      "description": "AWS-specific options definition. For overlapping cost modifier targets, the latest modifier will be applied. For example, you created a modifier for a specific account. Then you created another modifier for a billing group that includes that same account. In that case, the modifier for the billing group will be applied to the first account."
     },
     "v1CloudWatchMetricsStream": {
       "type": "object",
@@ -11560,34 +11600,6 @@
         }
       },
       "title": "Specific settings per vendor"
-    },
-    "v1CreateCalculatorCostModifierRequestAwsOptions": {
-      "type": "object",
-      "properties": {
-        "accountId": {
-          "type": "string",
-          "description": "Optional. The account to which the modifier is applied. A comma-separated list of accounts is also valid."
-        },
-        "groupId": {
-          "type": "string",
-          "description": "Optional. The group to which the modifier is applied. Accepts billing internal ids. A comma-separated list of billing internal ids is also valid."
-        },
-        "payerId": {
-          "type": "string",
-          "description": "Optional. The payer id to which the modifier is applied. A comma-separated list of payer ids is also valid."
-        },
-        "qualifiers": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/AwsOptionsQualifier"
-          },
-          "description": "Optional. Conditional qualifiers to further filter the modifier targets. Multiple qualifiers use the logical `or` operator; `qualifiers[0] || qualifiers[1] || qualifiers[n]`."
-        },
-        "simple": {
-          "$ref": "#/definitions/AwsOptionsSimple"
-        }
-      },
-      "description": "AWS-specific options definition. For overlapping cost modifier targets, the latest modifier will be applied. For example, you created a modifier for a specific account. Then you created another modifier for a billing group that includes that same account. In that case, the modifier for the billing group will be applied to the first account."
     },
     "v1CreateCalculatorCostModifierResponse": {
       "type": "object",
@@ -13074,15 +13086,6 @@
         "toCurrency": {
           "type": "string",
           "description": "Optional. Set to US dollars (USD) by default (AWS CUR's default currency). You can set it to the desired three-letter currency symbol (i.e. JPY, EUR, GBP), in which case, it will use the latest exchange rates provided by https://fixer.io. If you prefer a custom exchange rate, you can append the rate to the currency's three-letter symbol. For example, `JPY:110.622` for the Japanese Yen. Note that the exchange rate should be against the US dollar (USD)."
-        }
-      }
-    },
-    "v1ReadCostAttributesRequestAwsOptions": {
-      "type": "object",
-      "properties": {
-        "dimensions": {
-          "type": "string",
-          "description": "Optional. A comma-separated list of dimensions to query. Valid values are `productCode`, `serviceCode`, `region`, `zone`, `usageType`, `instanceType`, `operation`, `invoiceId`, `description`, `resourceId`, `tags`, and `costCategories`. Sequence doesn't matter. An empty value implies all attributes will be returned."
         }
       }
     },
