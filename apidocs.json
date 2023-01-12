@@ -7941,7 +7941,7 @@
           "type": "string",
           "description": "Optional. Replace the original description with the input."
         },
-        "descriptionReplaceMatch": {
+        "replaceMatch": {
           "type": "object",
           "additionalProperties": {
             "type": "string"
