@@ -5881,7 +5881,7 @@
     },
     "/v1/{vendor}/calculator/config/costmods": {
       "get": {
-        "summary": "WORK-IN-PROGRESS: Lists the cost calculator's cost modifiers. At the moment, the supported {vendor} is 'aws'. Only available in Ripple.",
+        "summary": "Lists the cost calculator's cost modifiers. At the moment, the supported {vendor} is 'aws'. Only available in Ripple.",
         "operationId": "Cost_ListCalculatorCostModifiers",
         "responses": {
           "200": {
@@ -5958,7 +5958,7 @@
     },
     "/v1/{vendor}/calculator/config/costmods/{id}": {
       "delete": {
-        "summary": "WORK-IN-PROGRESS: Deletes a cost modifier. At the moment, the supported {vendor} is 'aws'. Only available in Ripple.",
+        "summary": "Deletes a cost modifier. At the moment, the supported {vendor} is 'aws'. Only available in Ripple.",
         "operationId": "Cost_DeleteCalculatorCostModifier",
         "responses": {
           "200": {
