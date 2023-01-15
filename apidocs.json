@@ -7932,7 +7932,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Replace matching occurences with the input. The key part is the regular expression matcher based on https://github.com/google/re2, while the value is the replacement. Multiple entries are applied in sequence."
+          "description": "Optional. Replace matching occurences with the input. The key part is the regular expression matcher based on https://github.com/google/re2, while the value is the replacement. The order of replacement is not guaranteed."
         }
       }
     },
