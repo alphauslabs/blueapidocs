@@ -7917,15 +7917,15 @@
       "properties": {
         "prefix": {
           "type": "string",
-          "description": "Optional. Add a prefix to the original description."
+          "description": "Optional. Add a prefix to the description."
         },
         "suffix": {
           "type": "string",
-          "description": "Optional. Add a suffix to the original description."
+          "description": "Optional. Add a suffix to the description."
         },
         "replace": {
           "type": "string",
-          "description": "Optional. Replace the original description with the input."
+          "description": "Optional. Replace the description with the input."
         },
         "replaceMatch": {
           "type": "object",
