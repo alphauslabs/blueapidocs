@@ -11322,7 +11322,7 @@
         "updateTime": {
           "type": "string"
         },
-        "modifier": {
+        "awsOptions": {
           "$ref": "#/definitions/v1CalculatorCostModifierAwsOptions"
         }
       }
