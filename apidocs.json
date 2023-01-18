@@ -7367,6 +7367,38 @@
         ]
       }
     },
+    "/v1/{vendor}/regions": {
+      "get": {
+        "summary": "Get list of available regions",
+        "operationId": "Cover_GetRegions",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetRegionsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. Cloud vendor.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
     "/v1/{vendor}/resource/modify": {
       "post": {
         "summary": "Modify resource type from right sizing recommendation",
@@ -10598,6 +10630,17 @@
         }
       }
     },
+    "coverTagData": {
+      "type": "object",
+      "properties": {
+        "tagValue": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "coverUserData": {
       "type": "object",
       "properties": {
@@ -12616,6 +12659,18 @@
       },
       "title": "Request message for GetRecommendations"
     },
+    "v1GetRegionsResponse": {
+      "type": "object",
+      "properties": {
+        "regions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "Response message for GetRegions"
+    },
     "v1GetRightSizingRecommendationResponse": {
       "type": "object",
       "properties": {
@@ -12643,10 +12698,10 @@
     "v1GetTagsResponse": {
       "type": "object",
       "properties": {
-        "tags": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
+        "tagKey": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/coverTagData"
           }
         }
       },
