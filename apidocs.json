@@ -5129,13 +5129,22 @@
     },
     "/v1/{vendor}/accounts": {
       "get": {
-        "summary": "Get list of registered accounts",
-        "operationId": "Cover_GetAccounts",
+        "summary": "Lists all vendor accounts.",
+        "operationId": "Cost_ListAccounts",
         "responses": {
           "200": {
-            "description": "A successful response.",
+            "description": "A successful response.(streaming responses)",
             "schema": {
-              "$ref": "#/definitions/v1GetAccountsResponse"
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/blueapiapiAccount"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of blueapiapiAccount"
             }
           },
           "default": {
@@ -5148,14 +5157,28 @@
         "parameters": [
           {
             "name": "vendor",
-            "description": "Required. Cloud vendor.",
+            "description": "Required. At the moment, `aws` and `gcp` is supported.",
             "in": "path",
             "required": true,
+            "type": "string"
+          },
+          {
+            "name": "groupId",
+            "description": "Optional. The billing group internal id. Only valid for Ripple users.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "fieldMask",
+            "description": "Optional.",
+            "in": "query",
+            "required": false,
             "type": "string"
           }
         ],
         "tags": [
-          "Cover"
+          "Cost"
         ]
       },
       "post": {
@@ -5268,6 +5291,44 @@
         ],
         "tags": [
           "Cost"
+        ]
+      }
+    },
+    "/v1/{vendor}/accounts/{costGroupId}": {
+      "get": {
+        "summary": "Get list of registered accounts",
+        "operationId": "Cover_GetAccounts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetAccountsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. Cloud vendor.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "costGroupId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cover"
         ]
       }
     },
@@ -7367,7 +7428,7 @@
         ]
       }
     },
-    "/v1/{vendor}/regions": {
+    "/v1/{vendor}/regions/{costGroupId}": {
       "get": {
         "summary": "Get list of available regions",
         "operationId": "Cover_GetRegions",
@@ -7389,6 +7450,12 @@
           {
             "name": "vendor",
             "description": "Required. Cloud vendor.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "costGroupId",
             "in": "path",
             "required": true,
             "type": "string"
@@ -7513,7 +7580,7 @@
         ]
       }
     },
-    "/v1/{vendor}/services": {
+    "/v1/{vendor}/services/{costGroupId}": {
       "get": {
         "summary": "Get list of supported services",
         "operationId": "Cover_GetServices",
@@ -7535,6 +7602,12 @@
           {
             "name": "vendor",
             "description": "Required. Cloud vendor.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "costGroupId",
             "in": "path",
             "required": true,
             "type": "string"
@@ -7619,13 +7692,22 @@
     },
     "/v1/{vendor}/tags": {
       "get": {
-        "summary": "Get list of available tags",
-        "operationId": "Cover_GetTags",
+        "summary": "Lists all vendor tags.",
+        "operationId": "Cost_ListTags",
         "responses": {
           "200": {
-            "description": "A successful response.",
+            "description": "A successful response.(streaming responses)",
             "schema": {
-              "$ref": "#/definitions/v1GetTagsResponse"
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/apiCostTag"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of apiCostTag"
             }
           },
           "default": {
@@ -7638,14 +7720,28 @@
         "parameters": [
           {
             "name": "vendor",
-            "description": "Required. Cloud vendor.",
+            "description": "Required. At the moment, only `aws` is supported.",
             "in": "path",
             "required": true,
+            "type": "string"
+          },
+          {
+            "name": "groupId",
+            "description": "Optional. The billing group internal id. Only valid for Ripple users.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "fieldMask",
+            "description": "Optional.",
+            "in": "query",
+            "required": false,
             "type": "string"
           }
         ],
         "tags": [
-          "Cover"
+          "Cost"
         ]
       }
     },
@@ -7701,6 +7797,44 @@
         ],
         "tags": [
           "Cost"
+        ]
+      }
+    },
+    "/v1/{vendor}/tags/{costGroupId}": {
+      "get": {
+        "summary": "Get list of available tags",
+        "operationId": "Cover_GetTags",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetTagsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. Cloud vendor.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "costGroupId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cover"
         ]
       }
     },
@@ -10633,6 +10767,9 @@
     "coverTagData": {
       "type": "object",
       "properties": {
+        "tagKey": {
+          "type": "string"
+        },
         "tagValue": {
           "type": "array",
           "items": {
@@ -12698,7 +12835,7 @@
     "v1GetTagsResponse": {
       "type": "object",
       "properties": {
-        "tagKey": {
+        "tagData": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/coverTagData"
