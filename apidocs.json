@@ -12507,6 +12507,13 @@
             "$ref": "#/definitions/blueapicoverv1ReadCostsRequestAwsOptionsFilters"
           },
           "description": "Optional. A list of filtering options. See [ReadCostsRequestAwsOptionsFilters] for more information on each filter item. \nMultiple filter items will use the logical 'or' operator, e.g. filter1 || filter2 || filter3, etc."
+        },
+        "tagFilters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/blueapicoverv1ReadCostsRequestAwsOptionsFilters"
+          },
+          "description": "Optional. A list of filtering options specific for tags. \nMultiple filter items will use the logical 'or' operator, e.g. filter1 || filter2 || filter3, etc. Discarded when `groupByColumns` field is set or if `groupByMonth` is true."
         }
       }
     },
