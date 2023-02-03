@@ -4232,6 +4232,200 @@
         ]
       }
     },
+    "/v1/resellers": {
+      "get": {
+        "summary": "WORK-IN-PROGRESS: Lists all the reseller accounts. Only available in Ripple.",
+        "operationId": "Billing_ListResellers",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/rippleReseller"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of rippleReseller"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "fieldMask",
+            "description": "Optional. Get only the value that set fieldMask.\n\nsee more info: https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/field_mask.proto",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      },
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Registers the reseller account. Only available in Ripple.",
+        "operationId": "Billing_CreateReseller",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rippleReseller"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateResellerRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      }
+    },
+    "/v1/resellers/{id}": {
+      "get": {
+        "summary": "WORK-IN-PROGRESS: Gets the reseller account. Only available in Ripple.",
+        "operationId": "Billing_GetReseller",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rippleReseller"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Required. reseller id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "fieldMask",
+            "description": "Optional. Get only the value that set fieldMask.\n\nsee more info: https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/field_mask.proto",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      },
+      "delete": {
+        "summary": "WORK-IN-PROGRESS: Deletes the reseller account. Only available in Ripple.",
+        "operationId": "Billing_DeleteReseller",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Required. reseller id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      },
+      "put": {
+        "summary": "WORK-IN-PROGRESS: Updates the reseller account. Only available in Ripple.",
+        "operationId": "Billing_UpdateReseller",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rippleReseller"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Required. reseller id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "groupId": {
+                  "type": "string",
+                  "description": "Optional. You can set billing internal id or access group id."
+                },
+                "email": {
+                  "type": "string",
+                  "description": "Optional."
+                },
+                "password": {
+                  "type": "string",
+                  "description": "Optional.\n\nWe recommend a password length of 8~32 characters. If you send 0 characters, a password will be generated automatically."
+                }
+              },
+              "description": "Request message for the UpdateReseller rpc."
+            }
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      }
+    },
     "/v1/rightsizingrecommendation/{costGroupId}": {
       "get": {
         "summary": "Gets the right sizing recommendation of all the accounts in the costgroup",
@@ -11112,6 +11306,69 @@
       },
       "description": "Payer resource definition."
     },
+    "rippleReseller": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "reseller id. Generated automatically."
+        },
+        "email": {
+          "type": "string",
+          "title": "email"
+        },
+        "billingInternalId": {
+          "type": "string",
+          "title": "billing internal id"
+        },
+        "billingGroupId": {
+          "type": "string",
+          "title": "billing group id"
+        },
+        "billingGroupName": {
+          "type": "string",
+          "title": "billing group name"
+        },
+        "waveStatus": {
+          "type": "string",
+          "title": "wave status"
+        },
+        "waveConfig": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rippleResellerConfig"
+          },
+          "title": "wave feature config"
+        },
+        "waveProConfig": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rippleResellerConfig"
+          },
+          "title": "wave pro feature config"
+        },
+        "aquaConfig": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rippleResellerConfig"
+          },
+          "title": "aqua feature config"
+        }
+      }
+    },
+    "rippleResellerConfig": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string",
+          "title": "key"
+        },
+        "value": {
+          "type": "boolean",
+          "title": "value"
+        }
+      }
+    },
     "v1AccessGroup": {
       "type": "object",
       "properties": {
@@ -12086,6 +12343,28 @@
         }
       },
       "description": "See [https://help.alphaus.cloud/en/articles/3612555-ripple-aws-things-you-need-to-prepare-before-starting] for more information.\n\nSee [https://docs.aws.amazon.com/cur/latest/userguide/cur-create.html] for more information. Requirements include: Additional report details = 'Include Resource IDS' enabled, Prefix = non-empty (recommendation only), Time granularity = 'Hourly', File format = 'text/csv'."
+    },
+    "v1CreateResellerRequest": {
+      "type": "object",
+      "properties": {
+        "groupId": {
+          "type": "string",
+          "description": "Required. You can set billing internal id or access group id."
+        },
+        "email": {
+          "type": "string",
+          "description": "Required."
+        },
+        "password": {
+          "type": "string",
+          "description": "Required.\n\nWe recommend a password length of 8~32 characters. If you send 0 characters, a password will be generated automatically."
+        },
+        "notification": {
+          "type": "boolean",
+          "description": "Required. If valid, you will be notified via email address."
+        }
+      },
+      "description": "Request message for the CreateReseller rpc."
     },
     "v1CreateRoleRequest": {
       "type": "object",
