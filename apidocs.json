@@ -10387,17 +10387,31 @@
     "blueapicoverv1CostItem": {
       "type": "object",
       "properties": {
-        "aws": {
-          "$ref": "#/definitions/apiawsCost"
+        "vendor": {
+          "type": "string",
+          "title": "`aws`, `azure`, `azureea` or `gcp`"
         },
-        "awsForecast": {
-          "$ref": "#/definitions/coverAwsCostForecast"
+        "date": {
+          "type": "string"
         },
-        "gcp": {
-          "$ref": "#/definitions/apigcpCost"
+        "product": {
+          "type": "string"
         },
-        "azure": {
-          "$ref": "#/definitions/apiazureCost"
+        "account": {
+          "type": "string",
+          "title": "AWS linked account or Azure subscription or GCP project"
+        },
+        "cost": {
+          "type": "number",
+          "format": "float"
+        },
+        "details": {
+          "type": "string",
+          "title": "JSON string"
+        },
+        "forecast": {
+          "$ref": "#/definitions/coverAwsCostForecast",
+          "title": "Only for AWS for now"
         }
       },
       "description": "Response message wrapper for cloud costs."
