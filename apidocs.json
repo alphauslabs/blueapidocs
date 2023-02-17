@@ -10406,8 +10406,8 @@
           "format": "double"
         },
         "details": {
-          "type": "string",
-          "title": "JSON string"
+          "type": "object",
+          "title": "Could be AWS, Azure or GCP Cost"
         },
         "forecast": {
           "$ref": "#/definitions/coverAwsCostForecast",
