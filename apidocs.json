@@ -10406,7 +10406,7 @@
           "format": "double"
         },
         "details": {
-          "type": "object",
+          "$ref": "#/definitions/protobufAny",
           "title": "Could be AWS, Azure or GCP Cost"
         },
         "forecast": {
