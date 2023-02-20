@@ -11440,10 +11440,7 @@
       "type": "object",
       "properties": {
         "yearMonth": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/blueapiapiKeyValue"
-          },
+          "type": "string",
           "description": "List of the yearmonth."
         }
       },
@@ -12735,7 +12732,10 @@
       "type": "object",
       "properties": {
         "yearMonth": {
-          "$ref": "#/definitions/rippleYearMonth",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rippleYearMonth"
+          },
           "description": "List of available yearmonth."
         },
         "roundingMethod": {
