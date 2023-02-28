@@ -12875,11 +12875,11 @@
       "properties": {
         "groupByColumns": {
           "type": "string",
-          "description": "Optional. A comma-separated list of columns to aggregate the data into. \nValid values are \nA special value of `none` is also supported, which means query by date or month per account only.\n\nFor example, if you only want the services and region data, you can set this field to `productCode,region`. \nYour input sequence doesn't matter (although the sequence above is recommended) as the actual sequence is already fixed in the return data (see the definition in https://github.com/alphauslabs/blueapi/blob/main/api/aws/cost.proto), which is generic to specific, top to bottom. Invalid values are discarded. Excluded columns will be empty."
+          "description": "Optional. A comma-separated list of columns to aggregate the data into. \nValid values are `accountId`, `serviceName`, `serviceTier`, `location`, `product`, `partNumber`, `resourceGuid`, `offerId`, `consumedService`, `departmentId`, `departmentName`, `resourceGroup`, `enrollment`, `additionalInfo`\nA special value of `none` is also supported, which means query by date or month per account only.\n\nFor example, if you only want the services and location data, you can set this field to `serviceName,location`."
         },
         "groupAccounts": {
           "type": "boolean",
-          "description": "Optional. If set to true, group all input accounts into one."
+          "description": "Optional. If set to true, group all input subscription into one."
         },
         "filters": {
           "type": "array",
