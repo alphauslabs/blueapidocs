@@ -11290,6 +11290,25 @@
       "default": "NULL_VALUE",
       "description": "`NullValue` is a singleton enumeration to represent the null value for the\n`Value` type union.\n\n The JSON representation for `NullValue` is JSON `null`.\n\n - NULL_VALUE: Null value."
     },
+    "rippleDueDate": {
+      "type": "object",
+      "properties": {
+        "dueDateDay": {
+          "type": "string",
+          "description": "Due date set on the invoice\nRefer to the following for available values\nbeginning_of_month: The beginning date of the month is automatically set.\nend_of_month: The end date of the month is automatically set.\ncustom: Date can be specified."
+        },
+        "dueDateMonth": {
+          "type": "string",
+          "description": "Due month set on the invoice\nRefer to the following for available values\nthis_month: This month is automatically set.\nnext_month: Next month is automatically set.\nmonth_after_next: Month after next is automatically set."
+        },
+        "dueDateCustomDay": {
+          "type": "integer",
+          "format": "int32",
+          "title": "Customized due date set on the invoice\nRange 1 ~ 31"
+        }
+      },
+      "description": "DueDate resource definition."
+    },
     "rippleInvoiceLayout": {
       "type": "object",
       "properties": {
@@ -12854,6 +12873,10 @@
         "invoiceLayout": {
           "$ref": "#/definitions/rippleInvoiceLayout",
           "description": "Invoice layout."
+        },
+        "invoiceDueDate": {
+          "$ref": "#/definitions/rippleDueDate",
+          "description": "Invoice due date."
         }
       },
       "description": "Response message for the GetBillingSetting rpc."
