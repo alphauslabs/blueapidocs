@@ -11329,7 +11329,7 @@
           "title": "footer layout"
         },
         "header": {
-          "$ref": "#/definitions/ripplefooterInvoiceLayout",
+          "$ref": "#/definitions/rippleheaderInvoiceLayout",
           "title": "header layout"
         },
         "report": {
@@ -11551,6 +11551,76 @@
         }
       },
       "description": "WORK-IN-PROGRESS: footerInvoiceLayout resource definition."
+    },
+    "rippleheaderInvoiceLayout": {
+      "type": "object",
+      "properties": {
+        "billingAddress": {
+          "type": "string",
+          "title": "The billingAddress is information of billing address.\nex)HEAD_BILLINGADDRESS: billing\""
+        },
+        "billingGroupName": {
+          "type": "boolean",
+          "title": "The billingGroupName is setting for billing group name.\nex)HEAD_BILLINGGROUPNAME: true"
+        },
+        "billingGroupStaff": {
+          "type": "boolean",
+          "title": "The billingGroupStaff is setting for billing froup staff.\nex)HEAD_BILLINGGROUPSTAFF: true"
+        },
+        "companyAddress": {
+          "type": "boolean",
+          "title": "The companyAddress is setting for company address.\nex)HEAD_COMPANY_ADDRESS: true"
+        },
+        "companyName": {
+          "type": "boolean",
+          "title": "The companyName is setting for company name.\nex)HEAD_COMPANY_NAME: true"
+        },
+        "invoiceDate": {
+          "type": "boolean",
+          "title": "The invoiceDate is setting for invoice date.\nex)HEAD_INVOICE_DATE: true"
+        },
+        "invoiceDue": {
+          "type": "boolean",
+          "title": "The invoiceDue is setting for invoice due.\nex)HEAD_INVOICE_DUE: true"
+        },
+        "invoiceNo": {
+          "type": "boolean",
+          "title": "The invoiceNo is setting for invoice No.\nex)HEAD_INVOICE_NO: true"
+        },
+        "invoiceQuantity": {
+          "type": "string",
+          "title": "The invoiceQuantity is information of invoice quantity.\nex)HEAD_INVOICE_QUANTITY: \"１ヶ月分\""
+        },
+        "invoiceSummary": {
+          "type": "boolean",
+          "title": "The invoiceSummary is setting for invoice summary.\nex)HEAD_INVOICE_SUMMARY: true"
+        },
+        "invoiceTitle": {
+          "type": "string",
+          "title": "The invoiceTitle is information of invoice title.\nex)HEAD_INVOICE_TITLE: \"AWSご利用金額\""
+        },
+        "issueDateText": {
+          "type": "string",
+          "title": "The issueDateText is information of issue date text.\nex)HEAD_ISSUE_DATE_TEXT: \"tested message\""
+        },
+        "mspInfo": {
+          "type": "boolean",
+          "title": "The mspInfo is setting for msp information.\nex)HEAD_MSPINFO: true"
+        },
+        "mspLogo": {
+          "type": "boolean",
+          "title": "The mspLogo is setting for msp logo.\nex)HEAD_MSPLOGO: true"
+        },
+        "mspStamp": {
+          "type": "boolean",
+          "title": "The mspStamp is setting for msp stamp.\nex)HEAD_MSPSTAMP: true"
+        },
+        "paidText": {
+          "type": "string",
+          "title": "The paidText is information of paid text.\nex)HEAD_PAID_TEXT: \"paid message\""
+        }
+      },
+      "description": "WORK-IN-PROGRESS: headerInvoiceLayout resource definition."
     },
     "ripplereportInvoiceLayout": {
       "type": "object",
