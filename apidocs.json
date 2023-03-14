@@ -11514,6 +11514,10 @@
         "usageDiscount": {
           "type": "boolean",
           "title": "The usageDiscount is setting for usage discount.\nex)BODY_USAGE_DISCOUNT: true"
+        },
+        "hideMarketplace": {
+          "type": "boolean",
+          "title": "The hideMarketplace is setting for hide marketplace.\nex)BODY_HIDE_MARKETPLACE: true"
         }
       },
       "description": "WORK-IN-PROGRESS: bodyInvoiceLayout resource definition."
@@ -11540,6 +11544,10 @@
         "invoiceRemarks": {
           "type": "boolean",
           "title": "The invoiceRemarks is setting for invoice remarks.\nex)FT_INVOICE_REMARKS: true"
+        },
+        "invoiceDiscountZero": {
+          "type": "boolean",
+          "title": "The invoiceDiscountZero is setting for invoice discount.\nex)FT_INVOICE_DISCOUNT_ZERO: true"
         }
       },
       "description": "WORK-IN-PROGRESS: footerInvoiceLayout resource definition."
