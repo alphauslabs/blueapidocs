@@ -11557,23 +11557,47 @@
     "rippletotalInvoiceLayout": {
       "type": "object",
       "properties": {
-        "vendorTotalUsage": {
+        "marketplace": {
+          "type": "string",
+          "title": "The totalMarketplace is name of marketplace total usage.\nex)ALL_AWS_MARKETPLACE: \"\""
+        },
+        "marketplaceFee": {
+          "type": "string",
+          "title": "The totalMarketplaceFee is name of marketplace total fee usage.\nex)ALL_AWS_MARKETPLACE_FEES: \"\""
+        },
+        "vendorTotal": {
+          "type": "string",
+          "title": "The vendorTotal is name of vendor total usage.\nex)ALL_AWS_TOTAL: \"\""
+        },
+        "vendorUsageOnly": {
+          "type": "string",
+          "title": "The vendorUsageOnly is name of vendor usage only.\nex)ALL_AWS_USAGEONLY: \"\""
+        },
+        "vendorlUsage": {
           "type": "string",
           "title": "The vendorTotalUsage is name of vendor total usage.\nex)ALL_AWS_USAGE: \"AWS利用料\""
         },
-        "customTotalUsage": {
+        "customUsage": {
           "type": "string",
           "title": "The customTotalUsage is name of custom total usage.\nex)ALL_CUSTOM_USAGE: \"追加費用合計\""
         },
-        "discountTotalDiff": {
+        "discount": {
+          "type": "string",
+          "title": "The discount is name of discount.\nex)ALL_DISCOUNT: \"\""
+        },
+        "discountDiff": {
           "type": "string",
           "title": "The discountTotalDiff is name of discount total diff.\nex)ALL_DISCOUNT_DIFF: \"値引後\""
         },
-        "substitutionTotalFee": {
+        "subTotal": {
+          "type": "string",
+          "title": "The subTotal is name of sub total.\nex)ALL_SUB_TOTAL: \"\""
+        },
+        "substitutionFee": {
           "type": "string",
           "title": "The substitutionTotalFee is name of substitution total fee.\nex)ALL_SUBSTITUTION: \"請求代行手数料\""
         },
-        "supportTotalFee": {
+        "supportFee": {
           "type": "string",
           "title": "The supportTotalFee is name of support total fee.\nex)ALL_SUPPORT_BUSINESS: \"サポートビジネス費用\""
         },
@@ -11585,6 +11609,10 @@
           "type": "string",
           "title": "The taxDiff is name of tax diff.\nex)ALL_TAX_DIFF: null"
         },
+        "taxFree": {
+          "type": "string",
+          "title": "The taxFree is name of tax free.\nex)ALL_TAX_FREE: \"\""
+        },
         "totalExchangeRate": {
           "type": "string",
           "title": "The totalExchangeRate is name of total exchange rate.\nex)ALL_TOTAL_EXCHANGE: \"日本円換算後（$1=JPY）\""
@@ -11592,6 +11620,10 @@
         "totalUsage": {
           "type": "string",
           "title": "The totalUsage is name of total usage.\nex)ALL_USAGE_TOTAL: \"小計\""
+        },
+        "total": {
+          "type": "string",
+          "title": "The total is name of total.\nex)ALL_TOTAL: \"\""
         }
       },
       "description": "WORK-IN-PROGRESS: totalInvoiceLayout resource definition."
