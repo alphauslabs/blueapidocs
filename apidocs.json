@@ -11312,9 +11312,9 @@
     "rippleInvoiceLayout": {
       "type": "object",
       "properties": {
-        "accountUsage": {
-          "type": "string",
-          "title": "The accountUsage is name of account usage.\nex)ACCT_AWS_USAGE: \"利用料合計\""
+        "account": {
+          "$ref": "#/definitions/rippleaccountInvoiceLayout",
+          "title": "total layout"
         },
         "total": {
           "$ref": "#/definitions/rippletotalInvoiceLayout",
@@ -11470,6 +11470,32 @@
         }
       },
       "description": "YearMonth resource definition."
+    },
+    "rippleaccountInvoiceLayout": {
+      "type": "object",
+      "properties": {
+        "marketplace": {
+          "type": "string",
+          "title": "The marketplace is name of marketplace usage.\nex)ACCT_AWS_MARKETPLACE: \"Marketplace利用料金\""
+        },
+        "marketplaceFee": {
+          "type": "string",
+          "title": "The marketplace is name of marketplace fee usage.\nex)ACCT_AWS_MARKETPLACE_FEES: \"Marketplace 一時金 ご利用金額\""
+        },
+        "supportFee": {
+          "type": "string",
+          "title": "The supportFee is name of support fee usage.\nex)ACCT_AWS_SUPPORT_BUSINESS: \"AWS保守サービス利用料金\""
+        },
+        "accountUsage": {
+          "type": "string",
+          "title": "The accountUsage is name of account total usage.\nex)ACCT_AWS_USAGE: \"利用料合計\""
+        },
+        "accountUsageOnly": {
+          "type": "string",
+          "title": "The accountUsageOnly is name of account usage(Only related to vendor).\nex)ACCT_AWS_USAGEONLY: \"AWS利用料(MarketPlace利用料除く)\""
+        }
+      },
+      "description": "WORK-IN-PROGRESS: accountInvoiceLayout resource definition."
     },
     "ripplebodyInvoiceLayout": {
       "type": "object",
