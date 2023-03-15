@@ -13013,6 +13013,13 @@
         "invoiceDueDate": {
           "$ref": "#/definitions/rippleDueDate",
           "description": "Invoice due date."
+        },
+        "supportCurrency": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of available currency."
         }
       },
       "description": "Response message for the GetBillingSetting rpc."
