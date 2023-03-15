@@ -2126,9 +2126,55 @@
         ]
       }
     },
+    "/v1/assets/summary/{costGroupId}": {
+      "get": {
+        "summary": "WORK-IN-PROGRESS: Assets summary for costgroup",
+        "operationId": "Cover_GetAssetsSummary",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetAssetsSummaryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "costGroupId",
+            "description": "Required. Cost Group Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "startMonth",
+            "description": "Optional. If not set, current month will be used. Format: `yyyymm`.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "endMonth",
+            "description": "Optional. If not set, current month will be used. Format: `yyyymm`.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
     "/v1/assets:read": {
       "post": {
-        "summary": "WORK-IN-PROGRESS: Lists all assets per service.",
+        "summary": "WORK-IN-PROGRESS: Lists assets for costgroup",
         "operationId": "Cover_ListAssets",
         "responses": {
           "200": {
@@ -2137,13 +2183,13 @@
               "type": "object",
               "properties": {
                 "result": {
-                  "$ref": "#/definitions/coverv1Asset"
+                  "$ref": "#/definitions/v1Resource"
                 },
                 "error": {
                   "$ref": "#/definitions/googlerpcStatus"
                 }
               },
-              "title": "Stream result of coverv1Asset"
+              "title": "Stream result of v1Resource"
             }
           },
           "default": {
@@ -3133,39 +3179,6 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/v1GetCostUsageRequest"
-            }
-          }
-        ],
-        "tags": [
-          "Cover"
-        ]
-      }
-    },
-    "/v1/ec2/instances:read": {
-      "post": {
-        "summary": "Gets the EC2 instances of all accounts in Cost Group",
-        "operationId": "Cover_GetEC2Instances",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1GetEC2InstancesResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1GetEC2InstancesRequest"
             }
           }
         ],
@@ -9579,32 +9592,6 @@
         }
       }
     },
-    "apicoverAsset": {
-      "type": "object",
-      "properties": {
-        "key": {
-          "type": "string",
-          "title": "Possible values: `account`, `subscription` or `project`"
-        },
-        "attributes": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "apicoverTag": {
-      "type": "object",
-      "properties": {
-        "key": {
-          "type": "string"
-        },
-        "value": {
-          "type": "string"
-        }
-      }
-    },
     "apigcpCost": {
       "type": "object",
       "properties": {
@@ -10619,134 +10606,6 @@
         }
       }
     },
-    "coverEC2Instance": {
-      "type": "object",
-      "properties": {
-        "capacityReservationId": {
-          "type": "string",
-          "description": "The ID of the Capacity Reservation."
-        },
-        "ebsOptimized": {
-          "type": "boolean",
-          "description": "Indicates whether the instance is optimized for Amazon EBS I/O. This optimization\nprovides dedicated throughput to Amazon EBS and an optimized configuration\nstack to provide optimal I/O performance. This optimization isn't available\nwith all instance types. Additional usage charges apply when using an EBS\nOptimized instance."
-        },
-        "imageId": {
-          "type": "string",
-          "description": "The ID of the AMI used to launch the instance."
-        },
-        "instanceId": {
-          "type": "string",
-          "description": "The ID of the instance."
-        },
-        "instanceLifecycle": {
-          "type": "string",
-          "description": "Indicates whether this is a Spot Instance or a Scheduled Instance."
-        },
-        "instanceType": {
-          "type": "string",
-          "description": "The instance type."
-        },
-        "ipv6Address": {
-          "type": "string",
-          "description": "The IPv6 address assigned to the instance."
-        },
-        "kernelId": {
-          "type": "string",
-          "description": "The kernel associated with this instance, if applicable."
-        },
-        "keyName": {
-          "type": "string",
-          "description": "The name of the key pair, if this instance was launched with an associated key pair."
-        },
-        "launchTime": {
-          "type": "string",
-          "description": "The time the instance was launched."
-        },
-        "outpostArn": {
-          "type": "string",
-          "description": "The Amazon Resource Name (ARN) of the Outpost."
-        },
-        "platform": {
-          "type": "string",
-          "description": "The value is Windows for Windows instances; otherwise blank."
-        },
-        "platformDetails": {
-          "type": "string",
-          "description": "The platform details value for the instance. For more information, see AMI\nbilling information fields (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/billing-info-fields.html)\nin the Amazon EC2 User Guide."
-        },
-        "privateDnsName": {
-          "type": "string",
-          "description": "(IPv4 only) The private DNS hostname name assigned to the instance. This\nDNS hostname can only be used inside the Amazon EC2 network. This name is\nnot available until the instance enters the running state.\n\n[EC2-VPC] The Amazon-provided DNS server resolves Amazon-provided private\nDNS hostnames if you've enabled DNS resolution and DNS hostnames in your\nVPC. If you are not using the Amazon-provided DNS server in your VPC, your\ncustom domain name servers must resolve the hostname as appropriate."
-        },
-        "privateIpAddress": {
-          "type": "string",
-          "description": "The private IPv4 address assigned to the instance."
-        },
-        "publicDnsName": {
-          "type": "string",
-          "description": "(IPv4 only) The public DNS name assigned to the instance. This name is not\navailable until the instance enters the running state. For EC2-VPC, this\nname is only available if you've enabled DNS hostnames for your VPC."
-        },
-        "publicIpAddress": {
-          "type": "string",
-          "description": "The public IPv4 address, or the Carrier IP address assigned to the instance,\nif applicable.\n\nA Carrier IP address only applies to an instance launched in a subnet associated\nwith a Wavelength Zone."
-        },
-        "ramdiskId": {
-          "type": "string",
-          "description": "The RAM disk associated with this instance, if applicable."
-        },
-        "rootDeviceName": {
-          "type": "string",
-          "description": "The device name of the root device volume (for example, /dev/sda1)."
-        },
-        "rootDeviceType": {
-          "type": "string",
-          "description": "The root device type used by the AMI. The AMI can use an EBS volume or an\ninstance store volume."
-        },
-        "sourceDestCheck": {
-          "type": "boolean",
-          "description": "Indicates whether source/destination checking is enabled."
-        },
-        "spotInstanceRequestId": {
-          "type": "string",
-          "description": "If the request is a Spot Instance request, the ID of the request."
-        },
-        "sriovNetSupport": {
-          "type": "string",
-          "description": "Specifies whether enhanced networking with the Intel 82599 Virtual Function\ninterface is enabled."
-        },
-        "state": {
-          "type": "string",
-          "description": "The current state of the instance."
-        },
-        "subnetId": {
-          "type": "string",
-          "description": "[EC2-VPC] The ID of the subnet in which the instance is running."
-        },
-        "tags": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/apicoverTag"
-          },
-          "description": "Any tags assigned to the instance."
-        },
-        "usageOperation": {
-          "type": "string",
-          "description": "The usage operation value for the instance. For more information, see AMI\nbilling information fields (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/billing-info-fields.html)\nin the Amazon EC2 User Guide."
-        },
-        "virtualizationType": {
-          "type": "string",
-          "description": "The virtualization type of the instance."
-        },
-        "vpcId": {
-          "type": "string",
-          "description": "[EC2-VPC] The ID of the VPC in which the instance is running."
-        },
-        "date": {
-          "type": "string",
-          "title": "Format: `yyyy-mm`"
-        }
-      }
-    },
     "coverFavorites": {
       "type": "object",
       "properties": {
@@ -11208,18 +11067,6 @@
           "items": {
             "$ref": "#/definitions/coverLayoutRequests"
           }
-        }
-      }
-    },
-    "coverv1Asset": {
-      "type": "object",
-      "properties": {
-        "date": {
-          "type": "string",
-          "title": "Format is `yyyy-mm-dd`; for monthly, `yyyy-mm`"
-        },
-        "asset": {
-          "$ref": "#/definitions/apicoverAsset"
         }
       }
     },
@@ -12979,6 +12826,37 @@
       },
       "title": "Response message for GetAccounts"
     },
+    "v1GetAssetsSummaryResponse": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string",
+          "title": "Format is `yyyy-mm`"
+        },
+        "orgId": {
+          "type": "string",
+          "title": "Organization ID"
+        },
+        "vendor": {
+          "type": "string",
+          "description": "Only `aws` is supported for now."
+        },
+        "totalResources": {
+          "type": "string",
+          "format": "int64",
+          "title": "Total number of resources"
+        },
+        "totalCost": {
+          "type": "number",
+          "format": "double",
+          "description": "Total Cost incurred for the resources on specified month."
+        },
+        "recommendationSummary": {
+          "type": "string",
+          "title": "Format: JSON String"
+        }
+      }
+    },
     "v1GetBillingGroupResponse": {
       "type": "object",
       "properties": {
@@ -13264,42 +13142,6 @@
         }
       },
       "description": "Response message for the Admin.GetDefaultCostAccessTemplateUrl rpc."
-    },
-    "v1GetEC2InstancesRequest": {
-      "type": "object",
-      "properties": {
-        "costGroupId": {
-          "type": "string",
-          "description": "Required. Cost Group Id."
-        },
-        "startTime": {
-          "type": "string",
-          "description": "Optional. If not set, current month will be used. Format: `yyyymm`."
-        },
-        "endTime": {
-          "type": "string",
-          "description": "Optional. If not set, current month will be used. Format: `yyyymm`."
-        },
-        "filters": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "Optional. A map of \"key:value\" column filters."
-        }
-      },
-      "title": "Request message for GetEC2Instances"
-    },
-    "v1GetEC2InstancesResponse": {
-      "type": "object",
-      "properties": {
-        "instances": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/coverEC2Instance"
-          }
-        }
-      }
     },
     "v1GetFavoriteViewsResponse": {
       "type": "object",
@@ -13689,16 +13531,14 @@
       },
       "description": "Response message for the Admin.ListAccountGroups rpc."
     },
-    "v1ListAssetsAwsFilterOptions": {
+    "v1ListAssetsFilters": {
       "type": "object",
       "properties": {
-        "services": {
-          "type": "string",
-          "description": "Optional. Comma-separated list of services. If not set, all services are included."
-        },
-        "regions": {
-          "type": "string",
-          "description": "Optional. Comma-separated list of regions. If not set, all regions are included."
+        "andFilters": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
         }
       }
     },
@@ -13709,17 +13549,31 @@
           "type": "string",
           "description": "Required. Cost Group Id."
         },
-        "startTime": {
+        "startMonth": {
           "type": "string",
           "description": "Optional. If not set, current month will be used. Format: `yyyymm`."
         },
-        "endTime": {
+        "endMonth": {
           "type": "string",
           "description": "Optional. If not set, current month will be used. Format: `yyyymm`."
+        },
+        "withRecommendation": {
+          "type": "boolean",
+          "title": "Optional. If true, returns only all assets with recommendation"
         },
         "awsOptions": {
-          "$ref": "#/definitions/v1ListAssetsAwsFilterOptions",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ListAssetsFilters"
+          },
           "description": "Optional. For AWS-specific filter options."
+        },
+        "awsPropertiesOptions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ListAssetsFilters"
+          },
+          "description": "Optional. For AWS-specific properties filter options."
         }
       },
       "description": "Request message for the Asset.ListResources rpc."
@@ -14215,6 +14069,52 @@
           "items": {
             "$ref": "#/definitions/apicoverAccount"
           }
+        }
+      }
+    },
+    "v1Resource": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string",
+          "title": "Format is `yyyy-mm`"
+        },
+        "orgId": {
+          "type": "string",
+          "title": "Organization ID"
+        },
+        "vendor": {
+          "type": "string",
+          "description": "Only `aws` is supported for now."
+        },
+        "account": {
+          "type": "string",
+          "title": "Resource owner account"
+        },
+        "service": {
+          "type": "string",
+          "description": "Only `AmazonEC2` is supported for now."
+        },
+        "resourceId": {
+          "type": "string",
+          "title": "Resource unique identifier"
+        },
+        "resourceType": {
+          "type": "string",
+          "title": "Only `AWS::EC2::Instance` is supported for now"
+        },
+        "cost": {
+          "type": "number",
+          "format": "double",
+          "description": "Cost incurred for the resource on specified month."
+        },
+        "properties": {
+          "type": "string",
+          "title": "Format: JSON String"
+        },
+        "recommendation": {
+          "type": "string",
+          "title": "Format: JSON String"
         }
       }
     },
