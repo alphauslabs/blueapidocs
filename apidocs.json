@@ -2165,6 +2165,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "combineDates",
+            "description": "Optional. If true, return the assets summary for the requested period. Else, summary per month is returned.",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
           }
         ],
         "tags": [
@@ -11730,6 +11737,29 @@
       },
       "title": "Response message for AddSideMenuFavorite"
     },
+    "v1AssetsSummary": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string",
+          "title": "Format is `yyyy-mm`"
+        },
+        "vendor": {
+          "type": "string",
+          "description": "Only `aws` is supported for now."
+        },
+        "totalResources": {
+          "type": "string",
+          "format": "int64",
+          "title": "Total number of resources"
+        },
+        "totalCost": {
+          "type": "number",
+          "format": "double",
+          "description": "Total Cost incurred for the resources on specified month."
+        }
+      }
+    },
     "v1AssignCostGroupMemberResponse": {
       "type": "object",
       "properties": {
@@ -12833,27 +12863,11 @@
     "v1GetAssetsSummaryResponse": {
       "type": "object",
       "properties": {
-        "date": {
-          "type": "string",
-          "title": "Format is `yyyy-mm`"
-        },
-        "orgId": {
-          "type": "string",
-          "title": "Organization ID"
-        },
-        "vendor": {
-          "type": "string",
-          "description": "Only `aws` is supported for now."
-        },
-        "totalResources": {
-          "type": "string",
-          "format": "int64",
-          "title": "Total number of resources"
-        },
-        "totalCost": {
-          "type": "number",
-          "format": "double",
-          "description": "Total Cost incurred for the resources on specified month."
+        "summary": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1AssetsSummary"
+          }
         },
         "recommendationSummary": {
           "type": "string",
