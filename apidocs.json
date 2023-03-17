@@ -11258,6 +11258,10 @@
           "type": "string",
           "title": "billing group name"
         },
+        "groupType": {
+          "type": "string",
+          "description": "group type\nRefer to the following for available values\nbilling_group: Billing Group.\naccess_group: Access Group."
+        },
         "waveStatus": {
           "type": "string",
           "title": "wave status"
