@@ -7008,6 +7008,229 @@
         ]
       }
     },
+    "/v1/{vendor}/fees": {
+      "post": {
+        "summary": "Create assignments for fee reallocation",
+        "operationId": "Cover_CreateFeeReallocation",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/coverv1FeeDetails"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of coverv1FeeDetails"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. Cloud vendor.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "feeId": {
+                  "type": "string",
+                  "description": "Required. The fee to reallocate."
+                }
+              },
+              "description": "Request message for the CreateFeeReallocation rpc."
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
+    "/v1/{vendor}/fees/all:read": {
+      "post": {
+        "summary": "Lists the fees",
+        "operationId": "Cover_ListFees",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/coverv1FeeDetails"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of coverv1FeeDetails"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "month": {
+                  "type": "string"
+                }
+              },
+              "description": "Request message for the ListFees rpc."
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
+    "/v1/{vendor}/fees/{feeId}": {
+      "get": {
+        "summary": "Gets the fee details",
+        "operationId": "Cover_GetFeeDetails",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/coverv1FeeDetails"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. Cloud vendor.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "feeId",
+            "description": "Required. The fee id to query.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      },
+      "delete": {
+        "summary": "Deletes fee details",
+        "operationId": "Cover_DeleteFeeDetails",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DeleteFeeDetailsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. Cloud vendor.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "feeId",
+            "description": "Required. The fee to delete.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      },
+      "put": {
+        "summary": "Update fee details",
+        "operationId": "Cover_UpdateFeeDetails",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/blueapiapiOperation"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. Cloud vendor.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "feeId",
+            "description": "Required. The fee to update.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
     "/v1/{vendor}/forecasts": {
       "get": {
         "summary": "Fetches cost forecasts for the specified billing group. Includes historical cost (up to previous month) and forecasted cost (up to three months for now).",
@@ -8395,7 +8618,7 @@
         "feeDetails": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/apiFeeDetails"
+            "$ref": "#/definitions/blueapiapiFeeDetails"
           },
           "title": "feeDetails: Includes details of re-caluclated fee data"
         },
@@ -8716,21 +8939,6 @@
         }
       },
       "description": "Describes the features and whether or not they are enabled for a particular user."
-    },
-    "apiFeeDetails": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "currency": {
-          "type": "string"
-        },
-        "amount": {
-          "type": "number",
-          "format": "double"
-        }
-      }
     },
     "apiForecastData": {
       "type": "object",
@@ -10357,6 +10565,21 @@
         }
       }
     },
+    "blueapiapiFeeDetails": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
     "blueapiapiKeyValue": {
       "type": "object",
       "properties": {
@@ -11076,6 +11299,67 @@
           }
         }
       }
+    },
+    "coverv1FeeDetails": {
+      "type": "object",
+      "properties": {
+        "feeId": {
+          "type": "string"
+        },
+        "orgId": {
+          "type": "string"
+        },
+        "entity": {
+          "type": "string"
+        },
+        "month": {
+          "type": "string"
+        },
+        "account": {
+          "type": "string"
+        },
+        "lineType": {
+          "type": "string"
+        },
+        "feeType": {
+          "type": "string"
+        },
+        "productCode": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "started": {
+          "type": "string"
+        },
+        "timeInterval": {
+          "type": "string"
+        },
+        "productName": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "splitStatus": {
+          "type": "string"
+        },
+        "isAllocated": {
+          "type": "boolean"
+        },
+        "isApplied": {
+          "type": "boolean"
+        },
+        "unblendedCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "lastUpdate": {
+          "type": "string"
+        }
+      },
+      "description": "Response message for GetFeeDetails, CreateFeeReallocation rpc."
     },
     "coverv1Status": {
       "type": "string",
@@ -12756,6 +13040,19 @@
         }
       },
       "title": "Response message for DeleteCostGroup"
+    },
+    "v1DeleteFeeDetailsResponse": {
+      "type": "object",
+      "properties": {
+        "vendor": {
+          "type": "string",
+          "description": "Required. Cloud vendor."
+        },
+        "feeId": {
+          "type": "string"
+        }
+      },
+      "description": "Response message for the DeleteFeeDetails rpc."
     },
     "v1DeleteMemberResponse": {
       "type": "object",
