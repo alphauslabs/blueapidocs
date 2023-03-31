@@ -1694,6 +1694,47 @@
         ]
       }
     },
+    "/iam/v1/{partner}/token": {
+      "post": {
+        "summary": "BETA: Creates a partner token for custom integrations.",
+        "operationId": "Iam_CreatePartnerToken",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1PartnerToken"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "partner",
+            "description": "Required. Partner id or audience for the token.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "description": "Request message for the Iam.CreatePartnerToken rpc."
+            }
+          }
+        ],
+        "tags": [
+          "Iam"
+        ]
+      }
+    },
     "/ops/v1": {
       "get": {
         "summary": "Lists long-running operations.",
@@ -14225,6 +14266,14 @@
         }
       },
       "title": "Response message for OnboardOrg"
+    },
+    "v1PartnerToken": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        }
+      }
     },
     "v1Preference": {
       "type": "object"
