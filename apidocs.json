@@ -1260,6 +1260,47 @@
         ]
       }
     },
+    "/iam/v1/partners/{id}/token": {
+      "post": {
+        "summary": "BETA: Creates a partner token for custom integrations.",
+        "operationId": "Iam_CreatePartnerToken",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1PartnerToken"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Required. Partner id or audience for the token.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "description": "Request message for the Iam.CreatePartnerToken rpc."
+            }
+          }
+        ],
+        "tags": [
+          "Iam"
+        ]
+      }
+    },
     "/iam/v1/permissions": {
       "get": {
         "summary": "WORK-IN-PROGRESS: Lists all permissions based on the input's scope. For reference, supported permissions can be found on [https://github.com/mobingi/rbac-permissions].",
@@ -1689,47 +1730,6 @@
             }
           }
         },
-        "tags": [
-          "Iam"
-        ]
-      }
-    },
-    "/iam/v1/{partner}/token": {
-      "post": {
-        "summary": "BETA: Creates a partner token for custom integrations.",
-        "operationId": "Iam_CreatePartnerToken",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1PartnerToken"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "partner",
-            "description": "Required. Partner id or audience for the token.",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "description": "Request message for the Iam.CreatePartnerToken rpc."
-            }
-          }
-        ],
         "tags": [
           "Iam"
         ]
