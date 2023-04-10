@@ -7105,6 +7105,38 @@
         ]
       }
     },
+    "/v1/{vendor}/exchangerate": {
+      "get": {
+        "summary": "WORK-IN-PROGRESS: Lists all exchange rate. Only available in Ripple.",
+        "operationId": "Billing_ListExchangeRates",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListExchangeRatesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. vendor.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      }
+    },
     "/v1/{vendor}/fees/adjustment/allocators": {
       "get": {
         "summary": "WORK-IN-PROGRESS: Lists the fee adjustment allocators",
@@ -11716,6 +11748,21 @@
       },
       "description": "DueDate resource definition."
     },
+    "rippleExchangeRate": {
+      "type": "object",
+      "properties": {
+        "currency": {
+          "type": "string",
+          "description": "The currency code."
+        },
+        "rate": {
+          "type": "number",
+          "format": "double",
+          "description": "The rate."
+        }
+      },
+      "description": "ExchangeRate resource definition."
+    },
     "rippleInvoiceLayout": {
       "type": "object",
       "properties": {
@@ -11745,6 +11792,23 @@
         }
       },
       "description": "WORK-IN-PROGRESS: InvoiceLayout resource definition.\nDefinitions related to invoice display."
+    },
+    "rippleMonthlyExchangeRate": {
+      "type": "object",
+      "properties": {
+        "month": {
+          "type": "string",
+          "title": "The year-month. format: yyyymm"
+        },
+        "exchangeRate": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rippleExchangeRate"
+          },
+          "description": "The exchange rate."
+        }
+      },
+      "description": "MonthlyExchangeRate resource definition."
     },
     "rippleOrg": {
       "type": "object",
@@ -14356,6 +14420,21 @@
         }
       },
       "description": "Response message for the ListCostFilters rpc."
+    },
+    "v1ListExchangeRatesResponse": {
+      "type": "object",
+      "properties": {
+        "aws": {
+          "$ref": "#/definitions/rippleMonthlyExchangeRate"
+        },
+        "gcp": {
+          "$ref": "#/definitions/rippleMonthlyExchangeRate"
+        },
+        "azure": {
+          "$ref": "#/definitions/rippleMonthlyExchangeRate"
+        }
+      },
+      "description": "Response message for the ListExchangeRates rpc."
     },
     "v1ListIdentityProvidersResponse": {
       "type": "object",
