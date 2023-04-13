@@ -12498,6 +12498,10 @@
           "type": "string",
           "description": "The billing group name."
         },
+        "companyName": {
+          "type": "string",
+          "description": "The company’s name."
+        },
         "accounts": {
           "type": "array",
           "items": {
