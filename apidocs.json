@@ -9363,6 +9363,21 @@
         }
       }
     },
+    "apiGroupCustomDetails": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
     "apiGroupDetails": {
       "type": "object",
       "properties": {
@@ -9924,7 +9939,14 @@
           "items": {
             "$ref": "#/definitions/apiGroupDetails"
           },
-          "description": "groupDetails: Includes account-by-account details(custom service and additional item data)."
+          "description": "groupDetails: Includes account-by-account details(fee item data)."
+        },
+        "groupCustomDetails": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiGroupCustomDetails"
+          },
+          "description": "groupCustomDetails: Includes account-by-account details(custom service and additional item data)."
         },
         "total": {
           "type": "array",
