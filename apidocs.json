@@ -14757,7 +14757,13 @@
     "v1ProxyCreateCompletionRequest": {
       "type": "object",
       "properties": {
-        "params": {
+        "messages": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "others": {
           "type": "object",
           "additionalProperties": {
             "type": "string"
@@ -14768,7 +14774,7 @@
     "v1ProxyCreateCompletionResponse": {
       "type": "object",
       "properties": {
-        "data": {
+        "line": {
           "type": "string"
         }
       }
