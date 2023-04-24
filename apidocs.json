@@ -14757,19 +14757,11 @@
     "v1ProxyCreateCompletionRequest": {
       "type": "object",
       "properties": {
-        "messages": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          }
-        },
-        "others": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          }
+        "params": {
+          "type": "object"
         }
-      }
+      },
+      "description": "Request message for the ProxyCreateCompletion rpc."
     },
     "v1ProxyCreateCompletionResponse": {
       "type": "object",
@@ -14777,7 +14769,8 @@
         "line": {
           "type": "string"
         }
-      }
+      },
+      "description": "Response message for the ProxyCreateCompletion rpc."
     },
     "v1PublishViewRequest": {
       "type": "object",
