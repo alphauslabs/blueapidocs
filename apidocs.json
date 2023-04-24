@@ -5466,6 +5466,48 @@
         ]
       }
     },
+    "/v1/x/pcc": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Do not use.",
+        "operationId": "Cover_ProxyCreateCompletion",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1ProxyCreateCompletionResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of v1ProxyCreateCompletionResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ProxyCreateCompletionRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
     "/v1/{vendor}/account": {
       "post": {
         "summary": "Registers an account",
@@ -14711,6 +14753,25 @@
     },
     "v1Preference": {
       "type": "object"
+    },
+    "v1ProxyCreateCompletionRequest": {
+      "type": "object",
+      "properties": {
+        "params": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "v1ProxyCreateCompletionResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "string"
+        }
+      }
     },
     "v1PublishViewRequest": {
       "type": "object",
