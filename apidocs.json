@@ -6553,6 +6553,66 @@
         ]
       }
     },
+    "/v1/{vendor}/costattrs": {
+      "get": {
+        "summary": "WORK-IN-PROGRESS: Reads the available cost attributes of an organization (Ripple) or billing group (Wave).",
+        "operationId": "Cost_GetCostAttributes",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetCostAttributesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "month",
+            "description": "Required. Format: `yyyy-mm`.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "groupId",
+            "description": "Optional. If set, reads the cost attributes of this group. Only valid for Ripple users. Implied as the parent billing group for Wave(Pro) users.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "accountId",
+            "description": "Optional. You can set it to a single account or a comma-separated list of accounts. If set, overrides `groupId`.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "description": "Optional. A comma-separated list of dimensions to query. Valid values are `productCode`, `serviceCode`, `region`, `zone`, `usageType`, `instanceType`, `operation`, `invoiceId`, `description`, `resourceId` and `tags`. Sequence doesn't matter. An empty value implies all attributes will be returned.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      }
+    },
     "/v1/{vendor}/costattrs:read": {
       "post": {
         "summary": "Reads the available cost attributes of an organization (Ripple) or billing group (Wave). Similar to the 'ReadCosts' API but without the aggregated usages and costs. At the moment, the supported {vendor} is 'aws'. If datetime range parameters are not set, month-to-date (current month) will be returned.",
@@ -10146,6 +10206,59 @@
         }
       }
     },
+    "apiawsCostAttribute": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "type": "string"
+        },
+        "groupId": {
+          "type": "string"
+        },
+        "productCode": {
+          "type": "string"
+        },
+        "serviceCode": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "zone": {
+          "type": "string"
+        },
+        "usageType": {
+          "type": "string"
+        },
+        "instanceType": {
+          "type": "string"
+        },
+        "operation": {
+          "type": "string"
+        },
+        "invoiceId": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "resourceId": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "costCategories": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "apiazureCost": {
       "type": "object",
       "properties": {
@@ -10442,59 +10555,6 @@
         }
       },
       "description": "AWS's calculation engine configuration(s)."
-    },
-    "awsCostAttribute": {
-      "type": "object",
-      "properties": {
-        "account": {
-          "type": "string"
-        },
-        "groupId": {
-          "type": "string"
-        },
-        "productCode": {
-          "type": "string"
-        },
-        "serviceCode": {
-          "type": "string"
-        },
-        "region": {
-          "type": "string"
-        },
-        "zone": {
-          "type": "string"
-        },
-        "usageType": {
-          "type": "string"
-        },
-        "instanceType": {
-          "type": "string"
-        },
-        "operation": {
-          "type": "string"
-        },
-        "invoiceId": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "resourceId": {
-          "type": "string"
-        },
-        "tags": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          }
-        },
-        "costCategories": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          }
-        }
-      }
     },
     "awsCostReductionSummary": {
       "type": "object",
@@ -11102,6 +11162,23 @@
         }
       },
       "description": "Response message wrapper for cloud costs."
+    },
+    "costv1CostAttribute": {
+      "type": "object",
+      "properties": {
+        "vendor": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
     },
     "coverAccounts": {
       "type": "object",
@@ -12851,7 +12928,7 @@
       "type": "object",
       "properties": {
         "aws": {
-          "$ref": "#/definitions/awsCostAttribute"
+          "$ref": "#/definitions/apiawsCostAttribute"
         }
       },
       "description": "Response message for the Cost.ReadCostAttributes rpc."
@@ -13840,6 +13917,19 @@
         }
       },
       "description": "Response message for the Admin.GetCloudWatchMetricsStreamTemplateUrl rpc."
+    },
+    "v1GetCostAttributesResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/costv1CostAttribute"
+          },
+          "description": "The cost attributes."
+        }
+      },
+      "description": "Response message for the Cost.GetCostAttributes rpc."
     },
     "v1GetCostGroupDetailsResponse": {
       "type": "object",
