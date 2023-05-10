@@ -15068,6 +15068,13 @@
         "noCache": {
           "type": "boolean",
           "description": "If true, force API to not use cached data."
+        },
+        "tagIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Optional. If set, only return data list tags."
         }
       }
     },
