@@ -6982,7 +6982,7 @@
               "properties": {
                 "groupId": {
                   "type": "string",
-                  "description": "Optional. If set to a particular billing group, calculate for that billing group. If empty, calculate for all billing groups.\n\nAt the moment, for AWS, this is only valid for account type billing groups, not tag billing groups. If a tag billing group is provided, it is discarded and the calculation is done for the whole organization."
+                  "description": "Optional. A comma-separated list of billing internal ids. If empty, calculate for all billing groups.\n\nAt the moment, for AWS, this is only valid for account type billing groups, not tag billing groups. If a tag billing group is provided, it is discarded and the calculation is done for the whole organization."
                 },
                 "month": {
                   "type": "string",
