@@ -3296,6 +3296,258 @@
         ]
       }
     },
+    "/v1/fees/adjustment/allocators": {
+      "get": {
+        "summary": "WORK-IN-PROGRESS: Lists the fee adjustment allocators",
+        "operationId": "Cover_ListFeeAdjustmentAllocators",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1FeeAdjustmentAllocatorResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of v1FeeAdjustmentAllocatorResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Cover"
+        ]
+      },
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Creates fee adjustment allocator",
+        "operationId": "Cover_CreateFeeAdjustmentAllocator",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1FeeAdjustmentAllocatorResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateFeeAdjustmentAllocatorRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
+    "/v1/fees/adjustment/allocators/{id}": {
+      "delete": {
+        "summary": "WORK-IN-PROGRESS: Deletes a fee adjustment allocator",
+        "operationId": "Cover_DeleteFeeAdjustmentAllocator",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Required. The id of the allocator to delete.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      },
+      "put": {
+        "summary": "WORK-IN-PROGRESS: Creates fee adjustment allocator",
+        "operationId": "Cover_UpdateFeeAdjustmentAllocator",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1FeeAdjustmentAllocatorResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "expiration": {
+                  "type": "string",
+                  "format": "int64"
+                },
+                "feeId": {
+                  "type": "string",
+                  "description": "Optional. The specific fee to be adjusted."
+                },
+                "duration": {
+                  "type": "string",
+                  "format": "int64",
+                  "description": "Optional. The number of months the fee is to be distributed starting from startMonth."
+                },
+                "startMonth": {
+                  "type": "string",
+                  "description": "Optional. The starting month of the allocator to be effective."
+                },
+                "defaultAccount": {
+                  "type": "string",
+                  "description": "Optional. The default account for remaining costs. If not set, will allocate the cost to the original account."
+                },
+                "criteria": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/v1Criteria"
+                  },
+                  "description": "Required. Criteria for the adjustment to be applied."
+                },
+                "allocator": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/v1Allocator"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
+    "/v1/fees/all:read": {
+      "post": {
+        "summary": "Lists the fees",
+        "operationId": "Cover_ListFees",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/coverv1FeeDetails"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of coverv1FeeDetails"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ListFeesRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
+    "/v1/fees/restore": {
+      "post": {
+        "summary": "Restore distributed fees",
+        "operationId": "Cover_RestoreFee",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/coverv1FeeDetails"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of coverv1FeeDetails"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1RestoreFeeRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
     "/v1/fees:read": {
       "post": {
         "summary": "Get all available fees for the specified cost group",
@@ -5325,6 +5577,51 @@
         ]
       }
     },
+    "/v1/views/{viewId}/colortheme": {
+      "put": {
+        "summary": "Update view's color theme",
+        "operationId": "Cover_UpdateViewColorTheme",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateViewColorThemeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "viewId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "colorTheme": {
+                  "type": "string"
+                }
+              },
+              "title": "Request message for UpdateViewColorTheme"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
     "/v1/views/{viewId}/sidemenufavorite": {
       "post": {
         "summary": "Add as side menu favorite",
@@ -7286,406 +7583,6 @@
         ]
       }
     },
-    "/v1/{vendor}/fees/adjustment/allocators": {
-      "get": {
-        "summary": "WORK-IN-PROGRESS: Lists the fee adjustment allocators",
-        "operationId": "Cover_ListFeeAdjustmentAllocators",
-        "responses": {
-          "200": {
-            "description": "A successful response.(streaming responses)",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "result": {
-                  "$ref": "#/definitions/v1FeeAdjustmentAllocator"
-                },
-                "error": {
-                  "$ref": "#/definitions/googlerpcStatus"
-                }
-              },
-              "title": "Stream result of v1FeeAdjustmentAllocator"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "vendor",
-            "description": "Required. At the moment, only `aws` is supported.",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Cover"
-        ]
-      },
-      "post": {
-        "summary": "WORK-IN-PROGRESS: Creates fee adjustment allocator",
-        "operationId": "Cover_CreateFeeAdjustmentAllocator",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1CreateFeeAdjustmentAllocatorResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "vendor",
-            "description": "Required. At the moment, only `aws` is supported.",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "expiration": {
-                  "type": "string",
-                  "format": "int64",
-                  "title": "Optional. The number of months the allocator is active. If not set, allocator won't expire (always active)"
-                },
-                "awsOptions": {
-                  "$ref": "#/definitions/v1FeeAdjustmentAllocatorAwsOptions",
-                  "description": "Required if `{vendor}` is `aws`. AWS-specific options."
-                }
-              },
-              "description": "Request message for the CreateFeeAdjustmentAllocator rpc."
-            }
-          }
-        ],
-        "tags": [
-          "Cover"
-        ]
-      }
-    },
-    "/v1/{vendor}/fees/adjustment/allocators/{id}": {
-      "delete": {
-        "summary": "WORK-IN-PROGRESS: Deletes a fee adjustment allocator",
-        "operationId": "Cover_DeleteFeeAdjustmentAllocator",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "properties": {}
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "vendor",
-            "description": "Required. At the moment, only `aws` is supported.",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "id",
-            "description": "Required. The id of the allocator to delete.",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Cover"
-        ]
-      },
-      "put": {
-        "summary": "WORK-IN-PROGRESS: Creates fee adjustment allocator",
-        "operationId": "Cover_UpdateFeeAdjustmentAllocator",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1UpdateFeeAdjustmentAllocatorResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "vendor",
-            "description": "Required. At the moment, only `aws` is supported.",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "id",
-            "description": "Required. The id of the allocator to delete.",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "expiration": {
-                  "type": "string",
-                  "format": "int64",
-                  "title": "Optional. The number of months the allocator is active. If not set, allocator won't expire (always active)"
-                },
-                "awsOptions": {
-                  "$ref": "#/definitions/v1FeeAdjustmentAllocatorAwsOptions",
-                  "description": "Required if `{vendor}` is `aws`. AWS-specific options."
-                }
-              },
-              "description": "Request message for the UpdateFeeAdjustmentAllocator rpc."
-            }
-          }
-        ],
-        "tags": [
-          "Cover"
-        ]
-      }
-    },
-    "/v1/{vendor}/fees/all:read": {
-      "post": {
-        "summary": "Lists the fees",
-        "operationId": "Cover_ListFees",
-        "responses": {
-          "200": {
-            "description": "A successful response.(streaming responses)",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "result": {
-                  "$ref": "#/definitions/coverv1FeeDetails"
-                },
-                "error": {
-                  "$ref": "#/definitions/googlerpcStatus"
-                }
-              },
-              "title": "Stream result of coverv1FeeDetails"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "vendor",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "month": {
-                  "type": "string"
-                }
-              },
-              "description": "Request message for the ListFees rpc."
-            }
-          }
-        ],
-        "tags": [
-          "Cover"
-        ]
-      }
-    },
-    "/v1/{vendor}/fees/recalculate": {
-      "post": {
-        "summary": "Recalculate fee based on criteria",
-        "operationId": "Cover_RecalculateFee",
-        "responses": {
-          "200": {
-            "description": "A successful response.(streaming responses)",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "result": {
-                  "$ref": "#/definitions/coverv1FeeDetails"
-                },
-                "error": {
-                  "$ref": "#/definitions/googlerpcStatus"
-                }
-              },
-              "title": "Stream result of coverv1FeeDetails"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "vendor",
-            "description": "Required. Cloud vendor.",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "accounts": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/coverAccounts"
-                  }
-                },
-                "costGroups": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/coverCostGroups"
-                  }
-                }
-              },
-              "description": "Request message for the RecalculateFee rpc."
-            }
-          }
-        ],
-        "tags": [
-          "Cover"
-        ]
-      }
-    },
-    "/v1/{vendor}/fees/restore": {
-      "post": {
-        "summary": "Restore distributed fees",
-        "operationId": "Cover_RestoreFee",
-        "responses": {
-          "200": {
-            "description": "A successful response.(streaming responses)",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "result": {
-                  "$ref": "#/definitions/coverv1FeeDetails"
-                },
-                "error": {
-                  "$ref": "#/definitions/googlerpcStatus"
-                }
-              },
-              "title": "Stream result of coverv1FeeDetails"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "vendor",
-            "description": "Required. Cloud vendor.",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "feeId": {
-                  "type": "string",
-                  "description": "Required. The fee to restore."
-                }
-              },
-              "description": "Request message for the RestoreFee rpc."
-            }
-          }
-        ],
-        "tags": [
-          "Cover"
-        ]
-      }
-    },
-    "/v1/{vendor}/fees/{feeId}": {
-      "get": {
-        "summary": "Gets the fee details",
-        "operationId": "Cover_GetFeeDetails",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/coverv1FeeDetails"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "vendor",
-            "description": "Required. Cloud vendor.",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "feeId",
-            "description": "Required. The fee id to query.",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Cover"
-        ]
-      }
-    },
     "/v1/{vendor}/forecasts": {
       "get": {
         "summary": "Fetches cost forecasts for the specified billing group. Includes historical cost (up to previous month) and forecasted cost (up to three months for now).",
@@ -8942,40 +8839,6 @@
         }
       },
       "description": "A map of \"key:value\" attribute filters. The key indicates the column name while the value is the filter value prefixed by either \"eq:\" (equal), \"re:\" (regular expressions based on https://github.com/google/re2), or \"!re:\" (reverse \"re:\"). No prefix is the same as \"eq:\". Multiple map items will use the logical 'and' operator, e.g. mapfilter1 \u0026\u0026 mapfilter2 \u0026\u0026 mapfilter3, etc.\n\nFor example, if you like apply your modifiers to `productCode:AmazonEC2`, set to `{\"productCode\":\"eq:AmazonEC2\"}` or `{\"productCode\":\"AmazonEC2\"}`. You can also use a regular expression like `{\"productCode\":\"re:AmazonEC2|AmazonRDS\"}`, which means apply to all AmazonEC2 or AmazonRDS lineitems. Or reverse regexp, such as `{\"productCode\":\"!re:^AmazonEC2$\"}`, which means apply to all items except `AmazonEC2`. Valid keys are `productCode`, `serviceCode`, `region`, `zone`, `usageType`, `instanceType`, `operation`, `description`, and `resourceId`."
-    },
-    "FeeAdjustmentAllocatorAwsOptionsAllocator": {
-      "type": "object",
-      "properties": {
-        "attribute": {
-          "type": "string",
-          "description": "Required. The type of attribute where the adjustments are to be applied. Only `account` is supported for now. Planning to support `costgroup`, `tag`, and `region`."
-        },
-        "value": {
-          "type": "string",
-          "description": "Required. The value for the specified attribute. AccountId for account attribute."
-        },
-        "formula": {
-          "type": "string",
-          "description": "Required. The formula to use to compute the value of the allocation on an attribute."
-        },
-        "months": {
-          "type": "string",
-          "format": "int64",
-          "description": "Optional. The number of months the adjustment is to be applied. If set, it will divide the cost equally to the number of months."
-        }
-      }
-    },
-    "FeeAdjustmentAllocatorAwsOptionsCriteria": {
-      "type": "object",
-      "properties": {
-        "and": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          }
-        }
-      },
-      "description": "A map of \"key:value\" attribute filters. The key indicates the column name while the value is the filter value prefixed by either \"eq:\" (equal), \"re:\" (regular expressions based on https://github.com/google/re2), or \"!re:\" (reverse \"re:\"). No prefix is the same as \"eq:\". Multiple map items will use the logical 'and' operator, e.g. mapfilter1 \u0026\u0026 mapfilter2 \u0026\u0026 mapfilter3, etc."
     },
     "IdentityProvidersamlInfo": {
       "type": "object",
@@ -11180,20 +11043,6 @@
         }
       }
     },
-    "coverAccounts": {
-      "type": "object",
-      "properties": {
-        "accountId": {
-          "type": "string"
-        },
-        "allocation": {
-          "type": "string"
-        },
-        "duration": {
-          "type": "string"
-        }
-      }
-    },
     "coverAwsCostForecast": {
       "type": "object",
       "properties": {
@@ -11363,20 +11212,6 @@
           "additionalProperties": {
             "type": "string"
           }
-        }
-      }
-    },
-    "coverCostGroups": {
-      "type": "object",
-      "properties": {
-        "accountId": {
-          "type": "string"
-        },
-        "allocation": {
-          "type": "string"
-        },
-        "duration": {
-          "type": "string"
         }
       }
     },
@@ -11772,6 +11607,9 @@
           "$ref": "#/definitions/coverSideMenu"
         },
         "reportType": {
+          "type": "string"
+        },
+        "colorTheme": {
           "type": "string"
         }
       }
@@ -12593,6 +12431,28 @@
       },
       "title": "Response message for AddSideMenuFavorite"
     },
+    "v1Allocator": {
+      "type": "object",
+      "properties": {
+        "attribute": {
+          "type": "string",
+          "description": "Required. The type of attribute where the adjustments are to be applied. Only `account` is supported for now. Planning to support `costgroup`, `tag`, and `region`."
+        },
+        "value": {
+          "type": "string",
+          "description": "Required. The value for the specified attribute. AccountId for account attribute."
+        },
+        "formula": {
+          "type": "string",
+          "description": "Required. The formula to use to compute the value of the allocation on an attribute."
+        },
+        "months": {
+          "type": "string",
+          "format": "int64",
+          "description": "Optional. The number of months the adjustment is to be applied. If set, it will divide the cost equally to the number of months."
+        }
+      }
+    },
     "v1AssetsSummary": {
       "type": "object",
       "properties": {
@@ -13207,18 +13067,45 @@
       "type": "object",
       "description": "Request message for the Admin.CreateDefaultNotificationChannel rpc."
     },
-    "v1CreateFeeAdjustmentAllocatorResponse": {
+    "v1CreateFeeAdjustmentAllocatorRequest": {
       "type": "object",
       "properties": {
         "expiration": {
           "type": "string",
           "format": "int64"
         },
-        "aws": {
-          "$ref": "#/definitions/v1FeeAdjustmentAllocator"
+        "feeId": {
+          "type": "string",
+          "description": "Optional. The specific fee to be adjusted."
+        },
+        "duration": {
+          "type": "string",
+          "format": "int64",
+          "description": "Optional. The number of months the fee is to be distributed starting from startMonth."
+        },
+        "startMonth": {
+          "type": "string",
+          "description": "Optional. The starting month of the allocator to be effective."
+        },
+        "defaultAccount": {
+          "type": "string",
+          "description": "Optional. The default account for remaining costs. If not set, will allocate the cost to the original account."
+        },
+        "criteria": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Criteria"
+          },
+          "description": "Required. Criteria for the adjustment to be applied."
+        },
+        "allocator": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Allocator"
+          }
         }
       },
-      "description": "Response message for the CreateFeeAdjustmentAllocator rpc."
+      "description": "Request message for the CreateFeeAdjustmentAllocator rpc."
     },
     "v1CreateGroupRootUserRequest": {
       "type": "object",
@@ -13574,6 +13461,18 @@
       },
       "title": "Response message for CreateView"
     },
+    "v1Criteria": {
+      "type": "object",
+      "properties": {
+        "and": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "A map of \"key:value\" attribute filters. The key indicates the column name while the value is the filter value prefixed by either \"eq:\" (equal), \"re:\" (regular expressions based on https://github.com/google/re2), or \"!re:\" (reverse \"re:\"). No prefix is the same as \"eq:\". Multiple map items will use the logical 'and' operator, e.g. mapfilter1 \u0026\u0026 mapfilter2 \u0026\u0026 mapfilter3, etc."
+    },
     "v1DefaultCostAccess": {
       "type": "object",
       "properties": {
@@ -13668,30 +13567,19 @@
       },
       "description": "Response message for the ExportInvoiceFile rpc."
     },
-    "v1FeeAdjustmentAllocator": {
+    "v1FeeAdjustmentAllocatorResponse": {
       "type": "object",
       "properties": {
         "id": {
+          "type": "string"
+        },
+        "orgId": {
           "type": "string"
         },
         "expiration": {
           "type": "string",
           "format": "int64"
         },
-        "createTime": {
-          "type": "string"
-        },
-        "updateTime": {
-          "type": "string"
-        },
-        "awsOptions": {
-          "$ref": "#/definitions/v1FeeAdjustmentAllocatorAwsOptions"
-        }
-      }
-    },
-    "v1FeeAdjustmentAllocatorAwsOptions": {
-      "type": "object",
-      "properties": {
         "feeId": {
           "type": "string",
           "description": "Optional. The specific fee to be adjusted."
@@ -13712,18 +13600,23 @@
         "criteria": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/FeeAdjustmentAllocatorAwsOptionsCriteria"
+            "$ref": "#/definitions/v1Criteria"
           },
           "description": "Required. Criteria for the adjustment to be applied."
         },
         "allocator": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/FeeAdjustmentAllocatorAwsOptionsAllocator"
+            "$ref": "#/definitions/v1Allocator"
           }
+        },
+        "createTime": {
+          "type": "string"
+        },
+        "updateTime": {
+          "type": "string"
         }
-      },
-      "title": "Fee adjustment allocator for aws"
+      }
     },
     "v1FeeItem": {
       "type": "object",
@@ -14694,6 +14587,15 @@
       },
       "description": "Response message for the ListExchangeRates rpc."
     },
+    "v1ListFeesRequest": {
+      "type": "object",
+      "properties": {
+        "month": {
+          "type": "string"
+        }
+      },
+      "description": "Request message for the ListFees rpc."
+    },
     "v1ListIdentityProvidersResponse": {
       "type": "object",
       "properties": {
@@ -15230,6 +15132,16 @@
         }
       }
     },
+    "v1RestoreFeeRequest": {
+      "type": "object",
+      "properties": {
+        "feeId": {
+          "type": "string",
+          "description": "Required. The fee to restore."
+        }
+      },
+      "description": "Request message for the RestoreFee rpc."
+    },
     "v1SaveNotificationSettingsRequest": {
       "type": "object",
       "properties": {
@@ -15334,19 +15246,6 @@
         }
       },
       "title": "Response message for UpdateCostGroupName"
-    },
-    "v1UpdateFeeAdjustmentAllocatorResponse": {
-      "type": "object",
-      "properties": {
-        "expiration": {
-          "type": "string",
-          "format": "int64"
-        },
-        "aws": {
-          "$ref": "#/definitions/v1FeeAdjustmentAllocator"
-        }
-      },
-      "description": "Response message for the UpdateFeeAdjustmentAllocator rpc."
     },
     "v1UpdateMemberPermissionResponse": {
       "type": "object",
@@ -15613,6 +15512,15 @@
         }
       },
       "title": "Response message for UpdateUserTimezone"
+    },
+    "v1UpdateViewColorThemeResponse": {
+      "type": "object",
+      "properties": {
+        "viewData": {
+          "$ref": "#/definitions/coverViewData"
+        }
+      },
+      "title": "Response message for UpdateViewColorTheme"
     },
     "v1UpdateViewLayoutResponse": {
       "type": "object",
