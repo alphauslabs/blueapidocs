@@ -7410,7 +7410,7 @@
         ]
       }
     },
-    "/v1/{vendor}/exchangerate": {
+    "/v1/{vendor}/exchangerate/{month}": {
       "get": {
         "summary": "WORK-IN-PROGRESS: Lists all exchange rate. Only available in Ripple.",
         "operationId": "Billing_ListExchangeRates",
@@ -7432,6 +7432,13 @@
           {
             "name": "vendor",
             "description": "Required. vendor.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "month",
+            "description": "Required. month. Format: `yyyymmdd`.",
             "in": "path",
             "required": true,
             "type": "string"
@@ -11661,6 +11668,55 @@
       "default": "NULL_VALUE",
       "description": "`NullValue` is a singleton enumeration to represent the null value for the\n`Value` type union.\n\n The JSON representation for `NullValue` is JSON `null`.\n\n - NULL_VALUE: Null value."
     },
+    "rippleBillingGroupExchangeRate": {
+      "type": "object",
+      "properties": {
+        "billingInternalId": {
+          "type": "string",
+          "description": "The billing group's internal id."
+        },
+        "billingGroupId": {
+          "type": "string",
+          "description": "The billing group's id."
+        },
+        "billingGroupName": {
+          "type": "string",
+          "description": "The billing group's name."
+        },
+        "exchangeRate": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rippleExchangeRate"
+          },
+          "description": "The exchange rate."
+        }
+      },
+      "description": "BillingGroupExchangeRate resource definition."
+    },
+    "rippleCommonExchangeRate": {
+      "type": "object",
+      "properties": {
+        "aws": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rippleExchangeRate"
+          }
+        },
+        "gcp": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rippleExchangeRate"
+          }
+        },
+        "azure": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rippleExchangeRate"
+          }
+        }
+      },
+      "description": "CommonExchangeRate resource definition."
+    },
     "rippleDueDate": {
       "type": "object",
       "properties": {
@@ -11725,23 +11781,6 @@
       },
       "description": "WORK-IN-PROGRESS: InvoiceLayout resource definition.\nDefinitions related to invoice display."
     },
-    "rippleMonthlyExchangeRate": {
-      "type": "object",
-      "properties": {
-        "month": {
-          "type": "string",
-          "title": "The year-month. format: yyyymm"
-        },
-        "exchangeRate": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/rippleExchangeRate"
-          },
-          "description": "The exchange rate."
-        }
-      },
-      "description": "MonthlyExchangeRate resource definition."
-    },
     "rippleOrg": {
       "type": "object",
       "properties": {
@@ -11790,6 +11829,27 @@
         }
       },
       "description": "Payer resource definition."
+    },
+    "ripplePayerExchangeRate": {
+      "type": "object",
+      "properties": {
+        "payerAccountId": {
+          "type": "string",
+          "description": "The payer account Id."
+        },
+        "payerAccountName": {
+          "type": "string",
+          "description": "The payer account Name."
+        },
+        "exchangeRate": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rippleExchangeRate"
+          },
+          "description": "The exchange rate."
+        }
+      },
+      "description": "PayerExchangeRate resource definition."
     },
     "rippleReseller": {
       "type": "object",
@@ -11860,6 +11920,30 @@
         }
       },
       "description": "Rounding resource definition."
+    },
+    "rippleVendorPayerExchangeRate": {
+      "type": "object",
+      "properties": {
+        "aws": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ripplePayerExchangeRate"
+          }
+        },
+        "gcp": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ripplePayerExchangeRate"
+          }
+        },
+        "azure": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ripplePayerExchangeRate"
+          }
+        }
+      },
+      "description": "VendorPayerExchangeRate resource definition."
     },
     "rippleYearMonth": {
       "type": "object",
@@ -14426,14 +14510,24 @@
     "v1ListExchangeRatesResponse": {
       "type": "object",
       "properties": {
-        "aws": {
-          "$ref": "#/definitions/rippleMonthlyExchangeRate"
+        "month": {
+          "type": "string",
+          "description": "The Month."
         },
-        "gcp": {
-          "$ref": "#/definitions/rippleMonthlyExchangeRate"
+        "common": {
+          "$ref": "#/definitions/rippleCommonExchangeRate",
+          "description": "The common exchange rate."
         },
-        "azure": {
-          "$ref": "#/definitions/rippleMonthlyExchangeRate"
+        "billingGroup": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rippleBillingGroupExchangeRate"
+          },
+          "description": "The billing group exchange rate."
+        },
+        "payer": {
+          "$ref": "#/definitions/rippleVendorPayerExchangeRate",
+          "description": "The payer exchange rate."
         }
       },
       "description": "Response message for the ListExchangeRates rpc."
