@@ -3384,15 +3384,6 @@
                   "type": "string",
                   "format": "int64"
                 },
-                "feeId": {
-                  "type": "string",
-                  "description": "Optional. The specific fee to be adjusted."
-                },
-                "duration": {
-                  "type": "string",
-                  "format": "int64",
-                  "description": "Optional. The number of months the fee is to be distributed starting from startMonth."
-                },
                 "startMonth": {
                   "type": "string",
                   "description": "Optional. The starting month of the allocator to be effective."
@@ -12366,13 +12357,9 @@
     "v1Allocator": {
       "type": "object",
       "properties": {
-        "attribute": {
+        "costGroupId": {
           "type": "string",
-          "description": "Required. The type of attribute where the adjustments are to be applied. Only `account` is supported for now. Planning to support `costgroup`, `tag`, and `region`."
-        },
-        "value": {
-          "type": "string",
-          "description": "Required. The value for the specified attribute. AccountId for account attribute."
+          "description": "Required. The id of the costgroup to be allocated."
         },
         "formula": {
           "type": "string",
@@ -13006,15 +12993,6 @@
           "type": "string",
           "format": "int64"
         },
-        "feeId": {
-          "type": "string",
-          "description": "Optional. The specific fee to be adjusted."
-        },
-        "duration": {
-          "type": "string",
-          "format": "int64",
-          "description": "Optional. The number of months the fee is to be distributed starting from startMonth."
-        },
         "startMonth": {
           "type": "string",
           "description": "Optional. The starting month of the allocator to be effective."
@@ -13508,21 +13486,9 @@
         "id": {
           "type": "string"
         },
-        "orgId": {
-          "type": "string"
-        },
         "expiration": {
           "type": "string",
           "format": "int64"
-        },
-        "feeId": {
-          "type": "string",
-          "description": "Optional. The specific fee to be adjusted."
-        },
-        "duration": {
-          "type": "string",
-          "format": "int64",
-          "description": "Optional. The number of months the fee is to be distributed starting from startMonth."
         },
         "startMonth": {
           "type": "string",
