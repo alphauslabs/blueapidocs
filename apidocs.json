@@ -8824,7 +8824,7 @@
           "items": {
             "$ref": "#/definitions/apiAccountTotal"
           },
-          "description": "substitution\nsupportFee \nusageOnlyTotal\nusageTotal",
+          "description": "substitution\nsupportFee \nusageOnlyTotal\nusageTotal\nmarketplace\nmarketplaceFees",
           "title": "The keys included in the account total column have the following values"
         }
       }
@@ -9350,7 +9350,7 @@
       "properties": {
         "name": {
           "type": "string",
-          "description": "supportFee: \n   Total amount of Support Fee costs\n\nsubstitution: \n   Total amount of agency fee costs\n\ncharge: \n   Total amount of vendor usage fee costs\n\ndiscount: \n   Total amount after discounts. Inculuded Support fee costs\n\ndiscountWithSubstitution: \n   Total Discounts plus agency fee costs\n\nchargeTaxFree: \n   Amounts not included in consumption tax\n\nadditionalItem: \n   Total amount of additional item costs \n\ncustomService: \n   Total amount of custom service item costs \n\nsumOfBeforeTax: \n   Total amount before consumption tax\n\ntax: \n   Consumption tax amount on the total amount\n\ntotal: \n   Total billing amount including tax",
+          "description": "supportFee: \n   Total amount of Support Fee costs\n\nsubstitution: \n   Total amount of agency fee costs\n\nchargeOnly: \n   Total amount of vendor usage fee only costs\n\nmarketplace: \n   Total amount of vendor marketplace usage costs\n\nmarketplaceFees: \n   Total amount of vendor marketplace fee costs\n\ncharge: \n   Total amount of vendor usage fee costs\n\ndiscount: \n   Total amount after discounts. Inculuded Support fee costs\n\ndiscountWithSubstitution: \n   Total Discounts plus agency fee costs\n\nchargeTaxFree: \n   Amounts not included in consumption tax\n\nadditionalItem: \n   Total amount of additional item costs \n\ncustomService: \n   Total amount of custom service item costs \n\nsumOfBeforeTax: \n   Total amount before consumption tax\n\ntax: \n   Consumption tax amount on the total amount\n\ntotal: \n   Total billing amount including tax",
           "title": "Key names related to the total. Each key is described in the following detail"
         },
         "currency": {
