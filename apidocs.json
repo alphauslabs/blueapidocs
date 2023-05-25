@@ -8824,10 +8824,11 @@
           "items": {
             "$ref": "#/definitions/apiAccountTotal"
           },
-          "description": "substitution\nsupportFee \nusageOnlyTotal\nusageTotal\nmarketplace\nmarketplaceFees",
+          "description": "substitution:\n   Total amount of agency fee costs\n\nsupportFee:\n   Total amount of Support Fee costs\n\nusageOnlyTotal:\n   Total amount of vendor usage fee only costs\n\nusageTotal:\n   Total amount of vendor usage fee costs\n\nmarketplace:\n   Total amount of vendor marketplace usage costs\n\nmarketplaceFees:\n   Total amount of vendor marketplace fee costs",
           "title": "The keys included in the account total column have the following values"
         }
-      }
+      },
+      "description": "AccountDetails resource definition."
     },
     "apiAccountGroup": {
       "type": "object",
@@ -8868,7 +8869,8 @@
           "type": "number",
           "format": "double"
         }
-      }
+      },
+      "description": "AccountTotal resource definition."
     },
     "apiApiClient": {
       "type": "object",
@@ -8979,7 +8981,8 @@
           "type": "number",
           "format": "double"
         }
-      }
+      },
+      "description": "CustomDetails resource definition."
     },
     "apiEmailChannel": {
       "type": "object",
@@ -9186,7 +9189,8 @@
           "type": "number",
           "format": "double"
         }
-      }
+      },
+      "description": "GroupCustomDetails resource definition."
     },
     "apiGroupDetails": {
       "type": "object",
@@ -9201,7 +9205,8 @@
           "type": "number",
           "format": "double"
         }
-      }
+      },
+      "description": "GroupDetails resource definition."
     },
     "apiGroupRootUser": {
       "type": "object",
@@ -9277,7 +9282,8 @@
           "$ref": "#/definitions/apiVendorDetail",
           "title": "Invoice vendor detail by 'azure'"
         }
-      }
+      },
+      "description": "Invoice resource definition."
     },
     "apiInvoiceMessage": {
       "type": "object",
@@ -9291,7 +9297,8 @@
           "description": "done: Invoicing is complete.\nrunning: Invoicing in progress.\nfailed: Invoicing is failure.",
           "title": "invoice generate request status"
         }
-      }
+      },
+      "description": "InvoiceMessage resource definition."
     },
     "apiInvoiceSettings": {
       "type": "object",
@@ -9343,7 +9350,8 @@
         "title": {
           "type": "string"
         }
-      }
+      },
+      "description": "InvoiceSettings resource definition."
     },
     "apiInvoiceTotal": {
       "type": "object",
@@ -9360,7 +9368,8 @@
           "type": "number",
           "format": "double"
         }
-      }
+      },
+      "description": "InvoiceTotal resource definition."
     },
     "apiKeyValue": {
       "type": "object",
@@ -9689,7 +9698,8 @@
           "type": "number",
           "format": "double"
         }
-      }
+      },
+      "description": "UsageDetails resource definition."
     },
     "apiUser": {
       "type": "object",
@@ -9780,7 +9790,8 @@
           "$ref": "#/definitions/apiInvoiceSettings",
           "title": "settings: Includes settings related to billing"
         }
-      }
+      },
+      "description": "VendorDetail resource definition."
     },
     "apiawsChartData": {
       "type": "object",
@@ -10808,7 +10819,8 @@
           "type": "number",
           "format": "double"
         }
-      }
+      },
+      "description": "FeeDetails resource definition."
     },
     "blueapiapiOperation": {
       "type": "object",
