@@ -648,7 +648,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/apiNotification"
+              "$ref": "#/definitions/blueapiapiNotification"
             }
           },
           "default": {
@@ -681,7 +681,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/apiNotification"
+              "$ref": "#/definitions/blueapiapiNotification"
             }
           },
           "default": {
@@ -755,7 +755,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/apiNotification"
+              "$ref": "#/definitions/blueapiapiNotification"
             }
           },
           "default": {
@@ -6059,6 +6059,45 @@
         ]
       }
     },
+    "/v1/{vendor}/alerts/{id}": {
+      "get": {
+        "summary": "WORK-IN-PROGRESS: Get the budget alerts for the account id. Only available in Wave(Pro).",
+        "operationId": "Cost_GetAccountBudgetAlerts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/waveBudgetAlert"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "Required. Account Id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      }
+    },
     "/v1/{vendor}/bep/{orgId}": {
       "get": {
         "summary": "WORK-IN-PROGRESS: Get the breakeven point details for the RI or SP.",
@@ -6190,7 +6229,7 @@
               "type": "object",
               "properties": {
                 "data": {
-                  "$ref": "#/definitions/apiBudget"
+                  "$ref": "#/definitions/blueapiapiBudget"
                 }
               },
               "title": "Request message for UpdateAccountBudget"
@@ -6301,7 +6340,7 @@
               "type": "object",
               "properties": {
                 "data": {
-                  "$ref": "#/definitions/apiBudget"
+                  "$ref": "#/definitions/blueapiapiBudget"
                 }
               },
               "title": "Request message for CreateAccountBudget"
@@ -8914,24 +8953,6 @@
         }
       }
     },
-    "apiBudget": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "fiscalYear": {
-          "type": "string",
-          "title": "Format: yyyy"
-        },
-        "monthlyBudget": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/apiMonthlyBudget"
-          }
-        }
-      }
-    },
     "apiCostTag": {
       "type": "object",
       "properties": {
@@ -9476,26 +9497,6 @@
         "lowerBound": {
           "type": "number",
           "format": "double"
-        }
-      }
-    },
-    "apiNotification": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "notificationType": {
-          "type": "string"
-        },
-        "channels": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "enabled": {
-          "type": "boolean"
         }
       }
     },
@@ -10166,6 +10167,43 @@
       "description": "see gcp billing data schema details:[https://cloud.google.com/billing/docs/how-to/export-data-bigquery-tables]",
       "title": "Cost for Api Response"
     },
+    "apiwaveBudget": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "budget id"
+        },
+        "value": {
+          "type": "number",
+          "format": "double",
+          "title": "budget value"
+        },
+        "enabled": {
+          "type": "boolean",
+          "title": "budget setting enable/disable"
+        }
+      },
+      "description": "Budget resource definition."
+    },
+    "apiwaveNotification": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "notification id"
+        },
+        "destination": {
+          "type": "string",
+          "title": "destination email/slack"
+        },
+        "enabled": {
+          "type": "boolean",
+          "title": "notification enable/disable"
+        }
+      },
+      "description": "Notification resource definition."
+    },
     "awsAdjustmentsTypeList": {
       "type": "object",
       "properties": {
@@ -10779,6 +10817,24 @@
         }
       }
     },
+    "blueapiapiBudget": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "fiscalYear": {
+          "type": "string",
+          "title": "Format: yyyy"
+        },
+        "monthlyBudget": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiMonthlyBudget"
+          }
+        }
+      }
+    },
     "blueapiapiChartData": {
       "type": "object",
       "properties": {
@@ -10821,6 +10877,26 @@
         }
       },
       "description": "FeeDetails resource definition."
+    },
+    "blueapiapiNotification": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "notificationType": {
+          "type": "string"
+        },
+        "channels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "enabled": {
+          "type": "boolean"
+        }
+      }
     },
     "blueapiapiOperation": {
       "type": "object",
@@ -13599,7 +13675,7 @@
       "type": "object",
       "properties": {
         "data": {
-          "$ref": "#/definitions/apiBudget"
+          "$ref": "#/definitions/blueapiapiBudget"
         }
       },
       "title": "Response message for GetAccountBudget"
@@ -14557,7 +14633,7 @@
         "notifications": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/apiNotification"
+            "$ref": "#/definitions/blueapiapiNotification"
           }
         }
       },
@@ -15547,6 +15623,30 @@
         }
       },
       "description": "Streaming response message for the Billing.ListUsageCostsDrift rpc."
+    },
+    "waveBudgetAlert": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "budget alert id."
+        },
+        "notification": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiwaveNotification"
+          },
+          "description": "notification setting."
+        },
+        "budget": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiwaveBudget"
+          },
+          "description": "budget setting."
+        }
+      },
+      "description": "Budget resource definition."
     }
   }
 }
