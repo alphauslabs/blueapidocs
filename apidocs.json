@@ -14216,6 +14216,10 @@
           "type": "boolean",
           "description": "For recommendationType = 'reservation'. Optional. If set to \"true\", recommends EC2 Instance Savings Plan that will cover usage not covered by RI. Default: false."
         },
+        "ec2SpProductFamily": {
+          "type": "string",
+          "description": "For recommendationType = 'reservation'. Optional. Valid values: 'EC2Instance', 'Compute'. Default: 'EC2Instance'."
+        },
         "term": {
           "type": "string",
           "description": "For recommendationType = 'reservation'. Optional. Valid values: '1yr', '3yr'. Default: '1yr'."
