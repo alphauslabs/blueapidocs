@@ -5943,6 +5943,13 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "fieldMask",
+            "description": "Optional.",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
