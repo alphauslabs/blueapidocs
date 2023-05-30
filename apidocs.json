@@ -12764,9 +12764,13 @@
         },
         "modifier": {
           "$ref": "#/definitions/CalculatorCostModifierAwsOptionsModifier"
+        },
+        "after": {
+          "type": "string",
+          "description": "Optional. Specifies the modifier id in which this modifier will be applied after. For example, if you have another modifier `mod1` and you create a new modifier with `after` set to `mod1`, the calculator will apply `mod1` first, then this modifier. If `after` is not set, the application sequence for multiple overlapping modifiers will be by update timestamp, oldest to newest."
         }
       },
-      "description": "AWS-specific options definition. For overlapping cost modifier targets, the latest modifier will be applied. For example, you created a modifier for a specific account. Then you created another modifier for a billing group that includes that same account. In that case, the modifier for the billing group will be applied to the first account."
+      "description": "AWS-specific options definition."
     },
     "v1CloudWatchMetricsStream": {
       "type": "object",
