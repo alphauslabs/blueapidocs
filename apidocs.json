@@ -8809,7 +8809,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Replace matching occurences with the input. The key part is the regular expression matcher based on https://github.com/google/re2, while the value is the replacement. The order of replacement is not guaranteed."
+          "description": "Optional. Replace matching occurences with the input. The key part is the regular expression matcher based on https://github.com/google/re2, while the value is the replacement. The order of replacement is not guaranteed.\n\nYou can use the `{{ondemandrate}}` variable in the replacement value part to reference the public ondemand rate indicated in the CUR."
         }
       }
     },
