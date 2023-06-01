@@ -6172,6 +6172,21 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "budgetAlert": {
+                  "$ref": "#/definitions/waveBudgetAlert",
+                  "description": "Required. Budget alert setting."
+                }
+              },
+              "title": "Request message for CreateAccountBudgetAlerts"
+            }
           }
         ],
         "tags": [
@@ -6209,6 +6224,21 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "budgetAlert": {
+                  "$ref": "#/definitions/waveBudgetAlert",
+                  "description": "Required. Budget alert setting.\n\nSet only the setting value to be changed.\nFor example, If you want to change only daily value, set `{\"budget\":[{\"id\":\"daily\",\"value\":100,\"enabled\":true}}` as a parameter\nThe same goes for notification. If you want to change only email value, set `{\"notification\":[{\"id\":\"email\",\"destination\":\"budgetalert-example@alphaus.cloud\",\"enabled\":true}}` as a parameter"
+                }
+              },
+              "title": "Request message for UpdateAccountBudgetAlerts"
+            }
           }
         ],
         "tags": [
