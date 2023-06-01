@@ -10320,7 +10320,7 @@
       "properties": {
         "id": {
           "type": "string",
-          "title": "budget id"
+          "title": "budget id\n`previousDay` / `daily` / `monthly`"
         },
         "value": {
           "type": "number",
@@ -10339,11 +10339,11 @@
       "properties": {
         "id": {
           "type": "string",
-          "title": "notification id"
+          "title": "notification id\n`email` / `slack`"
         },
         "destination": {
           "type": "string",
-          "title": "destination email/slack"
+          "title": "destination email address /slack webhook url"
         },
         "enabled": {
           "type": "boolean",
