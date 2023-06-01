@@ -6615,7 +6615,7 @@
                 },
                 "scheduleMacro": {
                   "type": "string",
-                  "description": "Optional. Non-standard macro(s) that augment(s) `schedule`'s behavior. The only supported value for now is `@endofmonth`.\n\n`@endofmonth` - If set, the backend scheduler will only use the `minute` and `hour` part of `schedule`'s value and set the days to 28th, 29th, 30th, and 31st but the runner will do the filtering for the actual end of the trigger month."
+                  "description": "Optional. Non-standard macro(s) that augment(s) `schedule`'s behavior. The only supported value for now is `@endofmonth`.\n\n`@endofmonth` - If set, the backend scheduler will only use the `minute` and `hour` part of `schedule`'s value and set the days to 28th, 29th, 30th, and 31st but the runner will do the filtering for the actual end of the trigger month. Note that this is different than setting `schedule` to, say, `0 0 28-31 * *`."
                 },
                 "notificationChannel": {
                   "type": "string",
