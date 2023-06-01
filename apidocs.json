@@ -6103,6 +6103,117 @@
         "tags": [
           "Cost"
         ]
+      },
+      "delete": {
+        "summary": "WORK-IN-PROGRESS: Delete the budget alerts for the account id. Only available in Wave(Pro).",
+        "operationId": "Cost_DeleteAccountBudgetAlerts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "Required. Account Id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      },
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Create the budget alerts for the account id. Only available in Wave(Pro).",
+        "operationId": "Cost_CreateAccountBudgetAlerts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/waveBudgetAlert"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "Required. Account Id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      },
+      "put": {
+        "summary": "WORK-IN-PROGRESS: Update the budget alerts for the account id. Only available in Wave(Pro).",
+        "operationId": "Cost_UpdateAccountBudgetAlerts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/waveBudgetAlert"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "Required. Account Id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
       }
     },
     "/v1/{vendor}/bep/{orgId}": {
@@ -15644,7 +15755,8 @@
       "properties": {
         "id": {
           "type": "string",
-          "description": "budget alert id."
+          "description": "account id.",
+          "readOnly": true
         },
         "notification": {
           "type": "array",
