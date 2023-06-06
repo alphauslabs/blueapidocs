@@ -13511,6 +13511,20 @@
         "notification": {
           "type": "boolean",
           "description": "Required. If valid, you will be notified via email address."
+        },
+        "waveConfig": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rippleResellerConfig"
+          },
+          "title": "Optional. Feature Config. If not set config value, use default config"
+        },
+        "aquaConfig": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rippleResellerConfig"
+          },
+          "title": "Optional. Feature Config. If not set config value, use default config"
         }
       },
       "description": "Request message for the CreateReseller rpc."
