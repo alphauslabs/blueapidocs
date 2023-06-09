@@ -3498,6 +3498,48 @@
         ]
       }
     },
+    "/v1/fees/simulate": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Simulate fee allocator",
+        "operationId": "Cover_SimulateFeeAllocator",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/coverv1FeeDetails"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of coverv1FeeDetails"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateFeeAdjustmentAllocatorRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
     "/v1/fees:read": {
       "post": {
         "summary": "Get all available fees for the specified cost group",
@@ -12602,9 +12644,9 @@
     "v1Allocator": {
       "type": "object",
       "properties": {
-        "attribute": {
+        "type": {
           "type": "string",
-          "description": "Required. The type of attribute where the adjustments are to be applied. This can support `account`, `costGroup`, `payer` and `accountName`."
+          "description": "Required. The type where the adjustments are to be applied. This can support `account`, `costGroup` and `payer`."
         },
         "value": {
           "type": "string",
