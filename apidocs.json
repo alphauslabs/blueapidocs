@@ -1751,6 +1751,46 @@
         ]
       }
     },
+    "/iam/v1/verify/{email}": {
+      "post": {
+        "summary": "Verify Email Input For Reset Password",
+        "operationId": "Iam_VerifyEmailForResetPassword",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1VerifyEmailForResetPasswordResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "description": "Request message for Iam.VerifyEmailForResetPassword rpc."
+            }
+          }
+        ],
+        "tags": [
+          "Iam"
+        ]
+      }
+    },
     "/iam/v1/whoami": {
       "get": {
         "summary": "Gets user information about the caller. This call includes all of the user metadata.\nSee [https://alphauslabs.github.io/blueapi/] for the list of supported attributes.",
@@ -15852,6 +15892,14 @@
         }
       },
       "description": "Streaming response message for the Billing.ListUsageCostsDrift rpc."
+    },
+    "v1VerifyEmailForResetPasswordResponse": {
+      "type": "object",
+      "properties": {
+        "exists": {
+          "type": "boolean"
+        }
+      }
     },
     "waveBudgetAlert": {
       "type": "object",
