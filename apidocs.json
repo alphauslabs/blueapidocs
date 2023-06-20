@@ -4760,6 +4760,10 @@
                 "password": {
                   "type": "string",
                   "description": "Optional.\n\nWe recommend a password length of 8~32 characters. If you send 0 characters, a password will be generated automatically."
+                },
+                "notification": {
+                  "type": "boolean",
+                  "description": "Optional. If valid, you will be notified via email address."
                 }
               },
               "description": "Request message for the UpdateReseller rpc."
