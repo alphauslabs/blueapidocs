@@ -4763,7 +4763,7 @@
                 },
                 "notification": {
                   "type": "boolean",
-                  "description": "Optional. If valid, you will be notified via email address."
+                  "description": "Optional. If valid when email or password is updated, you will be notified via email address."
                 }
               },
               "description": "Request message for the UpdateReseller rpc."
