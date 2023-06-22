@@ -3541,6 +3541,9 @@
             "schema": {
               "type": "object",
               "properties": {
+                "category": {
+                  "type": "string"
+                },
                 "expiration": {
                   "type": "string",
                   "format": "int64"
@@ -13457,6 +13460,10 @@
     "v1CreateFeeAdjustmentAllocatorRequest": {
       "type": "object",
       "properties": {
+        "category": {
+          "type": "string",
+          "description": "Optional. The category where the allocator is to be applied. Applicable values are `fee`, `account`, or `savings`. Default value is `fee`."
+        },
         "expiration": {
           "type": "string",
           "format": "int64"
@@ -13966,6 +13973,9 @@
       "type": "object",
       "properties": {
         "id": {
+          "type": "string"
+        },
+        "category": {
           "type": "string"
         },
         "expiration": {
