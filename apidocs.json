@@ -4873,10 +4873,6 @@
             "schema": {
               "type": "object",
               "properties": {
-                "groupId": {
-                  "type": "string",
-                  "description": "Optional. You can set billing internal id or access group id."
-                },
                 "email": {
                   "type": "string",
                   "description": "Optional."
@@ -4885,9 +4881,25 @@
                   "type": "string",
                   "description": "Optional.\n\nWe recommend a password length of 8~32 characters. If you send 0 characters, a password will be generated automatically."
                 },
+                "waveConfig": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/rippleResellerConfig"
+                  },
+                  "description": "Set only the config to be changed.\nFor example, If you want to change only dashboardGraph, set `{\"waveConfig\": [{\"key\": \"dashboardGraph\",\"value\": true}]}` as a parameter",
+                  "title": "Optional. wave feature config"
+                },
+                "aquaConfig": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/rippleResellerConfig"
+                  },
+                  "description": "Set only the config to be changed.\nFor example, If you want to change only aqRiManagement, set `{\"waveConfig\": [{\"key\": \"aqRiManagement\",\"value\": true}]}` as a parameter",
+                  "title": "Optional. aqua feature config"
+                },
                 "notification": {
                   "type": "boolean",
-                  "description": "Optional. If valid when email or password is updated, you will be notified via email address."
+                  "description": "Optional.\n\nIf valid when email or password is updated, you will be notified via email address.\nIf only waveConfig or aquaConfig is changed, it is ignored."
                 }
               },
               "description": "Request message for the UpdateReseller rpc."
