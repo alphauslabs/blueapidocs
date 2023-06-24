@@ -876,7 +876,7 @@
     },
     "/iam/v1/code/request": {
       "post": {
-        "summary": "Request for 6-digit verification code from front-end",
+        "summary": "WORK-IN-PROGRESS: Request for 6-digit verification code from front-end.",
         "operationId": "Iam_RequestForVerificationCode",
         "responses": {
           "200": {
@@ -909,7 +909,7 @@
     },
     "/iam/v1/code/validate": {
       "post": {
-        "summary": "Request for 6-digit verification code validation",
+        "summary": "WORK-IN-PROGRESS: Request for 6-digit verification code validation.",
         "operationId": "Iam_ValidateVerificationCode",
         "responses": {
           "200": {
@@ -1601,7 +1601,7 @@
     },
     "/iam/v1/update-password": {
       "post": {
-        "summary": "Request for updating password after successful validation of the 6-digit verification code",
+        "summary": "WORK-IN-PROGRESS: Request for updating password after successful validation of the 6-digit verification code.",
         "operationId": "Iam_UpdatePasswordFromLogin",
         "responses": {
           "200": {
@@ -1852,7 +1852,7 @@
     },
     "/iam/v1/verify/{email}": {
       "post": {
-        "summary": "Verify Email Input For Reset Password",
+        "summary": "WORK-IN-PROGRESS: Verify Email Input For Reset Password.",
         "operationId": "Iam_VerifyEmailForResetPassword",
         "responses": {
           "200": {
@@ -1883,7 +1883,7 @@
     },
     "/iam/v1/verify/{username}": {
       "post": {
-        "summary": "Verify Username Input for Reset Password",
+        "summary": "WORK-IN-PROGRESS: Verify Username Input for Reset Password.",
         "operationId": "Iam_VerifyUsernameForResetPassword",
         "responses": {
           "200": {
