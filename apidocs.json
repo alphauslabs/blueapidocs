@@ -2341,6 +2341,48 @@
         ]
       }
     },
+    "/v1/account/simulate": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Simulate account cost allocator",
+        "operationId": "Cover_SimulateAccountCostAllocator",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1AccountCostDetails"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of v1AccountCostDetails"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateFeeAdjustmentAllocatorRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
     "/v1/assets/summary/{costGroupId}": {
       "get": {
         "summary": "WORK-IN-PROGRESS: Assets summary for costgroup",
@@ -12738,6 +12780,103 @@
         }
       },
       "description": "Response message for GetAccountAccess, CreateAccountAccess rpc."
+    },
+    "v1AccountCostDetails": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "productCode": {
+          "type": "string"
+        },
+        "serviceCode": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "zone": {
+          "type": "string"
+        },
+        "usageType": {
+          "type": "string"
+        },
+        "instanceType": {
+          "type": "string"
+        },
+        "operation": {
+          "type": "string"
+        },
+        "invoiceId": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "resourceId": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "string"
+        },
+        "costCategories": {
+          "type": "string"
+        },
+        "usageAmount": {
+          "type": "number",
+          "format": "double"
+        },
+        "trueUnblendedCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "unblendedCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "effectiveCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "amortizedCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "publicOnDemandCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "unusedAmortizedCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "lastUpdate": {
+          "type": "string"
+        },
+        "allocationId": {
+          "type": "string"
+        },
+        "orgId": {
+          "type": "string"
+        },
+        "splitStatus": {
+          "type": "string"
+        },
+        "isAllocated": {
+          "type": "boolean"
+        },
+        "isApplied": {
+          "type": "boolean"
+        },
+        "source": {
+          "type": "string"
+        }
+      },
+      "description": "Response message for SimulateAccountCostAllocator rpc."
     },
     "v1AccountInvoiceServiceDiscounts": {
       "type": "object",
