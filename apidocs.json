@@ -2303,6 +2303,69 @@
         ]
       }
     },
+    "/v1/accessgroups": {
+      "get": {
+        "summary": "WORK-IN-PROGRESS: Lists access group. Only available in Ripple.",
+        "operationId": "Billing_ListAccessGroups",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apirippleAccessGroup"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "fieldMask",
+            "description": "Optional. Get only the value that set fieldMask.\n\nsee more info: https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/field_mask.proto",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      },
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Registers the access group. Only available in Ripple.",
+        "operationId": "Billing_CreateAccessGroup",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apirippleAccessGroup"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateAccessGroupRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      }
+    },
     "/v1/accessgroups/{accessGroupId}": {
       "get": {
         "summary": "WORK-IN-PROGRESS: Gets an access group.",
@@ -2334,6 +2397,94 @@
             "in": "query",
             "required": false,
             "type": "string"
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      }
+    },
+    "/v1/accessgroups/{id}": {
+      "delete": {
+        "summary": "WORK-IN-PROGRESS: Deletes the access group. Only available in Ripple.",
+        "operationId": "Billing_DeleteAccessGroup",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Required. access group id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      },
+      "put": {
+        "summary": "WORK-IN-PROGRESS: Updates the access group. Only available in Ripple.",
+        "operationId": "Billing_UpdateAccessGroup",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apirippleAccessGroup"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Required. access group id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Optional. access group name. Set only the name to be changed."
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Optional. access group description. Set only the description to be changed."
+                },
+                "billingGroups": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Optional. Billing group to be included in the access group.\n\nSet only the billingGroups to be changed.\nSpecify the billingInternalIds. For example: [`billingInternalId1`,`billingInternalId2`,`billingInternalId3`]"
+                }
+              },
+              "description": "Request message for the UpdateAccessGroup rpc."
+            }
           }
         ],
         "tags": [
@@ -10587,6 +10738,27 @@
       "description": "see gcp billing data schema details:[https://cloud.google.com/billing/docs/how-to/export-data-bigquery-tables]",
       "title": "Cost for Api Response"
     },
+    "apirippleAccessGroup": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "billingGroups": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "AccessGroup resource definition."
+    },
     "apiwaveBudget": {
       "type": "object",
       "properties": {
@@ -11204,6 +11376,31 @@
           "format": "double"
         }
       }
+    },
+    "billingv1AccessGroup": {
+      "type": "object",
+      "properties": {
+        "accessGroupId": {
+          "type": "string",
+          "description": "The ID of the access group."
+        },
+        "accessGroupName": {
+          "type": "string",
+          "description": "The name of the access group."
+        },
+        "accessGroupDescription": {
+          "type": "string",
+          "description": "A description of the access group."
+        },
+        "billingGroups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1BillingGroup"
+          },
+          "description": "A list of billing groups contained in the access group."
+        }
+      },
+      "description": "Defines the fields associated with a Wave access group."
     },
     "blueapiapiAccount": {
       "type": "object",
@@ -12686,31 +12883,6 @@
       },
       "description": "WORK-IN-PROGRESS: totalInvoiceLayout resource definition."
     },
-    "v1AccessGroup": {
-      "type": "object",
-      "properties": {
-        "accessGroupId": {
-          "type": "string",
-          "description": "The ID of the access group."
-        },
-        "accessGroupName": {
-          "type": "string",
-          "description": "The name of the access group."
-        },
-        "accessGroupDescription": {
-          "type": "string",
-          "description": "A description of the access group."
-        },
-        "billingGroups": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1BillingGroup"
-          },
-          "description": "A list of billing groups contained in the access group."
-        }
-      },
-      "description": "Defines the fields associated with a Wave access group."
-    },
     "v1AccountAccess": {
       "type": "object",
       "properties": {
@@ -13329,6 +13501,27 @@
         }
       },
       "description": "Response message for the Cost.ReadCostAttributes rpc."
+    },
+    "v1CreateAccessGroupRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Required. access group name."
+        },
+        "description": {
+          "type": "string",
+          "description": "Required. access group description."
+        },
+        "billingGroups": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Required. Billing group to be included in the access group.\n\nSpecify the billingInternalIds. For example: [`billingInternalId1`,`billingInternalId2`,`billingInternalId3`]"
+        }
+      },
+      "description": "Request message for the CreateAccessGroup rpc."
     },
     "v1CreateAccountAccessRequest": {
       "type": "object",
@@ -14187,7 +14380,7 @@
       "type": "object",
       "properties": {
         "accessGroup": {
-          "$ref": "#/definitions/v1AccessGroup"
+          "$ref": "#/definitions/billingv1AccessGroup"
         }
       },
       "description": "Response message for the Billing.GetAccessGroup rpc."
