@@ -12361,17 +12361,13 @@
           "type": "string",
           "title": "email"
         },
-        "billingInternalId": {
+        "groupId": {
           "type": "string",
-          "title": "billing internal id"
+          "title": "groupId includes `billingInternalId` or `accessGroupId`"
         },
-        "billingGroupId": {
+        "groupName": {
           "type": "string",
-          "title": "billing group id"
-        },
-        "billingGroupName": {
-          "type": "string",
-          "title": "billing group name"
+          "title": "groupName includes `billingInternalName` or `accessGroupName`"
         },
         "groupType": {
           "type": "string",
