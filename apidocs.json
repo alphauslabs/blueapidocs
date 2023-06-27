@@ -2309,9 +2309,18 @@
         "operationId": "Billing_ListAccessGroups",
         "responses": {
           "200": {
-            "description": "A successful response.",
+            "description": "A successful response.(streaming responses)",
             "schema": {
-              "$ref": "#/definitions/apirippleAccessGroup"
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/apirippleAccessGroup"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of apirippleAccessGroup"
             }
           },
           "default": {
@@ -2469,18 +2478,18 @@
               "properties": {
                 "name": {
                   "type": "string",
-                  "description": "Optional. access group name. Set only the name to be changed."
+                  "description": "Optional. access group name. Set only the name to be changed.\n\nWe recommend the name length of 1~60 characters."
                 },
                 "description": {
                   "type": "string",
-                  "description": "Optional. access group description. Set only the description to be changed."
+                  "description": "Optional. access group description. Set only the description to be changed.\n\nWe recommend the description length of 0~150 characters."
                 },
                 "billingGroups": {
                   "type": "array",
                   "items": {
                     "type": "string"
                   },
-                  "description": "Optional. Billing group to be included in the access group.\n\nSet only the billingGroups to be changed.\nSpecify the billingInternalIds. For example: [`billingInternalId1`,`billingInternalId2`,`billingInternalId3`]"
+                  "description": "Optional. Billing group to be included in the access group.\n\nYou can only include billing groups with the same calculation type and currency type.\nSet only the billingGroups to be changed.\nSpecify the billingInternalIds. For example: [`billingInternalId1`,`billingInternalId2`,`billingInternalId3`]"
                 }
               },
               "description": "Request message for the UpdateAccessGroup rpc."
@@ -13507,18 +13516,18 @@
       "properties": {
         "name": {
           "type": "string",
-          "description": "Required. access group name."
+          "description": "Required. access group name.\n\nWe recommend the name length of 1~60 characters."
         },
         "description": {
           "type": "string",
-          "description": "Required. access group description."
+          "description": "Required. access group description.\n\nWe recommend the description length of 0~150 characters."
         },
         "billingGroups": {
           "type": "array",
           "items": {
             "type": "string"
           },
-          "description": "Required. Billing group to be included in the access group.\n\nSpecify the billingInternalIds. For example: [`billingInternalId1`,`billingInternalId2`,`billingInternalId3`]"
+          "description": "Required. Billing group to be included in the access group.\n\nYou can only include billing groups with the same calculation type and currency type.\nSpecify the billingInternalIds. For example: [`billingInternalId1`,`billingInternalId2`,`billingInternalId3`]"
         }
       },
       "description": "Request message for the CreateAccessGroup rpc."
