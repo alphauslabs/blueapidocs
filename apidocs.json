@@ -16298,8 +16298,11 @@
         "isPasswordUpdated": {
           "type": "boolean"
         },
-        "isResettingPasswordError": {
+        "isResetPasswordLinkValid": {
           "type": "boolean"
+        },
+        "errorMessage": {
+          "type": "string"
         }
       },
       "description": "Response for message Iam.ValidateVerificationCode rpc."
