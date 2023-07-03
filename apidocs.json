@@ -874,72 +874,6 @@
         ]
       }
     },
-    "/iam/v1/code/request": {
-      "post": {
-        "summary": "WORK-IN-PROGRESS: Request for 6-digit verification code from front-end.",
-        "operationId": "Iam_RequestForVerificationCode",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1RequestForVerificationCodeResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1RequestForVerificationCodeRequest"
-            }
-          }
-        ],
-        "tags": [
-          "Iam"
-        ]
-      }
-    },
-    "/iam/v1/code/validate": {
-      "post": {
-        "summary": "WORK-IN-PROGRESS: Request for 6-digit verification code validation.",
-        "operationId": "Iam_ValidateVerificationCode",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1ValidateVerificationCodeResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1ValidateVerificationCodeRequest"
-            }
-          }
-        ],
-        "tags": [
-          "Iam"
-        ]
-      }
-    },
     "/iam/v1/grouprootusers": {
       "get": {
         "summary": "WORK-IN-PROGRESS: Retrieves all the existing group root users asscoiated with the organization.",
@@ -1406,6 +1340,39 @@
         ]
       }
     },
+    "/iam/v1/password:reset": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Validate reset password link and proceed to update password",
+        "operationId": "Iam_ValidateResetPasswordLinkAndChangePassword",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ValidateResetPasswordLinkAndChangePasswordResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ValidateResetPasswordLinkAndChangePasswordRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Iam"
+        ]
+      }
+    },
     "/iam/v1/permissions": {
       "get": {
         "summary": "WORK-IN-PROGRESS: Lists all permissions based on the input's scope. For reference, supported permissions can be found on [https://github.com/mobingi/rbac-permissions].",
@@ -1591,39 +1558,6 @@
                 }
               },
               "description": "Request message for the Iam.UpdateRole rpc."
-            }
-          }
-        ],
-        "tags": [
-          "Iam"
-        ]
-      }
-    },
-    "/iam/v1/update-password": {
-      "post": {
-        "summary": "WORK-IN-PROGRESS: Request for updating password after successful validation of the 6-digit verification code.",
-        "operationId": "Iam_UpdatePasswordFromLogin",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1UpdatePasswordFromLoginResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1UpdatePasswordFromLoginRequest"
             }
           }
         ],
@@ -1850,68 +1784,6 @@
         ]
       }
     },
-    "/iam/v1/verify/{email}": {
-      "post": {
-        "summary": "WORK-IN-PROGRESS: Verify Email Input For Reset Password.",
-        "operationId": "Iam_VerifyEmailForResetPassword",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1VerifyEmailForResetPasswordResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "email",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Iam"
-        ]
-      }
-    },
-    "/iam/v1/verify/{username}": {
-      "post": {
-        "summary": "WORK-IN-PROGRESS: Verify Username Input for Reset Password.",
-        "operationId": "Iam_VerifyUsernameForResetPassword",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1VerifyUsernameForResetPasswordResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "username",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Iam"
-        ]
-      }
-    },
     "/iam/v1/whoami": {
       "get": {
         "summary": "Gets user information about the caller. This call includes all of the user metadata.\nSee [https://alphauslabs.github.io/blueapi/] for the list of supported attributes.",
@@ -1930,6 +1802,37 @@
             }
           }
         },
+        "tags": [
+          "Iam"
+        ]
+      }
+    },
+    "/iam/v1/{user}/password:verify": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Verify User Input For Reset Password",
+        "operationId": "Iam_VerifyUserForResetPassword",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1VerifyUserForResetPasswordResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
         "tags": [
           "Iam"
         ]
@@ -15792,24 +15695,6 @@
       },
       "title": "Response message for RemoveSideMenuFavorite"
     },
-    "v1RequestForVerificationCodeRequest": {
-      "type": "object",
-      "properties": {
-        "email": {
-          "type": "string"
-        }
-      },
-      "description": "Request message for Iam.RequestForVerificationCode rpc."
-    },
-    "v1RequestForVerificationCodeResponse": {
-      "type": "object",
-      "properties": {
-        "encodedCodeWithCredentials": {
-          "type": "string"
-        }
-      },
-      "description": "Response message for Iam.RequestForVerificationCode rpc."
-    },
     "v1ResetPasswordRequest": {
       "type": "object",
       "properties": {
@@ -16045,27 +15930,6 @@
         }
       },
       "description": "Request message for the Organization.UpdateMetadata rpc."
-    },
-    "v1UpdatePasswordFromLoginRequest": {
-      "type": "object",
-      "properties": {
-        "encodedNewPassword": {
-          "type": "string"
-        }
-      },
-      "description": "Request for message Iam.UpdatePassword rpc."
-    },
-    "v1UpdatePasswordFromLoginResponse": {
-      "type": "object",
-      "properties": {
-        "isPasswordUpdated": {
-          "type": "boolean"
-        },
-        "isError": {
-          "type": "boolean"
-        }
-      },
-      "description": "Response for message Iam.UpdatePassword rpc."
     },
     "v1UpdatePasswordRequest": {
       "type": "object",
@@ -16416,7 +16280,7 @@
       },
       "description": "Streaming response message for the Billing.ListUsageCostsDrift rpc."
     },
-    "v1ValidateVerificationCodeRequest": {
+    "v1ValidateResetPasswordLinkAndChangePasswordRequest": {
       "type": "object",
       "properties": {
         "originalEncodedCode": {
@@ -16428,38 +16292,26 @@
       },
       "description": "Request for message Iam.ValidateVerificationCode rpc."
     },
-    "v1ValidateVerificationCodeResponse": {
+    "v1ValidateResetPasswordLinkAndChangePasswordResponse": {
       "type": "object",
       "properties": {
-        "isCodeValidated": {
+        "isPasswordUpdated": {
           "type": "boolean"
         },
-        "isCodeExpired": {
-          "type": "boolean"
-        },
-        "isCodeInvalid": {
+        "isResettingPasswordError": {
           "type": "boolean"
         }
       },
       "description": "Response for message Iam.ValidateVerificationCode rpc."
     },
-    "v1VerifyEmailForResetPasswordResponse": {
+    "v1VerifyUserForResetPasswordResponse": {
       "type": "object",
       "properties": {
         "doesUserExists": {
           "type": "boolean"
         }
       },
-      "description": "Response message for Iam.VerifyEmailForResetPassword rpc."
-    },
-    "v1VerifyUsernameForResetPasswordResponse": {
-      "type": "object",
-      "properties": {
-        "doesUserExists": {
-          "type": "boolean"
-        }
-      },
-      "description": "Response message for Iam.VerifyUsernameForResetPassword rpc."
+      "description": "Response message for Iam.VerifyUserForResetPassword rpc."
     },
     "waveBudgetAlert": {
       "type": "object",
