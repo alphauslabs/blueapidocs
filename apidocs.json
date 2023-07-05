@@ -10429,6 +10429,10 @@
         },
         "tagId": {
           "type": "string"
+        },
+        "timestamp": {
+          "type": "string",
+          "description": "Get last update in UNIX time format."
         }
       }
     },
