@@ -2404,10 +2404,10 @@
         ]
       }
     },
-    "/v1/account/simulate": {
+    "/v1/allocations/accountusage/all:read": {
       "post": {
-        "summary": "WORK-IN-PROGRESS: Simulate account cost allocator",
-        "operationId": "Cover_SimulateAccountCostAllocator",
+        "summary": "WORK-IN-PROGRESS: Lists the allocated account usages",
+        "operationId": "Cover_ListAccountUsage",
         "responses": {
           "200": {
             "description": "A successful response.(streaming responses)",
@@ -2415,13 +2415,97 @@
               "type": "object",
               "properties": {
                 "result": {
-                  "$ref": "#/definitions/v1AccountCostDetails"
+                  "$ref": "#/definitions/v1AccountUsageDetails"
                 },
                 "error": {
                   "$ref": "#/definitions/googlerpcStatus"
                 }
               },
-              "title": "Stream result of v1AccountCostDetails"
+              "title": "Stream result of v1AccountUsageDetails"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ListAccountUsageRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
+    "/v1/allocations/accountusage/restore": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Restore the allocated account usages",
+        "operationId": "Cover_RestoreAccountUsage",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1AccountUsageDetails"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of v1AccountUsageDetails"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1RestoreAccountUsageRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
+    "/v1/allocations/accountusage/simulate": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Simulate the output of the account usage allocation",
+        "operationId": "Cover_SimulateAccountUsage",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1AccountUsageDetails"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of v1AccountUsageDetails"
             }
           },
           "default": {
@@ -2438,6 +2522,174 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/v1CreateFeeAdjustmentAllocatorRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
+    "/v1/allocations/savings/all:read": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Lists the allocated ri and sp savings",
+        "operationId": "Cover_ListSavings",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1SavingsDetails"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of v1SavingsDetails"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ListFeesRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
+    "/v1/allocations/savings/restore": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Restore the allocated ri and sp savings",
+        "operationId": "Cover_RestoreSavings",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1SavingsDetails"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of v1SavingsDetails"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1RestoreFeeRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
+    "/v1/allocations/savings/simulate": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Simulate the output of the ri and sp savings allocation",
+        "operationId": "Cover_SimulateSavings",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1SavingsDetails"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of v1SavingsDetails"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateFeeAdjustmentAllocatorRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
+    "/v1/allocations:read": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Get all available allocation items for the specified cost group",
+        "operationId": "Cover_GetCostGroupAllocation",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1AllocationItem"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of v1AllocationItem"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1GetCostGroupAllocationRequest"
             }
           }
         ],
@@ -12865,7 +13117,34 @@
       },
       "description": "Response message for GetAccountAccess, CreateAccountAccess rpc."
     },
-    "v1AccountCostDetails": {
+    "v1AccountInvoiceServiceDiscounts": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Service discount id."
+        },
+        "account": {
+          "type": "string",
+          "description": "Account id."
+        }
+      },
+      "description": "Streaming response message for the AccountInvoiceServiceDiscounts rpc."
+    },
+    "v1AccountServiceDiscounts": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Service discount id."
+        },
+        "accountId": {
+          "type": "string",
+          "description": "Account id."
+        }
+      }
+    },
+    "v1AccountUsageDetails": {
       "type": "object",
       "properties": {
         "account": {
@@ -12962,33 +13241,6 @@
       },
       "description": "Response message for SimulateAccountCostAllocator rpc."
     },
-    "v1AccountInvoiceServiceDiscounts": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "description": "Service discount id."
-        },
-        "account": {
-          "type": "string",
-          "description": "Account id."
-        }
-      },
-      "description": "Streaming response message for the AccountInvoiceServiceDiscounts rpc."
-    },
-    "v1AccountServiceDiscounts": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "description": "Service discount id."
-        },
-        "accountId": {
-          "type": "string",
-          "description": "Account id."
-        }
-      }
-    },
     "v1ActivateUserRequest": {
       "type": "object",
       "properties": {
@@ -13043,6 +13295,31 @@
         }
       },
       "title": "Response message for AddSideMenuFavorite"
+    },
+    "v1AllocationItem": {
+      "type": "object",
+      "properties": {
+        "vendor": {
+          "type": "string"
+        },
+        "month": {
+          "type": "string"
+        },
+        "product": {
+          "type": "string"
+        },
+        "account": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "cost": {
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "description": "Response message wrapper for cost group allocations."
     },
     "v1Allocator": {
       "type": "object",
@@ -14473,6 +14750,25 @@
       },
       "description": "Response message for the Cost.GetCostAttributes rpc."
     },
+    "v1GetCostGroupAllocationRequest": {
+      "type": "object",
+      "properties": {
+        "allocationType": {
+          "type": "string",
+          "description": "Required. Cost Group Id."
+        },
+        "costGroupId": {
+          "type": "string"
+        },
+        "startDate": {
+          "type": "string"
+        },
+        "endDate": {
+          "type": "string"
+        }
+      },
+      "description": "Request message for the GetCostGroupAllocation rpc."
+    },
     "v1GetCostGroupDetailsResponse": {
       "type": "object",
       "properties": {
@@ -15078,6 +15374,18 @@
         }
       },
       "description": "Response message for the Admin.ListAccountGroups rpc."
+    },
+    "v1ListAccountUsageRequest": {
+      "type": "object",
+      "properties": {
+        "startDate": {
+          "type": "string"
+        },
+        "endDate": {
+          "type": "string"
+        }
+      },
+      "description": "Request message for the RestoreAccountUsage rpc."
     },
     "v1ListAssetsFilters": {
       "type": "object",
@@ -15799,6 +16107,16 @@
         }
       }
     },
+    "v1RestoreAccountUsageRequest": {
+      "type": "object",
+      "properties": {
+        "allocationId": {
+          "type": "string",
+          "description": "Required. The account usage to restore."
+        }
+      },
+      "description": "Request message for the RestoreAccountUsage rpc."
+    },
     "v1RestoreFeeRequest": {
       "type": "object",
       "properties": {
@@ -15822,6 +16140,63 @@
         }
       },
       "description": "Request message for the Admin.SaveNotificationSettings rpc."
+    },
+    "v1SavingsDetails": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "orgId": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "month": {
+          "type": "string"
+        },
+        "account": {
+          "type": "string"
+        },
+        "arn": {
+          "type": "string"
+        },
+        "productCode": {
+          "type": "string"
+        },
+        "offerClass": {
+          "type": "string"
+        },
+        "ondemand": {
+          "type": "number",
+          "format": "double"
+        },
+        "effectiveCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "savings": {
+          "type": "number",
+          "format": "double"
+        },
+        "splitStatus": {
+          "type": "string"
+        },
+        "isAllocated": {
+          "type": "boolean"
+        },
+        "isApplied": {
+          "type": "boolean"
+        },
+        "source": {
+          "type": "string"
+        },
+        "lastUpdate": {
+          "type": "string"
+        }
+      },
+      "description": "Response message for ListSavings, RestoreSavings, SimulateSavings rpc."
     },
     "v1TerminateResourceResponse": {
       "type": "object",
