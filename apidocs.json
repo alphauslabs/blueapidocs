@@ -15811,6 +15811,10 @@
         "noCache": {
           "type": "boolean",
           "description": "If true, force API to not use cached data."
+        },
+        "includeAdjustments": {
+          "type": "boolean",
+          "description": "WORK-IN-PROGRESS: Optional. If set to true, include adjustment entries in the output. Adjustments include fees, discounts, credits, etc. The output here is the same as the ReadAdjustments API."
         }
       },
       "description": "AWS-specific options for ReadCostsRequest."
