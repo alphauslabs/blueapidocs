@@ -10685,6 +10685,13 @@
         "timestamp": {
           "type": "string",
           "description": "Get last update in UNIX time format."
+        },
+        "metadata": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiKeyValue"
+          },
+          "description": "Various metadata associated with this lineitem."
         }
       }
     },
