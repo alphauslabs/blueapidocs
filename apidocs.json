@@ -16,7 +16,7 @@
     },
     {
       "name": "Iam",
-      "description": "IAM API. Base URL: https://api.alphaus.cloud/m/blue",
+      "description": "(BETA) IAM API. Base URL: https://api.alphaus.cloud/m/blue",
       "externalDocs": {
         "description": "Service definition",
         "url": "https://github.com/alphauslabs/blueapi/tree/main/iam/"
