@@ -12422,19 +12422,19 @@
     "coverv1FeeDetails": {
       "type": "object",
       "properties": {
-        "feeId": {
+        "id": {
           "type": "string"
         },
         "orgId": {
           "type": "string"
         },
-        "entity": {
-          "type": "string"
-        },
-        "month": {
+        "vendor": {
           "type": "string"
         },
         "account": {
+          "type": "string"
+        },
+        "month": {
           "type": "string"
         },
         "lineType": {
@@ -13172,6 +13172,15 @@
     "v1AccountUsageDetails": {
       "type": "object",
       "properties": {
+        "id": {
+          "type": "string"
+        },
+        "orgId": {
+          "type": "string"
+        },
+        "vendor": {
+          "type": "string"
+        },
         "account": {
           "type": "string"
         },
@@ -13243,12 +13252,6 @@
           "format": "double"
         },
         "lastUpdate": {
-          "type": "string"
-        },
-        "allocationId": {
-          "type": "string"
-        },
-        "orgId": {
           "type": "string"
         },
         "splitStatus": {
@@ -16212,13 +16215,16 @@
         "orgId": {
           "type": "string"
         },
-        "type": {
+        "vendor": {
+          "type": "string"
+        },
+        "account": {
           "type": "string"
         },
         "month": {
           "type": "string"
         },
-        "account": {
+        "type": {
           "type": "string"
         },
         "arn": {
