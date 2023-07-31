@@ -4818,6 +4818,39 @@
         ]
       }
     },
+    "/v1/members/auth0": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Add user from Auth0 as Root user",
+        "operationId": "Cover_AddUserFromAuth0asRoot",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1AddUserFromAuth0asRootResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1AddUserFromAuth0asRootRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
     "/v1/members/invite": {
       "post": {
         "summary": "Invite members to the system",
@@ -13327,6 +13360,24 @@
         }
       },
       "title": "Response message for AddSideMenuFavorite"
+    },
+    "v1AddUserFromAuth0asRootRequest": {
+      "type": "object",
+      "properties": {
+        "identityToken": {
+          "type": "string"
+        }
+      },
+      "title": "Request message for AddUserFromAuth0asRoot rpc"
+    },
+    "v1AddUserFromAuth0asRootResponse": {
+      "type": "object",
+      "properties": {
+        "isAuthorized": {
+          "type": "boolean"
+        }
+      },
+      "title": "Response message wrapper for adding user from Auth0 as root"
     },
     "v1AllocationItem": {
       "type": "object",
