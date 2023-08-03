@@ -10572,15 +10572,11 @@
         "date": {
           "type": "string"
         },
-        "publicOndemand": {
-          "type": "number",
-          "format": "double"
-        },
         "actualOndemand": {
           "type": "number",
           "format": "double"
         },
-        "usageCost": {
+        "actualCost": {
           "type": "number",
           "format": "double"
         },
@@ -11031,35 +11027,8 @@
         "endDate": {
           "type": "string"
         },
-        "estimateEvenPoint": {
-          "type": "string"
-        },
         "breakEvenPoint": {
           "type": "string"
-        },
-        "purchaseCost": {
-          "type": "number",
-          "format": "double"
-        },
-        "initialCost": {
-          "type": "number",
-          "format": "double"
-        },
-        "estimateUsage": {
-          "type": "number",
-          "format": "double"
-        },
-        "currentPublicOd": {
-          "type": "number",
-          "format": "double"
-        },
-        "currentActualOd": {
-          "type": "number",
-          "format": "double"
-        },
-        "reduction": {
-          "type": "number",
-          "format": "double"
         },
         "upperRatio": {
           "type": "number",
