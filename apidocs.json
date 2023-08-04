@@ -10864,6 +10864,18 @@
         "domainName": {
           "type": "string",
           "description": "The domain name of lineitem, if applicable."
+        },
+        "operation": {
+          "type": "string",
+          "description": "The operation of lineitem, if applicable. Such as `Cool LRS Write Operations`, `Cool LRS Data Write`, `Standard Data Transfer Out`, etc."
+        },
+        "usageType": {
+          "type": "string",
+          "description": "The usage type of lineitem, if applicable. Such as `Standard HDD Managed Disks`, `Tables`, `Blob Storage`, etc."
+        },
+        "instanceType": {
+          "type": "string",
+          "description": "The instance type of lineitem, if applicable. Such as `Gateway`, `Standard_B2s`, `Standard_D4s_v3`, etc."
         }
       }
     },
