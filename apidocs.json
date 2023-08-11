@@ -2404,6 +2404,44 @@
         ]
       }
     },
+    "/v1/acctaccess/{target}": {
+      "delete": {
+        "summary": "Deletes the current account access role attached to this target account. This does not delete the CloudFormation deployment in your account.",
+        "operationId": "Cover_DeleteAccountAccess",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DeleteAccountAccessResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "target",
+            "description": "Required. The target AWS account to delete.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "vendor",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
     "/v1/allocations/accountusage/all:read": {
       "post": {
         "summary": "WORK-IN-PROGRESS: Lists the allocated account usages",
@@ -3250,36 +3288,6 @@
           {
             "name": "target",
             "description": "Required. The target AWS account to query.",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Cover"
-        ]
-      },
-      "delete": {
-        "summary": "Deletes the current account access role attached to this target account. This does not delete the CloudFormation deployment in your account.",
-        "operationId": "Cover_DeleteAccountAccess",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1DeleteAccountAccessResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "target",
-            "description": "Required. The target AWS account to delete.",
             "in": "path",
             "required": true,
             "type": "string"
