@@ -2470,6 +2470,94 @@
       }
     },
     "/v1/account/{target}": {
+      "get": {
+        "summary": "Gets the current account. For GCP and Azure.",
+        "operationId": "Cover_GetDataAccess",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DataAccess"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "target",
+            "description": "Required. (Project ID for GCP / Account ID for Azure)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "vendor",
+            "description": "Vendor (GCP/Azure).",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "accountType",
+            "description": "In the context of fetching account details, specifying the account type is necessary. This is because the target alone might not uniquely identify an account and could result in multiple data points.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      },
+      "delete": {
+        "summary": "Deletes GCP or Azure accounts based on the provided request.",
+        "operationId": "Cover_DeleteDataAccess",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "target",
+            "description": "Required. (Project ID for GCP / Account ID for Azure)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "vendor",
+            "description": "Vendor (GCP/Azure).",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "accountType",
+            "description": "In the context of fetching account details, specifying the account type is necessary. This is because the target alone might not uniquely identify an account and could result in multiple data points.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      },
       "put": {
         "summary": "Update GCP/Azure account info",
         "operationId": "Cover_UpdateDataAccess",
@@ -2513,6 +2601,10 @@
                 "azureOptions": {
                   "$ref": "#/definitions/coverAzureOptions",
                   "title": "Azure Options"
+                },
+                "accountType": {
+                  "type": "string",
+                  "title": "Account Type"
                 }
               },
               "title": "Request message for UpdateDataAccess (GCP/Azure)"
@@ -2525,43 +2617,6 @@
       }
     },
     "/v1/acctaccess/{target}": {
-      "get": {
-        "summary": "Gets the current account. For GCP and Azure.",
-        "operationId": "Cover_GetDataAccess",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1DataAccess"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "target",
-            "description": "Required. (Project ID for GCP / Account ID for Azure)",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "vendor",
-            "description": "Vendor (GCP/Azure).",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Cover"
-        ]
-      },
       "delete": {
         "summary": "Deletes the current account access role attached to this target account. This does not delete the CloudFormation deployment in your account.",
         "operationId": "Cover_DeleteAccountAccess",
@@ -3584,8 +3639,40 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v1AddBillingAccountRequest"
+              "$ref": "#/definitions/v1BillingAccountRequest"
             }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
+    "/v1/billingacct/{billingId}": {
+      "put": {
+        "summary": "Update Billing Account ID for GCP. It updates DatasetId, DatasetRegion, etc.",
+        "operationId": "Cover_UpdateBillingAccount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "billingId",
+            "description": "Required. The billing account id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
           }
         ],
         "tags": [
@@ -12202,6 +12289,12 @@
         },
         "billingId": {
           "type": "string"
+        },
+        "datasetId": {
+          "type": "string"
+        },
+        "datasetRegion": {
+          "type": "string"
         }
       }
     },
@@ -13552,28 +13645,6 @@
       },
       "title": "Response message for ActivateUser"
     },
-    "v1AddBillingAccountRequest": {
-      "type": "object",
-      "properties": {
-        "billingId": {
-          "type": "string",
-          "description": "Required. The billing account id."
-        },
-        "datasetId": {
-          "type": "string",
-          "description": "Name of dataset you created."
-        },
-        "datasetRegion": {
-          "type": "string",
-          "description": "In creating dataset, It requires you to select a region."
-        },
-        "projectId": {
-          "type": "string",
-          "description": "Project Id where the datasetId of BQ can be found."
-        }
-      },
-      "title": "Request message for AddBillingAccount"
-    },
     "v1AddFavoriteRequest": {
       "type": "object",
       "properties": {
@@ -13748,6 +13819,28 @@
           }
         }
       }
+    },
+    "v1BillingAccountRequest": {
+      "type": "object",
+      "properties": {
+        "billingId": {
+          "type": "string",
+          "description": "Required. The billing account id."
+        },
+        "datasetId": {
+          "type": "string",
+          "description": "Name of dataset you created."
+        },
+        "datasetRegion": {
+          "type": "string",
+          "description": "In creating dataset, It requires you to select a region."
+        },
+        "projectId": {
+          "type": "string",
+          "description": "Project Id where the datasetId of BQ can be found."
+        }
+      },
+      "title": "Request message for AddBillingAccount"
     },
     "v1BillingGroup": {
       "type": "object",
