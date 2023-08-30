@@ -4493,7 +4493,7 @@
     },
     "/v1/invoice/status/{id}": {
       "get": {
-        "summary": "WORK-IN-PROGRESS: Gets an invoice. Only available in Ripple.",
+        "summary": "Gets an invoice. Only available in Ripple.",
         "operationId": "Billing_GetInvoiceStatus",
         "responses": {
           "200": {
@@ -4525,7 +4525,7 @@
     },
     "/v1/invoice/{date}:create": {
       "post": {
-        "summary": "WORK-IN-PROGRESS: Creates an invoice. Only available in Ripple.",
+        "summary": "Creates an invoice. Only available in Ripple.",
         "operationId": "Billing_CreateInvoice",
         "responses": {
           "200": {
@@ -4725,6 +4725,48 @@
                 }
               },
               "description": "Request message for the Cost.GetInvoiceRequest rpc."
+            }
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      }
+    },
+    "/v1/invoice:read": {
+      "post": {
+        "summary": "Reads list of the invoice.",
+        "operationId": "Billing_ListInvoice",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1ListInvoiceResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of v1ListInvoiceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ListInvoiceRequest"
             }
           }
         ],
@@ -16181,6 +16223,38 @@
         }
       },
       "description": "Response message for the Iam.ListIdentityProviders rpc."
+    },
+    "v1ListInvoiceRequest": {
+      "type": "object",
+      "properties": {
+        "groupId": {
+          "type": "string",
+          "description": "Optional. billing internal id."
+        }
+      },
+      "description": "Request message for the ListInvoice rpc."
+    },
+    "v1ListInvoiceResponse": {
+      "type": "object",
+      "properties": {
+        "billingInternalId": {
+          "type": "string",
+          "description": "The billing internal id."
+        },
+        "BillingGroupId": {
+          "type": "string",
+          "description": "The billing group id."
+        },
+        "BillingGroupName": {
+          "type": "string",
+          "description": "The billing group name."
+        },
+        "date": {
+          "type": "string",
+          "description": "The date."
+        }
+      },
+      "description": "Response message for the ListInvoice rpc."
     },
     "v1ListInvoiceServiceDiscountsRequest": {
       "type": "object",
