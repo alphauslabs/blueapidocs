@@ -3786,6 +3786,95 @@
         ]
       }
     },
+    "/v1/billinggroups/billingconductor/{id}": {
+      "get": {
+        "summary": "WORK-IN-PROGRESS: Gets all Billing Groups in AWS Billing Conductor(ABC) for specific payer id.",
+        "operationId": "Billing_ListAbcBillingGroups",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1AbcBillingGroup"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of v1AbcBillingGroup"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Required. Payer Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      }
+    },
+    "/v1/billinggroups/billingconductor/{payerId}/{billingGroupId}": {
+      "get": {
+        "summary": "WORK-IN-PROGRESS: Gets all accounts associated to AWS Billing Conductor(ABC) Billing group",
+        "operationId": "Billing_ListAbcBillingGroupAccounts",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1AbcAccount"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of v1AbcAccount"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "payerId",
+            "description": "Required. Payer Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "billingGroupId",
+            "description": "Required. BillingGroup Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      }
+    },
     "/v1/billinggroups/{billingInternalId}": {
       "get": {
         "summary": "Gets a billing group.",
@@ -13545,6 +13634,43 @@
         }
       },
       "description": "WORK-IN-PROGRESS: totalInvoiceLayout resource definition."
+    },
+    "v1AbcAccount": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "string"
+        },
+        "accountName": {
+          "type": "string"
+        }
+      }
+    },
+    "v1AbcBillingGroup": {
+      "type": "object",
+      "properties": {
+        "arn": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "creationTime": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "primaryAccountId": {
+          "type": "string"
+        },
+        "size": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
     },
     "v1AccountAccess": {
       "type": "object",
