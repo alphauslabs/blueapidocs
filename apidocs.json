@@ -3827,7 +3827,7 @@
         ]
       }
     },
-    "/v1/billinggroups/billingconductor/{payerId}/{billingGroupId}": {
+    "/v1/billinggroups/billingconductor/{payerId}/accounts": {
       "get": {
         "summary": "WORK-IN-PROGRESS: Gets all accounts associated to AWS Billing Conductor(ABC) Billing group",
         "operationId": "Billing_ListAbcBillingGroupAccounts",
@@ -3863,10 +3863,10 @@
             "type": "string"
           },
           {
-            "name": "billingGroupId",
+            "name": "billingGroupArn",
             "description": "Required. BillingGroup Id.",
-            "in": "path",
-            "required": true,
+            "in": "query",
+            "required": false,
             "type": "string"
           }
         ],
