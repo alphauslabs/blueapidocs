@@ -15582,6 +15582,12 @@
           "items": {
             "type": "string"
           }
+        },
+        "tagData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/coverTagData"
+          }
         }
       },
       "title": "Response message for GetCostGroupAttribute"
