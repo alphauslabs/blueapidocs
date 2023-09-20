@@ -154,7 +154,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "properties": {}
+              "$ref": "#/definitions/v1ProformaCur"
             }
           },
           "default": {
@@ -15132,10 +15132,6 @@
           "type": "string",
           "description": "Required."
         },
-        "billingGroupArn": {
-          "type": "string",
-          "description": "Required."
-        },
         "s3BucketName": {
           "type": "string",
           "title": "Optional. Default value: `alphaus-proforma-cur-export`"
@@ -16745,6 +16741,32 @@
     },
     "v1Preference": {
       "type": "object"
+    },
+    "v1ProformaCur": {
+      "type": "object",
+      "properties": {
+        "orgId": {
+          "type": "string"
+        },
+        "payerId": {
+          "type": "string"
+        },
+        "billingInternalId": {
+          "type": "string"
+        },
+        "reportName": {
+          "type": "string"
+        },
+        "bucketName": {
+          "type": "string"
+        },
+        "prefix": {
+          "type": "string"
+        },
+        "timeCreated": {
+          "type": "string"
+        }
+      }
     },
     "v1ProxyCreateCompletionRequest": {
       "type": "object",
