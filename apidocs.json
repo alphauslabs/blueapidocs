@@ -3410,7 +3410,7 @@
         ]
       }
     },
-    "/v1/attributes/{attributeType}/{costGroupId}": {
+    "/v1/attributes": {
       "post": {
         "summary": "WORK-IN-PROGRESS: Get Cost Group by Attribute Type",
         "operationId": "Cover_GetCostGroupAttribute",
@@ -3430,16 +3430,12 @@
         },
         "parameters": [
           {
-            "name": "attributeType",
-            "in": "path",
+            "name": "body",
+            "in": "body",
             "required": true,
-            "type": "string"
-          },
-          {
-            "name": "costGroupId",
-            "in": "path",
-            "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/v1GetCostGroupAttributeRequest"
+            }
           }
         ],
         "tags": [
@@ -3987,6 +3983,37 @@
         ]
       }
     },
+    "/v1/categories": {
+      "get": {
+        "summary": "Retrieve the categories to be utilized in the creation of the cost group.",
+        "operationId": "Cover_GetCategories",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetCategoriesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
     "/v1/chargecode/upload": {
       "post": {
         "summary": "Upload charge code",
@@ -4068,37 +4095,6 @@
             "schema": {
               "$ref": "#/definitions/v1CreateCostGroupRequest"
             }
-          }
-        ],
-        "tags": [
-          "Cover"
-        ]
-      }
-    },
-    "/v1/costgroups/categories/{vendor}": {
-      "get": {
-        "summary": "Retrieve the categories to be utilized in the creation of the cost group.",
-        "operationId": "Cover_GetCategories",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1GetCategoriesResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "vendor",
-            "in": "path",
-            "required": true,
-            "type": "string"
           }
         ],
         "tags": [
@@ -15685,6 +15681,27 @@
         }
       },
       "description": "Request message for the GetCostGroupAllocation rpc."
+    },
+    "v1GetCostGroupAttributeRequest": {
+      "type": "object",
+      "properties": {
+        "vendor": {
+          "type": "string"
+        },
+        "attributeType": {
+          "type": "string"
+        },
+        "costGroupId": {
+          "type": "string"
+        },
+        "startTime": {
+          "type": "string"
+        },
+        "endTime": {
+          "type": "string"
+        }
+      },
+      "title": "Request message for GetCostGroupAttribute"
     },
     "v1GetCostGroupAttributeResponse": {
       "type": "object",
