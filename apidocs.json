@@ -4075,7 +4075,7 @@
         ]
       }
     },
-    "/v1/costgroups/categories": {
+    "/v1/costgroups/categories/{vendor}": {
       "get": {
         "summary": "Retrieve the categories to be utilized in the creation of the cost group.",
         "operationId": "Cover_GetCategories",
@@ -4096,8 +4096,8 @@
         "parameters": [
           {
             "name": "vendor",
-            "in": "query",
-            "required": false,
+            "in": "path",
+            "required": true,
             "type": "string"
           }
         ],
