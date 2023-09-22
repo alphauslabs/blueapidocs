@@ -5371,13 +5371,13 @@
     },
     "/v1/members/auth0": {
       "post": {
-        "summary": "WORK-IN-PROGRESS: Add user from Auth0 as Root user",
-        "operationId": "Cover_AddUserFromAuth0asRoot",
+        "summary": "WORK-IN-PROGRESS: Add or read user from Auth0",
+        "operationId": "Cover_ProcessAuth0User",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1AddUserFromAuth0asRootResponse"
+              "$ref": "#/definitions/v1ProcessAuth0UserResponse"
             }
           },
           "default": {
@@ -5393,7 +5393,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v1AddUserFromAuth0asRootRequest"
+              "$ref": "#/definitions/v1ProcessAuth0UserRequest"
             }
           }
         ],
@@ -14071,24 +14071,6 @@
       },
       "title": "Response message for AddSideMenuFavorite"
     },
-    "v1AddUserFromAuth0asRootRequest": {
-      "type": "object",
-      "properties": {
-        "email": {
-          "type": "string"
-        }
-      },
-      "title": "Request message for AddUserFromAuth0asRoot rpc"
-    },
-    "v1AddUserFromAuth0asRootResponse": {
-      "type": "object",
-      "properties": {
-        "isAuthorized": {
-          "type": "boolean"
-        }
-      },
-      "title": "Response message wrapper for adding user from Auth0 as root"
-    },
     "v1AllocationItem": {
       "type": "object",
       "properties": {
@@ -16732,9 +16714,6 @@
         },
         "orgId": {
           "type": "string"
-        },
-        "userId": {
-          "type": "string"
         }
       },
       "title": "Request message for OnboardOrg"
@@ -16758,6 +16737,19 @@
     },
     "v1Preference": {
       "type": "object"
+    },
+    "v1ProcessAuth0UserRequest": {
+      "type": "object",
+      "title": "Request message for AddUserFromAuth0asRoot rpc"
+    },
+    "v1ProcessAuth0UserResponse": {
+      "type": "object",
+      "properties": {
+        "isAuthorized": {
+          "type": "boolean"
+        }
+      },
+      "title": "Response message wrapper for adding user from Auth0 as root"
     },
     "v1ProformaCur": {
       "type": "object",
