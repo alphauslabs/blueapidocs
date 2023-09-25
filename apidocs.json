@@ -558,6 +558,37 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Required. Name of the notification channel."
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Required. Valid values: `email`, `slack`, `msteams`."
+                },
+                "email": {
+                  "$ref": "#/definitions/apiEmailChannel",
+                  "description": "Required if type = `email`."
+                },
+                "slack": {
+                  "$ref": "#/definitions/apiSlackChannel",
+                  "description": "Required if type = `slack`."
+                },
+                "msteams": {
+                  "$ref": "#/definitions/apiMSTeamsChannel",
+                  "description": "Required if type = `msteams`."
+                }
+              },
+              "description": "Request message for the Admin.UpdateNotificationChannel rpc."
+            }
           }
         ],
         "tags": [
@@ -805,6 +836,32 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "channels": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Required"
+                },
+                "enabled": {
+                  "type": "boolean",
+                  "title": "Required"
+                },
+                "notificationType": {
+                  "type": "string",
+                  "description": "Required\nValid values: \n`InvoiceCalculationStarted`, \n`InvoiceCalculationFinished`, \n`CurUpdatedAfterInvoice`."
+                }
+              },
+              "description": "Request message for the Admin.UpdateNotificationTypeChannels rpc."
+            }
           }
         ],
         "tags": [
