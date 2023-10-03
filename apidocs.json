@@ -15377,7 +15377,7 @@
       "type": "object",
       "properties": {
         "channelData": {
-          "$ref": "#/definitions/coverAlertData"
+          "$ref": "#/definitions/coverChannelData"
         }
       },
       "title": "Response message for CreateChannel"
