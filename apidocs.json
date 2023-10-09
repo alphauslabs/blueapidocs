@@ -12910,6 +12910,17 @@
         }
       }
     },
+    "coverCategory": {
+      "type": "object",
+      "properties": {
+        "display": {
+          "type": "string"
+        },
+        "query": {
+          "type": "string"
+        }
+      }
+    },
     "coverChannelData": {
       "type": "object",
       "properties": {
@@ -16236,10 +16247,10 @@
     "v1GetCategoriesResponse": {
       "type": "object",
       "properties": {
-        "results": {
+        "category": {
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "#/definitions/coverCategory"
           }
         }
       }
