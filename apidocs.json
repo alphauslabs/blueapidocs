@@ -858,6 +858,10 @@
                 "notificationType": {
                   "type": "string",
                   "description": "Required\nValid values: \n`InvoiceCalculationStarted`, \n`InvoiceCalculationFinished`, \n`CurUpdatedAfterInvoice`."
+                },
+                "account": {
+                  "$ref": "#/definitions/v1NotificationAccount",
+                  "description": "Optional. only available Wave(Pro)."
                 }
               },
               "description": "Request message for the Admin.UpdateNotificationTypeChannels rpc."
@@ -15701,6 +15705,10 @@
         "enabled": {
           "type": "boolean",
           "title": "Required"
+        },
+        "account": {
+          "$ref": "#/definitions/v1NotificationAccount",
+          "description": "Optional. only available Wave(Pro)."
         }
       },
       "description": "Request message for the Admin.CreateNotificationTypeChannels rpc."
@@ -17469,6 +17477,19 @@
         }
       },
       "title": "Response message for ModifyResourceType"
+    },
+    "v1NotificationAccount": {
+      "type": "object",
+      "properties": {
+        "vendor": {
+          "type": "string",
+          "description": "Required."
+        },
+        "accountId": {
+          "type": "string",
+          "description": "Required."
+        }
+      }
     },
     "v1OnboardOrgRequest": {
       "type": "object",
