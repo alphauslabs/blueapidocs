@@ -9479,6 +9479,66 @@
         ]
       }
     },
+    "/v1/{vendor}/invoiceadjustments:read": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Reads the adjustment details involved in invoicing of an organization billing group (Wave).",
+        "operationId": "Billing_ReadInvoiceAdjustments",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/waveAdjustment"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of waveAdjustment"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "accountId": {
+                  "type": "string",
+                  "description": "Required."
+                },
+                "month": {
+                  "type": "string",
+                  "description": "Optional. The UTC month to query. If empty, defaults to current month. Format is `yyyymm`. For example, June 2021 will be `202106`."
+                }
+              },
+              "description": "Request message for the Billing.ReadInvoiceAdjustments rpc."
+            }
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      }
+    },
     "/v1/{vendor}/nontagcosts:read": {
       "post": {
         "summary": "Reads the usage-based non tag costs of a billing group. At the moment, the supported {vendor} is 'aws'. If datetime range parameters are not set, month-to-date (current month) will be returned.",
@@ -18577,6 +18637,56 @@
         }
       },
       "description": "Response message for Iam.VerifyUserForResetPassword rpc."
+    },
+    "waveAdjustment": {
+      "type": "object",
+      "properties": {
+        "yearMonth": {
+          "type": "string",
+          "title": "Year month"
+        },
+        "feeType": {
+          "type": "string",
+          "title": "Fee type"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description"
+        },
+        "productCode": {
+          "type": "string",
+          "title": "ProductCode"
+        },
+        "productName": {
+          "type": "string",
+          "title": "ProductName"
+        },
+        "usageAccountId": {
+          "type": "string",
+          "title": "UsageAccountId"
+        },
+        "currencyCode": {
+          "type": "string",
+          "title": "CurrencyCode"
+        },
+        "payerAccountId": {
+          "type": "string",
+          "title": "PayerAccountId"
+        },
+        "cost": {
+          "type": "string",
+          "title": "Cost"
+        },
+        "timeInterval": {
+          "type": "string",
+          "title": "TimeInterval"
+        },
+        "usageStartDate": {
+          "type": "string",
+          "title": "UsageStartDate"
+        }
+      },
+      "description": "Adjustment resource definition."
     },
     "waveBudgetAlert": {
       "type": "object",
