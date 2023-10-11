@@ -860,7 +860,7 @@
                   "description": "Required\nValid values: \n`InvoiceCalculationStarted`, \n`InvoiceCalculationFinished`, \n`CurUpdatedAfterInvoice`."
                 },
                 "account": {
-                  "$ref": "#/definitions/v1NotificationAccount",
+                  "$ref": "#/definitions/adminv1NotificationAccount",
                   "description": "Optional. only available Wave(Pro)."
                 }
               },
@@ -10652,6 +10652,19 @@
       "description": "- ROUND: round\n - ROUNDUP: round up\n - ROUNDDOWN: round down",
       "title": "RoundingMethod"
     },
+    "adminv1NotificationAccount": {
+      "type": "object",
+      "properties": {
+        "vendor": {
+          "type": "string",
+          "description": "Required."
+        },
+        "accountId": {
+          "type": "string",
+          "description": "Required."
+        }
+      }
+    },
     "apiAccountDetails": {
       "type": "object",
       "properties": {
@@ -12808,6 +12821,20 @@
         },
         "enabled": {
           "type": "boolean"
+        },
+        "account": {
+          "$ref": "#/definitions/blueapiapiNotificationAccount"
+        }
+      }
+    },
+    "blueapiapiNotificationAccount": {
+      "type": "object",
+      "properties": {
+        "vendor": {
+          "type": "string"
+        },
+        "accountId": {
+          "type": "string"
         }
       }
     },
@@ -15711,7 +15738,7 @@
           "title": "Required"
         },
         "account": {
-          "$ref": "#/definitions/v1NotificationAccount",
+          "$ref": "#/definitions/adminv1NotificationAccount",
           "description": "Optional. only available Wave(Pro)."
         }
       },
@@ -17481,19 +17508,6 @@
         }
       },
       "title": "Response message for ModifyResourceType"
-    },
-    "v1NotificationAccount": {
-      "type": "object",
-      "properties": {
-        "vendor": {
-          "type": "string",
-          "description": "Required."
-        },
-        "accountId": {
-          "type": "string",
-          "description": "Required."
-        }
-      }
     },
     "v1OnboardOrgRequest": {
       "type": "object",
