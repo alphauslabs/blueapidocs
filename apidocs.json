@@ -9099,6 +9099,10 @@
                   "type": "string",
                   "description": "Optional. Account group Id."
                 },
+                "costGroupId": {
+                  "type": "string",
+                  "title": "Optional. Cost Group Id, currently used in octo"
+                },
                 "accounts": {
                   "type": "array",
                   "items": {
