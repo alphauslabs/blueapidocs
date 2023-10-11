@@ -9191,6 +9191,10 @@
                   "type": "string",
                   "description": "Optional. Account group Id."
                 },
+                "costGroupId": {
+                  "type": "string",
+                  "title": "Optional. Cost Group Id"
+                },
                 "accounts": {
                   "type": "array",
                   "items": {
