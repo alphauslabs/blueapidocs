@@ -765,7 +765,7 @@
           },
           {
             "name": "notificationType",
-            "description": "Required\nValid values: \n`InvoiceCalculationStarted`, \n`InvoiceCalculationFinished`, \n`CurUpdatedAfterInvoice`.",
+            "description": "Required\nValid values: \n`InvoiceCalculationStarted`, \n`InvoiceCalculationFinished`, \n`CurUpdatedAfterInvoice`.\n`AccountBudgetAlert`.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -802,7 +802,7 @@
           },
           {
             "name": "notificationType",
-            "description": "Required\nValid values: \n`InvoiceCalculationStarted`, \n`InvoiceCalculationFinished`, \n`CurUpdatedAfterInvoice`.",
+            "description": "Required\nValid values: \n`InvoiceCalculationStarted`, \n`InvoiceCalculationFinished`, \n`CurUpdatedAfterInvoice`.\n`AccountBudgetAlert`.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -857,7 +857,7 @@
                 },
                 "notificationType": {
                   "type": "string",
-                  "description": "Required\nValid values: \n`InvoiceCalculationStarted`, \n`InvoiceCalculationFinished`, \n`CurUpdatedAfterInvoice`."
+                  "description": "Required\nValid values: \n`InvoiceCalculationStarted`, \n`InvoiceCalculationFinished`, \n`CurUpdatedAfterInvoice`.\n`AccountBudgetAlert`."
                 },
                 "account": {
                   "$ref": "#/definitions/adminv1NotificationAccount",
@@ -15724,7 +15724,7 @@
       "properties": {
         "notificationType": {
           "type": "string",
-          "description": "Required\nValid values: \n`InvoiceCalculationStarted`, \n`InvoiceCalculationFinished`, \n`CurUpdatedAfterInvoice`."
+          "description": "Required\nValid values: \n`InvoiceCalculationStarted`, \n`InvoiceCalculationFinished`, \n`CurUpdatedAfterInvoice`.\n`AccountBudgetAlert`."
         },
         "channels": {
           "type": "array",
