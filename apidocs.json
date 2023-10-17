@@ -13014,14 +13014,6 @@
         "name": {
           "type": "string"
         },
-        "fixedAmount": {
-          "type": "string",
-          "format": "int64"
-        },
-        "percentage": {
-          "type": "string",
-          "format": "int64"
-        },
         "granularity": {
           "type": "string"
         },
@@ -13036,6 +13028,23 @@
           "items": {
             "type": "string"
           }
+        },
+        "createdBy": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "fixedAmount": {
+          "type": "number",
+          "format": "float"
+        },
+        "percentage": {
+          "type": "number",
+          "format": "float"
         }
       }
     },
@@ -13132,6 +13141,15 @@
           "type": "string"
         },
         "webhookUrl": {
+          "type": "string"
+        },
+        "createdBy": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
           "type": "string"
         }
       }
