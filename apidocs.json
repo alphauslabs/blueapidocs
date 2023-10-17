@@ -17898,6 +17898,14 @@
     },
     "v1ProcessAuth0UserRequest": {
       "type": "object",
+      "properties": {
+        "source": {
+          "type": "string"
+        },
+        "customerId": {
+          "type": "string"
+        }
+      },
       "title": "Request message for AddUserFromAuth0asRoot rpc"
     },
     "v1ProcessAuth0UserResponse": {
