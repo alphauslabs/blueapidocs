@@ -2913,13 +2913,13 @@
                   "title": "If optional fields are not supplied, no changes occur.\nOptional. Actual email or channel name of slack/msteams"
                 },
                 "fixedAmount": {
-                  "type": "string",
-                  "format": "int64",
+                  "type": "number",
+                  "format": "float",
                   "title": "Both are optional"
                 },
                 "percentage": {
-                  "type": "string",
-                  "format": "int64"
+                  "type": "number",
+                  "format": "float"
                 },
                 "granularity": {
                   "type": "string",
@@ -15585,13 +15585,13 @@
           "description": "Required."
         },
         "fixedAmount": {
-          "type": "string",
-          "format": "int64",
+          "type": "number",
+          "format": "float",
           "title": "At least one in either fixedAmount or percentage"
         },
         "percentage": {
-          "type": "string",
-          "format": "int64"
+          "type": "number",
+          "format": "float"
         },
         "granularity": {
           "type": "string",
