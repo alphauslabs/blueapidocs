@@ -9600,7 +9600,7 @@
         "parameters": [
           {
             "name": "vendor",
-            "description": "Required. At the moment, only `aws` is supported.",
+            "description": "Required. At the moment, only `aws`,`azure`,`gcp` is supported.",
             "in": "path",
             "required": true,
             "type": "string"
@@ -9623,6 +9623,10 @@
                 "fieldMask": {
                   "type": "string",
                   "description": "Optional. Get only the value that set fieldMask.\n\nsee more info: https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/field_mask.proto"
+                },
+                "feeType": {
+                  "type": "string",
+                  "description": "Optional. If empty, defaults to all fee type. At the moment, only `Fee`,`Refund`,`Credit`,`SppDiscount` is supported."
                 }
               },
               "description": "Request message for the Billing.ReadInvoiceAdjustments rpc."
