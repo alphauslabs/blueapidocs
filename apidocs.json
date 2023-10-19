@@ -6353,7 +6353,7 @@
         "parameters": [
           {
             "name": "costGroupId",
-            "description": "Required. Cost Group Id",
+            "description": "If costgroupId is not provided, accountId must be provided.",
             "in": "path",
             "required": true,
             "type": "string"
@@ -6392,6 +6392,14 @@
                 "basedOnThePast": {
                   "type": "string",
                   "title": "Supported values are the following\n'SEVEN_DAYS', 'THIRTY_DAYS', 'SIXTY_DAYS'"
+                },
+                "accountId": {
+                  "type": "string",
+                  "description": "If accountId is not provided, costGroupId must be provided."
+                },
+                "accountScope": {
+                  "type": "string",
+                  "title": "Supported values are 'PAYER', 'LINKED'"
                 }
               },
               "title": "Request message for GetRiSpRecomemendations"
