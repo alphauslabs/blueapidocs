@@ -7497,6 +7497,10 @@
                 "awsOptions": {
                   "$ref": "#/definitions/v1CreateAccountRequestAwsOptions",
                   "description": "Required for the `aws` vendor. AWS-specific options."
+                },
+                "gcpOptions": {
+                  "$ref": "#/definitions/v1CreateAccountRequestGcpOptions",
+                  "description": "Required for the `gcp` vendor. GCP-specific options."
                 }
               },
               "description": "Request message for the Cost.CreateAccount rpc."
@@ -15588,6 +15592,20 @@
         }
       },
       "description": "AWS-specific options for registering an account."
+    },
+    "v1CreateAccountRequestGcpOptions": {
+      "type": "object",
+      "properties": {
+        "managementAccountId": {
+          "type": "string",
+          "description": "Optional."
+        },
+        "managementBillingId": {
+          "type": "string",
+          "description": "Optional."
+        }
+      },
+      "description": "GCP-specific options for registering an account."
     },
     "v1CreateAlertRequest": {
       "type": "object",
