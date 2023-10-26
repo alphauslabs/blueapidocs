@@ -7768,6 +7768,58 @@
         "tags": [
           "Cost"
         ]
+      },
+      "put": {
+        "summary": "WORK-IN-PROGRESS: Updates a vendor account. Only available in Ripple.",
+        "operationId": "Cost_UpdateAccount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/blueapiapiAccount"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "Required.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Optional."
+                }
+              },
+              "description": "Request message for the Cost.UpdateAccount rpc."
+            }
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
       }
     },
     "/v1/{vendor}/adjustments:read": {
