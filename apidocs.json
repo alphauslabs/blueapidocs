@@ -11840,6 +11840,12 @@
         },
         "configurationUrl": {
           "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "redirectUri": {
+          "type": "string"
         }
       }
     },
@@ -13373,15 +13379,6 @@
           "type": "string"
         },
         "webhookUrl": {
-          "type": "string"
-        },
-        "createdBy": {
-          "type": "string"
-        },
-        "createdAt": {
-          "type": "string"
-        },
-        "updatedAt": {
           "type": "string"
         }
       }
