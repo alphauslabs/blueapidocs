@@ -16514,6 +16514,13 @@
         "type": {
           "type": "string",
           "title": "required. \"ri\" or \"sp\""
+        },
+        "accountId": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Optional. Ri and Sp Expiry Alert also supports by account Ids."
         }
       },
       "title": "Request message for CreateRiSpExpirationAlert"
@@ -17692,6 +17699,12 @@
           }
         },
         "notificationChannels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "accountId": {
           "type": "array",
           "items": {
             "type": "string"
