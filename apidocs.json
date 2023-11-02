@@ -3723,9 +3723,13 @@
             "schema": {
               "type": "object",
               "properties": {
-                "date": {
+                "startDate": {
                   "type": "string",
-                  "title": "The date when you want to know if there is an anomaly, cannot be the current date"
+                  "title": "Start date for detecting anomalies"
+                },
+                "endDate": {
+                  "type": "string",
+                  "title": "End date for detection anomalies"
                 }
               },
               "title": "Request message for getting anomaly"
@@ -15392,6 +15396,11 @@
         "isAnomaly": {
           "type": "boolean",
           "title": "The value will be true if there is an anomaly for a specific account and product"
+        },
+        "anomalyProbability": {
+          "type": "number",
+          "format": "float",
+          "title": "How many percentage does the data is considered anomaly"
         }
       },
       "title": "Message response for anomaly detection"
