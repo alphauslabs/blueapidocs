@@ -2852,7 +2852,39 @@
         ]
       }
     },
-    "/v1/alerts/expire/risp/{orgId}/{type}": {
+    "/v1/alerts/expire/risp/all:read": {
+      "post": {
+        "summary": "List all Ri and Sp Expiration Alert Data",
+        "operationId": "Cover_ListRiSpExpirationAlert",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1RiSpExpiryAlertData"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of v1RiSpExpiryAlertData"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
+    "/v1/alerts/expire/risp/{id}": {
       "get": {
         "summary": "Get RI or SP Expiration Alert Data",
         "operationId": "Cover_GetRiSpExpirationAlert",
@@ -2860,7 +2892,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1GetRiSpExpirationAlertResponse"
+              "$ref": "#/definitions/v1RiSpExpiryAlertData"
             }
           },
           "default": {
@@ -2872,15 +2904,38 @@
         },
         "parameters": [
           {
-            "name": "orgId",
-            "description": "required. MSP Id",
+            "name": "id",
+            "description": "required. Id",
             "in": "path",
             "required": true,
             "type": "string"
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      },
+      "delete": {
+        "summary": "Delete selected Ri and Sp Expiration Alert Data",
+        "operationId": "Cover_DeleteRiSpExpirationAlert",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
           },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
           {
-            "name": "type",
-            "description": "required. ri or sp",
+            "name": "id",
+            "description": "required. Id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -2909,18 +2964,54 @@
         },
         "parameters": [
           {
-            "name": "orgId",
-            "description": "required. MSP Id",
+            "name": "id",
+            "description": "required. Id",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
-            "name": "type",
-            "description": "required. ri or sp",
-            "in": "path",
+            "name": "body",
+            "in": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "type": "object",
+              "properties": {
+                "alertEnabled": {
+                  "type": "boolean",
+                  "description": "required."
+                },
+                "notificationChannels": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "required. Notification Channel Ids."
+                },
+                "frequency": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "format": "int64"
+                  },
+                  "description": "required. Frequency."
+                },
+                "costGroupId": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Optional. if costGroupId is not provided, accountId must not empty."
+                },
+                "accountId": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Optional. if accountId is not provided, CostGroupId must not empty."
+                }
+              }
+            }
           }
         ],
         "tags": [
@@ -16566,7 +16657,7 @@
           "items": {
             "type": "string"
           },
-          "title": "required. CostGroupId"
+          "description": "Optional. if costGroupId is not provided, accountId must not empty."
         },
         "alertEnabled": {
           "type": "boolean",
@@ -16588,7 +16679,7 @@
           "items": {
             "type": "string"
           },
-          "description": "Optional. Ri and Sp Expiry Alert also supports by account Ids."
+          "description": "Optional. if accountId is not provided, CostGroupId must not empty."
         }
       },
       "title": "Request message for CreateRiSpExpirationAlert"
@@ -17732,54 +17823,6 @@
       },
       "title": "Response message for GetRegions"
     },
-    "v1GetRiSpExpirationAlertResponse": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "orgId": {
-          "type": "string"
-        },
-        "type": {
-          "type": "string"
-        },
-        "alertEnabled": {
-          "type": "boolean"
-        },
-        "frequency": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "int64"
-          }
-        },
-        "costGroupId": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "details": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "notificationChannels": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "accountId": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
     "v1GetRiSpRecommendationsResponse": {
       "type": "object",
       "properties": {
@@ -18889,6 +18932,54 @@
         }
       },
       "description": "Request message for the RestoreSavings rpc."
+    },
+    "v1RiSpExpiryAlertData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "orgId": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "alertEnabled": {
+          "type": "boolean"
+        },
+        "frequency": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "costGroupId": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "notificationChannels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "accountId": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
     },
     "v1SaveNotificationSettingsRequest": {
       "type": "object",
