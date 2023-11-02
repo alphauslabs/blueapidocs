@@ -585,6 +585,10 @@
                 "msteams": {
                   "$ref": "#/definitions/apiMSTeamsChannel",
                   "description": "Required if type = `msteams`."
+                },
+                "product": {
+                  "type": "string",
+                  "description": "Optional. For Octo use only: `octo`."
                 }
               },
               "description": "Request message for the Admin.UpdateNotificationChannel rpc."
@@ -16384,6 +16388,10 @@
         "msteams": {
           "$ref": "#/definitions/apiMSTeamsChannel",
           "description": "Required if type = `msteams`."
+        },
+        "product": {
+          "type": "string",
+          "description": "Optional. For Octo use only: `octo`."
         }
       },
       "description": "Request message for the Admin.CreateNotificationChannel rpc."
