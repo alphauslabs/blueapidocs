@@ -13397,6 +13397,29 @@
         }
       }
     },
+    "coverAlertChannels": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "slack": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "msteams": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "coverAlertData": {
       "type": "object",
       "properties": {
@@ -13416,10 +13439,7 @@
           }
         },
         "channels": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
+          "$ref": "#/definitions/coverAlertChannels"
         },
         "createdBy": {
           "type": "string"
