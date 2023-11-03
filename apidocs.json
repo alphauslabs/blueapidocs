@@ -6647,7 +6647,7 @@
         ]
       }
     },
-    "/v1/risprecommendations/{costGroupId}": {
+    "/v1/risprecommendations": {
       "post": {
         "summary": "Get the RI or SP recommendations for every account in a cost group",
         "operationId": "Cover_GetRiSpRecommendations",
@@ -6667,57 +6667,11 @@
         },
         "parameters": [
           {
-            "name": "costGroupId",
-            "description": "If costgroupId is not provided, accountId must be provided.",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
             "name": "body",
             "in": "body",
             "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "title": "'reservation' for RI, 'savingsplan' for SP"
-                },
-                "service": {
-                  "type": "string",
-                  "title": "For RI recommendation input only. \nThis are the supported values\n'Amazon Elastic Compute - Cloud' for AmazonEC2, 'Amazon Relational Database Service' for AmazonRDS, 'Amazon Redshift' for Redshift, 'Amazon ElastiCache' for ElastiCache and 'Amazon Opensearch Service' for AmazonES"
-                },
-                "offeringClass": {
-                  "type": "string",
-                  "title": "For RI recommendation input\nThis supports only to AmazonEC2. Supported values are the following:\n'STANDARD', 'CONVERTIBLE'"
-                },
-                "savingsPlanType": {
-                  "type": "string",
-                  "title": "For SP recommendation input\nSupported Values are the following\n'COMPUTE_SP' for Compute Savings Plans, 'EC2_INSTANCE_SP' for EC2 Savings Plans, 'SAGEMAKER_SP' for SageMaker Savings Plans"
-                },
-                "paymentOption": {
-                  "type": "string",
-                  "description": "Supported values are the following\n'ALL_UPFRONT', 'PARTIAL_UPFRONT', 'NO_UPFRONT'\nWhen making RI recommendations for Amazon ElastiCache, the 'HEAVY_UTILIZATION' value is also a valid choice."
-                },
-                "termInYears": {
-                  "type": "string",
-                  "title": "Supported values are the following\n'ONE_YEAR', 'THREE_YEARS'"
-                },
-                "basedOnThePast": {
-                  "type": "string",
-                  "title": "Supported values are the following\n'SEVEN_DAYS', 'THIRTY_DAYS', 'SIXTY_DAYS'"
-                },
-                "accountId": {
-                  "type": "string",
-                  "description": "If accountId is not provided, costGroupId must be provided."
-                },
-                "accountScope": {
-                  "type": "string",
-                  "title": "Supported values are 'PAYER', 'LINKED'"
-                }
-              },
-              "title": "Request message for GetRiSpRecomemendations"
+              "$ref": "#/definitions/v1GetRiSpRecommendationsRequest"
             }
           }
         ],
@@ -17846,6 +17800,52 @@
         }
       },
       "title": "Response message for GetRegions"
+    },
+    "v1GetRiSpRecommendationsRequest": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "title": "'reservation' for RI, 'savingsplan' for SP"
+        },
+        "service": {
+          "type": "string",
+          "title": "For RI recommendation input only. \nThis are the supported values\n'Amazon Elastic Compute Cloud - Compute' for AmazonEC2, 'Amazon Relational Database Service' for AmazonRDS, 'Amazon Redshift' for Redshift, 'Amazon ElastiCache' for ElastiCache and 'Amazon Opensearch Service' for AmazonES"
+        },
+        "offeringClass": {
+          "type": "string",
+          "title": "For RI recommendation input\nThis supports only to AmazonEC2. Supported values are the following:\n'STANDARD', 'CONVERTIBLE'"
+        },
+        "savingsPlanType": {
+          "type": "string",
+          "title": "For SP recommendation input\nSupported Values are the following\n'COMPUTE_SP' for Compute Savings Plans, 'EC2_INSTANCE_SP' for EC2 Savings Plans, 'SAGEMAKER_SP' for SageMaker Savings Plans"
+        },
+        "paymentOption": {
+          "type": "string",
+          "description": "Supported values are the following\n'ALL_UPFRONT', 'PARTIAL_UPFRONT', 'NO_UPFRONT'\nWhen making RI recommendations for Amazon ElastiCache, the 'HEAVY_UTILIZATION' value is also a valid choice."
+        },
+        "termInYears": {
+          "type": "string",
+          "title": "Supported values are the following\n'ONE_YEAR', 'THREE_YEARS'"
+        },
+        "basedOnThePast": {
+          "type": "string",
+          "title": "Supported values are the following\n'SEVEN_DAYS', 'THIRTY_DAYS', 'SIXTY_DAYS'"
+        },
+        "costGroupId": {
+          "type": "string",
+          "description": "If costgroupId is not provided, accountId must be provided."
+        },
+        "accountId": {
+          "type": "string",
+          "description": "If accountId is not provided, costGroupId must be provided."
+        },
+        "accountScope": {
+          "type": "string",
+          "title": "Supported values are 'PAYER', 'LINKED'"
+        }
+      },
+      "title": "Request message for GetRiSpRecomemendations"
     },
     "v1GetRiSpRecommendationsResponse": {
       "type": "object",
