@@ -14274,6 +14274,9 @@
         },
         "updatedAt": {
           "type": "string"
+        },
+        "orgId": {
+          "type": "string"
         }
       }
     },
