@@ -11231,6 +11231,23 @@
         }
       }
     },
+    "apiBudgetAlertNotification": {
+      "type": "object",
+      "properties": {
+        "channels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Required."
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "Required."
+        }
+      },
+      "description": "BudgetAlertNotification resource definition."
+    },
     "apiCostTag": {
       "type": "object",
       "properties": {
@@ -11282,6 +11299,21 @@
         }
       },
       "description": "CustomDetails resource definition."
+    },
+    "apiDailyBudgetAlert": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "number",
+          "format": "double",
+          "title": "Required. threshold in budget alerts"
+        },
+        "enabled": {
+          "type": "boolean",
+          "title": "Required. notification enable/disable"
+        }
+      },
+      "description": "DailyBudgetAlert resource definition."
     },
     "apiEmailChannel": {
       "type": "object",
@@ -11749,6 +11781,21 @@
           "format": "double"
         }
       }
+    },
+    "apiMonthlyBudgetAlert": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "number",
+          "format": "double",
+          "title": "Required. threshold in budget alerts"
+        },
+        "enabled": {
+          "type": "boolean",
+          "title": "Required. notification enable/disable"
+        }
+      },
+      "description": "MonthlyBudgetAlert resource definition."
     },
     "apiMonthlyCostForecast": {
       "type": "object",
@@ -15758,6 +15805,34 @@
       },
       "description": "Invoice settings that are vendor-specific for each billing group."
     },
+    "v1BudgetAlerts": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "budget alert id"
+        },
+        "vendor": {
+          "type": "string"
+        },
+        "accounts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "notification": {
+          "$ref": "#/definitions/apiBudgetAlertNotification"
+        },
+        "daily": {
+          "$ref": "#/definitions/apiDailyBudgetAlert"
+        },
+        "monthly": {
+          "$ref": "#/definitions/apiMonthlyBudgetAlert"
+        }
+      },
+      "description": "Request message for the BudgetAlerts rpc."
+    },
     "v1CalculateCostsRequestAwsOptions": {
       "type": "object",
       "properties": {
@@ -16300,6 +16375,35 @@
         }
       },
       "title": "Specific settings per vendor"
+    },
+    "v1CreateBudgetAlertsRequest": {
+      "type": "object",
+      "properties": {
+        "vendor": {
+          "type": "string",
+          "description": "Required. At the moment, only `aws` is supported."
+        },
+        "accounts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Required."
+        },
+        "notification": {
+          "$ref": "#/definitions/apiBudgetAlertNotification",
+          "description": "Required."
+        },
+        "daily": {
+          "$ref": "#/definitions/apiDailyBudgetAlert",
+          "description": "Optional."
+        },
+        "monthly": {
+          "$ref": "#/definitions/apiMonthlyBudgetAlert",
+          "description": "Optional."
+        }
+      },
+      "description": "Request message for the CreateBudgetAlerts rpc."
     },
     "v1CreateCalculatorCostModifierResponse": {
       "type": "object",
