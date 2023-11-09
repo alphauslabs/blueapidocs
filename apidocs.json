@@ -2757,6 +2757,72 @@
       }
     },
     "/v1/alerts": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Create the budget alerts. Only available in Wave(Pro).",
+        "operationId": "Cost_CreateBudgetAlerts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1BudgetAlerts"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateBudgetAlertsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      }
+    },
+    "/v1/alerts/anomaly": {
+      "post": {
+        "summary": "Create Anomaly Alert",
+        "operationId": "Cover_CreateAnomalyAlert",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateAnomalyAlertRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
+    "/v1/alerts/cost": {
       "get": {
         "summary": "WORK-IN-PROGRESS: Get Alerts under organization",
         "operationId": "Cover_GetAlerts",
@@ -2819,15 +2885,15 @@
         ]
       }
     },
-    "/v1/alerts/anomaly": {
-      "post": {
-        "summary": "Create Anomaly Alert",
-        "operationId": "Cover_CreateAnomalyAlert",
+    "/v1/alerts/cost/{id}": {
+      "get": {
+        "summary": "WORK-IN-PROGRESS: Get Specific Alert under organization",
+        "operationId": "Cover_GetAlertDetails",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "properties": {}
+              "$ref": "#/definitions/v1GetAlertDetailsResponse"
             }
           },
           "default": {
@@ -2839,11 +2905,112 @@
         },
         "parameters": [
           {
+            "name": "id",
+            "description": "Required. Alert ID.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      },
+      "delete": {
+        "summary": "WORK-IN-PROGRESS: Delete Specific Alert under organization",
+        "operationId": "Cover_DeleteAlert",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DeleteAlertResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Required. Alert ID.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      },
+      "put": {
+        "summary": "WORK-IN-PROGRESS: Update Specific Alert under organization",
+        "operationId": "Cover_UpdateAlertDetails",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateAlertDetailsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Required. Alert ID.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
             "name": "body",
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v1CreateAnomalyAlertRequest"
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "title": "If optional fields are not supplied, no changes occur.\nOptional. Actual email or channel name of slack/msteams"
+                },
+                "fixedAmount": {
+                  "type": "number",
+                  "format": "float",
+                  "title": "Both are optional"
+                },
+                "percentage": {
+                  "type": "number",
+                  "format": "float"
+                },
+                "granularity": {
+                  "type": "string",
+                  "description": "Optional. daily or monthly. Only 'daily' is supported for now."
+                },
+                "costGroups": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Optional. Cost group IDs."
+                },
+                "channels": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Optional. Channel IDs."
+                }
+              },
+              "title": "Request message for UpdateAlertDetails"
             }
           }
         ],
@@ -3058,13 +3225,13 @@
     },
     "/v1/alerts/{id}": {
       "get": {
-        "summary": "WORK-IN-PROGRESS: Get Specific Alert under organization",
-        "operationId": "Cover_GetAlertDetails",
+        "summary": "WORK-IN-PROGRESS: Gets the budget alerts. Only available in Wave(Pro).",
+        "operationId": "Cost_GetBudgetAlerts",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1GetAlertDetailsResponse"
+              "$ref": "#/definitions/v1BudgetAlerts"
             }
           },
           "default": {
@@ -3077,24 +3244,24 @@
         "parameters": [
           {
             "name": "id",
-            "description": "Required. Alert ID.",
+            "description": "Required. budget alert id",
             "in": "path",
             "required": true,
             "type": "string"
           }
         ],
         "tags": [
-          "Cover"
+          "Cost"
         ]
       },
       "delete": {
-        "summary": "WORK-IN-PROGRESS: Delete Specific Alert under organization",
-        "operationId": "Cover_DeleteAlert",
+        "summary": "WORK-IN-PROGRESS: Deletes the budget alerts. Only available in Wave(Pro).",
+        "operationId": "Cost_DeleteBudgetAlerts",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1DeleteAlertResponse"
+              "properties": {}
             }
           },
           "default": {
@@ -3107,24 +3274,24 @@
         "parameters": [
           {
             "name": "id",
-            "description": "Required. Alert ID.",
+            "description": "Required. budget alert id",
             "in": "path",
             "required": true,
             "type": "string"
           }
         ],
         "tags": [
-          "Cover"
+          "Cost"
         ]
       },
       "put": {
-        "summary": "WORK-IN-PROGRESS: Update Specific Alert under organization",
-        "operationId": "Cover_UpdateAlertDetails",
+        "summary": "WORK-IN-PROGRESS: Updates the budget alerts. Only available in Wave(Pro).",
+        "operationId": "Cost_UpdateBudgetAlerts",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1UpdateAlertDetailsResponse"
+              "$ref": "#/definitions/v1BudgetAlerts"
             }
           },
           "default": {
@@ -3137,7 +3304,7 @@
         "parameters": [
           {
             "name": "id",
-            "description": "Required. Alert ID.",
+            "description": "Required. budget alert id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -3149,44 +3316,36 @@
             "schema": {
               "type": "object",
               "properties": {
-                "name": {
+                "vendor": {
                   "type": "string",
-                  "title": "If optional fields are not supplied, no changes occur.\nOptional. Actual email or channel name of slack/msteams"
+                  "description": "Required. At the moment, only `aws` is supported."
                 },
-                "fixedAmount": {
-                  "type": "number",
-                  "format": "float",
-                  "title": "Both are optional"
-                },
-                "percentage": {
-                  "type": "number",
-                  "format": "float"
-                },
-                "granularity": {
-                  "type": "string",
-                  "description": "Optional. daily or monthly. Only 'daily' is supported for now."
-                },
-                "costGroups": {
+                "accounts": {
                   "type": "array",
                   "items": {
                     "type": "string"
                   },
-                  "description": "Optional. Cost group IDs."
+                  "description": "Required."
                 },
-                "channels": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  },
-                  "description": "Optional. Channel IDs."
+                "notification": {
+                  "$ref": "#/definitions/apiBudgetAlertNotification",
+                  "description": "Required."
+                },
+                "daily": {
+                  "$ref": "#/definitions/apiDailyBudgetAlert",
+                  "description": "Optional."
+                },
+                "monthly": {
+                  "$ref": "#/definitions/apiMonthlyBudgetAlert",
+                  "description": "Optional."
                 }
               },
-              "title": "Request message for UpdateAlertDetails"
+              "description": "Request message for the UpdateBudgetAlerts rpc."
             }
           }
         ],
         "tags": [
-          "Cover"
+          "Cost"
         ]
       }
     },
@@ -13448,6 +13607,17 @@
         }
       }
     },
+    "coverAlertCostGroup": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
     "coverAlertData": {
       "type": "object",
       "properties": {
@@ -13463,7 +13633,7 @@
         "costGroups": {
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "#/definitions/coverAlertCostGroup"
           }
         },
         "channels": {
