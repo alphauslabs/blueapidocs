@@ -3019,10 +3019,10 @@
         ]
       }
     },
-    "/v1/alerts/expire/risp": {
+    "/v1/alerts/expire/discount": {
       "post": {
-        "summary": "Create RI or SP Expiration Alert.",
-        "operationId": "Cover_CreateRiSpExpirationAlert",
+        "summary": "Create discount Expiration Alert.",
+        "operationId": "Cover_CreateDiscountExpirationAlert",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -3043,7 +3043,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v1CreateRiSpExpirationAlertRequest"
+              "$ref": "#/definitions/v1CreateDiscountExpirationAlertRequest"
             }
           }
         ],
@@ -3052,10 +3052,10 @@
         ]
       }
     },
-    "/v1/alerts/expire/risp/all:read": {
+    "/v1/alerts/expire/discount/all:read": {
       "post": {
-        "summary": "List all Ri and Sp Expiration Alert Data",
-        "operationId": "Cover_ListRiSpExpirationAlert",
+        "summary": "List all discount Expiration Alert Data",
+        "operationId": "Cover_ListDiscountExpirationAlert",
         "responses": {
           "200": {
             "description": "A successful response.(streaming responses)",
@@ -3063,13 +3063,13 @@
               "type": "object",
               "properties": {
                 "result": {
-                  "$ref": "#/definitions/v1RiSpExpiryAlertData"
+                  "$ref": "#/definitions/v1DiscountExpiryAlertData"
                 },
                 "error": {
                   "$ref": "#/definitions/googlerpcStatus"
                 }
               },
-              "title": "Stream result of v1RiSpExpiryAlertData"
+              "title": "Stream result of v1DiscountExpiryAlertData"
             }
           },
           "default": {
@@ -3084,15 +3084,15 @@
         ]
       }
     },
-    "/v1/alerts/expire/risp/{id}": {
+    "/v1/alerts/expire/discount/{id}": {
       "get": {
-        "summary": "Get RI or SP Expiration Alert Data",
-        "operationId": "Cover_GetRiSpExpirationAlert",
+        "summary": "Get discount Expiration Alert Data",
+        "operationId": "Cover_GetDiscountExpirationAlert",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1RiSpExpiryAlertData"
+              "$ref": "#/definitions/v1DiscountExpiryAlertData"
             }
           },
           "default": {
@@ -3116,8 +3116,8 @@
         ]
       },
       "delete": {
-        "summary": "Delete selected Ri and Sp Expiration Alert Data",
-        "operationId": "Cover_DeleteRiSpExpirationAlert",
+        "summary": "Delete selected discount Expiration Alert Data",
+        "operationId": "Cover_DeleteDiscountExpirationAlert",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -3146,8 +3146,8 @@
         ]
       },
       "put": {
-        "summary": "Update RI or SP Expiration Alert",
-        "operationId": "Cover_UpdateRiSpExpirationAlert",
+        "summary": "Update discount Expiration Alert",
+        "operationId": "Cover_UpdateDiscountExpirationAlert",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -6532,6 +6532,39 @@
         ]
       }
     },
+    "/v1/recommendations/discount": {
+      "post": {
+        "summary": "Get the discount recommendations for every account in a cost group",
+        "operationId": "Cover_GetDiscountRecommendations",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetDiscountRecommendationsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1GetDiscountRecommendationsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
     "/v1/resellers": {
       "get": {
         "summary": "WORK-IN-PROGRESS: Lists all the reseller accounts. Only available in Ripple.",
@@ -6815,39 +6848,6 @@
             "in": "path",
             "required": true,
             "type": "string"
-          }
-        ],
-        "tags": [
-          "Cover"
-        ]
-      }
-    },
-    "/v1/risprecommendations": {
-      "post": {
-        "summary": "Get the RI or SP recommendations for every account in a cost group",
-        "operationId": "Cover_GetRiSpRecommendations",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1GetRiSpRecommendationsResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1GetRiSpRecommendationsRequest"
-            }
           }
         ],
         "tags": [
@@ -12287,32 +12287,6 @@
       },
       "description": "VendorDetail resource definition."
     },
-    "apiawsAwsRecommendations": {
-      "type": "object",
-      "properties": {
-        "summary": {
-          "$ref": "#/definitions/awsReservationRecommendationSummary"
-        },
-        "riRecommendations": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/awsRiRecommendation"
-          }
-        },
-        "spRecommendations": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/awsSpRecommendation"
-          }
-        },
-        "estimatedCoverage": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/awsReservationEstimatedCoverage"
-          }
-        }
-      }
-    },
     "apiawsChartData": {
       "type": "object",
       "properties": {
@@ -12681,23 +12655,6 @@
         }
       }
     },
-    "apicoverAwsRecommendations": {
-      "type": "object",
-      "properties": {
-        "riRecommendations": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/coverRiRecommendationResults"
-          }
-        },
-        "spRecommendations": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/coverSpRecommendationResults"
-          }
-        }
-      }
-    },
     "apigcpCost": {
       "type": "object",
       "properties": {
@@ -12879,6 +12836,32 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/awsSpCostReduction"
+          }
+        }
+      }
+    },
+    "awsAwsRecommendations": {
+      "type": "object",
+      "properties": {
+        "summary": {
+          "$ref": "#/definitions/awsReservationRecommendationSummary"
+        },
+        "riRecommendations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/awsRiRecommendation"
+          }
+        },
+        "spRecommendations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/awsSpRecommendation"
+          }
+        },
+        "estimatedCoverage": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/awsReservationEstimatedCoverage"
           }
         }
       }
@@ -13701,6 +13684,58 @@
         }
       }
     },
+    "coverAwsDiscountRecommendations": {
+      "type": "object",
+      "properties": {
+        "riRecommendations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/coverRiRecommendationResults"
+          }
+        },
+        "spRecommendations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/coverSpRecommendationResults"
+          }
+        }
+      }
+    },
+    "coverAwsInputs": {
+      "type": "object",
+      "properties": {
+        "service": {
+          "type": "string"
+        },
+        "offeringClass": {
+          "type": "string"
+        },
+        "savingsPlanType": {
+          "type": "string"
+        },
+        "paymentOption": {
+          "type": "string"
+        },
+        "termInYears": {
+          "type": "string"
+        },
+        "basedOnThePast": {
+          "type": "string"
+        },
+        "accountScope": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "coverAzureDiscountRecommendations": {
+      "type": "object"
+    },
+    "coverAzureInputs": {
+      "type": "object"
+    },
     "coverAzureOptions": {
       "type": "object",
       "properties": {
@@ -14009,6 +14044,12 @@
           "type": "string"
         }
       }
+    },
+    "coverGcpDiscountRecommendations": {
+      "type": "object"
+    },
+    "coverGcpInputs": {
+      "type": "object"
     },
     "coverGcpOptions": {
       "type": "object",
@@ -16681,6 +16722,49 @@
       "type": "object",
       "description": "Request message for the Admin.CreateDefaultNotificationChannel rpc."
     },
+    "v1CreateDiscountExpirationAlertRequest": {
+      "type": "object",
+      "properties": {
+        "frequency": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          },
+          "title": "Required if the alertEnabled is set to true\nSupported values are the following:\n[0, 7, 30, 60, 90]"
+        },
+        "costGroupId": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Optional. if costGroupId is not provided, accountId must not empty."
+        },
+        "alertEnabled": {
+          "type": "boolean",
+          "description": "required. Switch in enabling alert."
+        },
+        "notificationChannels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "required. Array of notificationChannel Ids from DynamoDB. Existing in ripple."
+        },
+        "type": {
+          "type": "string",
+          "title": "required. \"ri\" or \"sp\""
+        },
+        "accountId": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Optional. if accountId is not provided, CostGroupId must not empty."
+        }
+      },
+      "title": "Request message for CreateDiscountExpirationAlert"
+    },
     "v1CreateGroupRootUserRequest": {
       "type": "object",
       "properties": {
@@ -16970,49 +17054,6 @@
       },
       "description": "Request message for the CreateReseller rpc."
     },
-    "v1CreateRiSpExpirationAlertRequest": {
-      "type": "object",
-      "properties": {
-        "frequency": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "int64"
-          },
-          "title": "Required if the alertEnabled is set to true\nSupported values are the following:\n[0, 7, 30, 60, 90]"
-        },
-        "costGroupId": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "Optional. if costGroupId is not provided, accountId must not empty."
-        },
-        "alertEnabled": {
-          "type": "boolean",
-          "description": "required. Switch in enabling alert."
-        },
-        "notificationChannels": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "required. Array of notificationChannel Ids from DynamoDB. Existing in ripple."
-        },
-        "type": {
-          "type": "string",
-          "title": "required. \"ri\" or \"sp\""
-        },
-        "accountId": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "Optional. if accountId is not provided, CostGroupId must not empty."
-        }
-      },
-      "title": "Request message for CreateRiSpExpirationAlert"
-    },
     "v1CreateRoleRequest": {
       "type": "object",
       "properties": {
@@ -17276,6 +17317,54 @@
         }
       },
       "title": "Response message for DeleteView"
+    },
+    "v1DiscountExpiryAlertData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "orgId": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "alertEnabled": {
+          "type": "boolean"
+        },
+        "frequency": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "costGroupId": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "notificationChannels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "accountId": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
     },
     "v1ExportCostFiltersFileResponse": {
       "type": "object",
@@ -17948,6 +18037,43 @@
       },
       "description": "Response message for the Admin.GetDefaultCostAccessTemplateUrl rpc."
     },
+    "v1GetDiscountRecommendationsRequest": {
+      "type": "object",
+      "properties": {
+        "costGroupId": {
+          "type": "string",
+          "description": "Required."
+        },
+        "awsInputs": {
+          "$ref": "#/definitions/coverAwsInputs",
+          "title": "service ('AmazonEC2', 'AmazonRDS', 'AmazonRedshift', 'AmazonElastiCache', 'AmazonOpenSearch', 'AmazonMemoryDB') -\u003e for RI only\nofferingClass ('STANDARD', 'CONVERTIBLE') -\u003e for RI only\nsavingsPlanType ('COMPUTE_SP', 'EC2_INSTANCE_SP', 'SAGEMAKER_SP') -\u003e for SP only\npaymentOption ('ALL_UPFRONT', 'PARTIAL_UPFRONT', 'NO_UPFRONT')\ntermInYears ('ONE_YEAR', 'THREE_YEARS')\nbasedOnThePast ('SEVEN_DAYS', 'THIRTY_DAYS', 'SIXTY_DAYS')\naccountScope ('PAYER', 'LINKED')\ntype ('ri', 'sp')"
+        },
+        "azureInputs": {
+          "$ref": "#/definitions/coverAzureInputs",
+          "title": "NOT SUPPORTED YET"
+        },
+        "gcpInputs": {
+          "$ref": "#/definitions/coverGcpInputs",
+          "title": "NOT SUPPORTED YET"
+        }
+      },
+      "title": "Request message for GetDiscountRecomemendations"
+    },
+    "v1GetDiscountRecommendationsResponse": {
+      "type": "object",
+      "properties": {
+        "awsRecommendations": {
+          "$ref": "#/definitions/coverAwsDiscountRecommendations"
+        },
+        "azureRecommendations": {
+          "$ref": "#/definitions/coverAzureDiscountRecommendations"
+        },
+        "gcpRecommendations": {
+          "$ref": "#/definitions/coverGcpDiscountRecommendations"
+        }
+      },
+      "title": "Response message for GetDiscountRecommendations"
+    },
     "v1GetFavoriteViewsResponse": {
       "type": "object",
       "properties": {
@@ -18152,7 +18278,7 @@
           "type": "string"
         },
         "awsRecommendations": {
-          "$ref": "#/definitions/apiawsAwsRecommendations"
+          "$ref": "#/definitions/awsAwsRecommendations"
         }
       },
       "title": "Request message for GetRecommendations"
@@ -18168,61 +18294,6 @@
         }
       },
       "title": "Response message for GetRegions"
-    },
-    "v1GetRiSpRecommendationsRequest": {
-      "type": "object",
-      "properties": {
-        "type": {
-          "type": "string",
-          "title": "'reservation' for RI, 'savingsplan' for SP"
-        },
-        "service": {
-          "type": "string",
-          "title": "For RI recommendation input only. \nThese are the supported values\n'AmazonEC2', 'AmazonRDS', 'AmazonRedshift', 'AmazonElastiCache', 'AmazonOpenSearch' and 'AmazonMemoryDB'"
-        },
-        "offeringClass": {
-          "type": "string",
-          "title": "For RI recommendation input\nThis supports only to AmazonEC2. Supported values are the following:\n'STANDARD', 'CONVERTIBLE'"
-        },
-        "savingsPlanType": {
-          "type": "string",
-          "title": "For SP recommendation input\nSupported Values are the following\n'COMPUTE_SP' for Compute Savings Plans, 'EC2_INSTANCE_SP' for EC2 Savings Plans, 'SAGEMAKER_SP' for SageMaker Savings Plans"
-        },
-        "paymentOption": {
-          "type": "string",
-          "description": "Supported values are the following\n'ALL_UPFRONT', 'PARTIAL_UPFRONT', 'NO_UPFRONT'\nWhen making RI recommendations for Amazon ElastiCache, the 'HEAVY_UTILIZATION' value is also a valid choice."
-        },
-        "termInYears": {
-          "type": "string",
-          "title": "Supported values are the following\n'ONE_YEAR', 'THREE_YEARS'"
-        },
-        "basedOnThePast": {
-          "type": "string",
-          "title": "Supported values are the following\n'SEVEN_DAYS', 'THIRTY_DAYS', 'SIXTY_DAYS'"
-        },
-        "costGroupId": {
-          "type": "string",
-          "description": "If costgroupId is not provided, accountId must be provided."
-        },
-        "accountId": {
-          "type": "string",
-          "description": "If accountId is not provided, costGroupId must be provided."
-        },
-        "accountScope": {
-          "type": "string",
-          "title": "Supported values are 'PAYER', 'LINKED'"
-        }
-      },
-      "title": "Request message for GetRiSpRecomemendations"
-    },
-    "v1GetRiSpRecommendationsResponse": {
-      "type": "object",
-      "properties": {
-        "awsRecommendations": {
-          "$ref": "#/definitions/apicoverAwsRecommendations"
-        }
-      },
-      "title": "Response message for GetRiSpRecommendations"
     },
     "v1GetRightSizingRecommendationResponse": {
       "type": "object",
@@ -19324,54 +19395,6 @@
         }
       },
       "description": "Request message for the RestoreSavings rpc."
-    },
-    "v1RiSpExpiryAlertData": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "orgId": {
-          "type": "string"
-        },
-        "type": {
-          "type": "string"
-        },
-        "alertEnabled": {
-          "type": "boolean"
-        },
-        "frequency": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "int64"
-          }
-        },
-        "costGroupId": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "details": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "notificationChannels": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "accountId": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
     },
     "v1SaveNotificationSettingsRequest": {
       "type": "object",
