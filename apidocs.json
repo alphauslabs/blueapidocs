@@ -2967,10 +2967,7 @@
                   "description": "required. Frequency."
                 },
                 "costGroupId": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  },
+                  "type": "string",
                   "title": "required. cost group id"
                 }
               }
@@ -15935,10 +15932,7 @@
           "type": "string"
         },
         "costGroupId": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
+          "type": "string"
         },
         "notificationChannels": {
           "type": "array",
@@ -16623,10 +16617,7 @@
           "title": "Required. How often the user wants to receive alerts. Daily or Weekly"
         },
         "costGroupId": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
+          "type": "string",
           "title": "Requried. The Id of the cost group you want to monitor if there is an anomaly"
         },
         "notificationChannels": {
