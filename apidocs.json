@@ -3475,7 +3475,7 @@
                   "items": {
                     "type": "string"
                   },
-                  "description": "Required."
+                  "description": "Required. Lsit of accountId. For example, you set to [\"accountId1\",\"accountId2\",\"accountId3\"]."
                 },
                 "notification": {
                   "$ref": "#/definitions/apiBudgetAlertNotification",
@@ -11623,11 +11623,11 @@
           "items": {
             "type": "string"
           },
-          "description": "Required."
+          "description": "Required. List of channelId. For example, you set to [\"channelId1\",\"channelId2\",\"channelId3\"]."
         },
         "enabled": {
           "type": "boolean",
-          "description": "Required."
+          "description": "Required. notification enable/disable \nIf disabled, no alert is sent."
         }
       },
       "description": "BudgetAlertNotification resource definition."
@@ -11694,7 +11694,7 @@
         },
         "enabled": {
           "type": "boolean",
-          "title": "Required. notification enable/disable"
+          "description": "Required. notification enable/disable \nIf disabled, no alert is sent."
         }
       },
       "description": "DailyBudgetAlert resource definition."
@@ -12176,7 +12176,7 @@
         },
         "enabled": {
           "type": "boolean",
-          "title": "Required. notification enable/disable"
+          "description": "Required. notification enable/disable \nIf disabled, no alert is sent."
         }
       },
       "description": "MonthlyBudgetAlert resource definition."
@@ -13272,6 +13272,9 @@
           "format": "int64"
         },
         "offerClass": {
+          "type": "string"
+        },
+        "deploymentOption": {
           "type": "string"
         },
         "paidBy": {
@@ -16260,25 +16263,30 @@
       "properties": {
         "id": {
           "type": "string",
-          "title": "budget alert id"
+          "description": "Budget alert Id."
         },
         "vendor": {
-          "type": "string"
+          "type": "string",
+          "description": "Vnedor. At the moment, only `aws` is supported."
         },
         "accounts": {
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "description": "Lsit of accountId."
         },
         "notification": {
-          "$ref": "#/definitions/apiBudgetAlertNotification"
+          "$ref": "#/definitions/apiBudgetAlertNotification",
+          "description": "Notification setting for budget alert."
         },
         "daily": {
-          "$ref": "#/definitions/apiDailyBudgetAlert"
+          "$ref": "#/definitions/apiDailyBudgetAlert",
+          "description": "Daily setting for budget alert."
         },
         "monthly": {
-          "$ref": "#/definitions/apiMonthlyBudgetAlert"
+          "$ref": "#/definitions/apiMonthlyBudgetAlert",
+          "description": "Monthly setting for budget alert."
         }
       },
       "description": "Request message for the BudgetAlerts rpc."
@@ -16835,7 +16843,7 @@
           "items": {
             "type": "string"
           },
-          "description": "Required."
+          "description": "Required. Lsit of accountId. For example, you set to [\"accountId1\",\"accountId2\",\"accountId3\"]."
         },
         "notification": {
           "$ref": "#/definitions/apiBudgetAlertNotification",
