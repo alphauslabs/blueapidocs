@@ -15967,13 +15967,10 @@
           "type": "string"
         },
         "costGroupId": {
-          "type": "string"
+          "$ref": "#/definitions/coverAlertCostGroup"
         },
-        "notificationChannels": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
+        "channels": {
+          "$ref": "#/definitions/coverAlertChannels"
         }
       }
     },
