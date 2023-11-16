@@ -3485,6 +3485,10 @@
                   "$ref": "#/definitions/apiDailyBudgetAlert",
                   "description": "Optional."
                 },
+                "dailyRate": {
+                  "$ref": "#/definitions/apiDailyRateIncreaseBudgetAlert",
+                  "description": "Optional."
+                },
                 "monthly": {
                   "$ref": "#/definitions/apiMonthlyBudgetAlert",
                   "description": "Optional."
@@ -11699,6 +11703,21 @@
       },
       "description": "DailyBudgetAlert resource definition."
     },
+    "apiDailyRateIncreaseBudgetAlert": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "number",
+          "format": "double",
+          "title": "Required. threshold in budget alerts"
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "Required. notification enable/disable \nIf disabled, no alert is sent."
+        }
+      },
+      "description": "DailyRateIncreaseBudgetAlert resource definition."
+    },
     "apiEmailChannel": {
       "type": "object",
       "properties": {
@@ -16284,6 +16303,10 @@
           "$ref": "#/definitions/apiDailyBudgetAlert",
           "description": "Daily setting for budget alert."
         },
+        "dailyRate": {
+          "$ref": "#/definitions/apiDailyRateIncreaseBudgetAlert",
+          "description": "Daily rate increase setting for budget alert."
+        },
         "monthly": {
           "$ref": "#/definitions/apiMonthlyBudgetAlert",
           "description": "Monthly setting for budget alert."
@@ -16851,6 +16874,10 @@
         },
         "daily": {
           "$ref": "#/definitions/apiDailyBudgetAlert",
+          "description": "Optional."
+        },
+        "dailyRate": {
+          "$ref": "#/definitions/apiDailyRateIncreaseBudgetAlert",
           "description": "Optional."
         },
         "monthly": {
