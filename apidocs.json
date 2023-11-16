@@ -6587,6 +6587,39 @@
         ]
       }
     },
+    "/v1/members/register": {
+      "post": {
+        "summary": "Octo new user registration",
+        "operationId": "Cover_RegisterNewUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1RegisterNewUserResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1RegisterNewUserRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
     "/v1/members/resetpassword": {
       "post": {
         "summary": "Reset member's password",
@@ -19476,6 +19509,48 @@
         }
       },
       "description": "Request message for Register Data Access. For azure and gcp."
+    },
+    "v1RegisterNewUserRequest": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "title": "required email"
+        },
+        "password": {
+          "type": "string",
+          "title": "required password"
+        },
+        "name": {
+          "type": "string",
+          "title": "required user Name"
+        },
+        "company": {
+          "type": "string",
+          "title": "required company name"
+        },
+        "role": {
+          "type": "string",
+          "title": "required company role"
+        },
+        "amount": {
+          "type": "string",
+          "title": "optional company monthly cloud usage"
+        },
+        "intention": {
+          "type": "string",
+          "title": "optional intention"
+        }
+      },
+      "title": "Request message for RegisterNewUser"
+    },
+    "v1RegisterNewUserResponse": {
+      "type": "object",
+      "properties": {
+        "isAuthorized": {
+          "type": "boolean"
+        }
+      }
     },
     "v1RemoveCostGroupMemberResponse": {
       "type": "object",
