@@ -13985,16 +13985,20 @@
       "type": "object",
       "properties": {
         "offeringClass": {
-          "type": "string"
+          "type": "string",
+          "title": "Supported values are the following: ('STANDARD', 'CONVERTIBLE') -\u003e for RI only"
         },
         "paymentOption": {
-          "type": "string"
+          "type": "string",
+          "title": "Supported values are the following: ('ALL_UPFRONT', 'PARTIAL_UPFRONT', 'NO_UPFRONT')"
         },
         "termInYears": {
-          "type": "string"
+          "type": "string",
+          "title": "Supported values are the following:('ONE_YEAR', 'THREE_YEARS')"
         },
         "basedOnThePast": {
-          "type": "string"
+          "type": "string",
+          "title": "Supported values are the following:('SEVEN_DAYS', 'THIRTY_DAYS', 'SIXTY_DAYS')"
         }
       }
     },
@@ -18334,7 +18338,7 @@
         },
         "awsInputs": {
           "$ref": "#/definitions/coverAwsInputs",
-          "title": "offeringClass ('STANDARD', 'CONVERTIBLE') -\u003e for RI only\npaymentOption ('ALL_UPFRONT', 'PARTIAL_UPFRONT', 'NO_UPFRONT')\ntermInYears ('ONE_YEAR', 'THREE_YEARS')\nbasedOnThePast ('SEVEN_DAYS', 'THIRTY_DAYS', 'SIXTY_DAYS')"
+          "title": "AWS Inputs"
         },
         "azureInputs": {
           "$ref": "#/definitions/coverAzureInputs",
