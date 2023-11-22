@@ -17677,10 +17677,7 @@
           }
         },
         "details": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
+          "type": "string"
         },
         "channels": {
           "$ref": "#/definitions/coverAlertChannels"
