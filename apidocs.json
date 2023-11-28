@@ -1410,7 +1410,7 @@
     },
     "/iam/v1/partners/{id}/token:refresh": {
       "post": {
-        "summary": "WORK-IN-PROGRESS: Refreshes an expired partner token. Only partners are expected to call this API.",
+        "summary": "BETA: Refreshes an expired partner token. Only partners are expected to call this API.",
         "operationId": "Iam_RefreshPartnerToken",
         "responses": {
           "200": {
