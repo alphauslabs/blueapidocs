@@ -14858,6 +14858,17 @@
         }
       }
     },
+    "coverResult": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
     "coverRiRecommendationDetails": {
       "type": "object",
       "properties": {
@@ -18312,7 +18323,8 @@
         "result": {
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "object",
+            "$ref": "#/definitions/coverResult"
           }
         },
         "tagData": {
