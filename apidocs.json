@@ -5029,6 +5029,36 @@
       }
     },
     "/v1/budget": {
+      "get": {
+        "summary": "List all Budgets in an organization",
+        "operationId": "Cover_ListBudgets",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1ListBudgetsResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of v1ListBudgetsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Cover"
+        ]
+      },
       "post": {
         "summary": "Create Budget for specific cost group in an organization",
         "operationId": "Cover_CreateBudget",
@@ -19518,6 +19548,14 @@
         }
       },
       "description": "Request message for the Billing.ListAwsCalculationHistory rpc."
+    },
+    "v1ListBudgetsResponse": {
+      "type": "object",
+      "properties": {
+        "budgetData": {
+          "$ref": "#/definitions/coverBudgetData"
+        }
+      }
     },
     "v1ListCalculationsHistoryAwsResponse": {
       "type": "object",
