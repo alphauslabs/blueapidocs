@@ -9118,7 +9118,7 @@
     },
     "/v1/{vendor}/bep/{orgId}": {
       "get": {
-        "summary": "WORK-IN-PROGRESS: Get the breakeven point details for the RI or SP.",
+        "summary": "Get the breakeven point details for the RI or SP.",
         "operationId": "Cost_GetBreakevenPoint",
         "responses": {
           "200": {
@@ -10301,7 +10301,7 @@
     },
     "/v1/{vendor}/coverage/ondemand/{orgId}:read": {
       "post": {
-        "summary": "WORK-IN-PROGRESS: Get ondemand cost details for an organization (or MSP).",
+        "summary": "Get ondemand cost details for an organization (or MSP).",
         "operationId": "Cost_GetCoverageOndemand",
         "responses": {
           "200": {
@@ -10393,7 +10393,7 @@
     },
     "/v1/{vendor}/coverage/options/{orgId}:read": {
       "post": {
-        "summary": "WORK-IN-PROGRESS: Get coverage options details for an organization (or MSP).",
+        "summary": "Get coverage options details for an organization (or MSP).",
         "operationId": "Cost_GetCoverageOptions",
         "responses": {
           "200": {
@@ -11734,7 +11734,7 @@
     },
     "/v1/{vendor}/utilization/{orgId}": {
       "get": {
-        "summary": "WORK-IN-PROGRESS: Get the utilization details for an organization (or MSP).",
+        "summary": "Get the utilization details for an organization (or MSP).",
         "operationId": "Cost_GetUtilization",
         "responses": {
           "200": {
@@ -15114,6 +15114,9 @@
           "type": "boolean"
         },
         "curExport": {
+          "type": "boolean"
+        },
+        "payer": {
           "type": "boolean"
         }
       }
