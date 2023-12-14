@@ -12134,6 +12134,24 @@
       },
       "description": "BudgetAlertNotification resource definition."
     },
+    "apiBudgetAlertNotificationDetail": {
+      "type": "object",
+      "properties": {
+        "channels": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/apiNotificationChannel"
+          },
+          "description": "List of channel info."
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "Notification enable/disable \nIf disabled, no alert is sent."
+        }
+      },
+      "description": "BudgetAlertNotificationDetail resource definition."
+    },
     "apiCostTag": {
       "type": "object",
       "properties": {
@@ -16973,12 +16991,13 @@
         "accounts": {
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "object",
+            "$ref": "#/definitions/blueapiapiAccount"
           },
           "description": "Lsit of accountId."
         },
         "notification": {
-          "$ref": "#/definitions/apiBudgetAlertNotification",
+          "$ref": "#/definitions/apiBudgetAlertNotificationDetail",
           "description": "Notification setting for budget alert."
         },
         "daily": {
