@@ -12094,7 +12094,7 @@
       "properties": {
         "content": {
           "type": "string",
-          "title": "Encoded value"
+          "description": "Base64 encoded value\nFor example, content :`dGltZSx1c2VySWQsc3ViVXNlcklkLHVzZXJOYW1lLGlzQWRtaW4sZXZlbnROYW1lLHBhdGgsdXNlclBhc3MsY2F0ZU5hbWUNCg==``\nDecoding this value, get `time,userId,subUserId,userName,isAdmin,eventName,path,userPass,cateName`."
         },
         "downloadedRows": {
           "type": "string",
