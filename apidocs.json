@@ -14435,6 +14435,9 @@
         "percentage": {
           "type": "number",
           "format": "float"
+        },
+        "budgetId": {
+          "type": "string"
         }
       }
     },
