@@ -6816,6 +6816,39 @@
         ]
       }
     },
+    "/v1/members/aws/subscription": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS:Resolve user for aws marketplace subscription integration",
+        "operationId": "Cover_ResolveAWSCustomerForOnboarding",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ResolveAWSCustomerForOnboardingResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ResolveAWSCustomerForOnboardingRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
     "/v1/members/invite": {
       "post": {
         "summary": "Invite members to the system",
@@ -20538,6 +20571,22 @@
         }
       },
       "title": "Response message for ResetUserPassword"
+    },
+    "v1ResolveAWSCustomerForOnboardingRequest": {
+      "type": "object",
+      "properties": {
+        "registrationToken": {
+          "type": "string"
+        }
+      }
+    },
+    "v1ResolveAWSCustomerForOnboardingResponse": {
+      "type": "object",
+      "properties": {
+        "isAllowedToOnboard": {
+          "type": "boolean"
+        }
+      }
     },
     "v1ResolveCostGroupCombinationsResponse": {
       "type": "object",
