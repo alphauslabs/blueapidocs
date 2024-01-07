@@ -18977,6 +18977,10 @@
           "type": "string",
           "description": "Optional. Valid values are `service` and `account`. Only `service` is supported for now \nDefault value is `service`. Used only when limit is not 0."
         },
+        "includeZeroCost": {
+          "type": "boolean",
+          "description": "Optional. If set to true, return all available data including the data with zero cost.\nDefault value is `false` which means that only data with non-zero cost are returned."
+        },
         "awsOptions": {
           "$ref": "#/definitions/v1GetCostUsageRequestAwsOptions",
           "description": "Optional. Valid only for the `aws` vendor. AWS-specific options."
