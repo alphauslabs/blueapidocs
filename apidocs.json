@@ -11192,6 +11192,10 @@
                   },
                   "description": "Required. List of Account Ids."
                 },
+                "costGroupId": {
+                  "type": "string",
+                  "description": "Required. For OCTO only."
+                },
                 "awsOptions": {
                   "$ref": "#/definitions/v1GetRecommendationsRequestAwsOptions",
                   "title": "Required if vendor = 'aws'"
