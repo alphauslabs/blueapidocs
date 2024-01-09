@@ -18869,12 +18869,6 @@
         },
         "costGroupId": {
           "type": "string"
-        },
-        "startTime": {
-          "type": "string"
-        },
-        "endTime": {
-          "type": "string"
         }
       },
       "title": "Request message for GetCostGroupAttribute"
