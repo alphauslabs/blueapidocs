@@ -14701,19 +14701,32 @@
         },
         "createdBy": {
           "type": "string",
-          "title": "not required"
+          "title": "not required for creating budget"
         },
         "createdAt": {
           "type": "string",
-          "title": "not required"
+          "title": "not required for creating budget"
         },
         "updatedBy": {
           "type": "string",
-          "title": "not required"
+          "title": "not required for creating budget"
         },
         "updatedAt": {
           "type": "string",
-          "title": "not required"
+          "title": "not required for creating budget"
+        },
+        "totalSpend": {
+          "type": "number",
+          "format": "float",
+          "title": "total accumulated spending within the budget period"
+        },
+        "includeSpend": {
+          "type": "boolean",
+          "title": "set to true to include monthly spending within the budget period"
+        },
+        "includeForecast": {
+          "type": "boolean",
+          "title": "set to true to include monthly forecast within the budget period"
         }
       }
     },
