@@ -11154,6 +11154,45 @@
         ]
       }
     },
+    "/v1/{vendor}/payers/{id}/proforma": {
+      "get": {
+        "summary": "Gets a payer account's proforma reports. Applicable for AWS payer accounts only.",
+        "operationId": "Cost_GetPayerProformaReports",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetPayerProformaReportsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "Required. The account id to query.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      }
+    },
     "/v1/{vendor}/recommendations/{orgId}:read": {
       "post": {
         "summary": "WORK-IN-PROGRESS: Get cost opmtimization recommendations for an organization (or MSP).",
@@ -19404,6 +19443,19 @@
       },
       "description": "Response message for the Cost.GetPayerAccountImportHistory rpc."
     },
+    "v1GetPayerProformaReportsResponse": {
+      "type": "object",
+      "properties": {
+        "reports": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1ProformaReports"
+          }
+        }
+      },
+      "description": "Response message for Cost.GetPayerProformaReports rpc."
+    },
     "v1GetPayersResponse": {
       "type": "object",
       "properties": {
@@ -20120,6 +20172,39 @@
         },
         "timeCreated": {
           "type": "string"
+        }
+      }
+    },
+    "v1ProformaReports": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "payer account id"
+        },
+        "billingInternalId": {
+          "type": "string",
+          "title": "billing group internal id"
+        },
+        "billingGroupName": {
+          "type": "string",
+          "title": "billing group name"
+        },
+        "bucketName": {
+          "type": "string",
+          "title": "s3 bucket name"
+        },
+        "prefix": {
+          "type": "string",
+          "title": "s3 report prefix"
+        },
+        "reportName": {
+          "type": "string",
+          "title": "report name"
+        },
+        "roleArn": {
+          "type": "string",
+          "title": "role arn"
         }
       }
     },
