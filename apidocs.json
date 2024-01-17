@@ -5070,7 +5070,7 @@
     },
     "/v1/budget/{id}": {
       "get": {
-        "summary": "WORK-IN-PROGRESS: Get Budget data for specific cost group in an organization",
+        "summary": "WORK-IN-PROGRESS: Get specific Budget data for a cost group in an organization",
         "operationId": "Cover_GetBudget",
         "responses": {
           "200": {
@@ -5149,6 +5149,7 @@
         "parameters": [
           {
             "name": "id",
+            "description": "Required. Budget ID.",
             "in": "path",
             "required": true,
             "type": "string"
@@ -14729,7 +14730,7 @@
             "type": "object",
             "$ref": "#/definitions/coverGranularForecastData"
           },
-          "title": "forecast data record of an expired budget"
+          "title": "forecast for ongoing months of an active budget; if expired, archived forecast record"
         },
         "spendingData": {
           "type": "array",
@@ -14737,7 +14738,7 @@
             "type": "object",
             "$ref": "#/definitions/coverGranularSpendingData"
           },
-          "title": "spending data record of an expired budget"
+          "title": "spending data"
         },
         "expired": {
           "type": "boolean",
@@ -15095,7 +15096,7 @@
       "properties": {
         "date": {
           "type": "string",
-          "title": "use yyyymmdd format"
+          "title": "use yyyymm format"
         },
         "budget": {
           "type": "number",
@@ -15108,7 +15109,7 @@
       "properties": {
         "date": {
           "type": "string",
-          "title": "use yyyymmdd format"
+          "title": "use yyyymm format"
         },
         "mid": {
           "type": "number",
@@ -15129,7 +15130,7 @@
       "properties": {
         "date": {
           "type": "string",
-          "title": "use yyyymmdd format"
+          "title": "use yyyymm format"
         },
         "value": {
           "type": "number",
