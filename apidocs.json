@@ -7006,12 +7006,12 @@
     "/v1/members/aws/subscription": {
       "post": {
         "summary": "WORK-IN-PROGRESS:Resolve user for aws marketplace subscription integration",
-        "operationId": "Cover_ResolveAWSCustomerForOnboarding",
+        "operationId": "Cover_ResolveAWSMarketplaceTokenForOnboarding",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1ResolveAWSCustomerForOnboardingResponse"
+              "$ref": "#/definitions/v1ResolveAWSMarketplaceTokenForOnboardingResponse"
             }
           },
           "default": {
@@ -7027,7 +7027,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v1ResolveAWSCustomerForOnboardingRequest"
+              "$ref": "#/definitions/v1ResolveAWSMarketplaceTokenForOnboardingRequest"
             }
           }
         ],
@@ -20933,7 +20933,7 @@
       },
       "title": "Response message for ResetUserPassword"
     },
-    "v1ResolveAWSCustomerForOnboardingRequest": {
+    "v1ResolveAWSMarketplaceTokenForOnboardingRequest": {
       "type": "object",
       "properties": {
         "registrationToken": {
@@ -20941,11 +20941,14 @@
         }
       }
     },
-    "v1ResolveAWSCustomerForOnboardingResponse": {
+    "v1ResolveAWSMarketplaceTokenForOnboardingResponse": {
       "type": "object",
       "properties": {
         "isAllowedToOnboard": {
           "type": "boolean"
+        },
+        "customerId": {
+          "type": "string"
         }
       }
     },
