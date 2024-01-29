@@ -15914,6 +15914,9 @@
         },
         "orgId": {
           "type": "string"
+        },
+        "isAuth0Signup": {
+          "type": "boolean"
         }
       }
     },
@@ -20368,7 +20371,7 @@
           "type": "string"
         },
         "isAuth0Signup": {
-          "type": "string"
+          "type": "boolean"
         }
       },
       "title": "Onboarding profile"
