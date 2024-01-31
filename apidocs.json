@@ -12326,6 +12326,10 @@
           },
           "title": "User configuration"
         },
+        "vendor": {
+          "type": "string",
+          "title": "Vendor"
+        },
         "accounts": {
           "type": "array",
           "items": {
