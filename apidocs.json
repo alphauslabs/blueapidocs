@@ -2945,7 +2945,7 @@
                     "type": "object",
                     "$ref": "#/definitions/apiConfigFilters"
                   },
-                  "description": "Required."
+                  "description": "Required. \nA list of filtering options. See [api.ConfigFilters] for more information on each filter item. Multiple filter items will use the logical 'or' operator, e.g. filter1 || filter2 || filter3, etc."
                 },
                 "accounts": {
                   "type": "array",
@@ -4973,6 +4973,29 @@
             }
           }
         ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
+    "/v1/billing/free": {
+      "get": {
+        "summary": "Get the free trial expiry for newly onboard organization.",
+        "operationId": "Cover_GetFreeTrialExpiry",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetFreeTrialExpiryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
         "tags": [
           "Cover"
         ]
@@ -7376,7 +7399,7 @@
     },
     "/v1/resellers": {
       "get": {
-        "summary": "WORK-IN-PROGRESS: Lists all the reseller accounts. Only available in Ripple.",
+        "summary": "Lists all the reseller accounts. Only available in Ripple.",
         "operationId": "Billing_ListResellers",
         "responses": {
           "200": {
@@ -7415,7 +7438,7 @@
         ]
       },
       "post": {
-        "summary": "WORK-IN-PROGRESS: Registers the reseller account. Only available in Ripple.",
+        "summary": "Registers the reseller account. Only available in Ripple.",
         "operationId": "Billing_CreateReseller",
         "responses": {
           "200": {
@@ -7449,7 +7472,7 @@
     },
     "/v1/resellers/{id}": {
       "get": {
-        "summary": "WORK-IN-PROGRESS: Gets the reseller account. Only available in Ripple.",
+        "summary": "Gets the reseller account. Only available in Ripple.",
         "operationId": "Billing_GetReseller",
         "responses": {
           "200": {
@@ -7486,7 +7509,7 @@
         ]
       },
       "delete": {
-        "summary": "WORK-IN-PROGRESS: Deletes the reseller account. Only available in Ripple.",
+        "summary": "Deletes the reseller account. Only available in Ripple.",
         "operationId": "Billing_DeleteReseller",
         "responses": {
           "200": {
@@ -7517,7 +7540,7 @@
         ]
       },
       "put": {
-        "summary": "WORK-IN-PROGRESS: Updates the reseller account. Only available in Ripple.",
+        "summary": "Updates the reseller account. Only available in Ripple.",
         "operationId": "Billing_UpdateReseller",
         "responses": {
           "200": {
@@ -12465,7 +12488,7 @@
           }
         }
       },
-      "title": "ConfigFilters resource definition.\nregex: https://github.com/google/re2"
+      "description": "ConfigFilters resource definition.\nA map of \"key:value\" config filters. The key indicates the adjustment key while the value is the filter adjustment value which can be prefixed by either \"eq:\" (equal), \"re:\" (regular expressions based on https://github.com/google/re2), or \"!re:\" (reverse \"re:\"). No prefix is the same as \"eq:\". Multiple map items will use the logical 'and' operator, e.g. mapfilter1 \u0026\u0026 mapfilter2 \u0026\u0026 mapfilter3, etc.\n\nFor example, if you want to query lineitems with the adjustment `productCode:AmazonEC2`, set to `{\"productCode\":\"AmazonEC2\"}`. You can also use regular expressions for adjustment values, such as `{\"description\":\"re:[A-Za-z0-9]*\"}`.\nList of available adjustment keys: productCode, type, description\nFor example value on productCode: AmazonEC2, AmazonRDS, AWSLambda, etc.\nFor example value on type: Fee, Refund, SppDiscount, etc."
     },
     "apiCostTag": {
       "type": "object",
@@ -12961,14 +12984,16 @@
       "type": "object",
       "properties": {
         "managementAccountId": {
-          "type": "string"
+          "type": "string",
+          "title": "Vendor-managed organization account Id"
         },
         "config": {
           "type": "array",
           "items": {
             "type": "object",
             "$ref": "#/definitions/apiConfigFilters"
-          }
+          },
+          "description": "A list of filtering options. See [ConfigFilters] for more information on each filter item. Multiple filter items will use the logical 'or' operator, e.g. filter1 || filter2 || filter3, etc."
         }
       },
       "description": "ManagementAccount resource definition."
@@ -19580,6 +19605,22 @@
         }
       },
       "description": "Response message for GetForecasts per billing group."
+    },
+    "v1GetFreeTrialExpiryResponse": {
+      "type": "object",
+      "properties": {
+        "dateRegistered": {
+          "type": "string"
+        },
+        "freeTrialExpiry": {
+          "type": "string"
+        },
+        "daysLeft": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "Response message for GetFreeTrialExpiry"
     },
     "v1GetMemberCostGroupResponse": {
       "type": "object",
