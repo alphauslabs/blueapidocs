@@ -12936,6 +12936,10 @@
           "type": "string",
           "description": "done: Invoicing is complete.\nrunning: Invoicing in progress.\nfailed: Invoicing is failure.",
           "title": "invoice generate request status"
+        },
+        "timestamp": {
+          "type": "string",
+          "description": "status timestamp in UTC, RFC3339."
         }
       },
       "description": "InvoiceMessage resource definition."
