@@ -457,6 +457,38 @@
         ]
       }
     },
+    "/admin/v1/mfausersinfo": {
+      "get": {
+        "summary": "WORK-IN-PROGRESS: List MFA users info for login user's organization based on status.",
+        "operationId": "Admin_GetMFAUsersInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetMFAUsersInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "status",
+            "description": "Optional. If non empty: list users by status. Otherwise will list all MFA users.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Admin"
+        ]
+      }
+    },
     "/admin/v1/notification/channels": {
       "get": {
         "summary": "Lists all notification channels for login user's organization or group.",
@@ -19680,6 +19712,19 @@
       },
       "title": "Response message for GetFreeTrialExpiry"
     },
+    "v1GetMFAUsersInfoResponse": {
+      "type": "object",
+      "properties": {
+        "users": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1MFAUser"
+          }
+        }
+      },
+      "description": "Response message for the GetMFAUsersInfoResponse rpc."
+    },
     "v1GetMemberCostGroupResponse": {
       "type": "object",
       "properties": {
@@ -20414,6 +20459,26 @@
         }
       },
       "description": "Response message for the Iam.ListUserRoleMappings rpc."
+    },
+    "v1MFAUser": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      }
     },
     "v1MapRole": {
       "type": "object",
