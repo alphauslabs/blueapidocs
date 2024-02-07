@@ -18447,6 +18447,10 @@
           "type": "string",
           "description": "Optional. User can decide to let the system generates the password."
         },
+        "customerId": {
+          "type": "string",
+          "title": "Optional. Customer Id from AWS marketplace"
+        },
         "name": {
           "type": "string",
           "title": "To be used for onboarding profile"
