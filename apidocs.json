@@ -7238,6 +7238,39 @@
         ]
       }
     },
+    "/v1/members/profile": {
+      "post": {
+        "summary": "Profiling for new users.",
+        "operationId": "Cover_CreateProfiling",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateProfilingResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateProfilingRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
     "/v1/members/profile/{email}": {
       "get": {
         "summary": "Octo getting user profile",
@@ -16067,6 +16100,9 @@
         },
         "orgId": {
           "type": "string"
+        },
+        "isProfilingDone": {
+          "type": "string"
         }
       }
     },
@@ -18574,6 +18610,32 @@
         }
       },
       "description": "See [https://help.alphaus.cloud/en/articles/3612555-ripple-aws-things-you-need-to-prepare-before-starting] for more information.\n\nSee [https://docs.aws.amazon.com/cur/latest/userguide/cur-create.html] for more information. Requirements include: Additional report details = 'Include Resource IDS' enabled, Prefix = non-empty (recommendation only), Time granularity = 'Hourly', File format = 'text/csv'."
+    },
+    "v1CreateProfilingRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "usage": {
+          "type": "string"
+        },
+        "intention": {
+          "type": "string"
+        },
+        "companyName": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string"
+        }
+      }
+    },
+    "v1CreateProfilingResponse": {
+      "type": "object"
     },
     "v1CreateProformaCurRequest": {
       "type": "object",
