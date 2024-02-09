@@ -5010,29 +5010,6 @@
         ]
       }
     },
-    "/v1/billing/free": {
-      "get": {
-        "summary": "Get the free trial expiry for newly onboard organization.",
-        "operationId": "Cover_GetFreeTrialExpiry",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1GetFreeTrialExpiryResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        },
-        "tags": [
-          "Cover"
-        ]
-      }
-    },
     "/v1/billing/status": {
       "get": {
         "summary": "Get the Customer Subscription status from marketplace",
@@ -5051,14 +5028,6 @@
             }
           }
         },
-        "parameters": [
-          {
-            "name": "orgId",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
         "tags": [
           "Cover"
         ]
@@ -19707,11 +19676,24 @@
     "v1GetCustomerSubscriptionStatusResponse": {
       "type": "object",
       "properties": {
+        "dateRegistered": {
+          "type": "string"
+        },
+        "subscriptionExpiry": {
+          "type": "string"
+        },
+        "daysLeft": {
+          "type": "integer",
+          "format": "int32"
+        },
         "isSubscribed": {
           "type": "boolean"
         },
         "isExpired": {
           "type": "boolean"
+        },
+        "plan": {
+          "type": "string"
         }
       }
     },
@@ -19799,22 +19781,6 @@
         }
       },
       "description": "Response message for GetForecasts per billing group."
-    },
-    "v1GetFreeTrialExpiryResponse": {
-      "type": "object",
-      "properties": {
-        "dateRegistered": {
-          "type": "string"
-        },
-        "freeTrialExpiry": {
-          "type": "string"
-        },
-        "daysLeft": {
-          "type": "integer",
-          "format": "int32"
-        }
-      },
-      "title": "Response message for GetFreeTrialExpiry"
     },
     "v1GetMemberCostGroupResponse": {
       "type": "object",
