@@ -2941,6 +2941,7 @@
       },
       "post": {
         "summary": "WORK-IN-PROGRESS: Creates adjustment config",
+        "description": "[ERRORS] \n- InvalidArgument:\n - the AdjustmentConfig is already exists.\n- NotFound:\n - the AdjustmentConfig is not found.",
         "operationId": "Billing_CreateAdjustmentConfig",
         "responses": {
           "200": {
