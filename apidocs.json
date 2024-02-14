@@ -18579,6 +18579,10 @@
         "customerId": {
           "type": "string",
           "title": "Optional. Customer Id from AWS marketplace"
+        },
+        "locale": {
+          "type": "string",
+          "description": "Optional. User locale. Default value is en if not supplied."
         }
       },
       "description": "Request message for the Organization.CreateOrg rpc."
