@@ -3812,7 +3812,8 @@
     },
     "/v1/alerts:read": {
       "post": {
-        "summary": "WORK-IN-PROGRESS: Reads the budget alerts. Only available in Wave(Pro).",
+        "summary": "Reads the budget alerts.",
+        "description": "Only available in Wave(Pro).\n[ERRORS] \n- Unimplemented:\n - not implemented\n- InvalidArgument:\n - parse error",
         "operationId": "Cost_ReadBudgetAlerts",
         "responses": {
           "200": {
