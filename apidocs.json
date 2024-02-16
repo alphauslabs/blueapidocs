@@ -6604,15 +6604,15 @@
         ]
       }
     },
-    "/v1/marketplace/addorgId": {
+    "/v1/marketplace/info": {
       "post": {
         "summary": "Adding orgId to marketplace customers",
-        "operationId": "Cover_AddOrgIdtoMarketplace",
+        "operationId": "Cover_AddInfotoMarketplace",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1AddOrgIdtoMarketplaceResponse"
+              "$ref": "#/definitions/v1AddInfotoMarketplaceResponse"
             }
           },
           "default": {
@@ -6628,7 +6628,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v1AddOrgIdtoMarketplaceRequest"
+              "$ref": "#/definitions/v1AddInfotoMarketplaceRequest"
             }
           }
         ],
@@ -17204,6 +17204,17 @@
       },
       "title": "Response message for AddFavorite"
     },
+    "v1AddInfotoMarketplaceRequest": {
+      "type": "object",
+      "properties": {
+        "customerIdentifier": {
+          "type": "string"
+        }
+      }
+    },
+    "v1AddInfotoMarketplaceResponse": {
+      "type": "object"
+    },
     "v1AddMpnSettingRequest": {
       "type": "object",
       "properties": {
@@ -17213,17 +17224,6 @@
         }
       },
       "title": "Request message for AddMpnSetting"
-    },
-    "v1AddOrgIdtoMarketplaceRequest": {
-      "type": "object",
-      "properties": {
-        "customerIdentifier": {
-          "type": "string"
-        }
-      }
-    },
-    "v1AddOrgIdtoMarketplaceResponse": {
-      "type": "object"
     },
     "v1AddPartnerCenterCredentialsRequest": {
       "type": "object",
@@ -19746,6 +19746,15 @@
           "type": "boolean"
         },
         "plan": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "string"
+        },
+        "paymentOption": {
+          "type": "string"
+        },
+        "paymentMethod": {
           "type": "string"
         }
       }

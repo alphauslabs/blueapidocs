@@ -8284,18 +8284,18 @@
         "x-codegen-request-body-name": "body"
       }
     },
-    "/v1/marketplace/addorgId": {
+    "/v1/marketplace/info": {
       "post": {
         "tags": [
           "Cover"
         ],
         "summary": "Adding orgId to marketplace customers",
-        "operationId": "Cover_AddOrgIdtoMarketplace",
+        "operationId": "Cover_AddInfotoMarketplace",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/v1AddOrgIdtoMarketplaceRequest"
+                "$ref": "#/components/schemas/v1AddInfotoMarketplaceRequest"
               }
             }
           },
@@ -8307,7 +8307,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/v1AddOrgIdtoMarketplaceResponse"
+                  "$ref": "#/components/schemas/v1AddInfotoMarketplaceResponse"
                 }
               }
             }
@@ -20197,6 +20197,17 @@
           }
         }
       },
+      "v1AddInfotoMarketplaceRequest": {
+        "type": "object",
+        "properties": {
+          "customerIdentifier": {
+            "type": "string"
+          }
+        }
+      },
+      "v1AddInfotoMarketplaceResponse": {
+        "type": "object"
+      },
       "v1AddMpnSettingRequest": {
         "title": "Request message for AddMpnSetting",
         "type": "object",
@@ -20206,17 +20217,6 @@
             "type": "string"
           }
         }
-      },
-      "v1AddOrgIdtoMarketplaceRequest": {
-        "type": "object",
-        "properties": {
-          "customerIdentifier": {
-            "type": "string"
-          }
-        }
-      },
-      "v1AddOrgIdtoMarketplaceResponse": {
-        "type": "object"
       },
       "v1AddPartnerCenterCredentialsRequest": {
         "title": "Request message for AddPartnerCenterCredentials",
@@ -22666,6 +22666,15 @@
             "type": "boolean"
           },
           "plan": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          },
+          "paymentOption": {
+            "type": "string"
+          },
+          "paymentMethod": {
             "type": "string"
           }
         }
