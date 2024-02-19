@@ -4792,7 +4792,7 @@
           "Cost"
         ],
         "summary": "Reads the budget alerts.",
-        "description": "Only available in Wave(Pro).\n[ERRORS] \n- Unimplemented:\n - not implemented\n- InvalidArgument:\n - parse error",
+        "description": "Only available in Wave(Pro).\n[ERRORS] \n- Unimplemented:\n  - not implemented\n- InvalidArgument:\n  - parse error",
         "operationId": "Cost_ReadBudgetAlerts",
         "requestBody": {
           "description": "Request message for the ReadBudgetAlerts rpc.",
@@ -13352,7 +13352,7 @@
           {
             "name": "vendor",
             "in": "path",
-            "description": "Required. At the moment, `aws` and `gcp` are supported.",
+            "description": "Required. At the moment, `aws`,`azure` and `gcp` are supported.",
             "required": true,
             "schema": {
               "type": "string"
