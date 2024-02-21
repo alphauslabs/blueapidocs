@@ -3855,7 +3855,7 @@
         "tags": [
           "Cost"
         ],
-        "summary": "WORK-IN-PROGRESS: Create the budget alerts. Only available in Wave(Pro).",
+        "summary": "Create the budget alerts. Only available in Wave(Pro).",
         "operationId": "Cost_CreateBudgetAlerts",
         "requestBody": {
           "description": "Request message for the CreateBudgetAlerts rpc.",
@@ -4632,7 +4632,7 @@
         "tags": [
           "Cost"
         ],
-        "summary": "WORK-IN-PROGRESS: Gets the budget alerts. Only available in Wave(Pro).",
+        "summary": "Gets the budget alerts. Only available in Wave(Pro).",
         "operationId": "Cost_GetBudgetAlerts",
         "parameters": [
           {
@@ -4672,7 +4672,7 @@
         "tags": [
           "Cost"
         ],
-        "summary": "WORK-IN-PROGRESS: Updates the budget alerts. Only available in Wave(Pro).",
+        "summary": "Updates the budget alerts. Only available in Wave(Pro).",
         "operationId": "Cost_UpdateBudgetAlerts",
         "parameters": [
           {
@@ -4749,7 +4749,7 @@
         "tags": [
           "Cost"
         ],
-        "summary": "WORK-IN-PROGRESS: Deletes the budget alerts. Only available in Wave(Pro).",
+        "summary": "Deletes the budget alerts. Only available in Wave(Pro).",
         "operationId": "Cost_DeleteBudgetAlerts",
         "parameters": [
           {

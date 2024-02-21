@@ -3057,7 +3057,7 @@
     },
     "/v1/alerts": {
       "post": {
-        "summary": "WORK-IN-PROGRESS: Create the budget alerts. Only available in Wave(Pro).",
+        "summary": "Create the budget alerts. Only available in Wave(Pro).",
         "operationId": "Cost_CreateBudgetAlerts",
         "responses": {
           "200": {
@@ -3681,7 +3681,7 @@
     },
     "/v1/alerts/{id}": {
       "get": {
-        "summary": "WORK-IN-PROGRESS: Gets the budget alerts. Only available in Wave(Pro).",
+        "summary": "Gets the budget alerts. Only available in Wave(Pro).",
         "operationId": "Cost_GetBudgetAlerts",
         "responses": {
           "200": {
@@ -3711,7 +3711,7 @@
         ]
       },
       "delete": {
-        "summary": "WORK-IN-PROGRESS: Deletes the budget alerts. Only available in Wave(Pro).",
+        "summary": "Deletes the budget alerts. Only available in Wave(Pro).",
         "operationId": "Cost_DeleteBudgetAlerts",
         "responses": {
           "200": {
@@ -3742,7 +3742,7 @@
         ]
       },
       "put": {
-        "summary": "WORK-IN-PROGRESS: Updates the budget alerts. Only available in Wave(Pro).",
+        "summary": "Updates the budget alerts. Only available in Wave(Pro).",
         "operationId": "Cost_UpdateBudgetAlerts",
         "responses": {
           "200": {
