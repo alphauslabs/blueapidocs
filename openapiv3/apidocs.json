@@ -17751,6 +17751,10 @@
         "properties": {
           "useProFormaCur": {
             "type": "boolean"
+          },
+          "payerId": {
+            "type": "string",
+            "description": "Must not be empty if useProFormaCur is true."
           }
         }
       },
