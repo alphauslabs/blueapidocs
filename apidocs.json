@@ -10885,7 +10885,7 @@
     },
     "/v1/{vendor}/exchangerate/{month}": {
       "get": {
-        "summary": "WORK-IN-PROGRESS: Lists all exchange rate. Only available in Ripple.",
+        "summary": "Lists all exchange rate. Only available in Ripple.",
         "operationId": "Billing_ListExchangeRates",
         "responses": {
           "200": {
