@@ -20177,6 +20177,10 @@
           },
           "isAuth0": {
             "type": "boolean"
+          },
+          "auth0UserId": {
+            "type": "string",
+            "description": "Auth0 user Id. For updating of user metadata."
           }
         }
       },
