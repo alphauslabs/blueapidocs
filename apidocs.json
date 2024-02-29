@@ -3057,7 +3057,8 @@
     },
     "/v1/alerts": {
       "post": {
-        "summary": "Create the budget alerts. Only available in Wave(Pro).",
+        "summary": "CreateBudgetAlerts",
+        "description": "Create the budget alerts.\nOnly available in Wave(Pro).",
         "operationId": "Cost_CreateBudgetAlerts",
         "responses": {
           "200": {
@@ -3681,7 +3682,8 @@
     },
     "/v1/alerts/{id}": {
       "get": {
-        "summary": "Gets the budget alerts. Only available in Wave(Pro).",
+        "summary": "GetBudgetAlerts",
+        "description": "Gets the budget alerts.\nOnly available in Wave(Pro).",
         "operationId": "Cost_GetBudgetAlerts",
         "responses": {
           "200": {
@@ -3711,7 +3713,8 @@
         ]
       },
       "delete": {
-        "summary": "Deletes the budget alerts. Only available in Wave(Pro).",
+        "summary": "DeleteBudgetAlerts",
+        "description": "Deletes the budget alerts.\nOnly available in Wave(Pro).",
         "operationId": "Cost_DeleteBudgetAlerts",
         "responses": {
           "200": {
@@ -3742,7 +3745,8 @@
         ]
       },
       "put": {
-        "summary": "Updates the budget alerts. Only available in Wave(Pro).",
+        "summary": "UpdateBudgetAlerts",
+        "description": "Updates the budget alerts.\nOnly available in Wave(Pro).",
         "operationId": "Cost_UpdateBudgetAlerts",
         "responses": {
           "200": {
@@ -3812,8 +3816,8 @@
     },
     "/v1/alerts:read": {
       "post": {
-        "summary": "Reads the budget alerts.",
-        "description": "Only available in Wave(Pro).\n[ERRORS] \n- Unimplemented:\n  - not implemented\n- InvalidArgument:\n  - parse error",
+        "summary": "ReadBudgetAlerts",
+        "description": "Reads the budget alerts.\nOnly available in Wave(Pro).\n[ERRORS] \n- Unimplemented:\n  - not implemented\n- InvalidArgument:\n  - parse error",
         "operationId": "Cost_ReadBudgetAlerts",
         "responses": {
           "200": {

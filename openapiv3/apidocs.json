@@ -3855,7 +3855,8 @@
         "tags": [
           "Cost"
         ],
-        "summary": "Create the budget alerts. Only available in Wave(Pro).",
+        "summary": "CreateBudgetAlerts",
+        "description": "Create the budget alerts.\nOnly available in Wave(Pro).",
         "operationId": "Cost_CreateBudgetAlerts",
         "requestBody": {
           "description": "Request message for the CreateBudgetAlerts rpc.",
@@ -4632,7 +4633,8 @@
         "tags": [
           "Cost"
         ],
-        "summary": "Gets the budget alerts. Only available in Wave(Pro).",
+        "summary": "GetBudgetAlerts",
+        "description": "Gets the budget alerts.\nOnly available in Wave(Pro).",
         "operationId": "Cost_GetBudgetAlerts",
         "parameters": [
           {
@@ -4672,7 +4674,8 @@
         "tags": [
           "Cost"
         ],
-        "summary": "Updates the budget alerts. Only available in Wave(Pro).",
+        "summary": "UpdateBudgetAlerts",
+        "description": "Updates the budget alerts.\nOnly available in Wave(Pro).",
         "operationId": "Cost_UpdateBudgetAlerts",
         "parameters": [
           {
@@ -4749,7 +4752,8 @@
         "tags": [
           "Cost"
         ],
-        "summary": "Deletes the budget alerts. Only available in Wave(Pro).",
+        "summary": "DeleteBudgetAlerts",
+        "description": "Deletes the budget alerts.\nOnly available in Wave(Pro).",
         "operationId": "Cost_DeleteBudgetAlerts",
         "parameters": [
           {
@@ -4791,8 +4795,8 @@
         "tags": [
           "Cost"
         ],
-        "summary": "Reads the budget alerts.",
-        "description": "Only available in Wave(Pro).\n[ERRORS] \n- Unimplemented:\n  - not implemented\n- InvalidArgument:\n  - parse error",
+        "summary": "ReadBudgetAlerts",
+        "description": "Reads the budget alerts.\nOnly available in Wave(Pro).\n[ERRORS] \n- Unimplemented:\n  - not implemented\n- InvalidArgument:\n  - parse error",
         "operationId": "Cost_ReadBudgetAlerts",
         "requestBody": {
           "description": "Request message for the ReadBudgetAlerts rpc.",
