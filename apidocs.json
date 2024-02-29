@@ -7550,7 +7550,7 @@
     "/v1/resellers": {
       "get": {
         "summary": "ListResellers",
-        "description": "Lists all the reseller accounts. \nOnly available in Ripple.",
+        "description": "**Lists all the reseller accounts.**\n\u003e **Only available in Ripple.**",
         "operationId": "Billing_ListResellers",
         "responses": {
           "200": {

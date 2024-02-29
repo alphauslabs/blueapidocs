@@ -9500,7 +9500,7 @@
           "Billing"
         ],
         "summary": "ListResellers",
-        "description": "Lists all the reseller accounts. \nOnly available in Ripple.",
+        "description": "**Lists all the reseller accounts.**\n> **Only available in Ripple.**",
         "operationId": "Billing_ListResellers",
         "parameters": [
           {
