@@ -23595,6 +23595,9 @@
           },
           "email": {
             "type": "string"
+          },
+          "subuserId": {
+            "type": "string"
           }
         }
       },

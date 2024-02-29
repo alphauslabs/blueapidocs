@@ -20706,6 +20706,9 @@
         },
         "email": {
           "type": "string"
+        },
+        "subuserId": {
+          "type": "string"
         }
       },
       "title": "Request message for AddUserFromAuth0asRoot rpc"
