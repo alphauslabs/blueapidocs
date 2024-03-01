@@ -13655,7 +13655,8 @@
         "tags": [
           "Billing"
         ],
-        "summary": "Lists all exchange rate. Only available in Ripple.",
+        "summary": "ListExchangeRates",
+        "description": "Lists all exchange rate.\n> Only available in Ripple.",
         "operationId": "Billing_ListExchangeRates",
         "parameters": [
           {
@@ -13670,7 +13671,7 @@
           {
             "name": "month",
             "in": "path",
-            "description": "Required. month. Format: `yyyymmdd`.",
+            "description": "Required. month. Format: `yyyymm`.",
             "required": true,
             "schema": {
               "type": "string"

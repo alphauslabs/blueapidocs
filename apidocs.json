@@ -10890,7 +10890,8 @@
     },
     "/v1/{vendor}/exchangerate/{month}": {
       "get": {
-        "summary": "Lists all exchange rate. Only available in Ripple.",
+        "summary": "ListExchangeRates",
+        "description": "Lists all exchange rate.\n\u003e Only available in Ripple.",
         "operationId": "Billing_ListExchangeRates",
         "responses": {
           "200": {
@@ -10916,7 +10917,7 @@
           },
           {
             "name": "month",
-            "description": "Required. month. Format: `yyyymmdd`.",
+            "description": "Required. month. Format: `yyyymm`.",
             "in": "path",
             "required": true,
             "type": "string"
