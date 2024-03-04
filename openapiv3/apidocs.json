@@ -19475,7 +19475,7 @@
             "type": "boolean"
           }
         },
-        "description": "BillingGroupInfo resource definition."
+        "description": "BillingGroupInfo resource definition. \n\nOnly available in Ripple."
       },
       "rippleCommonExchangeRate": {
         "type": "object",
