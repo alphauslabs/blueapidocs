@@ -16412,6 +16412,56 @@
       },
       "description": "BillingGroupExchangeRate resource definition."
     },
+    "rippleBillingGroupInfo": {
+      "type": "object",
+      "properties": {
+        "billingTitle": {
+          "type": "string",
+          "title": "Optional. The title of the billing"
+        },
+        "phoneNumber": {
+          "type": "string",
+          "title": "Optional. Company’s phone number"
+        },
+        "postalCode": {
+          "type": "string",
+          "title": "Optional. Company’s postal code"
+        },
+        "address": {
+          "type": "string",
+          "title": "Optional. Company’s address"
+        },
+        "personal": {
+          "type": "string",
+          "title": "Optional. Addressee"
+        },
+        "remarks": {
+          "type": "string",
+          "title": "Optional. Any remarks about the billing group"
+        },
+        "projectId": {
+          "type": "string",
+          "title": "Optional. Project code"
+        },
+        "language": {
+          "type": "string",
+          "title": "Optional. Invoice language"
+        },
+        "displayCost": {
+          "type": "string",
+          "title": "Optional. Calculation type, true unblended or unblended"
+        },
+        "exchangeRateType": {
+          "type": "string",
+          "title": "Optional. Exchange rate type, payer or billing group"
+        },
+        "qrCode": {
+          "type": "boolean",
+          "title": "Optional. qrCode"
+        }
+      },
+      "description": "BillingGroupInfo resource definition."
+    },
     "rippleCommonExchangeRate": {
       "type": "object",
       "properties": {
@@ -17519,6 +17569,10 @@
         "companyName": {
           "type": "string",
           "description": "The company’s name."
+        },
+        "billingGroupInfo": {
+          "$ref": "#/definitions/rippleBillingGroupInfo",
+          "title": "The billing group info"
         },
         "accountOptions": {
           "$ref": "#/definitions/v1AccountOptions",

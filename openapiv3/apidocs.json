@@ -19427,6 +19427,56 @@
         },
         "description": "BillingGroupExchangeRate resource definition."
       },
+      "rippleBillingGroupInfo": {
+        "type": "object",
+        "properties": {
+          "billingTitle": {
+            "title": "Optional. The title of the billing",
+            "type": "string"
+          },
+          "phoneNumber": {
+            "title": "Optional. Company’s phone number",
+            "type": "string"
+          },
+          "postalCode": {
+            "title": "Optional. Company’s postal code",
+            "type": "string"
+          },
+          "address": {
+            "title": "Optional. Company’s address",
+            "type": "string"
+          },
+          "personal": {
+            "title": "Optional. Addressee",
+            "type": "string"
+          },
+          "remarks": {
+            "title": "Optional. Any remarks about the billing group",
+            "type": "string"
+          },
+          "projectId": {
+            "title": "Optional. Project code",
+            "type": "string"
+          },
+          "language": {
+            "title": "Optional. Invoice language",
+            "type": "string"
+          },
+          "displayCost": {
+            "title": "Optional. Calculation type, true unblended or unblended",
+            "type": "string"
+          },
+          "exchangeRateType": {
+            "title": "Optional. Exchange rate type, payer or billing group",
+            "type": "string"
+          },
+          "qrCode": {
+            "title": "Optional. qrCode",
+            "type": "boolean"
+          }
+        },
+        "description": "BillingGroupInfo resource definition."
+      },
       "rippleCommonExchangeRate": {
         "type": "object",
         "properties": {
@@ -20510,6 +20560,9 @@
           "companyName": {
             "type": "string",
             "description": "The company’s name."
+          },
+          "billingGroupInfo": {
+            "$ref": "#/components/schemas/rippleBillingGroupInfo"
           },
           "accountOptions": {
             "$ref": "#/components/schemas/v1AccountOptions"
