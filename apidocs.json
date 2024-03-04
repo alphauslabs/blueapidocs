@@ -16460,7 +16460,7 @@
           "title": "Optional. qrCode"
         }
       },
-      "description": "BillingGroupInfo resource definition. \n\nOnly available in Ripple."
+      "description": "BillingGroupInfo resource definition. Only available in Ripple."
     },
     "rippleCommonExchangeRate": {
       "type": "object",
