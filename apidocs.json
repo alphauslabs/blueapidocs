@@ -1150,7 +1150,8 @@
     },
     "/iam/v1/grouprootusers/{id}/features": {
       "get": {
-        "summary": "WORK-IN-PROGRESS: Retrieves the features available to a user on an Alphaus product. For a list of valid feature flags, see our documentation at https://alphauslabs.github.io/blueapi/apis/iam.html.",
+        "summary": "WORK-IN-PROGRESS: Retrieves the features available to a user on an Alphaus product.",
+        "description": "For a list of valid feature flags, see our documentation at https://labs.alphaus.cloud/docs/blueapi/apis/iam/.",
         "operationId": "Iam_GetFeatureFlags",
         "responses": {
           "200": {
@@ -1179,7 +1180,8 @@
         ]
       },
       "put": {
-        "summary": "WORK-IN-PROGRESS: Updates the features available to a user on an Alphaus product. For a list of valid feature flags, see our documentation at https://alphauslabs.github.io/blueapi/apis/iam.html.",
+        "summary": "WORK-IN-PROGRESS: Updates the features available to a user on an Alphaus product.",
+        "description": "For a list of valid feature flags, see our documentation at https://labs.alphaus.cloud/docs/blueapi/apis/iam/.",
         "operationId": "Iam_UpdateFeatureFlags",
         "responses": {
           "200": {
@@ -12914,6 +12916,10 @@
         "aquaLink": {
           "type": "boolean",
           "title": "Control access to Aqua from Wave Pro"
+        },
+        "budgetalerts": {
+          "type": "boolean",
+          "title": "Control access to budget alerts from Wave Pro"
         }
       },
       "description": "Describes the features and whether or not they are enabled for a particular user."
@@ -18556,7 +18562,7 @@
         },
         "meta": {
           "$ref": "#/definitions/apiFeatureFlags",
-          "description": "A collection of feature flags and whether or not they should be enabled. For a full list of such flags, see https://alphauslabs.github.io/blueapi/apis/iam.html."
+          "description": "A collection of feature flags and whether or not they should be enabled. For a full list of such flags, see https://labs.alphaus.cloud/docs/blueapi/apis/iam/."
         }
       },
       "title": "Request message for the Iam.CreateGroupRootUser rpc"

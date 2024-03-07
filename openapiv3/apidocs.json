@@ -1440,7 +1440,8 @@
         "tags": [
           "Iam"
         ],
-        "summary": "WORK-IN-PROGRESS: Retrieves the features available to a user on an Alphaus product. For a list of valid feature flags, see our documentation at https://alphauslabs.github.io/blueapi/apis/iam.html.",
+        "summary": "WORK-IN-PROGRESS: Retrieves the features available to a user on an Alphaus product.",
+        "description": "For a list of valid feature flags, see our documentation at https://labs.alphaus.cloud/docs/blueapi/apis/iam/.",
         "operationId": "Iam_GetFeatureFlags",
         "parameters": [
           {
@@ -1479,7 +1480,8 @@
         "tags": [
           "Iam"
         ],
-        "summary": "WORK-IN-PROGRESS: Updates the features available to a user on an Alphaus product. For a list of valid feature flags, see our documentation at https://alphauslabs.github.io/blueapi/apis/iam.html.",
+        "summary": "WORK-IN-PROGRESS: Updates the features available to a user on an Alphaus product.",
+        "description": "For a list of valid feature flags, see our documentation at https://labs.alphaus.cloud/docs/blueapi/apis/iam/.",
         "operationId": "Iam_UpdateFeatureFlags",
         "parameters": [
           {
@@ -16003,6 +16005,10 @@
           },
           "aquaLink": {
             "title": "Control access to Aqua from Wave Pro",
+            "type": "boolean"
+          },
+          "budgetalerts": {
+            "title": "Control access to budget alerts from Wave Pro",
             "type": "boolean"
           }
         },
