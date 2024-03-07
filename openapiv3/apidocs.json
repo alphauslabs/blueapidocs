@@ -9498,6 +9498,48 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/report/summary": {
+      "post": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "Get data for insights reports summary",
+        "operationId": "Cover_GetReportSummary",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1GetReportSummaryRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetReportSummaryResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/resellers": {
       "get": {
         "tags": [
@@ -18489,6 +18531,35 @@
           }
         }
       },
+      "coverExecutiveSummary": {
+        "type": "object",
+        "properties": {
+          "costUsage": {
+            "title": "The total cost usage",
+            "type": "number",
+            "format": "float"
+          },
+          "previousYearCostUsage": {
+            "title": "The total cost usage of the previous year",
+            "type": "number",
+            "format": "float"
+          },
+          "status": {
+            "title": "The status of the cost usage compared to the previous year. \"increased\", \"decreased\"",
+            "type": "string"
+          },
+          "percentageChanged": {
+            "title": "The percentage changed compared to the previous year",
+            "type": "number",
+            "format": "float"
+          },
+          "averageMonthlyChanged": {
+            "title": "The average monthly changed",
+            "type": "number",
+            "format": "float"
+          }
+        }
+      },
       "coverFavorites": {
         "type": "object",
         "properties": {
@@ -23043,6 +23114,27 @@
             "items": {
               "type": "string"
             }
+          }
+        }
+      },
+      "v1GetReportSummaryRequest": {
+        "type": "object",
+        "properties": {
+          "costGroupId": {
+            "type": "string",
+            "description": "Required. Cost Group Id."
+          },
+          "period": {
+            "title": "Required. Valid inputs are Quarters: \"Q1-{YEAR}\", \"Q2-{YEAR}\", \"Q3-{YEAR}\", \"Q4-{YEAR}\" and Year: \"{YEAR}\"",
+            "type": "string"
+          }
+        }
+      },
+      "v1GetReportSummaryResponse": {
+        "type": "object",
+        "properties": {
+          "executiveSummary": {
+            "$ref": "#/components/schemas/coverExecutiveSummary"
           }
         }
       },

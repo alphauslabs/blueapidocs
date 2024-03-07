@@ -7551,6 +7551,39 @@
         ]
       }
     },
+    "/v1/report/summary": {
+      "post": {
+        "summary": "Get data for insights reports summary",
+        "operationId": "Cover_GetReportSummary",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetReportSummaryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1GetReportSummaryRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
     "/v1/resellers": {
       "get": {
         "summary": "ListResellers",
@@ -15466,6 +15499,35 @@
         }
       }
     },
+    "coverExecutiveSummary": {
+      "type": "object",
+      "properties": {
+        "costUsage": {
+          "type": "number",
+          "format": "float",
+          "title": "The total cost usage"
+        },
+        "previousYearCostUsage": {
+          "type": "number",
+          "format": "float",
+          "title": "The total cost usage of the previous year"
+        },
+        "status": {
+          "type": "string",
+          "title": "The status of the cost usage compared to the previous year. \"increased\", \"decreased\""
+        },
+        "percentageChanged": {
+          "type": "number",
+          "format": "float",
+          "title": "The percentage changed compared to the previous year"
+        },
+        "averageMonthlyChanged": {
+          "type": "number",
+          "format": "float",
+          "title": "The average monthly changed"
+        }
+      }
+    },
     "coverFavorites": {
       "type": "object",
       "properties": {
@@ -20136,6 +20198,27 @@
         }
       },
       "title": "Response message for GetRegions"
+    },
+    "v1GetReportSummaryRequest": {
+      "type": "object",
+      "properties": {
+        "costGroupId": {
+          "type": "string",
+          "description": "Required. Cost Group Id."
+        },
+        "period": {
+          "type": "string",
+          "title": "Required. Valid inputs are Quarters: \"Q1-{YEAR}\", \"Q2-{YEAR}\", \"Q3-{YEAR}\", \"Q4-{YEAR}\" and Year: \"{YEAR}\""
+        }
+      }
+    },
+    "v1GetReportSummaryResponse": {
+      "type": "object",
+      "properties": {
+        "executiveSummary": {
+          "$ref": "#/definitions/coverExecutiveSummary"
+        }
+      }
     },
     "v1GetRightSizingRecommendationResponse": {
       "type": "object",
