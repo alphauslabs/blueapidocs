@@ -7520,6 +7520,68 @@
         ]
       }
     },
+    "/v1/recommendations": {
+      "get": {
+        "summary": "Lists recommendations based on specified criteria.",
+        "operationId": "Cover_ListRecommendations",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1ListRecommendationResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of v1ListRecommendationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "costgroupId",
+            "description": "Required. Cost Group Id.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "vendor",
+            "description": "Required. Valid inputs are: \"all\", \"aws\", \"gcp\", and  \"azure\".",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "source",
+            "description": "Required. Valid inputs are: \"all\", \"trusted-advisor\", \"cost-explorer\", and  \"cost-optimization-hub\".",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "optimizationType",
+            "description": "Required. Valid inputs are: \"all\", \"rate\", and  \"usage\".",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
     "/v1/recommendations/discount": {
       "post": {
         "summary": "Get the discount recommendations for every account in a cost group",
@@ -7546,6 +7608,66 @@
             "schema": {
               "$ref": "#/definitions/v1GetDiscountRecommendationsRequest"
             }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
+    "/v1/recommendations/{id}": {
+      "get": {
+        "summary": "Retrieves a specific recommendation by its ID.",
+        "operationId": "Cover_GetRecommendation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetRecommendationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      },
+      "post": {
+        "summary": "Executes optimization based on a recommendation.",
+        "operationId": "Cover_ExecuteOptimization",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ExecuteOptimizationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
           }
         ],
         "tags": [
@@ -15790,6 +15912,55 @@
         }
       }
     },
+    "coverRecommendationData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "accountId": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "vendor": {
+          "type": "string"
+        },
+        "service": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "recommendation": {
+          "type": "string"
+        },
+        "action": {
+          "type": "string"
+        },
+        "estimatedMonthlyCost": {
+          "type": "number",
+          "format": "float"
+        },
+        "estimatedMonthlySavings": {
+          "type": "number",
+          "format": "float"
+        },
+        "recommendationDetails": {
+          "type": "string"
+        },
+        "scoring": {
+          "type": "string"
+        },
+        "actionImplemented": {
+          "type": "boolean"
+        },
+        "implementedBy": {
+          "type": "string"
+        }
+      }
+    },
     "coverRecommendationDetail": {
       "type": "object",
       "properties": {
@@ -19180,6 +19351,9 @@
         }
       }
     },
+    "v1ExecuteOptimizationResponse": {
+      "type": "object"
+    },
     "v1ExportAuditLogsRequest": {
       "type": "object",
       "properties": {
@@ -20129,6 +20303,14 @@
       },
       "title": "Response message for GetPayers"
     },
+    "v1GetRecommendationResponse": {
+      "type": "object",
+      "properties": {
+        "recommendationData": {
+          "$ref": "#/definitions/coverRecommendationData"
+        }
+      }
+    },
     "v1GetRecommendationsRequestAwsOptions": {
       "type": "object",
       "properties": {
@@ -20716,6 +20898,14 @@
         }
       },
       "description": "Response message for the Iam.ListPermissions rpc."
+    },
+    "v1ListRecommendationResponse": {
+      "type": "object",
+      "properties": {
+        "recommendationData": {
+          "$ref": "#/definitions/coverRecommendationData"
+        }
+      }
     },
     "v1ListRolesResponse": {
       "type": "object",

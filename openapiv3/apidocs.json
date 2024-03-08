@@ -9458,6 +9458,80 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/recommendations": {
+      "get": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "Lists recommendations based on specified criteria.",
+        "operationId": "Cover_ListRecommendations",
+        "parameters": [
+          {
+            "name": "costgroupId",
+            "in": "query",
+            "description": "Required. Cost Group Id.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "vendor",
+            "in": "query",
+            "description": "Required. Valid inputs are: \"all\", \"aws\", \"gcp\", and  \"azure\".",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "source",
+            "in": "query",
+            "description": "Required. Valid inputs are: \"all\", \"trusted-advisor\", \"cost-explorer\", and  \"cost-optimization-hub\".",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "optimizationType",
+            "in": "query",
+            "description": "Required. Valid inputs are: \"all\", \"rate\", and  \"usage\".",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Stream result of v1ListRecommendationResponse",
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/components/schemas/v1ListRecommendationResponse"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/googlerpcStatus"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/recommendations/discount": {
       "post": {
         "tags": [
@@ -9498,6 +9572,86 @@
           }
         },
         "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/recommendations/{id}": {
+      "get": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "Retrieves a specific recommendation by its ID.",
+        "operationId": "Cover_GetRecommendation",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetRecommendationResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "Executes optimization based on a recommendation.",
+        "operationId": "Cover_ExecuteOptimization",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1ExecuteOptimizationResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/v1/report/summary": {
@@ -18822,6 +18976,55 @@
           }
         }
       },
+      "coverRecommendationData": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "accountId": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string"
+          },
+          "vendor": {
+            "type": "string"
+          },
+          "service": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "recommendation": {
+            "type": "string"
+          },
+          "action": {
+            "type": "string"
+          },
+          "estimatedMonthlyCost": {
+            "type": "number",
+            "format": "float"
+          },
+          "estimatedMonthlySavings": {
+            "type": "number",
+            "format": "float"
+          },
+          "recommendationDetails": {
+            "type": "string"
+          },
+          "scoring": {
+            "type": "string"
+          },
+          "actionImplemented": {
+            "type": "boolean"
+          },
+          "implementedBy": {
+            "type": "string"
+          }
+        }
+      },
       "coverRecommendationDetail": {
         "type": "object",
         "properties": {
@@ -22138,6 +22341,9 @@
           }
         }
       },
+      "v1ExecuteOptimizationResponse": {
+        "type": "object"
+      },
       "v1ExportAuditLogsRequest": {
         "type": "object",
         "properties": {
@@ -23047,6 +23253,14 @@
           }
         }
       },
+      "v1GetRecommendationResponse": {
+        "type": "object",
+        "properties": {
+          "recommendationData": {
+            "$ref": "#/components/schemas/coverRecommendationData"
+          }
+        }
+      },
       "v1GetRecommendationsRequestAwsOptions": {
         "type": "object",
         "properties": {
@@ -23615,6 +23829,14 @@
           }
         },
         "description": "Response message for the Iam.ListPermissions rpc."
+      },
+      "v1ListRecommendationResponse": {
+        "type": "object",
+        "properties": {
+          "recommendationData": {
+            "$ref": "#/components/schemas/coverRecommendationData"
+          }
+        }
       },
       "v1ListRolesResponse": {
         "type": "object",
