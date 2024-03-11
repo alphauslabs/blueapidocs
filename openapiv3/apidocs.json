@@ -18717,6 +18717,10 @@
             "title": "The average monthly changed",
             "type": "number",
             "format": "float"
+          },
+          "differenceFromPreviousYear": {
+            "type": "number",
+            "format": "float"
           }
         }
       },

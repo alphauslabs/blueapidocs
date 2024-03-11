@@ -15653,6 +15653,10 @@
           "type": "number",
           "format": "float",
           "title": "The average monthly changed"
+        },
+        "differenceFromPreviousYear": {
+          "type": "number",
+          "format": "float"
         }
       }
     },
