@@ -9858,6 +9858,9 @@
           "content": {
             "application/json": {
               "schema": {
+                "required": [
+                  "updateMask"
+                ],
                 "type": "object",
                 "properties": {
                   "email": {
@@ -9887,6 +9890,10 @@
                   "notification": {
                     "type": "boolean",
                     "description": "Optional.\n\nIf valid when email or password is updated, you will be notified via email address.\nIf only waveConfig or aquaConfig is changed, it is ignored."
+                  },
+                  "updateMask": {
+                    "type": "string",
+                    "description": "Required."
                   }
                 },
                 "description": "Request message for the UpdateReseller rpc."
