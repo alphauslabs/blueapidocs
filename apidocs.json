@@ -7850,77 +7850,6 @@
         "tags": [
           "Billing"
         ]
-      },
-      "put": {
-        "summary": "Updates the reseller account. Only available in Ripple.",
-        "operationId": "Billing_UpdateReseller",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/rippleReseller"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "description": "Required. reseller id.",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "email": {
-                  "type": "string",
-                  "description": "Optional."
-                },
-                "password": {
-                  "type": "string",
-                  "description": "Optional.\n\nWe recommend a password length of 8~32 characters. If you send 0 characters, a password will be generated automatically."
-                },
-                "waveConfig": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "$ref": "#/definitions/rippleResellerConfig"
-                  },
-                  "description": "Set only the config to be changed.\nFor example, If you want to change only dashboardGraph, set `{\"waveConfig\": [{\"key\": \"dashboardGraph\",\"value\": true}]}` as a parameter",
-                  "title": "Optional. wave feature config"
-                },
-                "aquaConfig": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "$ref": "#/definitions/rippleResellerConfig"
-                  },
-                  "description": "Set only the config to be changed.\nFor example, If you want to change only aqRiManagement, set `{\"waveConfig\": [{\"key\": \"aqRiManagement\",\"value\": true}]}` as a parameter",
-                  "title": "Optional. aqua feature config"
-                },
-                "notification": {
-                  "type": "boolean",
-                  "description": "Optional.\n\nIf valid when email or password is updated, you will be notified via email address.\nIf only waveConfig or aquaConfig is changed, it is ignored."
-                }
-              },
-              "description": "Request message for the UpdateReseller rpc."
-            }
-          }
-        ],
-        "tags": [
-          "Billing"
-        ]
       }
     },
     "/v1/resources/accounts/{vendor}": {
@@ -8944,6 +8873,116 @@
         ],
         "tags": [
           "Cover"
+        ]
+      }
+    },
+    "/v1/{reseller.name}": {
+      "put": {
+        "summary": "WORK-IN-PROGRESS: Updates the reseller account. Only available in Ripple.",
+        "operationId": "Billing_UpdateReseller",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rippleReseller"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "reseller.name",
+            "description": "The unique name of the reseller. Values are of the form\n`reseller/[a-z][a-z0-9\\\\-]+[a-z0-9]`.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "pattern": "resellers/[^/]+"
+          },
+          {
+            "name": "reseller",
+            "description": "Required. The reseller to update. `reseller.name`, and the fields to be updated\nas specified by `update_mask` are required. Other fields are ignored.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "Output only.",
+                  "readOnly": true
+                },
+                "email": {
+                  "type": "string",
+                  "description": "Required."
+                },
+                "password": {
+                  "type": "string",
+                  "description": "Input only."
+                },
+                "groupId": {
+                  "type": "string",
+                  "description": "Required."
+                },
+                "groupName": {
+                  "type": "string",
+                  "description": "Output only.",
+                  "readOnly": true
+                },
+                "groupType": {
+                  "type": "string",
+                  "description": "Output only.",
+                  "readOnly": true
+                },
+                "waveStatus": {
+                  "type": "string",
+                  "description": "Output only.",
+                  "readOnly": true
+                },
+                "notification": {
+                  "type": "boolean",
+                  "description": "Input only."
+                },
+                "waveConfig": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/definitions/rippleResellerConfig"
+                  },
+                  "description": "Required."
+                },
+                "aquaConfig": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/definitions/rippleResellerConfig"
+                  },
+                  "description": "Required."
+                }
+              },
+              "title": "Required. The reseller to update. `reseller.name`, and the fields to be updated\nas specified by `update_mask` are required. Other fields are ignored.",
+              "required": [
+                "email",
+                "groupId",
+                "waveConfig",
+                "aquaConfig"
+              ]
+            }
+          },
+          {
+            "name": "updateMask",
+            "description": "Required. A mask specifying which fields (e.g. `password`) in the\nReseller resource should be updated. This mask is relative to the Reseller\nresource, not to the request message. The field mask must always be\nspecified; this prevents any future fields from being erased accidentally\nby clients that do not know about them.",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Billing"
         ]
       }
     },
@@ -12435,7 +12474,7 @@
     }
   },
   "definitions": {
-    "AccountHistory": {
+    "AwsDailyRunHistoryAccountHistory": {
       "type": "object",
       "properties": {
         "timestamp": {
@@ -17767,7 +17806,7 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/AccountHistory"
+            "$ref": "#/definitions/AwsDailyRunHistoryAccountHistory"
           }
         }
       }
@@ -17927,6 +17966,74 @@
         }
       },
       "description": "Invoice settings that are vendor-specific for each billing group."
+    },
+    "v1BillingReseller": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The unique name of the reseller. Values are of the form\n`reseller/[a-z][a-z0-9\\\\-]+[a-z0-9]`."
+        },
+        "id": {
+          "type": "string",
+          "description": "Output only.",
+          "readOnly": true
+        },
+        "email": {
+          "type": "string",
+          "description": "Required."
+        },
+        "password": {
+          "type": "string",
+          "description": "Input only."
+        },
+        "groupId": {
+          "type": "string",
+          "description": "Required."
+        },
+        "groupName": {
+          "type": "string",
+          "description": "Output only.",
+          "readOnly": true
+        },
+        "groupType": {
+          "type": "string",
+          "description": "Output only.",
+          "readOnly": true
+        },
+        "waveStatus": {
+          "type": "string",
+          "description": "Output only.",
+          "readOnly": true
+        },
+        "notification": {
+          "type": "boolean",
+          "description": "Input only."
+        },
+        "waveConfig": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/rippleResellerConfig"
+          },
+          "description": "Required."
+        },
+        "aquaConfig": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/rippleResellerConfig"
+          },
+          "description": "Required."
+        }
+      },
+      "title": "A Reseller information of billing access to Wave[Pro]",
+      "required": [
+        "email",
+        "groupId",
+        "waveConfig",
+        "aquaConfig"
+      ]
     },
     "v1BudgetAlerts": {
       "type": "object",
