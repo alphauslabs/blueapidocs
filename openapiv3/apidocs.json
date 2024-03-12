@@ -18964,6 +18964,26 @@
           }
         }
       },
+      "coverOptimizationRecommendationSummary": {
+        "type": "object",
+        "properties": {
+          "potentialSavings": {
+            "title": "Potential savings per month",
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "float"
+            }
+          },
+          "action": {
+            "title": "The recommended action to perform to achieve potential savings",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
       "coverRDSOptions": {
         "type": "object",
         "properties": {
@@ -23366,6 +23386,9 @@
         "properties": {
           "executiveSummary": {
             "$ref": "#/components/schemas/coverExecutiveSummary"
+          },
+          "optimizationRecommendationSummary": {
+            "$ref": "#/components/schemas/coverOptimizationRecommendationSummary"
           }
         }
       },
