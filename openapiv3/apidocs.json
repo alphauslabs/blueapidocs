@@ -7871,30 +7871,30 @@
         "x-codegen-request-body-name": "body"
       }
     },
-    "/v1/discounts/{id}": {
+    "/v1/discount": {
       "post": {
         "tags": [
           "Cover"
         ],
-        "summary": "Executes optimization based on a recommendation.",
-        "operationId": "Cover_ExecuteOptimization",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
+        "summary": "Get the discount recommendations for every account in a cost group",
+        "operationId": "Cover_GetDiscountRecommendations",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1GetDiscountRecommendationsRequest"
+              }
             }
-          }
-        ],
+          },
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "A successful response.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/v1ExecuteOptimizationResponse"
+                  "$ref": "#/components/schemas/v1GetDiscountRecommendationsResponse"
                 }
               }
             }
@@ -7909,7 +7909,8 @@
               }
             }
           }
-        }
+        },
+        "x-codegen-request-body-name": "body"
       }
     },
     "/v1/invoice/status/{date}:read": {
@@ -9499,7 +9500,7 @@
         "x-codegen-request-body-name": "body"
       }
     },
-    "/v1/recommendations": {
+    "/v1/recommendations/optimization": {
       "get": {
         "tags": [
           "Cover"
@@ -9516,6 +9517,22 @@
             }
           },
           {
+            "name": "dateRangeStart",
+            "in": "query",
+            "description": "Required. Start date of retrieved data.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dateRangeEnd",
+            "in": "query",
+            "description": "Required. End date of retrieved data.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "vendor",
             "in": "query",
             "description": "Required. Valid inputs are: \"all\", \"aws\", \"gcp\", and  \"azure\".",
@@ -9526,7 +9543,7 @@
           {
             "name": "source",
             "in": "query",
-            "description": "Required. Valid inputs are: \"all\", \"trusted-advisor\", \"cost-explorer\", and  \"cost-optimization-hub\".",
+            "description": "Valid inputs are: \"all\", \"trusted-advisor\", \"cost-explorer\", and  \"cost-optimization-hub\". Default is \"All\".",
             "schema": {
               "type": "string"
             }
@@ -9534,7 +9551,7 @@
           {
             "name": "optimizationType",
             "in": "query",
-            "description": "Required. Valid inputs are: \"all\", \"rate\", and  \"usage\".",
+            "description": "Required. Valid inputs are: \"all\", \"rate\", and  \"usage\". Default is \"All\"",
             "schema": {
               "type": "string"
             }
@@ -9573,49 +9590,7 @@
         }
       }
     },
-    "/v1/recommendations/discount": {
-      "post": {
-        "tags": [
-          "Cover"
-        ],
-        "summary": "Get the discount recommendations for every account in a cost group",
-        "operationId": "Cover_GetDiscountRecommendations",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/v1GetDiscountRecommendationsRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/v1GetDiscountRecommendationsResponse"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googlerpcStatus"
-                }
-              }
-            }
-          }
-        },
-        "x-codegen-request-body-name": "body"
-      }
-    },
-    "/v1/recommendations/{id}": {
+    "/v1/recommendations/optimization/{id}": {
       "get": {
         "tags": [
           "Cover"
@@ -9654,6 +9629,56 @@
             }
           }
         }
+      },
+      "post": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "Executes optimization based on a recommendation.",
+        "operationId": "Cover_ExecuteOptimization",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1ExecuteOptimizationResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
       }
     },
     "/v1/report/summary": {
@@ -19033,7 +19058,7 @@
           "recommendation": {
             "type": "string"
           },
-          "action": {
+          "recommendationDetails": {
             "type": "string"
           },
           "estimatedMonthlyCost": {
@@ -19044,16 +19069,22 @@
             "type": "number",
             "format": "float"
           },
-          "recommendationDetails": {
+          "assignedTo": {
+            "type": "string"
+          },
+          "isActionImplemented": {
             "type": "string"
           },
           "scoring": {
             "type": "string"
           },
-          "actionImplemented": {
+          "isInProgress": {
             "type": "boolean"
           },
-          "implementedBy": {
+          "dateImplemented": {
+            "type": "string"
+          },
+          "details": {
             "type": "string"
           }
         }
