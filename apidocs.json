@@ -16389,6 +16389,9 @@
         },
         "isProfilingDone": {
           "type": "boolean"
+        },
+        "passwordLastRenewed": {
+          "type": "string"
         }
       }
     },
