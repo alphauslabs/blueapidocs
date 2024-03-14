@@ -12687,6 +12687,27 @@
       },
       "description": "AccountTotal resource definition."
     },
+    "apiAdditionalItems": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "unitCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "total": {
+          "type": "number",
+          "format": "double"
+        },
+        "quantity": {
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "description": "AdditionalItems resource definition."
+    },
     "apiAdjustmentConfig": {
       "type": "object",
       "properties": {
@@ -17899,11 +17920,45 @@
           "$ref": "#/definitions/v1BillingGroupInvoiceSettings",
           "description": "The invoice settings for this billing group."
         },
+        "additionalItems": {
+          "$ref": "#/definitions/v1BillingGroupAdditionalItems",
+          "title": "List of all additionalItems"
+        },
         "awsOptions": {
           "$ref": "#/definitions/billingv1AwsOptions",
           "title": "AWS-specific options"
         }
       }
+    },
+    "v1BillingGroupAdditionalItems": {
+      "type": "object",
+      "properties": {
+        "aws": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/apiAdditionalItems"
+          },
+          "title": "AWS additional items"
+        },
+        "azure": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/apiAdditionalItems"
+          },
+          "title": "Azure additional items"
+        },
+        "gcp": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/apiAdditionalItems"
+          },
+          "title": "GCP additional items"
+        }
+      },
+      "description": "Additional items for a billing group."
     },
     "v1BillingGroupInvoiceSettings": {
       "type": "object",

@@ -15819,6 +15819,27 @@
         },
         "description": "AccountTotal resource definition."
       },
+      "apiAdditionalItems": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "unitCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "total": {
+            "type": "number",
+            "format": "double"
+          },
+          "quantity": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "description": "AdditionalItems resource definition."
+      },
       "apiAdjustmentConfig": {
         "type": "object",
         "properties": {
@@ -20931,10 +20952,40 @@
           "invoiceSettings": {
             "$ref": "#/components/schemas/v1BillingGroupInvoiceSettings"
           },
+          "additionalItems": {
+            "$ref": "#/components/schemas/v1BillingGroupAdditionalItems"
+          },
           "awsOptions": {
             "$ref": "#/components/schemas/billingv1AwsOptions"
           }
         }
+      },
+      "v1BillingGroupAdditionalItems": {
+        "type": "object",
+        "properties": {
+          "aws": {
+            "title": "AWS additional items",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/apiAdditionalItems"
+            }
+          },
+          "azure": {
+            "title": "Azure additional items",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/apiAdditionalItems"
+            }
+          },
+          "gcp": {
+            "title": "GCP additional items",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/apiAdditionalItems"
+            }
+          }
+        },
+        "description": "Additional items for a billing group."
       },
       "v1BillingGroupInvoiceSettings": {
         "type": "object",
