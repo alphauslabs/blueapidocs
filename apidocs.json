@@ -7697,8 +7697,8 @@
         ]
       }
     },
-    "/v1/report/summary": {
-      "post": {
+    "/v1/reports/insight/summary/{costGroupId}": {
+      "get": {
         "summary": "Get data for insights reports summary",
         "operationId": "Cover_GetReportSummary",
         "responses": {
@@ -7717,12 +7717,32 @@
         },
         "parameters": [
           {
-            "name": "body",
-            "in": "body",
+            "name": "costGroupId",
+            "description": "Required. Cost Group Id.",
+            "in": "path",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1GetReportSummaryRequest"
-            }
+            "type": "string"
+          },
+          {
+            "name": "startDate",
+            "description": "Required. Start date Format: \"YYYYMMDD\"",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "endDate",
+            "description": "Required. End date Format: \"YYYYMMDD\"",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "reportType",
+            "description": "Required. Report Type. Valid inputs are: \"quarterly\", \"yearly\"",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -16235,6 +16255,44 @@
         }
       }
     },
+    "coverSavingsSummary": {
+      "type": "object",
+      "properties": {
+        "totalRecommendations": {
+          "type": "string",
+          "format": "int64",
+          "title": "Total number of detected recommendation for a given period"
+        },
+        "totalExecutedRecommendations": {
+          "type": "string",
+          "format": "int64",
+          "title": "Total number of executed recommendations for a given period"
+        },
+        "totalSavings": {
+          "type": "number",
+          "format": "float",
+          "title": "Total of savings for a given period, as a result of executed recommendations"
+        },
+        "percentageSavings": {
+          "type": "number",
+          "format": "float"
+        },
+        "mostEffectiveRecommendation": {
+          "type": "string",
+          "title": "The most effective recommendation"
+        },
+        "mostEffectiveRecommendationSavings": {
+          "type": "number",
+          "format": "float",
+          "title": "The most effective recommendation savings"
+        },
+        "mostEffectiveRecommendationPercentageSavings": {
+          "type": "number",
+          "format": "float",
+          "title": "The most effective recommendation percentage savings"
+        }
+      }
+    },
     "coverSideMenu": {
       "type": "object",
       "properties": {
@@ -20504,27 +20562,26 @@
       },
       "title": "Response message for GetRegions"
     },
-    "v1GetReportSummaryRequest": {
-      "type": "object",
-      "properties": {
-        "costGroupId": {
-          "type": "string",
-          "description": "Required. Cost Group Id."
-        },
-        "period": {
-          "type": "string",
-          "title": "Required. Valid inputs are Quarters: \"Q1-{YEAR}\", \"Q2-{YEAR}\", \"Q3-{YEAR}\", \"Q4-{YEAR}\" and Year: \"{YEAR}\""
-        }
-      }
-    },
     "v1GetReportSummaryResponse": {
       "type": "object",
       "properties": {
+        "costGroupName": {
+          "type": "string"
+        },
+        "startDate": {
+          "type": "string"
+        },
+        "endDate": {
+          "type": "string"
+        },
         "executiveSummary": {
           "$ref": "#/definitions/coverExecutiveSummary"
         },
         "optimizationRecommendationSummary": {
           "$ref": "#/definitions/coverOptimizationRecommendationSummary"
+        },
+        "savingsSummary": {
+          "$ref": "#/definitions/coverSavingsSummary"
         }
       }
     },

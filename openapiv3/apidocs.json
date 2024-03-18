@@ -9681,23 +9681,48 @@
         "x-codegen-request-body-name": "body"
       }
     },
-    "/v1/report/summary": {
-      "post": {
+    "/v1/reports/insight/summary/{costGroupId}": {
+      "get": {
         "tags": [
           "Cover"
         ],
         "summary": "Get data for insights reports summary",
         "operationId": "Cover_GetReportSummary",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/v1GetReportSummaryRequest"
-              }
+        "parameters": [
+          {
+            "name": "costGroupId",
+            "in": "path",
+            "description": "Required. Cost Group Id.",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           },
-          "required": true
-        },
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "Required. Start date Format: \"YYYYMMDD\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": "Required. End date Format: \"YYYYMMDD\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "reportType",
+            "in": "query",
+            "description": "Required. Report Type. Valid inputs are: \"quarterly\", \"yearly\"",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -9719,8 +9744,7 @@
               }
             }
           }
-        },
-        "x-codegen-request-body-name": "body"
+        }
       }
     },
     "/v1/resellers": {
@@ -19302,6 +19326,44 @@
           }
         }
       },
+      "coverSavingsSummary": {
+        "type": "object",
+        "properties": {
+          "totalRecommendations": {
+            "title": "Total number of detected recommendation for a given period",
+            "type": "string",
+            "format": "int64"
+          },
+          "totalExecutedRecommendations": {
+            "title": "Total number of executed recommendations for a given period",
+            "type": "string",
+            "format": "int64"
+          },
+          "totalSavings": {
+            "title": "Total of savings for a given period, as a result of executed recommendations",
+            "type": "number",
+            "format": "float"
+          },
+          "percentageSavings": {
+            "type": "number",
+            "format": "float"
+          },
+          "mostEffectiveRecommendation": {
+            "title": "The most effective recommendation",
+            "type": "string"
+          },
+          "mostEffectiveRecommendationSavings": {
+            "title": "The most effective recommendation savings",
+            "type": "number",
+            "format": "float"
+          },
+          "mostEffectiveRecommendationPercentageSavings": {
+            "title": "The most effective recommendation percentage savings",
+            "type": "number",
+            "format": "float"
+          }
+        }
+      },
       "coverSideMenu": {
         "type": "object",
         "properties": {
@@ -23455,27 +23517,26 @@
           }
         }
       },
-      "v1GetReportSummaryRequest": {
-        "type": "object",
-        "properties": {
-          "costGroupId": {
-            "type": "string",
-            "description": "Required. Cost Group Id."
-          },
-          "period": {
-            "title": "Required. Valid inputs are Quarters: \"Q1-{YEAR}\", \"Q2-{YEAR}\", \"Q3-{YEAR}\", \"Q4-{YEAR}\" and Year: \"{YEAR}\"",
-            "type": "string"
-          }
-        }
-      },
       "v1GetReportSummaryResponse": {
         "type": "object",
         "properties": {
+          "costGroupName": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          },
           "executiveSummary": {
             "$ref": "#/components/schemas/coverExecutiveSummary"
           },
           "optimizationRecommendationSummary": {
             "$ref": "#/components/schemas/coverOptimizationRecommendationSummary"
+          },
+          "savingsSummary": {
+            "$ref": "#/components/schemas/coverSavingsSummary"
           }
         }
       },
