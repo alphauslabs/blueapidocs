@@ -19566,6 +19566,9 @@
           },
           "passwordLastRenewed": {
             "type": "string"
+          },
+          "isOwner": {
+            "type": "boolean"
           }
         }
       },
