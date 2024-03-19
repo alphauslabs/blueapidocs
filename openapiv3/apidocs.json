@@ -9555,6 +9555,13 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "isExecuted",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
           }
         ],
         "responses": {
@@ -9573,6 +9580,146 @@
                       "$ref": "#/components/schemas/googlerpcStatus"
                     }
                   }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/recommendations/optimization/executed/{id}": {
+      "post": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "Mark a recommendation executed.",
+        "operationId": "Cover_MarkAsExecuted",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1MarkAsExecutedResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/recommendations/optimization/history": {
+      "get": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "Lists recommendations based on specified criteria.",
+        "operationId": "Cover_OptimizationHistory",
+        "parameters": [
+          {
+            "name": "costgroupId",
+            "in": "query",
+            "description": "Required. Cost Group Id.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dateRangeStart",
+            "in": "query",
+            "description": "Required. Start date of retrieved data.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dateRangeEnd",
+            "in": "query",
+            "description": "Required. End date of retrieved data.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "vendor",
+            "in": "query",
+            "description": "Required. Valid inputs are: \"all\", \"aws\", \"gcp\", and  \"azure\".",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "source",
+            "in": "query",
+            "description": "Valid inputs are: \"all\", \"trusted-advisor\", \"cost-explorer\", and  \"cost-optimization-hub\". Default is \"All\".",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "optimizationType",
+            "in": "query",
+            "description": "Required. Valid inputs are: \"all\", \"rate\", and  \"usage\". Default is \"All\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "isExecuted",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1OptimizationHistoryResponse"
                 }
               }
             }
@@ -18235,6 +18382,20 @@
           }
         }
       },
+      "coverAWSRecommendations": {
+        "type": "object",
+        "properties": {
+          "generalDetails": {
+            "$ref": "#/components/schemas/coverGeneralDetails"
+          },
+          "purchaseRIRecommendationDetails": {
+            "$ref": "#/components/schemas/coverPurchaseRIRecommendationDetails"
+          },
+          "savingsPlanRecommendationDetails": {
+            "$ref": "#/components/schemas/coverSavingsPlanRecommendationDetails"
+          }
+        }
+      },
       "coverAlertChannel": {
         "type": "object",
         "properties": {
@@ -18728,6 +18889,62 @@
           }
         }
       },
+      "coverCostGroupSpendingData": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "title": "use yyyymm format",
+            "type": "string"
+          },
+          "value": {
+            "title": "actual cost for the month",
+            "type": "number",
+            "format": "float"
+          }
+        }
+      },
+      "coverCurrentUtilizationDetails": {
+        "type": "object",
+        "properties": {
+          "avgOnDemandCostPerHour": {
+            "type": "number",
+            "format": "double"
+          },
+          "minOnDemandCostPerHour": {
+            "type": "number",
+            "format": "double"
+          },
+          "maxOnDemandCostPerHour": {
+            "type": "number",
+            "format": "double"
+          },
+          "avgSavingsPlansCoverage": {
+            "type": "number",
+            "format": "double"
+          },
+          "avgSavingsPlansUtilization": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "coverEC2Details": {
+        "type": "object",
+        "properties": {
+          "instanceType": {
+            "type": "string"
+          },
+          "tenancy": {
+            "type": "string"
+          },
+          "family": {
+            "type": "string"
+          },
+          "platform": {
+            "type": "string"
+          }
+        }
+      },
       "coverEC2Options": {
         "type": "object",
         "properties": {
@@ -18745,6 +18962,17 @@
           }
         }
       },
+      "coverESDetails": {
+        "type": "object",
+        "properties": {
+          "instanceClass": {
+            "type": "string"
+          },
+          "instanceSize": {
+            "type": "string"
+          }
+        }
+      },
       "coverESOptions": {
         "type": "object",
         "properties": {
@@ -18752,6 +18980,20 @@
             "type": "string"
           },
           "instanceSize": {
+            "type": "string"
+          }
+        }
+      },
+      "coverElasticCacheDetails": {
+        "type": "object",
+        "properties": {
+          "family": {
+            "type": "string"
+          },
+          "nodeType": {
+            "type": "string"
+          },
+          "productDescription": {
             "type": "string"
           }
         }
@@ -18766,6 +19008,30 @@
             "type": "string"
           },
           "productDescription": {
+            "type": "string"
+          }
+        }
+      },
+      "coverExecutedRecommendationDetails": {
+        "type": "object",
+        "properties": {
+          "recommendationId": {
+            "type": "string"
+          },
+          "recommendaton": {
+            "type": "string"
+          },
+          "service": {
+            "type": "string"
+          },
+          "completedDate": {
+            "type": "string"
+          },
+          "estSavingsPerMonth": {
+            "type": "number",
+            "format": "double"
+          },
+          "vendor": {
             "type": "string"
           }
         }
@@ -18851,6 +19117,38 @@
             "type": "string"
           },
           "datasetRegion": {
+            "type": "string"
+          }
+        }
+      },
+      "coverGeneralDetails": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "accountId": {
+            "type": "string"
+          },
+          "accountName": {
+            "type": "string"
+          },
+          "instanceId": {
+            "type": "string"
+          },
+          "instanceName": {
+            "type": "string"
+          },
+          "service": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "costGroup": {
+            "type": "string"
+          },
+          "type": {
             "type": "string"
           }
         }
@@ -19036,6 +19334,19 @@
           }
         }
       },
+      "coverNoOfExecutedRecommendationPerMonth": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "title": "use yyyymm format",
+            "type": "string"
+          },
+          "numberOfRecommendationExecuted": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
       "coverOptimizationRecommendationSummary": {
         "type": "object",
         "properties": {
@@ -19053,6 +19364,93 @@
             "items": {
               "type": "string"
             }
+          }
+        }
+      },
+      "coverPurchaseRIRecommendationDetails": {
+        "type": "object",
+        "properties": {
+          "ec2Options": {
+            "$ref": "#/components/schemas/coverEC2Details"
+          },
+          "elasticCacheOptions": {
+            "$ref": "#/components/schemas/coverElasticCacheDetails"
+          },
+          "esOptions": {
+            "$ref": "#/components/schemas/coverESDetails"
+          },
+          "rdsOptions": {
+            "$ref": "#/components/schemas/coverRDSDetails"
+          },
+          "redshiftOptions": {
+            "$ref": "#/components/schemas/coverRedshiftDetails"
+          },
+          "numberOfInstanceToPurchase": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "offeringClass": {
+            "type": "string"
+          },
+          "paymentOption": {
+            "type": "string"
+          },
+          "platform": {
+            "type": "string"
+          },
+          "recurringMonthlyCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "estimatedMonthlyCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "estimatedMonthlySavings": {
+            "type": "number",
+            "format": "double"
+          },
+          "estimatedOnDemandCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "region": {
+            "type": "string"
+          },
+          "sizeFlexible": {
+            "type": "string"
+          },
+          "sizeFlexEligible": {
+            "type": "boolean"
+          },
+          "tenancy": {
+            "type": "string"
+          },
+          "term": {
+            "type": "string"
+          }
+        }
+      },
+      "coverRDSDetails": {
+        "type": "object",
+        "properties": {
+          "dbEdition": {
+            "type": "string"
+          },
+          "dbEngine": {
+            "type": "string"
+          },
+          "deploymentOptions": {
+            "type": "string"
+          },
+          "family": {
+            "type": "string"
+          },
+          "instanceType": {
+            "type": "string"
+          },
+          "licenseModel": {
+            "type": "string"
           }
         }
       },
@@ -19079,61 +19477,6 @@
           }
         }
       },
-      "coverRecommendationData": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "accountId": {
-            "type": "string"
-          },
-          "region": {
-            "type": "string"
-          },
-          "vendor": {
-            "type": "string"
-          },
-          "service": {
-            "type": "string"
-          },
-          "source": {
-            "type": "string"
-          },
-          "recommendation": {
-            "type": "string"
-          },
-          "recommendationDetails": {
-            "type": "string"
-          },
-          "estimatedMonthlyCost": {
-            "type": "number",
-            "format": "float"
-          },
-          "estimatedMonthlySavings": {
-            "type": "number",
-            "format": "float"
-          },
-          "assignedTo": {
-            "type": "string"
-          },
-          "isActionImplemented": {
-            "type": "string"
-          },
-          "scoring": {
-            "type": "string"
-          },
-          "isInProgress": {
-            "type": "boolean"
-          },
-          "dateImplemented": {
-            "type": "string"
-          },
-          "details": {
-            "type": "string"
-          }
-        }
-      },
       "coverRecommendationDetail": {
         "type": "object",
         "properties": {
@@ -19152,6 +19495,17 @@
             "format": "double"
           },
           "region": {
+            "type": "string"
+          }
+        }
+      },
+      "coverRedshiftDetails": {
+        "type": "object",
+        "properties": {
+          "family": {
+            "type": "string"
+          },
+          "nodeType": {
             "type": "string"
           }
         }
@@ -19323,6 +19677,85 @@
           "estimatedSavingsVSOnDemandRates": {
             "type": "number",
             "format": "double"
+          }
+        }
+      },
+      "coverSPCoverageRate": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string"
+          },
+          "value": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "coverSPUtilizationRate": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string"
+          },
+          "value": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "coverSavingsPlanRecommendationDetails": {
+        "type": "object",
+        "properties": {
+          "currencyCode": {
+            "type": "string"
+          },
+          "hourlyCommitmentToPurchase": {
+            "type": "number",
+            "format": "double"
+          },
+          "estimatedMonthlySavingsAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "estimatedSavingsPercentage": {
+            "type": "number",
+            "format": "double"
+          },
+          "estimatedAverageCoverage": {
+            "type": "number",
+            "format": "double"
+          },
+          "estimatedAverageUtilization": {
+            "type": "number",
+            "format": "double"
+          },
+          "currentOnDemandSpend": {
+            "type": "number",
+            "format": "double"
+          },
+          "estimatedMonthlySpend": {
+            "type": "number",
+            "format": "double"
+          },
+          "estimatedMonthlySavings": {
+            "type": "number",
+            "format": "double"
+          },
+          "currentUtilizationDetails": {
+            "$ref": "#/components/schemas/coverCurrentUtilizationDetails"
+          },
+          "spUtilizationRate": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/coverSPUtilizationRate"
+            }
+          },
+          "spCoverageRate": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/coverSPCoverageRate"
+            }
           }
         }
       },
@@ -23440,7 +23873,7 @@
         "type": "object",
         "properties": {
           "recommendationData": {
-            "$ref": "#/components/schemas/coverRecommendationData"
+            "$ref": "#/components/schemas/coverAWSRecommendations"
           }
         }
       },
@@ -24018,8 +24451,28 @@
       "v1ListRecommendationResponse": {
         "type": "object",
         "properties": {
-          "recommendationData": {
-            "$ref": "#/components/schemas/coverRecommendationData"
+          "recommendation": {
+            "type": "string"
+          },
+          "service": {
+            "type": "string"
+          },
+          "estimatedMonthlySaving": {
+            "type": "number",
+            "format": "double"
+          },
+          "estimatedMonthlyCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "scoring": {
+            "type": "string"
+          },
+          "vendor": {
+            "type": "string"
+          },
+          "optimizationType": {
+            "type": "string"
           }
         }
       },
@@ -24090,6 +24543,9 @@
           }
         }
       },
+      "v1MarkAsExecutedResponse": {
+        "type": "object"
+      },
       "v1ModifyResourceTypeResponse": {
         "title": "Response message for ModifyResourceType",
         "type": "object",
@@ -24132,6 +24588,29 @@
         "properties": {
           "userData": {
             "$ref": "#/components/schemas/coverUserData"
+          }
+        }
+      },
+      "v1OptimizationHistoryResponse": {
+        "type": "object",
+        "properties": {
+          "costGroupSpendingData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/coverCostGroupSpendingData"
+            }
+          },
+          "noOfExecutedRecommendationPerMonth": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/coverNoOfExecutedRecommendationPerMonth"
+            }
+          },
+          "executedRecommendationDetails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/coverExecutedRecommendationDetails"
+            }
           }
         }
       },
