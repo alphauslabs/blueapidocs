@@ -21494,6 +21494,9 @@
     "v1ListRecommendationResponse": {
       "type": "object",
       "properties": {
+        "recommendationId": {
+          "type": "string"
+        },
         "recommendation": {
           "type": "string"
         },
