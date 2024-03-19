@@ -15939,31 +15939,31 @@
       "properties": {
         "costUsage": {
           "type": "number",
-          "format": "float",
-          "title": "The total cost usage"
+          "format": "double",
+          "title": "The total cost usage of the current period"
         },
-        "previousYearCostUsage": {
+        "previousPeriodCostUsage": {
           "type": "number",
-          "format": "float",
-          "title": "The total cost usage of the previous year"
+          "format": "double",
+          "title": "The total cost usage of the previous period"
         },
         "status": {
           "type": "string",
-          "title": "The status of the cost usage compared to the previous year. \"increased\", \"decreased\""
+          "title": "The status of the cost usage compared to the previous period. \"increased\", \"decreased\""
         },
         "percentageChanged": {
           "type": "number",
-          "format": "float",
-          "title": "The percentage changed compared to the previous year"
+          "format": "double",
+          "title": "The percentage changed compared to the previous period"
         },
         "averageMonthlyChanged": {
           "type": "number",
-          "format": "float",
+          "format": "double",
           "title": "The average monthly changed"
         },
-        "differenceFromPreviousYear": {
+        "differenceFromPreviousPeriod": {
           "type": "number",
-          "format": "float"
+          "format": "double"
         }
       }
     },
@@ -16252,7 +16252,7 @@
           "type": "array",
           "items": {
             "type": "number",
-            "format": "float"
+            "format": "double"
           },
           "title": "Potential savings per month"
         },
@@ -16676,12 +16676,12 @@
         },
         "totalSavings": {
           "type": "number",
-          "format": "float",
+          "format": "double",
           "title": "Total of savings for a given period, as a result of executed recommendations"
         },
         "percentageSavings": {
           "type": "number",
-          "format": "float"
+          "format": "double"
         },
         "mostEffectiveRecommendation": {
           "type": "string",
@@ -16689,12 +16689,12 @@
         },
         "mostEffectiveRecommendationSavings": {
           "type": "number",
-          "format": "float",
+          "format": "double",
           "title": "The most effective recommendation savings"
         },
         "mostEffectiveRecommendationPercentageSavings": {
           "type": "number",
-          "format": "float",
+          "format": "double",
           "title": "The most effective recommendation percentage savings"
         }
       }
