@@ -24079,6 +24079,9 @@
             "items": {
               "type": "string"
             }
+          },
+          "isResend": {
+            "type": "boolean"
           }
         }
       },
