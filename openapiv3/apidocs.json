@@ -24082,6 +24082,9 @@
           },
           "isResend": {
             "type": "boolean"
+          },
+          "inviteAsAdmin": {
+            "type": "boolean"
           }
         }
       },
