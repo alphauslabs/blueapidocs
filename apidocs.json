@@ -16674,23 +16674,34 @@
           "format": "int64",
           "title": "Total number of executed recommendations for a given period"
         },
-        "totalSavings": {
+        "totalEstimatedSavings": {
           "type": "number",
           "format": "double",
-          "title": "Total of savings for a given period, as a result of executed recommendations"
+          "title": "Total of estimated savings for a given period, as a result of executed recommendations"
+        },
+        "totalEstimatedCost": {
+          "type": "number",
+          "format": "double",
+          "title": "Total of estimated cost for a given period, as a result of executed recommendations"
         },
         "percentageSavings": {
           "type": "number",
-          "format": "double"
+          "format": "double",
+          "title": "Total of estimated percentage savings for a given period, as a result of executed recommendations"
         },
         "mostEffectiveRecommendation": {
           "type": "string",
           "title": "The most effective recommendation"
         },
-        "mostEffectiveRecommendationSavings": {
+        "mostEffectiveRecommendationEstimatedSavings": {
           "type": "number",
           "format": "double",
           "title": "The most effective recommendation savings"
+        },
+        "mostEffectiveRecommendationEstimatedCost": {
+          "type": "number",
+          "format": "double",
+          "title": "The most effective recommendation cost"
         },
         "mostEffectiveRecommendationPercentageSavings": {
           "type": "number",
