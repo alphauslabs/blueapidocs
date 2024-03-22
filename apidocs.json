@@ -11537,7 +11537,7 @@
                 },
                 "feeType": {
                   "type": "string",
-                  "description": "Optional. If empty, defaults to all fee type. At the moment, only `Fee`,`Refund`,`Credit`,`SppDiscount`,`EdpDiscount` is supported."
+                  "description": "Optional. If empty, defaults to all fee type. At the moment, only `Fee`,`Refund`,`Credit`,`SppDiscount`,`EdpDiscount`,`BundledDiscount` is supported."
                 }
               },
               "description": "Request message for the Billing.ReadInvoiceAdjustments rpc."
