@@ -5112,7 +5112,7 @@
           },
           {
             "name": "vendors",
-            "description": "Optional. Filter vendor accounts included in BillingGroup. Format: vendors=vendor1,vendor2,vendor3.\nFor example, If you want to get all vendors, vendors=aws,azure,gcp",
+            "description": "Optional. Filter vendor accounts included in BillingGroup. Format: vendors=vendor1,vendor2,vendor3.\nFor example, When Aws and Gcp to be filtered vendors=aws,gcp\nIf you want to get all vendors, not set parameter.",
             "in": "query",
             "required": false,
             "type": "string"
