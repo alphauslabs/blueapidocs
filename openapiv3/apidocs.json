@@ -18408,6 +18408,15 @@
           },
           "savingsPlanRecommendationDetails": {
             "$ref": "#/components/schemas/coverSavingsPlanRecommendationDetails"
+          },
+          "rightSizingRecommendationDetails": {
+            "$ref": "#/components/schemas/coverRightSizingRecommendationDetails"
+          },
+          "upgradeRecommendationDetails": {
+            "$ref": "#/components/schemas/coverUpgradeRecommendationDetails"
+          },
+          "migrateRecommendationDetails": {
+            "$ref": "#/components/schemas/coverMigrateRecommendationDetails"
           }
         }
       },
@@ -18918,6 +18927,97 @@
           }
         }
       },
+      "coverCurrentEBSDetails": {
+        "type": "object",
+        "properties": {
+          "attachmentState": {
+            "type": "string"
+          },
+          "iops": {
+            "type": "number",
+            "format": "double"
+          },
+          "throughput": {
+            "type": "number",
+            "format": "double"
+          },
+          "sizeInGb": {
+            "type": "number",
+            "format": "double"
+          },
+          "storageType": {
+            "type": "string"
+          },
+          "operation": {
+            "type": "string"
+          },
+          "productCode": {
+            "type": "string"
+          },
+          "unit": {
+            "type": "string"
+          },
+          "usageAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "usageType": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "coverCurrentEC2Details": {
+        "type": "object",
+        "properties": {
+          "instanceType": {
+            "type": "string"
+          },
+          "os": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string"
+          },
+          "cpuUtilization": {
+            "type": "number",
+            "format": "double"
+          },
+          "memoryUtilization": {
+            "type": "number",
+            "format": "double"
+          },
+          "diskUtilization": {
+            "type": "number",
+            "format": "double"
+          },
+          "networkCapacity": {
+            "type": "string"
+          },
+          "monthlyCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "eC2CpuUtilization": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/coverEC2CpuUtilization"
+            }
+          },
+          "eC2DiskUtilization": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/coverEC2DiskUtilization"
+            }
+          },
+          "eC2MemoryUtilization": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/coverEC2MemoryUtilization"
+            }
+          }
+        }
+      },
       "coverCurrentUtilizationDetails": {
         "type": "object",
         "properties": {
@@ -18943,6 +19043,43 @@
           }
         }
       },
+      "coverEC2CpuUtilization": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string"
+          },
+          "value": {
+            "type": "number",
+            "format": "float"
+          }
+        }
+      },
+      "coverEC2CurrentDetails": {
+        "type": "object",
+        "properties": {
+          "instanceType": {
+            "type": "string"
+          },
+          "operation": {
+            "type": "string"
+          },
+          "productCode": {
+            "type": "string"
+          },
+          "unit": {
+            "type": "string"
+          },
+          "usageAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "usageType": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
       "coverEC2Details": {
         "type": "object",
         "properties": {
@@ -18960,6 +19097,63 @@
           }
         }
       },
+      "coverEC2DiskUtilization": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string"
+          },
+          "value": {
+            "type": "number",
+            "format": "float"
+          }
+        }
+      },
+      "coverEC2MemoryUtilization": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string"
+          },
+          "value": {
+            "type": "number",
+            "format": "float"
+          }
+        }
+      },
+      "coverEC2ModifyRecommendationDetails": {
+        "type": "object",
+        "properties": {
+          "instanceType": {
+            "type": "string"
+          },
+          "os": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string"
+          },
+          "estCpuUtilization": {
+            "type": "number",
+            "format": "double"
+          },
+          "estMemoryUtilization": {
+            "type": "number",
+            "format": "double"
+          },
+          "estDiskUtilization": {
+            "type": "number",
+            "format": "double"
+          },
+          "estNetworkCapacity": {
+            "type": "string"
+          },
+          "estMonthlyCost": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
       "coverEC2Options": {
         "type": "object",
         "properties": {
@@ -18974,6 +19168,50 @@
           },
           "platform": {
             "type": "string"
+          }
+        }
+      },
+      "coverEC2RecommendationDetails": {
+        "type": "object",
+        "properties": {
+          "instanceType": {
+            "type": "string"
+          },
+          "operation": {
+            "type": "string"
+          },
+          "productCode": {
+            "type": "string"
+          },
+          "unit": {
+            "type": "string"
+          },
+          "usageAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "usageType": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "coverEC2rightSizingDetails": {
+        "type": "object",
+        "properties": {
+          "currentEC2Details": {
+            "$ref": "#/components/schemas/coverCurrentEC2Details"
+          },
+          "eC2ModifyRecommendationDetails": {
+            "$ref": "#/components/schemas/coverEC2ModifyRecommendationDetails"
+          },
+          "estimatedMonthlyCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "estimatedMonthlySavings": {
+            "type": "number",
+            "format": "double"
           }
         }
       },
@@ -19231,6 +19469,89 @@
           }
         }
       },
+      "coverLambdaCurrentConfiguration": {
+        "type": "object",
+        "properties": {
+          "architecture": {
+            "type": "string"
+          },
+          "memorysizeInMB": {
+            "type": "number",
+            "format": "double"
+          },
+          "platform": {
+            "type": "string"
+          },
+          "vCpu": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "operation": {
+            "type": "string"
+          },
+          "productCode": {
+            "type": "string"
+          },
+          "unit": {
+            "type": "string"
+          },
+          "usageAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "usageType": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "coverLambdaRecommendedConfiguration": {
+        "type": "object",
+        "properties": {
+          "architecture": {
+            "type": "string"
+          },
+          "memorysizeInMB": {
+            "type": "number",
+            "format": "double"
+          },
+          "platform": {
+            "type": "string"
+          },
+          "vCpu": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "operation": {
+            "type": "string"
+          },
+          "productCode": {
+            "type": "string"
+          },
+          "unit": {
+            "type": "string"
+          },
+          "usageAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "usageType": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "coverLambdaRightSizingRecommendationDetails": {
+        "type": "object",
+        "properties": {
+          "lambdaCurrentConfiguration": {
+            "$ref": "#/components/schemas/coverLambdaCurrentConfiguration"
+          },
+          "lambdaRecommendedConfiguration": {
+            "$ref": "#/components/schemas/coverLambdaRecommendedConfiguration"
+          }
+        }
+      },
       "coverLayoutRequests": {
         "type": "object",
         "properties": {
@@ -19346,6 +19667,36 @@
           },
           "updatedAt": {
             "type": "string"
+          }
+        }
+      },
+      "coverMigrateEC2Details": {
+        "type": "object",
+        "properties": {
+          "eC2CurrentDetails": {
+            "$ref": "#/components/schemas/coverEC2CurrentDetails"
+          },
+          "ugradeEC2RecommendationDetails": {
+            "$ref": "#/components/schemas/coverEC2RecommendationDetails"
+          },
+          "estimatedMonthlyCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "estimatedMonthlySavings": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "coverMigrateRecommendationDetails": {
+        "type": "object",
+        "properties": {
+          "generalDetails": {
+            "$ref": "#/components/schemas/coverGeneralDetails"
+          },
+          "migrateEC2Details": {
+            "$ref": "#/components/schemas/coverMigrateEC2Details"
           }
         }
       },
@@ -19695,6 +20046,20 @@
           }
         }
       },
+      "coverRightSizingRecommendationDetails": {
+        "type": "object",
+        "properties": {
+          "generalDetails": {
+            "$ref": "#/components/schemas/coverGeneralDetails"
+          },
+          "ec2RightSizingDetails": {
+            "$ref": "#/components/schemas/coverEC2rightSizingDetails"
+          },
+          "lambdaRightSizingRecommendationDetails": {
+            "$ref": "#/components/schemas/coverLambdaRightSizingRecommendationDetails"
+          }
+        }
+      },
       "coverSPCoverageRate": {
         "type": "object",
         "properties": {
@@ -19945,6 +20310,39 @@
             "title": "actual value of threshold",
             "type": "number",
             "format": "float"
+          }
+        }
+      },
+      "coverUpgradeEBSDetails": {
+        "type": "object",
+        "properties": {
+          "currentEBSDetails": {
+            "$ref": "#/components/schemas/coverCurrentEBSDetails"
+          },
+          "upgradeEBSDetails": {
+            "$ref": "#/components/schemas/coverUpgradeEBSDetails"
+          },
+          "estimatedMonthlyCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "estimatedMonthlySavings": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "coverUpgradeRecommendationDetails": {
+        "type": "object",
+        "properties": {
+          "generalDetails": {
+            "$ref": "#/components/schemas/coverGeneralDetails"
+          },
+          "upgradeEC2Details": {
+            "$ref": "#/components/schemas/coverUpgradeEBSDetails"
+          },
+          "upgradeEBSDetails": {
+            "$ref": "#/components/schemas/coverUpgradeEBSDetails"
           }
         }
       },
