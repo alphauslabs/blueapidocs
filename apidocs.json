@@ -7771,6 +7771,12 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "costGroupId",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [

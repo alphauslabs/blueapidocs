@@ -9752,6 +9752,13 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "costGroupId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
