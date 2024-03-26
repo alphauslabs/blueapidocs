@@ -6357,6 +6357,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "vendors",
+            "in": "query",
+            "description": "Optional. Filter vendor accounts included in BillingGroup. Format: vendors=vendor1,vendor2,vendor3.\nFor example, If you want to get all vendors, vendors=aws,azure,gcp",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
