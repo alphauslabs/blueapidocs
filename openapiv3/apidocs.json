@@ -7349,6 +7349,70 @@
         }
       }
     },
+    "/v1/costgroups/{costGroupId}/anomaly": {
+      "post": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "Sets Cost group's anomaly options",
+        "operationId": "Cover_SetCostGroupAnomalyOptions",
+        "parameters": [
+          {
+            "name": "costGroupId",
+            "in": "path",
+            "description": "Required. Cost Group Id.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "threshold": {
+                    "title": "Required",
+                    "type": "number",
+                    "format": "float"
+                  },
+                  "isPercentage": {
+                    "type": "boolean",
+                    "description": "Required. When set to true, the threshold is a percentage to the actual cost. Otherwise, it is a fixed amount."
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1SetCostGroupAnomalyOptionsResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/costgroups/{costGroupId}/colortheme": {
       "put": {
         "tags": [
@@ -7510,6 +7574,65 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/v1UpdateCostGroupDescriptionResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/costgroups/{costGroupId}/eventIndicator": {
+      "post": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "Sets Cost group's event indicator",
+        "operationId": "Cover_SetCostGroupEventIndicator",
+        "parameters": [
+          {
+            "name": "costGroupId",
+            "in": "path",
+            "description": "Required. Cost Group Id.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "anomaly": {
+                    "title": "Required. Only anomaly is supported as of now",
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1SetCostGroupEventIndicatorResponse"
                 }
               }
             }
@@ -18400,8 +18523,32 @@
       "coverAWSRecommendations": {
         "type": "object",
         "properties": {
-          "generalDetails": {
-            "$ref": "#/components/schemas/coverGeneralDetails"
+          "id": {
+            "type": "string"
+          },
+          "accountId": {
+            "type": "string"
+          },
+          "accountName": {
+            "type": "string"
+          },
+          "instanceId": {
+            "type": "string"
+          },
+          "instanceName": {
+            "type": "string"
+          },
+          "service": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "costGroup": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
           },
           "purchaseRIRecommendationDetails": {
             "$ref": "#/components/schemas/coverPurchaseRIRecommendationDetails"
@@ -18502,6 +18649,18 @@
           "percentage": {
             "type": "number",
             "format": "float"
+          }
+        }
+      },
+      "coverAnomalyOptions": {
+        "type": "object",
+        "properties": {
+          "threshold": {
+            "type": "number",
+            "format": "float"
+          },
+          "isPercentage": {
+            "type": "boolean"
           }
         }
       },
@@ -18865,6 +19024,12 @@
           },
           "createdBy": {
             "$ref": "#/components/schemas/coverMemberUserData"
+          },
+          "eventIndicator": {
+            "$ref": "#/components/schemas/coverEventIndicator"
+          },
+          "anomalyOptions": {
+            "$ref": "#/components/schemas/coverAnomalyOptions"
           }
         }
       },
@@ -19147,10 +19312,6 @@
           },
           "estNetworkCapacity": {
             "type": "string"
-          },
-          "estMonthlyCost": {
-            "type": "number",
-            "format": "double"
           }
         }
       },
@@ -19204,14 +19365,6 @@
           },
           "eC2ModifyRecommendationDetails": {
             "$ref": "#/components/schemas/coverEC2ModifyRecommendationDetails"
-          },
-          "estimatedMonthlyCost": {
-            "type": "number",
-            "format": "double"
-          },
-          "estimatedMonthlySavings": {
-            "type": "number",
-            "format": "double"
           }
         }
       },
@@ -19265,6 +19418,15 @@
           }
         }
       },
+      "coverEventIndicator": {
+        "type": "object",
+        "properties": {
+          "anomaly": {
+            "title": "Anomaly is supported for now",
+            "type": "boolean"
+          }
+        }
+      },
       "coverExecutedRecommendationDetails": {
         "type": "object",
         "properties": {
@@ -19281,6 +19443,10 @@
             "type": "string"
           },
           "estSavingsPerMonth": {
+            "type": "number",
+            "format": "double"
+          },
+          "estCostPerMonth": {
             "type": "number",
             "format": "double"
           },
@@ -19370,38 +19536,6 @@
             "type": "string"
           },
           "datasetRegion": {
-            "type": "string"
-          }
-        }
-      },
-      "coverGeneralDetails": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "accountId": {
-            "type": "string"
-          },
-          "accountName": {
-            "type": "string"
-          },
-          "instanceId": {
-            "type": "string"
-          },
-          "instanceName": {
-            "type": "string"
-          },
-          "service": {
-            "type": "string"
-          },
-          "source": {
-            "type": "string"
-          },
-          "costGroup": {
-            "type": "string"
-          },
-          "type": {
             "type": "string"
           }
         }
@@ -19678,6 +19812,14 @@
           },
           "ugradeEC2RecommendationDetails": {
             "$ref": "#/components/schemas/coverEC2RecommendationDetails"
+          }
+        }
+      },
+      "coverMigrateRecommendationDetails": {
+        "type": "object",
+        "properties": {
+          "migrateEC2Details": {
+            "$ref": "#/components/schemas/coverMigrateEC2Details"
           },
           "estimatedMonthlyCost": {
             "type": "number",
@@ -19686,17 +19828,6 @@
           "estimatedMonthlySavings": {
             "type": "number",
             "format": "double"
-          }
-        }
-      },
-      "coverMigrateRecommendationDetails": {
-        "type": "object",
-        "properties": {
-          "generalDetails": {
-            "$ref": "#/components/schemas/coverGeneralDetails"
-          },
-          "migrateEC2Details": {
-            "$ref": "#/components/schemas/coverMigrateEC2Details"
           }
         }
       },
@@ -20049,14 +20180,19 @@
       "coverRightSizingRecommendationDetails": {
         "type": "object",
         "properties": {
-          "generalDetails": {
-            "$ref": "#/components/schemas/coverGeneralDetails"
-          },
           "ec2RightSizingDetails": {
             "$ref": "#/components/schemas/coverEC2rightSizingDetails"
           },
           "lambdaRightSizingRecommendationDetails": {
             "$ref": "#/components/schemas/coverLambdaRightSizingRecommendationDetails"
+          },
+          "estimatedMonthlyCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "estimatedMonthlySavings": {
+            "type": "number",
+            "format": "double"
           }
         }
       },
@@ -20332,14 +20468,30 @@
           }
         }
       },
+      "coverUpgradeEC2Details": {
+        "type": "object",
+        "properties": {
+          "eC2CurrentDetails": {
+            "$ref": "#/components/schemas/coverEC2CurrentDetails"
+          },
+          "ugradeEC2RecommendationDetails": {
+            "$ref": "#/components/schemas/coverEC2RecommendationDetails"
+          },
+          "estimatedMonthlyCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "estimatedMonthlySavings": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
       "coverUpgradeRecommendationDetails": {
         "type": "object",
         "properties": {
-          "generalDetails": {
-            "$ref": "#/components/schemas/coverGeneralDetails"
-          },
           "upgradeEC2Details": {
-            "$ref": "#/components/schemas/coverUpgradeEBSDetails"
+            "$ref": "#/components/schemas/coverUpgradeEC2Details"
           },
           "upgradeEBSDetails": {
             "$ref": "#/components/schemas/coverUpgradeEBSDetails"
@@ -20425,6 +20577,9 @@
             "type": "string"
           },
           "isOwner": {
+            "type": "boolean"
+          },
+          "isAuth0": {
             "type": "boolean"
           }
         }
@@ -22937,6 +23092,10 @@
           "locale": {
             "type": "string",
             "description": "Optional. User locale. Default value is en if not supplied."
+          },
+          "auth0UserId": {
+            "type": "string",
+            "description": "Optional. Auth0 user id for users registering using social login."
           }
         },
         "description": "Request message for the Organization.CreateOrg rpc."
@@ -25808,6 +25967,28 @@
           }
         },
         "description": "Response message for ListSavings, RestoreSavings, SimulateSavings rpc."
+      },
+      "v1SetCostGroupAnomalyOptionsResponse": {
+        "type": "object",
+        "properties": {
+          "costGroupId": {
+            "type": "string"
+          },
+          "anomalyOptions": {
+            "$ref": "#/components/schemas/coverAnomalyOptions"
+          }
+        }
+      },
+      "v1SetCostGroupEventIndicatorResponse": {
+        "type": "object",
+        "properties": {
+          "costGroupId": {
+            "type": "string"
+          },
+          "eventIndicator": {
+            "$ref": "#/components/schemas/coverEventIndicator"
+          }
+        }
       },
       "v1TerminateResourceResponse": {
         "title": "Response message for TerminateResource",
