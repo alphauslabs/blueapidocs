@@ -7881,7 +7881,9 @@
         "tags": [
           "Cover"
         ]
-      },
+      }
+    },
+    "/v1/recommendations/optimization/{recommendationId}": {
       "post": {
         "summary": "Executes optimization based on a recommendation.",
         "operationId": "Cover_ExecuteOptimization",
@@ -7901,7 +7903,7 @@
         },
         "parameters": [
           {
-            "name": "id",
+            "name": "recommendationId",
             "in": "path",
             "required": true,
             "type": "string"
@@ -7911,7 +7913,36 @@
             "in": "body",
             "required": true,
             "schema": {
-              "type": "object"
+              "type": "object",
+              "properties": {
+                "target": {
+                  "type": "string"
+                },
+                "resourceId": {
+                  "type": "string"
+                },
+                "vendor": {
+                  "type": "string"
+                },
+                "service": {
+                  "type": "string"
+                },
+                "category": {
+                  "type": "string"
+                },
+                "region": {
+                  "type": "string"
+                },
+                "awsOptions": {
+                  "$ref": "#/definitions/coverAWS"
+                },
+                "gcpOptions": {
+                  "$ref": "#/definitions/coverGCP"
+                },
+                "azureCspOptions": {
+                  "$ref": "#/definitions/coverAzureCSP"
+                }
+              }
             }
           }
         ],
@@ -15358,6 +15389,20 @@
         }
       }
     },
+    "coverAWS": {
+      "type": "object",
+      "properties": {
+        "EC2": {
+          "$ref": "#/definitions/coverEC2"
+        },
+        "Lambda": {
+          "$ref": "#/definitions/coverLambda"
+        },
+        "EBS": {
+          "$ref": "#/definitions/coverEBS"
+        }
+      }
+    },
     "coverAWSRecommendations": {
       "type": "object",
       "properties": {
@@ -15591,6 +15636,9 @@
           "title": "Supported values are the following:('SEVEN_DAYS', 'THIRTY_DAYS', 'SIXTY_DAYS')"
         }
       }
+    },
+    "coverAzureCSP": {
+      "type": "object"
     },
     "coverAzureDiscountRecommendations": {
       "type": "object"
@@ -16052,6 +16100,34 @@
         }
       }
     },
+    "coverEBS": {
+      "type": "object",
+      "properties": {
+        "volumeType": {
+          "type": "string"
+        },
+        "iops": {
+          "type": "string",
+          "format": "int64"
+        },
+        "sizeInGb": {
+          "type": "string",
+          "format": "int64"
+        },
+        "throughput": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "coverEC2": {
+      "type": "object",
+      "properties": {
+        "instanceType": {
+          "type": "string"
+        }
+      }
+    },
     "coverEC2CpuUtilization": {
       "type": "object",
       "properties": {
@@ -16431,6 +16507,9 @@
         }
       }
     },
+    "coverGCP": {
+      "type": "object"
+    },
     "coverGcpDiscountRecommendations": {
       "type": "object"
     },
@@ -16514,6 +16593,15 @@
         },
         "endDate": {
           "type": "string"
+        }
+      }
+    },
+    "coverLambda": {
+      "type": "object",
+      "properties": {
+        "memory": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
