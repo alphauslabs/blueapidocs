@@ -11998,6 +11998,78 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/{vendor}/accounts/customers": {
+      "post": {
+        "tags": [
+          "Cost"
+        ],
+        "summary": "WORK-IN-PROGRESS: Find customers by customer/account ids.",
+        "operationId": "Cost_GetCustomersByAccountIds",
+        "parameters": [
+          {
+            "name": "vendor",
+            "in": "path",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ids": {
+                    "type": "array",
+                    "description": "Required. Ids of the account/customer.",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "description": "Request message for the Cost.GetCustomersByAccountIds rpc."
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Stream result of v1Customer",
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/components/schemas/v1Customer"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/googlerpcStatus"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/{vendor}/accounts/groups/{groupId}": {
       "get": {
         "tags": [
@@ -23550,6 +23622,39 @@
           }
         },
         "description": "A map of \"key:value\" attribute filters. The key indicates the column name while the value is the filter value prefixed by either \"eq:\" (equal), \"re:\" (regular expressions based on https://github.com/google/re2), or \"!re:\" (reverse \"re:\"). No prefix is the same as \"eq:\". Multiple map items will use the logical 'and' operator, e.g. mapfilter1 && mapfilter2 && mapfilter3, etc."
+      },
+      "v1Customer": {
+        "type": "object",
+        "properties": {
+          "vendor": {
+            "title": "The vendor",
+            "type": "string"
+          },
+          "id": {
+            "type": "string",
+            "description": "The id of the customer."
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the customer."
+          },
+          "payerId": {
+            "type": "string",
+            "description": "The payerId of the customer."
+          },
+          "mspId": {
+            "type": "string",
+            "description": "The mspId of the customer."
+          },
+          "companyId": {
+            "type": "string",
+            "description": "The companyId of the customer."
+          },
+          "lastUpdate": {
+            "type": "string",
+            "description": "The lastUpdate timestamp of the customer."
+          }
+        }
       },
       "v1DataAccess": {
         "title": "Message Response for GetDataAccess. For Azure and GCP",
