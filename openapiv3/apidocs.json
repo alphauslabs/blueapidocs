@@ -9991,6 +9991,77 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/reports/fiscalmonth": {
+      "get": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "Get Org's starting month/ fiscal month",
+        "operationId": "Cover_GetOrgFiscalMonth",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetOrgFiscalMonthResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "Sets Org's starting month/ fiscal month",
+        "operationId": "Cover_SetOrgFiscalMonth",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1SetOrgFiscalMonthRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1SetOrgFiscalMonthResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/reports/insight/summary/{costGroupId}": {
       "get": {
         "tags": [
@@ -24521,6 +24592,14 @@
           }
         }
       },
+      "v1GetOrgFiscalMonthResponse": {
+        "type": "object",
+        "properties": {
+          "fiscalMonth": {
+            "type": "string"
+          }
+        }
+      },
       "v1GetPayerAccountImportHistoryResponse": {
         "type": "object",
         "properties": {
@@ -26104,6 +26183,23 @@
           },
           "eventIndicator": {
             "$ref": "#/components/schemas/coverEventIndicator"
+          }
+        }
+      },
+      "v1SetOrgFiscalMonthRequest": {
+        "type": "object",
+        "properties": {
+          "fiscalMonth": {
+            "title": "Required. Fiscal month. Valid inputs are: \"01 - 12\"",
+            "type": "string"
+          }
+        }
+      },
+      "v1SetOrgFiscalMonthResponse": {
+        "type": "object",
+        "properties": {
+          "fiscalMonth": {
+            "type": "string"
           }
         }
       },
