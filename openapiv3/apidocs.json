@@ -14710,7 +14710,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Reads the adjustment details involved in invoicing of an organization billing group (Wave).",
+        "summary": "Reads the adjustment details involved in invoicing of an organization billing group (Wave).",
         "operationId": "Billing_ReadInvoiceAdjustments",
         "parameters": [
           {
@@ -15895,6 +15895,75 @@
             }
           }
         }
+      }
+    },
+    "/v1/{vendor}/untaggedgroups:read": {
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "WORK-IN-PROGRESS: Reads the untagged group. Only available in Ripple.",
+        "operationId": "Billing_ReadUntaggedGroups",
+        "parameters": [
+          {
+            "name": "vendor",
+            "in": "path",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "fieldMask": {
+                    "type": "string",
+                    "description": "Optional. Get only the value that set fieldMask.\n\nsee more info: https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/field_mask.proto"
+                  }
+                },
+                "description": "Request message for the Billing.ReadUntaggedGroups rpc."
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Stream result of rippleUntaggedGroup",
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/components/schemas/rippleUntaggedGroup"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/googlerpcStatus"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
       }
     },
     "/v1/{vendor}/usagecostsdrift:read": {
@@ -21104,6 +21173,54 @@
         },
         "description": "This resource represents a long-running operation that is the result of a\nnetwork API call."
       },
+      "rippleAssigned": {
+        "required": [
+          "fixed",
+          "percentage"
+        ],
+        "type": "object",
+        "properties": {
+          "percentage": {
+            "type": "integer",
+            "description": "Required.  This value can be up to 100.",
+            "format": "int32"
+          },
+          "fixed": {
+            "type": "integer",
+            "description": "Required.",
+            "format": "int32"
+          }
+        },
+        "description": "Assigned resource definition."
+      },
+      "rippleAssignedBillingGroup": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique id of the billing group internal."
+          },
+          "groupId": {
+            "type": "string",
+            "description": "The unique id of the billing group."
+          },
+          "groupName": {
+            "type": "string",
+            "description": "The name of the billing group."
+          },
+          "accounts": {
+            "type": "array",
+            "description": "A list of accounts.",
+            "items": {
+              "$ref": "#/components/schemas/blueapiapiAccount"
+            }
+          },
+          "assigned": {
+            "$ref": "#/components/schemas/rippleAssigned"
+          }
+        },
+        "description": "AssignedBillingGroup resource definition."
+      },
       "rippleBillingGroupExchangeRate": {
         "type": "object",
         "properties": {
@@ -21396,6 +21513,43 @@
           }
         },
         "description": "Rounding resource definition."
+      },
+      "rippleUntaggedGroup": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique id of the untagged group.\nAutomatically generated."
+          },
+          "name": {
+            "title": "Required. The unique name of the untagged group. This value can be up to 60",
+            "type": "string"
+          },
+          "assigned": {
+            "$ref": "#/components/schemas/rippleAssigned"
+          },
+          "billingGroups": {
+            "type": "array",
+            "description": "Optional.",
+            "items": {
+              "$ref": "#/components/schemas/rippleAssignedBillingGroup"
+            }
+          },
+          "created": {
+            "type": "string",
+            "description": "Output only. The time when the `UntaggedGroup` was created.",
+            "readOnly": true
+          },
+          "updated": {
+            "type": "string",
+            "description": "Output only. The time when the `UntaggedGroup` was last updated.",
+            "readOnly": true
+          }
+        },
+        "description": "UntaggedGroup resource definition."
       },
       "rippleVendorPayerExchangeRate": {
         "type": "object",
