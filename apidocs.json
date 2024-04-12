@@ -5905,6 +5905,11 @@
                 "isPercentage": {
                   "type": "boolean",
                   "description": "Required. When set to true, the threshold is a percentage to the actual cost. Otherwise, it is a fixed amount."
+                },
+                "pastDataInMonths": {
+                  "type": "string",
+                  "format": "int64",
+                  "description": "Optional. The number of past months to be used in training the model. Note: This will affect the results of anomaly detection. Default and max is 9 while min is 1."
                 }
               }
             }
@@ -15720,6 +15725,10 @@
         },
         "isPercentage": {
           "type": "boolean"
+        },
+        "pastDataInMonths": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
