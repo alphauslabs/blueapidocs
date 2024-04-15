@@ -9687,7 +9687,7 @@
           {
             "name": "optimizationStatus",
             "in": "query",
-            "description": "Valid inputs are: \"in-progress\", \"error\", \"open\" and \"all\"",
+            "description": "Valid inputs are: \"in-progress\", \"error\", \"open\",\"done\" and \"all\"",
             "schema": {
               "type": "string"
             }
@@ -19779,6 +19779,12 @@
           },
           "vendor": {
             "type": "string"
+          },
+          "costgroupId": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
@@ -25507,6 +25513,12 @@
           },
           "errorMessage": {
             "type": "string"
+          },
+          "costgroupId": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
