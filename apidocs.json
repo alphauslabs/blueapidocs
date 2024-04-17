@@ -4811,6 +4811,41 @@
         ]
       }
     },
+    "/v1/aws/acctaccess/stackset": {
+      "post": {
+        "summary": "Starts validation of the account access stackset deployment. If successful, the IAM role created from the CloudFormation stackset will be registered to the linked accounts.",
+        "operationId": "Cover_CreateAccountAccessStackset",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Request message for the CreateAccountAccessStackset rpc.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateAccountAccessStacksetRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
     "/v1/aws/acctaccess/{target}": {
       "get": {
         "summary": "Gets the current account role attached to the input target.",
@@ -19629,6 +19664,20 @@
         }
       },
       "description": "Request message for the CreateAccountAccess rpc."
+    },
+    "v1CreateAccountAccessStacksetRequest": {
+      "type": "object",
+      "properties": {
+        "target": {
+          "type": "string",
+          "description": "Required. The AWS payer account to validate."
+        },
+        "region": {
+          "type": "string",
+          "description": "Required. The region of the stack deployment."
+        }
+      },
+      "description": "Request message for the CreateAccountAccessStackset rpc."
     },
     "v1CreateAccountBudgetResponse": {
       "type": "object",
