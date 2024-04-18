@@ -9781,8 +9781,14 @@
             "name": "id",
             "in": "path",
             "required": true,
+            "style": "simple",
+            "explode": false,
             "schema": {
-              "type": "string"
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             }
           }
         ],
@@ -19748,12 +19754,6 @@
           },
           "vendor": {
             "type": "string"
-          },
-          "costgroupId": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
           }
         }
       },

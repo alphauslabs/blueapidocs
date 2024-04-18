@@ -7796,7 +7796,12 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "minItems": 1
           },
           {
             "name": "body",
@@ -16571,12 +16576,6 @@
         },
         "vendor": {
           "type": "string"
-        },
-        "costgroupId": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
         }
       }
     },
