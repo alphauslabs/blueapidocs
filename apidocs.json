@@ -4911,7 +4911,7 @@
     "/v1/aws/cur:import": {
       "post": {
         "summary": "Initiates an ondemand import of all registered CUR files.",
-        "description": "See (https://help.alphaus.cloud/en/articles/3612555-ripple-aws-things-you-need-to-prepare-before-starting)[https://help.alphaus.cloud/en/articles/3612555-ripple-aws-things-you-need-to-prepare-before-starting] for more information.",
+        "description": "See https://help.alphaus.cloud/en/articles/3612555-ripple-aws-things-you-need-to-prepare-before-starting for more information.",
         "operationId": "Cost_ImportCurFiles",
         "responses": {
           "200": {
