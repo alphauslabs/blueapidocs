@@ -15610,6 +15610,14 @@
         "region": {
           "type": "string"
         },
+        "estsavings": {
+          "type": "number",
+          "format": "double"
+        },
+        "estcost": {
+          "type": "number",
+          "format": "double"
+        },
         "purchaseRIRecommendationDetails": {
           "$ref": "#/definitions/coverPurchaseRIRecommendationDetails"
         },
@@ -16537,7 +16545,7 @@
           "type": "number",
           "format": "double"
         },
-        "OnDemandCost": {
+        "onDemandCost": {
           "type": "number",
           "format": "double"
         },
@@ -17386,6 +17394,10 @@
         },
         "term": {
           "type": "string"
+        },
+        "upfrontCost": {
+          "type": "number",
+          "format": "double"
         },
         "currentUtilizationDetails": {
           "$ref": "#/definitions/coverSPCurrentUtilizationDetails"
