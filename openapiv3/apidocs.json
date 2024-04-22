@@ -18826,6 +18826,10 @@
             "type": "number",
             "format": "double"
           },
+          "estsavingsPercentage": {
+            "type": "number",
+            "format": "double"
+          },
           "purchaseRIRecommendationDetails": {
             "$ref": "#/components/schemas/coverPurchaseRIRecommendationDetails"
           },
@@ -19355,18 +19359,6 @@
             "additionalProperties": {
               "type": "string"
             }
-          }
-        }
-      },
-      "coverCostGroupSpendingData": {
-        "type": "object",
-        "properties": {
-          "date": {
-            "type": "string"
-          },
-          "value": {
-            "type": "number",
-            "format": "float"
           }
         }
       },
@@ -20242,12 +20234,6 @@
           },
           "estOutcomeFromPurchaseRIRecommendation": {
             "$ref": "#/components/schemas/coverEstOutcomeFromPurchaseRIRecommendation"
-          },
-          "costGroupSpendingData": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/coverCostGroupSpendingData"
-            }
           }
         }
       },
@@ -20579,12 +20565,6 @@
           },
           "estOutcomeFromSPRecommendation": {
             "$ref": "#/components/schemas/coverEstOutcomeFromSPRecommendation"
-          },
-          "costGroupSpendingData": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/coverCostGroupSpendingData"
-            }
           }
         }
       },
@@ -25671,12 +25651,6 @@
       "v1OptimizationHistoryResponse": {
         "type": "object",
         "properties": {
-          "costGroupSpendingData": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/coverCostGroupSpendingData"
-            }
-          },
           "noOfExecutedRecommendation": {
             "type": "array",
             "items": {
