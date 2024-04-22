@@ -6032,7 +6032,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/v1AccountAccess"
                 }
               }
             }
@@ -20340,6 +20340,9 @@
             "type": "boolean"
           },
           "payer": {
+            "type": "boolean"
+          },
+          "stackset": {
             "type": "boolean"
           }
         }

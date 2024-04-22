@@ -4819,8 +4819,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "type": "object",
-              "properties": {}
+              "$ref": "#/definitions/v1AccountAccess"
             }
           },
           "default": {
@@ -17162,6 +17161,9 @@
           "type": "boolean"
         },
         "payer": {
+          "type": "boolean"
+        },
+        "stackset": {
           "type": "boolean"
         }
       }
