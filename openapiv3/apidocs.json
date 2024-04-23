@@ -21262,6 +21262,10 @@
           "qrCode": {
             "title": "Optional. qrCode",
             "type": "boolean"
+          },
+          "invoiceTemplateId": {
+            "title": "Optional. Invoice template Id",
+            "type": "string"
           }
         },
         "description": "BillingGroupInfo resource definition. Only available in Ripple."
