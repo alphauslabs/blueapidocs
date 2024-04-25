@@ -15576,6 +15576,42 @@
         }
       }
     },
+    "coverAPNDetails": {
+      "type": "object",
+      "properties": {
+        "operation": {
+          "type": "string"
+        },
+        "productCode": {
+          "type": "string"
+        },
+        "unit": {
+          "type": "string"
+        },
+        "usageAmount": {
+          "type": "number",
+          "format": "double"
+        },
+        "usageType": {
+          "type": "string"
+        }
+      }
+    },
+    "coverAPS1EBSDetails": {
+      "type": "object",
+      "properties": {
+        "productCode": {
+          "type": "string"
+        },
+        "unit": {
+          "type": "string"
+        },
+        "usageAmount": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
     "coverAWSRecommendations": {
       "type": "object",
       "properties": {
@@ -15620,6 +15656,15 @@
         "estsavingsPercentage": {
           "type": "number",
           "format": "double"
+        },
+        "resourceArn": {
+          "type": "string"
+        },
+        "restartNeeded": {
+          "type": "boolean"
+        },
+        "rollbackPossible": {
+          "type": "boolean"
         },
         "purchaseRIRecommendationDetails": {
           "$ref": "#/definitions/coverPurchaseRIRecommendationDetails"
@@ -16003,6 +16048,31 @@
         }
       }
     },
+    "coverCostCalculation": {
+      "type": "object",
+      "properties": {
+        "estCostAfterDiscount": {
+          "type": "number",
+          "format": "double"
+        },
+        "estCostBeforeDiscount": {
+          "type": "number",
+          "format": "double"
+        },
+        "otherDiscount": {
+          "type": "number",
+          "format": "double"
+        },
+        "savingsPlanDiscount": {
+          "type": "number",
+          "format": "double"
+        },
+        "estNetUnusedAmortizedCommitments": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
     "coverCostGroupAwsOptions": {
       "type": "object",
       "properties": {
@@ -16198,25 +16268,11 @@
           "type": "number",
           "format": "double"
         },
-        "storageType": {
-          "type": "string"
+        "costCalculation": {
+          "$ref": "#/definitions/coverCostCalculation"
         },
-        "operation": {
-          "type": "string"
-        },
-        "productCode": {
-          "type": "string"
-        },
-        "unit": {
-          "type": "string"
-        },
-        "usageAmount": {
-          "type": "number",
-          "format": "double"
-        },
-        "usageType": {
-          "type": "number",
-          "format": "double"
+        "volumeUsage": {
+          "$ref": "#/definitions/coverAPS1EBSDetails"
         }
       }
     },
@@ -16283,31 +16339,6 @@
         "value": {
           "type": "number",
           "format": "float"
-        }
-      }
-    },
-    "coverEC2CurrentDetails": {
-      "type": "object",
-      "properties": {
-        "instanceType": {
-          "type": "string"
-        },
-        "operation": {
-          "type": "string"
-        },
-        "productCode": {
-          "type": "string"
-        },
-        "unit": {
-          "type": "string"
-        },
-        "usageAmount": {
-          "type": "number",
-          "format": "double"
-        },
-        "usageType": {
-          "type": "number",
-          "format": "double"
         }
       }
     },
@@ -16398,7 +16429,7 @@
         }
       }
     },
-    "coverEC2RecommendationDetails": {
+    "coverEC2UpgadeDetails": {
       "type": "object",
       "properties": {
         "instanceType": {
@@ -16516,6 +16547,22 @@
           "format": "double"
         },
         "monthlySavingsPercentage": {
+          "type": "number",
+          "format": "double"
+        },
+        "maxNormalizedUnitsUsedPerHour": {
+          "type": "number",
+          "format": "double"
+        },
+        "maxNumberOfInstanceUsedPerHour": {
+          "type": "number",
+          "format": "double"
+        },
+        "minNormalizedUnitsUsedPerHour": {
+          "type": "number",
+          "format": "double"
+        },
+        "minNumberOfInstanceUsedPerHour": {
           "type": "number",
           "format": "double"
         }
@@ -16739,7 +16786,7 @@
         }
       }
     },
-    "coverLambdaCurrentConfiguration": {
+    "coverLambdaDetails": {
       "type": "object",
       "properties": {
         "architecture": {
@@ -16756,58 +16803,14 @@
           "type": "integer",
           "format": "int32"
         },
-        "operation": {
-          "type": "string"
+        "costCalculation": {
+          "$ref": "#/definitions/coverCostCalculation"
         },
-        "productCode": {
-          "type": "string"
+        "apn1LambdaGBUsage": {
+          "$ref": "#/definitions/coverAPNDetails"
         },
-        "unit": {
-          "type": "string"
-        },
-        "usageAmount": {
-          "type": "number",
-          "format": "double"
-        },
-        "usageType": {
-          "type": "number",
-          "format": "double"
-        }
-      }
-    },
-    "coverLambdaRecommendedConfiguration": {
-      "type": "object",
-      "properties": {
-        "architecture": {
-          "type": "string"
-        },
-        "memorysizeInMB": {
-          "type": "number",
-          "format": "double"
-        },
-        "platform": {
-          "type": "string"
-        },
-        "vCpu": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "operation": {
-          "type": "string"
-        },
-        "productCode": {
-          "type": "string"
-        },
-        "unit": {
-          "type": "string"
-        },
-        "usageAmount": {
-          "type": "number",
-          "format": "double"
-        },
-        "usageType": {
-          "type": "number",
-          "format": "double"
+        "apn1RequestUsage": {
+          "$ref": "#/definitions/coverAPNDetails"
         }
       }
     },
@@ -16815,10 +16818,10 @@
       "type": "object",
       "properties": {
         "lambdaCurrentConfiguration": {
-          "$ref": "#/definitions/coverLambdaCurrentConfiguration"
+          "$ref": "#/definitions/coverLambdaDetails"
         },
         "lambdaRecommendedConfiguration": {
-          "$ref": "#/definitions/coverLambdaRecommendedConfiguration"
+          "$ref": "#/definitions/coverLambdaDetails"
         }
       }
     },
@@ -16944,10 +16947,16 @@
       "type": "object",
       "properties": {
         "eC2CurrentDetails": {
-          "$ref": "#/definitions/coverEC2CurrentDetails"
+          "$ref": "#/definitions/coverEC2UpgadeDetails"
         },
         "ugradeEC2RecommendationDetails": {
-          "$ref": "#/definitions/coverEC2RecommendationDetails"
+          "$ref": "#/definitions/coverEC2UpgadeDetails"
+        },
+        "currentCostCalculation": {
+          "$ref": "#/definitions/coverCostCalculation"
+        },
+        "estCostCalculation": {
+          "$ref": "#/definitions/coverCostCalculation"
         }
       }
     },
@@ -17017,11 +17026,11 @@
         "redshiftOptions": {
           "$ref": "#/definitions/coverRedshiftDetails"
         },
-        "normalizedUnits": {
+        "recommendedNormalizedUnits": {
           "type": "integer",
           "format": "int32"
         },
-        "numberOfInstanceToPurchase": {
+        "recommendedNumberOfInstanceToPurchase": {
           "type": "integer",
           "format": "int32"
         },
@@ -17052,6 +17061,9 @@
         },
         "tenancy": {
           "type": "string"
+        },
+        "currentGeneration": {
+          "type": "boolean"
         },
         "estOutcomeFromPurchaseRIRecommendation": {
           "$ref": "#/definitions/coverEstOutcomeFromPurchaseRIRecommendation"
@@ -17576,7 +17588,7 @@
           "$ref": "#/definitions/coverCurrentEBSDetails"
         },
         "upgradeEBSDetails": {
-          "$ref": "#/definitions/coverUpgradeEBSDetails"
+          "$ref": "#/definitions/coverUpgradeEBSRecommendationDetails"
         },
         "estimatedMonthlyCost": {
           "type": "number",
@@ -17588,14 +17600,52 @@
         }
       }
     },
+    "coverUpgradeEBSRecommendationDetails": {
+      "type": "object",
+      "properties": {
+        "attachmentState": {
+          "type": "string"
+        },
+        "iops": {
+          "type": "number",
+          "format": "double"
+        },
+        "throughput": {
+          "type": "number",
+          "format": "double"
+        },
+        "sizeInGb": {
+          "type": "number",
+          "format": "double"
+        },
+        "EstcostCalculation": {
+          "$ref": "#/definitions/coverCostCalculation"
+        },
+        "volumeUsageGP3": {
+          "$ref": "#/definitions/coverAPS1EBSDetails"
+        },
+        "volumeIopsGP3": {
+          "$ref": "#/definitions/coverAPS1EBSDetails"
+        },
+        "volumeThroughputGP3": {
+          "$ref": "#/definitions/coverAPS1EBSDetails"
+        }
+      }
+    },
     "coverUpgradeEC2Details": {
       "type": "object",
       "properties": {
         "eC2CurrentDetails": {
-          "$ref": "#/definitions/coverEC2CurrentDetails"
+          "$ref": "#/definitions/coverEC2UpgadeDetails"
         },
         "ugradeEC2RecommendationDetails": {
-          "$ref": "#/definitions/coverEC2RecommendationDetails"
+          "$ref": "#/definitions/coverEC2UpgadeDetails"
+        },
+        "currentCostCalculation": {
+          "$ref": "#/definitions/coverCostCalculation"
+        },
+        "estimatedCostCalculation": {
+          "$ref": "#/definitions/coverCostCalculation"
         },
         "estimatedMonthlyCost": {
           "type": "number",
