@@ -9770,34 +9770,18 @@
         }
       }
     },
-    "/v1/recommendations/optimization/executed/{id}": {
+    "/v1/recommendations/optimization/executed": {
       "post": {
         "tags": [
           "Cover"
         ],
         "summary": "Mark a recommendation executed.",
         "operationId": "Cover_MarkAsExecuted",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "minItems": 1,
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          }
-        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "type": "object"
+                "$ref": "#/components/schemas/v1MarkAsExecutedRequest"
               }
             }
           },
@@ -9933,7 +9917,7 @@
             }
           },
           {
-            "name": "PeriodOption",
+            "name": "periodOption",
             "in": "query",
             "description": "Valid inputs are: \"30days\", \"60days\". and \"90days\". Default is \"30days\".",
             "schema": {
@@ -25654,6 +25638,17 @@
           },
           "role": {
             "type": "string"
+          }
+        }
+      },
+      "v1MarkAsExecutedRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
