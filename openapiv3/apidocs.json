@@ -19798,6 +19798,9 @@
           },
           "vendor": {
             "type": "string"
+          },
+          "category": {
+            "type": "string"
           }
         }
       },
