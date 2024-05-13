@@ -22863,6 +22863,10 @@
           "target": {
             "type": "string",
             "description": "Required. The target AWS account to validate."
+          },
+          "fromTerraform": {
+            "title": "Optional. Set to true if deployment is done through terraform",
+            "type": "boolean"
           }
         },
         "description": "Request message for the CreateAccountAccess rpc."
