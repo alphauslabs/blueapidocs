@@ -9680,18 +9680,43 @@
         "x-codegen-request-body-name": "body"
       }
     },
-    "/v1/organizations/leave/{target}": {
+    "/v1/organizations/transfer/{target}": {
       "get": {
         "tags": [
           "Cover"
         ],
-        "summary": "WORK-IN-PROGRESS: Leaves the existing organization where the account is linked and process all the other setup also.",
-        "operationId": "Cover_LeaveOrganization",
+        "summary": "WORK-IN-PROGRESS: Transfer the account from the original organization to Alphaus payer account",
+        "operationId": "Cover_TransferOrganization",
         "parameters": [
           {
             "name": "target",
             "in": "path",
+            "description": "Required. The target account to be transferred.",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "region",
+            "in": "query",
+            "description": "Required. The region of the target account.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "payer",
+            "in": "query",
+            "description": "Optional. Alphaus payer account to be used for the transfer.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orgId",
+            "in": "query",
+            "description": "Optional. The org id of the payer account.",
             "schema": {
               "type": "string"
             }
@@ -9703,7 +9728,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/v1LeaveOrganizationResponse"
+                  "$ref": "#/components/schemas/v1TransferOrganizationResponse"
                 }
               }
             }
@@ -25232,14 +25257,6 @@
           }
         }
       },
-      "v1LeaveOrganizationResponse": {
-        "type": "object",
-        "properties": {
-          "target": {
-            "type": "string"
-          }
-        }
-      },
       "v1ListAccountAccessRequest": {
         "type": "object",
         "description": "Request message for the ListAccountAccess rpc."
@@ -26565,6 +26582,14 @@
             "type": "string"
           },
           "region": {
+            "type": "string"
+          }
+        }
+      },
+      "v1TransferOrganizationResponse": {
+        "type": "object",
+        "properties": {
+          "target": {
             "type": "string"
           }
         }

@@ -7697,15 +7697,15 @@
         ]
       }
     },
-    "/v1/organizations/leave/{target}": {
+    "/v1/organizations/transfer/{target}": {
       "get": {
-        "summary": "WORK-IN-PROGRESS: Leaves the existing organization where the account is linked and process all the other setup also.",
-        "operationId": "Cover_LeaveOrganization",
+        "summary": "WORK-IN-PROGRESS: Transfer the account from the original organization to Alphaus payer account",
+        "operationId": "Cover_TransferOrganization",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1LeaveOrganizationResponse"
+              "$ref": "#/definitions/v1TransferOrganizationResponse"
             }
           },
           "default": {
@@ -7718,8 +7718,30 @@
         "parameters": [
           {
             "name": "target",
+            "description": "Required. The target account to be transferred.",
             "in": "path",
             "required": true,
+            "type": "string"
+          },
+          {
+            "name": "region",
+            "description": "Required. The region of the target account.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "payer",
+            "description": "Optional. Alphaus payer account to be used for the transfer.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "orgId",
+            "description": "Optional. The org id of the payer account.",
+            "in": "query",
+            "required": false,
             "type": "string"
           }
         ],
@@ -22174,14 +22196,6 @@
         }
       }
     },
-    "v1LeaveOrganizationResponse": {
-      "type": "object",
-      "properties": {
-        "target": {
-          "type": "string"
-        }
-      }
-    },
     "v1ListAccountAccessRequest": {
       "type": "object",
       "description": "Request message for the ListAccountAccess rpc."
@@ -23537,6 +23551,14 @@
         }
       },
       "title": "Response message for TerminateResource"
+    },
+    "v1TransferOrganizationResponse": {
+      "type": "object",
+      "properties": {
+        "target": {
+          "type": "string"
+        }
+      }
     },
     "v1UpdateAccountInvoiceServiceDiscountsResponse": {
       "type": "object",
