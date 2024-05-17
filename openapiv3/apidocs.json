@@ -9959,6 +9959,48 @@
         }
       }
     },
+    "/v1/recommendations/optimization/undo": {
+      "post": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "Undo a executed recommendation (For recommendation).",
+        "operationId": "Cover_UndoExecutedRecommendation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1UndoExecutedRecommendationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1UndoExecutedRecommendationResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/recommendations/optimization/{id}": {
       "get": {
         "tags": [
@@ -26599,6 +26641,20 @@
             "type": "string"
           }
         }
+      },
+      "v1UndoExecutedRecommendationRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "v1UndoExecutedRecommendationResponse": {
+        "type": "object"
       },
       "v1UpdateAccountInvoiceServiceDiscountsResponse": {
         "type": "object",
