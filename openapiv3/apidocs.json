@@ -19848,6 +19848,12 @@
           "recommendaton": {
             "type": "string"
           },
+          "target": {
+            "type": "string"
+          },
+          "accountName": {
+            "type": "string"
+          },
           "service": {
             "type": "string"
           },
