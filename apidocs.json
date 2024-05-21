@@ -14632,6 +14632,10 @@
         "instanceType": {
           "type": "string",
           "description": "The instance type of lineitem, if applicable. Such as `Gateway`, `Standard_B2s`, `Standard_D4s_v3`, etc."
+        },
+        "category": {
+          "type": "string",
+          "description": "The category of lineitem, if applicable. Such as `Software License`, `Marketplace`, `RI`, `Other`, etc."
         }
       }
     },
