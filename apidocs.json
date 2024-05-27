@@ -13013,31 +13013,6 @@
         }
       }
     },
-    "CalculatorCostModifierAwsOptionsModifier": {
-      "type": "object",
-      "properties": {
-        "formula": {
-          "type": "string",
-          "description": "Required. Our modifier formula. The final result should be a number. Integers are converted to floating points.\n\nSupported operators are `*`, `/`, `+`, `-`, and `%`. You can use parenthesis `()` to control precedence. Additional supported operators include `==`, `!=`, `!`, `\u003e`, `\u003c`, `\u003e=`, `\u003c=`, and the ternary operator `? :`, or `cond ? expr1 : expr2`.\nExamples:\n `1 + 2 * 3` = 7\n `(1 + 2) * 3` = 9\n `7.8 % 5` = 2.8\n `true ? 1.1 : 2.2` = 1.1\n `1 \u003e 2 ? 1.1 : 2.2` = 2.2\n\nYou can use the `cost` variable to reference the original lineitem cost. For example, if you want to add $10 to the cost, you can use the formula: `cost + 10`. For trueunblended-type billing groups, `cost` refers to the calculated trueunblended cost.\n\nThe `usage` variable refers to the usage amount of a lineitem. For example, if you want to use a different rate of $1.5, you can use the formula: `usage * 1.5`.\n\nThe `unblendedcost` variable refers to the lineitem's unblended cost as indicated in the CUR. Note that the `unblendedcost` variable is different than the `cost` variable, although there are cases where the two are equal.\n\nThe `ondemandrate` variable refers to the lineitem's public ondemand rate as indicated in the CUR.\n\nYou can check out this [guide](https://alphauslabs.github.io/docs/guides/aws-cost-mods/) for more examples."
-        },
-        "descriptionModifier": {
-          "$ref": "#/definitions/ModifierDescriptionModifier",
-          "description": "Optional. A simple description modifier."
-        }
-      }
-    },
-    "CalculatorCostModifierAwsOptionsQualifier": {
-      "type": "object",
-      "properties": {
-        "and": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          }
-        }
-      },
-      "description": "A map of \"key:value\" attribute filters. The key indicates the column name while the value is the filter value prefixed by either \"eq:\" (equal), \"re:\" (regular expressions based on https://github.com/google/re2), or \"!re:\" (reverse \"re:\"). No prefix is the same as \"eq:\". Multiple map items will use the logical 'and' operator, e.g. mapfilter1 \u0026\u0026 mapfilter2 \u0026\u0026 mapfilter3, etc.\n\nFor example, if you like your modifiers to apply to `productCode:AmazonEC2`, set to `{\"productCode\":\"eq:AmazonEC2\"}` or `{\"productCode\":\"AmazonEC2\"}`. You can also use a regular expression like `{\"productCode\":\"re:AmazonEC2|AmazonRDS\"}`, which means apply to all AmazonEC2 or AmazonRDS lineitems. Or reverse regexp, such as `{\"productCode\":\"!re:^AmazonEC2$\"}`, which means apply to all items except `AmazonEC2`. Valid keys are `productCode`, `serviceCode`, `region`, `zone`, `usageType`, `instanceType`, `operation`, `description`, and `resourceId`."
-    },
     "IdentityProvidersamlInfo": {
       "type": "object",
       "properties": {
@@ -13081,30 +13056,6 @@
         },
         "saml": {
           "$ref": "#/definitions/IdentityProvidersamlInfo"
-        }
-      }
-    },
-    "ModifierDescriptionModifier": {
-      "type": "object",
-      "properties": {
-        "prefix": {
-          "type": "string",
-          "description": "Optional. Add a prefix to the description."
-        },
-        "suffix": {
-          "type": "string",
-          "description": "Optional. Add a suffix to the description."
-        },
-        "replace": {
-          "type": "string",
-          "description": "Optional. Replace the description with the input."
-        },
-        "replaceMatch": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "Optional. Replace matching occurences with the input. The key part is the regular expression matcher based on https://github.com/google/re2, while the value is the replacement. The order of replacement is not guaranteed.\n\nYou can use the `{{ondemandrate}}` variable in the replacement value part to reference the public ondemand rate indicated in the CUR."
         }
       }
     },
@@ -19639,6 +19590,9 @@
         },
         "awsOptions": {
           "$ref": "#/definitions/v1CalculatorCostModifierAwsOptions"
+        },
+        "azureOptions": {
+          "$ref": "#/definitions/v1CalculatorCostModifierAzureOptions"
         }
       }
     },
@@ -19661,12 +19615,12 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/CalculatorCostModifierAwsOptionsQualifier"
+            "$ref": "#/definitions/v1CalculatorCostModifierAwsOptionsQualifier"
           },
           "description": "Optional. Conditional qualifiers to further filter the modifier targets. Multiple qualifiers use the logical `or` operator; `qualifiers[0] || qualifiers[1] || qualifiers[n]`."
         },
         "modifier": {
-          "$ref": "#/definitions/CalculatorCostModifierAwsOptionsModifier"
+          "$ref": "#/definitions/v1CalculatorCostModifierAwsOptionsModifier"
         },
         "after": {
           "type": "string",
@@ -19674,6 +19628,138 @@
         }
       },
       "description": "AWS-specific options definition."
+    },
+    "v1CalculatorCostModifierAwsOptionsModifier": {
+      "type": "object",
+      "properties": {
+        "formula": {
+          "type": "string",
+          "description": "Required. Our modifier formula. The final result should be a number. Integers are converted to floating points.\n\nSupported operators are `*`, `/`, `+`, `-`, and `%`. You can use parenthesis `()` to control precedence. Additional supported operators include `==`, `!=`, `!`, `\u003e`, `\u003c`, `\u003e=`, `\u003c=`, and the ternary operator `? :`, or `cond ? expr1 : expr2`.\nExamples:\n `1 + 2 * 3` = 7\n `(1 + 2) * 3` = 9\n `7.8 % 5` = 2.8\n `true ? 1.1 : 2.2` = 1.1\n `1 \u003e 2 ? 1.1 : 2.2` = 2.2\n\nYou can use the `cost` variable to reference the original lineitem cost. For example, if you want to add $10 to the cost, you can use the formula: `cost + 10`. For trueunblended-type billing groups, `cost` refers to the calculated trueunblended cost.\n\nThe `usage` variable refers to the usage amount of a lineitem. For example, if you want to use a different rate of $1.5, you can use the formula: `usage * 1.5`.\n\nThe `unblendedcost` variable refers to the lineitem's unblended cost as indicated in the CUR. Note that the `unblendedcost` variable is different than the `cost` variable, although there are cases where the two are equal.\n\nThe `ondemandrate` variable refers to the lineitem's public ondemand rate as indicated in the CUR.\n\nYou can check out this [guide](https://alphauslabs.github.io/docs/guides/aws-cost-mods/) for more examples."
+        },
+        "descriptionModifier": {
+          "$ref": "#/definitions/v1CalculatorCostModifierAwsOptionsModifierDescriptionModifier",
+          "description": "Optional. A simple description modifier."
+        }
+      }
+    },
+    "v1CalculatorCostModifierAwsOptionsModifierDescriptionModifier": {
+      "type": "object",
+      "properties": {
+        "prefix": {
+          "type": "string",
+          "description": "Optional. Add a prefix to the description."
+        },
+        "suffix": {
+          "type": "string",
+          "description": "Optional. Add a suffix to the description."
+        },
+        "replace": {
+          "type": "string",
+          "description": "Optional. Replace the description with the input."
+        },
+        "replaceMatch": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Replace matching occurences with the input. The key part is the regular expression matcher based on https://github.com/google/re2, while the value is the replacement. The order of replacement is not guaranteed.\n\nYou can use the `{{ondemandrate}}` variable in the replacement value part to reference the public ondemand rate indicated in the CUR."
+        }
+      }
+    },
+    "v1CalculatorCostModifierAwsOptionsQualifier": {
+      "type": "object",
+      "properties": {
+        "and": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "A map of \"key:value\" attribute filters. The key indicates the column name while the value is the filter value prefixed by either \"eq:\" (equal), \"re:\" (regular expressions based on https://github.com/google/re2), or \"!re:\" (reverse \"re:\"). No prefix is the same as \"eq:\". Multiple map items will use the logical 'and' operator, e.g. mapfilter1 \u0026\u0026 mapfilter2 \u0026\u0026 mapfilter3, etc.\n\nFor example, if you like your modifiers to apply to `productCode:AmazonEC2`, set to `{\"productCode\":\"eq:AmazonEC2\"}` or `{\"productCode\":\"AmazonEC2\"}`. You can also use a regular expression like `{\"productCode\":\"re:AmazonEC2|AmazonRDS\"}`, which means apply to all AmazonEC2 or AmazonRDS lineitems. Or reverse regexp, such as `{\"productCode\":\"!re:^AmazonEC2$\"}`, which means apply to all items except `AmazonEC2`. Valid keys are `productCode`, `serviceCode`, `region`, `zone`, `usageType`, `instanceType`, `operation`, `description`, and `resourceId`."
+    },
+    "v1CalculatorCostModifierAzureOptions": {
+      "type": "object",
+      "properties": {
+        "groupId": {
+          "type": "string",
+          "description": "Optional. The group to which the modifier is applied. Accepts billing internal ids. A comma-separated list of billing internal ids is also valid."
+        },
+        "payerId": {
+          "type": "string",
+          "description": "Optional. The payer id (a.k.a Azure billing id) to which the modifier is applied. A comma-separated list of payer ids is also valid."
+        },
+        "customerId": {
+          "type": "string",
+          "description": "Optional. The Azure customer id to which the modifier is applied. A comma-separated list of customers is also valid."
+        },
+        "subscriptionId": {
+          "type": "string",
+          "description": "Optional. The Azure subscription id to which the modifier is applied. A comma-separated list of subscriptions is also valid."
+        },
+        "entitlementId": {
+          "type": "string",
+          "description": "Optional. The Azure entitlement id to which the modifier is applied. A comma-separated list of entitlements is also valid."
+        },
+        "qualifiers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1CalculatorCostModifierAzureOptionsQualifier"
+          },
+          "description": "Optional. Conditional qualifiers to further filter the modifier targets. Multiple qualifiers use the logical `or` operator; `qualifiers[0] || qualifiers[1] || qualifiers[n]`."
+        },
+        "modifier": {
+          "$ref": "#/definitions/v1CalculatorCostModifierAzureOptionsModifier"
+        },
+        "after": {
+          "type": "string",
+          "description": "Optional. Specifies the modifier id in which this modifier will be applied after. For example, if you have another modifier `mod1` and you create a new modifier with `after` set to `mod1`, the calculator will apply `mod1` first, then this modifier. If `after` is not set, the application sequence for multiple overlapping modifiers will be by update timestamp, newest to oldest."
+        }
+      },
+      "description": "Azure-specific options definition."
+    },
+    "v1CalculatorCostModifierAzureOptionsModifier": {
+      "type": "object",
+      "properties": {
+        "formula": {
+          "type": "string",
+          "description": "Required. Our modifier formula. The final result should be a number. Integers are converted to floating points.\n\nSupported operators are `*`, `/`, `+`, `-`, and `%`. You can use parenthesis `()` to control precedence. Additional supported operators include `==`, `!=`, `!`, `\u003e`, `\u003c`, `\u003e=`, `\u003c=`, and the ternary operator `? :`, or `cond ? expr1 : expr2`.\nExamples:\n `1 + 2 * 3` = 7\n `(1 + 2) * 3` = 9\n `7.8 % 5` = 2.8\n `true ? 1.1 : 2.2` = 1.1\n `1 \u003e 2 ? 1.1 : 2.2` = 2.2\n\nYou can use the `cost` variable to reference the original lineitem cost. For example, if you want to add $10 to the cost, you can use the formula: `cost + 10`. For trueunblended-type billing groups, `cost` refers to the calculated trueunblended cost.\n\nThe `billableQuantity` variable refers to the billable quantity amount of a lineitem. For example, if you want to use a different rate of $1.5, you can use the formula: `billableQuantity * 1.5`.\n\nThe `effectiveUnitPrice` variable refers to the lineitem's effective unit price as indicated in the Azure invoice.\n\nYou can check out this [guide](https://alphauslabs.github.io/docs/guides/aws-cost-mods/) for more examples."
+        },
+        "descriptionModifier": {
+          "$ref": "#/definitions/v1CalculatorCostModifierAzureOptionsModifierDescriptionModifier",
+          "description": "Optional. A simple description modifier."
+        }
+      }
+    },
+    "v1CalculatorCostModifierAzureOptionsModifierDescriptionModifier": {
+      "type": "object",
+      "properties": {
+        "prefix": {
+          "type": "string",
+          "description": "Optional. Add a prefix to the description."
+        },
+        "suffix": {
+          "type": "string",
+          "description": "Optional. Add a suffix to the description."
+        },
+        "replace": {
+          "type": "string",
+          "description": "Optional. Replace the description with the input."
+        }
+      }
+    },
+    "v1CalculatorCostModifierAzureOptionsQualifier": {
+      "type": "object",
+      "properties": {
+        "and": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "A map of \"key:value\" attribute filters. The key indicates the column name while the value is the filter value prefixed by either \"eq:\" (equal), \"re:\" (regular expressions based on https://github.com/google/re2), or \"!re:\" (reverse \"re:\"). No prefix is the same as \"eq:\". Multiple map items will use the logical 'and' operator, e.g. mapfilter1 \u0026\u0026 mapfilter2 \u0026\u0026 mapfilter3, etc.\n\nFor example, if you like your modifiers to apply to `productId:CFQ7TTC0LFLX` (Microsoft 365 E3), set to `{\"productId\":\"eq:CFQ7TTC0LFLX\"}` or `{\"productId\":\"CFQ7TTC0LFLX\"}`. You can also use a regular expression like `{\"productId\":\"re:CFQ7TTC0LFLX|DZH318Z0BQ4L\"}`, which means apply to all `Microsoft 365 E3` or `Virtual Machines Ev3 Series` lineitems. Or reverse regexp, such as `{\"productId\":\"!re:^CFQ7TTC0LFLX$\"}`, which means apply to all items except `Microsoft 365 E3`. Valid keys are `productId`, `productName`, `skuId`, `skuName`, `subscriptionDescription`, `meterDescription`, and `domainName`."
     },
     "v1CheckAccountsResponse": {
       "type": "object",
