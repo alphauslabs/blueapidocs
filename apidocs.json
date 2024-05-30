@@ -19308,6 +19308,10 @@
         "projectId": {
           "type": "string",
           "description": "Project Id where the datasetId of BQ can be found."
+        },
+        "billingName": {
+          "type": "string",
+          "description": "Optional. Billing Name, this can be set by the users in Octo UI."
         }
       },
       "title": "Request message for AddBillingAccount"
