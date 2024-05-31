@@ -14175,13 +14175,13 @@
           "Cost"
         ],
         "summary": "Reads the usage-based cost details of an organization (Ripple) or billing group (Wave).",
-        "description": "At the moment, the supported `{vendor}` are `aws` and `gcp`. If datetime range parameters are not set, month-to-date (current month) will be returned.",
+        "description": "If datetime range parameters are not set, month-to-date (current month) will be returned.\n\nYou can refer to this [guide](https://labs.alphaus.cloud/docs/guides/aws-query-costs/) for more examples on how to use this API. Although the guide uses `bluectl`, the parameters are still the same.",
         "operationId": "Cost_ReadCosts",
         "parameters": [
           {
             "name": "vendor",
             "in": "path",
-            "description": "Required. At the moment, `aws`,`azure` and `gcp` are supported.",
+            "description": "Required. Supported vendors are `aws`,`azure` and `gcp`.",
             "required": true,
             "schema": {
               "type": "string"
