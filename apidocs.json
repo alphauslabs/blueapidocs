@@ -16816,21 +16816,6 @@
         }
       }
     },
-    "coverIncludeForecast": {
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "boolean",
-          "title": "true if include the forecast"
-        },
-        "startDate": {
-          "type": "string"
-        },
-        "endDate": {
-          "type": "string"
-        }
-      }
-    },
     "coverLambdaDetails": {
       "type": "object",
       "properties": {
@@ -21575,8 +21560,8 @@
           "description": "Optional. For custom selection when creating cost groups.\nThis field allows custom options for specifying criteria for cost group creation."
         },
         "includeForecast": {
-          "$ref": "#/definitions/coverIncludeForecast",
-          "title": "Optional. If set to true, include cost forecast for current month"
+          "type": "boolean",
+          "title": "Optional. If set to true, include cost forecast"
         }
       }
     },

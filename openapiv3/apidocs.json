@@ -20013,21 +20013,6 @@
           }
         }
       },
-      "coverIncludeForecast": {
-        "type": "object",
-        "properties": {
-          "include": {
-            "title": "true if include the forecast",
-            "type": "boolean"
-          },
-          "startDate": {
-            "type": "string"
-          },
-          "endDate": {
-            "type": "string"
-          }
-        }
-      },
       "coverLambdaDetails": {
         "type": "object",
         "properties": {
@@ -24671,7 +24656,8 @@
             "$ref": "#/components/schemas/v1GetCostUsageRequestCustomOptions"
           },
           "includeForecast": {
-            "$ref": "#/components/schemas/coverIncludeForecast"
+            "title": "Optional. If set to true, include cost forecast",
+            "type": "boolean"
           }
         }
       },
