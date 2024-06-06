@@ -18119,6 +18119,10 @@
           },
           "Status": {
             "type": "string"
+          },
+          "RegistrationMethod": {
+            "title": "Valid values for now are: 'console', 'terraform'. default would be 'console'",
+            "type": "string"
           }
         }
       },
