@@ -9930,7 +9930,7 @@
         "parameters": [
           {
             "name": "vendor",
-            "description": "Required. At the moment, only `aws` is supported.",
+            "description": "Required. At the moment, only `aws` and `azure` are supported.",
             "in": "path",
             "required": true,
             "type": "string"
@@ -10002,7 +10002,7 @@
         "parameters": [
           {
             "name": "vendor",
-            "description": "Required. At the moment, only `aws` is supported.",
+            "description": "Required. At the moment, only `aws` and `azure` are supported.",
             "in": "path",
             "required": true,
             "type": "string"
@@ -12276,6 +12276,10 @@
         "awsOptions": {
           "$ref": "#/definitions/v1CalculatorCostModifierAwsOptions",
           "description": "Required if `{vendor}` is `aws`. AWS-specific options."
+        },
+        "azureOptions": {
+          "$ref": "#/definitions/v1CalculatorCostModifierAzureOptions",
+          "description": "Required if `{vendor}` is `azure`. Azure-specific options."
         }
       },
       "description": "Request message for the Cost.CreateCalculatorCostModifier rpc."
@@ -20539,6 +20543,13 @@
       "type": "object",
       "properties": {
         "aws": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1CalculatorCostModifier"
+          }
+        },
+        "azure": {
           "type": "array",
           "items": {
             "type": "object",
