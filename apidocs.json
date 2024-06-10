@@ -14825,6 +14825,14 @@
         "category": {
           "type": "string",
           "description": "The category of lineitem, if applicable. Such as `Software License`, `Marketplace`, `RI`, `Other`, etc."
+        },
+        "subscriptionId": {
+          "type": "string",
+          "description": "The subscription id."
+        },
+        "entitlementId": {
+          "type": "string",
+          "description": "The entitlement id."
         }
       }
     },
