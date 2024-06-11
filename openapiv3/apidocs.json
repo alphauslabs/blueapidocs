@@ -9392,6 +9392,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Valid inputs are: \"rate\", \"usage\", and \"all\". If not set, default is \"all\".",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -19993,8 +20001,7 @@
             "format": "double"
           },
           "usageType": {
-            "type": "number",
-            "format": "double"
+            "type": "string"
           }
         }
       },
@@ -26060,6 +26067,9 @@
             "format": "int64"
           },
           "riType": {
+            "type": "string"
+          },
+          "type": {
             "type": "string"
           }
         }

@@ -7385,6 +7385,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "type",
+            "description": "Valid inputs are: \"rate\", \"usage\", and \"all\". If not set, default is \"all\".",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -16790,8 +16797,7 @@
           "format": "double"
         },
         "usageType": {
-          "type": "number",
-          "format": "double"
+          "type": "string"
         }
       }
     },
@@ -23000,6 +23006,9 @@
           "format": "int64"
         },
         "riType": {
+          "type": "string"
+        },
+        "type": {
           "type": "string"
         }
       }
