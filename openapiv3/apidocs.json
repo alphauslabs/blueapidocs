@@ -68,6 +68,14 @@
       }
     },
     {
+      "name": "Pricing",
+      "description": "(BETA) Pricing API. Base URL: https://api.alphaus.cloud/m/blue/pricing",
+      "externalDocs": {
+        "description": "Service definition",
+        "url": "https://github.com/alphauslabs/blueapi/tree/main/pricing/"
+      }
+    },
+    {
       "name": "Preferences",
       "description": "(BETA) Preferences API. Base URL: https://api.alphaus.cloud/m/blue",
       "externalDocs": {
@@ -2974,6 +2982,37 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/v1Preference"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v0/info": {
+      "get": {
+        "tags": [
+          "Pricing"
+        ],
+        "summary": "Test endpoint only.",
+        "operationId": "Pricing_GetInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetInfoResponse"
                 }
               }
             }
@@ -25237,6 +25276,15 @@
           }
         },
         "description": "Response message for GetForecasts per billing group."
+      },
+      "v1GetInfoResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "string"
+          }
+        },
+        "description": "Response message for the Pricing.GetInfo rpc."
       },
       "v1GetMemberCostGroupResponse": {
         "title": "Response message for GetMemberCostGroup",
