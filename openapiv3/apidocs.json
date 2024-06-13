@@ -3357,7 +3357,7 @@
           {
             "name": "target",
             "in": "path",
-            "description": "Required. (Project ID for GCP / Account ID for Azure)",
+            "description": "Required. (Billing ID for GCP / Account ID for Azure)",
             "required": true,
             "schema": {
               "type": "string"
@@ -3413,7 +3413,7 @@
           {
             "name": "target",
             "in": "path",
-            "description": "Project Id for GCP, Account Id for Azure",
+            "description": "Billing Id for GCP, Account Id for Azure",
             "required": true,
             "schema": {
               "type": "string"
@@ -3464,7 +3464,7 @@
           {
             "name": "target",
             "in": "path",
-            "description": "Required. (Project ID for GCP / Account ID for Azure)",
+            "description": "Required. (Billing ID for GCP / Account ID for Azure)",
             "required": true,
             "schema": {
               "type": "string"
@@ -20275,10 +20275,11 @@
       "coverGcpOptions": {
         "type": "object",
         "properties": {
-          "projectName": {
+          "accountName": {
             "type": "string"
           },
-          "billingId": {
+          "projectId": {
+            "title": "where dataset is stored",
             "type": "string"
           },
           "datasetId": {
@@ -24338,7 +24339,7 @@
         "type": "object",
         "properties": {
           "target": {
-            "title": "Project Id for GCP, Account Id for Azure",
+            "title": "Billing Id for GCP, Account Id for Azure",
             "type": "string"
           },
           "orgId": {
@@ -26633,7 +26634,7 @@
             "type": "string"
           },
           "target": {
-            "title": "Project Id for GCP, Account Id for Azure",
+            "title": "Billing Id for GCP, Account Id for Azure",
             "type": "string"
           },
           "accountType": {
