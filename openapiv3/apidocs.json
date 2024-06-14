@@ -25201,6 +25201,10 @@
           },
           "paymentMethod": {
             "type": "string"
+          },
+          "credit": {
+            "type": "number",
+            "format": "double"
           }
         }
       },
