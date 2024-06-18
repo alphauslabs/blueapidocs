@@ -15860,7 +15860,7 @@
         },
         "account": {
           "type": "string",
-          "title": "AWS linked account or Azure subscription or GCP project"
+          "title": "AWS account, GCP projectId, AzureCSP accountId"
         },
         "cost": {
           "type": "number",
@@ -15872,7 +15872,10 @@
         },
         "forecast": {
           "$ref": "#/definitions/coverAwsCostForecast",
-          "title": "Only for AWS for now"
+          "title": "Cost Forecast"
+        },
+        "region": {
+          "type": "string"
         }
       },
       "description": "Response message wrapper for cloud costs."

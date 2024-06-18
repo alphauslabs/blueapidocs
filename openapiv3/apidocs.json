@@ -19095,7 +19095,7 @@
             "type": "string"
           },
           "account": {
-            "title": "AWS linked account or Azure subscription or GCP project",
+            "title": "AWS account, GCP projectId, AzureCSP accountId",
             "type": "string"
           },
           "cost": {
@@ -19108,6 +19108,9 @@
           },
           "forecast": {
             "$ref": "#/components/schemas/coverAwsCostForecast"
+          },
+          "region": {
+            "type": "string"
           }
         },
         "description": "Response message wrapper for cloud costs."
