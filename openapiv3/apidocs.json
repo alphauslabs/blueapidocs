@@ -20201,6 +20201,9 @@
           },
           "personInCharge": {
             "type": "string"
+          },
+          "optimizationStatus": {
+            "type": "string"
           }
         }
       },
