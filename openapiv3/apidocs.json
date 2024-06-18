@@ -2999,6 +2999,49 @@
         }
       }
     },
+    "/v0/ec2": {
+      "post": {
+        "tags": [
+          "Pricing"
+        ],
+        "summary": "EC2 service pricing endpoint",
+        "operationId": "Pricing_GetEC2Info",
+        "requestBody": {
+          "description": "Request message for the Pricing.GetEC2Info rpc.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1GetEC2InfoRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetEC2InfoResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v0/info": {
       "get": {
         "tags": [
@@ -23266,6 +23309,45 @@
         },
         "description": "Response message for the Admin.CreateCloudWatchMetricsStream rpc."
       },
+      "v1Compute": {
+        "type": "object",
+        "properties": {
+          "sku": {
+            "type": "string"
+          },
+          "tenancy": {
+            "type": "string"
+          },
+          "os": {
+            "type": "string"
+          }
+        }
+      },
+      "v1ComputeDetails": {
+        "type": "object",
+        "properties": {
+          "instanceType": {
+            "type": "string"
+          },
+          "vcpu": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "memoryGb": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "os": {
+            "type": "string"
+          },
+          "tenancy": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string"
+          }
+        }
+      },
       "v1CostAllocatorDetails": {
         "type": "object",
         "properties": {
@@ -25274,6 +25356,39 @@
           }
         }
       },
+      "v1GetEC2InfoRequest": {
+        "type": "object",
+        "properties": {
+          "cloud": {
+            "type": "string"
+          },
+          "service": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string"
+          },
+          "compute": {
+            "$ref": "#/components/schemas/v1Compute"
+          }
+        },
+        "description": "Request message for the Pricing.GetEC2Info rpc."
+      },
+      "v1GetEC2InfoResponse": {
+        "type": "object",
+        "properties": {
+          "unitCostMatrix": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1UnitCost"
+            }
+          },
+          "serviceDetails": {
+            "$ref": "#/components/schemas/v1ServiceDetails"
+          }
+        },
+        "description": "Response message for the Pricing.GetEC2Info rpc."
+      },
       "v1GetFavoriteViewsResponse": {
         "title": "Response message for GetFavoriteViews",
         "type": "object",
@@ -26982,6 +27097,14 @@
         },
         "description": "Response message for ListSavings, RestoreSavings, SimulateSavings rpc."
       },
+      "v1ServiceDetails": {
+        "type": "object",
+        "properties": {
+          "compute": {
+            "$ref": "#/components/schemas/v1ComputeDetails"
+          }
+        }
+      },
       "v1SetCostGroupAnomalyOptionsResponse": {
         "type": "object",
         "properties": {
@@ -27057,6 +27180,21 @@
       },
       "v1UndoExecutedRecommendationResponse": {
         "type": "object"
+      },
+      "v1UnitCost": {
+        "type": "object",
+        "properties": {
+          "unit": {
+            "type": "string"
+          },
+          "unitCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "currency": {
+            "type": "string"
+          }
+        }
       },
       "v1UpdateAccountInvoiceServiceDiscountsResponse": {
         "type": "object",

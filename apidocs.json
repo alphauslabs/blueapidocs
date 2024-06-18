@@ -2351,6 +2351,40 @@
         ]
       }
     },
+    "/v0/ec2": {
+      "post": {
+        "summary": "EC2 service pricing endpoint",
+        "operationId": "Pricing_GetEC2Info",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetEC2InfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Request message for the Pricing.GetEC2Info rpc.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1GetEC2InfoRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Pricing"
+        ]
+      }
+    },
     "/v0/info": {
       "get": {
         "summary": "Test endpoint only.",
@@ -20120,6 +20154,45 @@
       },
       "description": "Response message for the Admin.CreateCloudWatchMetricsStream rpc."
     },
+    "v1Compute": {
+      "type": "object",
+      "properties": {
+        "sku": {
+          "type": "string"
+        },
+        "tenancy": {
+          "type": "string"
+        },
+        "os": {
+          "type": "string"
+        }
+      }
+    },
+    "v1ComputeDetails": {
+      "type": "object",
+      "properties": {
+        "instanceType": {
+          "type": "string"
+        },
+        "vcpu": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "memoryGb": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "os": {
+          "type": "string"
+        },
+        "tenancy": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        }
+      }
+    },
     "v1CostAllocatorDetails": {
       "type": "object",
       "properties": {
@@ -22188,6 +22261,40 @@
       },
       "title": "Response message for GetDiscountRecommendations"
     },
+    "v1GetEC2InfoRequest": {
+      "type": "object",
+      "properties": {
+        "cloud": {
+          "type": "string"
+        },
+        "service": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "compute": {
+          "$ref": "#/definitions/v1Compute"
+        }
+      },
+      "description": "Request message for the Pricing.GetEC2Info rpc."
+    },
+    "v1GetEC2InfoResponse": {
+      "type": "object",
+      "properties": {
+        "unitCostMatrix": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1UnitCost"
+          }
+        },
+        "serviceDetails": {
+          "$ref": "#/definitions/v1ServiceDetails"
+        }
+      },
+      "description": "Response message for the Pricing.GetEC2Info rpc."
+    },
     "v1GetFavoriteViewsResponse": {
       "type": "object",
       "properties": {
@@ -23933,6 +24040,14 @@
       },
       "description": "Response message for ListSavings, RestoreSavings, SimulateSavings rpc."
     },
+    "v1ServiceDetails": {
+      "type": "object",
+      "properties": {
+        "compute": {
+          "$ref": "#/definitions/v1ComputeDetails"
+        }
+      }
+    },
     "v1SetCostGroupAnomalyOptionsResponse": {
       "type": "object",
       "properties": {
@@ -24008,6 +24123,21 @@
     },
     "v1UndoExecutedRecommendationResponse": {
       "type": "object"
+    },
+    "v1UnitCost": {
+      "type": "object",
+      "properties": {
+        "unit": {
+          "type": "string"
+        },
+        "unitCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "currency": {
+          "type": "string"
+        }
+      }
     },
     "v1UpdateAccountInvoiceServiceDiscountsResponse": {
       "type": "object",
