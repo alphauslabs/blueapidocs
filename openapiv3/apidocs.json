@@ -20752,6 +20752,9 @@
           },
           "stackSet": {
             "type": "boolean"
+          },
+          "transferAccount": {
+            "type": "boolean"
           }
         }
       },
