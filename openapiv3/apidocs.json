@@ -19166,6 +19166,10 @@
           },
           "region": {
             "type": "string"
+          },
+          "billingAccount": {
+            "title": "AWS payer acount, GCP billing account, Azure Payer account",
+            "type": "string"
           }
         },
         "description": "Response message wrapper for cloud costs."
