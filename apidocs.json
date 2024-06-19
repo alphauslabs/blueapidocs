@@ -14525,21 +14525,6 @@
         }
       }
     },
-    "apiUtilizationData": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "chartData": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/blueapiapiChartData"
-          }
-        }
-      }
-    },
     "apiVendorDetail": {
       "type": "object",
       "properties": {
@@ -14980,6 +14965,18 @@
         },
         "channels": {
           "$ref": "#/definitions/coverAlertChannels"
+        }
+      }
+    },
+    "apicoverUtilizationData": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string"
+        },
+        "value": {
+          "type": "number",
+          "format": "float"
         }
       }
     },
@@ -15864,6 +15861,21 @@
         }
       }
     },
+    "blueapiapiUtilizationData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "chartData": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/blueapiapiChartData"
+          }
+        }
+      }
+    },
     "blueapicostv1CostItem": {
       "type": "object",
       "properties": {
@@ -16696,34 +16708,29 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/coverEC2CpuUtilization"
+            "$ref": "#/definitions/apicoverUtilizationData"
           }
         },
         "eC2DiskUtilization": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/coverEC2DiskUtilization"
+            "$ref": "#/definitions/apicoverUtilizationData"
           }
         },
         "eC2MemoryUtilization": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/coverEC2MemoryUtilization"
+            "$ref": "#/definitions/apicoverUtilizationData"
           }
-        }
-      }
-    },
-    "coverEC2CpuUtilization": {
-      "type": "object",
-      "properties": {
-        "date": {
-          "type": "string"
         },
-        "value": {
-          "type": "number",
-          "format": "float"
+        "networkTrafficData": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/apicoverUtilizationData"
+          }
         }
       }
     },
@@ -16741,30 +16748,6 @@
         },
         "platform": {
           "type": "string"
-        }
-      }
-    },
-    "coverEC2DiskUtilization": {
-      "type": "object",
-      "properties": {
-        "date": {
-          "type": "string"
-        },
-        "value": {
-          "type": "number",
-          "format": "float"
-        }
-      }
-    },
-    "coverEC2MemoryUtilization": {
-      "type": "object",
-      "properties": {
-        "date": {
-          "type": "string"
-        },
-        "value": {
-          "type": "number",
-          "format": "float"
         }
       }
     },
@@ -22651,7 +22634,7 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/apiUtilizationData"
+            "$ref": "#/definitions/blueapiapiUtilizationData"
           }
         }
       },

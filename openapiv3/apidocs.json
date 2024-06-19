@@ -17791,20 +17791,6 @@
           }
         }
       },
-      "apiUtilizationData": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "chartData": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/blueapiapiChartData"
-            }
-          }
-        }
-      },
       "apiVendorDetail": {
         "type": "object",
         "properties": {
@@ -18238,6 +18224,18 @@
           },
           "channels": {
             "$ref": "#/components/schemas/coverAlertChannels"
+          }
+        }
+      },
+      "apicoverUtilizationData": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string"
+          },
+          "value": {
+            "type": "number",
+            "format": "float"
           }
         }
       },
@@ -19109,6 +19107,20 @@
           }
         }
       },
+      "blueapiapiUtilizationData": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "chartData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/blueapiapiChartData"
+            }
+          }
+        }
+      },
       "blueapicostv1CostItem": {
         "type": "object",
         "properties": {
@@ -19911,32 +19923,26 @@
           "eC2CpuUtilization": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/coverEC2CpuUtilization"
+              "$ref": "#/components/schemas/apicoverUtilizationData"
             }
           },
           "eC2DiskUtilization": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/coverEC2DiskUtilization"
+              "$ref": "#/components/schemas/apicoverUtilizationData"
             }
           },
           "eC2MemoryUtilization": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/coverEC2MemoryUtilization"
+              "$ref": "#/components/schemas/apicoverUtilizationData"
             }
-          }
-        }
-      },
-      "coverEC2CpuUtilization": {
-        "type": "object",
-        "properties": {
-          "date": {
-            "type": "string"
           },
-          "value": {
-            "type": "number",
-            "format": "float"
+          "networkTrafficData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/apicoverUtilizationData"
+            }
           }
         }
       },
@@ -19954,30 +19960,6 @@
           },
           "platform": {
             "type": "string"
-          }
-        }
-      },
-      "coverEC2DiskUtilization": {
-        "type": "object",
-        "properties": {
-          "date": {
-            "type": "string"
-          },
-          "value": {
-            "type": "number",
-            "format": "float"
-          }
-        }
-      },
-      "coverEC2MemoryUtilization": {
-        "type": "object",
-        "properties": {
-          "date": {
-            "type": "string"
-          },
-          "value": {
-            "type": "number",
-            "format": "float"
           }
         }
       },
@@ -25736,7 +25718,7 @@
           "utilizationData": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/apiUtilizationData"
+              "$ref": "#/components/schemas/blueapiapiUtilizationData"
             }
           }
         }
