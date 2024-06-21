@@ -21728,6 +21728,9 @@
           "gpuMemory": {
             "type": "string"
           },
+          "instance": {
+            "type": "string"
+          },
           "instanceCapacity10xlarge": {
             "type": "string"
           },
