@@ -2351,40 +2351,6 @@
         ]
       }
     },
-    "/v0/ec2": {
-      "post": {
-        "summary": "EC2 service pricing endpoint",
-        "operationId": "Pricing_GetEC2Info",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1GetEC2InfoResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "description": "Request message for the Pricing.GetEC2Info rpc.",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1GetEC2InfoRequest"
-            }
-          }
-        ],
-        "tags": [
-          "Pricing"
-        ]
-      }
-    },
     "/v0/info": {
       "get": {
         "summary": "Test endpoint only.",
@@ -2403,6 +2369,48 @@
             }
           }
         },
+        "tags": [
+          "Pricing"
+        ]
+      }
+    },
+    "/v0/pricingInfo": {
+      "post": {
+        "summary": "Get pricing info",
+        "operationId": "Pricing_GetPricingInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1GetPricingInfoResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of v1GetPricingInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1GetPricingInfoRequest"
+            }
+          }
+        ],
         "tags": [
           "Pricing"
         ]
@@ -18342,6 +18350,270 @@
       },
       "description": "The `Status` type defines a logical error model that is suitable for\ndifferent programming environments, including REST APIs and RPC APIs. It is\nused by [gRPC](https://github.com/grpc). Each `Status` message contains\nthree pieces of data: error code, error message, and error details.\n\nYou can find out more about this error model and how to work with it in the\n[API Design Guide](https://cloud.google.com/apis/design/errors)."
     },
+    "pricingServiceDetails": {
+      "type": "object",
+      "properties": {
+        "offerTermCode": {
+          "type": "string"
+        },
+        "rateCode": {
+          "type": "string"
+        },
+        "termType": {
+          "type": "string"
+        },
+        "priceDescription": {
+          "type": "string"
+        },
+        "effectiveDate": {
+          "type": "string"
+        },
+        "startingRange": {
+          "type": "string"
+        },
+        "endingRange": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "relatedTo": {
+          "type": "string"
+        },
+        "leaseContractLength": {
+          "type": "string"
+        },
+        "purchaseOption": {
+          "type": "string"
+        },
+        "offeringClass": {
+          "type": "string"
+        },
+        "productFamily": {
+          "type": "string"
+        },
+        "serviceCode": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        },
+        "locationType": {
+          "type": "string"
+        },
+        "instanceType": {
+          "type": "string"
+        },
+        "currentGeneration": {
+          "type": "string"
+        },
+        "instanceFamily": {
+          "type": "string"
+        },
+        "vcpu": {
+          "type": "string"
+        },
+        "physicalProcessor": {
+          "type": "string"
+        },
+        "clockSpeed": {
+          "type": "string"
+        },
+        "memory": {
+          "type": "string"
+        },
+        "storage": {
+          "type": "string"
+        },
+        "networkPerformance": {
+          "type": "string"
+        },
+        "processorArchitecture": {
+          "type": "string"
+        },
+        "storageMedia": {
+          "type": "string"
+        },
+        "volumeType": {
+          "type": "string"
+        },
+        "maxVolumeSize": {
+          "type": "string"
+        },
+        "maxIopsVolume": {
+          "type": "string"
+        },
+        "maxIopsBurstPerformance": {
+          "type": "string"
+        },
+        "maxThroughputVolume": {
+          "type": "string"
+        },
+        "provisioned": {
+          "type": "string"
+        },
+        "tenancy": {
+          "type": "string"
+        },
+        "ebsOptimized": {
+          "type": "string"
+        },
+        "operatingSystem": {
+          "type": "string"
+        },
+        "licenseModel": {
+          "type": "string"
+        },
+        "groupings": {
+          "type": "string"
+        },
+        "groupDescription": {
+          "type": "string"
+        },
+        "transferType": {
+          "type": "string"
+        },
+        "fromLocation": {
+          "type": "string"
+        },
+        "fromLocationType": {
+          "type": "string"
+        },
+        "toLocation": {
+          "type": "string"
+        },
+        "toLocationType": {
+          "type": "string"
+        },
+        "usageType": {
+          "type": "string"
+        },
+        "operation": {
+          "type": "string"
+        },
+        "availabilityZone": {
+          "type": "string"
+        },
+        "capacityStatus": {
+          "type": "string"
+        },
+        "classicNetworkingSupport": {
+          "type": "string"
+        },
+        "dedicatedEbsThroughput": {
+          "type": "string"
+        },
+        "ecu": {
+          "type": "string"
+        },
+        "elasticGraphicsType": {
+          "type": "string"
+        },
+        "enhancedNetworkingSupported": {
+          "type": "string"
+        },
+        "fromRegionCode": {
+          "type": "string"
+        },
+        "gpu": {
+          "type": "string"
+        },
+        "gpuMemory": {
+          "type": "string"
+        },
+        "instanceCapacity10xlarge": {
+          "type": "string"
+        },
+        "instanceCapacity12xlarge": {
+          "type": "string"
+        },
+        "instanceCapacity16xlarge": {
+          "type": "string"
+        },
+        "instanceCapacity18xlarge": {
+          "type": "string"
+        },
+        "instanceCapacity24xlarge": {
+          "type": "string"
+        },
+        "instanceCapacity2xlarge": {
+          "type": "string"
+        },
+        "instanceCapacity32xlarge": {
+          "type": "string"
+        },
+        "instanceCapacity4xlarge": {
+          "type": "string"
+        },
+        "instanceCapacity8xlarge": {
+          "type": "string"
+        },
+        "instanceCapacity9xlarge": {
+          "type": "string"
+        },
+        "instanceCapacityLarge": {
+          "type": "string"
+        },
+        "instanceCapacityMedium": {
+          "type": "string"
+        },
+        "instanceCapacityMetal": {
+          "type": "string"
+        },
+        "instanceCapacityXLarge": {
+          "type": "string"
+        },
+        "instanceSku": {
+          "type": "string"
+        },
+        "intelAvx2Available": {
+          "type": "string"
+        },
+        "intelAvxAvailable": {
+          "type": "string"
+        },
+        "intelTurboAvailable": {
+          "type": "string"
+        },
+        "marketOption": {
+          "type": "string"
+        },
+        "normalizationSizeFactor": {
+          "type": "string"
+        },
+        "physicalCores": {
+          "type": "string"
+        },
+        "preInstalledSw": {
+          "type": "string"
+        },
+        "processorFeatures": {
+          "type": "string"
+        },
+        "productType": {
+          "type": "string"
+        },
+        "resourceType": {
+          "type": "string"
+        },
+        "serviceName": {
+          "type": "string"
+        },
+        "snapShotArchiveFeeType": {
+          "type": "string"
+        },
+        "toRegionCode": {
+          "type": "string"
+        },
+        "volumeApiName": {
+          "type": "string"
+        },
+        "vpcNetworkingSupport": {
+          "type": "string"
+        }
+      },
+      "title": "ServiceDetails message"
+    },
     "protobufAny": {
       "type": "object",
       "properties": {
@@ -20143,45 +20415,6 @@
         }
       },
       "description": "Response message for the Admin.CreateCloudWatchMetricsStream rpc."
-    },
-    "v1Compute": {
-      "type": "object",
-      "properties": {
-        "sku": {
-          "type": "string"
-        },
-        "tenancy": {
-          "type": "string"
-        },
-        "os": {
-          "type": "string"
-        }
-      }
-    },
-    "v1ComputeDetails": {
-      "type": "object",
-      "properties": {
-        "instanceType": {
-          "type": "string"
-        },
-        "vcpu": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "memoryGb": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "os": {
-          "type": "string"
-        },
-        "tenancy": {
-          "type": "string"
-        },
-        "region": {
-          "type": "string"
-        }
-      }
     },
     "v1CostAllocatorDetails": {
       "type": "object",
@@ -22251,40 +22484,6 @@
       },
       "title": "Response message for GetDiscountRecommendations"
     },
-    "v1GetEC2InfoRequest": {
-      "type": "object",
-      "properties": {
-        "cloud": {
-          "type": "string"
-        },
-        "service": {
-          "type": "string"
-        },
-        "region": {
-          "type": "string"
-        },
-        "compute": {
-          "$ref": "#/definitions/v1Compute"
-        }
-      },
-      "description": "Request message for the Pricing.GetEC2Info rpc."
-    },
-    "v1GetEC2InfoResponse": {
-      "type": "object",
-      "properties": {
-        "unitCostMatrix": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1UnitCost"
-          }
-        },
-        "serviceDetails": {
-          "$ref": "#/definitions/v1ServiceDetails"
-        }
-      },
-      "description": "Response message for the Pricing.GetEC2Info rpc."
-    },
     "v1GetFavoriteViewsResponse": {
       "type": "object",
       "properties": {
@@ -22468,6 +22667,55 @@
         }
       },
       "title": "Response message for GetPayers"
+    },
+    "v1GetPricingInfoRequest": {
+      "type": "object",
+      "properties": {
+        "cloud": {
+          "type": "string"
+        },
+        "service": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        }
+      },
+      "title": "Request message for GetPricingInfo"
+    },
+    "v1GetPricingInfoResponse": {
+      "type": "object",
+      "properties": {
+        "cloud": {
+          "type": "string"
+        },
+        "service": {
+          "type": "string"
+        },
+        "regionCode": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        },
+        "sku": {
+          "type": "string"
+        },
+        "unit": {
+          "type": "string"
+        },
+        "priceperunit": {
+          "type": "number",
+          "format": "double"
+        },
+        "serviceDetails": {
+          "$ref": "#/definitions/pricingServiceDetails"
+        }
+      },
+      "title": "Response message for GetPricingInfo"
     },
     "v1GetRecommendationResponse": {
       "type": "object",
@@ -24033,14 +24281,6 @@
       },
       "description": "Response message for ListSavings, RestoreSavings, SimulateSavings rpc."
     },
-    "v1ServiceDetails": {
-      "type": "object",
-      "properties": {
-        "compute": {
-          "$ref": "#/definitions/v1ComputeDetails"
-        }
-      }
-    },
     "v1SetCostGroupAnomalyOptionsResponse": {
       "type": "object",
       "properties": {
@@ -24116,21 +24356,6 @@
     },
     "v1UndoExecutedRecommendationResponse": {
       "type": "object"
-    },
-    "v1UnitCost": {
-      "type": "object",
-      "properties": {
-        "unit": {
-          "type": "string"
-        },
-        "unitCost": {
-          "type": "number",
-          "format": "double"
-        },
-        "currency": {
-          "type": "string"
-        }
-      }
     },
     "v1UpdateAccountInvoiceServiceDiscountsResponse": {
       "type": "object",
