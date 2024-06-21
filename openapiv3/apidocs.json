@@ -8402,6 +8402,48 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/me/costgroupcreation": {
+      "put": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "WORK-IN-PROGRESS: Set user preference in cost group creation UI",
+        "operationId": "Cover_UpdateCostGroupCreationUI",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1UpdateCostGroupCreationUIRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1UpdateCostGroupCreationUIResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/me/email": {
       "put": {
         "tags": [
@@ -21338,6 +21380,12 @@
           },
           "isAuth0": {
             "type": "boolean"
+          },
+          "readCostGroupCreationPopup": {
+            "type": "boolean"
+          },
+          "useNewCostGroupCreationUI": {
+            "type": "boolean"
           }
         }
       },
@@ -27496,6 +27544,22 @@
         "properties": {
           "combinations": {
             "$ref": "#/components/schemas/coverCombinations"
+          }
+        }
+      },
+      "v1UpdateCostGroupCreationUIRequest": {
+        "type": "object",
+        "properties": {
+          "useNewCostGroupCreationUI": {
+            "type": "boolean"
+          }
+        }
+      },
+      "v1UpdateCostGroupCreationUIResponse": {
+        "type": "object",
+        "properties": {
+          "userData": {
+            "$ref": "#/components/schemas/coverUserData"
           }
         }
       },

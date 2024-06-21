@@ -6590,6 +6590,39 @@
         ]
       }
     },
+    "/v1/me/costgroupcreation": {
+      "put": {
+        "summary": "WORK-IN-PROGRESS: Set user preference in cost group creation UI",
+        "operationId": "Cover_UpdateCostGroupCreationUI",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateCostGroupCreationUIResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1UpdateCostGroupCreationUIRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
     "/v1/me/email": {
       "put": {
         "summary": "Modify user's email",
@@ -18130,6 +18163,12 @@
         },
         "isAuth0": {
           "type": "boolean"
+        },
+        "readCostGroupCreationPopup": {
+          "type": "boolean"
+        },
+        "useNewCostGroupCreationUI": {
+          "type": "boolean"
         }
       }
     },
@@ -24442,6 +24481,22 @@
         }
       },
       "title": "Response message for UpdateCostGroupCombinations"
+    },
+    "v1UpdateCostGroupCreationUIRequest": {
+      "type": "object",
+      "properties": {
+        "useNewCostGroupCreationUI": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1UpdateCostGroupCreationUIResponse": {
+      "type": "object",
+      "properties": {
+        "userData": {
+          "$ref": "#/definitions/coverUserData"
+        }
+      }
     },
     "v1UpdateCostGroupDescriptionResponse": {
       "type": "object",
