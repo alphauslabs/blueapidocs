@@ -19178,6 +19178,10 @@
           "billingAccount": {
             "title": "AWS payer acount, GCP billing account, Azure Payer account",
             "type": "string"
+          },
+          "tagValue": {
+            "title": "Tag Value. Contains tag value of the input tag key. Only used if groupBy is set to tag",
+            "type": "string"
           }
         },
         "description": "Response message wrapper for cloud costs."
@@ -25329,6 +25333,10 @@
             "items": {
               "$ref": "#/components/schemas/v1ReadCostsRequestOptionsFilters"
             }
+          },
+          "tagKey": {
+            "type": "string",
+            "description": "Optional. Tag key, only used when groupBy is set to `tag`."
           }
         }
       },
@@ -25356,6 +25364,10 @@
             "items": {
               "$ref": "#/components/schemas/v1ReadCostsRequestOptionsFilters"
             }
+          },
+          "tagKey": {
+            "type": "string",
+            "description": "Optional. Tag key, only used when groupBy is set to `tag`."
           }
         }
       },
@@ -25442,6 +25454,10 @@
             "items": {
               "$ref": "#/components/schemas/v1ReadCostsRequestOptionsFilters"
             }
+          },
+          "tagKey": {
+            "type": "string",
+            "description": "Optional. Tag key, only used when groupBy is set to `tag`."
           }
         }
       },

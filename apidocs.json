@@ -15934,6 +15934,10 @@
         "billingAccount": {
           "type": "string",
           "title": "AWS payer acount, GCP billing account, Azure Payer account"
+        },
+        "tagValue": {
+          "type": "string",
+          "title": "Tag Value. Contains tag value of the input tag key. Only used if groupBy is set to tag"
         }
       },
       "description": "Response message wrapper for cloud costs."
@@ -22221,6 +22225,10 @@
             "$ref": "#/definitions/v1ReadCostsRequestOptionsFilters"
           },
           "description": "Optional. A list of filtering options specific for tags. \nMultiple filter items will use the logical 'or' operator, e.g. filter1 || filter2 || filter3, etc. Discarded when `groupByColumns` field is set or if `groupByMonth` is true."
+        },
+        "tagKey": {
+          "type": "string",
+          "description": "Optional. Tag key, only used when groupBy is set to `tag`."
         }
       }
     },
@@ -22250,6 +22258,10 @@
             "$ref": "#/definitions/v1ReadCostsRequestOptionsFilters"
           },
           "description": "Optional. A list of filtering options specific for tags. \nMultiple filter items will use the logical 'or' operator, e.g. filter1 || filter2 || filter3, etc."
+        },
+        "tagKey": {
+          "type": "string",
+          "description": "Optional. Tag key, only used when groupBy is set to `tag`."
         }
       }
     },
@@ -22343,6 +22355,10 @@
             "type": "object",
             "$ref": "#/definitions/v1ReadCostsRequestOptionsFilters"
           }
+        },
+        "tagKey": {
+          "type": "string",
+          "description": "Optional. Tag key, only used when groupBy is set to `tag`."
         }
       }
     },
