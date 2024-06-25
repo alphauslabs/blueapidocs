@@ -20004,6 +20004,49 @@
           }
         }
       },
+      "coverEBSDetails": {
+        "type": "object",
+        "properties": {
+          "currentEBSDetails": {
+            "$ref": "#/components/schemas/coverCurrentEBSDetails"
+          },
+          "upgradeEBSDetails": {
+            "$ref": "#/components/schemas/coverEBSRecommendationDetails"
+          }
+        }
+      },
+      "coverEBSRecommendationDetails": {
+        "type": "object",
+        "properties": {
+          "attachmentState": {
+            "type": "string"
+          },
+          "iops": {
+            "type": "number",
+            "format": "double"
+          },
+          "throughput": {
+            "type": "number",
+            "format": "double"
+          },
+          "sizeInGb": {
+            "type": "number",
+            "format": "double"
+          },
+          "EstcostCalculation": {
+            "$ref": "#/components/schemas/coverCostCalculation"
+          },
+          "volumeUsageGP3": {
+            "$ref": "#/components/schemas/coverAPS1EBSDetails"
+          },
+          "volumeIopsGP3": {
+            "$ref": "#/components/schemas/coverAPS1EBSDetails"
+          },
+          "volumeThroughputGP3": {
+            "$ref": "#/components/schemas/coverAPS1EBSDetails"
+          }
+        }
+      },
       "coverEC2Details": {
         "type": "object",
         "properties": {
@@ -20105,6 +20148,9 @@
       "coverESDetails": {
         "type": "object",
         "properties": {
+          "currentGeneration": {
+            "type": "boolean"
+          },
           "instanceClass": {
             "type": "string"
           },
@@ -20124,16 +20170,27 @@
           }
         }
       },
+      "coverEcsRightSizingRecommendationDetails": {
+        "type": "object",
+        "properties": {
+          "EcsCurrentConfiguration": {
+            "$ref": "#/components/schemas/coverResourceDetails"
+          },
+          "EcsRecommendedConfiguration": {
+            "$ref": "#/components/schemas/coverResourceDetails"
+          }
+        }
+      },
       "coverElasticCacheDetails": {
         "type": "object",
         "properties": {
-          "family": {
-            "type": "string"
+          "currentGeneration": {
+            "type": "boolean"
           },
           "nodeType": {
             "type": "string"
           },
-          "productDescription": {
+          "family": {
             "type": "string"
           }
         }
@@ -20427,42 +20484,14 @@
           }
         }
       },
-      "coverLambdaDetails": {
-        "type": "object",
-        "properties": {
-          "architecture": {
-            "type": "string"
-          },
-          "memorysizeInMB": {
-            "type": "number",
-            "format": "double"
-          },
-          "platform": {
-            "type": "string"
-          },
-          "vCpu": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "costCalculation": {
-            "$ref": "#/components/schemas/coverCostCalculation"
-          },
-          "apn1LambdaGBUsage": {
-            "$ref": "#/components/schemas/coverAPNDetails"
-          },
-          "apn1RequestUsage": {
-            "$ref": "#/components/schemas/coverAPNDetails"
-          }
-        }
-      },
       "coverLambdaRightSizingRecommendationDetails": {
         "type": "object",
         "properties": {
           "lambdaCurrentConfiguration": {
-            "$ref": "#/components/schemas/coverLambdaDetails"
+            "$ref": "#/components/schemas/coverResourceDetails"
           },
           "lambdaRecommendedConfiguration": {
-            "$ref": "#/components/schemas/coverLambdaDetails"
+            "$ref": "#/components/schemas/coverResourceDetails"
           }
         }
       },
@@ -20770,10 +20799,13 @@
       "coverRedshiftDetails": {
         "type": "object",
         "properties": {
-          "family": {
-            "type": "string"
+          "currentGeneration": {
+            "type": "boolean"
           },
           "nodeType": {
+            "type": "string"
+          },
+          "family": {
             "type": "string"
           }
         }
@@ -20863,6 +20895,34 @@
           },
           "status": {
             "type": "string"
+          }
+        }
+      },
+      "coverResourceDetails": {
+        "type": "object",
+        "properties": {
+          "architecture": {
+            "type": "string"
+          },
+          "memorysizeInMB": {
+            "type": "number",
+            "format": "double"
+          },
+          "platform": {
+            "type": "string"
+          },
+          "vCpu": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "costCalculation": {
+            "$ref": "#/components/schemas/coverCostCalculation"
+          },
+          "apn1details0": {
+            "$ref": "#/components/schemas/coverAPNDetails"
+          },
+          "apn1details1": {
+            "$ref": "#/components/schemas/coverAPNDetails"
           }
         }
       },
@@ -20962,6 +21022,12 @@
           },
           "lambdaRightSizingRecommendationDetails": {
             "$ref": "#/components/schemas/coverLambdaRightSizingRecommendationDetails"
+          },
+          "ebsRightSizingRecommendationDetails": {
+            "$ref": "#/components/schemas/coverEBSDetails"
+          },
+          "ecsRightSizingRecommendationDetails": {
+            "$ref": "#/components/schemas/coverEcsRightSizingRecommendationDetails"
           },
           "estimatedMonthlyCost": {
             "type": "number",
@@ -21210,57 +21276,6 @@
           }
         }
       },
-      "coverUpgradeEBSDetails": {
-        "type": "object",
-        "properties": {
-          "currentEBSDetails": {
-            "$ref": "#/components/schemas/coverCurrentEBSDetails"
-          },
-          "upgradeEBSDetails": {
-            "$ref": "#/components/schemas/coverUpgradeEBSRecommendationDetails"
-          },
-          "estimatedMonthlyCost": {
-            "type": "number",
-            "format": "double"
-          },
-          "estimatedMonthlySavings": {
-            "type": "number",
-            "format": "double"
-          }
-        }
-      },
-      "coverUpgradeEBSRecommendationDetails": {
-        "type": "object",
-        "properties": {
-          "attachmentState": {
-            "type": "string"
-          },
-          "iops": {
-            "type": "number",
-            "format": "double"
-          },
-          "throughput": {
-            "type": "number",
-            "format": "double"
-          },
-          "sizeInGb": {
-            "type": "number",
-            "format": "double"
-          },
-          "EstcostCalculation": {
-            "$ref": "#/components/schemas/coverCostCalculation"
-          },
-          "volumeUsageGP3": {
-            "$ref": "#/components/schemas/coverAPS1EBSDetails"
-          },
-          "volumeIopsGP3": {
-            "$ref": "#/components/schemas/coverAPS1EBSDetails"
-          },
-          "volumeThroughputGP3": {
-            "$ref": "#/components/schemas/coverAPS1EBSDetails"
-          }
-        }
-      },
       "coverUpgradeEC2Details": {
         "type": "object",
         "properties": {
@@ -21275,14 +21290,6 @@
           },
           "estimatedCostCalculation": {
             "$ref": "#/components/schemas/coverCostCalculation"
-          },
-          "estimatedMonthlyCost": {
-            "type": "number",
-            "format": "double"
-          },
-          "estimatedMonthlySavings": {
-            "type": "number",
-            "format": "double"
           }
         }
       },
@@ -21293,7 +21300,15 @@
             "$ref": "#/components/schemas/coverUpgradeEC2Details"
           },
           "upgradeEBSDetails": {
-            "$ref": "#/components/schemas/coverUpgradeEBSDetails"
+            "$ref": "#/components/schemas/coverEBSDetails"
+          },
+          "estimatedMonthlyCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "estimatedMonthlySavings": {
+            "type": "number",
+            "format": "double"
           }
         }
       },
