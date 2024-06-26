@@ -12968,6 +12968,10 @@
         "anomaly": {
           "type": "boolean",
           "title": "Required. Only anomaly is supported as of now"
+        },
+        "visualBuilder": {
+          "type": "boolean",
+          "title": "Optional. Temporary storage of cost group creation UI preference"
         }
       }
     },
@@ -17080,6 +17084,10 @@
         "anomaly": {
           "type": "boolean",
           "title": "Anomaly is supported for now"
+        },
+        "visualBuilder": {
+          "type": "boolean",
+          "title": "Temporary indicator if cost group was created via new visual builder"
         }
       }
     },
