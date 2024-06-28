@@ -2374,15 +2374,15 @@
         ]
       }
     },
-    "/v0/pricingInfo": {
+    "/v0/pricing": {
       "post": {
-        "summary": "Get pricing info",
-        "operationId": "Pricing_GetPricingInfo",
+        "summary": "WORK-IN-PROGRESS: Get cloud pricing information",
+        "operationId": "Pricing_GetPricing",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1GetPricingInfoResponse"
+              "$ref": "#/definitions/v1GetPricingResponse"
             }
           },
           "default": {
@@ -2398,7 +2398,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v1GetPricingInfoRequest"
+              "$ref": "#/definitions/v1GetPricingRequest"
             }
           }
         ],
@@ -18666,34 +18666,34 @@
         "instance": {
           "type": "string"
         },
-        "instanceCapacity10xlarge": {
+        "instanceCapacity10Xlarge": {
           "type": "string"
         },
-        "instanceCapacity12xlarge": {
+        "instanceCapacity12Xlarge": {
           "type": "string"
         },
-        "instanceCapacity16xlarge": {
+        "instanceCapacity16Xlarge": {
           "type": "string"
         },
-        "instanceCapacity18xlarge": {
+        "instanceCapacity18Xlarge": {
           "type": "string"
         },
-        "instanceCapacity24xlarge": {
+        "instanceCapacity24Xlarge": {
           "type": "string"
         },
-        "instanceCapacity2xlarge": {
+        "instanceCapacity2Xlarge": {
           "type": "string"
         },
-        "instanceCapacity32xlarge": {
+        "instanceCapacity32Xlarge": {
           "type": "string"
         },
-        "instanceCapacity4xlarge": {
+        "instanceCapacity4Xlarge": {
           "type": "string"
         },
-        "instanceCapacity8xlarge": {
+        "instanceCapacity8Xlarge": {
           "type": "string"
         },
-        "instanceCapacity9xlarge": {
+        "instanceCapacity9Xlarge": {
           "type": "string"
         },
         "instanceCapacityLarge": {
@@ -18705,7 +18705,7 @@
         "instanceCapacityMetal": {
           "type": "string"
         },
-        "instanceCapacityXLarge": {
+        "instanceCapacityXlarge": {
           "type": "string"
         },
         "instanceSku": {
@@ -22828,31 +22828,36 @@
       },
       "title": "Response message for GetPayers"
     },
-    "v1GetPricingInfoRequest": {
+    "v1GetPricingRequest": {
       "type": "object",
       "properties": {
         "cloud": {
-          "type": "string"
+          "type": "string",
+          "description": "Required. Cloud vendor (aws/azure). Supports aws and azure for now."
         },
         "service": {
-          "type": "string"
+          "type": "string",
+          "description": "Required. Cloud vendor service. \nec2, lambda, s3, elasticBlockStorage, dataTransfer, rds, dynamoDb, and cloudWatch services for aws cloud vendor.\nvirualMachine, functions, blobStorage, storageAccount, dataTransfer, sqlDatabase,cosmosDb, and monitor services for  azure cloud vendor."
         },
         "region": {
-          "type": "string"
+          "type": "string",
+          "description": "Required. Region."
         },
         "token": {
-          "type": "string"
+          "type": "string",
+          "description": "Required. Token for continuing request."
         },
         "columns": {
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "description": "Optional. This string represent valid columns which will serve as basis as to what columns will be returned by the API.\nAll columns will be returned if this array is empty.\nThis is not yet implemented."
         }
       },
-      "title": "Request message for GetPricingInfo"
+      "title": "Request message for GetPricing"
     },
-    "v1GetPricingInfoResponse": {
+    "v1GetPricingResponse": {
       "type": "object",
       "properties": {
         "cloud": {
@@ -22873,7 +22878,7 @@
         "unit": {
           "type": "string"
         },
-        "priceperunit": {
+        "pricePerUnit": {
           "type": "number",
           "format": "double"
         },
@@ -22881,7 +22886,7 @@
           "$ref": "#/definitions/pricingServiceDetails"
         }
       },
-      "title": "Response message for GetPricingInfo"
+      "title": "Response message for GetPricing"
     },
     "v1GetRecommendationResponse": {
       "type": "object",
