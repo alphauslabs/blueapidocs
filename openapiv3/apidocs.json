@@ -3049,20 +3049,11 @@
         },
         "responses": {
           "200": {
-            "description": "A successful response.(streaming responses)",
+            "description": "A successful response.",
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "Stream result of v1GetPricingInfoResponse",
-                  "type": "object",
-                  "properties": {
-                    "result": {
-                      "$ref": "#/components/schemas/v1GetPricingInfoResponse"
-                    },
-                    "error": {
-                      "$ref": "#/components/schemas/googlerpcStatus"
-                    }
-                  }
+                  "$ref": "#/components/schemas/v1GetPricingInfoResponse"
                 }
               }
             }
@@ -25896,6 +25887,12 @@
           },
           "token": {
             "type": "string"
+          },
+          "columns": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },

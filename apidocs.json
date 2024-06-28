@@ -2380,18 +2380,9 @@
         "operationId": "Pricing_GetPricingInfo",
         "responses": {
           "200": {
-            "description": "A successful response.(streaming responses)",
+            "description": "A successful response.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "result": {
-                  "$ref": "#/definitions/v1GetPricingInfoResponse"
-                },
-                "error": {
-                  "$ref": "#/definitions/googlerpcStatus"
-                }
-              },
-              "title": "Stream result of v1GetPricingInfoResponse"
+              "$ref": "#/definitions/v1GetPricingInfoResponse"
             }
           },
           "default": {
@@ -22799,6 +22790,12 @@
         },
         "token": {
           "type": "string"
+        },
+        "columns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "title": "Request message for GetPricingInfo"
