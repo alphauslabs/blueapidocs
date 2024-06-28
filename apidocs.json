@@ -16130,6 +16130,9 @@
         },
         "migrateRecommendationDetails": {
           "$ref": "#/definitions/coverMigrateRecommendationDetails"
+        },
+        "stopInstanceRecommendationDetails": {
+          "$ref": "#/definitions/coverStopInstanceRecommendationDetails"
         }
       }
     },
@@ -18035,6 +18038,39 @@
         "totalRecommendationCount": {
           "type": "string",
           "format": "int64"
+        }
+      }
+    },
+    "coverStopEC2InstanceRecommendationDetails": {
+      "type": "object",
+      "properties": {
+        "instanceId": {
+          "type": "string"
+        },
+        "instanceType": {
+          "type": "string"
+        },
+        "AveCpuUtilizationBy14Day": {
+          "type": "number",
+          "format": "double"
+        },
+        "AveNetworkIOBy14Day": {
+          "type": "number",
+          "format": "double"
+        },
+        "cpuUtilization": {
+          "$ref": "#/definitions/apicoverUtilizationData"
+        },
+        "netWorkIO": {
+          "$ref": "#/definitions/apicoverUtilizationData"
+        }
+      }
+    },
+    "coverStopInstanceRecommendationDetails": {
+      "type": "object",
+      "properties": {
+        "stopEC2InstanceRecommendationDetails": {
+          "$ref": "#/definitions/coverStopEC2InstanceRecommendationDetails"
         }
       }
     },
