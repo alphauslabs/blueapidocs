@@ -21309,10 +21309,16 @@
             "format": "double"
           },
           "cpuUtilization": {
-            "$ref": "#/components/schemas/apicoverUtilizationData"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/apicoverUtilizationData"
+            }
           },
           "netWorkIO": {
-            "$ref": "#/components/schemas/apicoverUtilizationData"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/apicoverUtilizationData"
+            }
           }
         }
       },
