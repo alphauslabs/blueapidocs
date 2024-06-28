@@ -15985,6 +15985,9 @@
           },
           "awsOptions": {
             "$ref": "#/components/schemas/v1ReadCostAttributesRequestAwsOptions"
+          },
+          "azureOptions": {
+            "$ref": "#/components/schemas/v1ReadCostAttributesRequestAzureOptions"
           }
         },
         "description": "Request message for the Cost.ReadCostAttributes rpc."
@@ -16481,7 +16484,7 @@
             "$ref": "#/components/schemas/coverGcpOptions"
           },
           "azureOptions": {
-            "$ref": "#/components/schemas/coverAzureOptions"
+            "$ref": "#/components/schemas/apicoverAzureOptions"
           },
           "awsOptions": {
             "$ref": "#/components/schemas/apicoverAwsOptions"
@@ -18198,6 +18201,44 @@
           }
         }
       },
+      "apiazureCostAttribute": {
+        "type": "object",
+        "properties": {
+          "customerId": {
+            "type": "string"
+          },
+          "subscriptionId": {
+            "type": "string"
+          },
+          "entitlementId": {
+            "type": "string"
+          },
+          "groupId": {
+            "type": "string"
+          },
+          "productId": {
+            "type": "string"
+          },
+          "productName": {
+            "type": "string"
+          },
+          "skuId": {
+            "type": "string"
+          },
+          "skuName": {
+            "type": "string"
+          },
+          "descriptiom": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "domainName": {
+            "type": "string"
+          }
+        }
+      },
       "apicoverAccount": {
         "type": "object",
         "properties": {
@@ -18254,6 +18295,32 @@
           },
           "RegistrationMethod": {
             "title": "Valid values for now are: 'console', 'terraform'. default would be 'console'",
+            "type": "string"
+          }
+        }
+      },
+      "apicoverAzureOptions": {
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string"
+          },
+          "azureCustomerId": {
+            "type": "string"
+          },
+          "azurePlanId": {
+            "type": "string"
+          },
+          "serviceAcct": {
+            "type": "string"
+          },
+          "partnerAcct": {
+            "type": "string"
+          },
+          "companyId": {
+            "type": "string"
+          },
+          "payerId": {
             "type": "string"
           }
         }
@@ -19566,32 +19633,6 @@
       },
       "coverAzureInputs": {
         "type": "object"
-      },
-      "coverAzureOptions": {
-        "type": "object",
-        "properties": {
-          "accountName": {
-            "type": "string"
-          },
-          "azureCustomerId": {
-            "type": "string"
-          },
-          "azurePlanId": {
-            "type": "string"
-          },
-          "serviceAcct": {
-            "type": "string"
-          },
-          "partnerAcct": {
-            "type": "string"
-          },
-          "companyId": {
-            "type": "string"
-          },
-          "payerId": {
-            "type": "string"
-          }
-        }
       },
       "coverBudgetData": {
         "type": "object",
@@ -23722,6 +23763,9 @@
         "properties": {
           "aws": {
             "$ref": "#/components/schemas/apiawsCostAttribute"
+          },
+          "azure": {
+            "$ref": "#/components/schemas/apiazureCostAttribute"
           }
         },
         "description": "Response message for the Cost.ReadCostAttributes rpc."
@@ -24765,7 +24809,7 @@
             "$ref": "#/components/schemas/coverGcpOptions"
           },
           "azureOptions": {
-            "$ref": "#/components/schemas/coverAzureOptions"
+            "$ref": "#/components/schemas/apicoverAzureOptions"
           },
           "awsOptions": {
             "$ref": "#/components/schemas/apicoverAwsOptions"
@@ -26864,6 +26908,23 @@
           }
         }
       },
+      "v1ReadCostAttributesRequestAzureOptions": {
+        "type": "object",
+        "properties": {
+          "customerId": {
+            "type": "string",
+            "description": "Optional. The Azure customer id to which the modifier is applied. A comma-separated list of customers is also valid."
+          },
+          "subscriptionId": {
+            "type": "string",
+            "description": "Optional. The Azure subscription id to which the modifier is applied. A comma-separated list of subscriptions is also valid."
+          },
+          "entitlementId": {
+            "type": "string",
+            "description": "Optional. The Azure entitlement id to which the modifier is applied. A comma-separated list of entitlements is also valid."
+          }
+        }
+      },
       "v1ReadCostsRequestAwsOptions": {
         "type": "object",
         "properties": {
@@ -27134,7 +27195,7 @@
             "$ref": "#/components/schemas/coverGcpOptions"
           },
           "azureOptions": {
-            "$ref": "#/components/schemas/coverAzureOptions"
+            "$ref": "#/components/schemas/apicoverAzureOptions"
           },
           "awsOptions": {
             "$ref": "#/components/schemas/apicoverAwsOptions"
