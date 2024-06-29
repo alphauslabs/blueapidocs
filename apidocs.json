@@ -16191,6 +16191,12 @@
         },
         "stopInstanceRecommendationDetails": {
           "$ref": "#/definitions/coverStopInstanceRecommendationDetails"
+        },
+        "deleteRecommendationDetails": {
+          "$ref": "#/definitions/coverDeleteRecommendationDetails"
+        },
+        "otherRecommendationDetails": {
+          "$ref": "#/definitions/coverOtherRecommendationDetails"
         }
       }
     },
@@ -16822,6 +16828,32 @@
         }
       }
     },
+    "coverDeleteRecommendationDetails": {
+      "type": "object",
+      "properties": {
+        "ebsVolumeDetails": {
+          "$ref": "#/definitions/coverEbsVolumeDetails"
+        },
+        "elasticIpAddressDetails": {
+          "$ref": "#/definitions/coverElasticIpAddressDetails"
+        },
+        "idleRdsDetails": {
+          "$ref": "#/definitions/coverIdleRdsDetails"
+        },
+        "idleLoadBalancerDetails": {
+          "$ref": "#/definitions/coverIdleLoadBalancerDetails"
+        },
+        "lastUpdatedAt": {
+          "type": "string"
+        },
+        "exclusionStatus": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
     "coverEBSDetails": {
       "type": "object",
       "properties": {
@@ -16988,6 +17020,21 @@
         }
       }
     },
+    "coverEbsVolumeDetails": {
+      "type": "object",
+      "properties": {
+        "volumeId": {
+          "type": "string"
+        },
+        "volumeSize": {
+          "type": "string",
+          "format": "int64"
+        },
+        "volumeType": {
+          "type": "string"
+        }
+      }
+    },
     "coverEcsRightSizingRecommendationDetails": {
       "type": "object",
       "properties": {
@@ -17023,6 +17070,17 @@
           "type": "string"
         },
         "productDescription": {
+          "type": "string"
+        }
+      }
+    },
+    "coverElasticIpAddressDetails": {
+      "type": "object",
+      "properties": {
+        "ipAddress": {
+          "type": "string"
+        },
+        "service": {
           "type": "string"
         }
       }
@@ -17306,6 +17364,76 @@
         }
       }
     },
+    "coverHighErrorRatesLambda": {
+      "type": "object",
+      "properties": {
+        "avgDailyErrorRates": {
+          "type": "number",
+          "format": "double"
+        },
+        "avgDailyInvokes": {
+          "type": "number",
+          "format": "double"
+        },
+        "currentDayErrorRates": {
+          "type": "number",
+          "format": "double"
+        },
+        "currentDayInvokes": {
+          "type": "number",
+          "format": "double"
+        },
+        "dateForMaxErrorRates": {
+          "type": "string"
+        },
+        "functionArn": {
+          "type": "string"
+        },
+        "lostDailyComputeCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "maxDailyErrorRates": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "coverIdleLoadBalancerDetails": {
+      "type": "object",
+      "properties": {
+        "loadBalancerName": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "service": {
+          "type": "string"
+        }
+      }
+    },
+    "coverIdleRdsDetails": {
+      "type": "object",
+      "properties": {
+        "dbInstanceName": {
+          "type": "string"
+        },
+        "daysSinceLastConnection": {
+          "type": "string"
+        },
+        "instanceType": {
+          "type": "string"
+        },
+        "multiAZ": {
+          "type": "string"
+        },
+        "storageProvisioned": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
     "coverLambdaRightSizingRecommendationDetails": {
       "type": "object",
       "properties": {
@@ -17485,6 +17613,23 @@
             "type": "string"
           },
           "title": "The recommended action to perform to achieve potential savings"
+        }
+      }
+    },
+    "coverOtherRecommendationDetails": {
+      "type": "object",
+      "properties": {
+        "highErrorRatesLambda": {
+          "$ref": "#/definitions/coverHighErrorRatesLambda"
+        },
+        "s3IncompleteMultiPartUploadAbortConfiguration": {
+          "$ref": "#/definitions/coverS3IncompleteMultiPartUploadAbortConfiguration"
+        },
+        "lastUpdatedAt": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
         }
       }
     },
@@ -17860,6 +18005,23 @@
         "estimatedMonthlySavings": {
           "type": "number",
           "format": "double"
+        }
+      }
+    },
+    "coverS3IncompleteMultiPartUploadAbortConfiguration": {
+      "type": "object",
+      "properties": {
+        "bucketArn": {
+          "type": "string"
+        },
+        "bucketName": {
+          "type": "string"
+        },
+        "lifeCycleRuleForDeletingIncompleteMCU": {
+          "type": "string"
+        },
+        "daysAfterInitiation": {
+          "type": "string"
         }
       }
     },
