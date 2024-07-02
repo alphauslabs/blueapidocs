@@ -20091,6 +20091,9 @@
       "coverDeleteRecommendationDetails": {
         "type": "object",
         "properties": {
+          "ec2Details": {
+            "$ref": "#/components/schemas/coverCurrentEC2Details"
+          },
           "ebsVolumeDetails": {
             "$ref": "#/components/schemas/coverEbsVolumeDetails"
           },
