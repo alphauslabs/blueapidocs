@@ -19462,6 +19462,9 @@
           "rollbackPossible": {
             "type": "boolean"
           },
+          "lastUpdatedAt": {
+            "type": "string"
+          },
           "purchaseRIRecommendationDetails": {
             "$ref": "#/components/schemas/coverPurchaseRIRecommendationDetails"
           },
@@ -20100,9 +20103,6 @@
           "idleLoadBalancerDetails": {
             "$ref": "#/components/schemas/coverIdleLoadBalancerDetails"
           },
-          "lastUpdatedAt": {
-            "type": "string"
-          },
           "exclusionStatus": {
             "type": "string"
           },
@@ -20289,6 +20289,10 @@
           },
           "volumeType": {
             "type": "string"
+          },
+          "monthlyStorageCost": {
+            "type": "number",
+            "format": "double"
           }
         }
       },
@@ -20881,9 +20885,6 @@
           },
           "s3IncompleteMultiPartUploadAbortConfiguration": {
             "$ref": "#/components/schemas/coverS3IncompleteMultiPartUploadAbortConfiguration"
-          },
-          "lastUpdatedAt": {
-            "type": "string"
           },
           "status": {
             "type": "string"
