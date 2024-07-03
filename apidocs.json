@@ -18981,6 +18981,27 @@
         },
         "vpcNetworkingSupport": {
           "type": "string"
+        },
+        "productID": {
+          "type": "string"
+        },
+        "skuTitle": {
+          "type": "string"
+        },
+        "segment": {
+          "type": "string"
+        },
+        "listPrice": {
+          "type": "string"
+        },
+        "msrp": {
+          "type": "string"
+        },
+        "billingPlan": {
+          "type": "string"
+        },
+        "effectiveEndDate": {
+          "type": "string"
         }
       },
       "title": "ServiceDetails message"
