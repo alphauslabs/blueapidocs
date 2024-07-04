@@ -19002,6 +19002,84 @@
         },
         "effectiveEndDate": {
           "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "availability": {
+          "type": "string"
+        },
+        "storageClass": {
+          "type": "string"
+        },
+        "feeCode": {
+          "type": "string"
+        },
+        "feeDescription": {
+          "type": "string"
+        },
+        "durability": {
+          "type": "string"
+        },
+        "overhead": {
+          "type": "string"
+        },
+        "cacheEngine": {
+          "type": "string"
+        },
+        "ssd": {
+          "type": "string"
+        },
+        "minVolumeSize": {
+          "type": "string"
+        },
+        "engineCode": {
+          "type": "string"
+        },
+        "databaseEngine": {
+          "type": "string"
+        },
+        "databaseEdition": {
+          "type": "string"
+        },
+        "deploymentOption": {
+          "type": "string"
+        },
+        "acu": {
+          "type": "string"
+        },
+        "deploymentModel": {
+          "type": "string"
+        },
+        "engineMajorVersion": {
+          "type": "string"
+        },
+        "engineMediaType": {
+          "type": "string"
+        },
+        "extendedSupportPricingYear": {
+          "type": "string"
+        },
+        "instanceTypeFamily": {
+          "type": "string"
+        },
+        "limitlessPreview": {
+          "type": "string"
+        },
+        "volumename": {
+          "type": "string"
+        },
+        "alarmType": {
+          "type": "string"
+        },
+        "logsDestination": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "typeDescription": {
+          "type": "string"
         }
       },
       "title": "ServiceDetails message"
