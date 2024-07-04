@@ -2897,6 +2897,37 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/org/v1/wavefeatures:get": {
+      "get": {
+        "tags": [
+          "Organization"
+        ],
+        "summary": "WORK-IN-PROGRESS: Deletes the organization.",
+        "operationId": "Organization_GetWaveFeatures",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetWaveFeaturesResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/org/v1:sendVerification": {
       "post": {
         "tags": [
@@ -26450,6 +26481,14 @@
             "items": {
               "$ref": "#/components/schemas/coverViewList"
             }
+          }
+        }
+      },
+      "v1GetWaveFeaturesResponse": {
+        "type": "object",
+        "properties": {
+          "settings": {
+            "type": "string"
           }
         }
       },
