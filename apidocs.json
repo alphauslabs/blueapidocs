@@ -19005,27 +19005,6 @@
         "vpcNetworkingSupport": {
           "type": "string"
         },
-        "productID": {
-          "type": "string"
-        },
-        "skuTitle": {
-          "type": "string"
-        },
-        "segment": {
-          "type": "string"
-        },
-        "listPrice": {
-          "type": "string"
-        },
-        "msrp": {
-          "type": "string"
-        },
-        "billingPlan": {
-          "type": "string"
-        },
-        "effectiveEndDate": {
-          "type": "string"
-        },
         "version": {
           "type": "string"
         },
@@ -19102,6 +19081,73 @@
           "type": "string"
         },
         "typeDescription": {
+          "type": "string"
+        },
+        "billingPeriod": {
+          "type": "string",
+          "title": "Azure fields"
+        },
+        "orderDate": {
+          "type": "string"
+        },
+        "chargeType": {
+          "type": "string"
+        },
+        "billingCycleType": {
+          "type": "string"
+        },
+        "termAndBillingCycle": {
+          "type": "string"
+        },
+        "productID": {
+          "type": "string"
+        },
+        "productName": {
+          "type": "string"
+        },
+        "providerID": {
+          "type": "string"
+        },
+        "providerName": {
+          "type": "string"
+        },
+        "skuName": {
+          "type": "string"
+        },
+        "meterDescription": {
+          "type": "string"
+        },
+        "effectiveUnitPrice": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "string"
+        },
+        "billableQuantity": {
+          "type": "string"
+        },
+        "subtotal": {
+          "type": "string"
+        },
+        "tax": {
+          "type": "string"
+        },
+        "total": {
+          "type": "string"
+        },
+        "billingCurrency": {
+          "type": "string"
+        },
+        "pricingCurrency": {
+          "type": "string"
+        },
+        "priceAdjustmentDescription": {
+          "type": "string"
+        },
+        "exchangeRate": {
+          "type": "string"
+        },
+        "exchangeRateDate": {
           "type": "string"
         }
       },
