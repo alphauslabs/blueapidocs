@@ -11024,6 +11024,55 @@
         ]
       }
     },
+    "/v1/{vendor}/invoiceid:read": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Read the invoice ids. Only available in Ripple.",
+        "operationId": "Cost_ReadInvoiceId",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1ReadInvoiceIdResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of v1ReadInvoiceIdResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CostReadInvoiceIdBody"
+            }
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      }
+    },
     "/v1/{vendor}/nontagcosts:read": {
       "post": {
         "summary": "Reads the usage-based non tag costs of a billing group.",
@@ -12743,6 +12792,16 @@
         }
       },
       "description": "Request message for the Cost.ReadCosts rpc."
+    },
+    "CostReadInvoiceIdBody": {
+      "type": "object",
+      "properties": {
+        "month": {
+          "type": "string",
+          "description": "Optional. The UTC month to query. If empty, defaults to current month. Format is `yyyymm`. For example, July 2024 will be `202407`."
+        }
+      },
+      "description": "Request message for the ReadInvoiceId rpc."
     },
     "CostReadNonTagCostsBody": {
       "type": "object",
@@ -24369,6 +24428,16 @@
         }
       },
       "description": "A map of \"key:value\" column filters. Dependent on `groupByColumns` and/or `groupByMonth`. The key indicates the column name while the value is the filter value prefixed by either \"eq:\" (equal), \"re:\" (regular expressions based on https://github.com/google/re2), or \"!re:\" (reverse \"re:\"). No prefix is the same as \"eq:\". Multiple map items will use the logical 'and' operator, e.g. mapfilter1 \u0026\u0026 mapfilter2 \u0026\u0026 mapfilter3, etc.\n\nFor example, if you like to filter `productCode` to return only `AmazonEC2`, set to `{\"productCode\":\"eq:AmazonEC2\"}` or `{\"productCode\":\"AmazonEC2\"}`. You can also use a regular expression like `{\"productCode\":\"re:AmazonEC2|AmazonRDS\"}`, which means return all AmazonEC2 or AmazonRDS lineitems. Or reverse regexp, such as `{\"productCode\":\"!re:^AmazonEC2$\"}`, which means return all items except `AmazonEC2`."
+    },
+    "v1ReadInvoiceIdResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "The invoice id"
+        }
+      },
+      "description": "Response message for the ReadInvoiceId rpc."
     },
     "v1ReadTagCostsRequestAwsOptions": {
       "type": "object",
