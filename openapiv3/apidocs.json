@@ -1115,13 +1115,23 @@
         }
       }
     },
-    "/admin/v1/wavefeatures": {
+    "/admin/v1/wavefeatures/{id}": {
       "get": {
         "tags": [
           "Admin"
         ],
         "summary": "WORK-IN-PROGRESS: Get settings value for wave features management per organization",
         "operationId": "Admin_GetWaveFeatures",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "A successful response.",
