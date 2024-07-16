@@ -986,7 +986,7 @@
           {
             "name": "notificationType",
             "in": "query",
-            "description": "Required\nValid values: \n`InvoiceCalculationStarted`, \n`InvoiceCalculationFinished`, \n`CurUpdatedAfterInvoice`.\n`AccountBudgetAlert`.",
+            "description": "Required\nValid values:\n`InvoiceCalculationStarted`,\n`InvoiceCalculationFinished`,\n`CurUpdatedAfterInvoice`.\n`AccountBudgetAlert`.",
             "schema": {
               "type": "string"
             }
@@ -1085,7 +1085,7 @@
           {
             "name": "notificationType",
             "in": "query",
-            "description": "Required\nValid values: \n`InvoiceCalculationStarted`, \n`InvoiceCalculationFinished`, \n`CurUpdatedAfterInvoice`.\n`AccountBudgetAlert`.",
+            "description": "Required\nValid values:\n`InvoiceCalculationStarted`,\n`InvoiceCalculationFinished`,\n`CurUpdatedAfterInvoice`.\n`AccountBudgetAlert`.",
             "schema": {
               "type": "string"
             }
@@ -1115,23 +1115,13 @@
         }
       }
     },
-    "/admin/v1/wavefeatures/{id}": {
+    "/admin/v1/wavefeatures": {
       "get": {
         "tags": [
           "Admin"
         ],
         "summary": "WORK-IN-PROGRESS: Get settings value for wave features management per organization",
         "operationId": "Admin_GetWaveFeatures",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -15419,7 +15409,7 @@
           },
           "notificationType": {
             "type": "string",
-            "description": "Required\nValid values: \n`InvoiceCalculationStarted`, \n`InvoiceCalculationFinished`, \n`CurUpdatedAfterInvoice`.\n`AccountBudgetAlert`."
+            "description": "Required\nValid values:\n`InvoiceCalculationStarted`,\n`InvoiceCalculationFinished`,\n`CurUpdatedAfterInvoice`.\n`AccountBudgetAlert`."
           },
           "account": {
             "$ref": "#/components/schemas/adminv1NotificationAccount"
@@ -24935,7 +24925,7 @@
         "properties": {
           "notificationType": {
             "type": "string",
-            "description": "Required\nValid values: \n`InvoiceCalculationStarted`, \n`InvoiceCalculationFinished`, \n`CurUpdatedAfterInvoice`.\n`AccountBudgetAlert`."
+            "description": "Required\nValid values:\n`InvoiceCalculationStarted`,\n`InvoiceCalculationFinished`,\n`CurUpdatedAfterInvoice`.\n`AccountBudgetAlert`."
           },
           "channels": {
             "title": "Required",
@@ -28587,17 +28577,20 @@
         "title": "for wave features settings data maping",
         "type": "object",
         "properties": {
-          "key": {
-            "type": "string"
-          },
-          "value": {
-            "type": "boolean"
-          },
           "label": {
             "type": "string"
           },
-          "description": {
+          "value": {
             "type": "string"
+          },
+          "defaultSetting": {
+            "type": "boolean"
+          },
+          "tickStrategy": {
+            "type": "string"
+          },
+          "isDisabled": {
+            "type": "boolean"
           },
           "children": {
             "type": "array",
