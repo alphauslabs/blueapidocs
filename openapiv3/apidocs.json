@@ -27384,6 +27384,10 @@
             "type": "boolean",
             "description": "Optional. If set to true, group all input accounts into one."
           },
+          "groupByTagKey": {
+            "title": "Optional. Required if groupByColumn is set to tag",
+            "type": "string"
+          },
           "filters": {
             "type": "array",
             "description": "Optional. A list of filtering options. See [ReadCostsRequestAwsOptionsFilters] for more information on each filter item. Multiple filter items will use the logical 'or' operator, e.g. filter1 || filter2 || filter3, etc.",

@@ -24286,6 +24286,10 @@
           "type": "boolean",
           "description": "Optional. If set to true, group all input accounts into one."
         },
+        "groupByTagKey": {
+          "type": "string",
+          "title": "Optional. Required if groupByColumn is set to tag"
+        },
         "filters": {
           "type": "array",
           "items": {
