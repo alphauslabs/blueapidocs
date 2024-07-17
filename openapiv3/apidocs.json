@@ -19568,6 +19568,9 @@
           "lastUpdatedAt": {
             "type": "string"
           },
+          "recommendationGroup": {
+            "type": "string"
+          },
           "purchaseRIRecommendationDetails": {
             "$ref": "#/components/schemas/coverPurchaseRIRecommendationDetails"
           },
