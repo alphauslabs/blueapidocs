@@ -16822,7 +16822,8 @@
         "type": "object",
         "properties": {
           "service": {
-            "type": "string"
+            "type": "string",
+            "description": "Required. Cloud vendor service. \nValid values are `ec2`, `lambda`, `s3`, `ebs`, `dataTransfer`, `rds`, `dynamoDb`, and `cloudWatch` for AWS.\nValid values are `vm`, `functions`, `sqlDb`, `cosmosDb`, `monitor`, `blobStorage`, `dataLake`, `queue`, `table`, `files`, `dataBox`, `dataBoxDisk`, `dataBoxHeavy`, `resourceMover`, `dataBoxGateway`, `stackEdge`, `dataFactory` for Azure."
           },
           "region": {
             "type": "string",
