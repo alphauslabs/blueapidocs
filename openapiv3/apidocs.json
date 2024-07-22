@@ -1144,6 +1144,46 @@
             }
           }
         }
+      },
+      "put": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "WORK-IN-PROGRESS: Updates the wave feature management default value per organization",
+        "operationId": "Admin_UpdateWaveFeatureSetting",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1UpdateWaveFeatureSettingRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetWaveFeaturesResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
       }
     },
     "/iam/v1/apiclients": {
@@ -25474,6 +25514,18 @@
         },
         "description": "Response message for the ExportInvoiceFile rpc."
       },
+      "v1FeatureSetting": {
+        "title": "For rpc UpdateWaveFeature",
+        "type": "object",
+        "properties": {
+          "featureId": {
+            "type": "string"
+          },
+          "isEnabled": {
+            "type": "boolean"
+          }
+        }
+      },
       "v1FeeItem": {
         "type": "object",
         "properties": {
@@ -28475,6 +28527,17 @@
           }
         }
       },
+      "v1UpdateWaveFeatureSettingRequest": {
+        "type": "object",
+        "properties": {
+          "featureSetting": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1FeatureSetting"
+            }
+          }
+        }
+      },
       "v1UploadChargeCodeRequest": {
         "title": "(WIP): Request message for Upload Charge Code",
         "type": "object",
@@ -28583,17 +28646,17 @@
           "label": {
             "type": "string"
           },
-          "value": {
+          "featureId": {
             "type": "string"
+          },
+          "isEnabled": {
+            "type": "boolean"
           },
           "tickStrategy": {
             "type": "string"
           },
-          "isDisabled": {
-            "type": "boolean"
-          },
-          "defaultSetting": {
-            "type": "boolean"
+          "condition": {
+            "type": "string"
           },
           "flag": {
             "type": "string"
