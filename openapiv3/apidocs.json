@@ -25645,11 +25645,11 @@
             "type": "string"
           },
           "startDate": {
-            "title": "Start date for detecting anomalies",
+            "title": "Start date for detecting anomalies. Valid format: YYYYMMDD",
             "type": "string"
           },
           "endDate": {
-            "title": "End date for detection anomalies",
+            "title": "End date for detection anomalies. Valid format: YYYYMMDD",
             "type": "string"
           }
         }
