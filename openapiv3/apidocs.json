@@ -19611,6 +19611,9 @@
           "recommendationGroup": {
             "type": "string"
           },
+          "category": {
+            "type": "string"
+          },
           "purchaseRIRecommendationDetails": {
             "$ref": "#/components/schemas/coverPurchaseRIRecommendationDetails"
           },
@@ -27093,6 +27096,9 @@
             "type": "string"
           },
           "source": {
+            "type": "string"
+          },
+          "dateRecommended": {
             "type": "string"
           }
         }
