@@ -19986,6 +19986,12 @@
           "estNetUnusedAmortizedCommitments": {
             "type": "number",
             "format": "double"
+          },
+          "usageTypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/coverUsageTypes"
+            }
           }
         }
       },
@@ -21742,6 +21748,27 @@
           "estimatedMonthlySavings": {
             "type": "number",
             "format": "double"
+          }
+        }
+      },
+      "coverUsageTypes": {
+        "type": "object",
+        "properties": {
+          "operation": {
+            "type": "string"
+          },
+          "productCode": {
+            "type": "string"
+          },
+          "unit": {
+            "type": "string"
+          },
+          "usageAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "usageType": {
+            "type": "string"
           }
         }
       },
