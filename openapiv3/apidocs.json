@@ -14156,7 +14156,7 @@
         "tags": [
           "Cost"
         ],
-        "summary": "WORK-IN-PROGRESS: Read the invoice ids. Only available in Ripple.",
+        "summary": "Read the invoice ids. Only available in Ripple.",
         "operationId": "Cost_ReadInvoiceIds",
         "parameters": [
           {
