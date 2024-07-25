@@ -3159,7 +3159,7 @@
         "tags": [
           "Pricing"
         ],
-        "summary": "WORK-IN-PROGRESS: Get list of supported services, regions, and attribute keys for filtering",
+        "summary": "WORK-IN-PROGRESS: Get list of supported services, regions, attributes, and columns for filtering",
         "operationId": "Pricing_GetSupportedServices",
         "parameters": [
           {
@@ -24049,6 +24049,20 @@
           }
         }
       },
+      "v1Attribute": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
       "v1AwsDailyRunHistory": {
         "type": "object",
         "properties": {
@@ -26950,7 +26964,7 @@
         "type": "object",
         "properties": {
           "supportedServices": {
-            "title": "Suported services, regions, and attributes keys that can be used to fetch pricing data",
+            "title": "Suported services, regions, and attributes that can be used to fetch pricing data",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/v1SupportedService"
@@ -28473,10 +28487,10 @@
             }
           },
           "attributes": {
-            "title": "Attributes that can be used as keys for filtering",
+            "title": "Attributes that can be used as key-value pairs for filtering",
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/v1Attribute"
             }
           },
           "columns": {
@@ -29145,6 +29159,5 @@
       }
     }
   },
-  "x-original-swagger-version": "2.0",
-  "x-debug":"0.1"
+  "x-original-swagger-version": "2.0"
 }
