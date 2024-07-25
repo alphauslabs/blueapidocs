@@ -1,0 +1,19 @@
+name: Import OpenAPI to Apidog
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out codes
+        uses: actions/checkout@v3
+      - name: import
+        if: contains(github.event.head_commit.message, '[OpenAPI]')
+        run: |
+          # Import swagger.json to apidog
+          curl -X "POST" $API_URL $API_VERSION $AUTH_TOKEN $CONTENT_TYPE -d $'{"input":{"url": $INPUT_URL}}'
+        env:
+          AUTH_TOKEN: "-H 'Authorization: Bearer ${{ secrets.API_TOKEN }}'"
+          API_VERSION: "-H 'X-Apidog-Api-Version: 2024-03-28'"
+          CONTENT_TYPE: "-H 'Content-Type: application/json; charset=utf-8'"
+          API_URL: "https://api.apidog.com/v1/projects/${{ secrets.API_PROJECT }}/import-openapi?locale=ja-JP"
+          INPUT_URL: "https://raw.githubusercontent.com/alphauslabs/blueapidocs/master/openapiv3/apidocs.json"
