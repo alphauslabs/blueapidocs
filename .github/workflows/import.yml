@@ -10,7 +10,7 @@ jobs:
         if: contains(github.event.head_commit.message, '[OpenAPI]')
         run: |
           # Import swagger.json to apidog
-          curl -v -X "POST" \
+          curl -X "POST" \
             "https://api.apidog.com/v1/projects/${{ secrets.API_PROJECT }}/import-openapi?locale=ja-JP" \
             -H 'X-Apidog-Api-Version: 2024-03-28' \
             -H 'Authorization: Bearer ${{ secrets.API_TOKEN }}' \
