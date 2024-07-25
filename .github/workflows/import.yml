@@ -11,6 +11,7 @@ jobs:
         run: |
           # Import swagger.json to apidog
           # curl -X "POST" $API_URL $API_VERSION $AUTH_TOKEN $CONTENT_TYPE -d $'{"input":{"url": $INPUT_URL}}'
+          echo project "${{secrets.API_PROJECT }}" | sed 's/./& /g'
           echo $API_URL
           echo $API_VERSION
           echo $AUTH_TOKEN
