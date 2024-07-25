@@ -2468,6 +2468,38 @@
         ]
       }
     },
+    "/v0/{vendor}/services": {
+      "get": {
+        "summary": "WORK-IN-PROGRESS: Get list of supported services, regions, and attribute keys for filtering",
+        "operationId": "Pricing_GetSupportedServices",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetSupportedServicesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. Cloud vendor, only `aws` and `azure` are supported for now.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Pricing"
+        ]
+      }
+    },
     "/v1/accessgroups": {
       "get": {
         "summary": "Lists access group. Only available in Ripple.",
@@ -23760,6 +23792,20 @@
       },
       "title": "Response message for GetServices"
     },
+    "v1GetSupportedServicesResponse": {
+      "type": "object",
+      "properties": {
+        "supportedServices": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1SupportedService"
+          },
+          "title": "Suported services, regions, and attributes keys that can be used to fetch pricing data"
+        }
+      },
+      "title": "Response message for GetSupportedServices"
+    },
     "v1GetTagsResponse": {
       "type": "object",
       "properties": {
@@ -25287,6 +25333,36 @@
       "properties": {
         "fiscalMonth": {
           "type": "string"
+        }
+      }
+    },
+    "v1SupportedService": {
+      "type": "object",
+      "properties": {
+        "service": {
+          "type": "string",
+          "title": "AWS or Azure services only as of now"
+        },
+        "regions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Regions supported for the specific service"
+        },
+        "attributes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Attributes that can be used as keys for filtering"
+        },
+        "columns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Column names that can be used to specify what columns should GetPricing return"
         }
       }
     },

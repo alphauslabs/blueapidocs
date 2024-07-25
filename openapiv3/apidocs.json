@@ -3154,6 +3154,48 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v0/{vendor}/services": {
+      "get": {
+        "tags": [
+          "Pricing"
+        ],
+        "summary": "WORK-IN-PROGRESS: Get list of supported services, regions, and attribute keys for filtering",
+        "operationId": "Pricing_GetSupportedServices",
+        "parameters": [
+          {
+            "name": "vendor",
+            "in": "path",
+            "description": "Required. Cloud vendor, only `aws` and `azure` are supported for now.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetSupportedServicesResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/accessgroups": {
       "get": {
         "tags": [
@@ -26903,6 +26945,19 @@
           }
         }
       },
+      "v1GetSupportedServicesResponse": {
+        "title": "Response message for GetSupportedServices",
+        "type": "object",
+        "properties": {
+          "supportedServices": {
+            "title": "Suported services, regions, and attributes keys that can be used to fetch pricing data",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1SupportedService"
+            }
+          }
+        }
+      },
       "v1GetTagsResponse": {
         "title": "Response message for GetTags",
         "type": "object",
@@ -28403,6 +28458,36 @@
           }
         }
       },
+      "v1SupportedService": {
+        "type": "object",
+        "properties": {
+          "service": {
+            "title": "AWS or Azure services only as of now",
+            "type": "string"
+          },
+          "regions": {
+            "title": "Regions supported for the specific service",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "attributes": {
+            "title": "Attributes that can be used as keys for filtering",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "columns": {
+            "title": "Column names that can be used to specify what columns should GetPricing return",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
       "v1TerminateResourceResponse": {
         "title": "Response message for TerminateResource",
         "type": "object",
@@ -29060,6 +29145,5 @@
       }
     }
   },
-  "x-original-swagger-version": "3.0",
-  "x-debug":"0.3"
+  "x-original-swagger-version": "2.0"
 }
