@@ -7824,6 +7824,56 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/customizebillingservices/{id}": {
+      "get": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "WORK-IN-PROGRESS: Gets the customize billing service. Only available in Ripple.",
+        "operationId": "Billing_GetCustomizeBillingService",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required. api.ripple.CustomizeBillingService.id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fieldMask",
+            "in": "query",
+            "description": "Optional. Get only the value that set fieldMask.\n\nsee more info: https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/field_mask.proto",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rippleCustomizeBillingService"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/customizebillingservices:read": {
       "post": {
         "tags": [
