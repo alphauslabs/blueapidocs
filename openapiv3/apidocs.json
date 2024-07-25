@@ -21167,11 +21167,22 @@
           }
         }
       },
+      "coverMigrateRDSDetails": {
+        "type": "object",
+        "properties": {
+          "rdsDbInstance": {
+            "$ref": "#/components/schemas/coverRDSDBInstance"
+          }
+        }
+      },
       "coverMigrateRecommendationDetails": {
         "type": "object",
         "properties": {
           "migrateEC2Details": {
             "$ref": "#/components/schemas/coverMigrateEC2Details"
+          },
+          "migrateRDSDetails": {
+            "$ref": "#/components/schemas/coverMigrateRDSDetails"
           },
           "estimatedMonthlyCost": {
             "type": "number",
@@ -21279,6 +21290,62 @@
           }
         }
       },
+      "coverRDSDBInstance": {
+        "type": "object",
+        "properties": {
+          "currentDetails": {
+            "$ref": "#/components/schemas/coverRDSDBInstanceDetails"
+          },
+          "recommendationDetails": {
+            "$ref": "#/components/schemas/coverRDSDBInstanceDetails"
+          }
+        }
+      },
+      "coverRDSDBInstanceDetails": {
+        "type": "object",
+        "properties": {
+          "instanceClass": {
+            "type": "string"
+          },
+          "costCalculation": {
+            "$ref": "#/components/schemas/coverCostCalculation"
+          }
+        }
+      },
+      "coverRDSDBInstanceStorage": {
+        "type": "object",
+        "properties": {
+          "currentDetails": {
+            "$ref": "#/components/schemas/coverRDSDBInstanceStorageDetails"
+          },
+          "recommendationDetails": {
+            "$ref": "#/components/schemas/coverRDSDBInstanceStorageDetails"
+          }
+        }
+      },
+      "coverRDSDBInstanceStorageDetails": {
+        "type": "object",
+        "properties": {
+          "allocatedStorageInGb": {
+            "type": "number",
+            "format": "double"
+          },
+          "iops": {
+            "type": "number",
+            "format": "double"
+          },
+          "storageThroughput": {
+            "type": "number",
+            "format": "double"
+          },
+          "storageType": {
+            "type": "string"
+          },
+          "costCalculation": {
+            "$ref": "#/components/schemas/coverCostCalculation"
+          }
+        }
+      },
       "coverRDSDetails": {
         "type": "object",
         "properties": {
@@ -21322,6 +21389,28 @@
           },
           "licenseModel": {
             "type": "string"
+          }
+        }
+      },
+      "coverRDSRightsizingDetails": {
+        "type": "object",
+        "properties": {
+          "rdsDbInstance": {
+            "$ref": "#/components/schemas/coverRDSDBInstance"
+          },
+          "rdsDbInstanceStorage": {
+            "$ref": "#/components/schemas/coverRDSDBInstanceStorage"
+          }
+        }
+      },
+      "coverRDSUpgradeDetails": {
+        "type": "object",
+        "properties": {
+          "rdsDbInstance": {
+            "$ref": "#/components/schemas/coverRDSDBInstance"
+          },
+          "rdsDbInstanceStorage": {
+            "$ref": "#/components/schemas/coverRDSDBInstanceStorage"
           }
         }
       },
@@ -21579,6 +21668,9 @@
           },
           "ecsRightSizingRecommendationDetails": {
             "$ref": "#/components/schemas/coverEcsRightSizingRecommendationDetails"
+          },
+          "rdsRightSizingRecommendationDetails": {
+            "$ref": "#/components/schemas/coverRDSRightsizingDetails"
           },
           "estimatedMonthlyCost": {
             "type": "number",
@@ -21852,6 +21944,17 @@
         "properties": {
           "stopEC2InstanceRecommendationDetails": {
             "$ref": "#/components/schemas/coverStopEC2InstanceRecommendationDetails"
+          },
+          "stopRDSRecommendationDetails": {
+            "$ref": "#/components/schemas/coverStopRDSDetails"
+          }
+        }
+      },
+      "coverStopRDSDetails": {
+        "type": "object",
+        "properties": {
+          "rdsDBInstance": {
+            "$ref": "#/components/schemas/coverRDSDBInstance"
           }
         }
       },
@@ -21908,6 +22011,9 @@
           },
           "upgradeEBSDetails": {
             "$ref": "#/components/schemas/coverEBSDetails"
+          },
+          "upgradeRDSDetails": {
+            "$ref": "#/components/schemas/coverRDSUpgradeDetails"
           },
           "estimatedMonthlyCost": {
             "type": "number",

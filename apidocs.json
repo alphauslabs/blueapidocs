@@ -17883,11 +17883,22 @@
         }
       }
     },
+    "coverMigrateRDSDetails": {
+      "type": "object",
+      "properties": {
+        "rdsDbInstance": {
+          "$ref": "#/definitions/coverRDSDBInstance"
+        }
+      }
+    },
     "coverMigrateRecommendationDetails": {
       "type": "object",
       "properties": {
         "migrateEC2Details": {
           "$ref": "#/definitions/coverMigrateEC2Details"
+        },
+        "migrateRDSDetails": {
+          "$ref": "#/definitions/coverMigrateRDSDetails"
         },
         "estimatedMonthlyCost": {
           "type": "number",
@@ -17995,6 +18006,62 @@
         }
       }
     },
+    "coverRDSDBInstance": {
+      "type": "object",
+      "properties": {
+        "currentDetails": {
+          "$ref": "#/definitions/coverRDSDBInstanceDetails"
+        },
+        "recommendationDetails": {
+          "$ref": "#/definitions/coverRDSDBInstanceDetails"
+        }
+      }
+    },
+    "coverRDSDBInstanceDetails": {
+      "type": "object",
+      "properties": {
+        "instanceClass": {
+          "type": "string"
+        },
+        "costCalculation": {
+          "$ref": "#/definitions/coverCostCalculation"
+        }
+      }
+    },
+    "coverRDSDBInstanceStorage": {
+      "type": "object",
+      "properties": {
+        "currentDetails": {
+          "$ref": "#/definitions/coverRDSDBInstanceStorageDetails"
+        },
+        "recommendationDetails": {
+          "$ref": "#/definitions/coverRDSDBInstanceStorageDetails"
+        }
+      }
+    },
+    "coverRDSDBInstanceStorageDetails": {
+      "type": "object",
+      "properties": {
+        "allocatedStorageInGb": {
+          "type": "number",
+          "format": "double"
+        },
+        "iops": {
+          "type": "number",
+          "format": "double"
+        },
+        "storageThroughput": {
+          "type": "number",
+          "format": "double"
+        },
+        "storageType": {
+          "type": "string"
+        },
+        "costCalculation": {
+          "$ref": "#/definitions/coverCostCalculation"
+        }
+      }
+    },
     "coverRDSDetails": {
       "type": "object",
       "properties": {
@@ -18038,6 +18105,28 @@
         },
         "licenseModel": {
           "type": "string"
+        }
+      }
+    },
+    "coverRDSRightsizingDetails": {
+      "type": "object",
+      "properties": {
+        "rdsDbInstance": {
+          "$ref": "#/definitions/coverRDSDBInstance"
+        },
+        "rdsDbInstanceStorage": {
+          "$ref": "#/definitions/coverRDSDBInstanceStorage"
+        }
+      }
+    },
+    "coverRDSUpgradeDetails": {
+      "type": "object",
+      "properties": {
+        "rdsDbInstance": {
+          "$ref": "#/definitions/coverRDSDBInstance"
+        },
+        "rdsDbInstanceStorage": {
+          "$ref": "#/definitions/coverRDSDBInstanceStorage"
         }
       }
     },
@@ -18297,6 +18386,9 @@
         },
         "ecsRightSizingRecommendationDetails": {
           "$ref": "#/definitions/coverEcsRightSizingRecommendationDetails"
+        },
+        "rdsRightSizingRecommendationDetails": {
+          "$ref": "#/definitions/coverRDSRightsizingDetails"
         },
         "estimatedMonthlyCost": {
           "type": "number",
@@ -18573,6 +18665,17 @@
       "properties": {
         "stopEC2InstanceRecommendationDetails": {
           "$ref": "#/definitions/coverStopEC2InstanceRecommendationDetails"
+        },
+        "stopRDSRecommendationDetails": {
+          "$ref": "#/definitions/coverStopRDSDetails"
+        }
+      }
+    },
+    "coverStopRDSDetails": {
+      "type": "object",
+      "properties": {
+        "rdsDBInstance": {
+          "$ref": "#/definitions/coverRDSDBInstance"
         }
       }
     },
@@ -18629,6 +18732,9 @@
         },
         "upgradeEBSDetails": {
           "$ref": "#/definitions/coverEBSDetails"
+        },
+        "upgradeRDSDetails": {
+          "$ref": "#/definitions/coverRDSUpgradeDetails"
         },
         "estimatedMonthlyCost": {
           "type": "number",
