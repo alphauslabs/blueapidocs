@@ -8602,6 +8602,160 @@
         ]
       }
     },
+    "/v1/unitcost": {
+      "get": {
+        "summary": "Lists Unit Types",
+        "operationId": "Cover_ListUnitTypes",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListUnitTypesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Cover"
+        ]
+      },
+      "post": {
+        "summary": "Create Unit Type",
+        "operationId": "Cover_CreateUnitType",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateUnitTypeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateUnitTypeRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
+    "/v1/unitcost/{id}": {
+      "get": {
+        "summary": "Get Specific Unit Type",
+        "operationId": "Cover_GetUnitType",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetUnitTypeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Required. Unit Type Id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      },
+      "delete": {
+        "summary": "Delete Specific Unit Type",
+        "operationId": "Cover_DeleteUnitType",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DeleteUnitTypeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Required. Unit Type Id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      },
+      "put": {
+        "summary": "Update Specific Unit Type",
+        "operationId": "Cover_UpdateUnitType",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateUnitTypeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Required. Unit Type Id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CoverUpdateUnitTypeBody"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
     "/v1/views": {
       "get": {
         "summary": "Get all the views",
@@ -13610,6 +13764,27 @@
         }
       },
       "title": "Request message for UpdateSideMenuState"
+    },
+    "CoverUpdateUnitTypeBody": {
+      "type": "object",
+      "properties": {
+        "unitName": {
+          "type": "string",
+          "title": "Optional"
+        },
+        "unitItems": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "format": "double"
+          },
+          "title": "Optional"
+        },
+        "description": {
+          "type": "string",
+          "title": "Optional"
+        }
+      }
     },
     "CoverUpdateViewBody": {
       "type": "object",
@@ -18835,6 +19010,36 @@
         }
       }
     },
+    "coverUnitCostData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "unitName": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "unitItems": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "createdBy": {
+          "type": "string"
+        },
+        "createTime": {
+          "type": "string"
+        },
+        "lastUpdatedAt": {
+          "type": "string"
+        }
+      }
+    },
     "coverUpgradeEC2Details": {
       "type": "object",
       "properties": {
@@ -22621,6 +22826,32 @@
       },
       "description": "Request message for the Iam.CreateRole rpc."
     },
+    "v1CreateUnitTypeRequest": {
+      "type": "object",
+      "properties": {
+        "unitName": {
+          "type": "string"
+        },
+        "unitItems": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "v1CreateUnitTypeResponse": {
+      "type": "object",
+      "properties": {
+        "unitCostData": {
+          "$ref": "#/definitions/coverUnitCostData"
+        }
+      }
+    },
     "v1CreateUserRequest": {
       "type": "object",
       "properties": {
@@ -22863,6 +23094,14 @@
         }
       },
       "title": "Response message for DeleteMember"
+    },
+    "v1DeleteUnitTypeResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
     },
     "v1DeleteViewResponse": {
       "type": "object",
@@ -24085,6 +24324,14 @@
       },
       "title": "Response message for GetTags"
     },
+    "v1GetUnitTypeResponse": {
+      "type": "object",
+      "properties": {
+        "unitCostData": {
+          "$ref": "#/definitions/coverUnitCostData"
+        }
+      }
+    },
     "v1GetUserDetailsResponse": {
       "type": "object",
       "properties": {
@@ -24625,6 +24872,18 @@
         }
       },
       "description": "Response message for the Iam.ListRoles rpc."
+    },
+    "v1ListUnitTypesResponse": {
+      "type": "object",
+      "properties": {
+        "unitCostData": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/coverUnitCostData"
+          }
+        }
+      }
     },
     "v1ListUserRoleMappingsResponse": {
       "type": "object",
@@ -25830,6 +26089,14 @@
         }
       },
       "title": "Response message for UpdateSideMenuState"
+    },
+    "v1UpdateUnitTypeResponse": {
+      "type": "object",
+      "properties": {
+        "unitCostData": {
+          "$ref": "#/definitions/coverUnitCostData"
+        }
+      }
     },
     "v1UpdateUserAppThemeRequest": {
       "type": "object",
