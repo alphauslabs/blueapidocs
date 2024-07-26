@@ -17041,6 +17041,13 @@
             "type": "string",
             "description": "Optional. Supply token that was included in the latest response to continue fetching the remaining chunks of data. All data has been returned once token is null."
           },
+          "filters": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Optional. Filters to apply to the pricing data.\nThis is a map of column names to filter values. Each key-value pair in the map represents a filter condition."
+          },
           "columns": {
             "type": "array",
             "description": "Optional. This string represent valid columns which will serve as basis as to what columns will be returned by the API.\nAll columns will be returned if this array is empty.\nThis is not yet implemented.",
