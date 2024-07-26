@@ -7866,18 +7866,18 @@
         "x-codegen-request-body-name": "body"
       }
     },
-    "/v1/customizebillingservices/{id}": {
+    "/v1/customizedbillingservices/{id}": {
       "get": {
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Gets the customize billing service. Only available in Ripple.",
-        "operationId": "Billing_GetCustomizeBillingService",
+        "summary": "WORK-IN-PROGRESS: Gets the customized billing service. Only available in Ripple.",
+        "operationId": "Billing_GetCustomizedBillingService",
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "Required. api.ripple.CustomizeBillingService.id",
+            "description": "Required. [blueapi.api.ripple.CustomizedBillingService.id]",
             "required": true,
             "schema": {
               "type": "string"
@@ -7898,7 +7898,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/rippleCustomizeBillingService"
+                  "$ref": "#/components/schemas/rippleCustomizedBillingService"
                 }
               }
             }
@@ -7916,19 +7916,19 @@
         }
       }
     },
-    "/v1/customizebillingservices:read": {
+    "/v1/customizedbillingservices:read": {
       "post": {
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Reads the customize billing service. Only available in Ripple.",
-        "operationId": "Billing_ReadCustomizeBillingServices",
+        "summary": "WORK-IN-PROGRESS: Reads the customized billing service. Only available in Ripple.",
+        "operationId": "Billing_ReadCustomizedBillingServices",
         "requestBody": {
-          "description": "Request message for the Billing.ReadCustomizeBillingServices rpc.",
+          "description": "Request message for the Billing.ReadCustomizedBillingServices rpc.",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/v1ReadCustomizeBillingServicesRequest"
+                "$ref": "#/components/schemas/v1ReadCustomizedBillingServicesRequest"
               }
             }
           },
@@ -7940,11 +7940,11 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "Stream result of rippleCustomizeBillingService",
+                  "title": "Stream result of rippleCustomizedBillingService",
                   "type": "object",
                   "properties": {
                     "result": {
-                      "$ref": "#/components/schemas/rippleCustomizeBillingService"
+                      "$ref": "#/components/schemas/rippleCustomizedBillingService"
                     },
                     "error": {
                       "$ref": "#/components/schemas/googlerpcStatus"
@@ -22974,7 +22974,7 @@
         },
         "description": "CommonExchangeRate resource definition."
       },
-      "rippleCustomizeBillingService": {
+      "rippleCustomizedBillingService": {
         "type": "object",
         "properties": {
           "id": {
@@ -22998,7 +22998,7 @@
             "readOnly": true
           }
         },
-        "description": "CustomizeBillingService resource definition."
+        "description": "CustomizedBillingService resource definition."
       },
       "rippleDueDate": {
         "type": "object",
@@ -28096,7 +28096,7 @@
         },
         "description": "A map of \"key:value\" column filters. Dependent on `groupByColumns` and/or `groupByMonth`. The key indicates the column name while the value is the filter value prefixed by either \"eq:\" (equal), \"re:\" (regular expressions based on https://github.com/google/re2), or \"!re:\" (reverse \"re:\"). No prefix is the same as \"eq:\". Multiple map items will use the logical 'and' operator, e.g. mapfilter1 && mapfilter2 && mapfilter3, etc.\n\nFor example, if you like to filter `productCode` to return only `AmazonEC2`, set to `{\"productCode\":\"eq:AmazonEC2\"}` or `{\"productCode\":\"AmazonEC2\"}`. You can also use a regular expression like `{\"productCode\":\"re:AmazonEC2|AmazonRDS\"}`, which means return all AmazonEC2 or AmazonRDS lineitems. Or reverse regexp, such as `{\"productCode\":\"!re:^AmazonEC2$\"}`, which means return all items except `AmazonEC2`."
       },
-      "v1ReadCustomizeBillingServicesRequest": {
+      "v1ReadCustomizedBillingServicesRequest": {
         "type": "object",
         "properties": {
           "fieldMask": {
@@ -28104,7 +28104,7 @@
             "description": "Optional. Get only the value that set fieldMask.\n\nsee more info: https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/field_mask.proto"
           }
         },
-        "description": "Request message for the Billing.ReadCustomizeBillingServices rpc."
+        "description": "Request message for the Billing.ReadCustomizedBillingServices rpc."
       },
       "v1ReadInvoiceIdsResponse": {
         "type": "object",
