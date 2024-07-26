@@ -7866,6 +7866,49 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/customizedbillingservices": {
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "WORK-IN-PROGRESS: Creates the customized billing service. Only available in Ripple.",
+        "operationId": "Billing_CreateCustomizedBillingService",
+        "requestBody": {
+          "description": "Request message for the Billing.CreateCustomizedBillingService rpc.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1CreateCustomizedBillingServiceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rippleCustomizedBillingService"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/customizedbillingservices/{id}": {
       "get": {
         "tags": [
@@ -7899,6 +7942,97 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/rippleCustomizedBillingService"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "WORK-IN-PROGRESS: Updates the customized billing service by updating the fields specified in the update mask. Only available in Ripple.",
+        "operationId": "Billing_UpdateCustomizedBillingService",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required. [blueapi.api.ripple.CustomizedBillingService.id]",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BillingUpdateCustomizedBillingServiceBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rippleCustomizedBillingService"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      },
+      "delete": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "WORK-IN-PROGRESS: Deletes the customized billing service. Only available in Ripple.",
+        "operationId": "Billing_DeleteCustomizedBillingService",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required. [blueapi.api.ripple.CustomizedBillingService.id]",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
                 }
               }
             }
@@ -15817,6 +15951,23 @@
           }
         },
         "description": "Request message for the Billing.UpdateAdjustmentConfig rpc."
+      },
+      "BillingUpdateCustomizedBillingServiceBody": {
+        "required": [
+          "CustomizedBillingService",
+          "updateMask"
+        ],
+        "type": "object",
+        "properties": {
+          "CustomizedBillingService": {
+            "$ref": "#/components/schemas/rippleCustomizedBillingService"
+          },
+          "updateMask": {
+            "type": "string",
+            "description": "Required. Indicates which fields in the provided CustomizedBillingService to update. Must be\nspecified and non-empty."
+          }
+        },
+        "description": "Request message for the Billing.UpdateCustomizedBillingService rpc."
       },
       "BillingUpdateInvoicePreviewsBody": {
         "type": "object",
@@ -25270,6 +25421,23 @@
             "$ref": "#/components/schemas/coverCostGroupData"
           }
         }
+      },
+      "v1CreateCustomizedBillingServiceRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Required. [blueapi.api.ripple.CustomizedBillingService.name]",
+            "type": "string"
+          },
+          "description": {
+            "title": "Optional. [blueapi.api.ripple.CustomizedBillingService.description]",
+            "type": "string"
+          },
+          "config": {
+            "$ref": "#/components/schemas/rippleMethodConfig"
+          }
+        },
+        "description": "Request message for the Billing.CreateCustomizedBillingService rpc."
       },
       "v1CreateDefaultCostAccessRequest": {
         "type": "object",
