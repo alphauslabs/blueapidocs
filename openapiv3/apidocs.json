@@ -17008,7 +17008,7 @@
           "TIERED_PERCENTAGE"
         ]
       },
-      "MethodConfigCurrency": {
+      "MethodConfigSupportedCurrency": {
         "type": "string",
         "description": "supported currency.",
         "default": "USD",
@@ -23057,10 +23057,10 @@
             "format": "double"
           },
           "service": {
-            "$ref": "#/components/schemas/rippleTargetServiceConfig"
+            "$ref": "#/components/schemas/rippleFixedFeeOrPercentageTargetServiceConfig"
           },
           "usage": {
-            "$ref": "#/components/schemas/rippleTargetUsageConfig"
+            "$ref": "#/components/schemas/rippleFixedFeeOrPercentageTargetUsageConfig"
           },
           "discounted": {
             "type": "boolean"
@@ -23070,6 +23070,20 @@
             "format": "double"
           }
         }
+      },
+      "rippleFixedFeeOrPercentageTargetServiceConfig": {
+        "type": "string",
+        "default": "ALL",
+        "enum": [
+          "ALL"
+        ]
+      },
+      "rippleFixedFeeOrPercentageTargetUsageConfig": {
+        "type": "string",
+        "default": "USAGE",
+        "enum": [
+          "USAGE"
+        ]
       },
       "rippleInvoiceLayout": {
         "type": "object",
@@ -23099,7 +23113,7 @@
         "type": "object",
         "properties": {
           "currency": {
-            "$ref": "#/components/schemas/MethodConfigCurrency"
+            "$ref": "#/components/schemas/MethodConfigSupportedCurrency"
           },
           "chargingMethod": {
             "$ref": "#/components/schemas/MethodConfigChargingMethod"
@@ -23201,15 +23215,29 @@
             "format": "double"
           },
           "service": {
-            "$ref": "#/components/schemas/rippleTargetServiceConfig"
+            "$ref": "#/components/schemas/ripplePercentageTargetServiceConfig"
           },
           "usage": {
-            "$ref": "#/components/schemas/rippleTargetUsageConfig"
+            "$ref": "#/components/schemas/ripplePercentageTargetUsageConfig"
           },
           "discounted": {
             "type": "boolean"
           }
         }
+      },
+      "ripplePercentageTargetServiceConfig": {
+        "type": "string",
+        "default": "ALL",
+        "enum": [
+          "ALL"
+        ]
+      },
+      "ripplePercentageTargetUsageConfig": {
+        "type": "string",
+        "default": "USAGE",
+        "enum": [
+          "USAGE"
+        ]
       },
       "rippleReseller": {
         "type": "object",
@@ -23276,22 +23304,6 @@
           }
         },
         "description": "Rounding resource definition."
-      },
-      "rippleTargetServiceConfig": {
-        "type": "string",
-        "description": "Describes the overall config of a [blueapi.api.ripple.MethodConfig].",
-        "default": "ALL",
-        "enum": [
-          "ALL"
-        ]
-      },
-      "rippleTargetUsageConfig": {
-        "type": "string",
-        "description": "Describes the overall config of a [blueapi.api.ripple.MethodConfig].",
-        "default": "USAGE",
-        "enum": [
-          "USAGE"
-        ]
       },
       "rippleTierdConfig": {
         "title": "tired config",
