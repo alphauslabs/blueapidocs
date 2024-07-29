@@ -20538,6 +20538,10 @@
             "type": "number",
             "format": "double"
           },
+          "reservedInstanceDiscount": {
+            "type": "number",
+            "format": "double"
+          },
           "usageTypes": {
             "type": "array",
             "items": {
@@ -21681,6 +21685,9 @@
           },
           "recommendationDetails": {
             "$ref": "#/components/schemas/coverRDSDBInstanceDetails"
+          },
+          "cpuUtilization": {
+            "$ref": "#/components/schemas/apicoverUtilizationData"
           }
         }
       },
