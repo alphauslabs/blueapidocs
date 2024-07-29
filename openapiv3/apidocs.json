@@ -21687,7 +21687,10 @@
             "$ref": "#/components/schemas/coverRDSDBInstanceDetails"
           },
           "cpuUtilization": {
-            "$ref": "#/components/schemas/apicoverUtilizationData"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/apicoverUtilizationData"
+            }
           }
         }
       },
