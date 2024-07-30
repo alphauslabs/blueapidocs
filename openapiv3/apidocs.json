@@ -1122,6 +1122,15 @@
         ],
         "summary": "WORK-IN-PROGRESS: Get settings value for wave features management per organization",
         "operationId": "Admin_GetWaveFeatures",
+        "parameters": [
+          {
+            "name": "lang",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -29575,6 +29584,9 @@
       "v1UpdateWaveFeatureSettingRequest": {
         "type": "object",
         "properties": {
+          "lang": {
+            "type": "string"
+          },
           "featureSetting": {
             "type": "array",
             "items": {

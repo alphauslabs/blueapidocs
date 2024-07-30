@@ -904,6 +904,14 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "lang",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
         "tags": [
           "Admin"
         ]
@@ -26380,6 +26388,9 @@
     "v1UpdateWaveFeatureSettingRequest": {
       "type": "object",
       "properties": {
+        "lang": {
+          "type": "string"
+        },
         "featureSetting": {
           "type": "array",
           "items": {
