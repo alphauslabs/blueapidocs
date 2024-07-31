@@ -17396,13 +17396,13 @@
       "MethodConfigCurrency": {
         "type": "string",
         "description": "supported currency.",
-        "default": "USD",
+        "default": "JPY",
         "enum": [
-          "USD",
           "JPY",
-          "SGD",
-          "MYR",
+          "USD",
           "IDR",
+          "MYR",
+          "SGD",
           "INR"
         ]
       },

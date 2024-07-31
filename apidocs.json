@@ -13956,14 +13956,14 @@
     "MethodConfigCurrency": {
       "type": "string",
       "enum": [
-        "USD",
         "JPY",
-        "SGD",
-        "MYR",
+        "USD",
         "IDR",
+        "MYR",
+        "SGD",
         "INR"
       ],
-      "default": "USD",
+      "default": "JPY",
       "description": "supported currency."
     },
     "OperationsCancelOperationBody": {
