@@ -13856,6 +13856,26 @@
       },
       "title": "Request message for UpdateViewWidget"
     },
+    "CurrentEC2DetailsOtherDetails": {
+      "type": "object",
+      "properties": {
+        "exclusionStatus": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "resource": {
+          "type": "string"
+        },
+        "awsConfigRule": {
+          "type": "string"
+        },
+        "inputParameters": {
+          "type": "string"
+        }
+      }
+    },
     "IamCreatePartnerTokenBody": {
       "type": "object",
       "description": "Request message for the Iam.CreatePartnerToken rpc."
@@ -17439,6 +17459,9 @@
             "type": "object",
             "$ref": "#/definitions/apicoverUtilizationData"
           }
+        },
+        "otherDetails": {
+          "$ref": "#/definitions/CurrentEC2DetailsOtherDetails"
         }
       }
     },
@@ -18181,6 +18204,26 @@
         }
       }
     },
+    "coverMemoryDBDetails": {
+      "type": "object",
+      "properties": {
+        "currentGeneration": {
+          "type": "boolean"
+        },
+        "family": {
+          "type": "string"
+        },
+        "nodeType": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "sizeFlexEligible": {
+          "type": "boolean"
+        }
+      }
+    },
     "coverMigrateEC2Details": {
       "type": "object",
       "properties": {
@@ -18276,6 +18319,9 @@
         },
         "redshiftOptions": {
           "$ref": "#/definitions/coverRedshiftDetails"
+        },
+        "memoryDbDetails": {
+          "$ref": "#/definitions/coverMemoryDBDetails"
         },
         "recommendedNormalizedUnits": {
           "type": "integer",
