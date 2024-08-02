@@ -23149,46 +23149,7 @@
           "typeDescription": {
             "type": "string"
           },
-          "sheetType": {
-            "type": "string"
-          },
-          "productID": {
-            "type": "string"
-          },
-          "productTitle": {
-            "type": "string"
-          },
-          "skuTitle": {
-            "type": "string"
-          },
-          "skuDescription": {
-            "type": "string"
-          },
-          "publisher": {
-            "type": "string"
-          },
-          "termDuration": {
-            "type": "string"
-          },
-          "market": {
-            "type": "string"
-          },
-          "quantityThreshold": {
-            "type": "string"
-          },
           "effectiveStartDate": {
-            "type": "string"
-          },
-          "effectiveEndDate": {
-            "type": "string"
-          },
-          "meterID": {
-            "type": "string"
-          },
-          "meterType": {
-            "type": "string"
-          },
-          "tags": {
             "type": "string"
           },
           "currencyCode": {
@@ -23200,7 +23161,13 @@
           "retailPrice": {
             "type": "string"
           },
+          "meterId": {
+            "type": "string"
+          },
           "meterName": {
+            "type": "string"
+          },
+          "productId": {
             "type": "string"
           },
           "productName": {
@@ -23216,7 +23183,7 @@
             "type": "string"
           },
           "isPrimaryMeterRegion": {
-            "type": "string"
+            "type": "boolean"
           },
           "armSkuName": {
             "type": "string"
