@@ -5006,6 +5006,20 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "calcType",
+            "description": "Optional. Filter by calcType. Format: calType=account\nValid values: account, tag",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "displayCost",
+            "description": "Optional. Filter by displayCost. Format: displayCost=unblended_cost\nvalid values: unblended_cost, true_unblended_cost",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [

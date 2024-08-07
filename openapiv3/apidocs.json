@@ -6330,6 +6330,22 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "calcType",
+            "in": "query",
+            "description": "Optional. Filter by calcType. Format: calType=account\nValid values: account, tag",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "displayCost",
+            "in": "query",
+            "description": "Optional. Filter by displayCost. Format: displayCost=unblended_cost\nvalid values: unblended_cost, true_unblended_cost",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
