@@ -17982,12 +17982,12 @@
         "type": "object",
         "properties": {
           "service": {
-            "title": "Required. Cloud vendor service. \nSupported services can be listed using /v0/{vendor}/services endpoint. For usage information visit https://labs.alphaus.cloud/blueapidocs/#/Pricing/Pricing_GetSupportedServices",
-            "type": "string"
+            "type": "string",
+            "description": "Required. Cloud vendor service. \nSupported services can be listed using /v0/{vendor}/services endpoint. For usage information visit https://labs.alphaus.cloud/blueapidocs/#/Pricing/Pricing_GetSupportedServices."
           },
           "region": {
-            "title": "Required. Region code.\nSupported regions can be listed using /v0/{vendor}/services endpoint. For usage information visit https://labs.alphaus.cloud/blueapidocs/#/Pricing/Pricing_GetSupportedServices\nView all available AWS services by region at https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/\nView all available Azure services by region at https://azure.microsoft.com/en-us/explore/global-infrastructure/products-by-region/",
-            "type": "string"
+            "type": "string",
+            "description": "Required. Region code.\nSupported regions can be listed using /v0/{vendor}/services endpoint. For usage information visit https://labs.alphaus.cloud/blueapidocs/#/Pricing/Pricing_GetSupportedServices.\nView all available AWS services by region at https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/.\nView all available Azure services by region at https://azure.microsoft.com/en-us/explore/global-infrastructure/products-by-region/."
           },
           "token": {
             "type": "string",
@@ -28673,8 +28673,8 @@
         "type": "object",
         "properties": {
           "supportedServices": {
-            "title": "Suported services, regions, and attributes that can be used to fetch pricing data",
             "type": "array",
+            "description": "Suported services, regions, and attributes that can be used to fetch pricing data.",
             "items": {
               "$ref": "#/components/schemas/v1SupportedService"
             }
@@ -30204,26 +30204,26 @@
         "type": "object",
         "properties": {
           "service": {
-            "title": "AWS or Azure services only as of now",
-            "type": "string"
+            "type": "string",
+            "description": "AWS or Azure services only as of now."
           },
           "regions": {
-            "title": "Regions supported for the specific service",
             "type": "array",
+            "description": "Regions supported for the specific service.",
             "items": {
               "type": "string"
             }
           },
           "attributes": {
-            "title": "Attributes that can be used as key-value pairs for filtering",
             "type": "array",
+            "description": "Attributes that can be used as key-value pairs for filtering.",
             "items": {
               "$ref": "#/components/schemas/v1Attribute"
             }
           },
           "columns": {
-            "title": "Column names that can be used to specify what columns should GetPricing return",
             "type": "array",
+            "description": "Column names that can be used to specify what columns should GetPricing return.",
             "items": {
               "type": "string"
             }
