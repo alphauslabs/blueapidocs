@@ -8592,6 +8592,55 @@
         ]
       }
     },
+    "/v1/servicediscounts/{vendor}/services:read": {
+      "post": {
+        "summary": "Reads the service relate to the service discounts. Only available in Ripple.",
+        "operationId": "Billing_ReadServiceDiscountsService",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1Service"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of v1Service"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws`,`azure`,`gcp` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BillingReadServiceDiscountsServiceBody"
+            }
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      }
+    },
     "/v1/servicediscounts:read": {
       "post": {
         "summary": "Reads the invoice service discounts. Only available in Ripple.",
@@ -8603,13 +8652,13 @@
               "type": "object",
               "properties": {
                 "result": {
-                  "$ref": "#/definitions/v1InvoiceServiceDiscounts"
+                  "$ref": "#/definitions/blueapibillingv1InvoiceServiceDiscounts"
                 },
                 "error": {
                   "$ref": "#/definitions/googlerpcStatus"
                 }
               },
-              "title": "Stream result of v1InvoiceServiceDiscounts"
+              "title": "Stream result of blueapibillingv1InvoiceServiceDiscounts"
             }
           },
           "default": {
@@ -12818,6 +12867,10 @@
         }
       },
       "description": "Request message for the Billing.ReadInvoiceAdjustments rpc."
+    },
+    "BillingReadServiceDiscountsServiceBody": {
+      "type": "object",
+      "description": "Request message for the ReadServiceDiscountsService rpc."
     },
     "BillingReadUntaggedGroupsBody": {
       "type": "object",
@@ -18023,6 +18076,32 @@
           }
         }
       }
+    },
+    "blueapibillingv1InvoiceServiceDiscounts": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Service discount id."
+        },
+        "name": {
+          "type": "string",
+          "description": "Service discount name."
+        },
+        "description": {
+          "type": "string",
+          "description": "Service discount description."
+        },
+        "created": {
+          "type": "string",
+          "description": "create timestamp."
+        },
+        "updated": {
+          "type": "string",
+          "description": "update timestamp."
+        }
+      },
+      "description": "Streaming response message for the InvoiceServiceDiscounts rpc."
     },
     "blueapicostv1CostItem": {
       "type": "object",
@@ -25567,32 +25646,6 @@
       },
       "title": "Response message for InviteMember"
     },
-    "v1InvoiceServiceDiscounts": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "description": "Service discount id."
-        },
-        "name": {
-          "type": "string",
-          "description": "Service discount name."
-        },
-        "description": {
-          "type": "string",
-          "description": "Service discount description."
-        },
-        "created": {
-          "type": "string",
-          "description": "create timestamp."
-        },
-        "updated": {
-          "type": "string",
-          "description": "update timestamp."
-        }
-      },
-      "description": "Streaming response message for the InvoiceServiceDiscounts rpc."
-    },
     "v1IpFilter": {
       "type": "object",
       "properties": {
@@ -26954,6 +27007,20 @@
         }
       },
       "description": "Response message for ListSavings, RestoreSavings, SimulateSavings rpc."
+    },
+    "v1Service": {
+      "type": "object",
+      "properties": {
+        "serviceCode": {
+          "type": "string",
+          "description": "The service code."
+        },
+        "serviceName": {
+          "type": "string",
+          "description": "The service name."
+        }
+      },
+      "description": "Service resource definition.\nServices of each vendor available for Service Discounts."
     },
     "v1SetCostGroupAnomalyOptionsResponse": {
       "type": "object",
