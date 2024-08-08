@@ -10968,7 +10968,7 @@
           "Billing"
         ],
         "summary": "Reads the service relate to the service discounts. Only available in Ripple.",
-        "operationId": "Billing_ReadServiceDiscountsService",
+        "operationId": "Billing_ReadServiceDiscountsServices",
         "parameters": [
           {
             "name": "vendor",
@@ -10984,7 +10984,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/BillingReadServiceDiscountsServiceBody"
+                "$ref": "#/components/schemas/BillingReadServiceDiscountsServicesBody"
               }
             }
           },
@@ -16370,9 +16370,9 @@
         },
         "description": "Request message for the Billing.ReadInvoiceAdjustments rpc."
       },
-      "BillingReadServiceDiscountsServiceBody": {
+      "BillingReadServiceDiscountsServicesBody": {
         "type": "object",
-        "description": "Request message for the ReadServiceDiscountsService rpc."
+        "description": "Request message for the ReadServiceDiscountsServices rpc."
       },
       "BillingReadUntaggedGroupsBody": {
         "type": "object",
