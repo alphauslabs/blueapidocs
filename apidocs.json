@@ -17039,11 +17039,11 @@
         },
         "name": {
           "type": "string",
-          "description": "The invoice service discount name."
+          "description": "The invoice service discount name.\nmust be 1-60 characters long."
         },
         "description": {
           "type": "string",
-          "description": "The invoice service discount description."
+          "description": "The invoice service discount description.\nMaximum 150 characters long."
         },
         "setting": {
           "$ref": "#/definitions/v1InvoiceServiceDiscountsSetting",
@@ -25497,7 +25497,7 @@
       "properties": {
         "code": {
           "type": "string",
-          "title": "The vendor service code.\naws: ProductCode\nazure: ServiceCode\ngcp: ServiceName"
+          "title": "The vendor service code.\naws: ProductCode\nazure: ServiceCode\ngcp: ServiceName\n`otherServices`: The code to specify other services as a whole, regardless of vendor.\nFor exmaple: Other services set at 1%.\n{\"code\":\"otherServices\", \"value\":0.01}"
         },
         "name": {
           "type": "string",
