@@ -10723,20 +10723,11 @@
         },
         "responses": {
           "200": {
-            "description": "A successful response.(streaming responses)",
+            "description": "A successful response.",
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "Stream result of apiripplev1InvoiceServiceDiscounts",
-                  "type": "object",
-                  "properties": {
-                    "result": {
-                      "$ref": "#/components/schemas/apiripplev1InvoiceServiceDiscounts"
-                    },
-                    "error": {
-                      "$ref": "#/components/schemas/googlerpcStatus"
-                    }
-                  }
+                  "$ref": "#/components/schemas/apiripplev1InvoiceServiceDiscounts"
                 }
               }
             }
@@ -11044,20 +11035,11 @@
         },
         "responses": {
           "200": {
-            "description": "A successful response.(streaming responses)",
+            "description": "A successful response.",
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "Stream result of apiripplev1InvoiceServiceDiscounts",
-                  "type": "object",
-                  "properties": {
-                    "result": {
-                      "$ref": "#/components/schemas/apiripplev1InvoiceServiceDiscounts"
-                    },
-                    "error": {
-                      "$ref": "#/components/schemas/googlerpcStatus"
-                    }
-                  }
+                  "$ref": "#/components/schemas/apiripplev1InvoiceServiceDiscounts"
                 }
               }
             }

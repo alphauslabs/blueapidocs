@@ -8399,18 +8399,9 @@
         "operationId": "Billing_CreateInvoiceServiceDiscounts",
         "responses": {
           "200": {
-            "description": "A successful response.(streaming responses)",
+            "description": "A successful response.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "result": {
-                  "$ref": "#/definitions/apiripplev1InvoiceServiceDiscounts"
-                },
-                "error": {
-                  "$ref": "#/definitions/googlerpcStatus"
-                }
-              },
-              "title": "Stream result of apiripplev1InvoiceServiceDiscounts"
+              "$ref": "#/definitions/apiripplev1InvoiceServiceDiscounts"
             }
           },
           "default": {
@@ -8672,18 +8663,9 @@
         "operationId": "Billing_UpdateInvoiceServiceDiscounts",
         "responses": {
           "200": {
-            "description": "A successful response.(streaming responses)",
+            "description": "A successful response.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "result": {
-                  "$ref": "#/definitions/apiripplev1InvoiceServiceDiscounts"
-                },
-                "error": {
-                  "$ref": "#/definitions/googlerpcStatus"
-                }
-              },
-              "title": "Stream result of apiripplev1InvoiceServiceDiscounts"
+              "$ref": "#/definitions/apiripplev1InvoiceServiceDiscounts"
             }
           },
           "default": {
