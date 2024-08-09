@@ -8393,6 +8393,49 @@
         ]
       }
     },
+    "/v1/servicediscounts": {
+      "post": {
+        "summary": "Creates the invoice service discounts. Only available in Ripple.",
+        "operationId": "Billing_CreateInvoiceServiceDiscounts",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/apiripplev1InvoiceServiceDiscounts"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of apiripplev1InvoiceServiceDiscounts"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Request message for the Billing.CreateInvoiceServiceDiscounts rpc.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateInvoiceServiceDiscountsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      }
+    },
     "/v1/servicediscounts/{groupId}/account": {
       "delete": {
         "summary": "Deletes the account invoice service discounts. Only available in Ripple.",
@@ -8584,6 +8627,86 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/BillingRemoveAccountInvoiceServiceDiscountsBody"
+            }
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      }
+    },
+    "/v1/servicediscounts/{id}": {
+      "delete": {
+        "summary": "Deletes the invoice service discounts. Only available in Ripple.",
+        "operationId": "Billing_DeleteInvoiceServiceDiscounts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Required. [blueapi.api.ripple.v1.InvoiceServiceDiscounts.id]",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      },
+      "put": {
+        "summary": "Updates the invoice service discounts. Only available in Ripple.",
+        "operationId": "Billing_UpdateInvoiceServiceDiscounts",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/apiripplev1InvoiceServiceDiscounts"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of apiripplev1InvoiceServiceDiscounts"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Required. [blueapi.api.ripple.v1.InvoiceServiceDiscounts.id]",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BillingUpdateInvoiceServiceDiscountsBody"
             }
           }
         ],
@@ -12972,6 +13095,24 @@
       },
       "description": "Request message for the UpdateInvoicePreviews rpc."
     },
+    "BillingUpdateInvoiceServiceDiscountsBody": {
+      "type": "object",
+      "properties": {
+        "invoiceServiceDiscounts": {
+          "$ref": "#/definitions/apiripplev1InvoiceServiceDiscounts",
+          "description": "Required. The updated invoice service discounts object."
+        },
+        "updateMask": {
+          "type": "string",
+          "description": "Required. Indicates which fields in the provided InvoiceServiceDiscounts to update. Must be\nspecified and non-empty."
+        }
+      },
+      "description": "Request message for the Billing.UpdateInvoiceServiceDiscounts rpc.",
+      "required": [
+        "invoiceServiceDiscounts",
+        "updateMask"
+      ]
+    },
     "BillingUpdateResellerBody": {
       "type": "object",
       "properties": {
@@ -16888,6 +17029,38 @@
         }
       },
       "description": "AccessGroup resource definition."
+    },
+    "apiripplev1InvoiceServiceDiscounts": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The invoice service discounts id."
+        },
+        "name": {
+          "type": "string",
+          "description": "The invoice service discount name."
+        },
+        "description": {
+          "type": "string",
+          "description": "The invoice service discount description."
+        },
+        "setting": {
+          "$ref": "#/definitions/v1InvoiceServiceDiscountsSetting",
+          "description": "The invoice service discount setting."
+        },
+        "created": {
+          "type": "string",
+          "description": "Timestamp associated with the created.",
+          "readOnly": true
+        },
+        "updated": {
+          "type": "string",
+          "description": "Timestamp associated with the updated.",
+          "readOnly": true
+        }
+      },
+      "description": "InvoiceServiceDiscounts resource definition."
     },
     "apiwaveBudget": {
       "type": "object",
@@ -23319,6 +23492,24 @@
       },
       "description": "Request message for the Iam.CreateIdentityProvider rpc."
     },
+    "v1CreateInvoiceServiceDiscountsRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Required. [blueapi.api.ripple.v1.InvoiceServiceDiscounts.name]"
+        },
+        "description": {
+          "type": "string",
+          "title": "Optional. [blueapi.api.ripple.v1.InvoiceServiceDiscounts.description]"
+        },
+        "setting": {
+          "$ref": "#/definitions/v1InvoiceServiceDiscountsSetting",
+          "title": "Required. [blueapi.api.ripple.v1.InvoiceServiceDiscounts.InvoiceServiceDiscountsSetting]"
+        }
+      },
+      "description": "Request message for the Billing.CreateInvoiceServiceDiscounts rpc."
+    },
     "v1CreateIpFilterRequest": {
       "type": "object",
       "properties": {
@@ -25270,6 +25461,62 @@
         }
       },
       "title": "Response message for InviteMember"
+    },
+    "v1InvoiceServiceDiscountsSetting": {
+      "type": "object",
+      "properties": {
+        "awsDetails": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1InvoiceServiceDiscountsSettingDetails"
+          },
+          "description": "The invoice service discounts setting details."
+        },
+        "azureDetails": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1InvoiceServiceDiscountsSettingDetails"
+          },
+          "description": "The invoice service discounts setting details."
+        },
+        "gcpDetails": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1InvoiceServiceDiscountsSettingDetails"
+          },
+          "description": "The invoice service discounts setting details."
+        }
+      },
+      "description": "InvoiceServiceDiscountsSetting resource definition."
+    },
+    "v1InvoiceServiceDiscountsSettingDetails": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "title": "The vendor service code.\naws: ProductCode\nazure: ServiceCode\ngcp: ServiceName"
+        },
+        "name": {
+          "type": "string",
+          "description": "The vendor service name.",
+          "readOnly": true
+        },
+        "value": {
+          "type": "string",
+          "description": "Value associated with the set premiums or discounts."
+        },
+        "calculationScope": {
+          "type": "boolean",
+          "description": "The calculation scope.\nIf enabled, all Usage and Fee are included in the calculation.\nIf disabled, only the Usage is included in the calculation."
+        }
+      },
+      "description": "InvoiceServiceDiscountsSettingDetails resource definition.",
+      "required": [
+        "code"
+      ]
     },
     "v1IpFilter": {
       "type": "object",

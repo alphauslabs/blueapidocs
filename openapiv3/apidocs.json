@@ -10703,6 +10703,58 @@
         }
       }
     },
+    "/v1/servicediscounts": {
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Creates the invoice service discounts. Only available in Ripple.",
+        "operationId": "Billing_CreateInvoiceServiceDiscounts",
+        "requestBody": {
+          "description": "Request message for the Billing.CreateInvoiceServiceDiscounts rpc.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1CreateInvoiceServiceDiscountsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Stream result of apiripplev1InvoiceServiceDiscounts",
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/components/schemas/apiripplev1InvoiceServiceDiscounts"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/googlerpcStatus"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/servicediscounts/{groupId}/account": {
       "put": {
         "tags": [
@@ -10960,6 +11012,108 @@
           }
         },
         "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/servicediscounts/{id}": {
+      "put": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Updates the invoice service discounts. Only available in Ripple.",
+        "operationId": "Billing_UpdateInvoiceServiceDiscounts",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required. [blueapi.api.ripple.v1.InvoiceServiceDiscounts.id]",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BillingUpdateInvoiceServiceDiscountsBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Stream result of apiripplev1InvoiceServiceDiscounts",
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/components/schemas/apiripplev1InvoiceServiceDiscounts"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/googlerpcStatus"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      },
+      "delete": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Deletes the invoice service discounts. Only available in Ripple.",
+        "operationId": "Billing_DeleteInvoiceServiceDiscounts",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required. [blueapi.api.ripple.v1.InvoiceServiceDiscounts.id]",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/v1/servicediscounts/{vendor}/services:read": {
@@ -16469,6 +16623,23 @@
         },
         "description": "Request message for the UpdateInvoicePreviews rpc."
       },
+      "BillingUpdateInvoiceServiceDiscountsBody": {
+        "required": [
+          "invoiceServiceDiscounts",
+          "updateMask"
+        ],
+        "type": "object",
+        "properties": {
+          "invoiceServiceDiscounts": {
+            "$ref": "#/components/schemas/apiripplev1InvoiceServiceDiscounts"
+          },
+          "updateMask": {
+            "type": "string",
+            "description": "Required. Indicates which fields in the provided InvoiceServiceDiscounts to update. Must be\nspecified and non-empty."
+          }
+        },
+        "description": "Request message for the Billing.UpdateInvoiceServiceDiscounts rpc."
+      },
       "BillingUpdateResellerBody": {
         "required": [
           "updateMask"
@@ -20326,6 +20497,37 @@
           }
         },
         "description": "AccessGroup resource definition."
+      },
+      "apiripplev1InvoiceServiceDiscounts": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The invoice service discounts id."
+          },
+          "name": {
+            "type": "string",
+            "description": "The invoice service discount name."
+          },
+          "description": {
+            "type": "string",
+            "description": "The invoice service discount description."
+          },
+          "setting": {
+            "$ref": "#/components/schemas/v1InvoiceServiceDiscountsSetting"
+          },
+          "created": {
+            "type": "string",
+            "description": "Timestamp associated with the created.",
+            "readOnly": true
+          },
+          "updated": {
+            "type": "string",
+            "description": "Timestamp associated with the updated.",
+            "readOnly": true
+          }
+        },
+        "description": "InvoiceServiceDiscounts resource definition."
       },
       "apiwaveBudget": {
         "type": "object",
@@ -26624,6 +26826,23 @@
         },
         "description": "Request message for the Iam.CreateIdentityProvider rpc."
       },
+      "v1CreateInvoiceServiceDiscountsRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Required. [blueapi.api.ripple.v1.InvoiceServiceDiscounts.name]",
+            "type": "string"
+          },
+          "description": {
+            "title": "Optional. [blueapi.api.ripple.v1.InvoiceServiceDiscounts.description]",
+            "type": "string"
+          },
+          "setting": {
+            "$ref": "#/components/schemas/v1InvoiceServiceDiscountsSetting"
+          }
+        },
+        "description": "Request message for the Billing.CreateInvoiceServiceDiscounts rpc."
+      },
       "v1CreateIpFilterRequest": {
         "type": "object",
         "properties": {
@@ -28516,6 +28735,59 @@
             }
           }
         }
+      },
+      "v1InvoiceServiceDiscountsSetting": {
+        "type": "object",
+        "properties": {
+          "awsDetails": {
+            "type": "array",
+            "description": "The invoice service discounts setting details.",
+            "items": {
+              "$ref": "#/components/schemas/v1InvoiceServiceDiscountsSettingDetails"
+            }
+          },
+          "azureDetails": {
+            "type": "array",
+            "description": "The invoice service discounts setting details.",
+            "items": {
+              "$ref": "#/components/schemas/v1InvoiceServiceDiscountsSettingDetails"
+            }
+          },
+          "gcpDetails": {
+            "type": "array",
+            "description": "The invoice service discounts setting details.",
+            "items": {
+              "$ref": "#/components/schemas/v1InvoiceServiceDiscountsSettingDetails"
+            }
+          }
+        },
+        "description": "InvoiceServiceDiscountsSetting resource definition."
+      },
+      "v1InvoiceServiceDiscountsSettingDetails": {
+        "required": [
+          "code"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "title": "The vendor service code.\naws: ProductCode\nazure: ServiceCode\ngcp: ServiceName",
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "description": "The vendor service name.",
+            "readOnly": true
+          },
+          "value": {
+            "type": "string",
+            "description": "Value associated with the set premiums or discounts."
+          },
+          "calculationScope": {
+            "type": "boolean",
+            "description": "The calculation scope.\nIf enabled, all Usage and Fee are included in the calculation.\nIf disabled, only the Usage is included in the calculation."
+          }
+        },
+        "description": "InvoiceServiceDiscountsSettingDetails resource definition."
       },
       "v1IpFilter": {
         "type": "object",
