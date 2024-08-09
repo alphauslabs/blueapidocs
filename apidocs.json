@@ -12936,7 +12936,7 @@
     "BillingUpdateCustomizedBillingServiceBody": {
       "type": "object",
       "properties": {
-        "CustomizedBillingService": {
+        "customizedBillingService": {
           "$ref": "#/definitions/rippleCustomizedBillingService",
           "description": "Required. The updated customized billing service object."
         },
@@ -12947,7 +12947,7 @@
       },
       "description": "Request message for the Billing.UpdateCustomizedBillingService rpc.",
       "required": [
-        "CustomizedBillingService",
+        "customizedBillingService",
         "updateMask"
       ]
     },

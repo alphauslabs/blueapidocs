@@ -16433,12 +16433,12 @@
       },
       "BillingUpdateCustomizedBillingServiceBody": {
         "required": [
-          "CustomizedBillingService",
+          "customizedBillingService",
           "updateMask"
         ],
         "type": "object",
         "properties": {
-          "CustomizedBillingService": {
+          "customizedBillingService": {
             "$ref": "#/components/schemas/rippleCustomizedBillingService"
           },
           "updateMask": {
