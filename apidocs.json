@@ -20791,6 +20791,9 @@
         },
         "rollbackPossible": {
           "type": "boolean"
+        },
+        "launchUrl": {
+          "type": "string"
         }
       }
     },
