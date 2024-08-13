@@ -24694,7 +24694,8 @@
         "description": "Describes the overall config of a [blueapi.api.ripple.MethodConfig].",
         "default": "USAGE",
         "enum": [
-          "USAGE"
+          "USAGE",
+          "USAGE_ONLY"
         ]
       },
       "rippleTierdConfig": {
@@ -24724,6 +24725,15 @@
             "items": {
               "$ref": "#/components/schemas/rippleTierdConfig"
             }
+          },
+          "service": {
+            "$ref": "#/components/schemas/rippleTargetServiceConfig"
+          },
+          "usage": {
+            "$ref": "#/components/schemas/rippleTargetUsageConfig"
+          },
+          "discounted": {
+            "type": "boolean"
           }
         }
       },
@@ -24736,6 +24746,15 @@
             "items": {
               "$ref": "#/components/schemas/rippleTierdConfig"
             }
+          },
+          "service": {
+            "$ref": "#/components/schemas/rippleTargetServiceConfig"
+          },
+          "usage": {
+            "$ref": "#/components/schemas/rippleTargetUsageConfig"
+          },
+          "discounted": {
+            "type": "boolean"
           }
         }
       },

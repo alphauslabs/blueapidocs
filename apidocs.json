@@ -21303,7 +21303,8 @@
     "rippleTargetUsageConfig": {
       "type": "string",
       "enum": [
-        "USAGE"
+        "USAGE",
+        "USAGE_ONLY"
       ],
       "default": "USAGE",
       "description": "Describes the overall config of a [blueapi.api.ripple.MethodConfig]."
@@ -21335,6 +21336,15 @@
             "type": "object",
             "$ref": "#/definitions/rippleTierdConfig"
           }
+        },
+        "service": {
+          "$ref": "#/definitions/rippleTargetServiceConfig"
+        },
+        "usage": {
+          "$ref": "#/definitions/rippleTargetUsageConfig"
+        },
+        "discounted": {
+          "type": "boolean"
         }
       },
       "title": "tired percentage"
@@ -21348,6 +21358,15 @@
             "type": "object",
             "$ref": "#/definitions/rippleTierdConfig"
           }
+        },
+        "service": {
+          "$ref": "#/definitions/rippleTargetServiceConfig"
+        },
+        "usage": {
+          "$ref": "#/definitions/rippleTargetUsageConfig"
+        },
+        "discounted": {
+          "type": "boolean"
         }
       },
       "title": "tired price"
