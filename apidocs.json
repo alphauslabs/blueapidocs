@@ -16979,18 +16979,6 @@
       "description": "see gcp billing data schema details:[https://cloud.google.com/billing/docs/how-to/export-data-bigquery-tables]",
       "title": "Cost for Api Response"
     },
-    "apipricingValue": {
-      "type": "object",
-      "properties": {
-        "strVal": {
-          "type": "string"
-        },
-        "floatVal": {
-          "type": "number",
-          "format": "float"
-        }
-      }
-    },
     "apirippleAccessGroup": {
       "type": "object",
       "properties": {
@@ -20551,10 +20539,7 @@
           "format": "double"
         },
         "serviceDetails": {
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/definitions/apipricingValue"
-          }
+          "type": "object"
         }
       },
       "title": "Pricing details"

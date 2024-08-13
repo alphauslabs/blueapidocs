@@ -20447,18 +20447,6 @@
         },
         "description": "see gcp billing data schema details:[https://cloud.google.com/billing/docs/how-to/export-data-bigquery-tables]"
       },
-      "apipricingValue": {
-        "type": "object",
-        "properties": {
-          "strVal": {
-            "type": "string"
-          },
-          "floatVal": {
-            "type": "number",
-            "format": "float"
-          }
-        }
-      },
       "apirippleAccessGroup": {
         "type": "object",
         "properties": {
@@ -23961,9 +23949,7 @@
           },
           "serviceDetails": {
             "type": "object",
-            "additionalProperties": {
-              "$ref": "#/components/schemas/apipricingValue"
-            }
+            "properties": {}
           }
         }
       },
