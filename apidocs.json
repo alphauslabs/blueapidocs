@@ -21303,8 +21303,7 @@
     "rippleTargetUsageConfig": {
       "type": "string",
       "enum": [
-        "USAGE",
-        "USAGE_ONLY"
+        "USAGE"
       ],
       "default": "USAGE",
       "description": "Describes the overall config of a [blueapi.api.ripple.MethodConfig]."
