@@ -10708,7 +10708,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "Creates the invoice service discounts. Only available in Ripple.",
+        "summary": "WORK-IN-PROGRESS: Creates the invoice service discounts. Only available in Ripple.",
         "operationId": "Billing_CreateInvoiceServiceDiscounts",
         "requestBody": {
           "description": "Request message for the Billing.CreateInvoiceServiceDiscounts rpc.",
@@ -11010,7 +11010,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "Updates the invoice service discounts. Only available in Ripple.",
+        "summary": "WORK-IN-PROGRESS: Updates the invoice service discounts. Only available in Ripple.",
         "operationId": "Billing_UpdateInvoiceServiceDiscounts",
         "parameters": [
           {
@@ -11061,7 +11061,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "Deletes the invoice service discounts. Only available in Ripple.",
+        "summary": "WORK-IN-PROGRESS: Deletes the invoice service discounts. Only available in Ripple.",
         "operationId": "Billing_DeleteInvoiceServiceDiscounts",
         "parameters": [
           {
@@ -11103,7 +11103,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "Reads the service relate to the service discounts. Only available in Ripple.",
+        "summary": "WORK-IN-PROGRESS: Reads the service relate to the service discounts. Only available in Ripple.",
         "operationId": "Billing_ReadServiceDiscountsServices",
         "parameters": [
           {
