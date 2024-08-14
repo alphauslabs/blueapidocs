@@ -19539,11 +19539,19 @@
           "date": {
             "type": "string"
           },
+          "cost": {
+            "type": "number",
+            "format": "double"
+          },
           "coverage": {
             "type": "number",
             "format": "double"
           },
           "usage": {
+            "type": "number",
+            "format": "double"
+          },
+          "usageCoverage": {
             "type": "number",
             "format": "double"
           }
