@@ -16357,6 +16357,30 @@
           }
         }
       },
+      "AWSResourceDetailsReservedInstance": {
+        "type": "object",
+        "properties": {
+          "expirationDate": {
+            "type": "string"
+          },
+          "instanceCount": {
+            "type": "number",
+            "format": "double"
+          },
+          "instanceType": {
+            "type": "string"
+          },
+          "platform": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "metrics": {
+            "$ref": "#/components/schemas/ReservedInstanceRIMetrics"
+          }
+        }
+      },
       "AWSResourceDetailsS3Details": {
         "type": "object",
         "properties": {
@@ -16718,6 +16742,24 @@
           }
         },
         "description": "Request message for the UpdateReseller rpc."
+      },
+      "ComprehendDetailsEndpoint": {
+        "type": "object",
+        "properties": {
+          "arn": {
+            "type": "string"
+          },
+          "provisionedInferenceUnit": {
+            "type": "number",
+            "format": "double"
+          },
+          "autoScalingStatus": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
       },
       "CostCalculateCostsBody": {
         "type": "object",
@@ -18171,6 +18213,9 @@
           },
           "arn": {
             "type": "string"
+          },
+          "status": {
+            "type": "string"
           }
         }
       },
@@ -18372,6 +18417,31 @@
           }
         }
       },
+      "RedshiftDetailsClusterDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "clusterId": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "ReservedInstanceRIMetrics": {
+        "type": "object",
+        "properties": {
+          "utilization": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MetricDataMetrics"
+            }
+          }
+        }
+      },
       "RoundingRoundingMethod": {
         "title": "RoundingMethod",
         "type": "string",
@@ -18473,6 +18543,36 @@
           }
         }
       },
+      "TrustedAdvisorRecommendationsComprehendUnderutilizedEndpoints": {
+        "type": "object",
+        "properties": {
+          "endpoint": {
+            "$ref": "#/components/schemas/ComprehendDetailsEndpoint"
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      },
+      "TrustedAdvisorRecommendationsEC2RILeaseExpiration": {
+        "type": "object",
+        "properties": {
+          "currentMonthlyCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "estMonthlySavings": {
+            "type": "number",
+            "format": "double"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "riDetails": {
+            "$ref": "#/components/schemas/AWSResourceDetailsReservedInstance"
+          }
+        }
+      },
       "TrustedAdvisorRecommendationsIdleLoadBalancer": {
         "type": "object",
         "properties": {
@@ -18516,6 +18616,45 @@
           },
           "lambdaDetails": {
             "$ref": "#/components/schemas/AWSResourceDetailsLambdaDetails"
+          }
+        }
+      },
+      "TrustedAdvisorRecommendationsLambdaWithExcessiveTimeouts": {
+        "type": "object",
+        "properties": {
+          "maxDailyTimeoutRate": {
+            "type": "number",
+            "format": "double"
+          },
+          "dateOfDailyTimeoutRate": {
+            "type": "string"
+          },
+          "aveDailyTimeoutRate": {
+            "type": "number",
+            "format": "double"
+          },
+          "functionTimeoutSettings": {
+            "type": "number",
+            "format": "double"
+          },
+          "lostDailyComputeCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "aveDailyInvokes": {
+            "type": "number",
+            "format": "double"
+          },
+          "currentDayInvokes": {
+            "type": "number",
+            "format": "double"
+          },
+          "currentDayTimeoutRate": {
+            "type": "number",
+            "format": "double"
+          },
+          "function": {
+            "$ref": "#/components/schemas/LambdaDetailsFunctionDetails"
           }
         }
       },
@@ -18575,6 +18714,21 @@
             "$ref": "#/components/schemas/recommendationAWSResourceDetailsEBSDetails"
           },
           "monthlyStorageCost": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "TrustedAdvisorRecommendationsUnderutilizedRedshiftCluster": {
+        "type": "object",
+        "properties": {
+          "cluster": {
+            "$ref": "#/components/schemas/RedshiftDetailsClusterDetails"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "estimatedMonthlySavings": {
             "type": "number",
             "format": "double"
           }
@@ -24099,6 +24253,9 @@
       "recommendationAWSResourceDetailsRedshiftDetails": {
         "type": "object",
         "properties": {
+          "cluster": {
+            "$ref": "#/components/schemas/RedshiftDetailsClusterDetails"
+          },
           "node": {
             "$ref": "#/components/schemas/AWSResourceDetailsRedshiftDetailsNodeDetails"
           }
@@ -24288,6 +24445,18 @@
           },
           "ec2InstancesStopped": {
             "$ref": "#/components/schemas/TrustedAdvisorRecommendationsAmazonEC2InstanceStopped"
+          },
+          "ec2RILeaseExpiration": {
+            "$ref": "#/components/schemas/TrustedAdvisorRecommendationsEC2RILeaseExpiration"
+          },
+          "comprehendUnderutilizedEndpoints": {
+            "$ref": "#/components/schemas/TrustedAdvisorRecommendationsComprehendUnderutilizedEndpoints"
+          },
+          "underutilizedRedshiftCluster": {
+            "$ref": "#/components/schemas/TrustedAdvisorRecommendationsUnderutilizedRedshiftCluster"
+          },
+          "lambdaWithExcessiveTimeouts": {
+            "$ref": "#/components/schemas/TrustedAdvisorRecommendationsLambdaWithExcessiveTimeouts"
           }
         }
       },
