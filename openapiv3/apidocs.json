@@ -21627,6 +21627,9 @@
           "tagValue": {
             "title": "Tag Value. Contains tag value of the input tag key. Only used if groupBy is set to tag",
             "type": "string"
+          },
+          "lastUpdate": {
+            "type": "string"
           }
         },
         "description": "Response message wrapper for cloud costs."
