@@ -29030,7 +29030,7 @@
           },
           "calculationScope": {
             "type": "boolean",
-            "description": "The calculation scope.\nIf enabled, all Usage and Fee are included in the calculation.\nIf disabled, only the Usage is included in the calculation."
+            "description": "The calculation scope.\ndefault is `disabled`.\nIf enabled, Usage and any lineitem type including Fee are included in the calculation.\nIf disabled, only the Usage is included in the calculation."
           }
         },
         "description": "InvoiceServiceDiscountsSettingDetails resource definition."
