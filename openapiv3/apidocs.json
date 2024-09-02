@@ -18257,6 +18257,31 @@
           }
         }
       },
+      "ListRecommendationResponsePurchaseOption": {
+        "type": "object",
+        "properties": {
+          "spType": {
+            "type": "string"
+          },
+          "offeringClass": {
+            "type": "string"
+          },
+          "commitment": {
+            "type": "number",
+            "format": "double"
+          },
+          "numberToPurchase": {
+            "type": "string",
+            "format": "int64"
+          },
+          "paymentOption": {
+            "type": "string"
+          },
+          "term": {
+            "type": "string"
+          }
+        }
+      },
       "MethodConfigChargingMethod": {
         "type": "string",
         "default": "FIXED_FEE",
@@ -29418,6 +29443,12 @@
           },
           "recommendationGroup": {
             "type": "string"
+          },
+          "lastUpdatedAt": {
+            "type": "string"
+          },
+          "purchaseOption": {
+            "$ref": "#/components/schemas/ListRecommendationResponsePurchaseOption"
           }
         }
       },
