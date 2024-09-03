@@ -26056,6 +26056,10 @@
             "type": "string",
             "description": "The company’s name."
           },
+          "type": {
+            "title": "For aws only: `default` or `imported`",
+            "type": "string"
+          },
           "billingGroupInfo": {
             "$ref": "#/components/schemas/rippleBillingGroupInfo"
           },
