@@ -567,6 +567,47 @@
         }
       }
     },
+    "/admin/v1/defaultmeta/{mspId}": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "WORK-IN-PROGRESS: Fetch the default meta saved per organization",
+        "operationId": "Admin_GetMSPDefaultMeta",
+        "parameters": [
+          {
+            "name": "mspId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetMSPDefaultMetaResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/admin/v1/notification/channels": {
       "get": {
         "tags": [
@@ -28628,6 +28669,17 @@
           }
         },
         "description": "Response message for the Pricing.GetInfo rpc."
+      },
+      "v1GetMSPDefaultMetaResponse": {
+        "type": "object",
+        "properties": {
+          "defaultMeta": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
       },
       "v1GetMemberCostGroupResponse": {
         "title": "Response message for GetMemberCostGroup",
