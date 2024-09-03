@@ -29903,8 +29903,8 @@
             "description": "Optional. If set to true, group all input accounts into one."
           },
           "groupByTagKey": {
-            "title": "Optional. Required if groupByColumn is set to tag",
-            "type": "string"
+            "type": "string",
+            "description": "Optional. Required if groupByColumn is set to tag."
           },
           "filters": {
             "type": "array",
@@ -29921,8 +29921,8 @@
             }
           },
           "includeTags": {
-            "type": "boolean",
-            "description": "Optional. If set to true, stream will include resource tags. Discarded when `groupByColumns` field is set to `none`."
+            "title": "Optional. If set to true, stream will include resource tags. Discarded when `groupByColumns` field is set to `none`. `IncludeTags` is set to `false` if `groupByColumns` includes `tags` and `GroupByTagKey` has a value",
+            "type": "boolean"
           },
           "includeCostCategories": {
             "type": "boolean",
