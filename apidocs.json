@@ -5085,6 +5085,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "bgType",
+            "description": "Optional. For aws only, filter will be ignored for other vendors.\nValid values: default, imported",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [

@@ -6429,6 +6429,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "bgType",
+            "in": "query",
+            "description": "Optional. For aws only, filter will be ignored for other vendors.\nValid values: default, imported",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
