@@ -567,6 +567,48 @@
         }
       }
     },
+    "/admin/v1/defaultmeta": {
+      "put": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "WORK-IN-PROGRESS: Set the default meta saved per organization",
+        "operationId": "Admin_UpdateMSPDefaultMeta",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1UpdateMSPDefaultMetaRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/admin/v1/defaultmeta/{mspId}": {
       "get": {
         "tags": [
@@ -30761,6 +30803,20 @@
         "properties": {
           "name": {
             "type": "string"
+          }
+        }
+      },
+      "v1UpdateMSPDefaultMetaRequest": {
+        "type": "object",
+        "properties": {
+          "mspId": {
+            "type": "string"
+          },
+          "defaultMeta": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
