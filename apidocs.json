@@ -14547,10 +14547,10 @@
           "title": "Optional"
         },
         "unitItems": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "number",
-            "format": "double"
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/coverUnitItem"
           },
           "title": "Optional"
         },
@@ -20222,6 +20222,17 @@
         }
       }
     },
+    "coverResourcesFilter": {
+      "type": "object",
+      "properties": {
+        "andFilters": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "coverResult": {
       "type": "object",
       "properties": {
@@ -20645,10 +20656,10 @@
           "type": "string"
         },
         "unitItems": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "number",
-            "format": "double"
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/coverUnitItem"
           }
         },
         "createdBy": {
@@ -20659,6 +20670,25 @@
         },
         "lastUpdatedAt": {
           "type": "string"
+        }
+      }
+    },
+    "coverUnitItem": {
+      "type": "object",
+      "properties": {
+        "itemName": {
+          "type": "string"
+        },
+        "distribution": {
+          "type": "number",
+          "format": "double"
+        },
+        "dedicatedResourcesCombination": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/coverResourcesFilter"
+          }
         }
       }
     },
@@ -24367,10 +24397,10 @@
           "type": "string"
         },
         "unitItems": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "number",
-            "format": "double"
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/coverUnitItem"
           }
         },
         "description": {
