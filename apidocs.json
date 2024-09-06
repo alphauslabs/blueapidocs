@@ -6326,8 +6326,8 @@
           "Billing"
         ]
       },
-      "patch": {
-        "summary": "WORK-IN-PROGRESS: Updates an existing CustomField. You can provide new values for the `key` and/or `description` fields.\nIf you only need to update one field, set the other field to null. \nThe `id` in the URL path identifies the CustomField to be updated.",
+      "put": {
+        "summary": "WORK-IN-PROGRESS: Update the `customField` specified id, modifying its key and description",
         "operationId": "Billing_UpdateCustomField",
         "responses": {
           "200": {
@@ -6364,15 +6364,24 @@
         ]
       }
     },
-    "/v1/customfieldlist": {
-      "get": {
+    "/v1/customfield:read": {
+      "post": {
         "summary": "WORK-IN-PROGRESS: Returns all registered customfields",
         "operationId": "Billing_ListCustomField",
         "responses": {
           "200": {
-            "description": "A successful response.",
+            "description": "A successful response.(streaming responses)",
             "schema": {
-              "$ref": "#/definitions/v1CustomFieldList"
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1CustomField"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of v1CustomField"
             }
           },
           "default": {
@@ -24542,18 +24551,6 @@
         "description": {
           "type": "string",
           "title": "Detailed description of the custom field"
-        }
-      }
-    },
-    "v1CustomFieldList": {
-      "type": "object",
-      "properties": {
-        "customField": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1CustomField"
-          }
         }
       }
     },

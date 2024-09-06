@@ -8025,50 +8025,11 @@
       }
     },
     "/v1/customfield/{id}": {
-      "delete": {
+      "put": {
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Deletes the customfield",
-        "operationId": "Billing_DeleteCustomField",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googlerpcStatus"
-                }
-              }
-            }
-          }
-        }
-      },
-      "patch": {
-        "tags": [
-          "Billing"
-        ],
-        "summary": "WORK-IN-PROGRESS: Updates an existing CustomField. You can provide new values for the `key` and/or `description` fields.\nIf you only need to update one field, set the other field to null. \nThe `id` in the URL path identifies the CustomField to be updated.",
+        "summary": "WORK-IN-PROGRESS: Update the `customField` specified id, modifying its key and description",
         "operationId": "Billing_UpdateCustomField",
         "parameters": [
           {
@@ -8113,10 +8074,49 @@
           }
         },
         "x-codegen-request-body-name": "body"
+      },
+      "delete": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "WORK-IN-PROGRESS: Deletes the customfield",
+        "operationId": "Billing_DeleteCustomField",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
       }
     },
-    "/v1/customfieldlist": {
-      "get": {
+    "/v1/customfield:read": {
+      "post": {
         "tags": [
           "Billing"
         ],
@@ -8124,11 +8124,20 @@
         "operationId": "Billing_ListCustomField",
         "responses": {
           "200": {
-            "description": "A successful response.",
+            "description": "A successful response.(streaming responses)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/v1CustomFieldList"
+                  "title": "Stream result of v1CustomField",
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/components/schemas/v1CustomField"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/googlerpcStatus"
+                    }
+                  }
                 }
               }
             }
@@ -27931,17 +27940,6 @@
           "description": {
             "title": "Detailed description of the custom field",
             "type": "string"
-          }
-        }
-      },
-      "v1CustomFieldList": {
-        "type": "object",
-        "properties": {
-          "customField": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/v1CustomField"
-            }
           }
         }
       },
