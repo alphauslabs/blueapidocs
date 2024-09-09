@@ -14990,6 +14990,16 @@
         },
         "term": {
           "type": "string"
+        },
+        "currentGeneration": {
+          "type": "boolean"
+        },
+        "serviceType": {
+          "type": "string"
+        },
+        "upfrontCost": {
+          "type": "number",
+          "format": "double"
         }
       }
     },
