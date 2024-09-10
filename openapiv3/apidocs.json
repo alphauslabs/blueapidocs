@@ -3204,7 +3204,7 @@
           {
             "name": "vendor",
             "in": "path",
-            "description": "Required. Cloud vendor, only `aws` and `azure` are supported for now.",
+            "description": "Required. Cloud vendor, only `aws` and `azure` are currently supported.",
             "required": true,
             "schema": {
               "type": "string"
@@ -3257,7 +3257,7 @@
           {
             "name": "vendor",
             "in": "path",
-            "description": "Required. Cloud vendor, only `aws` and `azure` are supported for now.",
+            "description": "Required. Cloud vendor, only `aws` and `azure` are currently supported.",
             "required": true,
             "schema": {
               "type": "string"
@@ -18649,36 +18649,36 @@
         "description": "Request message for the Operations.CancelOperation rpc."
       },
       "PricingGetPricingBody": {
-        "title": "Request message for GetPricing",
         "type": "object",
         "properties": {
           "service": {
             "type": "string",
-            "description": "Required. Cloud vendor service. \nSupported services can be listed using /v0/{vendor}/services endpoint. For usage information visit https://labs.alphaus.cloud/blueapidocs/#/Pricing/Pricing_GetSupportedServices."
+            "description": "Required. Cloud vendor service. \nSupported services can be listed using `/{vendor}/services` endpoint. For usage information visit https://labs.alphaus.cloud/blueapidocs/#/Pricing/Pricing_GetSupportedServices."
           },
           "region": {
             "type": "string",
-            "description": "Required. Region code.\nSupported regions can be listed using /v0/{vendor}/services endpoint. For usage information visit https://labs.alphaus.cloud/blueapidocs/#/Pricing/Pricing_GetSupportedServices.\nView all available AWS services by region at https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/.\nView all available Azure services by region at https://azure.microsoft.com/en-us/explore/global-infrastructure/products-by-region/."
+            "description": "Required. Region code.\nSupported regions can be listed using `/{vendor}/services` endpoint. For usage information visit https://labs.alphaus.cloud/blueapidocs/#/Pricing/Pricing_GetSupportedServices.\nView all available AWS services by region at https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/.\nView all available Azure services by region at https://azure.microsoft.com/en-us/explore/global-infrastructure/products-by-region/."
           },
           "token": {
             "type": "string",
-            "description": "Optional. Supply token that was included in the latest response to continue fetching the remaining chunks of data. All data has been returned once token is null."
+            "description": "Optional. Supply token that is included in the latest response to continue fetching the remaining chunks of data. No further data can be retrieved once the token returned is empty."
           },
           "filters": {
             "type": "object",
             "additionalProperties": {
               "type": "string"
             },
-            "description": "Optional. Filters to apply to the pricing data.\nThis is a map of column names to filter values. Each key-value pair in the map represents a filter condition."
+            "description": "Optional. Filters to apply to the pricing data.\nThis is a map of column names and values to filter pricing items. Each key-value pair in the map represents a filter condition.\nSupported filter key-value pairs can be listed using `/{vendor}/services` endpoint. For usage information visit https://labs.alphaus.cloud/blueapidocs/#/Pricing/Pricing_GetSupportedServices.\n\nFor example, if you want to return AWS EC2 items that has All Upfront purchase option, add `\"purchaseOption\": \"All Upfront\"` to the filters.\n\nMultiple key-value pairs are supported but keys should not be duplicated.\nFor example, for AWS EC2, the following is valid,\n```\n\"filters\": {\n  \"purchaseOption\": \"All Upfront\",\n  \"operatingSystem\": \"Windows\"\n}\n```\nbut not the following,\n```\n\"filters\": {\n  \"purchaseOption\": \"All Upfront\",\n  \"purchaseOption\": \"Partial Upfront\"\n}\n```"
           },
           "columns": {
             "type": "array",
-            "description": "Optional. This string array represent valid columns which will serve as basis as to what items in the serviceDetails will be returned by the API.\nAll columns will be returned if this array is empty.\nThis is not yet implemented.",
+            "description": "Optional. Only specified columns will be returned, if provided.\nAll columns will be returned if this array is empty.\nSupported columns can be listed using `/{vendor}/services` endpoint. For usage information visit https://labs.alphaus.cloud/blueapidocs/#/Pricing/Pricing_GetSupportedServices.",
             "items": {
               "type": "string"
             }
           }
-        }
+        },
+        "description": "Request message for Pricing.GetPricing rpc."
       },
       "RDSDetailsDBInstanceDetails": {
         "type": "object",
@@ -24605,25 +24605,32 @@
         "type": "object",
         "properties": {
           "vendor": {
-            "type": "string"
+            "type": "string",
+            "description": "Cloud vendor."
           },
           "service": {
-            "type": "string"
+            "type": "string",
+            "description": "Cloud vendor service. We have a limited number of services supported currently.\nRefer to https://labs.alphaus.cloud/blueapidocs/#/Pricing/Pricing_GetSupportedServices to list supported services."
           },
           "regionCode": {
-            "type": "string"
+            "type": "string",
+            "description": "Region code."
           },
           "sku": {
-            "type": "string"
+            "type": "string",
+            "description": "SKU ID."
           },
           "unit": {
-            "type": "string"
+            "type": "string",
+            "description": "Unit of measure."
           },
           "pricePerUnit": {
             "type": "number",
+            "description": "Price per unit.",
             "format": "double"
           },
           "serviceDetails": {
+            "title": "Service details. A protobuf struct which translates to a map for HTTP. Keys are of type string and values can be of type string, float, or bool, depending on the detail.\nThe following is an example of a serviceDetails field of a response,\n```\n\"serviceDetails\": {\n  \"availabilityZone\": \"NA\",\n  \"capacityStatus\": \"Used\",\n  \"classicNetworkingSupport\": \"false\",\n  \"clockSpeed\": \"3.5 GHz\",\n  \"currency\": \"USD\",\n  \"currentGeneration\": \"Yes\",\n  \"dedicatedEbsThroughput\": \"Up to 10000 Mbps\",\n  \"ebsOptimized\": \"\",\n  \"ecu\": \"NA\",\n  \"effectiveDate\": \"2022-04-01\",\n  \"elasticGraphicsType\": \"\",\n  \"endingRange\": \"Inf\",\n  \"enhancedNetworkingSupported\": \"Yes\",\n  \"fromLocation\": \"\",\n  \"fromLocationType\": \"\",\n  \"fromRegionCode\": \"\",\n  \"gpu\": \"\",\n  \"gpuMemory\": \"NA\",\n  \"groupDescription\": \"\",\n  \"groupings\": \"\",\n  \"instance\": \"\",\n  \"instanceCapacity10Xlarge\": \"\",\n  \"instanceCapacity12Xlarge\": \"\",\n  \"instanceCapacity16Xlarge\": \"\",\n  \"instanceCapacity18Xlarge\": \"\",\n  \"instanceCapacity24Xlarge\": \"\",\n  \"instanceCapacity2Xlarge\": \"\",\n  \"instanceCapacity32Xlarge\": \"\",\n  \"instanceCapacity4Xlarge\": \"\",\n  \"instanceCapacity8Xlarge\": \"\",\n  \"instanceCapacity9Xlarge\": \"\",\n  \"instanceCapacityLarge\": \"\",\n  \"instanceCapacityMedium\": \"\",\n  \"instanceCapacityMetal\": \"\",\n  \"instanceCapacityXlarge\": \"\",\n  \"instanceFamily\": \"Compute optimized\",\n  \"instanceSku\": \"\",\n  \"instanceType\": \"c6i.large\",\n  \"intelAvx2Available\": \"Yes\",\n  \"intelAvxAvailable\": \"Yes\",\n  \"intelTurboAvailable\": \"Yes\",\n  \"leaseContractLength\": \"1yr\",\n  \"licenseModel\": \"No License required\",\n  \"location\": \"Asia Pacific (Tokyo)\",\n  \"locationType\": \"AWS Region\",\n  \"marketOption\": \"OnDemand\",\n  \"maxIopsBurstPerformance\": \"\",\n  \"maxIopsVolume\": \"\",\n  \"maxThroughputVolume\": \"\",\n  \"maxVolumeSize\": \"\",\n  \"memory\": \"4 GiB\",\n  \"networkPerformance\": \"Up to 12500 Megabit\",\n  \"normalizationSizeFactor\": \"4\",\n  \"offerTermCode\": \"4NA7Y494T4\",\n  \"offeringClass\": \"standard\",\n  \"operatingSystem\": \"Windows\",\n  \"operation\": \"RunInstances:0202\",\n  \"physicalCores\": \"\",\n  \"physicalProcessor\": \"Intel Xeon 8375C (Ice Lake)\",\n  \"preInstalledSw\": \"SQL Web\",\n  \"priceDescription\": \"Windows with SQL Server Web (Amazon VPC), c6i.large reserved instance applied\",\n  \"processorArchitecture\": \"64-bit\",\n  \"processorFeatures\": \"Intel AVX; Intel AVX2; Intel AVX512; Intel Turbo\",\n  \"productFamily\": \"Compute Instance\",\n  \"productType\": \"\",\n  \"provisioned\": \"\",\n  \"purchaseOption\": \"No Upfront\",\n  \"rateCode\": \"2223B6PCG6QAUYY6.4NA7Y494T4.6YS6EN2CT7\",\n  \"relatedTo\": \"\",\n  \"resourceType\": \"\",\n  \"serviceCode\": \"AmazonEC2\",\n  \"serviceName\": \"Amazon Elastic Compute Cloud\",\n  \"snapShotArchiveFeeType\": \"\",\n  \"startingRange\": \"0\",\n  \"storage\": \"EBS only\",\n  \"storageMedia\": \"\",\n  \"tenancy\": \"Dedicated\",\n  \"termType\": \"Reserved\",\n  \"toLocation\": \"\",\n  \"toLocationType\": \"\",\n  \"toRegionCode\": \"\",\n  \"transferType\": \"\",\n  \"usageType\": \"APN1-DedicatedUsage:c6i.large\",\n  \"vcpu\": \"2\",\n  \"volumeApiName\": \"\",\n  \"volumeType\": \"\",\n  \"vpcNetworkingSupport\": \"true\"\n}\n```",
             "type": "object",
             "properties": {}
           }
@@ -26285,10 +26292,12 @@
         "type": "object",
         "properties": {
           "key": {
-            "type": "string"
+            "type": "string",
+            "description": "Filter key."
           },
           "values": {
             "type": "array",
+            "description": "Array of filter values.",
             "items": {
               "type": "string"
             }
@@ -29179,19 +29188,21 @@
         }
       },
       "v1GetPricingResponse": {
-        "title": "Response message for GetPricing",
         "type": "object",
         "properties": {
           "token": {
-            "type": "string"
+            "type": "string",
+            "description": "Use token to retrieve next set of pricing items. An empty string means there are no more items to retrieve."
           },
           "pricingData": {
             "type": "array",
+            "description": "Array of pricing items details. Maximum number of items returned per call is 1000.",
             "items": {
               "$ref": "#/components/schemas/pricingPricingData"
             }
           }
-        }
+        },
+        "description": "Response message for Pricing.GetPricing rpc."
       },
       "v1GetRecommendationResponse": {
         "type": "object",
@@ -29333,17 +29344,17 @@
         }
       },
       "v1GetSupportedServicesResponse": {
-        "title": "Response message for GetSupportedServices",
         "type": "object",
         "properties": {
           "supportedServices": {
             "type": "array",
-            "description": "Suported services, regions, and attributes that can be used to fetch pricing data.",
+            "description": "Suported services, regions, and attributes that can be used to specify which pricing data to retrieve from `/{vendor}/pricing`.\nFor usage information, visit https://labs.alphaus.cloud/blueapidocs/#/Pricing/Pricing_GetPricing.",
             "items": {
               "$ref": "#/components/schemas/v1SupportedService"
             }
           }
-        }
+        },
+        "description": "Response message for Pricing.GetSupportedServices rpc."
       },
       "v1GetTagsResponse": {
         "title": "Response message for GetTags",
@@ -30920,21 +30931,21 @@
           },
           "regions": {
             "type": "array",
-            "description": "Regions supported for the specific service.",
+            "description": "Array of regions supported for the specific service.",
             "items": {
               "type": "string"
             }
           },
           "attributes": {
             "type": "array",
-            "description": "Attributes that can be used as key-value pairs for filtering.",
+            "description": "Array of attributes that can be used as key-value pairs for filtering.",
             "items": {
               "$ref": "#/components/schemas/v1Attribute"
             }
           },
           "columns": {
             "type": "array",
-            "description": "Column names that can be used to specify what columns should GetPricing return.",
+            "description": "Array of column names that can be used to specify what columns should `/{vendor}/pricing` return.\nFor usage information, visit https://labs.alphaus.cloud/blueapidocs/#/Pricing/Pricing_GetPricing.",
             "items": {
               "type": "string"
             }
