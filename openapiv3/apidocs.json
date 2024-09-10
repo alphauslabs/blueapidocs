@@ -9084,6 +9084,48 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/me/currency": {
+      "put": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "Modify user's currency",
+        "operationId": "Cover_UpdateUserCurrency",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1UpdateUserCurrencyRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1UpdateUserCurrencyResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/me/email": {
       "put": {
         "tags": [
@@ -24313,6 +24355,12 @@
           },
           "useNewCostGroupCreationUI": {
             "type": "boolean"
+          },
+          "autoTimeZone": {
+            "type": "boolean"
+          },
+          "currency": {
+            "type": "string"
           }
         }
       },
@@ -31201,6 +31249,24 @@
           }
         }
       },
+      "v1UpdateUserCurrencyRequest": {
+        "title": "Request message for UpdateUserCurrency",
+        "type": "object",
+        "properties": {
+          "currency": {
+            "type": "string"
+          }
+        }
+      },
+      "v1UpdateUserCurrencyResponse": {
+        "title": "Response message for UpdateUserCurrency",
+        "type": "object",
+        "properties": {
+          "userData": {
+            "$ref": "#/components/schemas/coverUserData"
+          }
+        }
+      },
       "v1UpdateUserEmailRequest": {
         "title": "Request message for UpdateUserEmail",
         "type": "object",
@@ -31338,6 +31404,9 @@
         "properties": {
           "timezone": {
             "type": "string"
+          },
+          "autoTimeZone": {
+            "type": "boolean"
           }
         }
       },

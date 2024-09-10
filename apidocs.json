@@ -7120,6 +7120,39 @@
         ]
       }
     },
+    "/v1/me/currency": {
+      "put": {
+        "summary": "Modify user's currency",
+        "operationId": "Cover_UpdateUserCurrency",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateUserCurrencyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1UpdateUserCurrencyRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
     "/v1/me/email": {
       "put": {
         "summary": "Modify user's email",
@@ -20840,6 +20873,12 @@
         },
         "useNewCostGroupCreationUI": {
           "type": "boolean"
+        },
+        "autoTimeZone": {
+          "type": "boolean"
+        },
+        "currency": {
+          "type": "string"
         }
       }
     },
@@ -27896,6 +27935,24 @@
       },
       "title": "Response message for UpdateUserColorTheme"
     },
+    "v1UpdateUserCurrencyRequest": {
+      "type": "object",
+      "properties": {
+        "currency": {
+          "type": "string"
+        }
+      },
+      "title": "Request message for UpdateUserCurrency"
+    },
+    "v1UpdateUserCurrencyResponse": {
+      "type": "object",
+      "properties": {
+        "userData": {
+          "$ref": "#/definitions/coverUserData"
+        }
+      },
+      "title": "Response message for UpdateUserCurrency"
+    },
     "v1UpdateUserEmailRequest": {
       "type": "object",
       "properties": {
@@ -28033,6 +28090,9 @@
       "properties": {
         "timezone": {
           "type": "string"
+        },
+        "autoTimeZone": {
+          "type": "boolean"
         }
       },
       "title": "Request message for UpdateUserTimezone"
