@@ -8454,18 +8454,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "items",
-            "in": "query",
-            "style": "form",
-            "explode": true,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
           }
         ],
         "responses": {
@@ -28376,6 +28364,25 @@
           }
         },
         "description": "Response message wrapper for cost group fees."
+      },
+      "v1FreeFormItem": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "unitCost": {
+            "type": "string",
+            "format": "int64"
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "enabled": {
+            "type": "boolean"
+          }
+        }
       },
       "v1GetAccessGroupResponse": {
         "type": "object",
