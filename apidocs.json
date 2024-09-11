@@ -9738,6 +9738,45 @@
         ]
       }
     },
+    "/v1/views/{viewId}/currency": {
+      "put": {
+        "summary": "Update report's currency settings",
+        "operationId": "Cover_UpdateViewCurrency",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateViewCurrencyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "viewId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CoverUpdateViewCurrencyBody"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
     "/v1/views/{viewId}/sidemenufavorite": {
       "post": {
         "summary": "Add as side menu favorite",
@@ -14711,6 +14750,15 @@
       },
       "title": "Request message for UpdateViewColorTheme"
     },
+    "CoverUpdateViewCurrencyBody": {
+      "type": "object",
+      "properties": {
+        "currency": {
+          "type": "string"
+        }
+      },
+      "title": "Request message for UpdateViewCurrency"
+    },
     "CoverUpdateViewLayoutBody": {
       "type": "object",
       "properties": {
@@ -19171,6 +19219,17 @@
         }
       }
     },
+    "coverCurrencySettings": {
+      "type": "object",
+      "properties": {
+        "currency": {
+          "type": "string"
+        },
+        "exchangeRateDate": {
+          "type": "string"
+        }
+      }
+    },
     "coverCurrentEBSDetails": {
       "type": "object",
       "properties": {
@@ -19936,7 +19995,7 @@
         "locale": {
           "type": "string"
         },
-        "timezone": {
+        "timeZone": {
           "type": "string"
         },
         "registered": {
@@ -20898,7 +20957,7 @@
         "locale": {
           "type": "string"
         },
-        "timezone": {
+        "timeZone": {
           "type": "string"
         },
         "registered": {
@@ -20953,8 +21012,8 @@
         "autoTimeZone": {
           "type": "boolean"
         },
-        "currency": {
-          "type": "string"
+        "currencySettings": {
+          "$ref": "#/definitions/coverCurrencySettings"
         }
       }
     },
@@ -21005,6 +21064,9 @@
           "type": "string"
         },
         "colorTheme": {
+          "type": "string"
+        },
+        "currency": {
           "type": "string"
         }
       }
@@ -28046,6 +28108,9 @@
       "properties": {
         "currency": {
           "type": "string"
+        },
+        "exchangeRateDate": {
+          "type": "string"
         }
       },
       "title": "Request message for UpdateUserCurrency"
@@ -28194,7 +28259,7 @@
     "v1UpdateUserTimezoneRequest": {
       "type": "object",
       "properties": {
-        "timezone": {
+        "timeZone": {
           "type": "string"
         },
         "autoTimeZone": {
@@ -28220,6 +28285,15 @@
         }
       },
       "title": "Response message for UpdateViewColorTheme"
+    },
+    "v1UpdateViewCurrencyResponse": {
+      "type": "object",
+      "properties": {
+        "viewData": {
+          "$ref": "#/definitions/coverViewData"
+        }
+      },
+      "title": "Response message for UpdateViewCurrency"
     },
     "v1UpdateViewLayoutResponse": {
       "type": "object",

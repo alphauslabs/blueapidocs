@@ -12442,6 +12442,58 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/views/{viewId}/currency": {
+      "put": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "Update report's currency settings",
+        "operationId": "Cover_UpdateViewCurrency",
+        "parameters": [
+          {
+            "name": "viewId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CoverUpdateViewCurrencyBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1UpdateViewCurrencyResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/views/{viewId}/sidemenufavorite": {
       "post": {
         "tags": [
@@ -18303,6 +18355,15 @@
           }
         }
       },
+      "CoverUpdateViewCurrencyBody": {
+        "title": "Request message for UpdateViewCurrency",
+        "type": "object",
+        "properties": {
+          "currency": {
+            "type": "string"
+          }
+        }
+      },
       "CoverUpdateViewLayoutBody": {
         "title": "Request message for UpdateViewLayout",
         "type": "object",
@@ -22685,6 +22746,17 @@
           }
         }
       },
+      "coverCurrencySettings": {
+        "type": "object",
+        "properties": {
+          "currency": {
+            "type": "string"
+          },
+          "exchangeRateDate": {
+            "type": "string"
+          }
+        }
+      },
       "coverCurrentEBSDetails": {
         "type": "object",
         "properties": {
@@ -23447,7 +23519,7 @@
           "locale": {
             "type": "string"
           },
-          "timezone": {
+          "timeZone": {
             "type": "string"
           },
           "registered": {
@@ -24400,7 +24472,7 @@
           "locale": {
             "type": "string"
           },
-          "timezone": {
+          "timeZone": {
             "type": "string"
           },
           "registered": {
@@ -24454,8 +24526,8 @@
           "autoTimeZone": {
             "type": "boolean"
           },
-          "currency": {
-            "type": "string"
+          "currencySettings": {
+            "$ref": "#/components/schemas/coverCurrencySettings"
           }
         }
       },
@@ -24505,6 +24577,9 @@
             "type": "string"
           },
           "colorTheme": {
+            "type": "string"
+          },
+          "currency": {
             "type": "string"
           }
         }
@@ -31380,6 +31455,9 @@
         "properties": {
           "currency": {
             "type": "string"
+          },
+          "exchangeRateDate": {
+            "type": "string"
           }
         }
       },
@@ -31527,7 +31605,7 @@
         "title": "Request message for UpdateUserTimezone",
         "type": "object",
         "properties": {
-          "timezone": {
+          "timeZone": {
             "type": "string"
           },
           "autoTimeZone": {
@@ -31546,6 +31624,15 @@
       },
       "v1UpdateViewColorThemeResponse": {
         "title": "Response message for UpdateViewColorTheme",
+        "type": "object",
+        "properties": {
+          "viewData": {
+            "$ref": "#/components/schemas/coverViewData"
+          }
+        }
+      },
+      "v1UpdateViewCurrencyResponse": {
+        "title": "Response message for UpdateViewCurrency",
         "type": "object",
         "properties": {
           "viewData": {
