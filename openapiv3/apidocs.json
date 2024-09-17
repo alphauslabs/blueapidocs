@@ -11407,6 +11407,54 @@
       }
     },
     "/v1/servicediscounts/{id}": {
+      "get": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "WORK-IN-PROGRESS: Gets the invoice service discounts. Only available in Ripple.",
+        "operationId": "Billing_GetInvoiceServiceDiscounts",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required. [blueapi.api.ripple.v1.InvoiceServiceDiscounts.id].",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fieldMask",
+            "in": "query",
+            "description": "Optional. Get only the value that set fieldMask.\n\nsee more info: https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/field_mask.proto",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/apiripplev1InvoiceServiceDiscounts"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      },
       "put": {
         "tags": [
           "Billing"
