@@ -29707,8 +29707,9 @@
             "readOnly": true
           },
           "value": {
-            "type": "string",
-            "description": "Value associated with the set premiums or discounts."
+            "type": "number",
+            "description": "Value associated with the set premiums or discounts.",
+            "format": "double"
           },
           "calculationScope": {
             "type": "boolean",
