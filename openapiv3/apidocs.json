@@ -22238,6 +22238,10 @@
           "unit": {
             "type": "string",
             "description": "Contains the list of unit items. Used only when groupBy is set to the selected unit type (e.g., \"Product\", \"Environment\", \"Customer\").\nExample: If groupBy is set to \"Environment\", this field might include values like \"dev\", \"next\", or \"prod\"."
+          },
+          "category": {
+            "type": "string",
+            "description": "Category. Contains the category to which a service belongs. Only used if groupBy is set to category."
           }
         },
         "description": "Response message wrapper for cloud costs."
