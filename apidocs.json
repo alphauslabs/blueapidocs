@@ -9814,6 +9814,52 @@
         ]
       }
     },
+    "/v1/views/{viewId}/exchangerates": {
+      "get": {
+        "summary": "Get list of exchange rates for a fixed report",
+        "operationId": "Cover_ListExchangeRates",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/blueapicoverv1ListExchangeRatesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "viewId",
+            "description": "Required. View Id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "startDate",
+            "description": "Required. Start date Format: \"YYYYMMDD\"",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "endDate",
+            "description": "Required. End date Format: \"YYYYMMDD\"",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
     "/v1/views/{viewId}/sidemenufavorite": {
       "post": {
         "summary": "Add as side menu favorite",
@@ -11769,7 +11815,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1ListExchangeRatesResponse"
+              "$ref": "#/definitions/blueapibillingv1ListExchangeRatesResponse"
             }
           },
           "default": {
@@ -18608,6 +18654,32 @@
       },
       "description": "Streaming response message for the InvoiceServiceDiscounts rpc."
     },
+    "blueapibillingv1ListExchangeRatesResponse": {
+      "type": "object",
+      "properties": {
+        "month": {
+          "type": "string",
+          "description": "The Month."
+        },
+        "common": {
+          "$ref": "#/definitions/rippleCommonExchangeRate",
+          "description": "The common exchange rate."
+        },
+        "billingGroup": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/rippleBillingGroupExchangeRate"
+          },
+          "description": "The billing group exchange rate."
+        },
+        "payer": {
+          "$ref": "#/definitions/rippleVendorPayerExchangeRate",
+          "description": "The payer exchange rate."
+        }
+      },
+      "description": "Response message for the ListExchangeRates rpc."
+    },
     "blueapicostv1CostItem": {
       "type": "object",
       "properties": {
@@ -18676,6 +18748,19 @@
         }
       },
       "description": "Response message wrapper for cloud costs."
+    },
+    "blueapicoverv1ListExchangeRatesResponse": {
+      "type": "object",
+      "properties": {
+        "exchangeRates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1ExchangeRates"
+          }
+        }
+      },
+      "title": "Response message for ListExchangeRates"
     },
     "costv1CostAttribute": {
       "type": "object",
@@ -19261,17 +19346,6 @@
           "additionalProperties": {
             "type": "string"
           }
-        }
-      }
-    },
-    "coverCurrencySettings": {
-      "type": "object",
-      "properties": {
-        "currency": {
-          "type": "string"
-        },
-        "exchangeRateDate": {
-          "type": "string"
         }
       }
     },
@@ -21057,8 +21131,9 @@
         "autoTimeZone": {
           "type": "boolean"
         },
-        "currencySettings": {
-          "$ref": "#/definitions/coverCurrencySettings"
+        "updateCurrency": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -24980,6 +25055,18 @@
         }
       }
     },
+    "v1ExchangeRates": {
+      "type": "object",
+      "properties": {
+        "month": {
+          "type": "string"
+        },
+        "exchangeRate": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
     "v1ExecuteOptimizationResponse": {
       "type": "object"
     },
@@ -26584,32 +26671,6 @@
       },
       "description": "Response message for the ListCostFilters rpc."
     },
-    "v1ListExchangeRatesResponse": {
-      "type": "object",
-      "properties": {
-        "month": {
-          "type": "string",
-          "description": "The Month."
-        },
-        "common": {
-          "$ref": "#/definitions/rippleCommonExchangeRate",
-          "description": "The common exchange rate."
-        },
-        "billingGroup": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/rippleBillingGroupExchangeRate"
-          },
-          "description": "The billing group exchange rate."
-        },
-        "payer": {
-          "$ref": "#/definitions/rippleVendorPayerExchangeRate",
-          "description": "The payer exchange rate."
-        }
-      },
-      "description": "Response message for the ListExchangeRates rpc."
-    },
     "v1ListFeesRequest": {
       "type": "object",
       "properties": {
@@ -28152,11 +28213,9 @@
     "v1UpdateUserCurrencyRequest": {
       "type": "object",
       "properties": {
-        "currency": {
-          "type": "string"
-        },
-        "exchangeRateDate": {
-          "type": "string"
+        "updateCurrency": {
+          "type": "string",
+          "format": "int64"
         }
       },
       "title": "Request message for UpdateUserCurrency"

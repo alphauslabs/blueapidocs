@@ -12542,6 +12542,64 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/views/{viewId}/exchangerates": {
+      "get": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "Get list of exchange rates for a fixed report",
+        "operationId": "Cover_ListExchangeRates",
+        "parameters": [
+          {
+            "name": "viewId",
+            "in": "path",
+            "description": "Required. View Id.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "Required. Start date Format: \"YYYYMMDD\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": "Required. End date Format: \"YYYYMMDD\"",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/blueapicoverv1ListExchangeRatesResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/views/{viewId}/sidemenufavorite": {
       "post": {
         "tags": [
@@ -15094,7 +15152,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/v1ListExchangeRatesResponse"
+                  "$ref": "#/components/schemas/blueapibillingv1ListExchangeRatesResponse"
                 }
               }
             }
@@ -22178,6 +22236,29 @@
         },
         "description": "Streaming response message for the InvoiceServiceDiscounts rpc."
       },
+      "blueapibillingv1ListExchangeRatesResponse": {
+        "type": "object",
+        "properties": {
+          "month": {
+            "type": "string",
+            "description": "The Month."
+          },
+          "common": {
+            "$ref": "#/components/schemas/rippleCommonExchangeRate"
+          },
+          "billingGroup": {
+            "type": "array",
+            "description": "The billing group exchange rate.",
+            "items": {
+              "$ref": "#/components/schemas/rippleBillingGroupExchangeRate"
+            }
+          },
+          "payer": {
+            "$ref": "#/components/schemas/rippleVendorPayerExchangeRate"
+          }
+        },
+        "description": "Response message for the ListExchangeRates rpc."
+      },
       "blueapicostv1CostItem": {
         "type": "object",
         "properties": {
@@ -22245,6 +22326,18 @@
           }
         },
         "description": "Response message wrapper for cloud costs."
+      },
+      "blueapicoverv1ListExchangeRatesResponse": {
+        "title": "Response message for ListExchangeRates",
+        "type": "object",
+        "properties": {
+          "exchangeRates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1ExchangeRates"
+            }
+          }
+        }
       },
       "costv1CostAttribute": {
         "type": "object",
@@ -22799,17 +22892,6 @@
             "additionalProperties": {
               "type": "string"
             }
-          }
-        }
-      },
-      "coverCurrencySettings": {
-        "type": "object",
-        "properties": {
-          "currency": {
-            "type": "string"
-          },
-          "exchangeRateDate": {
-            "type": "string"
           }
         }
       },
@@ -24582,8 +24664,9 @@
           "autoTimeZone": {
             "type": "boolean"
           },
-          "currencySettings": {
-            "$ref": "#/components/schemas/coverCurrencySettings"
+          "updateCurrency": {
+            "type": "string",
+            "format": "int64"
           }
         }
       },
@@ -28418,6 +28501,18 @@
           }
         }
       },
+      "v1ExchangeRates": {
+        "type": "object",
+        "properties": {
+          "month": {
+            "type": "string"
+          },
+          "exchangeRate": {
+            "type": "number",
+            "format": "float"
+          }
+        }
+      },
       "v1ExecuteOptimizationResponse": {
         "type": "object"
       },
@@ -29963,29 +30058,6 @@
         },
         "description": "Response message for the ListCostFilters rpc."
       },
-      "v1ListExchangeRatesResponse": {
-        "type": "object",
-        "properties": {
-          "month": {
-            "type": "string",
-            "description": "The Month."
-          },
-          "common": {
-            "$ref": "#/components/schemas/rippleCommonExchangeRate"
-          },
-          "billingGroup": {
-            "type": "array",
-            "description": "The billing group exchange rate.",
-            "items": {
-              "$ref": "#/components/schemas/rippleBillingGroupExchangeRate"
-            }
-          },
-          "payer": {
-            "$ref": "#/components/schemas/rippleVendorPayerExchangeRate"
-          }
-        },
-        "description": "Response message for the ListExchangeRates rpc."
-      },
       "v1ListFeesRequest": {
         "type": "object",
         "properties": {
@@ -31510,11 +31582,9 @@
         "title": "Request message for UpdateUserCurrency",
         "type": "object",
         "properties": {
-          "currency": {
-            "type": "string"
-          },
-          "exchangeRateDate": {
-            "type": "string"
+          "updateCurrency": {
+            "type": "string",
+            "format": "int64"
           }
         }
       },
