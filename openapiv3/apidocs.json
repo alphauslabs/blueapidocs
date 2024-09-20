@@ -9179,48 +9179,6 @@
         "x-codegen-request-body-name": "body"
       }
     },
-    "/v1/me/currency": {
-      "put": {
-        "tags": [
-          "Cover"
-        ],
-        "summary": "Modify user's currency",
-        "operationId": "Cover_UpdateUserCurrency",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/v1UpdateUserCurrencyRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/v1UpdateUserCurrencyResponse"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googlerpcStatus"
-                }
-              }
-            }
-          }
-        },
-        "x-codegen-request-body-name": "body"
-      }
-    },
     "/v1/me/email": {
       "put": {
         "tags": [
@@ -10123,6 +10081,77 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/v1UpdateMemberPermissionResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/organizations/currency": {
+      "get": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "Get Org's reference of currency exchange rate",
+        "operationId": "Cover_GetOrgUpdateCurrency",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetOrgUpdateCurrencyResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "Sets Org's reference of currency exchange rate",
+        "operationId": "Cover_SetOrgUpdateCurrency",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1SetOrgUpdateCurrencyRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1SetOrgUpdateCurrencyResponse"
                 }
               }
             }
@@ -24833,10 +24862,6 @@
           },
           "autoTimeZone": {
             "type": "boolean"
-          },
-          "updateCurrency": {
-            "type": "string",
-            "format": "int64"
           }
         }
       },
@@ -29670,6 +29695,18 @@
           }
         }
       },
+      "v1GetOrgUpdateCurrencyResponse": {
+        "type": "object",
+        "properties": {
+          "updateCurrency": {
+            "type": "string",
+            "format": "int64"
+          },
+          "dateRegistered": {
+            "type": "string"
+          }
+        }
+      },
       "v1GetPayerAccountImportHistoryResponse": {
         "type": "object",
         "properties": {
@@ -31428,6 +31465,25 @@
           }
         }
       },
+      "v1SetOrgUpdateCurrencyRequest": {
+        "type": "object",
+        "properties": {
+          "updateCurrency": {
+            "title": "Required. Day of the month. Valid inputs are: \"1 - 31\"",
+            "type": "string",
+            "format": "int64"
+          }
+        }
+      },
+      "v1SetOrgUpdateCurrencyResponse": {
+        "type": "object",
+        "properties": {
+          "updateCurrency": {
+            "type": "string",
+            "format": "int64"
+          }
+        }
+      },
       "v1SupportedService": {
         "type": "object",
         "properties": {
@@ -31759,25 +31815,6 @@
       },
       "v1UpdateUserColorThemeResponse": {
         "title": "Response message for UpdateUserColorTheme",
-        "type": "object",
-        "properties": {
-          "userData": {
-            "$ref": "#/components/schemas/coverUserData"
-          }
-        }
-      },
-      "v1UpdateUserCurrencyRequest": {
-        "title": "Request message for UpdateUserCurrency",
-        "type": "object",
-        "properties": {
-          "updateCurrency": {
-            "type": "string",
-            "format": "int64"
-          }
-        }
-      },
-      "v1UpdateUserCurrencyResponse": {
-        "title": "Response message for UpdateUserCurrency",
         "type": "object",
         "properties": {
           "userData": {

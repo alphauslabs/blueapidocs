@@ -7196,39 +7196,6 @@
         ]
       }
     },
-    "/v1/me/currency": {
-      "put": {
-        "summary": "Modify user's currency",
-        "operationId": "Cover_UpdateUserCurrency",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1UpdateUserCurrencyResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1UpdateUserCurrencyRequest"
-            }
-          }
-        ],
-        "tags": [
-          "Cover"
-        ]
-      }
-    },
     "/v1/me/email": {
       "put": {
         "summary": "Modify user's email",
@@ -7936,6 +7903,60 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/CoverUpdateMemberPermissionBody"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
+    "/v1/organizations/currency": {
+      "get": {
+        "summary": "Get Org's reference of currency exchange rate",
+        "operationId": "Cover_GetOrgUpdateCurrency",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetOrgUpdateCurrencyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Cover"
+        ]
+      },
+      "post": {
+        "summary": "Sets Org's reference of currency exchange rate",
+        "operationId": "Cover_SetOrgUpdateCurrency",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1SetOrgUpdateCurrencyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1SetOrgUpdateCurrencyRequest"
             }
           }
         ],
@@ -21300,10 +21321,6 @@
         },
         "autoTimeZone": {
           "type": "boolean"
-        },
-        "updateCurrency": {
-          "type": "string",
-          "format": "int64"
         }
       }
     },
@@ -26265,6 +26282,18 @@
         }
       }
     },
+    "v1GetOrgUpdateCurrencyResponse": {
+      "type": "object",
+      "properties": {
+        "updateCurrency": {
+          "type": "string",
+          "format": "int64"
+        },
+        "dateRegistered": {
+          "type": "string"
+        }
+      }
+    },
     "v1GetPayerAccountImportHistoryResponse": {
       "type": "object",
       "properties": {
@@ -28058,6 +28087,25 @@
         }
       }
     },
+    "v1SetOrgUpdateCurrencyRequest": {
+      "type": "object",
+      "properties": {
+        "updateCurrency": {
+          "type": "string",
+          "format": "int64",
+          "title": "Required. Day of the month. Valid inputs are: \"1 - 31\""
+        }
+      }
+    },
+    "v1SetOrgUpdateCurrencyResponse": {
+      "type": "object",
+      "properties": {
+        "updateCurrency": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "v1SupportedService": {
       "type": "object",
       "properties": {
@@ -28397,25 +28445,6 @@
         }
       },
       "title": "Response message for UpdateUserColorTheme"
-    },
-    "v1UpdateUserCurrencyRequest": {
-      "type": "object",
-      "properties": {
-        "updateCurrency": {
-          "type": "string",
-          "format": "int64"
-        }
-      },
-      "title": "Request message for UpdateUserCurrency"
-    },
-    "v1UpdateUserCurrencyResponse": {
-      "type": "object",
-      "properties": {
-        "userData": {
-          "$ref": "#/definitions/coverUserData"
-        }
-      },
-      "title": "Response message for UpdateUserCurrency"
     },
     "v1UpdateUserEmailRequest": {
       "type": "object",
