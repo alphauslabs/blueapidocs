@@ -16795,6 +16795,24 @@
   },
   "components": {
     "schemas": {
+      "AWSResourceDetailsComprehendDetailsEndpoint": {
+        "type": "object",
+        "properties": {
+          "arn": {
+            "type": "string"
+          },
+          "provisionedInferenceUnit": {
+            "type": "number",
+            "format": "double"
+          },
+          "autoScalingStatus": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
       "AWSResourceDetailsEC2AutoScalingGroupDetails": {
         "type": "object",
         "properties": {
@@ -16829,6 +16847,12 @@
           },
           "status": {
             "type": "string"
+          },
+          "vCpu": {
+            "type": "string"
+          },
+          "natGateway": {
+            "$ref": "#/components/schemas/InstanceDetailsNatGatewayDetails"
           }
         }
       },
@@ -16886,6 +16910,40 @@
           }
         }
       },
+      "AWSResourceDetailsNetworkFirewallDetails": {
+        "type": "object",
+        "properties": {
+          "endpoint": {
+            "$ref": "#/components/schemas/AWSResourceDetailsNetworkFirewallDetailsEndpoint"
+          },
+          "arn": {
+            "type": "string"
+          },
+          "vpcId": {
+            "type": "string"
+          },
+          "subnets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "AWSResourceDetailsNetworkFirewallDetailsEndpoint": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "subnet": {
+            "type": "string"
+          },
+          "az": {
+            "type": "string"
+          }
+        }
+      },
       "AWSResourceDetailsOpensearchDetails": {
         "type": "object",
         "properties": {
@@ -16937,6 +16995,23 @@
           },
           "metrics": {
             "$ref": "#/components/schemas/ReservedInstanceRIMetrics"
+          }
+        }
+      },
+      "AWSResourceDetailsRoute53Details": {
+        "type": "object",
+        "properties": {
+          "hostedZoneName": {
+            "type": "string"
+          },
+          "hostedZoneId": {
+            "type": "string"
+          },
+          "resourceRecordSetName": {
+            "type": "string"
+          },
+          "resourceRecordSetType": {
+            "type": "string"
           }
         }
       },
@@ -17312,24 +17387,6 @@
           }
         },
         "description": "Request message for the UpdateReseller rpc."
-      },
-      "ComprehendDetailsEndpoint": {
-        "type": "object",
-        "properties": {
-          "arn": {
-            "type": "string"
-          },
-          "provisionedInferenceUnit": {
-            "type": "number",
-            "format": "double"
-          },
-          "autoScalingStatus": {
-            "type": "string"
-          },
-          "status": {
-            "type": "string"
-          }
-        }
       },
       "CostCalculateCostsBody": {
         "type": "object",
@@ -18779,6 +18836,23 @@
           }
         }
       },
+      "InstanceDetailsNatGatewayDetails": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "subnetId": {
+            "type": "string"
+          },
+          "vpcId": {
+            "type": "string"
+          },
+          "metrics": {
+            "$ref": "#/components/schemas/NatGatewayDetailsNatGatewayMetrics"
+          }
+        }
+      },
       "LambdaDetailsFunctionDetails": {
         "type": "object",
         "properties": {
@@ -18903,6 +18977,23 @@
           "value": {
             "type": "number",
             "format": "double"
+          }
+        }
+      },
+      "NatGatewayDetailsNatGatewayMetrics": {
+        "type": "object",
+        "properties": {
+          "bytesInFromDest": {
+            "$ref": "#/components/schemas/recommendationMetricData"
+          },
+          "bytesInFromSrc": {
+            "$ref": "#/components/schemas/recommendationMetricData"
+          },
+          "bytesOutToDest": {
+            "$ref": "#/components/schemas/recommendationMetricData"
+          },
+          "bytesOutToSrc": {
+            "$ref": "#/components/schemas/recommendationMetricData"
           }
         }
       },
@@ -19209,9 +19300,37 @@
         "type": "object",
         "properties": {
           "endpoint": {
-            "$ref": "#/components/schemas/ComprehendDetailsEndpoint"
+            "$ref": "#/components/schemas/AWSResourceDetailsComprehendDetailsEndpoint"
           },
           "reason": {
+            "type": "string"
+          }
+        }
+      },
+      "TrustedAdvisorRecommendationsEC2ConsolidationForMSSqlServer": {
+        "type": "object",
+        "properties": {
+          "ec2Details": {
+            "$ref": "#/components/schemas/AWSResourceDetailsEC2DetailsInstanceDetails"
+          },
+          "minVCpu": {
+            "type": "string"
+          },
+          "sqlServerEdition": {
+            "type": "string"
+          }
+        }
+      },
+      "TrustedAdvisorRecommendationsEC2OverProvisionedForMSSqlServer": {
+        "type": "object",
+        "properties": {
+          "ec2Details": {
+            "$ref": "#/components/schemas/AWSResourceDetailsEC2DetailsInstanceDetails"
+          },
+          "maxVCpu": {
+            "type": "string"
+          },
+          "recommendedInstanceType": {
             "type": "string"
           }
         }
@@ -19243,6 +19362,38 @@
           },
           "reason": {
             "type": "string"
+          }
+        }
+      },
+      "TrustedAdvisorRecommendationsInactiveAWSNetworkFirewall": {
+        "type": "object",
+        "properties": {
+          "firewallDetails": {
+            "$ref": "#/components/schemas/AWSResourceDetailsNetworkFirewallDetails"
+          },
+          "totalBytesProcessed": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "TrustedAdvisorRecommendationsInactiveNATGateways": {
+        "type": "object",
+        "properties": {
+          "natGatewayDetails": {
+            "$ref": "#/components/schemas/InstanceDetailsNatGatewayDetails"
+          },
+          "totalBytesFromDest": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalBytesFromSrc": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalBytes": {
+            "type": "number",
+            "format": "double"
           }
         }
       },
@@ -19336,6 +19487,17 @@
           }
         }
       },
+      "TrustedAdvisorRecommendationsNetworkFirewallEndpointAZIndependence": {
+        "type": "object",
+        "properties": {
+          "endpoint": {
+            "$ref": "#/components/schemas/AWSResourceDetailsNetworkFirewallDetailsEndpoint"
+          },
+          "crossAZSubnetsList": {
+            "type": "string"
+          }
+        }
+      },
       "TrustedAdvisorRecommendationsRDSIdleDBInstances": {
         "type": "object",
         "properties": {
@@ -19344,6 +19506,14 @@
           },
           "daysLastConnection": {
             "type": "string"
+          }
+        }
+      },
+      "TrustedAdvisorRecommendationsRoute53LatencyResourceRecordsSets": {
+        "type": "object",
+        "properties": {
+          "route53Details": {
+            "$ref": "#/components/schemas/AWSResourceDetailsRoute53Details"
           }
         }
       },
@@ -25237,6 +25407,24 @@
           },
           "commonDetails": {
             "$ref": "#/components/schemas/TrustedAdvisorRecommendationsCommonDetails"
+          },
+          "inactiveNatGateways": {
+            "$ref": "#/components/schemas/TrustedAdvisorRecommendationsInactiveNATGateways"
+          },
+          "networkFirewallEndpointAZIndependence": {
+            "$ref": "#/components/schemas/TrustedAdvisorRecommendationsNetworkFirewallEndpointAZIndependence"
+          },
+          "inactiveNetworkFirewall": {
+            "$ref": "#/components/schemas/TrustedAdvisorRecommendationsInactiveAWSNetworkFirewall"
+          },
+          "ec2OverprovisionedMSSqlServer": {
+            "$ref": "#/components/schemas/TrustedAdvisorRecommendationsEC2OverProvisionedForMSSqlServer"
+          },
+          "ec2ConsolidationMSSqlServer": {
+            "$ref": "#/components/schemas/TrustedAdvisorRecommendationsEC2ConsolidationForMSSqlServer"
+          },
+          "route53LatencyResourceRecordSets": {
+            "$ref": "#/components/schemas/TrustedAdvisorRecommendationsRoute53LatencyResourceRecordsSets"
           }
         }
       },
