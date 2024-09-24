@@ -10236,6 +10236,57 @@
         }
       }
     },
+    "/v1/recommendations/all:read": {
+      "post": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "Lists recommendations based on specified criteria.",
+        "operationId": "Cover_ListRecommendationsV2",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1ListRecommendationV2Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Stream result of v1ListRecommendationResponse",
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/components/schemas/v1ListRecommendationResponse"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/googlerpcStatus"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/recommendations/details/{id}": {
       "get": {
         "tags": [
@@ -10351,6 +10402,48 @@
             "name": "type",
             "in": "query",
             "description": "Valid inputs are: \"rate\", \"usage\", and \"all\". If not set, default is \"all\".",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "spType",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "rateModel",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "paymentOption",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "term",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "service",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offeringClass",
+            "in": "query",
             "schema": {
               "type": "string"
             }
@@ -18970,6 +19063,32 @@
           "upfrontCost": {
             "type": "number",
             "format": "double"
+          }
+        }
+      },
+      "ListRecommendationV2RequestRateSettings": {
+        "type": "object",
+        "properties": {
+          "spType": {
+            "type": "string"
+          },
+          "rateModel": {
+            "type": "string"
+          },
+          "paymentOption": {
+            "type": "string"
+          },
+          "term": {
+            "type": "string"
+          },
+          "service": {
+            "type": "string"
+          },
+          "offeringClass": {
+            "type": "string"
+          },
+          "vendor": {
+            "type": "string"
           }
         }
       },
@@ -30460,6 +30579,23 @@
           },
           "purchaseOption": {
             "$ref": "#/components/schemas/ListRecommendationResponsePurchaseOption"
+          }
+        }
+      },
+      "v1ListRecommendationV2Request": {
+        "type": "object",
+        "properties": {
+          "costgroupId": {
+            "type": "string"
+          },
+          "dateRangeStart": {
+            "type": "string"
+          },
+          "dateRangeEnd": {
+            "type": "string"
+          },
+          "rateSettings": {
+            "$ref": "#/components/schemas/ListRecommendationV2RequestRateSettings"
           }
         }
       },

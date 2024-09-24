@@ -8018,6 +8018,48 @@
         ]
       }
     },
+    "/v1/recommendations/all:read": {
+      "post": {
+        "summary": "Lists recommendations based on specified criteria.",
+        "operationId": "Cover_ListRecommendationsV2",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1ListRecommendationResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of v1ListRecommendationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ListRecommendationV2Request"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
     "/v1/recommendations/details/{id}": {
       "get": {
         "summary": "Retrieves a specific recommendation by its ID. (Version 2)",
@@ -8134,6 +8176,42 @@
           {
             "name": "type",
             "description": "Valid inputs are: \"rate\", \"usage\", and \"all\". If not set, default is \"all\".",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "spType",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "rateModel",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "paymentOption",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "term",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "service",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offeringClass",
             "in": "query",
             "required": false,
             "type": "string"
@@ -15335,6 +15413,32 @@
         "upfrontCost": {
           "type": "number",
           "format": "double"
+        }
+      }
+    },
+    "ListRecommendationV2RequestRateSettings": {
+      "type": "object",
+      "properties": {
+        "spType": {
+          "type": "string"
+        },
+        "rateModel": {
+          "type": "string"
+        },
+        "paymentOption": {
+          "type": "string"
+        },
+        "term": {
+          "type": "string"
+        },
+        "service": {
+          "type": "string"
+        },
+        "offeringClass": {
+          "type": "string"
+        },
+        "vendor": {
+          "type": "string"
         }
       }
     },
@@ -27069,6 +27173,23 @@
         },
         "purchaseOption": {
           "$ref": "#/definitions/ListRecommendationResponsePurchaseOption"
+        }
+      }
+    },
+    "v1ListRecommendationV2Request": {
+      "type": "object",
+      "properties": {
+        "costgroupId": {
+          "type": "string"
+        },
+        "dateRangeStart": {
+          "type": "string"
+        },
+        "dateRangeEnd": {
+          "type": "string"
+        },
+        "rateSettings": {
+          "$ref": "#/definitions/ListRecommendationV2RequestRateSettings"
         }
       }
     },
