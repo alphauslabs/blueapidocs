@@ -10170,6 +10170,55 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/organizations/rates": {
+      "get": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "Get list of exchange rates for a fixed report",
+        "operationId": "Cover_ListExchangeRates",
+        "parameters": [
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "Required. Start date Format: \"YYYYMMDD\"",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": "Required. End date Format: \"YYYYMMDD\"",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/blueapicoverv1ListExchangeRatesResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/organizations/transfer/{target}": {
       "get": {
         "tags": [
@@ -12662,64 +12711,6 @@
           }
         },
         "x-codegen-request-body-name": "body"
-      }
-    },
-    "/v1/views/{viewId}/exchangerates": {
-      "get": {
-        "tags": [
-          "Cover"
-        ],
-        "summary": "Get list of exchange rates for a fixed report",
-        "operationId": "Cover_ListExchangeRates",
-        "parameters": [
-          {
-            "name": "viewId",
-            "in": "path",
-            "description": "Required. View Id.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "startDate",
-            "in": "query",
-            "description": "Required. Start date Format: \"YYYYMMDD\"",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "endDate",
-            "in": "query",
-            "description": "Required. End date Format: \"YYYYMMDD\"",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/blueapicoverv1ListExchangeRatesResponse"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googlerpcStatus"
-                }
-              }
-            }
-          }
-        }
       }
     },
     "/v1/views/{viewId}/sidemenufavorite": {
@@ -22649,6 +22640,9 @@
         "title": "Response message for ListExchangeRates",
         "type": "object",
         "properties": {
+          "orgId": {
+            "type": "string"
+          },
           "exchangeRates": {
             "type": "array",
             "items": {
@@ -29357,6 +29351,10 @@
           "includeForecast": {
             "title": "Optional. If set to true, include cost forecast",
             "type": "boolean"
+          },
+          "currency": {
+            "type": "string",
+            "description": "Optional. If not set, default value is `USD`."
           }
         }
       },
@@ -29817,11 +29815,14 @@
       "v1GetOrgUpdateCurrencyResponse": {
         "type": "object",
         "properties": {
+          "orgId": {
+            "type": "string"
+          },
           "updateCurrency": {
             "type": "string",
             "format": "int64"
           },
-          "dateRegistered": {
+          "lastUpdate": {
             "type": "string"
           }
         }

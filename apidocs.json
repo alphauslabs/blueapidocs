@@ -7965,6 +7965,45 @@
         ]
       }
     },
+    "/v1/organizations/rates": {
+      "get": {
+        "summary": "Get list of exchange rates for a fixed report",
+        "operationId": "Cover_ListExchangeRates",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/blueapicoverv1ListExchangeRatesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "startDate",
+            "description": "Required. Start date Format: \"YYYYMMDD\"",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "endDate",
+            "description": "Required. End date Format: \"YYYYMMDD\"",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
     "/v1/organizations/transfer/{target}": {
       "get": {
         "summary": "WORK-IN-PROGRESS: Transfer the account from the original organization to Alphaus payer account",
@@ -9906,52 +9945,6 @@
             "schema": {
               "$ref": "#/definitions/CoverUpdateViewCurrencyBody"
             }
-          }
-        ],
-        "tags": [
-          "Cover"
-        ]
-      }
-    },
-    "/v1/views/{viewId}/exchangerates": {
-      "get": {
-        "summary": "Get list of exchange rates for a fixed report",
-        "operationId": "Cover_ListExchangeRates",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/blueapicoverv1ListExchangeRatesResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "viewId",
-            "description": "Required. View Id.",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "startDate",
-            "description": "Required. Start date Format: \"YYYYMMDD\"",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "endDate",
-            "description": "Required. End date Format: \"YYYYMMDD\"",
-            "in": "query",
-            "required": false,
-            "type": "string"
           }
         ],
         "tags": [
@@ -19047,6 +19040,9 @@
     "blueapicoverv1ListExchangeRatesResponse": {
       "type": "object",
       "properties": {
+        "orgId": {
+          "type": "string"
+        },
         "exchangeRates": {
           "type": "array",
           "items": {
@@ -25904,6 +25900,10 @@
         "includeForecast": {
           "type": "boolean",
           "title": "Optional. If set to true, include cost forecast"
+        },
+        "currency": {
+          "type": "string",
+          "description": "Optional. If not set, default value is `USD`."
         }
       }
     },
@@ -26389,11 +26389,14 @@
     "v1GetOrgUpdateCurrencyResponse": {
       "type": "object",
       "properties": {
+        "orgId": {
+          "type": "string"
+        },
         "updateCurrency": {
           "type": "string",
           "format": "int64"
         },
-        "dateRegistered": {
+        "lastUpdate": {
           "type": "string"
         }
       }
