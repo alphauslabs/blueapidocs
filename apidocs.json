@@ -8254,6 +8254,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "currency",
+            "description": "Optional. If not set, default value is `USD`.",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -8351,6 +8358,13 @@
           {
             "name": "periodOption",
             "description": "Valid inputs are: \"daily\", \"monthly\". and \"yearly\". Default is \"monthly\".",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "currency",
+            "description": "Optional. If not set, default value is `USD`.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -8574,6 +8588,13 @@
           {
             "name": "reportType",
             "description": "Required. Report Type. Valid inputs are: \"quarterly\", \"yearly\"",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "currency",
+            "description": "Optional. If not set, default value is `USD`.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -14225,6 +14246,10 @@
             "type": "string"
           },
           "description": "Optional. List of services."
+        },
+        "currency": {
+          "type": "string",
+          "description": "Optional. If not set, default value is `USD`."
         }
       },
       "title": "Request message for GetCoverageOptions"
