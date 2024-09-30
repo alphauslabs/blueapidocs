@@ -10365,6 +10365,13 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "currency",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -28864,6 +28871,9 @@
           "exchangeRate": {
             "type": "number",
             "format": "float"
+          },
+          "date": {
+            "type": "string"
           }
         }
       },
@@ -30625,6 +30635,10 @@
           },
           "rateSettings": {
             "$ref": "#/components/schemas/ListRecommendationV2RequestRateSettings"
+          },
+          "currency": {
+            "type": "string",
+            "description": "Optional. If not set, default value is `USD`."
           }
         }
       },
