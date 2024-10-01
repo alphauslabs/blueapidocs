@@ -14066,7 +14066,7 @@
           "format": "double"
         },
         "ec2Details": {
-          "$ref": "#/definitions/recommendationAWSResourceDetailsEC2Details"
+          "$ref": "#/definitions/awsAWSResourceDetailsEC2Details"
         }
       }
     },
@@ -14074,7 +14074,7 @@
       "type": "object",
       "properties": {
         "ec2Details": {
-          "$ref": "#/definitions/recommendationAWSResourceDetailsEC2Details"
+          "$ref": "#/definitions/awsAWSResourceDetailsEC2Details"
         },
         "monthlyCost": {
           "type": "number",
@@ -15075,7 +15075,7 @@
       "type": "object",
       "properties": {
         "cpuUtilizationMetrics": {
-          "$ref": "#/definitions/recommendationMetricData"
+          "$ref": "#/definitions/awsMetricData"
         }
       }
     },
@@ -15124,22 +15124,22 @@
       "type": "object",
       "properties": {
         "ec2Details": {
-          "$ref": "#/definitions/recommendationAWSResourceDetailsEC2Details"
+          "$ref": "#/definitions/awsAWSResourceDetailsEC2Details"
         },
         "rdsDetails": {
-          "$ref": "#/definitions/recommendationAWSResourceDetailsRDSDetails"
+          "$ref": "#/definitions/awsAWSResourceDetailsRDSDetails"
         },
         "elasticacheDetails": {
           "$ref": "#/definitions/AWSResourceDetailsElastiCacheDetails"
         },
         "redshiftDetails": {
-          "$ref": "#/definitions/recommendationAWSResourceDetailsRedshiftDetails"
+          "$ref": "#/definitions/awsAWSResourceDetailsRedshiftDetails"
         },
         "opensearchDetails": {
           "$ref": "#/definitions/AWSResourceDetailsOpensearchDetails"
         },
         "memoryDBDetails": {
-          "$ref": "#/definitions/recommendationAWSResourceDetailsMemoryDBDetails"
+          "$ref": "#/definitions/awsAWSResourceDetailsMemoryDBDetails"
         },
         "recommendedNormalizedUnits": {
           "type": "number",
@@ -15311,16 +15311,16 @@
       "type": "object",
       "properties": {
         "cpuUtilizationMetrics": {
-          "$ref": "#/definitions/recommendationMetricData"
+          "$ref": "#/definitions/awsMetricData"
         },
         "diskUtilizationMetrics": {
-          "$ref": "#/definitions/recommendationMetricData"
+          "$ref": "#/definitions/awsMetricData"
         },
         "networkUtilizationMetrics": {
-          "$ref": "#/definitions/recommendationMetricData"
+          "$ref": "#/definitions/awsMetricData"
         },
         "memoryUtilizationMetrics": {
-          "$ref": "#/definitions/recommendationMetricData"
+          "$ref": "#/definitions/awsMetricData"
         }
       }
     },
@@ -15506,16 +15506,16 @@
       "type": "object",
       "properties": {
         "bytesInFromDest": {
-          "$ref": "#/definitions/recommendationMetricData"
+          "$ref": "#/definitions/awsMetricData"
         },
         "bytesInFromSrc": {
-          "$ref": "#/definitions/recommendationMetricData"
+          "$ref": "#/definitions/awsMetricData"
         },
         "bytesOutToDest": {
-          "$ref": "#/definitions/recommendationMetricData"
+          "$ref": "#/definitions/awsMetricData"
         },
         "bytesOutToSrc": {
-          "$ref": "#/definitions/recommendationMetricData"
+          "$ref": "#/definitions/awsMetricData"
         }
       }
     },
@@ -15792,7 +15792,7 @@
       "type": "object",
       "properties": {
         "ec2Details": {
-          "$ref": "#/definitions/recommendationAWSResourceDetailsEC2Details"
+          "$ref": "#/definitions/awsAWSResourceDetailsEC2Details"
         },
         "awsConfigRule": {
           "type": "string"
@@ -15998,7 +15998,7 @@
       "type": "object",
       "properties": {
         "ec2Instance": {
-          "$ref": "#/definitions/recommendationAWSResourceDetailsEC2Details"
+          "$ref": "#/definitions/awsAWSResourceDetailsEC2Details"
         },
         "aveCpuUtilizationBy14Day": {
           "type": "number",
@@ -16025,7 +16025,7 @@
       "type": "object",
       "properties": {
         "rdsDetails": {
-          "$ref": "#/definitions/recommendationAWSResourceDetailsRDSDetails"
+          "$ref": "#/definitions/awsAWSResourceDetailsRDSDetails"
         },
         "daysLastConnection": {
           "type": "string"
@@ -16066,7 +16066,7 @@
       "type": "object",
       "properties": {
         "ebsDetails": {
-          "$ref": "#/definitions/recommendationAWSResourceDetailsEBSDetails"
+          "$ref": "#/definitions/awsAWSResourceDetailsEBSDetails"
         },
         "monthlyStorageCost": {
           "type": "number",
@@ -18179,6 +18179,52 @@
       },
       "description": "Notification resource definition."
     },
+    "awsAWSResourceDetailsEBSDetails": {
+      "type": "object",
+      "properties": {
+        "volumeDetails": {
+          "$ref": "#/definitions/EBSDetailsVolumeDetails"
+        }
+      }
+    },
+    "awsAWSResourceDetailsEC2Details": {
+      "type": "object",
+      "properties": {
+        "instance": {
+          "$ref": "#/definitions/AWSResourceDetailsEC2DetailsInstanceDetails"
+        },
+        "riSpecsDetails": {
+          "$ref": "#/definitions/EC2DetailsRISpecsDetails"
+        }
+      }
+    },
+    "awsAWSResourceDetailsMemoryDBDetails": {
+      "type": "object",
+      "properties": {
+        "node": {
+          "$ref": "#/definitions/AWSResourceDetailsMemoryDBDetailsNodeDetails"
+        }
+      }
+    },
+    "awsAWSResourceDetailsRDSDetails": {
+      "type": "object",
+      "properties": {
+        "dbInstance": {
+          "$ref": "#/definitions/RDSDetailsDBInstanceDetails"
+        }
+      }
+    },
+    "awsAWSResourceDetailsRedshiftDetails": {
+      "type": "object",
+      "properties": {
+        "cluster": {
+          "$ref": "#/definitions/RedshiftDetailsClusterDetails"
+        },
+        "node": {
+          "$ref": "#/definitions/AWSResourceDetailsRedshiftDetailsNodeDetails"
+        }
+      }
+    },
     "awsAdjustmentsTypeList": {
       "type": "object",
       "properties": {
@@ -18291,6 +18337,57 @@
       },
       "description": "AWS's calculation engine configuration(s)."
     },
+    "awsCostExplorerRecommendations": {
+      "type": "object",
+      "properties": {
+        "ec2Rightsize": {
+          "$ref": "#/definitions/CostExplorerRecommendationsEC2Rightsize"
+        },
+        "discountPlans": {
+          "$ref": "#/definitions/CostExplorerRecommendationsDiscountPlans"
+        },
+        "terminateEc2": {
+          "$ref": "#/definitions/CostExplorerRecommendationsTerminateEC2"
+        }
+      }
+    },
+    "awsCostOptimizationHubRecommendations": {
+      "type": "object",
+      "properties": {
+        "currentDetails": {
+          "$ref": "#/definitions/awsCostOptimizationHubRecommendationsDetails"
+        },
+        "recommendationDetails": {
+          "$ref": "#/definitions/awsCostOptimizationHubRecommendationsDetails"
+        }
+      }
+    },
+    "awsCostOptimizationHubRecommendationsDetails": {
+      "type": "object",
+      "properties": {
+        "costCalculation": {
+          "$ref": "#/definitions/CostOptimizationHubRecommendationsDetailsCostCalculation"
+        },
+        "ec2Details": {
+          "$ref": "#/definitions/awsAWSResourceDetailsEC2Details"
+        },
+        "rdsDetails": {
+          "$ref": "#/definitions/awsAWSResourceDetailsRDSDetails"
+        },
+        "ebsDetails": {
+          "$ref": "#/definitions/awsAWSResourceDetailsEBSDetails"
+        },
+        "ec2AutoScalingGroupDetails": {
+          "$ref": "#/definitions/AWSResourceDetailsEC2AutoScalingGroupDetails"
+        },
+        "ecsDetails": {
+          "$ref": "#/definitions/AWSResourceDetailsECSDetails"
+        },
+        "lambdaDetails": {
+          "$ref": "#/definitions/AWSResourceDetailsLambdaDetails"
+        }
+      }
+    },
     "awsCostReductionSummary": {
       "type": "object",
       "properties": {
@@ -18346,6 +18443,25 @@
         "convertedToAdjustments": {
           "type": "boolean",
           "description": "If the product code is converted to Adjustments or not."
+        }
+      }
+    },
+    "awsMetricData": {
+      "type": "object",
+      "properties": {
+        "metrics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/MetricDataMetrics"
+          }
+        },
+        "maxMetricInPercentage": {
+          "type": "number",
+          "format": "double"
+        },
+        "metricCapacity": {
+          "type": "string"
         }
       }
     },
@@ -18740,6 +18856,80 @@
         "daysBeforeBreakEven": {
           "type": "number",
           "format": "double"
+        }
+      }
+    },
+    "awsTrustedAdvisorRecommendations": {
+      "type": "object",
+      "properties": {
+        "severityStatus": {
+          "type": "string"
+        },
+        "recommendationArn": {
+          "type": "string"
+        },
+        "exclusionStatus": {
+          "type": "string"
+        },
+        "lowUtilizationEc2Instances": {
+          "$ref": "#/definitions/TrustedAdvisorRecommendationsLowUtilizationEC2Instances"
+        },
+        "rdsIdleDbInstances": {
+          "$ref": "#/definitions/TrustedAdvisorRecommendationsRDSIdleDBInstances"
+        },
+        "s3IncompleteMPU": {
+          "$ref": "#/definitions/TrustedAdvisorRecommendationsS3IncompleteMPU"
+        },
+        "lambdaHighErrorRates": {
+          "$ref": "#/definitions/TrustedAdvisorRecommendationsLambdaHighErrorRates"
+        },
+        "underutilizedEBSVolume": {
+          "$ref": "#/definitions/TrustedAdvisorRecommendationsUnderutilizedEBSVolume"
+        },
+        "unassociatedEIP": {
+          "$ref": "#/definitions/TrustedAdvisorRecommendationsUnassociatedEIP"
+        },
+        "idleLoadBalancer": {
+          "$ref": "#/definitions/TrustedAdvisorRecommendationsIdleLoadBalancer"
+        },
+        "ec2InstancesStopped": {
+          "$ref": "#/definitions/TrustedAdvisorRecommendationsAmazonEC2InstanceStopped"
+        },
+        "ec2RILeaseExpiration": {
+          "$ref": "#/definitions/TrustedAdvisorRecommendationsEC2RILeaseExpiration"
+        },
+        "comprehendUnderutilizedEndpoints": {
+          "$ref": "#/definitions/TrustedAdvisorRecommendationsComprehendUnderutilizedEndpoints"
+        },
+        "underutilizedRedshiftCluster": {
+          "$ref": "#/definitions/TrustedAdvisorRecommendationsUnderutilizedRedshiftCluster"
+        },
+        "lambdaWithExcessiveTimeouts": {
+          "$ref": "#/definitions/TrustedAdvisorRecommendationsLambdaWithExcessiveTimeouts"
+        },
+        "awsWellArchitectedHighRiskIssues": {
+          "$ref": "#/definitions/TrustedAdvisorRecommendationsAWSWellArchitectedHighRiskIssues"
+        },
+        "commonDetails": {
+          "$ref": "#/definitions/TrustedAdvisorRecommendationsCommonDetails"
+        },
+        "inactiveNatGateways": {
+          "$ref": "#/definitions/TrustedAdvisorRecommendationsInactiveNATGateways"
+        },
+        "networkFirewallEndpointAZIndependence": {
+          "$ref": "#/definitions/TrustedAdvisorRecommendationsNetworkFirewallEndpointAZIndependence"
+        },
+        "inactiveNetworkFirewall": {
+          "$ref": "#/definitions/TrustedAdvisorRecommendationsInactiveAWSNetworkFirewall"
+        },
+        "ec2OverprovisionedMSSqlServer": {
+          "$ref": "#/definitions/TrustedAdvisorRecommendationsEC2OverProvisionedForMSSqlServer"
+        },
+        "ec2ConsolidationMSSqlServer": {
+          "$ref": "#/definitions/TrustedAdvisorRecommendationsEC2ConsolidationForMSSqlServer"
+        },
+        "route53LatencyResourceRecordSets": {
+          "$ref": "#/definitions/TrustedAdvisorRecommendationsRoute53LatencyResourceRecordsSets"
         }
       }
     },
@@ -21581,23 +21771,6 @@
         }
       }
     },
-    "coverrecommendationAWSRecommendations": {
-      "type": "object",
-      "properties": {
-        "costExplorerRecommendations": {
-          "$ref": "#/definitions/recommendationCostExplorerRecommendations"
-        },
-        "costOptimizationHubRecommendations": {
-          "$ref": "#/definitions/recommendationCostOptimizationHubRecommendations"
-        },
-        "trustedAdvisorRecommendations": {
-          "$ref": "#/definitions/recommendationTrustedAdvisorRecommendations"
-        },
-        "resourceArn": {
-          "type": "string"
-        }
-      }
-    },
     "coverv1FeeDetails": {
       "type": "object",
       "properties": {
@@ -21776,125 +21949,17 @@
       },
       "description": "This resource represents a long-running operation that is the result of a\nnetwork API call."
     },
-    "recommendationAWSResourceDetailsEBSDetails": {
+    "recommendationOCTOGeneratedRecommendations": {
       "type": "object",
       "properties": {
-        "volumeDetails": {
-          "$ref": "#/definitions/EBSDetailsVolumeDetails"
-        }
-      }
-    },
-    "recommendationAWSResourceDetailsEC2Details": {
-      "type": "object",
-      "properties": {
-        "instance": {
-          "$ref": "#/definitions/AWSResourceDetailsEC2DetailsInstanceDetails"
+        "aws": {
+          "$ref": "#/definitions/recommendationoctoawsAWSRecommendations"
         },
-        "riSpecsDetails": {
-          "$ref": "#/definitions/EC2DetailsRISpecsDetails"
-        }
-      }
-    },
-    "recommendationAWSResourceDetailsMemoryDBDetails": {
-      "type": "object",
-      "properties": {
-        "node": {
-          "$ref": "#/definitions/AWSResourceDetailsMemoryDBDetailsNodeDetails"
-        }
-      }
-    },
-    "recommendationAWSResourceDetailsRDSDetails": {
-      "type": "object",
-      "properties": {
-        "dbInstance": {
-          "$ref": "#/definitions/RDSDetailsDBInstanceDetails"
-        }
-      }
-    },
-    "recommendationAWSResourceDetailsRedshiftDetails": {
-      "type": "object",
-      "properties": {
-        "cluster": {
-          "$ref": "#/definitions/RedshiftDetailsClusterDetails"
+        "gcp": {
+          "$ref": "#/definitions/recommendationoctogcpGCPRecommendations"
         },
-        "node": {
-          "$ref": "#/definitions/AWSResourceDetailsRedshiftDetailsNodeDetails"
-        }
-      }
-    },
-    "recommendationAzureCSPRecommendations": {
-      "type": "object"
-    },
-    "recommendationCostExplorerRecommendations": {
-      "type": "object",
-      "properties": {
-        "ec2Rightsize": {
-          "$ref": "#/definitions/CostExplorerRecommendationsEC2Rightsize"
-        },
-        "discountPlans": {
-          "$ref": "#/definitions/CostExplorerRecommendationsDiscountPlans"
-        },
-        "terminateEc2": {
-          "$ref": "#/definitions/CostExplorerRecommendationsTerminateEC2"
-        }
-      }
-    },
-    "recommendationCostOptimizationHubRecommendations": {
-      "type": "object",
-      "properties": {
-        "currentDetails": {
-          "$ref": "#/definitions/recommendationCostOptimizationHubRecommendationsDetails"
-        },
-        "recommendationDetails": {
-          "$ref": "#/definitions/recommendationCostOptimizationHubRecommendationsDetails"
-        }
-      }
-    },
-    "recommendationCostOptimizationHubRecommendationsDetails": {
-      "type": "object",
-      "properties": {
-        "costCalculation": {
-          "$ref": "#/definitions/CostOptimizationHubRecommendationsDetailsCostCalculation"
-        },
-        "ec2Details": {
-          "$ref": "#/definitions/recommendationAWSResourceDetailsEC2Details"
-        },
-        "rdsDetails": {
-          "$ref": "#/definitions/recommendationAWSResourceDetailsRDSDetails"
-        },
-        "ebsDetails": {
-          "$ref": "#/definitions/recommendationAWSResourceDetailsEBSDetails"
-        },
-        "ec2AutoScalingGroupDetails": {
-          "$ref": "#/definitions/AWSResourceDetailsEC2AutoScalingGroupDetails"
-        },
-        "ecsDetails": {
-          "$ref": "#/definitions/AWSResourceDetailsECSDetails"
-        },
-        "lambdaDetails": {
-          "$ref": "#/definitions/AWSResourceDetailsLambdaDetails"
-        }
-      }
-    },
-    "recommendationGCPRecommendations": {
-      "type": "object"
-    },
-    "recommendationMetricData": {
-      "type": "object",
-      "properties": {
-        "metrics": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/MetricDataMetrics"
-          }
-        },
-        "maxMetricInPercentage": {
-          "type": "number",
-          "format": "double"
-        },
-        "metricCapacity": {
-          "type": "string"
+        "azurecsp": {
+          "$ref": "#/definitions/recommendationoctoazurecspAzureCSPRecommendations"
         }
       }
     },
@@ -21902,13 +21967,16 @@
       "type": "object",
       "properties": {
         "awsRecommendations": {
-          "$ref": "#/definitions/coverrecommendationAWSRecommendations"
+          "$ref": "#/definitions/recommendationawsAWSRecommendations"
         },
         "gcpRecommendations": {
-          "$ref": "#/definitions/recommendationGCPRecommendations"
+          "$ref": "#/definitions/recommendationgcpGCPRecommendations"
         },
         "azureCspRecommendations": {
-          "$ref": "#/definitions/recommendationAzureCSPRecommendations"
+          "$ref": "#/definitions/recommendationazurecspAzureCSPRecommendations"
+        },
+        "octoGeneratedRecommendations": {
+          "$ref": "#/definitions/recommendationOCTOGeneratedRecommendations"
         },
         "target": {
           "type": "string"
@@ -21972,79 +22040,37 @@
         }
       }
     },
-    "recommendationTrustedAdvisorRecommendations": {
+    "recommendationawsAWSRecommendations": {
       "type": "object",
       "properties": {
-        "severityStatus": {
+        "costExplorerRecommendations": {
+          "$ref": "#/definitions/awsCostExplorerRecommendations"
+        },
+        "costOptimizationHubRecommendations": {
+          "$ref": "#/definitions/awsCostOptimizationHubRecommendations"
+        },
+        "trustedAdvisorRecommendations": {
+          "$ref": "#/definitions/awsTrustedAdvisorRecommendations"
+        },
+        "resourceArn": {
           "type": "string"
-        },
-        "recommendationArn": {
-          "type": "string"
-        },
-        "exclusionStatus": {
-          "type": "string"
-        },
-        "lowUtilizationEc2Instances": {
-          "$ref": "#/definitions/TrustedAdvisorRecommendationsLowUtilizationEC2Instances"
-        },
-        "rdsIdleDbInstances": {
-          "$ref": "#/definitions/TrustedAdvisorRecommendationsRDSIdleDBInstances"
-        },
-        "s3IncompleteMPU": {
-          "$ref": "#/definitions/TrustedAdvisorRecommendationsS3IncompleteMPU"
-        },
-        "lambdaHighErrorRates": {
-          "$ref": "#/definitions/TrustedAdvisorRecommendationsLambdaHighErrorRates"
-        },
-        "underutilizedEBSVolume": {
-          "$ref": "#/definitions/TrustedAdvisorRecommendationsUnderutilizedEBSVolume"
-        },
-        "unassociatedEIP": {
-          "$ref": "#/definitions/TrustedAdvisorRecommendationsUnassociatedEIP"
-        },
-        "idleLoadBalancer": {
-          "$ref": "#/definitions/TrustedAdvisorRecommendationsIdleLoadBalancer"
-        },
-        "ec2InstancesStopped": {
-          "$ref": "#/definitions/TrustedAdvisorRecommendationsAmazonEC2InstanceStopped"
-        },
-        "ec2RILeaseExpiration": {
-          "$ref": "#/definitions/TrustedAdvisorRecommendationsEC2RILeaseExpiration"
-        },
-        "comprehendUnderutilizedEndpoints": {
-          "$ref": "#/definitions/TrustedAdvisorRecommendationsComprehendUnderutilizedEndpoints"
-        },
-        "underutilizedRedshiftCluster": {
-          "$ref": "#/definitions/TrustedAdvisorRecommendationsUnderutilizedRedshiftCluster"
-        },
-        "lambdaWithExcessiveTimeouts": {
-          "$ref": "#/definitions/TrustedAdvisorRecommendationsLambdaWithExcessiveTimeouts"
-        },
-        "awsWellArchitectedHighRiskIssues": {
-          "$ref": "#/definitions/TrustedAdvisorRecommendationsAWSWellArchitectedHighRiskIssues"
-        },
-        "commonDetails": {
-          "$ref": "#/definitions/TrustedAdvisorRecommendationsCommonDetails"
-        },
-        "inactiveNatGateways": {
-          "$ref": "#/definitions/TrustedAdvisorRecommendationsInactiveNATGateways"
-        },
-        "networkFirewallEndpointAZIndependence": {
-          "$ref": "#/definitions/TrustedAdvisorRecommendationsNetworkFirewallEndpointAZIndependence"
-        },
-        "inactiveNetworkFirewall": {
-          "$ref": "#/definitions/TrustedAdvisorRecommendationsInactiveAWSNetworkFirewall"
-        },
-        "ec2OverprovisionedMSSqlServer": {
-          "$ref": "#/definitions/TrustedAdvisorRecommendationsEC2OverProvisionedForMSSqlServer"
-        },
-        "ec2ConsolidationMSSqlServer": {
-          "$ref": "#/definitions/TrustedAdvisorRecommendationsEC2ConsolidationForMSSqlServer"
-        },
-        "route53LatencyResourceRecordSets": {
-          "$ref": "#/definitions/TrustedAdvisorRecommendationsRoute53LatencyResourceRecordsSets"
         }
       }
+    },
+    "recommendationazurecspAzureCSPRecommendations": {
+      "type": "object"
+    },
+    "recommendationgcpGCPRecommendations": {
+      "type": "object"
+    },
+    "recommendationoctoawsAWSRecommendations": {
+      "type": "object"
+    },
+    "recommendationoctoazurecspAzureCSPRecommendations": {
+      "type": "object"
+    },
+    "recommendationoctogcpGCPRecommendations": {
+      "type": "object"
     },
     "rippleAssigned": {
       "type": "object",
