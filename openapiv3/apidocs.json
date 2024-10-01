@@ -22544,6 +22544,9 @@
           }
         }
       },
+      "azurecspAzureCSPRecommendations": {
+        "type": "object"
+      },
       "billingv1AccessGroup": {
         "type": "object",
         "properties": {
@@ -25402,6 +25405,9 @@
           "FAILED"
         ]
       },
+      "gcpGCPRecommendations": {
+        "type": "object"
+      },
       "googlerpcStatus": {
         "type": "object",
         "properties": {
@@ -25423,6 +25429,15 @@
           }
         },
         "description": "The `Status` type defines a logical error model that is suitable for\ndifferent programming environments, including REST APIs and RPC APIs. It is\nused by [gRPC](https://github.com/grpc). Each `Status` message contains\nthree pieces of data: error code, error message, and error details.\n\nYou can find out more about this error model and how to work with it in the\n[API Design Guide](https://cloud.google.com/apis/design/errors)."
+      },
+      "octoawsOctoGeneratedAWSRecommendations": {
+        "type": "object"
+      },
+      "octoazurecspOctoGeneratedAzureCSPRecommendations": {
+        "type": "object"
+      },
+      "octogcpOctoGeneratedGCPRecommendations": {
+        "type": "object"
       },
       "pricingPricingData": {
         "title": "Pricing details",
@@ -25508,13 +25523,13 @@
         "type": "object",
         "properties": {
           "aws": {
-            "$ref": "#/components/schemas/recommendationoctoawsAWSRecommendations"
+            "$ref": "#/components/schemas/octoawsOctoGeneratedAWSRecommendations"
           },
           "gcp": {
-            "$ref": "#/components/schemas/recommendationoctogcpGCPRecommendations"
+            "$ref": "#/components/schemas/octogcpOctoGeneratedGCPRecommendations"
           },
           "azurecsp": {
-            "$ref": "#/components/schemas/recommendationoctoazurecspAzureCSPRecommendations"
+            "$ref": "#/components/schemas/octoazurecspOctoGeneratedAzureCSPRecommendations"
           }
         }
       },
@@ -25525,10 +25540,10 @@
             "$ref": "#/components/schemas/recommendationawsAWSRecommendations"
           },
           "gcpRecommendations": {
-            "$ref": "#/components/schemas/recommendationgcpGCPRecommendations"
+            "$ref": "#/components/schemas/gcpGCPRecommendations"
           },
           "azureCspRecommendations": {
-            "$ref": "#/components/schemas/recommendationazurecspAzureCSPRecommendations"
+            "$ref": "#/components/schemas/azurecspAzureCSPRecommendations"
           },
           "octoGeneratedRecommendations": {
             "$ref": "#/components/schemas/recommendationOCTOGeneratedRecommendations"
@@ -25611,21 +25626,6 @@
             "type": "string"
           }
         }
-      },
-      "recommendationazurecspAzureCSPRecommendations": {
-        "type": "object"
-      },
-      "recommendationgcpGCPRecommendations": {
-        "type": "object"
-      },
-      "recommendationoctoawsAWSRecommendations": {
-        "type": "object"
-      },
-      "recommendationoctoazurecspAzureCSPRecommendations": {
-        "type": "object"
-      },
-      "recommendationoctogcpGCPRecommendations": {
-        "type": "object"
       },
       "rippleAssigned": {
         "required": [
