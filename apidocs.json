@@ -19260,6 +19260,10 @@
         "category": {
           "type": "string",
           "description": "Category. Contains the category to which a service belongs. Only used if groupBy is set to category."
+        },
+        "tagged": {
+          "type": "boolean",
+          "description": "Indicates whether the item is tagged (true) or not (false)."
         }
       },
       "description": "Response message wrapper for cloud costs."
