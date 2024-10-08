@@ -24614,14 +24614,20 @@
           }
         }
       },
-      "coverResourcesFilter": {
+      "coverResourcesCombinations": {
         "type": "object",
         "properties": {
-          "andFilters": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "string"
-            }
+          "awsOptions": {
+            "$ref": "#/components/schemas/coverCostGroupAwsOptions"
+          },
+          "azureOptions": {
+            "$ref": "#/components/schemas/coverCostGroupAzureOptions"
+          },
+          "gcpOptions": {
+            "$ref": "#/components/schemas/coverCostGroupGcpOptions"
+          },
+          "azurecspOptions": {
+            "$ref": "#/components/schemas/coverCostGroupAzureCspOptions"
           }
         }
       },
@@ -25071,10 +25077,7 @@
             "format": "double"
           },
           "dedicatedResourcesCombination": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/coverResourcesFilter"
-            }
+            "$ref": "#/components/schemas/coverResourcesCombinations"
           }
         }
       },

@@ -21050,14 +21050,24 @@
         }
       }
     },
-    "coverResourcesFilter": {
+    "coverResourcesCombinations": {
       "type": "object",
       "properties": {
-        "andFilters": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          }
+        "awsOptions": {
+          "$ref": "#/definitions/coverCostGroupAwsOptions",
+          "description": "Optional. Valid only for the `aws` vendor. AWS-specific options."
+        },
+        "azureOptions": {
+          "$ref": "#/definitions/coverCostGroupAzureOptions",
+          "description": "Optional. Valid only for the `azure` vendor. Azure-specific options."
+        },
+        "gcpOptions": {
+          "$ref": "#/definitions/coverCostGroupGcpOptions",
+          "description": "Optional. Valid only for the `gcp` vendor. GCP-specific options."
+        },
+        "azurecspOptions": {
+          "$ref": "#/definitions/coverCostGroupAzureCspOptions",
+          "description": "Optional. Valid only for the `azurecsp` vendor. AzureCSP-specific options."
         }
       }
     },
@@ -21512,11 +21522,7 @@
           "format": "double"
         },
         "dedicatedResourcesCombination": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/coverResourcesFilter"
-          }
+          "$ref": "#/definitions/coverResourcesCombinations"
         }
       }
     },
