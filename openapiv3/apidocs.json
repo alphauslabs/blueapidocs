@@ -24631,6 +24631,17 @@
           }
         }
       },
+      "coverResourcesFilter": {
+        "type": "object",
+        "properties": {
+          "andFilters": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      },
       "coverResult": {
         "type": "object",
         "properties": {
@@ -25077,6 +25088,12 @@
             "format": "double"
           },
           "dedicatedResourcesCombination": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/coverResourcesFilter"
+            }
+          },
+          "dedicatedResourcesCombinations": {
             "$ref": "#/components/schemas/coverResourcesCombinations"
           }
         }
