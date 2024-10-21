@@ -7709,6 +7709,44 @@
         "tags": [
           "Cover"
         ]
+      },
+      "put": {
+        "summary": "Update user profile",
+        "operationId": "Cover_UpdateUserProfile",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateUserProfileResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "email",
+            "description": "required email",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CoverUpdateUserProfileBody"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
       }
     },
     "/v1/members/register": {
@@ -14982,6 +15020,33 @@
           "title": "Optional"
         }
       }
+    },
+    "CoverUpdateUserProfileBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "usage": {
+          "type": "string"
+        },
+        "intention": {
+          "type": "string"
+        },
+        "companyName": {
+          "type": "string"
+        },
+        "linkSource": {
+          "type": "string"
+        },
+        "hasSubscribedUpdates": {
+          "type": "boolean"
+        }
+      },
+      "title": "Request message for UpdateUserProfile"
     },
     "CoverUpdateViewBody": {
       "type": "object",
@@ -25032,6 +25097,12 @@
         },
         "emailAddress": {
           "type": "string"
+        },
+        "linkSource": {
+          "type": "string"
+        },
+        "hasSubscribedUpdates": {
+          "type": "boolean"
         }
       }
     },
@@ -26763,6 +26834,30 @@
       "type": "object",
       "properties": {
         "hasCreatedProfile": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "usage": {
+          "type": "string"
+        },
+        "intention": {
+          "type": "string"
+        },
+        "companyName": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string"
+        },
+        "linkSource": {
+          "type": "string"
+        },
+        "hasSubscribedUpdates": {
           "type": "boolean"
         }
       }
@@ -28773,6 +28868,35 @@
         }
       },
       "title": "Response message for UpdateUserName"
+    },
+    "v1UpdateUserProfileResponse": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "usage": {
+          "type": "string"
+        },
+        "intention": {
+          "type": "string"
+        },
+        "companyName": {
+          "type": "string"
+        },
+        "linkSource": {
+          "type": "string"
+        },
+        "hasSubscribedUpdates": {
+          "type": "boolean"
+        }
+      }
     },
     "v1UpdateUserRoleMappingRequest": {
       "type": "object",

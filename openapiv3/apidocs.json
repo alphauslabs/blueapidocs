@@ -9836,6 +9836,57 @@
             }
           }
         }
+      },
+      "put": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "Update user profile",
+        "operationId": "Cover_UpdateUserProfile",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "description": "required email",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CoverUpdateUserProfileBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1UpdateUserProfileResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
       }
     },
     "/v1/members/register": {
@@ -18633,6 +18684,33 @@
           "description": {
             "title": "Optional",
             "type": "string"
+          }
+        }
+      },
+      "CoverUpdateUserProfileBody": {
+        "title": "Request message for UpdateUserProfile",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "usage": {
+            "type": "string"
+          },
+          "intention": {
+            "type": "string"
+          },
+          "companyName": {
+            "type": "string"
+          },
+          "linkSource": {
+            "type": "string"
+          },
+          "hasSubscribedUpdates": {
+            "type": "boolean"
           }
         }
       },
@@ -28506,6 +28584,12 @@
           },
           "emailAddress": {
             "type": "string"
+          },
+          "linkSource": {
+            "type": "string"
+          },
+          "hasSubscribedUpdates": {
+            "type": "boolean"
           }
         }
       },
@@ -30184,6 +30268,30 @@
         "type": "object",
         "properties": {
           "hasCreatedProfile": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "usage": {
+            "type": "string"
+          },
+          "intention": {
+            "type": "string"
+          },
+          "companyName": {
+            "type": "string"
+          },
+          "emailAddress": {
+            "type": "string"
+          },
+          "linkSource": {
+            "type": "string"
+          },
+          "hasSubscribedUpdates": {
             "type": "boolean"
           }
         }
@@ -32160,6 +32268,35 @@
         "properties": {
           "userData": {
             "$ref": "#/components/schemas/coverUserData"
+          }
+        }
+      },
+      "v1UpdateUserProfileResponse": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "usage": {
+            "type": "string"
+          },
+          "intention": {
+            "type": "string"
+          },
+          "companyName": {
+            "type": "string"
+          },
+          "linkSource": {
+            "type": "string"
+          },
+          "hasSubscribedUpdates": {
+            "type": "boolean"
           }
         }
       },
