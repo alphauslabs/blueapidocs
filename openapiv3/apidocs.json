@@ -24613,6 +24613,9 @@
           },
           "transferAccount": {
             "type": "boolean"
+          },
+          "isDataAvailable": {
+            "type": "boolean"
           }
         }
       },
