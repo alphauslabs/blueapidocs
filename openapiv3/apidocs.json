@@ -8896,6 +8896,162 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/invoicecosts:read": {
+      "post": {
+        "tags": [
+          "Cost"
+        ],
+        "summary": "WORK-IN-PROGRESS: Read the invoice costs. Only available in Ripple.",
+        "operationId": "Cost_ReadInvoiceCosts",
+        "requestBody": {
+          "description": "Request message for the ReadInvoiceCosts rpc.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1ReadInvoiceCostsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Stream result of v1TotalSection",
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/components/schemas/v1TotalSection"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/googlerpcStatus"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/invoicegroupcosts:read": {
+      "post": {
+        "tags": [
+          "Cost"
+        ],
+        "summary": "WORK-IN-PROGRESS: Read the invoice group costs. Only available in Ripple.",
+        "operationId": "Cost_ReadInvoiceGroupCosts",
+        "requestBody": {
+          "description": "Request message for the ReadInvoiceGroupCosts rpc.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1ReadInvoiceGroupCostsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Stream result of v1BillingGroupSection",
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/components/schemas/v1BillingGroupSection"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/googlerpcStatus"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/invoiceoverviews:read": {
+      "post": {
+        "tags": [
+          "Cost"
+        ],
+        "summary": "WORK-IN-PROGRESS: Read the invoice overviews. Only available in Ripple.",
+        "operationId": "Cost_ReadInvoiceOverViews",
+        "requestBody": {
+          "description": "Request message for the ReadInvoiceOverviews rpc.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1ReadInvoiceOverviewsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Stream result of v1OverViewSection",
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/components/schemas/v1OverViewSection"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/googlerpcStatus"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/marketplace/info": {
       "post": {
         "tags": [
@@ -27284,6 +27440,35 @@
         },
         "description": "Invoice settings for a billing group."
       },
+      "v1BillingGroupSection": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "yearMonth": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "invocieCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "procurementCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "profitCost": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
       "v1BillingGroupVendoredInvoiceSetting": {
         "type": "object",
         "properties": {
@@ -30973,6 +31158,56 @@
           }
         }
       },
+      "v1OverViewOptionSection": {
+        "type": "object",
+        "properties": {
+          "sppDiscountCost": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "v1OverViewSection": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "invoiceCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "procurementCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "profitCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "options": {
+            "$ref": "#/components/schemas/v1OverViewOptionSection"
+          },
+          "periodOverPeriod": {
+            "$ref": "#/components/schemas/v1periodOverPeriodSection"
+          },
+          "awsSection": {
+            "$ref": "#/components/schemas/v1VendorOverViewSection"
+          },
+          "azureSection": {
+            "$ref": "#/components/schemas/v1VendorOverViewSection"
+          },
+          "gcpSection": {
+            "$ref": "#/components/schemas/v1VendorOverViewSection"
+          }
+        }
+      },
       "v1PartnerToken": {
         "type": "object",
         "properties": {
@@ -31334,6 +31569,47 @@
         },
         "description": "Request message for the Billing.ReadCustomizedBillingServices rpc."
       },
+      "v1ReadInvoiceCostsRequest": {
+        "type": "object",
+        "properties": {
+          "startTime": {
+            "type": "string",
+            "description": "Optional. The UTC date to start streaming data from. If not set, the first day of the current month will be used. Format: `yyyymmdd`. The oldest supported date is `20240101`."
+          },
+          "endTime": {
+            "type": "string",
+            "description": "Optional. The UTC date to end the streaming data. If not set, current date will be used. Format: `yyyymmdd`."
+          },
+          "toCurrency": {
+            "type": "string",
+            "description": "Optional. Set to US dollars (USD) by default (AWS CUR's default currency). You can set it to the desired three-letter currency symbol (i.e. JPY, EUR, GBP), in which case, it will use the latest exchange rates provided by https://fixer.io. If you prefer a custom exchange rate, you can append the rate to the currency's three-letter symbol. For example, `JPY:110.622` for the Japanese Yen. Note that the exchange rate should be against the US dollar (USD)."
+          }
+        },
+        "description": "Request message for the ReadInvoiceCosts rpc."
+      },
+      "v1ReadInvoiceGroupCostsRequest": {
+        "type": "object",
+        "properties": {
+          "startTime": {
+            "type": "string",
+            "description": "Optional. The UTC date to start streaming data from. If not set, the first day of the current month will be used. Format: `yyyymmdd`. The oldest supported date is `20240101`."
+          },
+          "endTime": {
+            "type": "string",
+            "description": "Optional. The UTC date to end the streaming data. If not set, current date will be used. Format: `yyyymmdd`."
+          },
+          "toCurrency": {
+            "type": "string",
+            "description": "Optional. Set to US dollars (USD) by default (AWS CUR's default currency). You can set it to the desired three-letter currency symbol (i.e. JPY, EUR, GBP), in which case, it will use the latest exchange rates provided by https://fixer.io. If you prefer a custom exchange rate, you can append the rate to the currency's three-letter symbol. For example, `JPY:110.622` for the Japanese Yen. Note that the exchange rate should be against the US dollar (USD)."
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Optional. Number of acquisitions. default:10.",
+            "format": "int32"
+          }
+        },
+        "description": "Request message for the ReadInvoiceGroupCosts rpc."
+      },
       "v1ReadInvoiceIdsResponse": {
         "type": "object",
         "properties": {
@@ -31343,6 +31619,24 @@
           }
         },
         "description": "Response message for the ReadInvoiceIds rpc."
+      },
+      "v1ReadInvoiceOverviewsRequest": {
+        "type": "object",
+        "properties": {
+          "startTime": {
+            "type": "string",
+            "description": "Optional. The UTC date to start streaming data from. If not set, the first day of the current month will be used. Format: `yyyymmdd`. The oldest supported date is `20240101`."
+          },
+          "endTime": {
+            "type": "string",
+            "description": "Optional. The UTC date to end the streaming data. If not set, current date will be used. Format: `yyyymmdd`."
+          },
+          "toCurrency": {
+            "type": "string",
+            "description": "Optional. Set to US dollars (USD) by default (AWS CUR's default currency). You can set it to the desired three-letter currency symbol (i.e. JPY, EUR, GBP), in which case, it will use the latest exchange rates provided by https://fixer.io. If you prefer a custom exchange rate, you can append the rate to the currency's three-letter symbol. For example, `JPY:110.622` for the Japanese Yen. Note that the exchange rate should be against the US dollar (USD)."
+          }
+        },
+        "description": "Request message for the ReadInvoiceOverviews rpc."
       },
       "v1ReadTagCostsRequestAwsOptions": {
         "type": "object",
@@ -31902,6 +32196,85 @@
           },
           "region": {
             "type": "string"
+          }
+        }
+      },
+      "v1ThirdProfitItemSection": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "profit": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "v1TotalDetailSection": {
+        "type": "object",
+        "properties": {
+          "TrueUnblended": {
+            "type": "number",
+            "format": "double"
+          },
+          "sppDiscount": {
+            "type": "number",
+            "format": "double"
+          },
+          "thirdProfitItem": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "v1TotalSection": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "yearMonth": {
+            "type": "string"
+          },
+          "invoiceCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "procurementCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "profitCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalDeital": {
+            "$ref": "#/components/schemas/v1TotalDetailSection"
+          },
+          "thirdProfitItem": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1ThirdProfitItemSection"
+            }
+          },
+          "awsSection": {
+            "$ref": "#/components/schemas/v1VendorTotalSection"
+          },
+          "azureSection": {
+            "$ref": "#/components/schemas/v1VendorTotalSection"
+          },
+          "gcpSection": {
+            "$ref": "#/components/schemas/v1VendorTotalSection"
           }
         }
       },
@@ -32522,6 +32895,76 @@
         },
         "description": "Response for message Iam.ValidateVerificationCode rpc."
       },
+      "v1VendorOverViewSection": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "invoiceCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "procurementCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "profitCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "options": {
+            "$ref": "#/components/schemas/v1OverViewOptionSection"
+          },
+          "periodOverPeriod": {
+            "$ref": "#/components/schemas/v1periodOverPeriodSection"
+          }
+        }
+      },
+      "v1VendorTotalSection": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "yearMonth": {
+            "type": "string"
+          },
+          "invoiceCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "procurementCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "profitCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalDeital": {
+            "$ref": "#/components/schemas/v1TotalDetailSection"
+          },
+          "thirdProfitItem": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1ThirdProfitItemSection"
+            }
+          }
+        }
+      },
       "v1VerifyUserForResetPasswordResponse": {
         "type": "object",
         "properties": {
@@ -32558,6 +33001,51 @@
             "items": {
               "$ref": "#/components/schemas/v1WaveFeature"
             }
+          }
+        }
+      },
+      "v1periodOverPeriodOptionSection": {
+        "type": "object",
+        "properties": {
+          "sppDiscountCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "sppDiscountCostPoP": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "v1periodOverPeriodSection": {
+        "type": "object",
+        "properties": {
+          "invoiceCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "procurementCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "profitCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "invoiceCostPoP": {
+            "type": "number",
+            "format": "double"
+          },
+          "procurementCostPoP": {
+            "type": "number",
+            "format": "double"
+          },
+          "profitCostPoP": {
+            "type": "number",
+            "format": "double"
+          },
+          "options": {
+            "$ref": "#/components/schemas/v1periodOverPeriodOptionSection"
           }
         }
       },
