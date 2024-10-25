@@ -15840,6 +15840,17 @@
         }
       }
     },
+    "RecommendationHubRecommendationsInsights": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
     "RedshiftDetailsClusterDetails": {
       "type": "object",
       "properties": {
@@ -22078,7 +22089,33 @@
       "title": "Status of upload file"
     },
     "gcpGCPRecommendations": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "recommendationHubRecommendations": {
+          "$ref": "#/definitions/gcpRecommendationHubRecommendations"
+        }
+      }
+    },
+    "gcpRecommendationHubRecommendations": {
+      "type": "object",
+      "properties": {
+        "insights": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/RecommendationHubRecommendationsInsights"
+          }
+        },
+        "recommendedAction": {
+          "type": "string"
+        },
+        "resource": {
+          "type": "string"
+        },
+        "priorityLevel": {
+          "type": "string"
+        }
+      }
     },
     "googlerpcStatus": {
       "type": "object",

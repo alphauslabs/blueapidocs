@@ -19532,6 +19532,17 @@
           }
         }
       },
+      "RecommendationHubRecommendationsInsights": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
       "RedshiftDetailsClusterDetails": {
         "type": "object",
         "properties": {
@@ -25670,7 +25681,32 @@
         ]
       },
       "gcpGCPRecommendations": {
-        "type": "object"
+        "type": "object",
+        "properties": {
+          "recommendationHubRecommendations": {
+            "$ref": "#/components/schemas/gcpRecommendationHubRecommendations"
+          }
+        }
+      },
+      "gcpRecommendationHubRecommendations": {
+        "type": "object",
+        "properties": {
+          "insights": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RecommendationHubRecommendationsInsights"
+            }
+          },
+          "recommendedAction": {
+            "type": "string"
+          },
+          "resource": {
+            "type": "string"
+          },
+          "priorityLevel": {
+            "type": "string"
+          }
+        }
       },
       "googlerpcStatus": {
         "type": "object",
