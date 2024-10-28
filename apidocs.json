@@ -23934,30 +23934,38 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "string"
+          "type": "string",
+          "title": "The id. id:billing internald id"
         },
         "name": {
-          "type": "string"
+          "type": "string",
+          "title": "The id. name:billing name"
         },
         "yearMonth": {
-          "type": "string"
+          "type": "string",
+          "title": "The year-month. format: yyyymm"
         },
         "currency": {
-          "type": "string"
+          "type": "string",
+          "description": "The currency."
         },
         "invocieCost": {
           "type": "number",
-          "format": "double"
+          "format": "double",
+          "description": "The invoice cost."
         },
         "procurementCost": {
           "type": "number",
-          "format": "double"
+          "format": "double",
+          "description": "The procurement cost."
         },
         "profitCost": {
           "type": "number",
-          "format": "double"
+          "format": "double",
+          "description": "The profit cost."
         }
-      }
+      },
+      "description": "BillingGroupSection resource definition."
     },
     "v1BillingGroupVendoredInvoiceSetting": {
       "type": "object",
@@ -27761,50 +27769,64 @@
       "properties": {
         "sppDiscountCost": {
           "type": "number",
-          "format": "double"
+          "format": "double",
+          "description": "The spp discount cost."
         }
-      }
+      },
+      "description": "OverViewOptionSection resource definition."
     },
     "v1OverViewSection": {
       "type": "object",
       "properties": {
         "id": {
-          "type": "string"
+          "type": "string",
+          "description": "The id. id:OverViewSection."
         },
         "name": {
-          "type": "string"
+          "type": "string",
+          "description": "The name. name:OverViewSection."
         },
         "currency": {
-          "type": "string"
+          "type": "string",
+          "description": "The currency."
         },
         "invoiceCost": {
           "type": "number",
-          "format": "double"
+          "format": "double",
+          "description": "The invoice cost."
         },
         "procurementCost": {
           "type": "number",
-          "format": "double"
+          "format": "double",
+          "description": "The procurement cost."
         },
         "profitCost": {
           "type": "number",
-          "format": "double"
+          "format": "double",
+          "description": "The profit cost."
         },
         "options": {
-          "$ref": "#/definitions/v1OverViewOptionSection"
+          "$ref": "#/definitions/v1OverViewOptionSection",
+          "description": "The options."
         },
         "periodOverPeriod": {
-          "$ref": "#/definitions/v1periodOverPeriodSection"
+          "$ref": "#/definitions/v1PeriodOverPeriodSection",
+          "description": "The period over period."
         },
         "awsSection": {
-          "$ref": "#/definitions/v1VendorOverViewSection"
+          "$ref": "#/definitions/v1VendorOverViewSection",
+          "description": "The aws section."
         },
         "azureSection": {
-          "$ref": "#/definitions/v1VendorOverViewSection"
+          "$ref": "#/definitions/v1VendorOverViewSection",
+          "description": "The azure section."
         },
         "gcpSection": {
-          "$ref": "#/definitions/v1VendorOverViewSection"
+          "$ref": "#/definitions/v1VendorOverViewSection",
+          "description": "The gcp section."
         }
-      }
+      },
+      "description": "OverViewSection resource definition."
     },
     "v1PartnerToken": {
       "type": "object",
@@ -27813,6 +27835,62 @@
           "type": "string"
         }
       }
+    },
+    "v1PeriodOverPeriodOptionSection": {
+      "type": "object",
+      "properties": {
+        "sppDiscountCost": {
+          "type": "number",
+          "format": "double",
+          "description": "The spp discount cost."
+        },
+        "sppDiscountCostPoP": {
+          "type": "number",
+          "format": "double",
+          "title": "The spp discount cost Period-over-Period.\nRepresents a comparison of costs over a specified period of time.\ncurrently, supported `Month-over-Month`"
+        }
+      },
+      "description": "PeriodOverPeriodOptionSection resource definition."
+    },
+    "v1PeriodOverPeriodSection": {
+      "type": "object",
+      "properties": {
+        "invoiceCost": {
+          "type": "number",
+          "format": "double",
+          "title": "The invoice cost"
+        },
+        "procurementCost": {
+          "type": "number",
+          "format": "double",
+          "title": "The procurement cost"
+        },
+        "profitCost": {
+          "type": "number",
+          "format": "double",
+          "title": "The profit cost"
+        },
+        "invoiceCostPoP": {
+          "type": "number",
+          "format": "double",
+          "title": "The invoice cost Period-over-Period.\nRepresents a comparison of costs over a specified period of time.\ncurrently, supported `Month-over-Month`"
+        },
+        "procurementCostPoP": {
+          "type": "number",
+          "format": "double",
+          "title": "The procurement cost Period-over-Period.\nRepresents a comparison of costs over a specified period of time.\ncurrently, supported `Month-over-Month`"
+        },
+        "profitCostPoP": {
+          "type": "number",
+          "format": "double",
+          "title": "The profit cost Period-over-Period.\nRepresents a comparison of costs over a specified period of time.\ncurrently, supported `Month-over-Month`"
+        },
+        "options": {
+          "$ref": "#/definitions/v1PeriodOverPeriodOptionSection",
+          "description": "The options cost Period-over-Period."
+        }
+      },
+      "description": "PeriodOverPeriodSection resource definition."
     },
     "v1Preference": {
       "type": "object"
@@ -28810,81 +28888,102 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "string"
+          "type": "string",
+          "description": "The id."
         },
         "name": {
-          "type": "string"
+          "type": "string",
+          "description": "The name."
         },
         "profit": {
           "type": "number",
-          "format": "double"
+          "format": "double",
+          "description": "The profit cost."
         }
-      }
+      },
+      "description": "ThirdProfitItemSection resource definition."
     },
     "v1TotalDetailSection": {
       "type": "object",
       "properties": {
         "TrueUnblended": {
           "type": "number",
-          "format": "double"
+          "format": "double",
+          "description": "The true unblended cost."
         },
         "sppDiscount": {
           "type": "number",
-          "format": "double"
+          "format": "double",
+          "description": "The spp discount cost."
         },
         "thirdProfitItem": {
           "type": "number",
-          "format": "double"
+          "format": "double",
+          "description": "The third profit item cost."
         }
-      }
+      },
+      "description": "TotalDetailSection resource definition."
     },
     "v1TotalSection": {
       "type": "object",
       "properties": {
         "id": {
-          "type": "string"
+          "type": "string",
+          "description": "The id. id:TotalSection."
         },
         "name": {
-          "type": "string"
+          "type": "string",
+          "description": "The name. name:TotalSection."
         },
         "currency": {
-          "type": "string"
+          "type": "string",
+          "description": "The currency."
         },
         "yearMonth": {
-          "type": "string"
+          "type": "string",
+          "title": "The year-month. format: yyyymm"
         },
         "invoiceCost": {
           "type": "number",
-          "format": "double"
+          "format": "double",
+          "description": "The invoice cost."
         },
         "procurementCost": {
           "type": "number",
-          "format": "double"
+          "format": "double",
+          "description": "The procurement cost."
         },
         "profitCost": {
           "type": "number",
-          "format": "double"
+          "format": "double",
+          "description": "The profit cost."
         },
         "totalDeital": {
-          "$ref": "#/definitions/v1TotalDetailSection"
+          "$ref": "#/definitions/v1TotalDetailSection",
+          "description": "The total detail."
         },
         "thirdProfitItem": {
           "type": "array",
           "items": {
             "type": "object",
             "$ref": "#/definitions/v1ThirdProfitItemSection"
-          }
+          },
+          "description": "The third profit item."
         },
         "awsSection": {
-          "$ref": "#/definitions/v1VendorTotalSection"
+          "$ref": "#/definitions/v1VendorTotalSection",
+          "description": "The aws section."
         },
         "azureSection": {
-          "$ref": "#/definitions/v1VendorTotalSection"
+          "$ref": "#/definitions/v1VendorTotalSection",
+          "description": "The azure section."
         },
         "gcpSection": {
-          "$ref": "#/definitions/v1VendorTotalSection"
+          "$ref": "#/definitions/v1VendorTotalSection",
+          "description": "The gcp section."
         }
-      }
+      },
+      "description": "TotalSection resource definition."
     },
     "v1TransferOrganizationResponse": {
       "type": "object",
@@ -29511,72 +29610,91 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "string"
+          "type": "string",
+          "description": "The id. id:VendorOverViewSection."
         },
         "name": {
-          "type": "string"
+          "type": "string",
+          "description": "The name. name:VendorOverViewSection."
         },
         "currency": {
-          "type": "string"
+          "type": "string",
+          "description": "The currency."
         },
         "invoiceCost": {
           "type": "number",
-          "format": "double"
+          "format": "double",
+          "description": "The invoice cost."
         },
         "procurementCost": {
           "type": "number",
-          "format": "double"
+          "format": "double",
+          "description": "The procurement cost."
         },
         "profitCost": {
           "type": "number",
-          "format": "double"
+          "format": "double",
+          "description": "The profit cost."
         },
         "options": {
-          "$ref": "#/definitions/v1OverViewOptionSection"
+          "$ref": "#/definitions/v1OverViewOptionSection",
+          "description": "The options."
         },
         "periodOverPeriod": {
-          "$ref": "#/definitions/v1periodOverPeriodSection"
+          "$ref": "#/definitions/v1PeriodOverPeriodSection",
+          "description": "The period over period."
         }
-      }
+      },
+      "description": "VendorOverViewSection resource definition."
     },
     "v1VendorTotalSection": {
       "type": "object",
       "properties": {
         "id": {
-          "type": "string"
+          "type": "string",
+          "description": "The id. id:VendorTotalSection."
         },
         "name": {
-          "type": "string"
+          "type": "string",
+          "description": "The name. name:VendorTotalSection."
         },
         "currency": {
-          "type": "string"
+          "type": "string",
+          "description": "The currency."
         },
         "yearMonth": {
-          "type": "string"
+          "type": "string",
+          "title": "The year-month. format: yyyymm"
         },
         "invoiceCost": {
           "type": "number",
-          "format": "double"
+          "format": "double",
+          "description": "The invoice cost."
         },
         "procurementCost": {
           "type": "number",
-          "format": "double"
+          "format": "double",
+          "description": "The procurement cost."
         },
         "profitCost": {
           "type": "number",
-          "format": "double"
+          "format": "double",
+          "description": "The profit cost."
         },
         "totalDeital": {
-          "$ref": "#/definitions/v1TotalDetailSection"
+          "$ref": "#/definitions/v1TotalDetailSection",
+          "description": "The total detail."
         },
         "thirdProfitItem": {
           "type": "array",
           "items": {
             "type": "object",
             "$ref": "#/definitions/v1ThirdProfitItemSection"
-          }
+          },
+          "description": "The yhird profit item."
         }
-      }
+      },
+      "description": "VendorTotalSection resource definition."
     },
     "v1VerifyUserForResetPasswordResponse": {
       "type": "object",
@@ -29617,51 +29735,6 @@
         }
       },
       "title": "for wave features settings data maping"
-    },
-    "v1periodOverPeriodOptionSection": {
-      "type": "object",
-      "properties": {
-        "sppDiscountCost": {
-          "type": "number",
-          "format": "double"
-        },
-        "sppDiscountCostPoP": {
-          "type": "number",
-          "format": "double"
-        }
-      }
-    },
-    "v1periodOverPeriodSection": {
-      "type": "object",
-      "properties": {
-        "invoiceCost": {
-          "type": "number",
-          "format": "double"
-        },
-        "procurementCost": {
-          "type": "number",
-          "format": "double"
-        },
-        "profitCost": {
-          "type": "number",
-          "format": "double"
-        },
-        "invoiceCostPoP": {
-          "type": "number",
-          "format": "double"
-        },
-        "procurementCostPoP": {
-          "type": "number",
-          "format": "double"
-        },
-        "profitCostPoP": {
-          "type": "number",
-          "format": "double"
-        },
-        "options": {
-          "$ref": "#/definitions/v1periodOverPeriodOptionSection"
-        }
-      }
     },
     "waveAdjustment": {
       "type": "object",
