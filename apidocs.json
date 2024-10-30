@@ -13221,6 +13221,94 @@
         ]
       }
     },
+    "/v1/{vendor}/tagsaddingsetting/{groupId}": {
+      "get": {
+        "operationId": "Billing_GetTagsAddingSetting",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1TagsAddingSetting"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of v1TagsAddingSetting"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "groupId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      },
+      "put": {
+        "operationId": "Billing_UpdateTagsAddingSetting",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "groupId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BillingUpdateTagsAddingSettingBody"
+            }
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      }
+    },
     "/v1/{vendor}/untaggedgroups:read": {
       "post": {
         "summary": "WORK-IN-PROGRESS: Reads the untagged group. Only available in Ripple.",
@@ -14019,6 +14107,19 @@
       "required": [
         "updateMask"
       ]
+    },
+    "BillingUpdateTagsAddingSettingBody": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1TagsAddingSetting"
+          }
+        }
+      },
+      "title": "BillingGroup tags adding setting"
     },
     "CostCalculateCostsBody": {
       "type": "object",
@@ -28862,6 +28963,23 @@
           "type": "string"
         },
         "values": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "v1TagsAddingSetting": {
+      "type": "object",
+      "properties": {
+        "groupId": {
+          "type": "string"
+        },
+        "customerId": {
+          "type": "string"
+        },
+        "tagKeys": {
           "type": "array",
           "items": {
             "type": "string"
