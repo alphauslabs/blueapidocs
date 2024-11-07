@@ -10992,6 +10992,55 @@
         ]
       }
     },
+    "/v1/{vendor}/aors:read": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Reads all vendor account-original-resources.",
+        "operationId": "Cost_ReadAccountOriginalResources",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/apiAccountOriginalResource"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of apiAccountOriginalResource"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws`.`gcp`,`azure` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CostReadAccountOriginalResourcesBody"
+            }
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      }
+    },
     "/v1/{vendor}/bep/{orgId}": {
       "get": {
         "summary": "Get the breakeven point details for the RI or SP.",
@@ -14589,6 +14638,10 @@
         }
       }
     },
+    "CostReadAccountOriginalResourcesBody": {
+      "type": "object",
+      "description": "Request message for the ReadAccountOriginalResources rpc."
+    },
     "CostReadAdjustmentsBody": {
       "type": "object",
       "properties": {
@@ -16485,6 +16538,32 @@
           }
         }
       }
+    },
+    "apiAccountOriginalResource": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "The id is associated with CostUsage or BillingReport.\nVendor positioning is\nAWS: `lineItem/UsageAccountId`\nGoogleCloud: `projectId`\nAzure: `???`"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name is associated with CostUsage or BillingReport.\nBasically the same as id."
+        },
+        "payerId": {
+          "type": "string",
+          "description": "The payerId associated with CostUsage or BillingReport.\nIt will be the organization Id associated with the id."
+        },
+        "vendor": {
+          "type": "string",
+          "title": "The vendor. supported by `aws`,`gcp`,`azure`"
+        },
+        "productRegistered": {
+          "type": "boolean",
+          "description": "The ProductRegistered indicates whether it is linked to a product(Ripple or Wave(Pro))."
+        }
+      },
+      "description": "AccountOriginalResource resource definition."
     },
     "apiAccountTotal": {
       "type": "object",

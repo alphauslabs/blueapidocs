@@ -14048,6 +14048,68 @@
         }
       }
     },
+    "/v1/{vendor}/aors:read": {
+      "post": {
+        "tags": [
+          "Cost"
+        ],
+        "summary": "WORK-IN-PROGRESS: Reads all vendor account-original-resources.",
+        "operationId": "Cost_ReadAccountOriginalResources",
+        "parameters": [
+          {
+            "name": "vendor",
+            "in": "path",
+            "description": "Required. At the moment, only `aws`.`gcp`,`azure` is supported.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CostReadAccountOriginalResourcesBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Stream result of apiAccountOriginalResource",
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/components/schemas/apiAccountOriginalResource"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/googlerpcStatus"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/{vendor}/bep/{orgId}": {
       "get": {
         "tags": [
@@ -18326,6 +18388,10 @@
           }
         }
       },
+      "CostReadAccountOriginalResourcesBody": {
+        "type": "object",
+        "description": "Request message for the ReadAccountOriginalResources rpc."
+      },
       "CostReadAdjustmentsBody": {
         "type": "object",
         "properties": {
@@ -20195,6 +20261,32 @@
             }
           }
         }
+      },
+      "apiAccountOriginalResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "The id is associated with CostUsage or BillingReport.\nVendor positioning is\nAWS: `lineItem/UsageAccountId`\nGoogleCloud: `projectId`\nAzure: `???`",
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name is associated with CostUsage or BillingReport.\nBasically the same as id."
+          },
+          "payerId": {
+            "type": "string",
+            "description": "The payerId associated with CostUsage or BillingReport.\nIt will be the organization Id associated with the id."
+          },
+          "vendor": {
+            "title": "The vendor. supported by `aws`,`gcp`,`azure`",
+            "type": "string"
+          },
+          "productRegistered": {
+            "type": "boolean",
+            "description": "The ProductRegistered indicates whether it is linked to a product(Ripple or Wave(Pro))."
+          }
+        },
+        "description": "AccountOriginalResource resource definition."
       },
       "apiAccountTotal": {
         "type": "object",
