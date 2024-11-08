@@ -26334,6 +26334,14 @@
         },
         "costGroupId": {
           "type": "string"
+        },
+        "existingCombinations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/coverCombinations"
+          },
+          "description": "When present, the api will return all attributes except the combination in this item."
         }
       },
       "title": "Request message for GetCostGroupAttribute"

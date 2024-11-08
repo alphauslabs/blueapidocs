@@ -29871,6 +29871,13 @@
           },
           "costGroupId": {
             "type": "string"
+          },
+          "existingCombinations": {
+            "type": "array",
+            "description": "When present, the api will return all attributes except the combination in this item.",
+            "items": {
+              "$ref": "#/components/schemas/coverCombinations"
+            }
           }
         }
       },
