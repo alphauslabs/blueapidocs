@@ -10994,7 +10994,7 @@
     },
     "/v1/{vendor}/aors:read": {
       "post": {
-        "summary": "WORK-IN-PROGRESS: Reads all vendor account-original-resources.",
+        "summary": "WORK-IN-PROGRESS: Reads all vendor account-original-resources.\nAccount that have not been used for one month will no longer be retrieved.",
         "operationId": "Cost_ReadAccountOriginalResources",
         "responses": {
           "200": {
@@ -16561,6 +16561,14 @@
         "productRegistered": {
           "type": "boolean",
           "description": "The ProductRegistered indicates whether it is linked to a product(Ripple or Wave(Pro))."
+        },
+        "metadata": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/apiKeyValueMap"
+          },
+          "description": "The attributes (key/value pair) of the account original resource."
         }
       },
       "description": "AccountOriginalResource resource definition."
@@ -17236,6 +17244,21 @@
           "type": "string"
         }
       }
+    },
+    "apiKeyValueMap": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "stringValue": {
+          "type": "string"
+        },
+        "boolValue": {
+          "type": "boolean"
+        }
+      },
+      "description": "KeyValueMap resource definition."
     },
     "apiMSTeamsChannel": {
       "type": "object",
