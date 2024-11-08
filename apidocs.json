@@ -10994,7 +10994,7 @@
     },
     "/v1/{vendor}/aors:read": {
       "post": {
-        "summary": "WORK-IN-PROGRESS: Reads all vendor account-original-resources.\nAccount that have not been used for one month will no longer be retrieved.",
+        "summary": "Reads all vendor account-original-resources.\nAccount that have not been used for one month will no longer be retrieved.",
         "operationId": "Cost_ReadAccountOriginalResources",
         "responses": {
           "200": {
