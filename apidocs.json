@@ -16544,7 +16544,7 @@
       "properties": {
         "id": {
           "type": "string",
-          "title": "The id is associated with CostUsage or BillingReport.\nVendor positioning is\nAWS: `lineItem/UsageAccountId`\nGoogleCloud: `projectId`\nAzure: `???`"
+          "title": "The id is associated with CostUsage or BillingReport.\nVendor positioning is\nAWS: `lineItem/UsageAccountId`\nGoogleCloud: `projectId`\nAzure: `azure customer id`"
         },
         "name": {
           "type": "string",
