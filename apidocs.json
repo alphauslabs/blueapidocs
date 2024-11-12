@@ -4461,6 +4461,44 @@
         ]
       }
     },
+    "/v1/apiaccess/verify": {
+      "get": {
+        "operationId": "Cover_VerifyAPIAccess",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1VerifyAPIAccessResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required: gcp",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "target",
+            "description": "Required: projectId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
     "/v1/assets/summary/{costGroupId}": {
       "get": {
         "summary": "WORK-IN-PROGRESS: Assets summary for costgroup",
@@ -15610,6 +15648,44 @@
         }
       }
     },
+    "GcpOptionsBillingOption": {
+      "type": "object",
+      "properties": {
+        "accountName": {
+          "type": "string"
+        },
+        "projectId": {
+          "type": "string"
+        },
+        "datasetId": {
+          "type": "string"
+        },
+        "datasetRegion": {
+          "type": "string"
+        },
+        "bigQueryStatus": {
+          "type": "boolean"
+        }
+      },
+      "title": "V2"
+    },
+    "GcpOptionsProjectOption": {
+      "type": "object",
+      "properties": {
+        "apiAccess": {
+          "type": "boolean"
+        },
+        "projectName": {
+          "type": "string"
+        },
+        "projectNumber": {
+          "type": "string"
+        },
+        "billingAccountId": {
+          "type": "string"
+        }
+      }
+    },
     "IamCreatePartnerTokenBody": {
       "type": "object",
       "description": "Request message for the Iam.CreatePartnerToken rpc."
@@ -20812,8 +20888,15 @@
     "coverGcpOptions": {
       "type": "object",
       "properties": {
+        "billingOption": {
+          "$ref": "#/definitions/GcpOptionsBillingOption"
+        },
+        "projectOption": {
+          "$ref": "#/definitions/GcpOptionsProjectOption"
+        },
         "accountName": {
-          "type": "string"
+          "type": "string",
+          "title": "We'll keep this to avoid crash in production. \nWe will remove this after this changes released to prod"
         },
         "projectId": {
           "type": "string",
@@ -29923,6 +30006,14 @@
         }
       },
       "description": "VendorTotalSection resource definition."
+    },
+    "v1VerifyAPIAccessResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "boolean"
+        }
+      }
     },
     "v1VerifyUserForResetPasswordResponse": {
       "type": "object",
