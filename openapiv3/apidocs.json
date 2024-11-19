@@ -28566,6 +28566,18 @@
           },
           "awsOptions": {
             "$ref": "#/components/schemas/billingv1AwsOptions"
+          },
+          "city": {
+            "title": "Optional. Company's city",
+            "type": "string"
+          },
+          "prefecture": {
+            "title": "Optional. Company's prefecture",
+            "type": "string"
+          },
+          "country": {
+            "title": "Optional. Company's country",
+            "type": "string"
           }
         },
         "description": "Request message for the Billing.CreateBillingGroup rpc."

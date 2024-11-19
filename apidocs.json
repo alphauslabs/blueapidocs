@@ -24990,6 +24990,18 @@
         "awsOptions": {
           "$ref": "#/definitions/billingv1AwsOptions",
           "title": "Optional. AWS-specific options"
+        },
+        "city": {
+          "type": "string",
+          "title": "Optional. Company's city"
+        },
+        "prefecture": {
+          "type": "string",
+          "title": "Optional. Company's prefecture"
+        },
+        "country": {
+          "type": "string",
+          "title": "Optional. Company's country"
         }
       },
       "description": "Request message for the Billing.CreateBillingGroup rpc."
