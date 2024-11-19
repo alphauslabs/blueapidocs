@@ -25906,6 +25906,9 @@
           },
           "colorTheme": {
             "type": "string"
+          },
+          "reportType": {
+            "type": "string"
           }
         }
       },
