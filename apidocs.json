@@ -22224,6 +22224,9 @@
         },
         "currency": {
           "type": "string"
+        },
+        "reportPeriod": {
+          "type": "string"
         }
       }
     },
@@ -22269,6 +22272,9 @@
           "type": "string"
         },
         "reportType": {
+          "type": "string"
+        },
+        "reportPeriod": {
           "type": "string"
         }
       }
@@ -25829,6 +25835,9 @@
           "type": "string"
         },
         "colorTheme": {
+          "type": "string"
+        },
+        "reportPeriod": {
           "type": "string"
         }
       },
