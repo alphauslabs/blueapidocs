@@ -26405,6 +26405,18 @@
           "invoiceTemplateId": {
             "title": "Optional. Invoice template Id",
             "type": "string"
+          },
+          "city": {
+            "title": "Optional. Company's city",
+            "type": "string"
+          },
+          "prefecture": {
+            "title": "Optional. Company's prefecture",
+            "type": "string"
+          },
+          "country": {
+            "title": "Optional. Company's country",
+            "type": "string"
           }
         },
         "description": "BillingGroupInfo resource definition. Only available in Ripple."
