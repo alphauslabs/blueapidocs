@@ -23643,6 +23643,10 @@
         "account": {
           "type": "string",
           "description": "Account id."
+        },
+        "serviceDiscounts": {
+          "$ref": "#/definitions/apiripplev1InvoiceServiceDiscounts",
+          "description": "service discount infomation."
         }
       },
       "description": "Streaming response message for the AccountInvoiceServiceDiscounts rpc."

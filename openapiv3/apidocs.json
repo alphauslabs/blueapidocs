@@ -27254,6 +27254,9 @@
           "account": {
             "type": "string",
             "description": "Account id."
+          },
+          "serviceDiscounts": {
+            "$ref": "#/components/schemas/apiripplev1InvoiceServiceDiscounts"
           }
         },
         "description": "Streaming response message for the AccountInvoiceServiceDiscounts rpc."
