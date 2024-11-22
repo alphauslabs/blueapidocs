@@ -11652,6 +11652,92 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/servicediscounts/account:export": {
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "WORK-IN-PROGRESS: Exports service discounts for account in billing group. Only available in Ripple.",
+        "operationId": "Billing_ExportAccountInvoiceServiceDiscounts",
+        "requestBody": {
+          "description": "Request message for the ExportAccountInvoiceServiceDiscounts rpc.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1ExportAccountInvoiceServiceDiscountsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1AccountServiceDiscountsExport"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/servicediscounts/billinggroup:export": {
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "WORK-IN-PROGRESS: Exports service discounts for billing group. Only available in Ripple.",
+        "operationId": "Billing_ExportBillingGroupInvoiceServiceDiscounts",
+        "requestBody": {
+          "description": "Request message for the ExportBillingGroupInvoiceServiceDiscounts rpc.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1ExportBillingGroupInvoiceServiceDiscountsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GroupServiceDiscountsExport"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/servicediscounts/{groupId}/account": {
       "put": {
         "tags": [
@@ -12096,6 +12182,49 @@
                       "$ref": "#/components/schemas/googlerpcStatus"
                     }
                   }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/servicediscounts:export": {
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "WORK-IN-PROGRESS: Exports service discounts. Only available in Ripple.",
+        "operationId": "Billing_ExportServiceDiscounts",
+        "requestBody": {
+          "description": "Request message for the ExportServiceDiscounts rpc.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1ExportServiceDiscountsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1ServiceDiscountsExport"
                 }
               }
             }
@@ -27337,6 +27466,15 @@
           }
         }
       },
+      "v1AccountServiceDiscountsExport": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/v1ExportData"
+          }
+        },
+        "description": "AccountServiceDiscountsExport resource definition."
+      },
       "v1AccountUsageDetails": {
         "type": "object",
         "properties": {
@@ -29694,6 +29832,19 @@
       "v1ExecuteOptimizationResponse": {
         "type": "object"
       },
+      "v1ExportAccountInvoiceServiceDiscountsRequest": {
+        "required": [
+          "format"
+        ],
+        "type": "object",
+        "properties": {
+          "format": {
+            "type": "string",
+            "description": "Required. At the moment, `CSV` is supported."
+          }
+        },
+        "description": "Request message for the ExportAccountInvoiceServiceDiscounts rpc."
+      },
       "v1ExportAuditLogsRequest": {
         "type": "object",
         "properties": {
@@ -29712,6 +29863,19 @@
         },
         "description": "Request message for the ExportAuditLogs rpc."
       },
+      "v1ExportBillingGroupInvoiceServiceDiscountsRequest": {
+        "required": [
+          "format"
+        ],
+        "type": "object",
+        "properties": {
+          "format": {
+            "type": "string",
+            "description": "Required. At the moment, `CSV` is supported."
+          }
+        },
+        "description": "Request message for the ExportBillingGroupInvoiceServiceDiscounts rpc."
+      },
       "v1ExportCostFiltersFileResponse": {
         "type": "object",
         "properties": {
@@ -29722,6 +29886,26 @@
         },
         "description": "Response message for the ExportCostFiltersFile rpc."
       },
+      "v1ExportData": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string",
+            "description": "Base64 encoded value."
+          },
+          "downloadedRows": {
+            "type": "string",
+            "description": "Downloaded content lines.",
+            "format": "int64"
+          },
+          "totalRows": {
+            "type": "string",
+            "description": "Total of content lines.",
+            "format": "int64"
+          }
+        },
+        "description": "ExportData resource definition."
+      },
       "v1ExportInvoiceFileResponse": {
         "type": "object",
         "properties": {
@@ -29731,6 +29915,19 @@
           }
         },
         "description": "Response message for the ExportInvoiceFile rpc."
+      },
+      "v1ExportServiceDiscountsRequest": {
+        "required": [
+          "format"
+        ],
+        "type": "object",
+        "properties": {
+          "format": {
+            "type": "string",
+            "description": "Required. At the moment, `CSV` is supported."
+          }
+        },
+        "description": "Request message for the ExportServiceDiscounts rpc."
       },
       "v1FeatureSetting": {
         "title": "For rpc UpdateWaveFeature",
@@ -31009,6 +31206,15 @@
             }
           }
         }
+      },
+      "v1GroupServiceDiscountsExport": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/v1ExportData"
+          }
+        },
+        "description": "GroupServiceDiscountsExport resource definition.\n`Group` refer to `BillingGroup`."
       },
       "v1ImportCurFilesRequest": {
         "type": "object",
@@ -32633,6 +32839,15 @@
           }
         },
         "description": "Service resource definition.\nServices of each vendor available for Service Discounts."
+      },
+      "v1ServiceDiscountsExport": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/v1ExportData"
+          }
+        },
+        "description": "ServiceDiscountsExport resource definition."
       },
       "v1SetCostGroupAnomalyOptionsResponse": {
         "type": "object",

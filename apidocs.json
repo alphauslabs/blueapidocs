@@ -9150,6 +9150,74 @@
         ]
       }
     },
+    "/v1/servicediscounts/account:export": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Exports service discounts for account in billing group. Only available in Ripple.",
+        "operationId": "Billing_ExportAccountInvoiceServiceDiscounts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1AccountServiceDiscountsExport"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Request message for the ExportAccountInvoiceServiceDiscounts rpc.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ExportAccountInvoiceServiceDiscountsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      }
+    },
+    "/v1/servicediscounts/billinggroup:export": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Exports service discounts for billing group. Only available in Ripple.",
+        "operationId": "Billing_ExportBillingGroupInvoiceServiceDiscounts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GroupServiceDiscountsExport"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Request message for the ExportBillingGroupInvoiceServiceDiscounts rpc.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ExportBillingGroupInvoiceServiceDiscountsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      }
+    },
     "/v1/servicediscounts/{groupId}/account": {
       "delete": {
         "summary": "Deletes the account invoice service discounts. Only available in Ripple.",
@@ -9498,6 +9566,40 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/BillingReadServiceDiscountsServicesBody"
+            }
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      }
+    },
+    "/v1/servicediscounts:export": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Exports service discounts. Only available in Ripple.",
+        "operationId": "Billing_ExportServiceDiscounts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ServiceDiscountsExport"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Request message for the ExportServiceDiscounts rpc.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ExportServiceDiscountsRequest"
             }
           }
         ],
@@ -23720,6 +23822,17 @@
         }
       }
     },
+    "v1AccountServiceDiscountsExport": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/v1ExportData",
+          "description": "content. Base64 encoded value.\nFor example, content :``\nDecoding this value, get ``.\n\ndownloadedRows. Downloaded content lines.\n\ntotalRows.Total of content lines.",
+          "title": "data is [blueapi.api.ripple.v1.ExportData]"
+        }
+      },
+      "description": "AccountServiceDiscountsExport resource definition."
+    },
     "v1AccountUsageDetails": {
       "type": "object",
       "properties": {
@@ -26132,6 +26245,19 @@
     "v1ExecuteOptimizationResponse": {
       "type": "object"
     },
+    "v1ExportAccountInvoiceServiceDiscountsRequest": {
+      "type": "object",
+      "properties": {
+        "format": {
+          "type": "string",
+          "description": "Required. At the moment, `CSV` is supported."
+        }
+      },
+      "description": "Request message for the ExportAccountInvoiceServiceDiscounts rpc.",
+      "required": [
+        "format"
+      ]
+    },
     "v1ExportAuditLogsRequest": {
       "type": "object",
       "properties": {
@@ -26150,6 +26276,19 @@
       },
       "description": "Request message for the ExportAuditLogs rpc."
     },
+    "v1ExportBillingGroupInvoiceServiceDiscountsRequest": {
+      "type": "object",
+      "properties": {
+        "format": {
+          "type": "string",
+          "description": "Required. At the moment, `CSV` is supported."
+        }
+      },
+      "description": "Request message for the ExportBillingGroupInvoiceServiceDiscounts rpc.",
+      "required": [
+        "format"
+      ]
+    },
     "v1ExportCostFiltersFileResponse": {
       "type": "object",
       "properties": {
@@ -26160,6 +26299,26 @@
       },
       "description": "Response message for the ExportCostFiltersFile rpc."
     },
+    "v1ExportData": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "string",
+          "description": "Base64 encoded value."
+        },
+        "downloadedRows": {
+          "type": "string",
+          "format": "int64",
+          "description": "Downloaded content lines."
+        },
+        "totalRows": {
+          "type": "string",
+          "format": "int64",
+          "description": "Total of content lines."
+        }
+      },
+      "description": "ExportData resource definition."
+    },
     "v1ExportInvoiceFileResponse": {
       "type": "object",
       "properties": {
@@ -26169,6 +26328,19 @@
         }
       },
       "description": "Response message for the ExportInvoiceFile rpc."
+    },
+    "v1ExportServiceDiscountsRequest": {
+      "type": "object",
+      "properties": {
+        "format": {
+          "type": "string",
+          "description": "Required. At the moment, `CSV` is supported."
+        }
+      },
+      "description": "Request message for the ExportServiceDiscounts rpc.",
+      "required": [
+        "format"
+      ]
     },
     "v1FeatureSetting": {
       "type": "object",
@@ -27497,6 +27669,17 @@
           }
         }
       }
+    },
+    "v1GroupServiceDiscountsExport": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/v1ExportData",
+          "description": "content. Base64 encoded value.\nFor example, content :``\nDecoding this value, get ``.\n\ndownloadedRows. Downloaded content lines.\n\ntotalRows.Total of content lines.",
+          "title": "data is [blueapi.api.ripple.v1.ExportData]"
+        }
+      },
+      "description": "GroupServiceDiscountsExport resource definition.\n`Group` refer to `BillingGroup`."
     },
     "v1ImportCurFilesRequest": {
       "type": "object",
@@ -29154,6 +29337,17 @@
         }
       },
       "description": "Service resource definition.\nServices of each vendor available for Service Discounts."
+    },
+    "v1ServiceDiscountsExport": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/v1ExportData",
+          "description": "content. Base64 encoded value.\nFor example, content :``\nDecoding this value, get ``.\n\ndownloadedRows. Downloaded content lines.\n\ntotalRows.Total of content lines.",
+          "title": "data is [blueapi.api.ripple.v1.ExportData]"
+        }
+      },
+      "description": "ServiceDiscountsExport resource definition."
     },
     "v1SetCostGroupAnomalyOptionsResponse": {
       "type": "object",
