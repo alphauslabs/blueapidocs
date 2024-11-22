@@ -29881,6 +29881,10 @@
           "format": {
             "type": "string",
             "description": "Required. At the moment, `CSV` is supported."
+          },
+          "language": {
+            "type": "string",
+            "description": "Optional. At the moment, `ja`,`en` is supported.\n\nUsually the language of the user information is used, \nbut it may be a different language due to cahce.\nIn that case, you can use this option to change the language of CSV."
           }
         },
         "description": "Request message for the ExportAccountInvoiceServiceDiscounts rpc."
@@ -29912,6 +29916,10 @@
           "format": {
             "type": "string",
             "description": "Required. At the moment, `CSV` is supported."
+          },
+          "language": {
+            "type": "string",
+            "description": "Optional. At the moment, `ja`,`en` is supported.\n\nUsually the language of the user information is used, \nbut it may be a different language due to cahce.\nIn that case, you can use this option to change the language of CSV."
           }
         },
         "description": "Request message for the ExportBillingGroupInvoiceServiceDiscounts rpc."
@@ -29965,6 +29973,10 @@
           "format": {
             "type": "string",
             "description": "Required. At the moment, `CSV` is supported."
+          },
+          "language": {
+            "type": "string",
+            "description": "Optional. At the moment, `ja`,`en` is supported.\n\nUsually the language of the user information is used, \nbut it may be a different language due to cahce.\nIn that case, you can use this option to change the language of CSV."
           }
         },
         "description": "Request message for the ExportServiceDiscounts rpc."
