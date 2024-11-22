@@ -6847,6 +6847,38 @@
         ]
       }
     },
+    "/v1/invoice/template": {
+      "get": {
+        "summary": "Lists Invoice Template. Only available in Ripple.",
+        "operationId": "Billing_ListInvoiceTemplate",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1ListInvoiceTemplateResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of v1ListInvoiceTemplateResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Billing"
+        ]
+      }
+    },
     "/v1/invoice/{date}:create": {
       "post": {
         "summary": "Creates an invoice. Only available in Ripple.",
@@ -27725,6 +27757,21 @@
       },
       "title": "Response message for InviteMember"
     },
+    "v1InvoiceConnectedBillingGroups": {
+      "type": "object",
+      "properties": {
+        "billingInternalId": {
+          "type": "string"
+        },
+        "billingGroupId": {
+          "type": "string"
+        },
+        "billingGroupName": {
+          "type": "string"
+        }
+      },
+      "title": "Response message to be used for ListInvoiceTemplateResponse"
+    },
     "v1InvoiceServiceDiscountsSetting": {
       "type": "object",
       "properties": {
@@ -28035,6 +28082,41 @@
     "v1ListInvoiceServiceDiscountsRequest": {
       "type": "object",
       "description": "Request message for the ListInvoiceServiceDiscounts rpc."
+    },
+    "v1ListInvoiceTemplateResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "created": {
+          "type": "string"
+        },
+        "updated": {
+          "type": "string"
+        },
+        "numberOfConnected": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "connectedBillingGroup": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1InvoiceConnectedBillingGroups"
+          }
+        },
+        "invoices": {
+          "$ref": "#/definitions/v1BillingGroupVendoredInvoiceSetting"
+        }
+      },
+      "description": "Response message for ListInvoiceTemplate rpc."
     },
     "v1ListNotificationChannelsResponse": {
       "type": "object",
