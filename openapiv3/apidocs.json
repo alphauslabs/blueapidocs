@@ -8490,7 +8490,7 @@
         "operationId": "Billing_CreateFreeFormat",
         "parameters": [
           {
-            "name": "id",
+            "name": "groupId",
             "in": "query",
             "schema": {
               "type": "string"
@@ -8528,7 +8528,7 @@
         }
       }
     },
-    "/v1/freeformat/{id}": {
+    "/v1/freeformat/{groupId}": {
       "get": {
         "tags": [
           "Billing"
@@ -8537,7 +8537,7 @@
         "operationId": "Billing_GetFreeFormat",
         "parameters": [
           {
-            "name": "id",
+            "name": "groupId",
             "in": "path",
             "required": true,
             "schema": {
@@ -8585,7 +8585,7 @@
         "operationId": "Billing_DeleteFreeFormat",
         "parameters": [
           {
-            "name": "id",
+            "name": "groupId",
             "in": "path",
             "required": true,
             "schema": {
