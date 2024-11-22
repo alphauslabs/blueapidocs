@@ -8035,7 +8035,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Creates new customfield",
+        "summary": "Creates new customfield",
         "operationId": "Billing_CreateCustomField",
         "requestBody": {
           "content": {
@@ -8077,7 +8077,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Update the `customField` specified id, modifying its key and description",
+        "summary": "Update the `customField` specified id, modifying its key and description",
         "operationId": "Billing_UpdateCustomField",
         "parameters": [
           {
@@ -8127,7 +8127,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Deletes the customfield",
+        "summary": "Deletes the customfield",
         "operationId": "Billing_DeleteCustomField",
         "parameters": [
           {
@@ -8168,7 +8168,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Returns all registered customfields",
+        "summary": "Returns all registered customfields",
         "operationId": "Billing_ListCustomField",
         "responses": {
           "200": {
@@ -8486,7 +8486,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Creates new billing group free format item (miscellaneous)",
+        "summary": "Creates new billing group free format item (miscellaneous)",
         "operationId": "Billing_CreateFreeFormat",
         "parameters": [
           {
@@ -8529,11 +8529,59 @@
       }
     },
     "/v1/freeformat/{id}": {
+      "get": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Get billing group free format item (miscellaneous)",
+        "operationId": "Billing_GetFreeFormat",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Stream result of v1GetFreeFormatResponse",
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/components/schemas/v1GetFreeFormatResponse"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/googlerpcStatus"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      },
       "delete": {
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Delete billing group free format item (miscellaneous)",
+        "summary": "Delete billing group free format item (miscellaneous)",
         "operationId": "Billing_DeleteFreeFormat",
         "parameters": [
           {
@@ -12164,7 +12212,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Returns the customer details and its tags. \nPort for: m/ripple/tags/vendor/{vendor}?type={type}",
+        "summary": "Returns the customer details and its tags. \nPort for: m/ripple/tags/vendor/{vendor}?type={type}",
         "operationId": "Billing_GetTags",
         "parameters": [
           {
@@ -30500,6 +30548,17 @@
           }
         },
         "description": "Response message for GetForecasts per billing group."
+      },
+      "v1GetFreeFormatResponse": {
+        "type": "object",
+        "properties": {
+          "vendor": {
+            "type": "string"
+          },
+          "freeFormat": {
+            "$ref": "#/components/schemas/v1FreeFormItem"
+          }
+        }
       },
       "v1GetInfoResponse": {
         "type": "object",
