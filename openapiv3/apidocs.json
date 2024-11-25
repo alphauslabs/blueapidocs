@@ -11697,7 +11697,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Exports service discounts for account in billing group. Only available in Ripple.",
+        "summary": "Exports service discounts for account in billing group. Only available in Ripple.",
         "operationId": "Billing_ExportAccountInvoiceServiceDiscounts",
         "requestBody": {
           "description": "Request message for the ExportAccountInvoiceServiceDiscounts rpc.",
@@ -11740,7 +11740,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Exports service discounts for billing group. Only available in Ripple.",
+        "summary": "Exports service discounts for billing group. Only available in Ripple.",
         "operationId": "Billing_ExportBillingGroupInvoiceServiceDiscounts",
         "requestBody": {
           "description": "Request message for the ExportBillingGroupInvoiceServiceDiscounts rpc.",
