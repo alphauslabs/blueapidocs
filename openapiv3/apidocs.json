@@ -27513,7 +27513,7 @@
             "$ref": "#/components/schemas/v1ExportData"
           }
         },
-        "description": "AccountServiceDiscountsExport resource definition.\n\ndata is [blueapi.api.ripple.v1.ExportData]\n\ncontent. Base64 encoded value.\nFor example,\ncontent :`YmlsbGluZ0dyb3VwSWQsYmlsbGluZ0dyb3VwTmFtZSxWZW5kb3IsQWNjb3VudElkLEFjY291bnROYW1lLFNlcnZpY2UgUHJlbWl1bXMmRGlzY291bnRzDQo=`\nDecoding this value by en, get `billingGroupId,billingGroupName,Vendor,AccountId,AccountName,Service Premiums&Discounts`.\ncontent :`6KuL5rGC44Kw44Or44O844OXSUQs6KuL5rGC44Kw44Or44O844OX5ZCNLOODmeODs+ODgOODvCzjgqLjgqvjgqbjg7Pjg4hJRCzjgqLjgqvjgqbjg7Pjg4jlkI0s44K144O844OT44K55Ymy5byV44O75Ymy5aKX6Kit5a6aDQo=`\nDecoding this value by en, get `請求グループID,請求グループ名,ベンダー,アカウントID,アカウント名,サービス割引・割増設定`.\n\ndownloadedRows. Downloaded content lines.\n\ntotalRows.Total of content lines."
+        "description": "AccountServiceDiscountsExport resource definition.\n\ndata is [blueapi.api.ripple.v1.ExportData]\n\ncontent. Base64 encoded value.\nFor example,\ncontent :`YmlsbGluZ0dyb3VwSWQsYmlsbGluZ0dyb3VwTmFtZSxWZW5kb3IsQWNjb3VudElkLEFjY291bnROYW1lLFNlcnZpY2UgUHJlbWl1bXMmRGlzY291bnRzDQo=`\nDecoding this value by en, get `billingGroupId,billingGroupName,Vendor,AccountId,AccountName,Service Premiums&Discounts`.\ncontent :`6KuL5rGC44Kw44Or44O844OXSUQs6KuL5rGC44Kw44Or44O844OX5ZCNLOODmeODs+ODgOODvCzjgqLjgqvjgqbjg7Pjg4hJRCzjgqLjgqvjgqbjg7Pjg4jlkI0s44K144O844OT44K55Ymy5byV44O75Ymy5aKX6Kit5a6aDQo=`\nDecoding this value by ja, get `請求グループID,請求グループ名,ベンダー,アカウントID,アカウント名,サービス割引・割増設定`.\n\ndownloadedRows. Downloaded content lines.\n\ntotalRows.Total of content lines."
       },
       "v1AccountUsageDetails": {
         "type": "object",
