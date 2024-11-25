@@ -31656,7 +31656,7 @@
             }
           },
           "invoices": {
-            "$ref": "#/components/schemas/v1BillingGroupVendoredInvoiceSetting"
+            "$ref": "#/components/schemas/v1BillingGroupInvoiceSettings"
           }
         },
         "description": "Response message for ListInvoiceTemplate rpc."

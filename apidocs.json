@@ -28121,7 +28121,7 @@
           }
         },
         "invoices": {
-          "$ref": "#/definitions/v1BillingGroupVendoredInvoiceSetting"
+          "$ref": "#/definitions/v1BillingGroupInvoiceSettings"
         }
       },
       "description": "Response message for ListInvoiceTemplate rpc."
