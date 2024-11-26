@@ -6720,6 +6720,59 @@
         }
       }
     },
+    "/v1/billinggroups/{id}/invoicetemplate": {
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Creates/Updates a billing group's invoice template. Only available in Ripple.",
+        "operationId": "Billing_UpdateBillingGroupInvoiceTemplate",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required. The billing internal ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BillingUpdateBillingGroupInvoiceTemplateBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/budget": {
       "post": {
         "tags": [
@@ -18260,6 +18313,19 @@
           }
         },
         "description": "Request message for the Billing.UpdateAdjustmentConfig rpc."
+      },
+      "BillingUpdateBillingGroupInvoiceTemplateBody": {
+        "title": "Request a message to update/create a billing group's invoice template",
+        "required": [
+          "invoiceTemplateId"
+        ],
+        "type": "object",
+        "properties": {
+          "invoiceTemplateId": {
+            "title": "Required. The invoice template ID to associate with the billing group",
+            "type": "string"
+          }
+        }
       },
       "BillingUpdateCustomFieldBody": {
         "type": "object",

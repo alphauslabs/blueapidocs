@@ -5296,6 +5296,47 @@
         ]
       }
     },
+    "/v1/billinggroups/{id}/invoicetemplate": {
+      "post": {
+        "summary": "Creates/Updates a billing group's invoice template. Only available in Ripple.",
+        "operationId": "Billing_UpdateBillingGroupInvoiceTemplate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Required. The billing internal ID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BillingUpdateBillingGroupInvoiceTemplateBody"
+            }
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      }
+    },
     "/v1/budget": {
       "post": {
         "summary": "WORK-IN-PROGRESS: Create Budget for specific cost group in an organization",
@@ -14404,6 +14445,19 @@
         }
       },
       "description": "Request message for the Billing.UpdateAdjustmentConfig rpc."
+    },
+    "BillingUpdateBillingGroupInvoiceTemplateBody": {
+      "type": "object",
+      "properties": {
+        "invoiceTemplateId": {
+          "type": "string",
+          "title": "Required. The invoice template ID to associate with the billing group"
+        }
+      },
+      "title": "Request a message to update/create a billing group's invoice template",
+      "required": [
+        "invoiceTemplateId"
+      ]
     },
     "BillingUpdateCustomFieldBody": {
       "type": "object",
