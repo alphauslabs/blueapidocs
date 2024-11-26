@@ -8246,6 +8246,175 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/customizedbillingservices/billinggroup/{groupId}/{vendor}": {
+      "get": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "WORK-IN-PROGRESS: Gets the customized billing service in billing group. Only available in Ripple.",
+        "operationId": "Billing_GetCustomizedBillingServiceBillingGroup",
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "description": "Required. billing internal id in billing group.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "vendor",
+            "in": "path",
+            "description": "Required. At the moment, `aws`,`azure`,`gcp` is supported.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Stream result of v1GetCustomizedBillingServiceBillingGroupResponse",
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/components/schemas/v1GetCustomizedBillingServiceBillingGroupResponse"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/googlerpcStatus"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "WORK-IN-PROGRESS: Sets the customized billing service in billing group. Only available in Ripple.",
+        "operationId": "Billing_SetCustomizedBillingServiceBillingGroup",
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "description": "Required. billing internal id in billing group.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "vendor",
+            "in": "path",
+            "description": "Required. At the moment, `aws`,`azure`,`gcp` is supported.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BillingSetCustomizedBillingServiceBillingGroupBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      },
+      "delete": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "WORK-IN-PROGRESS: Deletes the customized billing service in billing group. Only available in Ripple.",
+        "operationId": "Billing_DeleteCustomizedBillingServiceBillingGroup",
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "description": "Required. billing internal id in billing group.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "vendor",
+            "in": "path",
+            "description": "Required. At the moment, `aws`,`azure`,`gcp` is supported.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/customizedbillingservices/{id}": {
       "get": {
         "tags": [
@@ -18022,6 +18191,22 @@
           }
         }
       },
+      "BillingSetCustomizedBillingServiceBillingGroupBody": {
+        "required": [
+          "setting"
+        ],
+        "type": "object",
+        "properties": {
+          "setting": {
+            "title": "Required. [CustomizedBillingServiceBillingSetting]",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SetCustomizedBillingServiceBillingGroupRequestCustomizedBillingServiceBillingSetting"
+            }
+          }
+        },
+        "description": "Request message for the Billing.SetCustomizedBillingServiceBillingGroup rpc."
+      },
       "BillingUpdateAccessGroupBody": {
         "type": "object",
         "properties": {
@@ -20144,6 +20329,30 @@
           "savingsPercentage": {
             "type": "number",
             "format": "double"
+          }
+        }
+      },
+      "SetCustomizedBillingServiceBillingGroupRequestCustomizedBillingServiceBillingSetting": {
+        "title": "CustomizedBillingServiceBillingSetting",
+        "required": [
+          "chargingTarget",
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Required. [blueapi.api.ripple.CustomizedBillingService.id]",
+            "type": "string"
+          },
+          "chargingTarget": {
+            "$ref": "#/components/schemas/rippleChargingTarget"
+          },
+          "accounts": {
+            "title": "Optional. if chargingTarget is BILLINGGROUP, `accounts` is set emptty.\nSpecify the accountIds. For example: [`accountId1`,`accountId2`,`accountId3`]",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
@@ -26650,6 +26859,15 @@
         },
         "description": "BillingGroupInfo resource definition. Only available in Ripple."
       },
+      "rippleChargingTarget": {
+        "type": "string",
+        "description": "Charging target\nIndicates that `ChargingTarget` in the setting applies to either BillingGroup or Account.\n\n - BILLINGGROUP: billing group\n - ACCOUNT: account",
+        "default": "BILLINGGROUP",
+        "enum": [
+          "BILLINGGROUP",
+          "ACCOUNT"
+        ]
+      },
       "rippleCommonExchangeRate": {
         "type": "object",
         "properties": {
@@ -30716,6 +30934,35 @@
             "format": "double"
           }
         }
+      },
+      "v1GetCustomizedBillingServiceBillingGroupResponse": {
+        "required": [
+          "chargingTarget",
+          "id",
+          "vendor"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Required. [blueapi.api.ripple.CustomizedBillingService.id]",
+            "type": "string"
+          },
+          "vendor": {
+            "type": "string",
+            "description": "Required. vendor that applied to the CustomizedBillingService　config."
+          },
+          "chargingTarget": {
+            "$ref": "#/components/schemas/rippleChargingTarget"
+          },
+          "accounts": {
+            "type": "array",
+            "description": "Optional. accounts that applied to the CustomizedBillingService　config.",
+            "items": {
+              "$ref": "#/components/schemas/blueapiapiAccount"
+            }
+          }
+        },
+        "description": "Response message for the Billing.GetCustomizedBillingServiceBillingGroup rpc.\n\nIf there is no account information, it indicates that it is applied to BillingGroup."
       },
       "v1GetDefaultCostAccessTemplateUrlResponse": {
         "type": "object",
