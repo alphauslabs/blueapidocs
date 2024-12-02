@@ -18251,8 +18251,8 @@
         "type": "object",
         "properties": {
           "setting": {
-            "title": "Required. [CustomizedBillingServiceBillingSetting]",
             "type": "array",
+            "description": "Required. customized billing service setting.",
             "items": {
               "$ref": "#/components/schemas/SetCustomizedBillingServiceBillingGroupRequestCustomizedBillingServiceBillingSetting"
             }
@@ -20414,8 +20414,8 @@
             "$ref": "#/components/schemas/rippleChargingTarget"
           },
           "accounts": {
-            "title": "Optional. if chargingTarget is BILLINGGROUP, `accounts` is set emptty.\nSpecify the accountIds. For example: [`accountId1`,`accountId2`,`accountId3`]",
             "type": "array",
+            "description": "Optional. if chargingTarget is BILLINGGROUP, `accounts` is set emptty.\n\nSpecify the accountIds. For example: [`accountId1`,`accountId2`,`accountId3`]",
             "items": {
               "type": "string"
             }

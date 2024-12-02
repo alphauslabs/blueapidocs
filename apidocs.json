@@ -14381,7 +14381,7 @@
             "type": "object",
             "$ref": "#/definitions/SetCustomizedBillingServiceBillingGroupRequestCustomizedBillingServiceBillingSetting"
           },
-          "title": "Required. [CustomizedBillingServiceBillingSetting]"
+          "description": "Required. customized billing service setting."
         }
       },
       "description": "Request message for the Billing.SetCustomizedBillingServiceBillingGroup rpc.",
@@ -16582,7 +16582,7 @@
           "items": {
             "type": "string"
           },
-          "title": "Optional. if chargingTarget is BILLINGGROUP, `accounts` is set emptty.\nSpecify the accountIds. For example: [`accountId1`,`accountId2`,`accountId3`]"
+          "description": "Optional. if chargingTarget is BILLINGGROUP, `accounts` is set emptty.\n\nSpecify the accountIds. For example: [`accountId1`,`accountId2`,`accountId3`]"
         }
       },
       "title": "CustomizedBillingServiceBillingSetting",
