@@ -8761,9 +8761,18 @@
           {
             "name": "groupId",
             "in": "path",
+            "description": "set empty to get all the freeformat of the MSP",
             "required": true,
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "isAssociated",
+            "in": "query",
+            "description": "this setting is ignored if groupId is not empty\nset true to return only the free format associated to a BG",
+            "schema": {
+              "type": "boolean"
             }
           }
         ],
@@ -30312,6 +30321,10 @@
             "type": "string",
             "format": "int64"
           },
+          "total": {
+            "type": "string",
+            "format": "int64"
+          },
           "quantity": {
             "type": "integer",
             "format": "int64"
@@ -31118,7 +31131,10 @@
             "type": "string"
           },
           "freeFormat": {
-            "$ref": "#/components/schemas/v1FreeFormItem"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1FreeFormItem"
+            }
           }
         }
       },

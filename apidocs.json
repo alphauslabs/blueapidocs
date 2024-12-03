@@ -6893,9 +6893,17 @@
         "parameters": [
           {
             "name": "groupId",
+            "description": "set empty to get all the freeformat of the MSP",
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "isAssociated",
+            "description": "this setting is ignored if groupId is not empty\nset true to return only the free format associated to a BG",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
           }
         ],
         "tags": [
@@ -26668,6 +26676,10 @@
           "type": "string",
           "format": "int64"
         },
+        "total": {
+          "type": "string",
+          "format": "int64"
+        },
         "quantity": {
           "type": "integer",
           "format": "int64"
@@ -27513,7 +27525,11 @@
           "type": "string"
         },
         "freeFormat": {
-          "$ref": "#/definitions/v1FreeFormItem"
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1FreeFormItem"
+          }
         }
       }
     },
