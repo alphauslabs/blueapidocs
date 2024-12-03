@@ -30628,10 +30628,13 @@
           },
           "existingCombinations": {
             "type": "array",
-            "description": "When present, the api will return all attributes except the combination in this item.",
+            "description": "Optional, This is for Unit Cost. When present, the api will return all attributes except the combination in this item.",
             "items": {
               "$ref": "#/components/schemas/coverCombinations"
             }
+          },
+          "currentCombination": {
+            "$ref": "#/components/schemas/coverCombinations"
           }
         }
       },
