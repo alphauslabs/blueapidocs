@@ -16710,6 +16710,59 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/{vendor}/payers/basicdetails": {
+      "post": {
+        "tags": [
+          "Cost"
+        ],
+        "summary": "WORK-IN-PROGRES: Registers a vendor payer account with their basics details such as accountId and accountName.",
+        "operationId": "Cost_RegisterPayerAccount",
+        "parameters": [
+          {
+            "name": "vendor",
+            "in": "path",
+            "description": "Required. At the moment, only `aws`, `gcp`, `azure` is supported.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CostRegisterPayerAccountBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/{vendor}/payers/{id}": {
       "get": {
         "tags": [
@@ -19096,6 +19149,24 @@
           }
         },
         "description": "Request message for the Cost.ReadTagCosts rpc."
+      },
+      "CostRegisterPayerAccountBody": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Required. The Payer/Management account Id."
+          },
+          "name": {
+            "type": "string",
+            "description": "Optional. Preferred account name, defaults to id if not provided."
+          },
+          "curType": {
+            "type": "string",
+            "description": "Optional. Valid values are `legacy` and `2.0` for now. Defaults to `legacy` if not provided.\nOnly applicable if vendor is set to `aws`. Do not provide if `gcp` or `azure`."
+          }
+        },
+        "description": "Request message for the RegisterPayerAccountRequest rpc."
       },
       "CostUpdateAccountBody": {
         "type": "object",

@@ -13071,6 +13071,47 @@
         ]
       }
     },
+    "/v1/{vendor}/payers/basicdetails": {
+      "post": {
+        "summary": "WORK-IN-PROGRES: Registers a vendor payer account with their basics details such as accountId and accountName.",
+        "operationId": "Cost_RegisterPayerAccount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws`, `gcp`, `azure` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CostRegisterPayerAccountBody"
+            }
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      }
+    },
     "/v1/{vendor}/payers/{id}": {
       "get": {
         "summary": "Gets a vendor payer account.",
@@ -15240,6 +15281,24 @@
         }
       },
       "description": "Request message for the Cost.ReadTagCosts rpc."
+    },
+    "CostRegisterPayerAccountBody": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Required. The Payer/Management account Id."
+        },
+        "name": {
+          "type": "string",
+          "description": "Optional. Preferred account name, defaults to id if not provided."
+        },
+        "curType": {
+          "type": "string",
+          "description": "Optional. Valid values are `legacy` and `2.0` for now. Defaults to `legacy` if not provided.\nOnly applicable if vendor is set to `aws`. Do not provide if `gcp` or `azure`."
+        }
+      },
+      "description": "Request message for the RegisterPayerAccountRequest rpc."
     },
     "CostUpdateAccountBody": {
       "type": "object",
