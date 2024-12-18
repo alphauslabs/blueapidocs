@@ -4349,6 +4349,29 @@
         ]
       }
     },
+    "/v1/allocators/attribute": {
+      "get": {
+        "summary": "Get all available attributes for the charges",
+        "operationId": "Cover_GetAllocationAttributes",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetAllocationAttributesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
     "/v1/allocators/{id}": {
       "delete": {
         "summary": "WORK-IN-PROGRESS: Deletes a cost allocator",
@@ -16159,6 +16182,20 @@
         }
       }
     },
+    "GetAllocationAttributesResponseAllocationAttribute": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "service": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "IamCreatePartnerTokenBody": {
       "type": "object",
       "description": "Request message for the Iam.CreatePartnerToken rpc."
@@ -25235,6 +25272,12 @@
         },
         "updateTime": {
           "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
         }
       }
     },
@@ -25425,6 +25468,12 @@
             "type": "object",
             "$ref": "#/definitions/v1Allocator"
           }
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
         }
       },
       "description": "Request message for the CreateAllocator rpc."
@@ -26870,6 +26919,19 @@
         }
       },
       "title": "Response message for GetAlerts"
+    },
+    "v1GetAllocationAttributesResponse": {
+      "type": "object",
+      "properties": {
+        "attribute": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/GetAllocationAttributesResponseAllocationAttribute"
+          }
+        }
+      },
+      "description": "Response message for the GetAllocationAttributes rpc."
     },
     "v1GetAnomalyinCostGroupRequest": {
       "type": "object",
