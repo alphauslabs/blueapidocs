@@ -19524,6 +19524,12 @@
             "items": {
               "$ref": "#/components/schemas/v1Allocator"
             }
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
           }
         }
       },
