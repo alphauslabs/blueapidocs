@@ -8740,6 +8740,16 @@
           "Billing"
         ],
         "operationId": "Billing_ExportBillingGroupCsv",
+        "parameters": [
+          {
+            "name": "language",
+            "in": "query",
+            "description": "Usually the language of the user information is used, \nbut it may be a different language due to cahce.\nIn that case, you can use this option to change the language of CSV.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "A successful response.(streaming responses)",
@@ -8779,6 +8789,16 @@
           "Billing"
         ],
         "operationId": "Billing_ExportInvoiceSettingCsv",
+        "parameters": [
+          {
+            "name": "language",
+            "in": "query",
+            "description": "Usually the language of the user information is used, \nbut it may be a different language due to cahce.\nIn that case, you can use this option to change the language of CSV.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "A successful response.(streaming responses)",
