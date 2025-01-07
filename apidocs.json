@@ -8707,6 +8707,71 @@
         ]
       }
     },
+    "/v1/recommendations/execute": {
+      "post": {
+        "summary": "Executes optimization based on a recommendation.",
+        "operationId": "Cover_ExecuteOptimization",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ExecuteOptimizationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ExecuteOptimizationRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
+    "/v1/recommendations/execute/status": {
+      "get": {
+        "summary": "Get Execution status of a recommendation.",
+        "operationId": "Cover_GetExecutionStatus",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1GetExecutionStatusResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of v1GetExecutionStatusResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
     "/v1/recommendations/optimization": {
       "get": {
         "summary": "Lists recommendations based on specified criteria.",
@@ -9010,45 +9075,6 @@
             "in": "query",
             "required": false,
             "type": "string"
-          }
-        ],
-        "tags": [
-          "Cover"
-        ]
-      }
-    },
-    "/v1/recommendations/optimization/{recommendationId}": {
-      "post": {
-        "summary": "Executes optimization based on a recommendation.",
-        "operationId": "Cover_ExecuteOptimization",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1ExecuteOptimizationResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "recommendationId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/CoverExecuteOptimizationBody"
-            }
           }
         ],
         "tags": [
@@ -15489,9 +15515,6 @@
       },
       "title": "Request message for AssignPayer"
     },
-    "CoverExecuteOptimizationBody": {
-      "type": "object"
-    },
     "CoverModifyResourceTypeBody": {
       "type": "object",
       "properties": {
@@ -16198,6 +16221,26 @@
           "type": "string"
         }
       }
+    },
+    "ExecuteOptimizationResponseAWSOption": {
+      "type": "object",
+      "properties": {
+        "approveTemplateUrl": {
+          "type": "string"
+        },
+        "recommendationId": {
+          "type": "string"
+        },
+        "currentStatus": {
+          "type": "string"
+        }
+      }
+    },
+    "ExecuteOptimizationResponseAzureCSPOption": {
+      "type": "object"
+    },
+    "ExecuteOptimizationResponseGCPOption": {
+      "type": "object"
     },
     "GcpOptionsBillingOption": {
       "type": "object",
@@ -26711,8 +26754,30 @@
         }
       }
     },
+    "v1ExecuteOptimizationRequest": {
+      "type": "object",
+      "properties": {
+        "recommendationId": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
     "v1ExecuteOptimizationResponse": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "awsOption": {
+          "$ref": "#/definitions/ExecuteOptimizationResponseAWSOption"
+        },
+        "gcpOption": {
+          "$ref": "#/definitions/ExecuteOptimizationResponseGCPOption"
+        },
+        "azureCspOption": {
+          "$ref": "#/definitions/ExecuteOptimizationResponseAzureCSPOption"
+        }
+      }
     },
     "v1ExportAccountInvoiceServiceDiscountsRequest": {
       "type": "object",
@@ -27724,6 +27789,20 @@
         }
       },
       "title": "Response message for GetDiscountRecommendations"
+    },
+    "v1GetExecutionStatusResponse": {
+      "type": "object",
+      "properties": {
+        "recommendationId": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
     },
     "v1GetFavoriteViewsResponse": {
       "type": "object",

@@ -11101,6 +11101,88 @@
         }
       }
     },
+    "/v1/recommendations/execute": {
+      "post": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "Executes optimization based on a recommendation.",
+        "operationId": "Cover_ExecuteOptimization",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1ExecuteOptimizationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1ExecuteOptimizationResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/recommendations/execute/status": {
+      "get": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "Get Execution status of a recommendation.",
+        "operationId": "Cover_GetExecutionStatus",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Stream result of v1GetExecutionStatusResponse",
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/components/schemas/v1GetExecutionStatusResponse"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/googlerpcStatus"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/recommendations/optimization": {
       "get": {
         "tags": [
@@ -11476,58 +11558,6 @@
             }
           }
         }
-      }
-    },
-    "/v1/recommendations/optimization/{recommendationId}": {
-      "post": {
-        "tags": [
-          "Cover"
-        ],
-        "summary": "Executes optimization based on a recommendation.",
-        "operationId": "Cover_ExecuteOptimization",
-        "parameters": [
-          {
-            "name": "recommendationId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CoverExecuteOptimizationBody"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/v1ExecuteOptimizationResponse"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googlerpcStatus"
-                }
-              }
-            }
-          }
-        },
-        "x-codegen-request-body-name": "body"
       }
     },
     "/v1/reports/fiscalmonth": {
@@ -19369,9 +19399,6 @@
           }
         }
       },
-      "CoverExecuteOptimizationBody": {
-        "type": "object"
-      },
       "CoverModifyResourceTypeBody": {
         "title": "Request message for ModifyResourceType",
         "type": "object",
@@ -20070,6 +20097,26 @@
             "type": "string"
           }
         }
+      },
+      "ExecuteOptimizationResponseAWSOption": {
+        "type": "object",
+        "properties": {
+          "approveTemplateUrl": {
+            "type": "string"
+          },
+          "recommendationId": {
+            "type": "string"
+          },
+          "currentStatus": {
+            "type": "string"
+          }
+        }
+      },
+      "ExecuteOptimizationResponseAzureCSPOption": {
+        "type": "object"
+      },
+      "ExecuteOptimizationResponseGCPOption": {
+        "type": "object"
       },
       "GcpOptionsBillingOption": {
         "title": "V2",
@@ -30394,8 +30441,30 @@
           }
         }
       },
+      "v1ExecuteOptimizationRequest": {
+        "type": "object",
+        "properties": {
+          "recommendationId": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        }
+      },
       "v1ExecuteOptimizationResponse": {
-        "type": "object"
+        "type": "object",
+        "properties": {
+          "awsOption": {
+            "$ref": "#/components/schemas/ExecuteOptimizationResponseAWSOption"
+          },
+          "gcpOption": {
+            "$ref": "#/components/schemas/ExecuteOptimizationResponseGCPOption"
+          },
+          "azureCspOption": {
+            "$ref": "#/components/schemas/ExecuteOptimizationResponseAzureCSPOption"
+          }
+        }
       },
       "v1ExportAccountInvoiceServiceDiscountsRequest": {
         "required": [
@@ -31366,6 +31435,20 @@
           },
           "gcpRecommendations": {
             "$ref": "#/components/schemas/coverGcpDiscountRecommendations"
+          }
+        }
+      },
+      "v1GetExecutionStatusResponse": {
+        "type": "object",
+        "properties": {
+          "recommendationId": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
           }
         }
       },
