@@ -22204,17 +22204,6 @@
         }
       }
     },
-    "coverResourcesFilter": {
-      "type": "object",
-      "properties": {
-        "andFilters": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          }
-        }
-      }
-    },
     "coverResult": {
       "type": "object",
       "properties": {
@@ -22461,6 +22450,27 @@
         }
       }
     },
+    "coverSharedResources": {
+      "type": "object",
+      "properties": {
+        "splittingMethod": {
+          "type": "string",
+          "description": "Expected values: general-level or resource-level."
+        },
+        "service": {
+          "type": "string",
+          "description": "Service for now, since we are currently working on service level only. Empty if Splitting method is general-level."
+        },
+        "distribution": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "format": "double"
+          },
+          "description": "List the unit items and their corresponding percentages."
+        }
+      }
+    },
     "coverSideMenu": {
       "type": "object",
       "properties": {
@@ -22644,6 +22654,9 @@
             "$ref": "#/definitions/coverUnitItem"
           }
         },
+        "sharedResources": {
+          "$ref": "#/definitions/coverSharedResources"
+        },
         "createdBy": {
           "type": "string"
         },
@@ -22664,13 +22677,6 @@
         "distribution": {
           "type": "number",
           "format": "double"
-        },
-        "dedicatedResourcesCombination": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/coverResourcesFilter"
-          }
         },
         "dedicatedResourcesCombinations": {
           "$ref": "#/definitions/coverResourcesCombinations"
