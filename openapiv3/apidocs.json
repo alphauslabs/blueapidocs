@@ -1891,6 +1891,56 @@
         }
       }
     },
+    "/iam/v1/metadata/{id}": {
+      "get": {
+        "tags": [
+          "Iam"
+        ],
+        "summary": "WORK-IN-PROGRESS: Get Sub User Metadata for login user's organization based on user identity",
+        "operationId": "Iam_GetSubUserMetadata",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required. The parent ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "subId",
+            "in": "query",
+            "description": "Optional. The sub-user ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/apiSubUser"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/iam/v1/mfausers": {
       "get": {
         "tags": [
@@ -22156,6 +22206,53 @@
           },
           "redirectUri": {
             "type": "string"
+          }
+        }
+      },
+      "apiSubUser": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Sub-user's unique id."
+          },
+          "parentId": {
+            "type": "string",
+            "description": "The id of the parent user. If this is empty, the sub-user is invalid."
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Attributes specific to the sub-user."
+          },
+          "roles": {
+            "type": "array",
+            "description": "Role details for the sub-user, if applicable.",
+            "items": {
+              "$ref": "#/components/schemas/apiSubUserRole"
+            }
+          }
+        }
+      },
+      "apiSubUserRole": {
+        "type": "object",
+        "properties": {
+          "roleId": {
+            "type": "string",
+            "description": "Role ID assigned to the sub-user."
+          },
+          "permissions": {
+            "type": "array",
+            "description": "Permissions granted to the sub-user for this role.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "subUserId": {
+            "type": "string",
+            "description": "Temporary: Tracks the sub-user ID to verify the role is assigned to the correct user.\nThis field will be removed after testing is complete."
           }
         }
       },

@@ -1490,6 +1490,45 @@
         ]
       }
     },
+    "/iam/v1/metadata/{id}": {
+      "get": {
+        "summary": "WORK-IN-PROGRESS: Get Sub User Metadata for login user's organization based on user identity",
+        "operationId": "Iam_GetSubUserMetadata",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiSubUser"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Required. The parent ID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "subId",
+            "description": "Optional. The sub-user ID",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Iam"
+        ]
+      }
+    },
     "/iam/v1/mfausers": {
       "get": {
         "summary": "WORK-IN-PROGRESS: List MFA users info for login user's organization based on status.",
@@ -18303,6 +18342,54 @@
         },
         "redirectUri": {
           "type": "string"
+        }
+      }
+    },
+    "apiSubUser": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Sub-user's unique id."
+        },
+        "parentId": {
+          "type": "string",
+          "description": "The id of the parent user. If this is empty, the sub-user is invalid."
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Attributes specific to the sub-user."
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/apiSubUserRole"
+          },
+          "description": "Role details for the sub-user, if applicable."
+        }
+      }
+    },
+    "apiSubUserRole": {
+      "type": "object",
+      "properties": {
+        "roleId": {
+          "type": "string",
+          "description": "Role ID assigned to the sub-user."
+        },
+        "permissions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Permissions granted to the sub-user for this role."
+        },
+        "subUserId": {
+          "type": "string",
+          "description": "Temporary: Tracks the sub-user ID to verify the role is assigned to the correct user.\nThis field will be removed after testing is complete."
         }
       }
     },
