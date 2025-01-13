@@ -26231,21 +26231,6 @@
           }
         }
       },
-      "coverSharedResources": {
-        "type": "object",
-        "properties": {
-          "splittingMethod": {
-            "type": "string",
-            "description": "Expected values: general-level or resource-level."
-          },
-          "sharedResourcesCombinations": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/coverSharedResourcesCombination"
-            }
-          }
-        }
-      },
       "coverSharedResourcesCombination": {
         "type": "object",
         "properties": {
@@ -26445,7 +26430,10 @@
             }
           },
           "sharedResources": {
-            "$ref": "#/components/schemas/coverSharedResources"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/coverSharedResourcesCombination"
+            }
           },
           "createdBy": {
             "type": "string"
