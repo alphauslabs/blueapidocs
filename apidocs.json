@@ -26504,6 +26504,13 @@
             "$ref": "#/definitions/coverUnitItem"
           }
         },
+        "sharedResourcesCombination": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/coverSharedResourcesCombination"
+          }
+        },
         "description": {
           "type": "string"
         }

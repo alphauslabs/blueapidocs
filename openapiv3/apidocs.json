@@ -30205,6 +30205,12 @@
               "$ref": "#/components/schemas/coverUnitItem"
             }
           },
+          "sharedResourcesCombination": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/coverSharedResourcesCombination"
+            }
+          },
           "description": {
             "type": "string"
           }
