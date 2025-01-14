@@ -19837,6 +19837,13 @@
               "$ref": "#/components/schemas/coverUnitItem"
             }
           },
+          "sharedResourcesCombination": {
+            "title": "Optional",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/coverSharedResourcesCombination"
+            }
+          },
           "description": {
             "title": "Optional",
             "type": "string"
