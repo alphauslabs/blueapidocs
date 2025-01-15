@@ -9497,6 +9497,45 @@
         ]
       }
     },
+    "/v1/ripplev2/invoicing/invoice-listing": {
+      "get": {
+        "operationId": "Billing_RippleV2InvoiceListing",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1RippleV2InvoiceListingResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of v1RippleV2InvoiceListingResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "yymmDate",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      }
+    },
     "/v1/servicediscounts": {
       "post": {
         "summary": "WORK-IN-PROGRESS: Creates the invoice service discounts. Only available in Ripple.",
@@ -30044,6 +30083,35 @@
         }
       },
       "description": "Request message for the RestoreSavings rpc."
+    },
+    "v1RippleV2InvoiceListingResponse": {
+      "type": "object",
+      "properties": {
+        "invoiceName": {
+          "type": "string"
+        },
+        "invoiceId": {
+          "type": "string"
+        },
+        "company": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "waveStatus": {
+          "type": "string"
+        },
+        "billingAmountAws": {
+          "type": "string"
+        },
+        "billingAmmountAzure": {
+          "type": "string"
+        },
+        "billingAmountGcp": {
+          "type": "string"
+        }
+      }
     },
     "v1SaveNotificationSettingsRequest": {
       "type": "object",
