@@ -12525,6 +12525,47 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/servicediscounts/{groupId}/billinggroup": {
+      "get": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Returns the service discount associated with the billing group id",
+        "operationId": "Billing_GetBillingGroupInvoiceServiceDiscounts",
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetBillingGroupInvoiceServiceDiscountsResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/servicediscounts/{id}": {
       "get": {
         "tags": [
@@ -30943,6 +30984,15 @@
           },
           "recommendationSummary": {
             "title": "Format: JSON String",
+            "type": "string"
+          }
+        }
+      },
+      "v1GetBillingGroupInvoiceServiceDiscountsResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Service discount id",
             "type": "string"
           }
         }
