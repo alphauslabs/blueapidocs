@@ -12089,54 +12089,6 @@
         }
       }
     },
-    "/v1/ripplev2/invoicing/invoice-listing": {
-      "get": {
-        "tags": [
-          "Billing"
-        ],
-        "operationId": "Billing_RippleV2InvoiceListing",
-        "parameters": [
-          {
-            "name": "yymmDate",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.(streaming responses)",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "title": "Stream result of v1RippleV2InvoiceListingResponse",
-                  "type": "object",
-                  "properties": {
-                    "result": {
-                      "$ref": "#/components/schemas/v1RippleV2InvoiceListingResponse"
-                    },
-                    "error": {
-                      "$ref": "#/components/schemas/googlerpcStatus"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googlerpcStatus"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/v1/servicediscounts": {
       "post": {
         "tags": [
@@ -32492,8 +32444,8 @@
         "type": "object",
         "properties": {
           "groupId": {
-            "type": "string",
-            "description": "Optional. billing internal id."
+            "title": "Optional. billing internal id. If empty will list all the invoice status",
+            "type": "string"
           }
         },
         "description": "Request message for the ListInvoice rpc."
@@ -32505,17 +32457,29 @@
             "type": "string",
             "description": "The billing internal id."
           },
-          "BillingGroupId": {
+          "billingGroupId": {
             "type": "string",
             "description": "The billing group id."
           },
-          "BillingGroupName": {
-            "type": "string",
-            "description": "The billing group name."
+          "billingGroupName": {
+            "title": "The billing group name. Used as invoice name on ripple v2",
+            "type": "string"
           },
           "date": {
             "type": "string",
             "description": "The date."
+          },
+          "invoiceStatus": {
+            "title": "Created || Not Created",
+            "type": "string"
+          },
+          "finalizationStatus": {
+            "title": "In progress || Done",
+            "type": "string"
+          },
+          "waveStatus": {
+            "title": "Published || Not published",
+            "type": "string"
           }
         },
         "description": "Response message for the ListInvoice rpc."
@@ -33749,35 +33713,6 @@
           }
         },
         "description": "Request message for the RestoreSavings rpc."
-      },
-      "v1RippleV2InvoiceListingResponse": {
-        "type": "object",
-        "properties": {
-          "invoiceName": {
-            "type": "string"
-          },
-          "invoiceId": {
-            "type": "string"
-          },
-          "company": {
-            "type": "string"
-          },
-          "status": {
-            "type": "string"
-          },
-          "waveStatus": {
-            "type": "string"
-          },
-          "billingAmountAws": {
-            "type": "string"
-          },
-          "billingAmmountAzure": {
-            "type": "string"
-          },
-          "billingAmountGcp": {
-            "type": "string"
-          }
-        }
       },
       "v1SaveNotificationSettingsRequest": {
         "type": "object",
