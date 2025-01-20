@@ -32443,8 +32443,8 @@
       "v1ListInvoiceRequest": {
         "type": "object",
         "properties": {
-          "groupId": {
-            "title": "Optional. billing internal id. If empty will list all the invoice status",
+          "date": {
+            "title": "YYYYMM format (e.g 202412, 202501)",
             "type": "string"
           }
         },
@@ -32465,9 +32465,12 @@
             "title": "The billing group name. Used as invoice name on ripple v2",
             "type": "string"
           },
-          "date": {
-            "type": "string",
-            "description": "The date."
+          "companyName": {
+            "type": "string"
+          },
+          "currency": {
+            "title": "currency for the billing amount",
+            "type": "string"
           },
           "invoiceStatus": {
             "title": "Created || Not Created",
@@ -32479,6 +32482,19 @@
           },
           "waveStatus": {
             "title": "Published || Not published",
+            "type": "string"
+          },
+          "billingAmountAws": {
+            "title": "Formated in $8,000.12",
+            "type": "string"
+          },
+          "billingAmountAzure": {
+            "type": "string"
+          },
+          "billingAmountGcp": {
+            "type": "string"
+          },
+          "billingAmountTotal": {
             "type": "string"
           }
         },
