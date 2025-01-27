@@ -32446,6 +32446,13 @@
           "date": {
             "title": "YYYYMM format (e.g 202412, 202501)",
             "type": "string"
+          },
+          "filters": {
+            "title": "OPTIONAL: refer to the ListInvoiceRequest for the key\ne.g {\"filter\": {\"vendor\": \"aws\", \"billingInternalId\":\"asdf\"}}\ninvalid key will be ignored",
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
           }
         },
         "description": "Request message for the ListInvoice rpc."
@@ -32482,6 +32489,10 @@
           },
           "waveStatus": {
             "title": "Published || Not published",
+            "type": "string"
+          },
+          "vendor": {
+            "title": "aws, azure, gcp",
             "type": "string"
           },
           "billingAmountAws": {
