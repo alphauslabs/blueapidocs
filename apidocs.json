@@ -10235,6 +10235,29 @@
         ]
       }
     },
+    "/v1/unitcost/autosuggest": {
+      "get": {
+        "summary": "List Suggested Unit Types",
+        "operationId": "Cover_ListSuggestedUnits",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListSuggestedUnitsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
     "/v1/unitcost/{id}": {
       "get": {
         "summary": "Get Specific Unit Type",
@@ -22036,6 +22059,26 @@
         }
       }
     },
+    "coverPotentialUnitItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "itemName": {
+          "type": "string"
+        },
+        "vendor": {
+          "type": "string"
+        },
+        "tag": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "coverPurchaseRIRecommendationDetails": {
       "type": "object",
       "properties": {
@@ -22778,6 +22821,27 @@
       "properties": {
         "rdsDBInstance": {
           "$ref": "#/definitions/coverRDSDBInstance"
+        }
+      }
+    },
+    "coverSuggestedUnit": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "vendor": {
+          "type": "string"
+        },
+        "potentialUnitName": {
+          "type": "string"
+        },
+        "potentialUnitItems": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/coverPotentialUnitItem"
+          }
         }
       }
     },
@@ -29103,6 +29167,18 @@
         }
       },
       "description": "Response message for the Iam.ListRoles rpc."
+    },
+    "v1ListSuggestedUnitsResponse": {
+      "type": "object",
+      "properties": {
+        "suggestedUnits": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/coverSuggestedUnit"
+          }
+        }
+      }
     },
     "v1ListUnitTypesResponse": {
       "type": "object",
