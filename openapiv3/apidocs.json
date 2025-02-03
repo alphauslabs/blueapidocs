@@ -19954,7 +19954,7 @@
               "$ref": "#/components/schemas/coverUnitItem"
             }
           },
-          "sharedResourcesCombination": {
+          "sharedResources": {
             "title": "Optional",
             "type": "array",
             "items": {
@@ -26488,6 +26488,14 @@
               "format": "double"
             },
             "description": "List the unit items and their corresponding percentages."
+          },
+          "allocated": {
+            "type": "number",
+            "format": "double"
+          },
+          "unallocated": {
+            "type": "number",
+            "format": "double"
           }
         }
       },
