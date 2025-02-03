@@ -30378,7 +30378,7 @@
               "$ref": "#/components/schemas/coverUnitItem"
             }
           },
-          "sharedResourcesCombination": {
+          "sharedResources": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/coverSharedResourcesCombination"
