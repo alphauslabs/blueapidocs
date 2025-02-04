@@ -6519,6 +6519,53 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/billinggroup/customfield": {
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "operationId": "Billing_AddBillingGroupCustomField",
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "keyToId",
+            "in": "query",
+            "description": "map of customField key to custom field id\n\nThis is a request variable of the map type. The query format is \"map_name[key]=value\", e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\"bob\"]=18",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/billinggroup/customfield:read": {
       "post": {
         "tags": [
