@@ -6525,23 +6525,16 @@
           "Billing"
         ],
         "operationId": "Billing_AddBillingGroupCustomField",
-        "parameters": [
-          {
-            "name": "groupId",
-            "in": "query",
-            "schema": {
-              "type": "string"
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1AddBillingGroupCustomFieldRequest"
+              }
             }
           },
-          {
-            "name": "idToKey",
-            "in": "query",
-            "description": "map of customField id to it's key (description)\n\nThis is a request variable of the map type. The query format is \"map_name[key]=value\", e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\"bob\"]=18",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -6563,7 +6556,8 @@
               }
             }
           }
-        }
+        },
+        "x-codegen-request-body-name": "body"
       }
     },
     "/v1/billinggroup/customfield:read": {
@@ -6572,16 +6566,16 @@
           "Billing"
         ],
         "operationId": "Billing_ListBillingGroupCustomField",
-        "parameters": [
-          {
-            "name": "groupId",
-            "in": "query",
-            "description": "billing group InternalID\nleave empty to get all group id custom field",
-            "schema": {
-              "type": "string"
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1ListBillingGroupCustomFieldRequest"
+              }
             }
-          }
-        ],
+          },
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "A successful response.(streaming responses)",
@@ -6612,7 +6606,8 @@
               }
             }
           }
-        }
+        },
+        "x-codegen-request-body-name": "body"
       }
     },
     "/v1/billinggroups": {
@@ -8400,6 +8395,16 @@
         ],
         "summary": "Returns all registered customfields",
         "operationId": "Billing_ListCustomField",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1ListCustomFieldRequest"
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "A successful response.(streaming responses)",
@@ -8430,7 +8435,8 @@
               }
             }
           }
-        }
+        },
+        "x-codegen-request-body-name": "body"
       }
     },
     "/v1/customizedbillingservices": {
@@ -28540,6 +28546,21 @@
           }
         }
       },
+      "v1AddBillingGroupCustomFieldRequest": {
+        "type": "object",
+        "properties": {
+          "groupId": {
+            "type": "string"
+          },
+          "idToKey": {
+            "title": "map of customField id to it's key (description)",
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      },
       "v1AddFavoriteRequest": {
         "title": "Request message for AddFavorite",
         "type": "object",
@@ -32512,6 +32533,15 @@
         },
         "description": "Request message for the Billing.ListAwsCalculationHistory rpc."
       },
+      "v1ListBillingGroupCustomFieldRequest": {
+        "type": "object",
+        "properties": {
+          "groupId": {
+            "title": "billing group InternalID\nleave empty to get all group id custom field",
+            "type": "string"
+          }
+        }
+      },
       "v1ListBudgetsRequest": {
         "type": "object",
         "properties": {
@@ -32586,6 +32616,9 @@
           }
         },
         "description": "Response message for the ListCostFilters rpc."
+      },
+      "v1ListCustomFieldRequest": {
+        "type": "object"
       },
       "v1ListFeesRequest": {
         "type": "object",
