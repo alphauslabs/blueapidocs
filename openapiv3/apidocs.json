@@ -6631,11 +6631,11 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "Stream result of v1BillingGroupCustomField",
+                  "title": "Stream result of v1ListBillingGroupCustomFieldResponse",
                   "type": "object",
                   "properties": {
                     "result": {
-                      "$ref": "#/components/schemas/v1BillingGroupCustomField"
+                      "$ref": "#/components/schemas/v1ListBillingGroupCustomFieldResponse"
                     },
                     "error": {
                       "$ref": "#/components/schemas/googlerpcStatus"
@@ -29007,15 +29007,11 @@
       "v1BillingGroupCustomField": {
         "type": "object",
         "properties": {
-          "groupId": {
+          "value": {
             "type": "string"
           },
           "customField": {
-            "title": "map of customfield name to customfield",
-            "type": "object",
-            "additionalProperties": {
-              "$ref": "#/components/schemas/v1CustomField"
-            }
+            "$ref": "#/components/schemas/v1CustomField"
           }
         }
       },
@@ -32586,6 +32582,20 @@
           "groupId": {
             "title": "billing group InternalID\nleave empty to get all group id custom field",
             "type": "string"
+          }
+        }
+      },
+      "v1ListBillingGroupCustomFieldResponse": {
+        "type": "object",
+        "properties": {
+          "groupId": {
+            "type": "string"
+          },
+          "billingGroupCustomFields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1BillingGroupCustomField"
+            }
           }
         }
       },
