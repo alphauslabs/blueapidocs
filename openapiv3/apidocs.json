@@ -6560,6 +6560,55 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/billinggroup/customfield/{groupId}/{customFieldId}": {
+      "delete": {
+        "tags": [
+          "Billing"
+        ],
+        "operationId": "Billing_DeleteBillingGroupCustomField",
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "description": "REQUIRED. Billing group internal Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "customFieldId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/billinggroup/customfield:read": {
       "post": {
         "tags": [
@@ -28961,12 +29010,10 @@
           "groupId": {
             "type": "string"
           },
-          "customFieldName": {
-            "type": "string"
-          },
           "customField": {
-            "type": "array",
-            "items": {
+            "title": "map of customfield name to customfield",
+            "type": "object",
+            "additionalProperties": {
               "$ref": "#/components/schemas/v1CustomField"
             }
           }
