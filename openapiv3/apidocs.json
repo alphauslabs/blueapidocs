@@ -76,6 +76,14 @@
       }
     },
     {
+      "name": "Flow",
+      "description": "(ALPHA) Flow API. Base URL: https://api.alphaus.cloud/m/blue/flow",
+      "externalDocs": {
+        "description": "Service definition",
+        "url": "https://github.com/alphauslabs/blueapi/tree/main/flow/"
+      }
+    },
+    {
       "name": "Preferences",
       "description": "(BETA) Preferences API. Base URL: https://api.alphaus.cloud/m/blue",
       "externalDocs": {
@@ -3225,7 +3233,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/v1GetInfoResponse"
+                  "$ref": "#/components/schemas/blueapipricingv1GetInfoResponse"
                 }
               }
             }
@@ -9173,6 +9181,37 @@
               "application/json": {
                 "schema": {
                   "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/info": {
+      "get": {
+        "tags": [
+          "Flow"
+        ],
+        "summary": "Test endpoint only.",
+        "operationId": "Flow_GetInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/blueapiflowv1GetInfoResponse"
                 }
               }
             }
@@ -24552,6 +24591,24 @@
           }
         }
       },
+      "blueapiflowv1GetInfoResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "string"
+          }
+        },
+        "description": "Response message for the Flow.GetInfo rpc."
+      },
+      "blueapipricingv1GetInfoResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "string"
+          }
+        },
+        "description": "Response message for the Pricing.GetInfo rpc."
+      },
       "costv1CostAttribute": {
         "type": "object",
         "properties": {
@@ -31894,15 +31951,6 @@
             }
           }
         }
-      },
-      "v1GetInfoResponse": {
-        "type": "object",
-        "properties": {
-          "response": {
-            "type": "string"
-          }
-        },
-        "description": "Response message for the Pricing.GetInfo rpc."
       },
       "v1GetMSPDefaultMetaResponse": {
         "type": "object",

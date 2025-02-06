@@ -71,6 +71,14 @@
       }
     },
     {
+      "name": "Flow",
+      "description": "(ALPHA) Flow API. Base URL: https://api.alphaus.cloud/m/blue/flow",
+      "externalDocs": {
+        "description": "Service definition",
+        "url": "https://github.com/alphauslabs/blueapi/tree/main/flow/"
+      }
+    },
+    {
       "name": "Preferences",
       "description": "(BETA) Preferences API. Base URL: https://api.alphaus.cloud/m/blue",
       "externalDocs": {
@@ -2525,7 +2533,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1GetInfoResponse"
+              "$ref": "#/definitions/blueapipricingv1GetInfoResponse"
             }
           },
           "default": {
@@ -7213,6 +7221,29 @@
         ],
         "tags": [
           "Billing"
+        ]
+      }
+    },
+    "/v1/info": {
+      "get": {
+        "summary": "Test endpoint only.",
+        "operationId": "Flow_GetInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/blueapiflowv1GetInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Flow"
         ]
       }
     },
@@ -20673,6 +20704,24 @@
       },
       "title": "Response message for ListExchangeRates"
     },
+    "blueapiflowv1GetInfoResponse": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "string"
+        }
+      },
+      "description": "Response message for the Flow.GetInfo rpc."
+    },
+    "blueapipricingv1GetInfoResponse": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "string"
+        }
+      },
+      "description": "Response message for the Pricing.GetInfo rpc."
+    },
     "costv1CostAttribute": {
       "type": "object",
       "properties": {
@@ -28194,15 +28243,6 @@
           }
         }
       }
-    },
-    "v1GetInfoResponse": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "string"
-        }
-      },
-      "description": "Response message for the Pricing.GetInfo rpc."
     },
     "v1GetMSPDefaultMetaResponse": {
       "type": "object",
