@@ -6661,7 +6661,7 @@
     },
     "/v1/customizedbillingservices": {
       "post": {
-        "summary": "WORK-IN-PROGRESS: Creates the customized billing service. Only available in Ripple.",
+        "summary": "Creates the customized billing service. Only available in Ripple.",
         "operationId": "Billing_CreateCustomizedBillingService",
         "responses": {
           "200": {
@@ -6695,7 +6695,7 @@
     },
     "/v1/customizedbillingservices/billinggroup/{groupId}/{vendor}": {
       "get": {
-        "summary": "WORK-IN-PROGRESS: Gets the customized billing service in billing group. Only available in Ripple.",
+        "summary": "Gets the customized billing service in billing group. Only available in Ripple.",
         "operationId": "Billing_GetCustomizedBillingServiceBillingGroup",
         "responses": {
           "200": {
@@ -6741,7 +6741,7 @@
         ]
       },
       "delete": {
-        "summary": "WORK-IN-PROGRESS: Deletes the customized billing service in billing group. Only available in Ripple.",
+        "summary": "Deletes the customized billing service in billing group. Only available in Ripple.",
         "operationId": "Billing_DeleteCustomizedBillingServiceBillingGroup",
         "responses": {
           "200": {
@@ -6779,7 +6779,7 @@
         ]
       },
       "post": {
-        "summary": "WORK-IN-PROGRESS: Sets the customized billing service in billing group. Only available in Ripple.",
+        "summary": "Sets the customized billing service in billing group. Only available in Ripple.",
         "operationId": "Billing_SetCustomizedBillingServiceBillingGroup",
         "responses": {
           "200": {
@@ -6827,7 +6827,7 @@
     },
     "/v1/customizedbillingservices/{id}": {
       "get": {
-        "summary": "WORK-IN-PROGRESS: Gets the customized billing service. Only available in Ripple.",
+        "summary": "Gets the customized billing service. Only available in Ripple.",
         "operationId": "Billing_GetCustomizedBillingService",
         "responses": {
           "200": {
@@ -6864,7 +6864,7 @@
         ]
       },
       "delete": {
-        "summary": "WORK-IN-PROGRESS: Deletes the customized billing service. Only available in Ripple.",
+        "summary": "Deletes the customized billing service. Only available in Ripple.",
         "operationId": "Billing_DeleteCustomizedBillingService",
         "responses": {
           "200": {
@@ -6895,7 +6895,7 @@
         ]
       },
       "put": {
-        "summary": "WORK-IN-PROGRESS: Updates the customized billing service by updating the fields specified in the update mask. Only available in Ripple.",
+        "summary": "Updates the customized billing service by updating the fields specified in the update mask. Only available in Ripple.",
         "operationId": "Billing_UpdateCustomizedBillingService",
         "responses": {
           "200": {
@@ -6935,7 +6935,7 @@
     },
     "/v1/customizedbillingservices:read": {
       "post": {
-        "summary": "WORK-IN-PROGRESS: Reads the customized billing service. Only available in Ripple.",
+        "summary": "Reads the customized billing service. Only available in Ripple.",
         "operationId": "Billing_ReadCustomizedBillingServices",
         "responses": {
           "200": {

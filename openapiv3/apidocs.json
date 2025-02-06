@@ -8493,7 +8493,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Creates the customized billing service. Only available in Ripple.",
+        "summary": "Creates the customized billing service. Only available in Ripple.",
         "operationId": "Billing_CreateCustomizedBillingService",
         "requestBody": {
           "description": "Request message for the Billing.CreateCustomizedBillingService rpc.",
@@ -8536,7 +8536,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Gets the customized billing service in billing group. Only available in Ripple.",
+        "summary": "Gets the customized billing service in billing group. Only available in Ripple.",
         "operationId": "Billing_GetCustomizedBillingServiceBillingGroup",
         "parameters": [
           {
@@ -8594,7 +8594,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Sets the customized billing service in billing group. Only available in Ripple.",
+        "summary": "Sets the customized billing service in billing group. Only available in Ripple.",
         "operationId": "Billing_SetCustomizedBillingServiceBillingGroup",
         "parameters": [
           {
@@ -8654,7 +8654,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Deletes the customized billing service in billing group. Only available in Ripple.",
+        "summary": "Deletes the customized billing service in billing group. Only available in Ripple.",
         "operationId": "Billing_DeleteCustomizedBillingServiceBillingGroup",
         "parameters": [
           {
@@ -8705,7 +8705,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Gets the customized billing service. Only available in Ripple.",
+        "summary": "Gets the customized billing service. Only available in Ripple.",
         "operationId": "Billing_GetCustomizedBillingService",
         "parameters": [
           {
@@ -8753,7 +8753,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Updates the customized billing service by updating the fields specified in the update mask. Only available in Ripple.",
+        "summary": "Updates the customized billing service by updating the fields specified in the update mask. Only available in Ripple.",
         "operationId": "Billing_UpdateCustomizedBillingService",
         "parameters": [
           {
@@ -8804,7 +8804,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Deletes the customized billing service. Only available in Ripple.",
+        "summary": "Deletes the customized billing service. Only available in Ripple.",
         "operationId": "Billing_DeleteCustomizedBillingService",
         "parameters": [
           {
@@ -8846,7 +8846,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Reads the customized billing service. Only available in Ripple.",
+        "summary": "Reads the customized billing service. Only available in Ripple.",
         "operationId": "Billing_ReadCustomizedBillingServices",
         "requestBody": {
           "description": "Request message for the Billing.ReadCustomizedBillingServices rpc.",
