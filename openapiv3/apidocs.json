@@ -9053,22 +9053,16 @@
         ],
         "summary": "Creates new billing group free format item (miscellaneous)",
         "operationId": "Billing_CreateFreeFormat",
-        "parameters": [
-          {
-            "name": "groupId",
-            "in": "query",
-            "schema": {
-              "type": "string"
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1CreateFreeFormatRequest"
+              }
             }
           },
-          {
-            "name": "vendor",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -9090,7 +9084,8 @@
               }
             }
           }
-        }
+        },
+        "x-codegen-request-body-name": "body"
       }
     },
     "/v1/freeformat/{groupId}": {
@@ -30162,6 +30157,24 @@
           "name": {
             "title": "required. Name of alert",
             "type": "string"
+          }
+        }
+      },
+      "v1CreateFreeFormatRequest": {
+        "title": "BillingGroup FreeFormat: Also known as miscellaneous",
+        "type": "object",
+        "properties": {
+          "groupId": {
+            "type": "string"
+          },
+          "vendor": {
+            "type": "string"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1FreeFormItem"
+            }
           }
         }
       },
