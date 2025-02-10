@@ -27478,6 +27478,9 @@
           },
           "vendor": {
             "type": "string"
+          },
+          "status": {
+            "type": "string"
           }
         }
       },
