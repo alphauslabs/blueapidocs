@@ -5597,6 +5597,15 @@
         ],
         "summary": "Get all available attributes for the charges",
         "operationId": "Cover_GetAllocationAttributes",
+        "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "A successful response.",
