@@ -29173,7 +29173,7 @@
             "type": "string",
             "description": "The currency."
           },
-          "invocieCost": {
+          "invoiceCost": {
             "type": "number",
             "description": "The invoice cost.",
             "format": "double"
