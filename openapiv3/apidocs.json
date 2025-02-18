@@ -6722,6 +6722,48 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/billinggroup/tags": {
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Add Tags to the billing group",
+        "operationId": "Billing_AddTagsToBillingGroup",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1AddTagsToBillingGroupRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/billinggroups": {
       "get": {
         "tags": [
@@ -24412,6 +24454,25 @@
           }
         }
       },
+      "billingv1Tag": {
+        "title": "Individual tag definition for AddTagsToBillingGroup",
+        "type": "object",
+        "properties": {
+          "key": {
+            "title": "Tag key",
+            "type": "string"
+          },
+          "value": {
+            "title": "Tag value",
+            "type": "string"
+          },
+          "assign": {
+            "title": "Assignment percentage (only used for non-tag assignments)",
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
       "billingv1TagData": {
         "title": "Response for tag request",
         "type": "object",
@@ -28944,6 +29005,29 @@
           }
         }
       },
+      "v1AddTagsToBillingGroupRequest": {
+        "type": "object",
+        "properties": {
+          "groupId": {
+            "title": "Required. Billing group internal Id",
+            "type": "string"
+          },
+          "vendor": {
+            "title": "Required. Vendor (aws, azure, gcp)",
+            "type": "string"
+          },
+          "settings": {
+            "title": "Tag settings for different customer accounts",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1TagSetting"
+            }
+          },
+          "nonTagSetting": {
+            "$ref": "#/components/schemas/v1NonTagSetting"
+          }
+        }
+      },
       "v1AllocationItem": {
         "type": "object",
         "properties": {
@@ -33349,6 +33433,25 @@
           }
         }
       },
+      "v1NonTagSetting": {
+        "title": "Non-tag settings for a billing group for AddTagsToBillingGroup",
+        "type": "object",
+        "properties": {
+          "include": {
+            "title": "Whether non-tag settings are included",
+            "type": "boolean"
+          },
+          "type": {
+            "title": "Type of non-tag setting (\"percentage\" or \"fixed\")",
+            "type": "string"
+          },
+          "amount": {
+            "title": "Amount value (percentage or fixed amount)",
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
       "v1OnboardOrgRequest": {
         "title": "Request message for OnboardOrg",
         "type": "object",
@@ -34468,6 +34571,23 @@
             "description": "Array of column names that can be used to specify what columns should `/{vendor}/pricing` return.\nFor usage information, visit https://labs.alphaus.cloud/blueapidocs/#/Pricing/Pricing_GetPricing.",
             "items": {
               "type": "string"
+            }
+          }
+        }
+      },
+      "v1TagSetting": {
+        "title": "Settings for a specific customer account for AddTagsToBillingGroup",
+        "type": "object",
+        "properties": {
+          "customerId": {
+            "title": "Customer ID",
+            "type": "string"
+          },
+          "tags": {
+            "title": "Tags associated with this customer",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/billingv1Tag"
             }
           }
         }
