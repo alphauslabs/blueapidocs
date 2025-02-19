@@ -29549,11 +29549,11 @@
         "type": "object",
         "properties": {
           "id": {
-            "title": "The id. id:billing internald id",
+            "title": "The id. billing group id",
             "type": "string"
           },
           "name": {
-            "title": "The id. name:billing name",
+            "title": "The name. billing group name",
             "type": "string"
           },
           "yearMonth": {
@@ -34834,9 +34834,9 @@
       "v1TotalDetailSection": {
         "type": "object",
         "properties": {
-          "TrueUnblended": {
+          "totalCost": {
             "type": "number",
-            "description": "The true unblended cost.",
+            "description": "Cost(True unblended or Unblended) used for invoicing.",
             "format": "double"
           },
           "sppDiscount": {
