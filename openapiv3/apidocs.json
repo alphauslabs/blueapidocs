@@ -6536,48 +6536,6 @@
         "x-codegen-request-body-name": "body"
       }
     },
-    "/v1/billinggroup": {
-      "put": {
-        "tags": [
-          "Billing"
-        ],
-        "summary": "Update billing group basic information",
-        "operationId": "Billing_UpdateBillingGroupBasicInformation",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/v1UpdateBillingGroupBasicInformationRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googlerpcStatus"
-                }
-              }
-            }
-          }
-        },
-        "x-codegen-request-body-name": "body"
-      }
-    },
     "/v1/billinggroup/account": {
       "post": {
         "tags": [
@@ -6776,6 +6734,58 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/v1AddTagsToBillingGroupRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/billinggroup/{id}:basinInfo": {
+      "put": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Update billing group basic information",
+        "operationId": "Billing_UpdateBillingGroupBasicInformation",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BillingUpdateBillingGroupBasicInformationBody"
               }
             }
           },
@@ -19182,6 +19192,14 @@
         },
         "description": "Request message for the Billing.UpdateAdjustmentConfig rpc."
       },
+      "BillingUpdateBillingGroupBasicInformationBody": {
+        "type": "object",
+        "properties": {
+          "basicInformation": {
+            "$ref": "#/components/schemas/v1BasicInformation"
+          }
+        }
+      },
       "BillingUpdateBillingGroupInvoiceServiceDiscountsBody": {
         "type": "object",
         "properties": {
@@ -29484,6 +29502,12 @@
           },
           "addressLine2": {
             "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "prefecture": {
+            "type": "string"
           }
         }
       },
@@ -31250,17 +31274,6 @@
           "description": {
             "title": "Detailed description of the custom field",
             "type": "string"
-          }
-        }
-      },
-      "v1CustomFields": {
-        "type": "object",
-        "properties": {
-          "idToKey": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "string"
-            }
           }
         }
       },
@@ -35034,20 +35047,6 @@
         "properties": {
           "alertData": {
             "$ref": "#/components/schemas/coverAlertData"
-          }
-        }
-      },
-      "v1UpdateBillingGroupBasicInformationRequest": {
-        "type": "object",
-        "properties": {
-          "billingInternalId": {
-            "type": "string"
-          },
-          "basicInformation": {
-            "$ref": "#/components/schemas/v1BasicInformation"
-          },
-          "customFields": {
-            "$ref": "#/components/schemas/v1CustomFields"
           }
         }
       },
