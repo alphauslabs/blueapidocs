@@ -12537,150 +12537,6 @@
         "x-codegen-request-body-name": "body"
       }
     },
-    "/v1/servicediscounts/{groupId}": {
-      "put": {
-        "tags": [
-          "Billing"
-        ],
-        "summary": "WORK-IN-PROGRESS: Updates the billing group invoice service discounts. Only available in Ripple.",
-        "operationId": "Billing_UpdateBillingGroupInvoiceServiceDiscounts",
-        "parameters": [
-          {
-            "name": "groupId",
-            "in": "path",
-            "description": "Required.\n\nFor Ripple, only billing internal ids are supported at the moment. You can set it to a single group\n\nImplied as the parent billing group for Wave(Pro) users.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/BillingUpdateBillingGroupInvoiceServiceDiscountsBody"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/v1UpdateBillingGroupInvoiceServiceDiscountsResponse"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googlerpcStatus"
-                }
-              }
-            }
-          }
-        },
-        "x-codegen-request-body-name": "body"
-      },
-      "post": {
-        "tags": [
-          "Billing"
-        ],
-        "summary": "WORK-IN-PROGRESS: Registers the billing group invoice service discounts. Only available in Ripple.",
-        "operationId": "Billing_CreateBillingGroupInvoiceServiceDiscounts",
-        "parameters": [
-          {
-            "name": "groupId",
-            "in": "path",
-            "description": "Required.\n\nFor Ripple, only billing internal ids are supported at the moment. You can set it to a single group\n\nImplied as the parent billing group for Wave(Pro) users.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/BillingCreateBillingGroupInvoiceServiceDiscountsBody"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/v1CreateBillingGroupInvoiceServiceDiscountsResponse"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googlerpcStatus"
-                }
-              }
-            }
-          }
-        },
-        "x-codegen-request-body-name": "body"
-      },
-      "delete": {
-        "tags": [
-          "Billing"
-        ],
-        "summary": "WORK-IN-PROGRESS: Deletes the billing group invoice service discounts. Only available in Ripple.",
-        "operationId": "Billing_DeleteBillingGroupInvoiceServiceDiscounts",
-        "parameters": [
-          {
-            "name": "groupId",
-            "in": "path",
-            "description": "Required.\n\nFor Ripple, only billing internal ids are supported at the moment. You can set it to a single group\n\nImplied as the parent billing group for Wave(Pro) users.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googlerpcStatus"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/v1/servicediscounts/{groupId}/account": {
       "put": {
         "tags": [
@@ -12964,6 +12820,148 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/v1GetBillingGroupInvoiceServiceDiscountsResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "WORK-IN-PROGRESS: Updates the billing group invoice service discounts. Only available in Ripple.",
+        "operationId": "Billing_UpdateBillingGroupInvoiceServiceDiscounts",
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "description": "Required.\n\nFor Ripple, only billing internal ids are supported at the moment. You can set it to a single group\n\nImplied as the parent billing group for Wave(Pro) users.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BillingUpdateBillingGroupInvoiceServiceDiscountsBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1UpdateBillingGroupInvoiceServiceDiscountsResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      },
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "WORK-IN-PROGRESS: Registers the billing group invoice service discounts. Only available in Ripple.",
+        "operationId": "Billing_CreateBillingGroupInvoiceServiceDiscounts",
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "description": "Required.\n\nFor Ripple, only billing internal ids are supported at the moment. You can set it to a single group\n\nImplied as the parent billing group for Wave(Pro) users.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BillingCreateBillingGroupInvoiceServiceDiscountsBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1CreateBillingGroupInvoiceServiceDiscountsResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      },
+      "delete": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "WORK-IN-PROGRESS: Deletes the billing group invoice service discounts. Only available in Ripple.",
+        "operationId": "Billing_DeleteBillingGroupInvoiceServiceDiscounts",
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "description": "Required.\n\nFor Ripple, only billing internal ids are supported at the moment. You can set it to a single group\n\nImplied as the parent billing group for Wave(Pro) users.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
                 }
               }
             }
