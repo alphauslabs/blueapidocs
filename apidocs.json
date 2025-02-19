@@ -30451,7 +30451,7 @@
         "limit": {
           "type": "integer",
           "format": "int32",
-          "description": "Optional. Number of acquisitions. default:10."
+          "description": "Optional. Number of acquisitions. default:10０."
         }
       },
       "description": "Request message for the ReadInvoiceGroupCosts rpc."

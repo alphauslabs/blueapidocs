@@ -34174,7 +34174,7 @@
           },
           "limit": {
             "type": "integer",
-            "description": "Optional. Number of acquisitions. default:10.",
+            "description": "Optional. Number of acquisitions. default:10０.",
             "format": "int32"
           }
         },
