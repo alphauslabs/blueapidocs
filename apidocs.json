@@ -5146,6 +5146,40 @@
         ]
       }
     },
+    "/v1/billinggroup": {
+      "put": {
+        "summary": "Update billing group basic information",
+        "operationId": "Billing_UpdateBillingGroupBasicInformation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1UpdateBillingGroupBasicInformationRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      }
+    },
     "/v1/billinggroup/account": {
       "post": {
         "summary": "Add a vendor account to a billing group.",
@@ -25546,6 +25580,41 @@
         }
       }
     },
+    "v1BasicInformation": {
+      "type": "object",
+      "properties": {
+        "billingGroupName": {
+          "type": "string"
+        },
+        "billingGroupId": {
+          "type": "string"
+        },
+        "companyName": {
+          "type": "string"
+        },
+        "addressee": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "addressLine1": {
+          "type": "string"
+        },
+        "addressLine2": {
+          "type": "string"
+        }
+      }
+    },
     "v1BillingAccountRequest": {
       "type": "object",
       "properties": {
@@ -27361,6 +27430,17 @@
         "description": {
           "type": "string",
           "title": "Detailed description of the custom field"
+        }
+      }
+    },
+    "v1CustomFields": {
+      "type": "object",
+      "properties": {
+        "idToKey": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
         }
       }
     },
@@ -31240,6 +31320,20 @@
         }
       },
       "title": "Response message for UpdateAlertDetails"
+    },
+    "v1UpdateBillingGroupBasicInformationRequest": {
+      "type": "object",
+      "properties": {
+        "billingInternalId": {
+          "type": "string"
+        },
+        "basicInformation": {
+          "$ref": "#/definitions/v1BasicInformation"
+        },
+        "customFields": {
+          "$ref": "#/definitions/v1CustomFields"
+        }
+      }
     },
     "v1UpdateBillingGroupInvoiceServiceDiscountsResponse": {
       "type": "object",
