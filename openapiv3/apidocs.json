@@ -24668,11 +24668,11 @@
           "calcType": {
             "type": "string"
           },
-          "searchId": {
-            "type": "string"
-          },
           "additionalItems": {
-            "type": "string"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1InvoiceAdditionalItems"
+            }
           }
         }
       },
@@ -33024,6 +33024,18 @@
             "items": {
               "type": "string"
             }
+          }
+        }
+      },
+      "v1InvoiceAdditionalItems": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number",
+            "format": "float"
           }
         }
       },
