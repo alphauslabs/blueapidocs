@@ -6764,6 +6764,68 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/billinggroup/{id}/{vendor}/untaggedgroups": {
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Sets non-tag group settings for a billing group.",
+        "operationId": "Billing_UpdateNonTagGroupToBillingGroup",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required. The billing group's internal id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "vendor",
+            "in": "path",
+            "description": "Required. The vendor (aws, azure, etc)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BillingUpdateNonTagGroupToBillingGroupBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/billinggroup/{id}:basinInfo": {
       "put": {
         "tags": [
@@ -19288,6 +19350,19 @@
           }
         },
         "description": "Request message for the Billing.UpdateInvoiceServiceDiscounts rpc."
+      },
+      "BillingUpdateNonTagGroupToBillingGroupBody": {
+        "title": "Request message for updating non-tag group settings for a billing group for UpdateNonTagGroupToBillingGroup",
+        "type": "object",
+        "properties": {
+          "settings": {
+            "title": "Required. The settings to update",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1NonTagGroupSetting"
+            }
+          }
+        }
       },
       "BillingUpdateResellerBody": {
         "required": [
@@ -33715,6 +33790,25 @@
           },
           "region": {
             "type": "string"
+          }
+        }
+      },
+      "v1NonTagGroupSetting": {
+        "title": "Individual non-tag group setting for UpdateNonTagGroupToBillingGroup",
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Required. The non-tag group ID",
+            "type": "string"
+          },
+          "type": {
+            "title": "Required. The type of setting (percentage or fixed)",
+            "type": "string"
+          },
+          "amount": {
+            "title": "Required. The amount value for either percentage or fixed amount",
+            "type": "number",
+            "format": "double"
           }
         }
       },
