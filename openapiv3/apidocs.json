@@ -28171,6 +28171,18 @@
           "country": {
             "title": "Optional. Company's country",
             "type": "string"
+          },
+          "state": {
+            "title": "Optional. Company's state",
+            "type": "string"
+          },
+          "addressLine1": {
+            "title": "Optional. Company's street address (primary line)",
+            "type": "string"
+          },
+          "addressLine2": {
+            "title": "Optional. Company's street address (secondary line, e.g., apartment, suite, unit)",
+            "type": "string"
           }
         },
         "description": "BillingGroupInfo resource definition. Only available in Ripple."
