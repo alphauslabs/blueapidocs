@@ -13484,6 +13484,49 @@
         }
       }
     },
+    "/v1/settings:create": {
+      "post": {
+        "tags": [
+          "Flow"
+        ],
+        "summary": "Creates a new settings configuration for the user.",
+        "operationId": "Flow_CreateSettings",
+        "requestBody": {
+          "description": "Request message for the Flow.CreateSettings rpc.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1CreateSettingsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1CreateSettingsResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/tags": {
       "get": {
         "tags": [
@@ -31276,6 +31319,57 @@
           }
         },
         "description": "Request message for the Iam.CreateRole rpc."
+      },
+      "v1CreateSettingsRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Required. The id of the payer."
+          },
+          "customization": {
+            "type": "string",
+            "description": "Required. Customization setting for SP."
+          },
+          "planTerm": {
+            "type": "string",
+            "description": "Required. Term of the SP."
+          },
+          "paymentOption": {
+            "type": "string",
+            "description": "Required. Payment option for the SP."
+          },
+          "lookBackPeriod": {
+            "type": "string",
+            "description": "Required. Lookback period for recommendation."
+          },
+          "instanceFamily": {
+            "title": "Optional. If EC2 Instance SP is selected in Customization, request will include list/s of instance family",
+            "type": "string"
+          },
+          "annualBudget": {
+            "type": "string",
+            "description": "Required. Annual budget input for SP."
+          },
+          "monthlyBudget": {
+            "type": "string",
+            "description": "Required. Monthly budget is automatically generated from the annual budget."
+          },
+          "approval": {
+            "type": "boolean",
+            "description": "Required. Purchase approval from the payer for the SP."
+          }
+        },
+        "description": "Request message for the Flow.CreateSettings rpc."
+      },
+      "v1CreateSettingsResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "string"
+          }
+        },
+        "description": "Response message for the Flow.CreateSettings rpc."
       },
       "v1CreateUnitTypeRequest": {
         "type": "object",
