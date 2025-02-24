@@ -13482,9 +13482,7 @@
             }
           }
         }
-      }
-    },
-    "/v1/settings:create": {
+      },
       "post": {
         "tags": [
           "Flow"
