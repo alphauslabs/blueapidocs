@@ -24781,12 +24781,10 @@
         "type": "object",
         "properties": {
           "vendor": {
+            "title": "e.g., aws, azure, gcp",
             "type": "string"
           },
           "invoiceNo": {
-            "type": "string"
-          },
-          "currency": {
             "type": "string"
           },
           "discountRate": {
@@ -24794,16 +24792,19 @@
             "format": "float"
           },
           "discountTargetUsage": {
-            "type": "string"
+            "type": "string",
+            "description": "e.g., cloudpaywithfee, ..."
           },
           "discountCalcLogic": {
-            "type": "string"
+            "type": "string",
+            "description": "e.g., usageamount, ..."
           },
           "taxRate": {
             "type": "number",
             "format": "float"
           },
           "supportFee": {
+            "title": "e.g., percent, fix, aws_developer, aws_business, aws_enterprise",
             "type": "string"
           },
           "supportRate": {
@@ -24811,13 +24812,15 @@
             "format": "float"
           },
           "supportFeeCalcTarget": {
-            "type": "string"
+            "type": "string",
+            "description": "e.g., nondiscount, ..."
           },
           "supportFix": {
             "type": "number",
             "format": "float"
           },
           "substitutionFee": {
+            "title": "e.g., percent, fix, automatic, usagetable",
             "type": "string"
           },
           "substitutionRate": {
@@ -24829,15 +24832,23 @@
             "format": "float"
           },
           "substitutionFeeCalcTarget": {
-            "type": "string"
+            "type": "string",
+            "description": "e.g., nondiscount, ..."
           },
           "substitutionFeeTargetUsage": {
+            "title": "e.g., cloudpayonly, cloudpaywithfee",
             "type": "string"
           },
           "substitutionFeeCalcType": {
+            "title": "e.g., allsum, account",
+            "type": "string"
+          },
+          "currency": {
+            "title": "Currency used for the invoice (e.g., \"jpy\", \"inr\")",
             "type": "string"
           },
           "exchangeRate": {
+            "title": "Exchange rate from USD to the invoice currency\nExample: If the invoice currency is \"jpy\" and 1 USD = 150 jpy, exchangeRate = 150",
             "type": "number",
             "format": "float"
           },
@@ -24845,6 +24856,7 @@
             "type": "string"
           },
           "calcType": {
+            "title": "e.g., account, tag",
             "type": "string"
           },
           "additionalItems": {
