@@ -7204,6 +7204,49 @@
         }
       }
     },
+    "/v1/billinggroups/merged": {
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Registers a billing group with Merged Endpoints. Only available in Ripple. WORK IN PROGRESS",
+        "operationId": "Billing_CreateBillingGroupMerged",
+        "requestBody": {
+          "description": "Request message for the CreateBillingGroupMerged rpc.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1CreateBillingGroupMergedRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1BillingGroup"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/billinggroups/{billingInternalId}": {
       "get": {
         "tags": [
@@ -24818,6 +24861,24 @@
           }
         }
       },
+      "billingv1AzureOptions": {
+        "title": "Optional. Azure-specific options",
+        "type": "object",
+        "properties": {
+          "resourceGroup": {
+            "title": "Whether to use resource groups",
+            "type": "boolean"
+          },
+          "applyPcEarnedCredit": {
+            "title": "Whether to apply partner-earned credit",
+            "type": "boolean"
+          },
+          "applyCampaignPricing": {
+            "title": "Whether to apply campaign pricing",
+            "type": "boolean"
+          }
+        }
+      },
       "billingv1InvoiceSettings": {
         "type": "object",
         "properties": {
@@ -30606,6 +30667,115 @@
         },
         "description": "Response message for the CreateBillingGroupInvoiceServiceDiscounts rpc."
       },
+      "v1CreateBillingGroupMergedRequest": {
+        "type": "object",
+        "properties": {
+          "billingGroupId": {
+            "type": "string",
+            "description": "Required. The billing group's id."
+          },
+          "billingGroupName": {
+            "type": "string",
+            "description": "Required. The billing group's name."
+          },
+          "companyName": {
+            "title": "Required. Company's name",
+            "type": "string"
+          },
+          "billingTitle": {
+            "title": "Optional. The title of the billing",
+            "type": "string"
+          },
+          "phoneNumber": {
+            "title": "Optional. Company's phone number",
+            "type": "string"
+          },
+          "postalCode": {
+            "title": "Optional. Company's postal code",
+            "type": "string"
+          },
+          "address": {
+            "title": "Optional. Company's address",
+            "type": "string"
+          },
+          "personal": {
+            "title": "Optional. Addressee",
+            "type": "string"
+          },
+          "remarks": {
+            "title": "Optional. Any remarks about the billing group",
+            "type": "string"
+          },
+          "projectId": {
+            "title": "Optional. Project code",
+            "type": "string"
+          },
+          "language": {
+            "title": "Optional. Invoice language",
+            "type": "string"
+          },
+          "displayCost": {
+            "title": "Optional. Calculation type, true unblended or unblended",
+            "type": "string"
+          },
+          "exchangeRateType": {
+            "title": "Optional. Exchange rate type, payer or billing group",
+            "type": "string"
+          },
+          "accountOptions": {
+            "$ref": "#/components/schemas/v1AccountOptions"
+          },
+          "invoices": {
+            "$ref": "#/components/schemas/v1CreateBillingGroupRequestInvoice"
+          },
+          "awsOptions": {
+            "$ref": "#/components/schemas/billingv1AwsOptions"
+          },
+          "city": {
+            "title": "Optional. Company's city",
+            "type": "string"
+          },
+          "prefecture": {
+            "title": "Optional. Company's prefecture",
+            "type": "string"
+          },
+          "country": {
+            "title": "Optional. Company's country",
+            "type": "string"
+          },
+          "invoiceTemplateId": {
+            "title": "Optional. Invoice template ID to associate with the billing group",
+            "type": "string"
+          },
+          "tagSettings": {
+            "title": "Optional. Tag settings for the billing group",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1TagSetting"
+            }
+          },
+          "nonTagSetting": {
+            "$ref": "#/components/schemas/v1NonTagSetting"
+          },
+          "vendorAccounts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1VendorAccounts"
+            }
+          },
+          "customFields": {
+            "title": "Optional. Custom fields to add to the billing group",
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "azureOptions": {
+            "$ref": "#/components/schemas/billingv1AzureOptions"
+          }
+        },
+        "description": "Request message for the CreateBillingGroupMerged rpc."
+      },
       "v1CreateBillingGroupRequest": {
         "type": "object",
         "properties": {
@@ -35972,6 +36142,23 @@
           }
         },
         "description": "Response for message Iam.ValidateVerificationCode rpc."
+      },
+      "v1VendorAccounts": {
+        "title": "Optional. Vendor accounts to add to the billing group",
+        "type": "object",
+        "properties": {
+          "vendor": {
+            "title": "Required. (aws, azure, gcp)",
+            "type": "string"
+          },
+          "accounts": {
+            "title": "Required. List of accounts to be added to the billing group",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1AccountToAdd"
+            }
+          }
+        }
       },
       "v1VendorOverViewSection": {
         "type": "object",
