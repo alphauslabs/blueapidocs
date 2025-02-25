@@ -6764,6 +6764,47 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/billinggroup/{id}": {
+      "delete": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Delete a billing group.",
+        "operationId": "Billing_DeleteBillinGroup",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/billinggroup/{id}/{vendor}/untaggedgroups": {
       "post": {
         "tags": [
