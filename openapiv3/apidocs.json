@@ -9917,7 +9917,7 @@
           {
             "name": "date",
             "in": "path",
-            "description": "Required. Invoice date YYYYMM (e.g. 202412)",
+            "description": "Required. Invoice month. Format: `yyyymm`.",
             "required": true,
             "schema": {
               "type": "string"
@@ -19352,12 +19352,23 @@
       "BillingSaveInvoiceSettingsBody": {
         "type": "object",
         "properties": {
-          "grouIdToInvoiceSettings": {
-            "title": "Map of billing group Id to InvoiceSettings",
-            "type": "object",
-            "additionalProperties": {
-              "$ref": "#/components/schemas/billingv1InvoiceSettings"
+          "vendor": {
+            "type": "string",
+            "description": "Required. At the moment, only `aws` is supported."
+          },
+          "allGroups": {
+            "type": "boolean",
+            "description": "Optional. You can set all billing groups.\n\nIf true the setting would be apply to all group."
+          },
+          "groups": {
+            "type": "array",
+            "description": "Optional. groups to apply the invoices setting\nthis is ignored if allGroups is true.",
+            "items": {
+              "type": "string"
             }
+          },
+          "invoiceSetting": {
+            "$ref": "#/components/schemas/billingv1InvoiceSettings"
           }
         }
       },
@@ -24882,10 +24893,6 @@
       "billingv1InvoiceSettings": {
         "type": "object",
         "properties": {
-          "vendor": {
-            "title": "e.g., aws, azure, gcp",
-            "type": "string"
-          },
           "invoiceNo": {
             "type": "string"
           },
