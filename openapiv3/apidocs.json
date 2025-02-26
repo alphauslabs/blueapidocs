@@ -31733,6 +31733,9 @@
           },
           "reportPeriod": {
             "type": "string"
+          },
+          "currency": {
+            "type": "string"
           }
         }
       },
