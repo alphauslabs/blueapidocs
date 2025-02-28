@@ -13767,6 +13767,210 @@
         }
       }
     },
+    "/v1/unitcost/sharedresources": {
+      "get": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "List all Shared Resources",
+        "operationId": "Cover_ListSharedResources",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1ListSharedResourcesResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "Create Shared Resource",
+        "operationId": "Cover_CreateSharedResource",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1CreateSharedResourcesRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1CreateSharedResourcesResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/unitcost/sharedresources/{id}": {
+      "get": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "Get Specific Shared Resource",
+        "operationId": "Cover_GetSharedResource",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required. Shared Resource Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetSharedResourcesResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "Update Specific Shared Resource",
+        "operationId": "Cover_UpdateSharedResource",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required. Shared Resource Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CoverUpdateSharedResourceBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1UpdateSharedResourcesResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      },
+      "delete": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "Delete Specific Shared Resource",
+        "operationId": "Cover_DeleteSharedResource",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required. Shared Resource Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1DeleteSharedResourcesResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/unitcost/{id}": {
       "get": {
         "tags": [
@@ -20706,6 +20910,40 @@
           }
         }
       },
+      "CoverUpdateSharedResourceBody": {
+        "type": "object",
+        "properties": {
+          "sharedResourceName": {
+            "title": "Optional",
+            "type": "string"
+          },
+          "sharedResourcesCombinations": {
+            "$ref": "#/components/schemas/coverResourcesCombinations"
+          },
+          "distribution": {
+            "title": "Optional",
+            "type": "object",
+            "additionalProperties": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          "allocated": {
+            "title": "Optional",
+            "type": "number",
+            "format": "double"
+          },
+          "unallocated": {
+            "title": "Optional",
+            "type": "number",
+            "format": "double"
+          },
+          "description": {
+            "title": "Optional",
+            "type": "string"
+          }
+        }
+      },
       "CoverUpdateSideMenuStateBody": {
         "title": "Request message for UpdateSideMenuState",
         "type": "object",
@@ -27394,6 +27632,9 @@
       "coverSharedResourcesCombination": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "string"
+          },
           "combinationName": {
             "type": "string"
           },
@@ -27617,6 +27858,12 @@
               "$ref": "#/components/schemas/coverUnitItem"
             }
           },
+          "vendors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
           "sharedResources": {
             "type": "array",
             "items": {
@@ -27646,6 +27893,12 @@
           },
           "dedicatedResourcesCombinations": {
             "$ref": "#/components/schemas/coverResourcesCombinations"
+          },
+          "vendors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
@@ -31617,6 +31870,44 @@
         },
         "description": "Response message for the Flow.CreateSettings rpc."
       },
+      "v1CreateSharedResourcesRequest": {
+        "type": "object",
+        "properties": {
+          "sharedResourceName": {
+            "type": "string"
+          },
+          "sharedResourcesCombinations": {
+            "$ref": "#/components/schemas/coverResourcesCombinations"
+          },
+          "distribution": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "number",
+              "format": "double"
+            },
+            "description": "List the unit items and their corresponding percentages."
+          },
+          "allocated": {
+            "type": "number",
+            "format": "double"
+          },
+          "unallocated": {
+            "type": "number",
+            "format": "double"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "v1CreateSharedResourcesResponse": {
+        "type": "object",
+        "properties": {
+          "sharedResources": {
+            "$ref": "#/components/schemas/coverSharedResourcesCombination"
+          }
+        }
+      },
       "v1CreateUnitTypeRequest": {
         "type": "object",
         "properties": {
@@ -31895,6 +32186,14 @@
         "type": "object",
         "properties": {
           "userId": {
+            "type": "string"
+          }
+        }
+      },
+      "v1DeleteSharedResourcesResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
             "type": "string"
           }
         }
@@ -33363,6 +33662,14 @@
           }
         }
       },
+      "v1GetSharedResourcesResponse": {
+        "type": "object",
+        "properties": {
+          "sharedResources": {
+            "$ref": "#/components/schemas/coverSharedResourcesCombination"
+          }
+        }
+      },
       "v1GetSupportedServicesResponse": {
         "type": "object",
         "properties": {
@@ -34113,6 +34420,17 @@
           }
         },
         "description": "Response message for the Iam.ListRoles rpc."
+      },
+      "v1ListSharedResourcesResponse": {
+        "type": "object",
+        "properties": {
+          "sharedResources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/coverSharedResourcesCombination"
+            }
+          }
+        }
       },
       "v1ListSuggestedUnitsResponse": {
         "type": "object",
@@ -35739,6 +36057,14 @@
           }
         },
         "description": "Request message for the Organization.UpdatePassword rpc."
+      },
+      "v1UpdateSharedResourcesResponse": {
+        "type": "object",
+        "properties": {
+          "sharedResources": {
+            "$ref": "#/components/schemas/coverSharedResourcesCombination"
+          }
+        }
       },
       "v1UpdateSideMenuStateResponse": {
         "title": "Response message for UpdateSideMenuState",
