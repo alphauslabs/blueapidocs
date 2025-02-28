@@ -25352,6 +25352,10 @@
       "properties": {
         "data": {
           "$ref": "#/definitions/v1ExportData"
+        },
+        "directLink": {
+          "type": "string",
+          "title": "Empty if direct link in request is disabled in request"
         }
       },
       "description": "AccountServiceDiscountsExport resource definition.\n\ndata is [blueapi.api.ripple.v1.ExportData]\n\ncontent. Base64 encoded value.\nFor example,\ncontent :`YmlsbGluZ0dyb3VwSWQsYmlsbGluZ0dyb3VwTmFtZSxWZW5kb3IsQWNjb3VudElkLEFjY291bnROYW1lLFNlcnZpY2UgUHJlbWl1bXMmRGlzY291bnRzDQo=`\nDecoding this value by en, get `billingGroupId,billingGroupName,Vendor,AccountId,AccountName,Service Premiums\u0026Discounts`.\ncontent :`6KuL5rGC44Kw44Or44O844OXSUQs6KuL5rGC44Kw44Or44O844OX5ZCNLOODmeODs+ODgOODvCzjgqLjgqvjgqbjg7Pjg4hJRCzjgqLjgqvjgqbjg7Pjg4jlkI0s44K144O844OT44K55Ymy5byV44O75Ymy5aKX6Kit5a6aDQo=`\nDecoding this value by ja, get `請求グループID,請求グループ名,ベンダー,アカウントID,アカウント名,サービス割引・割増設定`.\n\ndownloadedRows. Downloaded content lines.\n\ntotalRows.Total of content lines."
@@ -28134,6 +28138,10 @@
         "language": {
           "type": "string",
           "description": "Optional. At the moment, `ja`,`en` is supported.\n\nUsually the language of the user information is used, \nbut it may be a different language due to cahce.\nIn that case, you can use this option to change the language of CSV."
+        },
+        "directLink": {
+          "type": "boolean",
+          "title": "Returns a directLink if set to true"
         }
       },
       "description": "Request message for the ExportAccountInvoiceServiceDiscounts rpc.",
@@ -28179,6 +28187,10 @@
         "language": {
           "type": "string",
           "description": "Optional. At the moment, `ja`,`en` is supported.\n\nUsually the language of the user information is used, \nbut it may be a different language due to cahce.\nIn that case, you can use this option to change the language of CSV."
+        },
+        "directLink": {
+          "type": "boolean",
+          "title": "Returns a directLink if set to true"
         }
       },
       "description": "Request message for the ExportBillingGroupInvoiceServiceDiscounts rpc.",
@@ -29659,6 +29671,10 @@
       "properties": {
         "data": {
           "$ref": "#/definitions/v1ExportData"
+        },
+        "directLink": {
+          "type": "string",
+          "title": "Empty if direct link in request is disabled in request"
         }
       },
       "description": "GroupServiceDiscountsExport resource definition.\n`Group` refer to `BillingGroup`.\n\ndata is [blueapi.api.ripple.v1.ExportData]\n\ncontent. Base64 encoded value.\nFor example,\ncontent :`YmlsbGluZ0dyb3VwSWQsYmlsbGluZ0dyb3VwTmFtZSxTZXJ2aWNlIFByZW1pdW1zJkRpc2NvdW50cw0K`\nDecoding this value by en, get `billingGroupId,billingGroupName,Service Premiums\u0026Discounts`.\ncontent :`6KuL5rGC44Kw44Or44O844OXSUQs6KuL5rGC44Kw44Or44O844OX5ZCNLOOCteODvOODk+OCueWJsuW8leODu+WJsuWil+ioreWumg0K`\nDecoding this value by ja, get `請求グループID,請求グループ名,サービス割引・割増設定`.\n\ndownloadedRows. Downloaded content lines.\n\ntotalRows.Total of content lines."
