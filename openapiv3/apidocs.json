@@ -34191,10 +34191,6 @@
           "companyName": {
             "type": "string"
           },
-          "currency": {
-            "title": "currency for the billing amount",
-            "type": "string"
-          },
           "invoiceStatus": {
             "title": "Created || Not Created",
             "type": "string"
@@ -34224,7 +34220,13 @@
           "billingAmountTotal": {
             "type": "string"
           },
-          "invoiceSettings": {
+          "invoiceSettingsAws": {
+            "$ref": "#/components/schemas/billingv1InvoiceSettings"
+          },
+          "invoiceSettingsAzure": {
+            "$ref": "#/components/schemas/billingv1InvoiceSettings"
+          },
+          "invoiceSettingsGcp": {
             "$ref": "#/components/schemas/billingv1InvoiceSettings"
           }
         },
