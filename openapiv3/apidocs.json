@@ -9747,6 +9747,59 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/invoice/{date}:create&savesettings": {
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Creates an invoice and add settings. Only available in Ripple.",
+        "operationId": "Billing_CreateInvoiceWithSettings",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "path",
+            "description": "Required. Invoice month. Format: `yyyymm`.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BillingCreateInvoiceWithSettingsBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/apiInvoiceMessage"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/invoice/{date}:export": {
       "post": {
         "tags": [
@@ -19574,6 +19627,29 @@
           }
         },
         "description": "Request message for the CreateInvoice rpc."
+      },
+      "BillingCreateInvoiceWithSettingsBody": {
+        "type": "object",
+        "properties": {
+          "vendor": {
+            "type": "string",
+            "description": "Required. At the moment, only `aws` is supported."
+          },
+          "allGroups": {
+            "type": "boolean",
+            "description": "Optional. You can set all billing groups.\n\nIf true the setting would be apply to all group."
+          },
+          "groups": {
+            "type": "array",
+            "description": "Optional. groups to apply the invoices setting\nthis is ignored if allGroups is true.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "invoiceSetting": {
+            "$ref": "#/components/schemas/billingv1InvoiceSettings"
+          }
+        }
       },
       "BillingExportInvoiceFileBody": {
         "type": "object",
