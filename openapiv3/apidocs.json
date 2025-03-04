@@ -17610,6 +17610,58 @@
         }
       }
     },
+    "/v1/{vendor}/invoiceadjustments:apply": {
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "WORK-IN-PROGRESS: Applies the adjustment entry item. Only available in Ripple.",
+        "operationId": "Billing_ApplyInvoiceAdjustments",
+        "parameters": [
+          {
+            "name": "vendor",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BillingApplyInvoiceAdjustmentsBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/{vendor}/invoiceadjustments:read": {
       "post": {
         "tags": [
@@ -19402,6 +19454,62 @@
           }
         },
         "description": "Request message for the Admin.UpdateNotificationChannel rpc."
+      },
+      "ApplyInvoiceAdjustmentsRequestAdjustmentEntry": {
+        "title": "AdjustmentEntry. target ids",
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Required. id. adjustment entry id",
+            "type": "string"
+          },
+          "setting": {
+            "$ref": "#/components/schemas/ApplyInvoiceAdjustmentsRequestAdjustmentSetting"
+          }
+        }
+      },
+      "ApplyInvoiceAdjustmentsRequestAdjustmentSetting": {
+        "title": "AdjustmentSetting",
+        "type": "object",
+        "properties": {
+          "apply": {
+            "type": "boolean",
+            "description": "Required. apply. if apply is true, the adjustment will be applied to the invoice.\nif apply is false, the adjustment will be removed from the invoice."
+          },
+          "month": {
+            "type": "string",
+            "description": "apply to month. The UTC month to query. If empty, defaults to current month. Format is `yyyymm`. For example, June 2021 will be `202106`."
+          },
+          "taxFree": {
+            "type": "boolean",
+            "description": "Optional. tax free setting."
+          },
+          "exchangeRate": {
+            "type": "number",
+            "description": "Optional. exchange rate.",
+            "format": "float"
+          },
+          "billingInternalId": {
+            "type": "string",
+            "description": "Optional. apply to billing internal id."
+          }
+        }
+      },
+      "BillingApplyInvoiceAdjustmentsBody": {
+        "type": "object",
+        "properties": {
+          "setting": {
+            "$ref": "#/components/schemas/ApplyInvoiceAdjustmentsRequestAdjustmentSetting"
+          },
+          "entries": {
+            "title": "Required. AdjustmentEntry",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApplyInvoiceAdjustmentsRequestAdjustmentEntry"
+            }
+          }
+        },
+        "description": "Request message for the Billing.ApplyInvoiceAdjustments rpc."
       },
       "BillingCreateAccountInvoiceServiceDiscountsBody": {
         "type": "object",
