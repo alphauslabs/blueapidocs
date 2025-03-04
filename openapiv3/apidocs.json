@@ -34220,6 +34220,9 @@
           "billingAmountTotal": {
             "type": "string"
           },
+          "urlId": {
+            "type": "string"
+          },
           "invoiceSettingsAws": {
             "$ref": "#/components/schemas/billingv1InvoiceSettings"
           },
