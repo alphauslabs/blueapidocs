@@ -6805,6 +6805,126 @@
         }
       }
     },
+    "/v1/billinggroup/{id}/{vendor}/supportplan": {
+      "get": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "WORK-IN-PROGRESS: Gets the account support plan in billing group. Only available in Ripple.",
+        "operationId": "Billing_GetBillingGroupAccountSupportPlan",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required. The billing internal id.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "vendor",
+            "in": "path",
+            "description": "Required. At the moment, `aws` is supported.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Stream result of v1BillingGroupAccountSupportPlan",
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/components/schemas/v1BillingGroupAccountSupportPlan"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/googlerpcStatus"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "WORK-IN-PROGRESS: Updates the account support plan in billing group. Only available in Ripple.",
+        "operationId": "Billing_UpdateBillingGroupAccountSupportPlan",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required. The billing internal id.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "vendor",
+            "in": "path",
+            "description": "Required. At the moment, `aws` is supported.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BillingUpdateBillingGroupAccountSupportPlanBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/billinggroup/{id}/{vendor}/untaggedgroups": {
       "post": {
         "tags": [
@@ -19830,6 +19950,30 @@
         },
         "description": "Request message for the Billing.UpdateAdjustmentConfig rpc."
       },
+      "BillingUpdateBillingGroupAccountSupportPlanBody": {
+        "required": [
+          "updateMask"
+        ],
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "description": "Optional. The enabled indicates whether the account support plan is enabled or disabled."
+          },
+          "setting": {
+            "type": "array",
+            "description": "Optional. The support plan setting. [blueapi.api.ripple.v1.BillingGroupAccountSupportPlan].",
+            "items": {
+              "$ref": "#/components/schemas/v1BillingGroupAccountSupportPlan"
+            }
+          },
+          "updateMask": {
+            "type": "string",
+            "description": "Required.\nIf the `enabled` is set, only the `enabled` will be updated. If you want to update all values, please set both `enabled` and `setting`."
+          }
+        },
+        "description": "Request message for the UpdateBillingGroupAccountSupportPlan rpc."
+      },
       "BillingUpdateBillingGroupBasicInformationBody": {
         "type": "object",
         "properties": {
@@ -30357,6 +30501,24 @@
           }
         }
       },
+      "v1BillingGroupAccountSupportPlan": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The account id."
+          },
+          "name": {
+            "type": "string",
+            "description": "The account name.",
+            "readOnly": true
+          },
+          "plan": {
+            "$ref": "#/components/schemas/v1SupportPlan"
+          }
+        },
+        "description": "Billing Group Account Support Plan resource definition."
+      },
       "v1BillingGroupAdditionalItems": {
         "type": "object",
         "properties": {
@@ -35863,6 +36025,18 @@
             "format": "int64"
           }
         }
+      },
+      "v1SupportPlan": {
+        "type": "string",
+        "description": "Describes the overall config of a [blueapi.api.ripple.v1.SupportPlan].\n\n - NO_SUPPORT: no_support\n - AWS_DEVELOPER: aws_developer\n - AWS_BUSINESS: aws_business\n - AWS_ENTERPRISE: aws_enterprise\n - AWS_ENTERPRISE_ON_RAMP: aws_enterprise_on_ramp",
+        "default": "NO_SUPPORT",
+        "enum": [
+          "NO_SUPPORT",
+          "AWS_DEVELOPER",
+          "AWS_BUSINESS",
+          "AWS_ENTERPRISE",
+          "AWS_ENTERPRISE_ON_RAMP"
+        ]
       },
       "v1SupportedService": {
         "type": "object",
