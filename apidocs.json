@@ -3069,7 +3069,7 @@
         ]
       },
       "delete": {
-        "summary": "WORK-IN-PROGRESS: Deletes adjustment config",
+        "summary": "Deletes adjustment config",
         "operationId": "Billing_DeleteAdjustmentConfig",
         "responses": {
           "200": {
@@ -3100,7 +3100,7 @@
         ]
       },
       "post": {
-        "summary": "WORK-IN-PROGRESS: Creates adjustment config",
+        "summary": "Creates adjustment config",
         "description": "[ERRORS] \n- InvalidArgument:\n - the AdjustmentConfig is already exists.\n- NotFound:\n - the AdjustmentConfig is not found.",
         "operationId": "Billing_CreateAdjustmentConfig",
         "responses": {
@@ -3139,7 +3139,7 @@
         ]
       },
       "put": {
-        "summary": "WORK-IN-PROGRESS: Updates adjustment config",
+        "summary": "Updates adjustment config",
         "operationId": "Billing_UpdateAdjustmentConfig",
         "responses": {
           "200": {
