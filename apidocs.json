@@ -3039,7 +3039,7 @@
     },
     "/v1/adjustmentconfig/{vendor}": {
       "get": {
-        "summary": "WORK-IN-PROGRESS: Gets adjustment config",
+        "summary": "Gets adjustment config",
         "operationId": "Billing_GetAdjustmentConfig",
         "responses": {
           "200": {
@@ -7498,7 +7498,7 @@
     },
     "/v1/invoice/status/{date}:read": {
       "post": {
-        "summary": "WORK-IN-PROGRESS: Reads an invoice status. Only available in Ripple.",
+        "summary": "Reads an invoice status. Only available in Ripple.",
         "operationId": "Billing_ListInvoiceStatus",
         "responses": {
           "200": {

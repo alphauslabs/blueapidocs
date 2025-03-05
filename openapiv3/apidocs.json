@@ -3881,7 +3881,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Gets adjustment config",
+        "summary": "Gets adjustment config",
         "operationId": "Billing_GetAdjustmentConfig",
         "parameters": [
           {
@@ -9555,7 +9555,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Reads an invoice status. Only available in Ripple.",
+        "summary": "Reads an invoice status. Only available in Ripple.",
         "operationId": "Billing_ListInvoiceStatus",
         "parameters": [
           {
