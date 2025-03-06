@@ -30618,12 +30618,9 @@
           "type": "string",
           "title": "YYYYMM format (e.g 202412, 202501)"
         },
-        "filters": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
-          "title": "OPTIONAL: refer to the ListInvoiceRequest for the key\ne.g {\"filter\": {\"vendor\": \"aws\", \"billingInternalId\":\"asdf\"}}\ninvalid key will be ignored"
+        "vendor": {
+          "type": "string",
+          "title": "OPTIONAL: vendor (aws, azure, gcp)"
         }
       },
       "description": "Request message for the ListInvoice rpc."
