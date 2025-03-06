@@ -6834,20 +6834,11 @@
         ],
         "responses": {
           "200": {
-            "description": "A successful response.(streaming responses)",
+            "description": "A successful response.",
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "Stream result of v1BillingGroupAccountSupportPlan",
-                  "type": "object",
-                  "properties": {
-                    "result": {
-                      "$ref": "#/components/schemas/v1BillingGroupAccountSupportPlan"
-                    },
-                    "error": {
-                      "$ref": "#/components/schemas/googlerpcStatus"
-                    }
-                  }
+                  "$ref": "#/components/schemas/v1GetBillingGroupAccountSupportPlanResponse"
                 }
               }
             }
@@ -32960,6 +32951,31 @@
             "type": "string"
           }
         }
+      },
+      "v1GetBillingGroupAccountSupportPlanResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The billing internal id."
+          },
+          "vendor": {
+            "type": "string",
+            "description": "At the moment, `aws` is supported."
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "The enabled indicates whether the account support plan is enabled or disabled."
+          },
+          "setting": {
+            "type": "array",
+            "description": "The support plan setting. [blueapi.api.ripple.v1.BillingGroupAccountSupportPlan].",
+            "items": {
+              "$ref": "#/components/schemas/v1BillingGroupAccountSupportPlan"
+            }
+          }
+        },
+        "description": "Response message for the GetBillingGroupAccountSupportPlan rpc."
       },
       "v1GetBillingGroupInvoiceServiceDiscountsResponse": {
         "type": "object",
