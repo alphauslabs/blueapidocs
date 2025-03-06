@@ -34566,6 +34566,10 @@
             "title": "aws, azure, gcp",
             "type": "string"
           },
+          "currency": {
+            "title": "The currency of the invoice (usd, jpy, ...)",
+            "type": "string"
+          },
           "billingAmountAws": {
             "title": "Formated in $8,000.12",
             "type": "string"
