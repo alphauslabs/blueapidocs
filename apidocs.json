@@ -24375,6 +24375,12 @@
           "items": {
             "type": "string"
           }
+        },
+        "createTime": {
+          "type": "string"
+        },
+        "lastUpdatedAt": {
+          "type": "string"
         }
       }
     },
