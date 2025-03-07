@@ -32590,19 +32590,19 @@
           },
           "customization": {
             "type": "string",
-            "description": "Required. Customization setting for SP. Valid values are `compute_sp` or `ec2_instance_sp`."
+            "description": "Required. Customization setting for SP. Valid values are `COMPUTE_SP` or `EC2_INSTANCE_SP`."
           },
           "planTerm": {
             "type": "string",
-            "description": "Required. Term of the SP. Valid values are `one_year` or `three_years`."
+            "description": "Required. Term of the SP. Valid values are `ONE_YEAR` or `THREE_YEARS`."
           },
           "paymentOption": {
             "type": "string",
-            "description": "Required. Payment option for the SP. Valid values are `all_upfront`, `partial_upfront`, or `no_upfront`."
+            "description": "Required. Payment option for the SP. Valid values are `ALL_UPFRONT`, `PARTIAL_UPFRONT`, or `NO_UPFRONT`."
           },
           "lookBackPeriod": {
             "type": "string",
-            "description": "Required. Lookback period for recommendation. Valid values are `seven_days`, `thirty_days`, or `sixty_days`."
+            "description": "Required. Lookback period for recommendation. Valid values are `SEVEN_DAYS`, `THIRTY_DAYS`, or `SIXTY_DAYS`."
           },
           "instanceFamily": {
             "title": "Optional. If EC2 Instance SP is selected in Customization, request will include list of instance family",
