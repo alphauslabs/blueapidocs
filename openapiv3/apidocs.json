@@ -15673,7 +15673,7 @@
           {
             "name": "vendor",
             "in": "path",
-            "description": "Required. At the moment, only `aws`,`azure`,`gcp` is supported.",
+            "description": "Required. At the moment, only `aws` is supported.",
             "required": true,
             "schema": {
               "type": "string"
@@ -15735,7 +15735,7 @@
           {
             "name": "vendor",
             "in": "path",
-            "description": "Required. At the moment, only `aws`,`azure`,`gcp` is supported.",
+            "description": "Required. At the moment, only `aws` is supported.",
             "required": true,
             "schema": {
               "type": "string"
