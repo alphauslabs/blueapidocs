@@ -30553,6 +30553,15 @@
           "originalId": {
             "type": "string",
             "description": "The original ID represents the originally allocated or splitted ID."
+          },
+          "splitted": {
+            "type": "boolean",
+            "description": "The Splitted indicates whether it has been split."
+          },
+          "term": {
+            "type": "integer",
+            "description": "The term indicates the number of years that can be splitted.\nFor 1 year, it is divided into 12 parts.\nFor 3 years, it is divided into 36 parts.",
+            "format": "int32"
           }
         },
         "description": "AdjustmentEntrySetting resource definition."
