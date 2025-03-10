@@ -19878,7 +19878,7 @@
           },
           "billingInternalId": {
             "type": "string",
-            "description": "Optional. apply to billing internal ID."
+            "description": "Optional. apply to billing internal ID.\nWhen you specify billing internal ID, the invoicing will be applied to the target Billing Group.\nAt the moment, only `aws` is supported."
           }
         }
       },
