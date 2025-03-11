@@ -30512,8 +30512,9 @@
             "description": "The currency."
           },
           "amount": {
-            "type": "string",
-            "description": "The amount."
+            "type": "number",
+            "description": "The amount.",
+            "format": "double"
           },
           "timeInterval": {
             "type": "string",
