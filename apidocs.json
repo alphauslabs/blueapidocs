@@ -12254,6 +12254,45 @@
         ]
       }
     },
+    "/v1/{vendor}/adjustmententries/{id}": {
+      "get": {
+        "summary": "WORK-IN-PROGRESS: Gets the adjustment entry. Only available in Ripple.",
+        "operationId": "Billing_GetAdjustmentEntry",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ripplev1AdjustmentEntry"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws`,`azure`,`gcp` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "Required. The adjustment entry id. [blueapi.api.ripple.v1.AdjustmentEntry.id]",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      }
+    },
     "/v1/{vendor}/adjustmententries/{id}/allocate": {
       "post": {
         "summary": "WORK-IN-PROGRESS: Allocates the adjustment entry item. Only available in Ripple.",
