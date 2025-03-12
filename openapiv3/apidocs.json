@@ -13931,6 +13931,236 @@
         }
       }
     },
+    "/v1/unitcost/metrics": {
+      "get": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "List all Unit Metrics",
+        "operationId": "Cover_ListUnitMetrics",
+        "parameters": [
+          {
+            "name": "aggregationMethod",
+            "in": "query",
+            "description": "Optional. Filter by aggregation method.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dataSource",
+            "in": "query",
+            "description": "Optional. Filter by data source.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Optional. Filter by status.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1ListUnitMetricsResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "Create Unit Metric",
+        "operationId": "Cover_CreateUnitMetric",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1CreateUnitMetricRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1CreateUnitMetricResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/unitcost/metrics/{id}": {
+      "get": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "Get Specific Unit Metric",
+        "operationId": "Cover_GetUnitMetric",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required. Unit Metric Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetUnitMetricResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "Update Specific Unit Metric",
+        "operationId": "Cover_UpdateUnitMetric",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required. Unit Metric Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CoverUpdateUnitMetricBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1UpdateUnitMetricResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      },
+      "delete": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "Delete Specific Unit Metric",
+        "operationId": "Cover_DeleteUnitMetric",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required. Unit Metric Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1DeleteUnitMetricResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/unitcost/sharedresources": {
       "get": {
         "tags": [
@@ -21596,6 +21826,34 @@
           }
         }
       },
+      "CoverUpdateUnitMetricBody": {
+        "type": "object",
+        "properties": {
+          "metricName": {
+            "title": "Optional",
+            "type": "string"
+          },
+          "aggregationMethod": {
+            "title": "Optional",
+            "type": "string"
+          },
+          "dataSource": {
+            "title": "Optional",
+            "type": "string"
+          },
+          "description": {
+            "title": "Optional",
+            "type": "string"
+          },
+          "costgroupId": {
+            "title": "Optional",
+            "type": "string"
+          },
+          "csvInfo": {
+            "$ref": "#/components/schemas/coverCsvInfo"
+          }
+        }
+      },
       "CoverUpdateUnitTypeBody": {
         "type": "object",
         "properties": {
@@ -26798,6 +27056,17 @@
           }
         }
       },
+      "coverCsvInfo": {
+        "type": "object",
+        "properties": {
+          "s3key": {
+            "type": "string"
+          },
+          "s3url": {
+            "type": "string"
+          }
+        }
+      },
       "coverCurrentEBSDetails": {
         "type": "object",
         "properties": {
@@ -28539,6 +28808,47 @@
             "items": {
               "type": "string"
             }
+          },
+          "createTime": {
+            "type": "string"
+          },
+          "lastUpdatedAt": {
+            "type": "string"
+          }
+        }
+      },
+      "coverUnitMetric": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "orgId": {
+            "type": "string"
+          },
+          "metricName": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "aggregationMethod": {
+            "type": "string"
+          },
+          "dataSource": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "costgroupId": {
+            "type": "string"
+          },
+          "csvInfo": {
+            "$ref": "#/components/schemas/coverCsvInfo"
+          },
+          "createdBy": {
+            "type": "string"
           },
           "createTime": {
             "type": "string"
@@ -32728,6 +33038,37 @@
           }
         }
       },
+      "v1CreateUnitMetricRequest": {
+        "type": "object",
+        "properties": {
+          "metricName": {
+            "type": "string"
+          },
+          "aggregationMethod": {
+            "type": "string"
+          },
+          "dataSource": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "costgroupId": {
+            "type": "string"
+          },
+          "csvInfo": {
+            "$ref": "#/components/schemas/coverCsvInfo"
+          }
+        }
+      },
+      "v1CreateUnitMetricResponse": {
+        "type": "object",
+        "properties": {
+          "unitMetric": {
+            "$ref": "#/components/schemas/coverUnitMetric"
+          }
+        }
+      },
       "v1CreateUnitTypeRequest": {
         "type": "object",
         "properties": {
@@ -33011,6 +33352,14 @@
         }
       },
       "v1DeleteSharedResourcesResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        }
+      },
+      "v1DeleteUnitMetricResponse": {
         "type": "object",
         "properties": {
           "id": {
@@ -34540,6 +34889,14 @@
           }
         }
       },
+      "v1GetUnitMetricResponse": {
+        "type": "object",
+        "properties": {
+          "unitMetric": {
+            "$ref": "#/components/schemas/coverUnitMetric"
+          }
+        }
+      },
       "v1GetUnitTypeResponse": {
         "type": "object",
         "properties": {
@@ -35293,6 +35650,17 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/coverSuggestedUnit"
+            }
+          }
+        }
+      },
+      "v1ListUnitMetricsResponse": {
+        "type": "object",
+        "properties": {
+          "unitMetrics": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/coverUnitMetric"
             }
           }
         }
@@ -36938,6 +37306,14 @@
         "properties": {
           "viewId": {
             "type": "string"
+          }
+        }
+      },
+      "v1UpdateUnitMetricResponse": {
+        "type": "object",
+        "properties": {
+          "unitMetric": {
+            "$ref": "#/components/schemas/coverUnitMetric"
           }
         }
       },
