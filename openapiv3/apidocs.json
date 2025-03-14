@@ -13931,6 +13931,90 @@
         }
       }
     },
+    "/v1/unitcost/autosuggest/create": {
+      "post": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "Create Unit from Suggested Units",
+        "operationId": "Cover_CreateUnitFromSuggested",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1CreateUnitFromSuggestedRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1CreateUnitFromSuggestedResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/unitcost/autosuggest/merge": {
+      "post": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "Merge Suggested Units",
+        "operationId": "Cover_MergeSuggestedUnits",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1MergeSuggestedUnitsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1MergeSuggestedUnitsResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/unitcost/metrics": {
       "get": {
         "tags": [
@@ -26463,6 +26547,14 @@
           "tagged": {
             "type": "boolean",
             "description": "Indicates whether the item is tagged (true) or not (false)."
+          },
+          "unitcostmetric": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "number",
+              "format": "double"
+            },
+            "description": "Contains the unit cost metric. Only used when feature flag for unit cost metric is enabled."
           }
         },
         "description": "Response message wrapper for cloud costs."
@@ -33042,6 +33134,25 @@
           }
         }
       },
+      "v1CreateUnitFromSuggestedRequest": {
+        "type": "object",
+        "properties": {
+          "suggestedUnitIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "v1CreateUnitFromSuggestedResponse": {
+        "type": "object",
+        "properties": {
+          "unitCostData": {
+            "$ref": "#/components/schemas/coverUnitCostData"
+          }
+        }
+      },
       "v1CreateUnitMetricRequest": {
         "type": "object",
         "properties": {
@@ -35748,6 +35859,31 @@
       },
       "v1MarkAsExecutedResponse": {
         "type": "object"
+      },
+      "v1MergeSuggestedUnitsRequest": {
+        "type": "object",
+        "properties": {
+          "suggestedUnitIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "unitItemIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "v1MergeSuggestedUnitsResponse": {
+        "type": "object",
+        "properties": {
+          "mergedSuggestedUnits": {
+            "$ref": "#/components/schemas/coverSuggestedUnit"
+          }
+        }
       },
       "v1ModifyResourceTypeResponse": {
         "title": "Response message for ModifyResourceType",

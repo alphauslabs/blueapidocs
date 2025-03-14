@@ -10930,6 +10930,72 @@
         ]
       }
     },
+    "/v1/unitcost/autosuggest/create": {
+      "post": {
+        "summary": "Create Unit from Suggested Units",
+        "operationId": "Cover_CreateUnitFromSuggested",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateUnitFromSuggestedResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateUnitFromSuggestedRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
+    "/v1/unitcost/autosuggest/merge": {
+      "post": {
+        "summary": "Merge Suggested Units",
+        "operationId": "Cover_MergeSuggestedUnits",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1MergeSuggestedUnitsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1MergeSuggestedUnitsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
     "/v1/unitcost/metrics": {
       "get": {
         "summary": "List all Unit Metrics",
@@ -22237,6 +22303,14 @@
         "tagged": {
           "type": "boolean",
           "description": "Indicates whether the item is tagged (true) or not (false)."
+        },
+        "unitcostmetric": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "format": "double"
+          },
+          "description": "Contains the unit cost metric. Only used when feature flag for unit cost metric is enabled."
         }
       },
       "description": "Response message wrapper for cloud costs."
@@ -28964,6 +29038,25 @@
         }
       }
     },
+    "v1CreateUnitFromSuggestedRequest": {
+      "type": "object",
+      "properties": {
+        "suggestedUnitIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "v1CreateUnitFromSuggestedResponse": {
+      "type": "object",
+      "properties": {
+        "unitCostData": {
+          "$ref": "#/definitions/coverUnitCostData"
+        }
+      }
+    },
     "v1CreateUnitMetricRequest": {
       "type": "object",
       "properties": {
@@ -31756,6 +31849,31 @@
     },
     "v1MarkAsExecutedResponse": {
       "type": "object"
+    },
+    "v1MergeSuggestedUnitsRequest": {
+      "type": "object",
+      "properties": {
+        "suggestedUnitIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "unitItemIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "v1MergeSuggestedUnitsResponse": {
+      "type": "object",
+      "properties": {
+        "mergedSuggestedUnits": {
+          "$ref": "#/definitions/coverSuggestedUnit"
+        }
+      }
     },
     "v1ModifyResourceTypeResponse": {
       "type": "object",
