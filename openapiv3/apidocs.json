@@ -32504,6 +32504,10 @@
           "target": {
             "type": "string",
             "description": "Required. The target AWS account to validate."
+          },
+          "curType": {
+            "type": "string",
+            "description": "Optional. The CUR type. Values should be either 'legacy' or '2.0'. Defaults to 'legacy' if empty."
           }
         },
         "description": "Request message for the Admin.CreateDefaultCostAccess rpc."
