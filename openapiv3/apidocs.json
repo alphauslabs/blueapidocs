@@ -3662,6 +3662,37 @@
         }
       }
     },
+    "/v1/account/unregistered:read": {
+      "post": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "Lists unregistered linked accounts",
+        "operationId": "Cover_ListUnregisteredAccounts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1ListUnregisteredAccountsResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/account/{target}": {
       "get": {
         "tags": [
@@ -35865,6 +35896,28 @@
             "items": {
               "$ref": "#/components/schemas/coverUnitCostData"
             }
+          }
+        }
+      },
+      "v1ListUnregisteredAccountsResponse": {
+        "title": "Response message for ListUnregisteredAccounts",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Id of the unregistered account."
+          },
+          "payerId": {
+            "type": "string"
+          },
+          "orgId": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "lastUpdate": {
+            "type": "string"
           }
         }
       },
