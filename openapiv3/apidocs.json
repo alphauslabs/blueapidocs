@@ -35903,21 +35903,14 @@
         "title": "Response message for ListUnregisteredAccounts",
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "description": "Id of the unregistered account."
-          },
-          "payerId": {
-            "type": "string"
-          },
           "orgId": {
             "type": "string"
           },
-          "status": {
-            "type": "string"
-          },
-          "lastUpdate": {
-            "type": "string"
+          "unregisteredAccts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1UnregisteredAccts"
+            }
           }
         }
       },
@@ -37392,6 +37385,24 @@
       },
       "v1UndoExecutedRecommendationResponse": {
         "type": "object"
+      },
+      "v1UnregisteredAccts": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Id of the unregistered account."
+          },
+          "payerId": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "lastUpdate": {
+            "type": "string"
+          }
+        }
       },
       "v1UpdateAccountInvoiceServiceDiscountsResponse": {
         "type": "object",
