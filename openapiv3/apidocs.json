@@ -16102,7 +16102,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ripplev1AdjustmentEntry"
+                  "$ref": "#/components/schemas/v1AdjustmentEntry"
                 }
               }
             }
@@ -16331,11 +16331,11 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "Stream result of ripplev1AdjustmentEntry",
+                  "title": "Stream result of v1AdjustmentEntry",
                   "type": "object",
                   "properties": {
                     "result": {
-                      "$ref": "#/components/schemas/ripplev1AdjustmentEntry"
+                      "$ref": "#/components/schemas/v1AdjustmentEntry"
                     },
                     "error": {
                       "$ref": "#/components/schemas/googlerpcStatus"
@@ -20356,9 +20356,9 @@
           },
           "entries": {
             "type": "array",
-            "description": "Required. List of AdjustmentEntry.",
+            "description": "Required. List of id.",
             "items": {
-              "$ref": "#/components/schemas/v1ApplyAdjustmentEntryRequestAdjustmentEntry"
+              "type": "string"
             }
           }
         },
@@ -30539,29 +30539,6 @@
         },
         "description": "WORK-IN-PROGRESS: totalInvoiceLayout resource definition."
       },
-      "ripplev1AdjustmentEntry": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The adjustment entry ID."
-          },
-          "name": {
-            "type": "string",
-            "description": "The adjustment entry name."
-          },
-          "account": {
-            "$ref": "#/components/schemas/v1AdjustmentEntryAccountInfo"
-          },
-          "entry": {
-            "$ref": "#/components/schemas/v1AdjustmentEntryInfo"
-          },
-          "setting": {
-            "$ref": "#/components/schemas/v1AdjustmentEntrySetting"
-          }
-        },
-        "description": "AdjustmentEntry resource definition."
-      },
       "v1AbcAccount": {
         "type": "object",
         "properties": {
@@ -31011,6 +30988,29 @@
           }
         }
       },
+      "v1AdjustmentEntry": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The adjustment entry ID."
+          },
+          "name": {
+            "type": "string",
+            "description": "The adjustment entry name."
+          },
+          "account": {
+            "$ref": "#/components/schemas/v1AdjustmentEntryAccountInfo"
+          },
+          "entry": {
+            "$ref": "#/components/schemas/v1AdjustmentEntryInfo"
+          },
+          "setting": {
+            "$ref": "#/components/schemas/v1AdjustmentEntrySetting"
+          }
+        },
+        "description": "AdjustmentEntry resource definition."
+      },
       "v1AdjustmentEntryAccountInfo": {
         "type": "object",
         "properties": {
@@ -31247,22 +31247,6 @@
             "title": "How many percentage does the data is considered anomaly",
             "type": "number",
             "format": "float"
-          }
-        }
-      },
-      "v1ApplyAdjustmentEntryRequestAdjustmentEntry": {
-        "title": "AdjustmentEntry. target IDs",
-        "required": [
-          "id"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "Required. adjustment entry ID."
-          },
-          "setting": {
-            "$ref": "#/components/schemas/ApplyAdjustmentEntryRequestApplySetting"
           }
         }
       },

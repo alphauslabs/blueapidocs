@@ -12576,7 +12576,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/ripplev1AdjustmentEntry"
+              "$ref": "#/definitions/v1AdjustmentEntry"
             }
           },
           "default": {
@@ -12755,13 +12755,13 @@
               "type": "object",
               "properties": {
                 "result": {
-                  "$ref": "#/definitions/ripplev1AdjustmentEntry"
+                  "$ref": "#/definitions/v1AdjustmentEntry"
                 },
                 "error": {
                   "$ref": "#/definitions/googlerpcStatus"
                 }
               },
-              "title": "Stream result of ripplev1AdjustmentEntry"
+              "title": "Stream result of v1AdjustmentEntry"
             }
           },
           "default": {
@@ -15982,10 +15982,9 @@
         "entries": {
           "type": "array",
           "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1ApplyAdjustmentEntryRequestAdjustmentEntry"
+            "type": "string"
           },
-          "description": "Required. List of AdjustmentEntry."
+          "description": "Required. List of id."
         }
       },
       "description": "Request message for the Billing.ApplyAdjustmentEntry rpc.",
@@ -26351,32 +26350,6 @@
       },
       "description": "WORK-IN-PROGRESS: totalInvoiceLayout resource definition."
     },
-    "ripplev1AdjustmentEntry": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "description": "The adjustment entry ID."
-        },
-        "name": {
-          "type": "string",
-          "description": "The adjustment entry name."
-        },
-        "account": {
-          "$ref": "#/definitions/v1AdjustmentEntryAccountInfo",
-          "description": "Account info."
-        },
-        "entry": {
-          "$ref": "#/definitions/v1AdjustmentEntryInfo",
-          "description": "Adjustment entry info."
-        },
-        "setting": {
-          "$ref": "#/definitions/v1AdjustmentEntrySetting",
-          "description": "Adjustment entry setting."
-        }
-      },
-      "description": "AdjustmentEntry resource definition."
-    },
     "v1AbcAccount": {
       "type": "object",
       "properties": {
@@ -26834,6 +26807,32 @@
         }
       }
     },
+    "v1AdjustmentEntry": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The adjustment entry ID."
+        },
+        "name": {
+          "type": "string",
+          "description": "The adjustment entry name."
+        },
+        "account": {
+          "$ref": "#/definitions/v1AdjustmentEntryAccountInfo",
+          "description": "Account info."
+        },
+        "entry": {
+          "$ref": "#/definitions/v1AdjustmentEntryInfo",
+          "description": "Adjustment entry info."
+        },
+        "setting": {
+          "$ref": "#/definitions/v1AdjustmentEntrySetting",
+          "description": "Adjustment entry setting."
+        }
+      },
+      "description": "AdjustmentEntry resource definition."
+    },
     "v1AdjustmentEntryAccountInfo": {
       "type": "object",
       "properties": {
@@ -27072,23 +27071,6 @@
         }
       },
       "title": "Message response for anomaly detection"
-    },
-    "v1ApplyAdjustmentEntryRequestAdjustmentEntry": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "description": "Required. adjustment entry ID."
-        },
-        "setting": {
-          "$ref": "#/definitions/ApplyAdjustmentEntryRequestApplySetting",
-          "description": "Optional. ApplySetting. If this setting is configured, it will take precedence."
-        }
-      },
-      "title": "AdjustmentEntry. target IDs",
-      "required": [
-        "id"
-      ]
     },
     "v1AssetsSummary": {
       "type": "object",
