@@ -15984,7 +15984,7 @@
           "items": {
             "type": "string"
           },
-          "description": "Required. List of id."
+          "description": "Required. List of id.\n\nRegarding entries that can be included.\n- Regular entry\n- Splitted entry\n- Allocated entry\nRegarding entries that cannot be included.\n- Original entry before being split\n- Original entry before being allocate"
         }
       },
       "description": "Request message for the Billing.ApplyAdjustmentEntry rpc.",
