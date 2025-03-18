@@ -9432,6 +9432,59 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/exchangerate/billinggroup/{month}": {
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Set billing group exchangerate. Only available in Ripple.",
+        "operationId": "Billing_SetBillingGroupExchangeRate",
+        "parameters": [
+          {
+            "name": "month",
+            "in": "path",
+            "description": "Required. month. Format: `yyyymm`.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BillingSetBillingGroupExchangeRateBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/exchangerate/global/{vendor}/{month}": {
       "post": {
         "tags": [
@@ -9464,6 +9517,59 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/BillingSetGlobalExchangeRateBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/exchangerate/payer/{month}": {
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Set payer exchangerate. Only available in Ripple.",
+        "operationId": "Billing_SetPayerExchangeRate",
+        "parameters": [
+          {
+            "name": "month",
+            "in": "path",
+            "description": "Required. month. Format: `yyyymm`.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BillingSetPayerExchangeRateBody"
               }
             }
           },
@@ -20586,6 +20692,25 @@
           }
         }
       },
+      "BillingSetBillingGroupExchangeRateBody": {
+        "type": "object",
+        "properties": {
+          "groupId": {
+            "type": "string",
+            "description": "Required. account(payer) id."
+          },
+          "currency": {
+            "title": "Required. currency. (e.g. usd, jpy, myr, idr)",
+            "type": "string"
+          },
+          "exchangeRate": {
+            "title": "Required. exchangerate. the value of 1 usd per currency above\nExample: If the invoice currency is \"jpy\" and 1 USD = 150 jpy, exchangeRate = 150",
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "description": "Request message for SetBillingGroupExchangeRate rpc."
+      },
       "BillingSetCustomizedBillingServiceBillingGroupBody": {
         "required": [
           "setting"
@@ -20616,6 +20741,29 @@
           }
         },
         "description": "Request message for SetGlobalExchangeRate rpc."
+      },
+      "BillingSetPayerExchangeRateBody": {
+        "type": "object",
+        "properties": {
+          "vendor": {
+            "type": "string",
+            "description": "Required. vendor."
+          },
+          "accountId": {
+            "type": "string",
+            "description": "Required. account(payer) id."
+          },
+          "currency": {
+            "title": "Required. currency. (e.g. usd, jpy, myr, idr)",
+            "type": "string"
+          },
+          "exchangeRate": {
+            "title": "Required. exchangerate. the value of 1 usd per currency above\nExample: If the invoice currency is \"jpy\" and 1 USD = 150 jpy, exchangeRate = 150",
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "description": "Request message for SetPayerExchangeRate rpc."
       },
       "BillingSplitAdjustmentEntryBody": {
         "required": [
