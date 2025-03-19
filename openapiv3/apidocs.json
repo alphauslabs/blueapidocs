@@ -20436,12 +20436,12 @@
             "description": "Optional. tax free setting."
           },
           "exchangeRate": {
-            "title": "Optional. exchange rate. At the moment, only `jpy`,`idr`,`myr`,`sgd`,`inr` is supported.\nIt will be configured according to the currency type of the billing group associated with the account.\nFor example: {\"jpy\":150.01, \"idr\":16580,\"myr\":4.4,\"sgd\":1.33,\"inr\":85.3}",
             "type": "object",
             "additionalProperties": {
               "type": "number",
               "format": "double"
-            }
+            },
+            "description": "Optional. exchange rate. \n\nAt the moment, only `jpy`,`idr`,`myr`,`sgd`,`inr` is supported.\nIt will be configured according to the currency type of the billing group associated with the account.\nFor example: {\"jpy\":150.01, \"idr\":16580,\"myr\":4.4,\"sgd\":1.33,\"inr\":85.3}"
           },
           "billingInternalId": {
             "type": "string",
