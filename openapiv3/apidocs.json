@@ -14214,6 +14214,48 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/unitcost/merge": {
+      "post": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "Merge Existing Unit Types",
+        "operationId": "Cover_MergeUnits",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1MergeUnitsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1MergeUnitsResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/unitcost/metrics": {
       "get": {
         "tags": [
@@ -28551,6 +28593,17 @@
           }
         }
       },
+      "coverRequiredColumns": {
+        "type": "object",
+        "properties": {
+          "dateColumn": {
+            "type": "string"
+          },
+          "amountColumn": {
+            "type": "string"
+          }
+        }
+      },
       "coverResourceData": {
         "type": "object",
         "properties": {
@@ -29197,6 +29250,9 @@
           },
           "csvInfo": {
             "$ref": "#/components/schemas/coverCsvInfo"
+          },
+          "requiredColumns": {
+            "$ref": "#/components/schemas/coverRequiredColumns"
           },
           "createdBy": {
             "type": "string"
@@ -33391,8 +33447,11 @@
       "v1CreateUnitFromSuggestedResponse": {
         "type": "object",
         "properties": {
-          "unitCostData": {
-            "$ref": "#/components/schemas/coverUnitCostData"
+          "unitCostIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
@@ -33416,6 +33475,9 @@
           },
           "csvInfo": {
             "$ref": "#/components/schemas/coverCsvInfo"
+          },
+          "requiredColumns": {
+            "$ref": "#/components/schemas/coverRequiredColumns"
           }
         }
       },
@@ -36146,6 +36208,31 @@
         "properties": {
           "mergedSuggestedUnits": {
             "$ref": "#/components/schemas/coverSuggestedUnit"
+          }
+        }
+      },
+      "v1MergeUnitsRequest": {
+        "type": "object",
+        "properties": {
+          "unitCostIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "unitName": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "v1MergeUnitsResponse": {
+        "type": "object",
+        "properties": {
+          "mergedUnitCost": {
+            "$ref": "#/components/schemas/coverUnitCostData"
           }
         }
       },
