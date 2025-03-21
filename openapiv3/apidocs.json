@@ -9860,6 +9860,37 @@
         }
       }
     },
+    "/v1/invoice/displaysettings": {
+      "get": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "WORK-IN-PROGRESS: Gets the invoice display settings for invoice-ui",
+        "operationId": "Billing_GetInvoiceDisplaySettings",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetInvoiceDisplaySettingsResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/invoice/status/{date}:read": {
       "post": {
         "tags": [
@@ -34943,6 +34974,15 @@
             }
           }
         }
+      },
+      "v1GetInvoiceDisplaySettingsResponse": {
+        "type": "object",
+        "properties": {
+          "showRISPUpfrontTimeInterval": {
+            "type": "boolean"
+          }
+        },
+        "description": "Response message for GetInvoiceDisplaySettings rpc."
       },
       "v1GetMSPDefaultMetaResponse": {
         "type": "object",
