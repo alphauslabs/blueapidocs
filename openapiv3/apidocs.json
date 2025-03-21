@@ -27457,6 +27457,9 @@
           },
           "s3url": {
             "type": "string"
+          },
+          "requiredColumns": {
+            "$ref": "#/components/schemas/coverRequiredColumns"
           }
         }
       },
@@ -29250,9 +29253,6 @@
           },
           "csvInfo": {
             "$ref": "#/components/schemas/coverCsvInfo"
-          },
-          "requiredColumns": {
-            "$ref": "#/components/schemas/coverRequiredColumns"
           },
           "createdBy": {
             "type": "string"
@@ -33475,9 +33475,6 @@
           },
           "csvInfo": {
             "$ref": "#/components/schemas/coverCsvInfo"
-          },
-          "requiredColumns": {
-            "$ref": "#/components/schemas/coverRequiredColumns"
           }
         }
       },
