@@ -20496,6 +20496,25 @@
         },
         "description": "Request message for the Admin.UpdateNotificationChannel rpc."
       },
+      "AllocateAdjustmentEntryRequestAccountConfig": {
+        "title": "AccountConfig",
+        "required": [
+          "amount",
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Required. accountId",
+            "type": "string"
+          },
+          "amount": {
+            "type": "number",
+            "description": "Required.",
+            "format": "double"
+          }
+        }
+      },
       "ApplyAdjustmentEntryRequestApplySetting": {
         "title": "AdjustmentSetting",
         "type": "object",
@@ -20523,7 +20542,24 @@
         }
       },
       "BillingAllocateAdjustmentEntryBody": {
+        "required": [
+          "accountForRemaining",
+          "config"
+        ],
         "type": "object",
+        "properties": {
+          "config": {
+            "type": "array",
+            "description": "Required.",
+            "items": {
+              "$ref": "#/components/schemas/AllocateAdjustmentEntryRequestAccountConfig"
+            }
+          },
+          "accountForRemaining": {
+            "title": "Required. accountId",
+            "type": "string"
+          }
+        },
         "description": "Request message for the Billing.AllocateAdjustmentEntry rpc."
       },
       "BillingApplyAdjustmentEntryBody": {
