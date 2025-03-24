@@ -26930,6 +26930,10 @@
             "title": "AWS account, GCP projectId, AzureCSP accountId",
             "type": "string"
           },
+          "usageType": {
+            "type": "string",
+            "description": "Usage Type. Supports AWS usage types only. Other vendors will be grouped into one for each vendor."
+          },
           "cost": {
             "type": "number",
             "format": "double"
