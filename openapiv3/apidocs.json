@@ -16361,6 +16361,68 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/{vendor}/adjustmententries/{id}/allocate:restore": {
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "WORK-IN-PROGRESS: Restores the allocate adjustment entry item. Only available in Ripple.",
+        "operationId": "Billing_RestoreAllocateAdjustmentEntry",
+        "parameters": [
+          {
+            "name": "vendor",
+            "in": "path",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required. AdjustmentEntry ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BillingRestoreAllocateAdjustmentEntryBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/{vendor}/adjustmententries/{id}/split": {
       "post": {
         "tags": [
@@ -16393,6 +16455,68 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/BillingSplitAdjustmentEntryBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/{vendor}/adjustmententries/{id}/split:restore": {
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "WORK-IN-PROGRESS: Restores the splitted adjustment entry item. Only available in Ripple.",
+        "operationId": "Billing_RestoreSplitAdjustmentEntry",
+        "parameters": [
+          {
+            "name": "vendor",
+            "in": "path",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required. AdjustmentEntry ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BillingRestoreSplitAdjustmentEntryBody"
               }
             }
           },
@@ -20832,6 +20956,14 @@
         },
         "description": "Request message for the Billing.RestoreAdjustmentEntry rpc."
       },
+      "BillingRestoreAllocateAdjustmentEntryBody": {
+        "type": "object",
+        "description": "Request message for the Billing.RestoreAllocateAdjustmentEntry rpc."
+      },
+      "BillingRestoreSplitAdjustmentEntryBody": {
+        "type": "object",
+        "description": "Request message for the Billing.RestoreSplitAdjustmentEntry rpc."
+      },
       "BillingSaveInvoiceSettingsBody": {
         "type": "object",
         "properties": {
@@ -20936,7 +21068,7 @@
         "properties": {
           "startMonth": {
             "type": "string",
-            "description": "Required. The UTC month to query. If empty, defaults to current month. Format is `yyyymm`. For example, June 2021 will be `202106`."
+            "description": "Required. The UTC month to query. If empty, defaults to current month. Format is `yyyymmdd`. For example, June 2021 will be `20210601`."
           }
         },
         "description": "Request message for the Billing.SplitAdjustmentEntry rpc."
