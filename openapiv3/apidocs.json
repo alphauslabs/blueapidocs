@@ -17251,6 +17251,57 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/{vendor}/calculation/prerequisites/{month}": {
+      "get": {
+        "tags": [
+          "Cost"
+        ],
+        "summary": "WORK-IN-PROGRESS: Get invoice id for a month",
+        "operationId": "Cost_GetCalculationPrerequisites",
+        "parameters": [
+          {
+            "name": "vendor",
+            "in": "path",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "month",
+            "in": "path",
+            "description": "Required. Month in format yyyy-mm.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetCalculationPrerequisitesResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/{vendor}/calculations/history": {
       "get": {
         "tags": [
@@ -34360,6 +34411,29 @@
         "properties": {
           "budgetData": {
             "$ref": "#/components/schemas/coverBudgetData"
+          }
+        }
+      },
+      "v1GetCalculationPrerequisitesResponse": {
+        "type": "object",
+        "properties": {
+          "invoiceId": {
+            "type": "string",
+            "description": "The invoice id."
+          },
+          "payerId": {
+            "type": "string",
+            "description": "The payer account id."
+          },
+          "exchangeRate": {
+            "type": "number",
+            "description": "The exchange rate.",
+            "format": "double"
+          },
+          "unblendedCostInCur": {
+            "type": "number",
+            "description": "The unblended cost in CUR.",
+            "format": "double"
           }
         }
       },
