@@ -9889,6 +9889,47 @@
             }
           }
         }
+      },
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Creates/Updates an invoice display settings. Only available in Ripple.",
+        "operationId": "Billing_UpdateInvoiceDisplaySettings",
+        "requestBody": {
+          "description": "Request message for UpdateInvoiceDisplaySettings rpc.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1UpdateInvoiceDisplaySettingsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
       }
     },
     "/v1/invoice/status/{date}:read": {
@@ -38036,6 +38077,18 @@
             "type": "string"
           }
         }
+      },
+      "v1UpdateInvoiceDisplaySettingsRequest": {
+        "type": "object",
+        "properties": {
+          "settings": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "boolean"
+            }
+          }
+        },
+        "description": "Request message for UpdateInvoiceDisplaySettings rpc."
       },
       "v1UpdateMSPDefaultMetaRequest": {
         "type": "object",
