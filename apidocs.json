@@ -12850,7 +12850,7 @@
     },
     "/v1/{vendor}/adjustmententries/{id}/allocate": {
       "post": {
-        "summary": "WORK-IN-PROGRESS: Allocates the adjustment entry item. Only available in Ripple.",
+        "summary": "Allocates the adjustment entry item. Only available in Ripple.",
         "operationId": "Billing_AllocateAdjustmentEntry",
         "responses": {
           "200": {
@@ -12898,7 +12898,7 @@
     },
     "/v1/{vendor}/adjustmententries/{id}/allocate:restore": {
       "post": {
-        "summary": "WORK-IN-PROGRESS: Restores the allocate adjustment entry item. Only available in Ripple.",
+        "summary": "Restores the allocate adjustment entry item. Only available in Ripple.",
         "operationId": "Billing_RestoreAllocateAdjustmentEntry",
         "responses": {
           "200": {
@@ -12946,7 +12946,7 @@
     },
     "/v1/{vendor}/adjustmententries/{id}/split": {
       "post": {
-        "summary": "WORK-IN-PROGRESS: Splits the adjustment entry item. Only available in Ripple.",
+        "summary": "Splits the adjustment entry item. Only available in Ripple.",
         "operationId": "Billing_SplitAdjustmentEntry",
         "responses": {
           "200": {
@@ -12994,7 +12994,7 @@
     },
     "/v1/{vendor}/adjustmententries/{id}/split:restore": {
       "post": {
-        "summary": "WORK-IN-PROGRESS: Restores the splitted adjustment entry item. Only available in Ripple.",
+        "summary": "Restores the splitted adjustment entry item. Only available in Ripple.",
         "operationId": "Billing_RestoreSplitAdjustmentEntry",
         "responses": {
           "200": {
@@ -13042,7 +13042,7 @@
     },
     "/v1/{vendor}/adjustmententries:apply": {
       "post": {
-        "summary": "WORK-IN-PROGRESS: Applies the adjustment entry item. Only available in Ripple.",
+        "summary": "Applies the adjustment entry item. Only available in Ripple.",
         "operationId": "Billing_ApplyAdjustmentEntry",
         "responses": {
           "200": {
@@ -13083,7 +13083,7 @@
     },
     "/v1/{vendor}/adjustmententries:read": {
       "post": {
-        "summary": "WORK-IN-PROGRESS: Reads the adjustment entries. Only available in Ripple.",
+        "summary": "Reads the adjustment entries. Only available in Ripple.",
         "operationId": "Billing_ReadAdjustmentEntries",
         "responses": {
           "200": {
@@ -13132,7 +13132,7 @@
     },
     "/v1/{vendor}/adjustmententries:restore": {
       "post": {
-        "summary": "WORK-IN-PROGRESS: Restores the adjustment entry item. Only available in Ripple.",
+        "summary": "Restores the adjustment entry item. Only available in Ripple.",
         "operationId": "Billing_RestoreAdjustmentEntry",
         "responses": {
           "200": {

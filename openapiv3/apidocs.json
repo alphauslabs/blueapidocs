@@ -16438,7 +16438,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Allocates the adjustment entry item. Only available in Ripple.",
+        "summary": "Allocates the adjustment entry item. Only available in Ripple.",
         "operationId": "Billing_AllocateAdjustmentEntry",
         "parameters": [
           {
@@ -16500,7 +16500,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Restores the allocate adjustment entry item. Only available in Ripple.",
+        "summary": "Restores the allocate adjustment entry item. Only available in Ripple.",
         "operationId": "Billing_RestoreAllocateAdjustmentEntry",
         "parameters": [
           {
@@ -16562,7 +16562,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Splits the adjustment entry item. Only available in Ripple.",
+        "summary": "Splits the adjustment entry item. Only available in Ripple.",
         "operationId": "Billing_SplitAdjustmentEntry",
         "parameters": [
           {
@@ -16624,7 +16624,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Restores the splitted adjustment entry item. Only available in Ripple.",
+        "summary": "Restores the splitted adjustment entry item. Only available in Ripple.",
         "operationId": "Billing_RestoreSplitAdjustmentEntry",
         "parameters": [
           {
@@ -16686,7 +16686,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Applies the adjustment entry item. Only available in Ripple.",
+        "summary": "Applies the adjustment entry item. Only available in Ripple.",
         "operationId": "Billing_ApplyAdjustmentEntry",
         "parameters": [
           {
@@ -16739,7 +16739,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Reads the adjustment entries. Only available in Ripple.",
+        "summary": "Reads the adjustment entries. Only available in Ripple.",
         "operationId": "Billing_ReadAdjustmentEntries",
         "parameters": [
           {
@@ -16801,7 +16801,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Restores the adjustment entry item. Only available in Ripple.",
+        "summary": "Restores the adjustment entry item. Only available in Ripple.",
         "operationId": "Billing_RestoreAdjustmentEntry",
         "parameters": [
           {
