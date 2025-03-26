@@ -11016,6 +11016,76 @@
         ]
       }
     },
+    "/v1/settings/{id}": {
+      "get": {
+        "summary": "Fetch previous settings for a user",
+        "operationId": "Flow_GetSettings",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetSettingsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Required. The id of the payer to fetch settings for.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Flow"
+        ]
+      },
+      "put": {
+        "summary": "Update the settings configuration for a user.",
+        "operationId": "Flow_UpdateSettings",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateSettingsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Required. The id of the payer to update.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/FlowUpdateSettingsBody"
+            }
+          }
+        ],
+        "tags": [
+          "Flow"
+        ]
+      }
+    },
     "/v1/tags": {
       "get": {
         "summary": "Returns the customer details and its tags. \nPort for: m/ripple/tags/vendor/{vendor}?type={type}",
@@ -18472,6 +18542,45 @@
     },
     "ExecuteOptimizationResponseGCPOption": {
       "type": "object"
+    },
+    "FlowUpdateSettingsBody": {
+      "type": "object",
+      "properties": {
+        "accountScope": {
+          "type": "string",
+          "description": "Optional. Update account scope (payer or linked)."
+        },
+        "customization": {
+          "type": "string",
+          "description": "Optional. Update customization setting."
+        },
+        "planTerm": {
+          "type": "string",
+          "description": "Optional. Update term of the SP."
+        },
+        "paymentOption": {
+          "type": "string",
+          "description": "Optional. Update payment option."
+        },
+        "lookBackPeriod": {
+          "type": "string",
+          "description": "Optional. Update lookback period."
+        },
+        "instanceFamily": {
+          "type": "string",
+          "description": "Optional. Update list of instance families."
+        },
+        "annualBudget": {
+          "type": "number",
+          "format": "double",
+          "description": "Optional. Update annual budget."
+        },
+        "approval": {
+          "type": "boolean",
+          "description": "Optional. Update purchase approval."
+        }
+      },
+      "description": "Request message for the Flow.UpdateSettings rpc."
     },
     "GcpOptionsBillingOption": {
       "type": "object",
@@ -31449,6 +31558,43 @@
       },
       "title": "Response message for GetServices"
     },
+    "v1GetSettingsResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "accountScope": {
+          "type": "string"
+        },
+        "customization": {
+          "type": "string"
+        },
+        "planTerm": {
+          "type": "string"
+        },
+        "paymentOption": {
+          "type": "string"
+        },
+        "lookBackPeriod": {
+          "type": "string"
+        },
+        "instanceFamily": {
+          "type": "string"
+        },
+        "annualBudget": {
+          "type": "number",
+          "format": "double"
+        },
+        "approval": {
+          "type": "boolean"
+        },
+        "lastUpdated": {
+          "type": "string"
+        }
+      },
+      "description": "Response message for fetching previous settings configuration of a user."
+    },
     "v1GetSharedResourcesResponse": {
       "type": "object",
       "properties": {
@@ -34040,6 +34186,14 @@
         }
       },
       "description": "Request message for the Organization.UpdatePassword rpc."
+    },
+    "v1UpdateSettingsResponse": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "string"
+        }
+      }
     },
     "v1UpdateSharedResourcesResponse": {
       "type": "object",
