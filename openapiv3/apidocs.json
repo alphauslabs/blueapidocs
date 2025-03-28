@@ -17514,8 +17514,8 @@
         "tags": [
           "Cost"
         ],
-        "summary": "WORK-IN-PROGRESS: Get invoice id for a month",
-        "operationId": "Cost_GetCalculationPrerequisites",
+        "summary": "WORK-IN-PROGRESS: List the prerequisites for cost calculations.",
+        "operationId": "Cost_ListCalculationPrerequisites",
         "parameters": [
           {
             "name": "vendor",
@@ -17542,7 +17542,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/v1GetCalculationPrerequisitesResponse"
+                  "$ref": "#/components/schemas/v1ListCalculationPrerequisitesResponse"
                 }
               }
             }
@@ -32324,6 +32324,29 @@
           }
         }
       },
+      "v1CalculationPrerequisite": {
+        "type": "object",
+        "properties": {
+          "invoiceId": {
+            "type": "string",
+            "description": "The invoice id."
+          },
+          "payerId": {
+            "type": "string",
+            "description": "The payer account id."
+          },
+          "exchangeRate": {
+            "type": "number",
+            "description": "The exchange rate.",
+            "format": "double"
+          },
+          "unblendedCostInCur": {
+            "type": "number",
+            "description": "The unblended cost in CUR.",
+            "format": "double"
+          }
+        }
+      },
       "v1CalculationsSchedule": {
         "type": "object",
         "properties": {
@@ -34723,29 +34746,6 @@
           }
         }
       },
-      "v1GetCalculationPrerequisitesResponse": {
-        "type": "object",
-        "properties": {
-          "invoiceId": {
-            "type": "string",
-            "description": "The invoice id."
-          },
-          "payerId": {
-            "type": "string",
-            "description": "The payer account id."
-          },
-          "exchangeRate": {
-            "type": "number",
-            "description": "The exchange rate.",
-            "format": "double"
-          },
-          "unblendedCostInCur": {
-            "type": "number",
-            "description": "The unblended cost in CUR.",
-            "format": "double"
-          }
-        }
-      },
       "v1GetCalculatorConfigResponse": {
         "type": "object",
         "properties": {
@@ -36190,6 +36190,18 @@
         "properties": {
           "budgetData": {
             "$ref": "#/components/schemas/coverBudgetData"
+          }
+        }
+      },
+      "v1ListCalculationPrerequisitesResponse": {
+        "type": "object",
+        "properties": {
+          "prerequisites": {
+            "type": "array",
+            "description": "Repeated list of calculation prerequisites.",
+            "items": {
+              "$ref": "#/components/schemas/v1CalculationPrerequisite"
+            }
           }
         }
       },
