@@ -22616,7 +22616,10 @@
           },
           "costgroupId": {
             "title": "Optional",
-            "type": "string"
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           "csvInfo": {
             "$ref": "#/components/schemas/coverCsvInfo"
@@ -27670,6 +27673,9 @@
           }
         }
       },
+      "coverCloudWatchInfo": {
+        "type": "object"
+      },
       "coverCombinations": {
         "type": "object",
         "properties": {
@@ -28444,6 +28450,26 @@
           },
           "datasetRegion": {
             "type": "string"
+          }
+        }
+      },
+      "coverGoogleSheetInfo": {
+        "type": "object",
+        "properties": {
+          "sheetId": {
+            "type": "string",
+            "description": "The ID of the Google Sheet."
+          },
+          "sheetUrl": {
+            "type": "string",
+            "description": "The URL of the Google Sheet."
+          },
+          "sheetName": {
+            "title": "The name of the sheet within the Google Sheet",
+            "type": "string"
+          },
+          "requiredColumns": {
+            "$ref": "#/components/schemas/coverRequiredColumns"
           }
         }
       },
@@ -29433,6 +29459,23 @@
           }
         }
       },
+      "coverSourceInfo": {
+        "type": "object",
+        "properties": {
+          "csv": {
+            "$ref": "#/components/schemas/coverCsvInfo"
+          },
+          "googleSheet": {
+            "$ref": "#/components/schemas/coverGoogleSheetInfo"
+          },
+          "cloudWatch": {
+            "$ref": "#/components/schemas/coverCloudWatchInfo"
+          },
+          "telemetry": {
+            "$ref": "#/components/schemas/coverTelemetryInfo"
+          }
+        }
+      },
       "coverSpRecommendationDetails": {
         "type": "object",
         "properties": {
@@ -29569,6 +29612,9 @@
           }
         }
       },
+      "coverTelemetryInfo": {
+        "type": "object"
+      },
       "coverThreshold": {
         "type": "object",
         "properties": {
@@ -29676,10 +29722,13 @@
             "type": "string"
           },
           "costgroupId": {
-            "type": "string"
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
-          "csvInfo": {
-            "$ref": "#/components/schemas/coverCsvInfo"
+          "sourceInfo": {
+            "$ref": "#/components/schemas/coverSourceInfo"
           },
           "createdBy": {
             "type": "string"
@@ -33909,6 +33958,7 @@
         "type": "object",
         "properties": {
           "metricName": {
+            "title": "Required. Unit Metric Name",
             "type": "string"
           },
           "aggregationMethod": {
@@ -33921,10 +33971,13 @@
             "type": "string"
           },
           "costgroupId": {
-            "type": "string"
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
-          "csvInfo": {
-            "$ref": "#/components/schemas/coverCsvInfo"
+          "sourceInfo": {
+            "$ref": "#/components/schemas/coverSourceInfo"
           }
         }
       },

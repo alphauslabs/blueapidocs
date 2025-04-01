@@ -18179,7 +18179,10 @@
           "title": "Optional"
         },
         "costgroupId": {
-          "type": "string",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
           "title": "Optional"
         },
         "csvInfo": {
@@ -23304,6 +23307,9 @@
         }
       }
     },
+    "coverCloudWatchInfo": {
+      "type": "object"
+    },
     "coverCombinations": {
       "type": "object",
       "properties": {
@@ -24102,6 +24108,26 @@
         },
         "datasetRegion": {
           "type": "string"
+        }
+      }
+    },
+    "coverGoogleSheetInfo": {
+      "type": "object",
+      "properties": {
+        "sheetId": {
+          "type": "string",
+          "description": "The ID of the Google Sheet."
+        },
+        "sheetUrl": {
+          "type": "string",
+          "description": "The URL of the Google Sheet."
+        },
+        "sheetName": {
+          "type": "string",
+          "title": "The name of the sheet within the Google Sheet"
+        },
+        "requiredColumns": {
+          "$ref": "#/definitions/coverRequiredColumns"
         }
       }
     },
@@ -25098,6 +25124,23 @@
         }
       }
     },
+    "coverSourceInfo": {
+      "type": "object",
+      "properties": {
+        "csv": {
+          "$ref": "#/definitions/coverCsvInfo"
+        },
+        "googleSheet": {
+          "$ref": "#/definitions/coverGoogleSheetInfo"
+        },
+        "cloudWatch": {
+          "$ref": "#/definitions/coverCloudWatchInfo"
+        },
+        "telemetry": {
+          "$ref": "#/definitions/coverTelemetryInfo"
+        }
+      }
+    },
     "coverSpRecommendationDetails": {
       "type": "object",
       "properties": {
@@ -25238,6 +25281,9 @@
         }
       }
     },
+    "coverTelemetryInfo": {
+      "type": "object"
+    },
     "coverThreshold": {
       "type": "object",
       "properties": {
@@ -25347,10 +25393,13 @@
           "type": "string"
         },
         "costgroupId": {
-          "type": "string"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
-        "csvInfo": {
-          "$ref": "#/definitions/coverCsvInfo"
+        "sourceInfo": {
+          "$ref": "#/definitions/coverSourceInfo"
         },
         "createdBy": {
           "type": "string"
@@ -29678,7 +29727,8 @@
       "type": "object",
       "properties": {
         "metricName": {
-          "type": "string"
+          "type": "string",
+          "title": "Required. Unit Metric Name"
         },
         "aggregationMethod": {
           "type": "string"
@@ -29690,10 +29740,13 @@
           "type": "string"
         },
         "costgroupId": {
-          "type": "string"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
-        "csvInfo": {
-          "$ref": "#/definitions/coverCsvInfo"
+        "sourceInfo": {
+          "$ref": "#/definitions/coverSourceInfo"
         }
       }
     },
