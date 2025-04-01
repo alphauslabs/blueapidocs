@@ -22687,8 +22687,8 @@
               "type": "string"
             }
           },
-          "csvInfo": {
-            "$ref": "#/components/schemas/coverCsvInfo"
+          "sourceInfo": {
+            "$ref": "#/components/schemas/coverSourceInfo"
           }
         }
       },
