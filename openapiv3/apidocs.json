@@ -7009,7 +7009,7 @@
         "x-codegen-request-body-name": "body"
       }
     },
-    "/v1/billinggroup/{id}:basinInfo": {
+    "/v1/billinggroup/{id}:basicInfo": {
       "put": {
         "tags": [
           "Billing"
@@ -7066,7 +7066,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "Update billing group basic information",
+        "summary": "WORK-IN-PROGRESS: Update billing group custom fields information",
         "operationId": "Billing_UpdateBillingGroupCustomFields",
         "parameters": [
           {
@@ -7083,6 +7083,58 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/BillingUpdateBillingGroupCustomFieldsBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/billinggroup/{id}:freeFormat": {
+      "put": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "WORK-IN-PROGRESS: Update billing group custom fields information",
+        "operationId": "Billing_UpdateBillingGroupFreeFormat",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BillingUpdateBillingGroupFreeFormatBody"
               }
             }
           },
@@ -21300,6 +21352,20 @@
             "type": "object",
             "additionalProperties": {
               "type": "string"
+            }
+          }
+        }
+      },
+      "BillingUpdateBillingGroupFreeFormatBody": {
+        "type": "object",
+        "properties": {
+          "vendor": {
+            "type": "string"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1FreeFormItem"
             }
           }
         }
