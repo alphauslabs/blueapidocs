@@ -27365,10 +27365,7 @@
           },
           "details": {
             "title": "Could be AWS, Azure or GCP Cost",
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
+            "type": "string"
           },
           "forecast": {
             "$ref": "#/components/schemas/coverAwsCostForecast"
