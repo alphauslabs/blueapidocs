@@ -6753,6 +6753,57 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/billinggroup/reseller/announcements/{groupId}": {
+      "get": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "WORK-IN-PROGRESS: Gets the announcement list for billing group",
+        "operationId": "Billing_GetBillingGroupAnnouncements",
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "description": "Set empty to return all",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Stream result of v1GetBillingGroupAnnouncementsResponse",
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/components/schemas/v1GetBillingGroupAnnouncementsResponse"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/googlerpcStatus"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/billinggroup/tags": {
       "post": {
         "tags": [
@@ -8851,6 +8902,86 @@
           }
         },
         "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/credits": {
+      "get": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "WORK-IN-PROGRESS: Gets the credits",
+        "operationId": "Billing_GetCredits",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Stream result of v1Credit",
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/components/schemas/v1Credit"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/googlerpcStatus"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/csvsettings": {
+      "get": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "WORK-IN-PROGRESS: Gets the csv column settings",
+        "operationId": "Billing_GetCsvSettings",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Stream result of v1CsvSetting",
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/components/schemas/v1CsvSetting"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/googlerpcStatus"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/v1/customfield": {
@@ -12811,7 +12942,7 @@
         }
       }
     },
-    "/v1/reseller/announcements/{id}": {
+    "/v1/reseller/announcements/{announcementId}": {
       "get": {
         "tags": [
           "Billing"
@@ -12820,9 +12951,9 @@
         "operationId": "Billing_GetAnnouncements",
         "parameters": [
           {
-            "name": "id",
+            "name": "announcementId",
             "in": "path",
-            "description": "Announcement id. Empty returns all announcement",
+            "description": "Set empty to return all",
             "required": true,
             "schema": {
               "type": "string"
@@ -12835,11 +12966,11 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "Stream result of v1GetAnnouncementsResponse",
+                  "title": "Stream result of v1Announcement",
                   "type": "object",
                   "properties": {
                     "result": {
-                      "$ref": "#/components/schemas/v1GetAnnouncementsResponse"
+                      "$ref": "#/components/schemas/v1Announcement"
                     },
                     "error": {
                       "$ref": "#/components/schemas/googlerpcStatus"
@@ -22867,6 +22998,23 @@
           }
         }
       },
+      "CsvSettingColumn": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "enabled": {
+            "type": "boolean"
+          }
+        }
+      },
       "CurrentEC2DetailsOtherDetails": {
         "type": "object",
         "properties": {
@@ -31978,6 +32126,53 @@
           }
         }
       },
+      "v1Announcement": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "billingGroups": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "allBillingGroups": {
+            "type": "boolean"
+          },
+          "start": {
+            "type": "string"
+          },
+          "end": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "userStatus": {
+            "type": "string"
+          },
+          "created": {
+            "type": "string"
+          },
+          "updated": {
+            "type": "string"
+          }
+        }
+      },
       "v1AnomalyAlertData": {
         "type": "object",
         "properties": {
@@ -34245,6 +34440,61 @@
           }
         }
       },
+      "v1Credit": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "customerId": {
+            "type": "string"
+          },
+          "customerName": {
+            "type": "string"
+          },
+          "creditAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "term": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "created": {
+            "type": "string"
+          },
+          "initialFee": {
+            "type": "number",
+            "format": "double"
+          },
+          "creditBalance": {
+            "type": "number",
+            "format": "double"
+          },
+          "applied": {
+            "type": "boolean"
+          }
+        }
+      },
+      "v1CsvSetting": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "col": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CsvSettingColumn"
+            }
+          }
+        }
+      },
       "v1CustomField": {
         "type": "object",
         "properties": {
@@ -34792,50 +35042,6 @@
         },
         "description": "Response message for the GetAllocationAttributes rpc."
       },
-      "v1GetAnnouncementsResponse": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "label": {
-            "type": "string"
-          },
-          "type": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "billingGroups": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "start": {
-            "type": "string"
-          },
-          "end": {
-            "type": "string"
-          },
-          "date": {
-            "type": "string"
-          },
-          "status": {
-            "type": "string"
-          },
-          "userStatus": {
-            "type": "string"
-          },
-          "created": {
-            "type": "string"
-          },
-          "updated": {
-            "type": "string"
-          }
-        }
-      },
       "v1GetAnomalyinCostGroupRequest": {
         "title": "Request message for getting anomaly",
         "type": "object",
@@ -34892,6 +35098,23 @@
           }
         },
         "description": "Response message for the GetBillingGroupAccountSupportPlan rpc."
+      },
+      "v1GetBillingGroupAnnouncementsResponse": {
+        "type": "object",
+        "properties": {
+          "groupId": {
+            "type": "string"
+          },
+          "groupName": {
+            "type": "string"
+          },
+          "companyId": {
+            "type": "string"
+          },
+          "announcement": {
+            "$ref": "#/components/schemas/v1Announcement"
+          }
+        }
       },
       "v1GetBillingGroupInvoiceServiceDiscountsResponse": {
         "type": "object",
