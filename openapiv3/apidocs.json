@@ -6764,7 +6764,7 @@
           {
             "name": "groupId",
             "in": "path",
-            "description": "Set empty to return all",
+            "description": "Optional. Set empty to return all",
             "required": true,
             "schema": {
               "type": "string"
@@ -12953,7 +12953,7 @@
           {
             "name": "announcementId",
             "in": "path",
-            "description": "Set empty to return all",
+            "description": "Optional. Set empty to return all",
             "required": true,
             "schema": {
               "type": "string"
@@ -35111,8 +35111,11 @@
           "companyId": {
             "type": "string"
           },
-          "announcement": {
-            "$ref": "#/components/schemas/v1Announcement"
+          "announcements": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1Announcement"
+            }
           }
         }
       },
