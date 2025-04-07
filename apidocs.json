@@ -18799,6 +18799,10 @@
         "approval": {
           "type": "boolean",
           "description": "Optional. Update purchase approval."
+        },
+        "payerId": {
+          "type": "boolean",
+          "description": "Optional. Update used payerId."
         }
       },
       "description": "Request message for the Flow.UpdateSettings rpc."
@@ -29918,6 +29922,10 @@
         "approval": {
           "type": "boolean",
           "description": "Optional. Purchase approval from the payer for the SP. Default value is `false`."
+        },
+        "payerId": {
+          "type": "string",
+          "title": "Required. Payer account ID"
         }
       },
       "description": "Request message for the Flow.CreateSettings rpc."
@@ -31988,6 +31996,9 @@
           "type": "boolean"
         },
         "lastUpdated": {
+          "type": "string"
+        },
+        "payerId": {
           "type": "string"
         }
       },
