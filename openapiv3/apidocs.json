@@ -27943,7 +27943,36 @@
         }
       },
       "coverCloudWatchInfo": {
-        "type": "object"
+        "type": "object",
+        "properties": {
+          "region": {
+            "type": "string",
+            "description": "The AWS region where the CloudWatch metric is located."
+          },
+          "accountId": {
+            "title": "The account ID of the AWS account where the CloudWatch metric is located",
+            "type": "string"
+          },
+          "namespace": {
+            "type": "string",
+            "description": "The namespace of the CloudWatch metric.\nFor example, \"AWS/EC2\" for EC2 metrics."
+          },
+          "metricName": {
+            "title": "The name of the CloudWatch metric.\nFor example, \"CPUUtilization\" for EC2 CPU utilization",
+            "type": "string"
+          },
+          "dimensions": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "The dimensions of the CloudWatch metric.\nFor example, \"InstanceId\" for EC2 instance metrics.\nThe dimensions are represented as key-value pairs.\nFor example, {\"InstanceId\": \"i-1234567890abcdef0\"} for a specific EC2 instance."
+          },
+          "aggregationMethod": {
+            "title": "The aggregation method to use for the CloudWatch metric",
+            "type": "string"
+          }
+        }
       },
       "coverCombinations": {
         "type": "object",
@@ -28155,9 +28184,11 @@
         "type": "object",
         "properties": {
           "s3key": {
+            "title": "The S3 key of the CSV file.\nFor example, \"path/to/file.csv\"",
             "type": "string"
           },
           "s3url": {
+            "title": "The URL of the CSV file.\nFor example, \"https://s3.amazonaws.com/bucket/path/to/file.csv\"",
             "type": "string"
           },
           "requiredColumns": {
@@ -28726,15 +28757,19 @@
         "type": "object",
         "properties": {
           "sheetId": {
-            "type": "string",
-            "description": "The ID of the Google Sheet."
+            "title": "The ID of the Google Sheet.\nFor example, \"1BxiMVs0XRA5nFMd29P8v4g\"",
+            "type": "string"
           },
           "sheetUrl": {
-            "type": "string",
-            "description": "The URL of the Google Sheet."
+            "title": "The URL of the Google Sheet.\nFor example, \"https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMd29P8v4g/edit\"",
+            "type": "string"
           },
           "sheetName": {
-            "title": "The name of the sheet within the Google Sheet",
+            "title": "The name of the sheet within the Google Sheet\nFor example, \"Sheet1\"",
+            "type": "string"
+          },
+          "sheetRange": {
+            "title": "The range of cells to read from the sheet.\nFor example, \"A1:D10\" to read cells A1 to D10",
             "type": "string"
           },
           "requiredColumns": {
