@@ -6758,7 +6758,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Gets the announcement list for billing group",
+        "summary": "Gets the announcement list for billing group",
         "operationId": "Billing_GetBillingGroupAnnouncements",
         "parameters": [
           {
@@ -8909,7 +8909,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Gets the credits",
+        "summary": "Gets the credits",
         "operationId": "Billing_GetCredits",
         "responses": {
           "200": {
@@ -8949,7 +8949,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Gets the csv column settings",
+        "summary": "Gets the csv column settings",
         "operationId": "Billing_GetCsvSettings",
         "responses": {
           "200": {
@@ -12942,12 +12942,188 @@
         }
       }
     },
+    "/v1/reseller/announcement": {
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Creates new announcement for wave users",
+        "operationId": "Billing_CreateAnnouncement",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1CreateAnnouncementRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/reseller/announcement/{announcementId}": {
+      "put": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Full update existing announcement",
+        "operationId": "Billing_UpdateAnnouncement",
+        "parameters": [
+          {
+            "name": "announcementId",
+            "in": "path",
+            "description": "Required",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BillingUpdateAnnouncementBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      },
+      "delete": {
+        "tags": [
+          "Billing"
+        ],
+        "operationId": "Billing_DeleteAnnouncement",
+        "parameters": [
+          {
+            "name": "announcementId",
+            "in": "path",
+            "description": "Required",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/reseller/announcements/bulk/status": {
+      "patch": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Update multiple announcements status",
+        "operationId": "Billing_UpdateAnnouncementsStatus",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1UpdateAnnouncementsStatusRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/reseller/announcements/{announcementId}": {
       "get": {
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Gets the announcement list.",
+        "summary": "Gets the announcement list.",
         "operationId": "Billing_GetAnnouncements",
         "parameters": [
           {
@@ -12991,6 +13167,64 @@
             }
           }
         }
+      }
+    },
+    "/v1/reseller/announcements/{announcementId}/date": {
+      "patch": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Update announcement date",
+        "operationId": "Billing_UpdateAnnouncementDate",
+        "parameters": [
+          {
+            "name": "announcementId",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BillingUpdateAnnouncementDateBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
       }
     },
     "/v1/resellers": {
@@ -21494,6 +21728,24 @@
           }
         },
         "description": "Request message for the Billing.UpdateAdjustmentConfig rpc."
+      },
+      "BillingUpdateAnnouncementBody": {
+        "type": "object",
+        "properties": {
+          "announcement": {
+            "$ref": "#/components/schemas/v1CreateAnnouncementRequest"
+          }
+        }
+      },
+      "BillingUpdateAnnouncementDateBody": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "title": "Required. Announcement date (epoch time)",
+            "type": "string",
+            "format": "int64"
+          }
+        }
       },
       "BillingUpdateBillingGroupAccountSupportPlanBody": {
         "required": [
@@ -33256,6 +33508,48 @@
         },
         "description": "Request message for the CreateAllocator rpc."
       },
+      "v1CreateAnnouncementRequest": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "title": "Optional. Label description for the announcement",
+            "type": "string"
+          },
+          "type": {
+            "title": "Required. Announcement type (eg. \"info\", \"urgent\")",
+            "type": "string"
+          },
+          "contents": {
+            "title": "Required. Announcement message (HTML format)",
+            "type": "string"
+          },
+          "billingGroups": {
+            "title": "Optional. Group Id that the announcement will apply",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "allBillingGroups": {
+            "title": "Optional. Apply the announcement to all billing groups",
+            "type": "boolean"
+          },
+          "start": {
+            "title": "Required. Start time for the announcement (epoch time)",
+            "type": "string",
+            "format": "int64"
+          },
+          "end": {
+            "title": "Required. End time for the announcement (epoch time)",
+            "type": "string",
+            "format": "int64"
+          },
+          "status": {
+            "title": "Required. Announcement status (\"enabled\", \"disabled\")",
+            "type": "string"
+          }
+        }
+      },
       "v1CreateAnomalyAlertRequest": {
         "title": "Rquest message for CreateAnomalyAlert",
         "type": "object",
@@ -38638,6 +38932,20 @@
         "properties": {
           "alertData": {
             "$ref": "#/components/schemas/coverAlertData"
+          }
+        }
+      },
+      "v1UpdateAnnouncementsStatusRequest": {
+        "type": "object",
+        "properties": {
+          "announcementId": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "type": "string"
           }
         }
       },
