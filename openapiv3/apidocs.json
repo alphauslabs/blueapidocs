@@ -28581,6 +28581,15 @@
           }
         }
       },
+      "coverCostGroupType": {
+        "type": "string",
+        "default": "default",
+        "enum": [
+          "default",
+          "ai",
+          "container"
+        ]
+      },
       "coverCsvInfo": {
         "type": "object",
         "properties": {
@@ -34130,6 +34139,9 @@
         "properties": {
           "name": {
             "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/coverCostGroupType"
           },
           "description": {
             "type": "string"
