@@ -15090,6 +15090,48 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/unitcost/metrics/preview/googlesheet": {
+      "post": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "Preview Google Sheet Data",
+        "operationId": "Cover_PreviewGoogleSheet",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1PreviewGoogleSheetRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1PreviewGoogleSheetResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/unitcost/metrics/{id}": {
       "get": {
         "tags": [
@@ -29983,6 +30025,17 @@
           }
         }
       },
+      "coverRowData": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      },
       "coverS3IncompleteMultiPartUploadAbortConfiguration": {
         "type": "object",
         "properties": {
@@ -37903,6 +37956,42 @@
       },
       "v1Preference": {
         "type": "object"
+      },
+      "v1PreviewGoogleSheetRequest": {
+        "type": "object",
+        "properties": {
+          "sheetUrl": {
+            "title": "Required. The URL of the Google Sheet.\nExample: \"https://docs.google.com/spreadsheets/d/1A2B3C4D5E6F7G8H9I0J/edit\"",
+            "type": "string"
+          },
+          "sheetName": {
+            "title": "Required. The name of the sheet within the Google Sheet.\nExample: \"Sheet1\"",
+            "type": "string"
+          },
+          "range": {
+            "title": "Required. The range of cells to preview. \nExample: \"A1:Z100\"",
+            "type": "string"
+          }
+        }
+      },
+      "v1PreviewGoogleSheetResponse": {
+        "type": "object",
+        "properties": {
+          "header": {
+            "type": "array",
+            "description": "Contains the column headers of the Google Sheet.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "rowData": {
+            "type": "array",
+            "description": "Contains the data rows of the Google Sheet.",
+            "items": {
+              "$ref": "#/components/schemas/coverRowData"
+            }
+          }
+        }
       },
       "v1ProcessAuth0UserRequest": {
         "title": "Request message for AddUserFromAuth0asRoot rpc",
