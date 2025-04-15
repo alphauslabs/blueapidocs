@@ -15132,7 +15132,49 @@
         "x-codegen-request-body-name": "body"
       }
     },
-    "/v1/unitcost/metrics/preview/googlesheet": {
+    "/v1/unitcost/metrics/googlesheet/confirm": {
+      "post": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "Confirm Google Sheet Access",
+        "operationId": "Cover_ConfirmGoogleSheetAccess",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1ConfirmGoogleSheetAccessRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1ConfirmGoogleSheetAccessResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/unitcost/metrics/googlesheet/preview": {
       "post": {
         "tags": [
           "Cover"
@@ -33527,6 +33569,31 @@
         },
         "description": "Response message for the Admin.CreateCloudWatchMetricsStream rpc."
       },
+      "v1ConfirmGoogleSheetAccessRequest": {
+        "type": "object",
+        "properties": {
+          "sheetUrl": {
+            "title": "Required. The URL of the Google Sheet.\nExample: \"https://docs.google.com/spreadsheets/d/1A2B3C4D5E6F7G8H9I0J/edit\"",
+            "type": "string"
+          }
+        }
+      },
+      "v1ConfirmGoogleSheetAccessResponse": {
+        "type": "object",
+        "properties": {
+          "googleSheetId": {
+            "title": "The extracted id from the Google Sheet URL.\nExample: \"1A2B3C4D5E6F7G8H9I0J\"",
+            "type": "string"
+          },
+          "sheetNames": {
+            "title": "The name of the sheet within the Google Sheet.\nExample: \"Sheet1\"",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
       "v1CostAllocatorDetails": {
         "type": "object",
         "properties": {
@@ -38021,9 +38088,13 @@
       "v1PreviewGoogleSheetRequest": {
         "type": "object",
         "properties": {
-          "sheetUrl": {
-            "title": "Required. The URL of the Google Sheet.\nExample: \"https://docs.google.com/spreadsheets/d/1A2B3C4D5E6F7G8H9I0J/edit\"",
+          "googleSheetId": {
+            "title": "Required. The id of the Google Sheet.\nExample: \"1A2B3C4D5E6F7G8H9I0J\"",
             "type": "string"
+          },
+          "sheetUrl": {
+            "type": "string",
+            "description": "Example: \"https://docs.google.com/spreadsheets/d/1A2B3C4D5E6F7G8H9I0J/edit\"\nOptional. The URL of the Google Sheet."
           },
           "sheetName": {
             "title": "Required. The name of the sheet within the Google Sheet.\nExample: \"Sheet1\"",
