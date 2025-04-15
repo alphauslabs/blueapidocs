@@ -29292,7 +29292,7 @@
       "coverGoogleSheetInfo": {
         "type": "object",
         "properties": {
-          "sheetId": {
+          "googleSheetId": {
             "title": "The ID of the Google Sheet.\nFor example, \"1BxiMVs0XRA5nFMd29P8v4g\"",
             "type": "string"
           },
