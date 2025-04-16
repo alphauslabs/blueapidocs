@@ -4092,6 +4092,47 @@
         }
       }
     },
+    "/v1/ai/costusage": {
+      "post": {
+        "tags": [
+          "Cover"
+        ],
+        "operationId": "Cover_GetAICostAndUsage",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1GetAICostAndUsageRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetAICostAndUsageResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/alerts": {
       "post": {
         "tags": [
@@ -23770,6 +23811,15 @@
       "ExecuteOptimizationResponseGCPOption": {
         "type": "object"
       },
+      "FilterOperator": {
+        "type": "string",
+        "default": "OPERATOR_UNSPECIFIED",
+        "enum": [
+          "OPERATOR_UNSPECIFIED",
+          "EQUAL",
+          "NOT_EQUAL"
+        ]
+      },
       "FlowUpdateSettingsBody": {
         "type": "object",
         "properties": {
@@ -23848,6 +23898,55 @@
           },
           "billingAccountId": {
             "type": "string"
+          }
+        }
+      },
+      "GetAICostAndUsageRequestFilter": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "operator": {
+            "$ref": "#/components/schemas/FilterOperator"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "GetAICostAndUsageRequestGranularity": {
+        "type": "string",
+        "default": "GRANULARITY_UNSPECIFIED",
+        "enum": [
+          "GRANULARITY_UNSPECIFIED",
+          "DAILY",
+          "MONTHLY"
+        ]
+      },
+      "GetAICostAndUsageResponseMetric": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string"
+          },
+          "cost": {
+            "$ref": "#/components/schemas/v1GetAICostAndUsageResponseCost"
+          },
+          "usage": {
+            "$ref": "#/components/schemas/GetAICostAndUsageResponseUsage"
+          }
+        }
+      },
+      "GetAICostAndUsageResponseUsage": {
+        "type": "object",
+        "properties": {
+          "unit": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "number",
+            "format": "double"
           }
         }
       },
@@ -26600,6 +26699,17 @@
             "type": "string"
           },
           "family": {
+            "type": "string"
+          }
+        }
+      },
+      "apicoverResult": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
             "type": "string"
           }
         }
@@ -29990,17 +30100,6 @@
           },
           "azurecspOptions": {
             "$ref": "#/components/schemas/coverCostGroupAzureCspOptions"
-          }
-        }
-      },
-      "coverResult": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
           }
         }
       },
@@ -35607,6 +35706,90 @@
           }
         }
       },
+      "v1GetAICostAndUsageRequest": {
+        "type": "object",
+        "properties": {
+          "costGroupId": {
+            "type": "string"
+          },
+          "vendor": {
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/v1GetAICostAndUsageRequestType"
+          },
+          "startTime": {
+            "type": "string"
+          },
+          "endTime": {
+            "type": "string"
+          },
+          "granularity": {
+            "$ref": "#/components/schemas/GetAICostAndUsageRequestGranularity"
+          },
+          "groupBys": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "filters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetAICostAndUsageRequestFilter"
+            }
+          }
+        }
+      },
+      "v1GetAICostAndUsageRequestType": {
+        "type": "string",
+        "default": "TYPE_UNSPECIFIED",
+        "enum": [
+          "TYPE_UNSPECIFIED",
+          "COST",
+          "USAGE"
+        ]
+      },
+      "v1GetAICostAndUsageResponse": {
+        "type": "object",
+        "properties": {
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1GetAICostAndUsageResponseResult"
+            }
+          }
+        }
+      },
+      "v1GetAICostAndUsageResponseCost": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number",
+            "format": "double"
+          },
+          "currency": {
+            "type": "string"
+          }
+        }
+      },
+      "v1GetAICostAndUsageResponseResult": {
+        "type": "object",
+        "properties": {
+          "attributes": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "metrics": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetAICostAndUsageResponseMetric"
+            }
+          }
+        }
+      },
       "v1GetAccessGroupResponse": {
         "type": "object",
         "properties": {
@@ -35984,7 +36167,7 @@
           "result": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/coverResult"
+              "$ref": "#/components/schemas/apicoverResult"
             }
           },
           "tagData": {
