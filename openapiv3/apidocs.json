@@ -8274,6 +8274,47 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/containers/costusage": {
+      "post": {
+        "tags": [
+          "Cover"
+        ],
+        "operationId": "Cover_GetContainerCostUsage",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1ContainerCostUsageRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1ContainerCostUsageResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/costgroups": {
       "get": {
         "tags": [
@@ -22275,6 +22316,148 @@
           }
         }
       },
+      "ContainerCostUsageRequestFilterCriteria": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "operator": {
+            "$ref": "#/components/schemas/FilterCriteriaFilterOperator"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "ContainerCostUsageRequestMetricType": {
+        "type": "string",
+        "default": "METRIC_UNSPECIFIED",
+        "enum": [
+          "METRIC_UNSPECIFIED",
+          "COST",
+          "USAGE",
+          "EFFICIENCY",
+          "UNUSED_COST"
+        ]
+      },
+      "ContainerCostUsageRequestServiceType": {
+        "type": "string",
+        "default": "SERVICE_UNSPECIFIED",
+        "enum": [
+          "SERVICE_UNSPECIFIED",
+          "ECS",
+          "EKS"
+        ]
+      },
+      "ContainerCostUsageRequestTimeGranularity": {
+        "type": "string",
+        "default": "GRANULARITY_UNSPECIFIED",
+        "enum": [
+          "GRANULARITY_UNSPECIFIED",
+          "DAILY",
+          "MONTHLY"
+        ]
+      },
+      "ContainerCostUsageResponseCostMetric": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number",
+            "format": "double"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "unusedAmount": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "ContainerCostUsageResponseGroupedResult": {
+        "type": "object",
+        "properties": {
+          "attributes": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "metricDataPoints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContainerCostUsageResponseMetricDataPoint"
+            }
+          }
+        }
+      },
+      "ContainerCostUsageResponseMetricDataPoint": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string"
+          },
+          "cost": {
+            "$ref": "#/components/schemas/ContainerCostUsageResponseCostMetric"
+          },
+          "usage": {
+            "$ref": "#/components/schemas/ContainerCostUsageResponseUsageMetric"
+          }
+        }
+      },
+      "ContainerCostUsageResponseResourceHighlight": {
+        "type": "object",
+        "properties": {
+          "resourceId": {
+            "type": "string"
+          },
+          "resourceName": {
+            "type": "string"
+          },
+          "value": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "ContainerCostUsageResponseResourceHighlights": {
+        "type": "object",
+        "properties": {
+          "highestClusterCost": {
+            "$ref": "#/components/schemas/ContainerCostUsageResponseResourceHighlight"
+          },
+          "highestUnusedCost": {
+            "$ref": "#/components/schemas/ContainerCostUsageResponseResourceHighlight"
+          },
+          "highestWorkloadCost": {
+            "$ref": "#/components/schemas/ContainerCostUsageResponseResourceHighlight"
+          },
+          "highestComputeCost": {
+            "$ref": "#/components/schemas/ContainerCostUsageResponseResourceHighlight"
+          }
+        }
+      },
+      "ContainerCostUsageResponseUsageMetric": {
+        "type": "object",
+        "properties": {
+          "unit": {
+            "type": "string"
+          },
+          "reservedAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "actualAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "efficiency": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
       "CostCalculateCostsBody": {
         "type": "object",
         "properties": {
@@ -23810,6 +23993,15 @@
       },
       "ExecuteOptimizationResponseGCPOption": {
         "type": "object"
+      },
+      "FilterCriteriaFilterOperator": {
+        "type": "string",
+        "default": "OPERATOR_UNSPECIFIED",
+        "enum": [
+          "OPERATOR_UNSPECIFIED",
+          "EQUAL",
+          "NOT_EQUAL"
+        ]
       },
       "FilterOperator": {
         "type": "string",
@@ -33690,6 +33882,66 @@
             "items": {
               "type": "string"
             }
+          }
+        }
+      },
+      "v1ContainerCostUsageRequest": {
+        "type": "object",
+        "properties": {
+          "costGroupId": {
+            "type": "string"
+          },
+          "vendor": {
+            "type": "string"
+          },
+          "metricType": {
+            "$ref": "#/components/schemas/ContainerCostUsageRequestMetricType"
+          },
+          "startTime": {
+            "type": "string"
+          },
+          "endTime": {
+            "type": "string"
+          },
+          "granularity": {
+            "$ref": "#/components/schemas/ContainerCostUsageRequestTimeGranularity"
+          },
+          "groupBys": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "filters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContainerCostUsageRequestFilterCriteria"
+            }
+          },
+          "serviceType": {
+            "$ref": "#/components/schemas/ContainerCostUsageRequestServiceType"
+          }
+        }
+      },
+      "v1ContainerCostUsageResponse": {
+        "type": "object",
+        "properties": {
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContainerCostUsageResponseGroupedResult"
+            }
+          },
+          "highlights": {
+            "$ref": "#/components/schemas/ContainerCostUsageResponseResourceHighlights"
+          },
+          "totalCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "avgEfficiency": {
+            "type": "number",
+            "format": "double"
           }
         }
       },
