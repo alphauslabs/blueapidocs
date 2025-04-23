@@ -7101,6 +7101,58 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/billinggroup/{id}:additionalCharges": {
+      "put": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "WORK-IN-PROGRESS: Update  additonal charges for a billing group",
+        "operationId": "Billing_UpdateBillingGroupAdditionalCharges",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BillingUpdateBillingGroupAdditionalChargesBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/billinggroup/{id}:basicInfo": {
       "put": {
         "tags": [
@@ -7262,7 +7314,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Update linked resources for a billing group",
+        "summary": "WORK-IN-PROGRESS: Update invoice settings for a billing group",
         "operationId": "Billing_UpdateBillingGroupInvoiceSettings",
         "parameters": [
           {
@@ -7279,6 +7331,58 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/BillingUpdateBillingGroupInvoiceSettingsBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/billinggroup/{id}:resellerCharges": {
+      "put": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "WORK-IN-PROGRESS: Update reseller charges for a billing group",
+        "operationId": "Billing_UpdateBillingGroupResellerCharges",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BillingUpdateBillingGroupResellerChargesBody"
               }
             }
           },
@@ -21972,7 +22076,7 @@
             "type": "array",
             "description": "Required. customized billing service setting.",
             "items": {
-              "$ref": "#/components/schemas/SetCustomizedBillingServiceBillingGroupRequestCustomizedBillingServiceBillingSetting"
+              "$ref": "#/components/schemas/v1SetCustomizedBillingServiceBillingGroupRequestCustomizedBillingServiceBillingSetting"
             }
           }
         },
@@ -22125,6 +22229,35 @@
         },
         "description": "Request message for the UpdateBillingGroupAccountSupportPlan rpc."
       },
+      "BillingUpdateBillingGroupAdditionalChargesBody": {
+        "required": [
+          "aws",
+          "azure",
+          "gcp"
+        ],
+        "type": "object",
+        "properties": {
+          "aws": {
+            "type": "array",
+            "description": "Required. customized billing service setting.",
+            "items": {
+              "$ref": "#/components/schemas/v1UpdateBillingGroupAdditionalChargesRequestCustomizedBillingServiceBillingSetting"
+            }
+          },
+          "azure": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1UpdateBillingGroupAdditionalChargesRequestCustomizedBillingServiceBillingSetting"
+            }
+          },
+          "gcp": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1UpdateBillingGroupAdditionalChargesRequestCustomizedBillingServiceBillingSetting"
+            }
+          }
+        }
+      },
       "BillingUpdateBillingGroupBasicInformationBody": {
         "type": "object",
         "properties": {
@@ -22171,13 +22304,7 @@
       "BillingUpdateBillingGroupInvoiceSettingsBody": {
         "type": "object",
         "properties": {
-          "language": {
-            "type": "string"
-          },
-          "rateReference": {
-            "type": "string"
-          },
-          "diplayCost": {
+          "billingTitle": {
             "type": "string"
           },
           "calculationType": {
@@ -22223,6 +22350,17 @@
           },
           "nonTagSetting": {
             "$ref": "#/components/schemas/v1NonTagSetting"
+          }
+        }
+      },
+      "BillingUpdateBillingGroupResellerChargesBody": {
+        "type": "object",
+        "properties": {
+          "invoiceTemplate": {
+            "type": "string"
+          },
+          "invoice": {
+            "$ref": "#/components/schemas/v1CreateBillingGroupRequestInvoice"
           }
         }
       },
@@ -24699,30 +24837,6 @@
           "savingsPercentage": {
             "type": "number",
             "format": "double"
-          }
-        }
-      },
-      "SetCustomizedBillingServiceBillingGroupRequestCustomizedBillingServiceBillingSetting": {
-        "title": "CustomizedBillingServiceBillingSetting",
-        "required": [
-          "chargingTarget",
-          "id"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "title": "Required. [blueapi.api.ripple.CustomizedBillingService.id]",
-            "type": "string"
-          },
-          "chargingTarget": {
-            "$ref": "#/components/schemas/rippleChargingTarget"
-          },
-          "accounts": {
-            "type": "array",
-            "description": "Optional. if chargingTarget is BILLINGGROUP, `accounts` is set emptty.\n\nSpecify the accountIds. For example: [`accountId1`,`accountId2`,`accountId3`]",
-            "items": {
-              "type": "string"
-            }
           }
         }
       },
@@ -39582,6 +39696,30 @@
           }
         }
       },
+      "v1SetCustomizedBillingServiceBillingGroupRequestCustomizedBillingServiceBillingSetting": {
+        "title": "CustomizedBillingServiceBillingSetting",
+        "required": [
+          "chargingTarget",
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Required. [blueapi.api.ripple.CustomizedBillingService.id]",
+            "type": "string"
+          },
+          "chargingTarget": {
+            "$ref": "#/components/schemas/rippleChargingTarget"
+          },
+          "accounts": {
+            "type": "array",
+            "description": "Optional. if chargingTarget is BILLINGGROUP, `accounts` is set emptty.\n\nSpecify the accountIds. For example: [`accountId1`,`accountId2`,`accountId3`]",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
       "v1SetOrgFiscalMonthRequest": {
         "type": "object",
         "properties": {
@@ -39891,6 +40029,30 @@
           },
           "status": {
             "type": "string"
+          }
+        }
+      },
+      "v1UpdateBillingGroupAdditionalChargesRequestCustomizedBillingServiceBillingSetting": {
+        "title": "CustomizedBillingServiceBillingSetting",
+        "required": [
+          "chargingTarget",
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Required. [blueapi.api.ripple.CustomizedBillingService.id]",
+            "type": "string"
+          },
+          "chargingTarget": {
+            "$ref": "#/components/schemas/rippleChargingTarget"
+          },
+          "accounts": {
+            "type": "array",
+            "description": "Optional. if chargingTarget is BILLINGGROUP, `accounts` is set emptty.\n\nSpecify the accountIds. For example: [`accountId1`,`accountId2`,`accountId3`]",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
