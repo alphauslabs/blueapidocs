@@ -27769,6 +27769,9 @@
           "paymentOption": {
             "type": "string"
           },
+          "operation": {
+            "type": "string"
+          },
           "platform": {
             "type": "string"
           },
