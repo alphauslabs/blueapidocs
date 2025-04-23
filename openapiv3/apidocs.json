@@ -14740,6 +14740,48 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/settings/recommendations/{id}": {
+      "get": {
+        "tags": [
+          "Flow"
+        ],
+        "summary": "Fetch user savings plan details",
+        "operationId": "Flow_GetRecommendationDetails",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required. The id of the payer to fetch recommendation details for.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetRecommendationDetailsResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/settings/{id}": {
       "get": {
         "tags": [
@@ -28410,7 +28452,7 @@
             "type": "string"
           }
         },
-        "description": "Response message for the Flow.GetInfo rpc."
+        "description": "##################################### RESPONSES #####################################\nResponse message for the Flow.GetInfo rpc."
       },
       "blueapipricingv1GetInfoResponse": {
         "type": "object",
@@ -37157,6 +37199,84 @@
           }
         },
         "description": "Response message for Pricing.GetPricing rpc."
+      },
+      "v1GetRecommendationDetailsResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Unique ID of the recommendation details entry",
+            "type": "string"
+          },
+          "hourlyCommitment": {
+            "title": "Suggested hourly commitment to purchase in USD",
+            "type": "number",
+            "format": "double"
+          },
+          "currentSPCommitment": {
+            "title": "Current Savings Plan commitment applied",
+            "type": "number",
+            "format": "double"
+          },
+          "estimatedOnDemandCost": {
+            "title": "Estimated daily on-demand cost without any Savings Plans",
+            "type": "number",
+            "format": "double"
+          },
+          "totalDailyCost": {
+            "title": "Total current daily cost from usage, before applying any SP recommendation",
+            "type": "number",
+            "format": "double"
+          },
+          "estimatedMonthlySavings": {
+            "title": "Projected monthly savings from the recommended SP",
+            "type": "number",
+            "format": "double"
+          },
+          "estimatedSavings": {
+            "title": "Percentage of potential savings from SP",
+            "type": "number",
+            "format": "double"
+          },
+          "recommendationLevel": {
+            "title": "Customization setting for SP",
+            "type": "string"
+          },
+          "planType": {
+            "title": "Type of Savings Plan",
+            "type": "string"
+          },
+          "planTerm": {
+            "title": "SP term duration in years",
+            "type": "string"
+          },
+          "paymentOption": {
+            "title": "Payment option for the SP",
+            "type": "string"
+          },
+          "lookBackPeriod": {
+            "title": "Historical lookback period used for analysis",
+            "type": "string"
+          },
+          "estimatedROI": {
+            "title": "Estimated Return on Investment for the SP",
+            "type": "number",
+            "format": "double"
+          },
+          "estimatedSPCost": {
+            "title": "Total projected SP cost over the term",
+            "type": "number",
+            "format": "double"
+          },
+          "estimatedTotalCost": {
+            "title": "Estimated total cost including SP and on-demand",
+            "type": "number",
+            "format": "double"
+          },
+          "lastUpdated": {
+            "title": "Timestamp of the last update",
+            "type": "string"
+          }
+        }
       },
       "v1GetRecommendationResponse": {
         "type": "object",
