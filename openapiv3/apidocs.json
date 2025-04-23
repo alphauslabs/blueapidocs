@@ -15360,6 +15360,79 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/unitcost/metrics/cloudwatch/metadata": {
+      "get": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "Get Cloudwatch Metadata",
+        "operationId": "Cover_GetCloudwatchMetadata",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "query",
+            "description": "Required. The AWS account ID to assume when querying CloudWatch.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "region",
+            "in": "query",
+            "description": "Required. The AWS region where the metrics should be queried (e.g., \"us-east-1\").",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Required. The type of metadata to retrieve.\nValid values: \"namespace\", \"metric\", or \"dimension\".",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "namespace",
+            "in": "query",
+            "description": "Conditionally required.\nMust be provided when `type` is \"metric\" or \"dimension\".\nExample: \"AWS/EC2\", \"AWS/Lambda\", or a custom namespace like \"MyApp/BusinessMetrics\".",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "metricName",
+            "in": "query",
+            "description": "Conditionally required.\nMust be provided when `type` is \"dimension\".\nExample: \"CPUUtilization\", \"Invocations\", etc.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetCloudwatchMetadataResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/unitcost/metrics/googlesheet/confirm": {
       "post": {
         "tags": [
@@ -24329,6 +24402,20 @@
             "type": "string"
           },
           "service": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "GetCloudwatchMetadataResponseDimension": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "values": {
             "type": "array",
             "items": {
               "type": "string"
@@ -36509,6 +36596,29 @@
           }
         },
         "description": "Response message for the Admin.GetCloudWatchMetricsStreamTemplateUrl rpc."
+      },
+      "v1GetCloudwatchMetadataResponse": {
+        "type": "object",
+        "properties": {
+          "namespaces": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "metrics": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "dimensions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetCloudwatchMetadataResponseDimension"
+            }
+          }
+        }
       },
       "v1GetCostAttributesResponse": {
         "type": "object",
