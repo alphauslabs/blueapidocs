@@ -37434,8 +37434,23 @@
             "title": "Unique ID of the recommendation details entry",
             "type": "string"
           },
-          "hourlyCommitment": {
-            "title": "Suggested hourly commitment to purchase in USD",
+          "currentMonthlyOnDemandSpend": {
+            "title": "Projected monthly on-demand spend without Savings Plans, normalized from lookback period",
+            "type": "number",
+            "format": "double"
+          },
+          "estimatedMonthlySpend": {
+            "title": "Projected total monthly spend after applying the recommended Savings Plan, normalized",
+            "type": "number",
+            "format": "double"
+          },
+          "estimatedMonthlySavingsDerived": {
+            "title": "Difference between on-demand and post-SP spend, computed from normalized values",
+            "type": "number",
+            "format": "double"
+          },
+          "totalDailyCost": {
+            "title": "Total current daily cost from usage, before applying any SP recommendation (Derived)",
             "type": "number",
             "format": "double"
           },
@@ -37449,58 +37464,58 @@
             "type": "number",
             "format": "double"
           },
-          "totalDailyCost": {
-            "title": "Total current daily cost from usage, before applying any SP recommendation",
+          "hourlyCommitment": {
+            "title": "Suggested hourly commitment to purchase in USD",
             "type": "number",
             "format": "double"
           },
           "estimatedMonthlySavings": {
-            "title": "Projected monthly savings from the recommended SP",
+            "title": "Projected monthly savings from the recommended savings plan",
             "type": "number",
             "format": "double"
           },
           "estimatedSavings": {
-            "title": "Percentage of potential savings from SP",
+            "title": "Percentage of potential savings from savings plan",
             "type": "number",
             "format": "double"
           },
           "recommendationLevel": {
-            "title": "Customization setting for SP",
+            "title": "Customization setting for savings plan",
             "type": "string"
           },
           "planType": {
-            "title": "Type of Savings Plan",
-            "type": "string"
+            "type": "string",
+            "description": "Savings plan type."
           },
           "planTerm": {
-            "title": "SP term duration in years",
-            "type": "string"
+            "type": "string",
+            "description": "Savings plan duration."
           },
           "paymentOption": {
-            "title": "Payment option for the SP",
-            "type": "string"
+            "type": "string",
+            "description": "Savings plan payment option."
           },
           "lookBackPeriod": {
-            "title": "Historical lookback period used for analysis",
-            "type": "string"
+            "type": "string",
+            "description": "Savings plan lookback period used for analysis."
           },
           "estimatedROI": {
-            "title": "Estimated Return on Investment for the SP",
             "type": "number",
+            "description": "Savings plan estimated return on investment.",
             "format": "double"
           },
           "estimatedSPCost": {
-            "title": "Total projected SP cost over the term",
             "type": "number",
+            "description": "Savings plan total projected cost over the term.",
             "format": "double"
           },
           "estimatedTotalCost": {
-            "title": "Estimated total cost including SP and on-demand",
             "type": "number",
+            "description": "Savings plan estimated total cost and including on-demand.",
             "format": "double"
           },
           "lastUpdated": {
-            "title": "Timestamp of the last update",
+            "title": "Savings plan last updated",
             "type": "string"
           }
         }
