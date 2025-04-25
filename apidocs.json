@@ -18037,6 +18037,14 @@
         "efficiency": {
           "type": "number",
           "format": "double"
+        },
+        "cpuUtilization": {
+          "type": "number",
+          "format": "double"
+        },
+        "memoryUtilization": {
+          "type": "number",
+          "format": "double"
         }
       }
     },
