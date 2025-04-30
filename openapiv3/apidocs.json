@@ -36221,9 +36221,6 @@
           "vendor": {
             "type": "string"
           },
-          "type": {
-            "$ref": "#/components/schemas/v1GetAICostAndUsageRequestType"
-          },
           "startTime": {
             "type": "string"
           },
@@ -36246,15 +36243,6 @@
             }
           }
         }
-      },
-      "v1GetAICostAndUsageRequestType": {
-        "type": "string",
-        "default": "TYPE_UNSPECIFIED",
-        "enum": [
-          "TYPE_UNSPECIFIED",
-          "COST",
-          "USAGE"
-        ]
       },
       "v1GetAICostAndUsageResponse": {
         "type": "object",
