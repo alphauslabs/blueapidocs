@@ -29215,6 +29215,9 @@
           },
           "anomalyOptions": {
             "$ref": "#/components/schemas/coverAnomalyOptions"
+          },
+          "type": {
+            "$ref": "#/components/schemas/coverCostGroupType"
           }
         }
       },
