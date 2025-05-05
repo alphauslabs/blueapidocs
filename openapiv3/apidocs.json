@@ -1286,6 +1286,57 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/billing/v1/reseller/announcements/{announcementId}": {
+      "get": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Gets the announcement list.",
+        "operationId": "Billing_GetAnnouncements",
+        "parameters": [
+          {
+            "name": "announcementId",
+            "in": "path",
+            "description": "Optional. Set empty to return all",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Stream result of v1Announcement",
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/components/schemas/v1Announcement"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/googlerpcStatus"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/iam/v1/apiclients": {
       "get": {
         "tags": [
@@ -13448,57 +13499,6 @@
           }
         },
         "x-codegen-request-body-name": "body"
-      }
-    },
-    "/v1/reseller/announcements/{announcementId}": {
-      "get": {
-        "tags": [
-          "Billing"
-        ],
-        "summary": "Gets the announcement list.",
-        "operationId": "Billing_GetAnnouncements",
-        "parameters": [
-          {
-            "name": "announcementId",
-            "in": "path",
-            "description": "Optional. Set empty to return all",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.(streaming responses)",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "title": "Stream result of v1Announcement",
-                  "type": "object",
-                  "properties": {
-                    "result": {
-                      "$ref": "#/components/schemas/v1Announcement"
-                    },
-                    "error": {
-                      "$ref": "#/components/schemas/googlerpcStatus"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googlerpcStatus"
-                }
-              }
-            }
-          }
-        }
       }
     },
     "/v1/reseller/announcements/{announcementId}/date": {
