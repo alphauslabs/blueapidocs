@@ -10498,6 +10498,59 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/invoice/exchangerate/{month}": {
+      "put": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Update invoice exchangerate for the month",
+        "operationId": "Billing_UpdateInvoiceExchangeRate",
+        "parameters": [
+          {
+            "name": "month",
+            "in": "path",
+            "description": "Required. Format: yyyymm.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BillingUpdateInvoiceExchangeRateBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/invoice/status/{date}:read": {
       "post": {
         "tags": [
@@ -22464,6 +22517,30 @@
           }
         },
         "description": "Request message for the Billing.UpdateCustomizedBillingService rpc."
+      },
+      "BillingUpdateInvoiceExchangeRateBody": {
+        "type": "object",
+        "properties": {
+          "vendor": {
+            "title": "Required. vendor (aws, gcp, or azure)",
+            "type": "string"
+          },
+          "exchangeRate": {
+            "title": "Required. Map of currency code to exchange rate value per USD\nex. jpy:100",
+            "type": "object",
+            "additionalProperties": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          "groupIds": {
+            "title": "Required. Billing group id to apply",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
       },
       "BillingUpdateInvoicePreviewsBody": {
         "type": "object",
