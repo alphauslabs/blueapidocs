@@ -1337,37 +1337,6 @@
         }
       }
     },
-    "/flow/v1/aws/xacct/cea": {
-      "get": {
-        "tags": [
-          "Flow"
-        ],
-        "summary": "Gets a CloudFormation launch URL for enabling read-only cross-account access to cost explorer information (API only).",
-        "operationId": "Flow_GetCostExplorerAccessTemplateUrl",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/v1GetCostExplorerAccessTemplateUrlResponse"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googlerpcStatus"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/iam/v1/apiclients": {
       "get": {
         "tags": [
@@ -6531,6 +6500,37 @@
           }
         },
         "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/aws/xacct/cea": {
+      "get": {
+        "tags": [
+          "Flow"
+        ],
+        "summary": "Gets a CloudFormation launch URL for enabling read-only cross-account access to cost explorer information (API only).",
+        "operationId": "Flow_GetCostExplorerAccessTemplateUrl",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetCostExplorerAccessTemplateUrlResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/v1/azure/credentials/mpn": {
