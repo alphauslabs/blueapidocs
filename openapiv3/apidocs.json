@@ -1337,6 +1337,37 @@
         }
       }
     },
+    "/flow/v1/aws/xacct/cea": {
+      "get": {
+        "tags": [
+          "Flow"
+        ],
+        "summary": "Gets a CloudFormation launch URL for enabling read-only cross-account access to cost explorer information (API only).",
+        "operationId": "Flow_GetCostExplorerAccessTemplateUrl",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetCostExplorerAccessTemplateUrlResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/iam/v1/apiclients": {
       "get": {
         "tags": [
@@ -28741,7 +28772,7 @@
             "type": "string"
           }
         },
-        "description": "##################################### RESPONSES #####################################\nResponse message for the Flow.GetInfo rpc."
+        "description": "Response message for the Flow.GetInfo rpc."
       },
       "blueapipricingv1GetInfoResponse": {
         "type": "object",
@@ -36711,6 +36742,32 @@
           }
         },
         "description": "Response message for the Cost.GetCostAttributes rpc."
+      },
+      "v1GetCostExplorerAccessTemplateUrlResponse": {
+        "type": "object",
+        "properties": {
+          "launchUrl": {
+            "type": "string",
+            "description": "The CloudFormation launch url. Open it in your browser."
+          },
+          "templateUrl": {
+            "type": "string",
+            "description": "The latest CloudFormation template. The version is included in the filename."
+          },
+          "stackName": {
+            "type": "string",
+            "description": "The default stack name used. Can be modified."
+          },
+          "principal": {
+            "type": "string",
+            "description": "The AWS account that will receive the access. Do not change."
+          },
+          "externalId": {
+            "type": "string",
+            "description": "The external id for this role. Do not change."
+          }
+        },
+        "description": "Response message for the Flow.GetCostExplorerAccessTemplateUrl rpc."
       },
       "v1GetCostGroupAllocationRequest": {
         "type": "object",
