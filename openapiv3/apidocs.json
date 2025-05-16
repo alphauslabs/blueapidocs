@@ -14928,6 +14928,48 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/settings/history/{id}": {
+      "get": {
+        "tags": [
+          "Flow"
+        ],
+        "summary": "Gets the settings configuration history for a user.",
+        "operationId": "Flow_GetSettingsHistory",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required. The id of the payer to fetch settings history for.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetSettingsHistoryResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/settings/recommendations/{id}": {
       "get": {
         "tags": [
@@ -37792,6 +37834,18 @@
           }
         }
       },
+      "v1GetSettingsHistoryResponse": {
+        "type": "object",
+        "properties": {
+          "settingsHistory": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1SettingsHistory"
+            }
+          }
+        },
+        "description": "Response message for the Flow.GetSettingsHistory rpc."
+      },
       "v1GetSettingsResponse": {
         "type": "object",
         "properties": {
@@ -40016,6 +40070,43 @@
             "format": "int64"
           }
         }
+      },
+      "v1SettingsHistory": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "accountScope": {
+            "type": "string"
+          },
+          "customization": {
+            "type": "string"
+          },
+          "planTerm": {
+            "type": "string"
+          },
+          "paymentOption": {
+            "type": "string"
+          },
+          "lookBackPeriod": {
+            "type": "string"
+          },
+          "instanceFamily": {
+            "type": "string"
+          },
+          "annualBudget": {
+            "type": "number",
+            "format": "double"
+          },
+          "approval": {
+            "type": "boolean"
+          },
+          "lastUpdated": {
+            "type": "string"
+          }
+        },
+        "description": "Settings history message."
       },
       "v1SupportPlan": {
         "type": "string",
