@@ -8442,6 +8442,46 @@
         ]
       }
     },
+    "/v1/invoice/{date}:converttopdf": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Convert invoice to pdf",
+        "operationId": "Billing_ConvertInvoiceToPdf",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ConvertInvoiceToPdfResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "date",
+            "description": "Required. Format: yyyymm.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BillingConvertInvoiceToPdfBody"
+            }
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      }
+    },
     "/v1/invoice/{date}:create": {
       "post": {
         "summary": "Creates an invoice. Only available in Ripple.",
@@ -17321,6 +17361,22 @@
         "setting",
         "entries"
       ]
+    },
+    "BillingConvertInvoiceToPdfBody": {
+      "type": "object",
+      "properties": {
+        "billinggroups": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "billingInternalId of invoice to download\nignored if allBillingGroups is set to true"
+        },
+        "allBillingGroups": {
+          "type": "boolean",
+          "title": "If true, download all created invoice"
+        }
+      }
     },
     "BillingCreateAccountInvoiceServiceDiscountsBody": {
       "type": "object",
@@ -29883,6 +29939,19 @@
         "avgEfficiency": {
           "type": "number",
           "format": "double"
+        }
+      }
+    },
+    "v1ConvertInvoiceToPdfResponse": {
+      "type": "object",
+      "properties": {
+        "percentProgress": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "downloadUrl": {
+          "type": "string",
+          "title": "returns \"\" when not ready\nreturns the direct download link"
         }
       }
     },

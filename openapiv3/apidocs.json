@@ -10767,6 +10767,59 @@
         }
       }
     },
+    "/v1/invoice/{date}:converttopdf": {
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "WORK-IN-PROGRESS: Convert invoice to pdf",
+        "operationId": "Billing_ConvertInvoiceToPdf",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "path",
+            "description": "Required. Format: yyyymm.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BillingConvertInvoiceToPdfBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1ConvertInvoiceToPdfResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/invoice/{date}:create": {
       "post": {
         "tags": [
@@ -22056,6 +22109,22 @@
           }
         },
         "description": "Request message for the Billing.ApplyAdjustmentEntry rpc."
+      },
+      "BillingConvertInvoiceToPdfBody": {
+        "type": "object",
+        "properties": {
+          "billinggroups": {
+            "title": "billingInternalId of invoice to download\nignored if allBillingGroups is set to true",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "allBillingGroups": {
+            "title": "If true, download all created invoice",
+            "type": "boolean"
+          }
+        }
       },
       "BillingCreateAccountInvoiceServiceDiscountsBody": {
         "type": "object",
@@ -34390,6 +34459,19 @@
           "avgEfficiency": {
             "type": "number",
             "format": "double"
+          }
+        }
+      },
+      "v1ConvertInvoiceToPdfResponse": {
+        "type": "object",
+        "properties": {
+          "percentProgress": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "downloadUrl": {
+            "title": "returns \"\" when not ready\nreturns the direct download link",
+            "type": "string"
           }
         }
       },
