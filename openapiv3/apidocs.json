@@ -34465,9 +34465,8 @@
       "v1ConvertInvoiceToPdfResponse": {
         "type": "object",
         "properties": {
-          "percentProgress": {
-            "type": "integer",
-            "format": "int32"
+          "progress": {
+            "type": "string"
           },
           "downloadUrl": {
             "title": "returns \"\" when not ready\nreturns the direct download link",
