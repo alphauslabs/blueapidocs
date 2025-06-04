@@ -24623,6 +24623,13 @@
           "operator": {
             "$ref": "#/components/schemas/FilterOperator"
           },
+          "values": {
+            "type": "array",
+            "description": "TEMPORARY. retain the old parameter to avoid errors in UI prod.\nWill remove once the latest changes in UI is released.",
+            "items": {
+              "type": "string"
+            }
+          },
           "value": {
             "type": "string"
           }
