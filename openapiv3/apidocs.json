@@ -2231,12 +2231,54 @@
         }
       }
     },
+    "/iam/v1/ripple/password:requestresetcode": {
+      "post": {
+        "tags": [
+          "Iam"
+        ],
+        "summary": "WORK-IN-PROGRESS: Send an email reset code",
+        "operationId": "Iam_SendRipplePasswordResetCode",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1SendRipplePasswordResetCodeRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/iam/v1/ripple/password:reset": {
       "post": {
         "tags": [
           "Iam"
         ],
-        "summary": "WORK-IN-PROGRESS: Reset ripple password account.",
+        "summary": "WORK-IN-PROGRESS: Reset ripple password using code from email",
         "operationId": "Iam_ResetRipplePassword",
         "requestBody": {
           "content": {
@@ -39972,11 +40014,15 @@
         }
       },
       "v1ResetRipplePasswordRequest": {
-        "title": "Request message for ripple account password recovery",
+        "title": "Request message for resetting ripple password",
         "type": "object",
         "properties": {
-          "email": {
-            "title": "Required. Ripple account email address",
+          "resetCode": {
+            "title": "Required. Reset code from email",
+            "type": "string"
+          },
+          "newPassword": {
+            "title": "Required. Atleast 8 characters",
             "type": "string"
           }
         }
@@ -40198,6 +40244,16 @@
           }
         },
         "description": "Response message for ListSavings, RestoreSavings, SimulateSavings rpc."
+      },
+      "v1SendRipplePasswordResetCodeRequest": {
+        "title": "Request message for ripple account password recovery",
+        "type": "object",
+        "properties": {
+          "email": {
+            "title": "Required. Ripple account email address",
+            "type": "string"
+          }
+        }
       },
       "v1Service": {
         "type": "object",
