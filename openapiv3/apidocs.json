@@ -2231,6 +2231,48 @@
         }
       }
     },
+    "/iam/v1/ripple/password:reset": {
+      "post": {
+        "tags": [
+          "Iam"
+        ],
+        "summary": "WORK-IN-PROGRESS: Reset ripple password account.",
+        "operationId": "Iam_ResetRipplePassword",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1ResetRipplePasswordRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/iam/v1/roles": {
       "get": {
         "tags": [
@@ -39925,6 +39967,16 @@
         "type": "object",
         "properties": {
           "userId": {
+            "type": "string"
+          }
+        }
+      },
+      "v1ResetRipplePasswordRequest": {
+        "title": "Request message for ripple account password recovery",
+        "type": "object",
+        "properties": {
+          "email": {
+            "title": "Required. Ripple account email address",
             "type": "string"
           }
         }
