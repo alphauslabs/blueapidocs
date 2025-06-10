@@ -12878,6 +12878,181 @@
         }
       }
     },
+    "/v1/project": {
+      "post": {
+        "tags": [
+          "Prism"
+        ],
+        "summary": "WIP: Creates a new project.",
+        "operationId": "Prism_CreateProject",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1CreateProjectRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/project/all:read": {
+      "post": {
+        "tags": [
+          "Prism"
+        ],
+        "summary": "WIP: Lists all projects",
+        "operationId": "Prism_ListProjects",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1ListProjectsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Stream result of v1Project",
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/components/schemas/v1Project"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/googlerpcStatus"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/project/{id}": {
+      "get": {
+        "tags": [
+          "Prism"
+        ],
+        "summary": "WIP: Gets information about a project by ID.",
+        "operationId": "Prism_GetProject",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required project ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetProjectResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Prism"
+        ],
+        "summary": "WIP: Deletes a project by ID.",
+        "operationId": "Prism_DeleteProject",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required project ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/recommendations/all:read": {
       "post": {
         "tags": [
@@ -35818,6 +35993,14 @@
           }
         }
       },
+      "v1CreateProjectRequest": {
+        "type": "object",
+        "properties": {
+          "project": {
+            "$ref": "#/components/schemas/v1Project"
+          }
+        }
+      },
       "v1CreateResellerRequest": {
         "type": "object",
         "properties": {
@@ -37906,6 +38089,26 @@
         },
         "description": "Response message for Pricing.GetPricing rpc."
       },
+      "v1GetProjectResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "members": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1Member"
+            }
+          }
+        }
+      },
       "v1GetRecommendationDetailsResponse": {
         "type": "object",
         "properties": {
@@ -38858,6 +39061,9 @@
         },
         "description": "Response message for the Iam.ListPermissions rpc."
       },
+      "v1ListProjectsRequest": {
+        "type": "object"
+      },
       "v1ListRecommendationResponse": {
         "type": "object",
         "properties": {
@@ -39105,6 +39311,20 @@
       },
       "v1MarkAsExecutedResponse": {
         "type": "object"
+      },
+      "v1Member": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          }
+        }
       },
       "v1MergeSuggestedUnitsRequest": {
         "type": "object",
@@ -39504,6 +39724,26 @@
           "roleArn": {
             "title": "role arn",
             "type": "string"
+          }
+        }
+      },
+      "v1Project": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "members": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1Member"
+            }
           }
         }
       },
