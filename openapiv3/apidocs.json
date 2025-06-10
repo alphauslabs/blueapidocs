@@ -84,6 +84,14 @@
       }
     },
     {
+      "name": "Prism",
+      "description": "(Alpha) Prism API. Base URL: https://api.alphaus.cloud/m/blue/prism",
+      "externalDocs": {
+        "description": "Service definition",
+        "url": "https://github.com/alphauslabs/blueapi/tree/main/prism/"
+      }
+    },
+    {
       "name": "Preferences",
       "description": "(BETA) Preferences API. Base URL: https://api.alphaus.cloud/m/blue",
       "externalDocs": {
@@ -15322,6 +15330,37 @@
                       "$ref": "#/components/schemas/googlerpcStatus"
                     }
                   }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/test": {
+      "get": {
+        "tags": [
+          "Prism"
+        ],
+        "summary": "Test endpoint only.",
+        "operationId": "Prism_Test",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1TestResponse"
                 }
               }
             }
@@ -40498,6 +40537,14 @@
             "type": "string"
           },
           "region": {
+            "type": "string"
+          }
+        }
+      },
+      "v1TestResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
             "type": "string"
           }
         }
