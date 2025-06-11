@@ -2304,7 +2304,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/v1ResetRipplePasswordResponse"
                 }
               }
             }
@@ -40302,6 +40302,18 @@
           },
           "newPassword": {
             "title": "Required. Atleast 8 characters",
+            "type": "string"
+          }
+        }
+      },
+      "v1ResetRipplePasswordResponse": {
+        "type": "object",
+        "properties": {
+          "userName": {
+            "title": "Ripple account information of the reseted password",
+            "type": "string"
+          },
+          "email": {
             "type": "string"
           }
         }
