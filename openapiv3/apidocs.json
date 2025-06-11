@@ -40794,11 +40794,11 @@
         "properties": {
           "id": {
             "type": "string",
-            "description": "The id."
+            "description": "The id.\n\nThe currently supported thirdProfit items are as follows:\n`Miscellaneous`\n`CustomizedService`\n`AgencyFee`\n`SupportFee`"
           },
           "name": {
             "type": "string",
-            "description": "The name."
+            "description": "The name.\nA value equivalent to the id will be set."
           },
           "profit": {
             "type": "number",
