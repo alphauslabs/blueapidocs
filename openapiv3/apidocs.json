@@ -12692,6 +12692,177 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/org": {
+      "post": {
+        "tags": [
+          "Prism"
+        ],
+        "operationId": "Prism_CreateOrganization",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1CreateOrganizationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/org/{id}": {
+      "get": {
+        "tags": [
+          "Prism"
+        ],
+        "operationId": "Prism_GetOrg",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required organization ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetOrganizationResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Prism"
+        ],
+        "operationId": "Prism_UpdateOrg",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required organization ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PrismUpdateOrgBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      },
+      "delete": {
+        "tags": [
+          "Prism"
+        ],
+        "operationId": "Prism_DeleteOrg",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required organization ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/organizations/currency": {
       "get": {
         "tags": [
@@ -25292,6 +25463,17 @@
         },
         "description": "Request message for Pricing.GetPricing rpc."
       },
+      "PrismUpdateOrgBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
       "RDSDetailsDBInstanceDetails": {
         "type": "object",
         "properties": {
@@ -35901,6 +36083,17 @@
         },
         "description": "Response message for the Organization.CreateOrg rpc."
       },
+      "v1CreateOrganizationRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
       "v1CreatePayerAccountRequestAwsOptions": {
         "type": "object",
         "properties": {
@@ -38023,6 +38216,20 @@
             "format": "int64"
           },
           "lastUpdate": {
+            "type": "string"
+          }
+        }
+      },
+      "v1GetOrganizationResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
             "type": "string"
           }
         }
