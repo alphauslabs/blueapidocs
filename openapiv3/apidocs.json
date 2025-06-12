@@ -12788,7 +12788,7 @@
         "tags": [
           "Prism"
         ],
-        "operationId": "Prism_GetOrg",
+        "operationId": "Prism_GetOrganization",
         "parameters": [
           {
             "name": "id",
@@ -12827,7 +12827,7 @@
         "tags": [
           "Prism"
         ],
-        "operationId": "Prism_UpdateOrg",
+        "operationId": "Prism_UpdateOrganization",
         "parameters": [
           {
             "name": "id",
@@ -12843,7 +12843,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PrismUpdateOrgBody"
+                "$ref": "#/components/schemas/PrismUpdateOrganizationBody"
               }
             }
           },
@@ -12877,7 +12877,7 @@
         "tags": [
           "Prism"
         ],
-        "operationId": "Prism_DeleteOrg",
+        "operationId": "Prism_DeleteOrganization",
         "parameters": [
           {
             "name": "id",
@@ -25645,7 +25645,7 @@
         },
         "description": "Request message for Pricing.GetPricing rpc."
       },
-      "PrismUpdateOrgBody": {
+      "PrismUpdateOrganizationBody": {
         "type": "object",
         "properties": {
           "name": {
