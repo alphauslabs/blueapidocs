@@ -35364,6 +35364,11 @@
           "type": "number",
           "format": "double",
           "description": "The spp discount cost."
+        },
+        "edpDiscountCost": {
+          "type": "number",
+          "format": "double",
+          "description": "The edp discount cost."
         }
       },
       "description": "OverViewOptionSection resource definition."
@@ -35441,6 +35446,16 @@
           "type": "number",
           "format": "double",
           "title": "The spp discount cost Period-over-Period.\nRepresents a comparison of costs over a specified period of time.\ncurrently, supported `Month-over-Month`"
+        },
+        "edpDiscountCost": {
+          "type": "number",
+          "format": "double",
+          "description": "The edp discount cost."
+        },
+        "edpDiscountCostPoP": {
+          "type": "number",
+          "format": "double",
+          "title": "The edp discount cost Period-over-Period.\nRepresents a comparison of costs over a specified period of time.\ncurrently, supported `Month-over-Month`"
         }
       },
       "description": "PeriodOverPeriodOptionSection resource definition."
