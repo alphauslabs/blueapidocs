@@ -12015,6 +12015,56 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/member/all:read": {
+      "post": {
+        "tags": [
+          "Prism"
+        ],
+        "operationId": "Prism_ListTeamMembers",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1ListTeamMembersRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Stream result of v1Member",
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/components/schemas/v1Member"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/googlerpcStatus"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/members": {
       "get": {
         "tags": [
@@ -15676,6 +15726,97 @@
                       "$ref": "#/components/schemas/googlerpcStatus"
                     }
                   }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/team/all:read": {
+      "post": {
+        "tags": [
+          "Prism"
+        ],
+        "operationId": "Prism_ListTeams",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1ListTeamsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Stream result of v1Team",
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/components/schemas/v1Team"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/googlerpcStatus"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/team/{id}": {
+      "get": {
+        "tags": [
+          "Prism"
+        ],
+        "operationId": "Prism_GetTeam",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required team ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetTeamResponse"
                 }
               }
             }
@@ -38665,6 +38806,17 @@
           }
         }
       },
+      "v1GetTeamResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
       "v1GetUnitMetricResponse": {
         "type": "object",
         "properties": {
@@ -39445,6 +39597,12 @@
           }
         }
       },
+      "v1ListTeamMembersRequest": {
+        "type": "object"
+      },
+      "v1ListTeamsRequest": {
+        "type": "object"
+      },
       "v1ListUnitMetricsResponse": {
         "type": "object",
         "properties": {
@@ -39550,6 +39708,32 @@
       },
       "v1MarkAsExecutedResponse": {
         "type": "object"
+      },
+      "v1Member": {
+        "type": "object",
+        "properties": {
+          "org": {
+            "type": "string"
+          },
+          "team": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "lastUpdate": {
+            "type": "string"
+          }
+        }
       },
       "v1MergeSuggestedUnitsRequest": {
         "type": "object",
@@ -40997,6 +41181,26 @@
             "items": {
               "type": "string"
             }
+          }
+        }
+      },
+      "v1Team": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "org": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "lastUpdate": {
+            "type": "string"
           }
         }
       },
