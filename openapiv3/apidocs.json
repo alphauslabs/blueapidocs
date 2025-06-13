@@ -14991,7 +14991,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Updates the billing group invoice service discounts. Only available in Ripple.",
+        "summary": "Updates the billing group invoice service discounts. Only available in Ripple.",
         "operationId": "Billing_UpdateBillingGroupInvoiceServiceDiscounts",
         "parameters": [
           {
@@ -15042,7 +15042,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Registers the billing group invoice service discounts. Only available in Ripple.",
+        "summary": "Registers the billing group invoice service discounts. Only available in Ripple.",
         "operationId": "Billing_CreateBillingGroupInvoiceServiceDiscounts",
         "parameters": [
           {
@@ -15093,7 +15093,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Deletes the billing group invoice service discounts. Only available in Ripple.",
+        "summary": "Deletes the billing group invoice service discounts. Only available in Ripple.",
         "operationId": "Billing_DeleteBillingGroupInvoiceServiceDiscounts",
         "parameters": [
           {
@@ -15338,7 +15338,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Exports service discounts. Only available in Ripple.",
+        "summary": "Exports service discounts. Only available in Ripple.",
         "operationId": "Billing_ExportServiceDiscounts",
         "requestBody": {
           "description": "Request message for the ExportServiceDiscounts rpc.",
@@ -18257,7 +18257,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Gets the adjustment entry. Only available in Ripple.",
+        "summary": "Gets the adjustment entry. Only available in Ripple.",
         "operationId": "Billing_GetAdjustmentEntry",
         "parameters": [
           {
@@ -22151,7 +22151,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Reads the untagged group. Only available in Ripple.",
+        "summary": "Reads the untagged group. Only available in Ripple.",
         "operationId": "Billing_ReadUntaggedGroups",
         "parameters": [
           {

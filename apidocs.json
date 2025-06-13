@@ -11761,7 +11761,7 @@
         ]
       },
       "delete": {
-        "summary": "WORK-IN-PROGRESS: Deletes the billing group invoice service discounts. Only available in Ripple.",
+        "summary": "Deletes the billing group invoice service discounts. Only available in Ripple.",
         "operationId": "Billing_DeleteBillingGroupInvoiceServiceDiscounts",
         "responses": {
           "200": {
@@ -11792,7 +11792,7 @@
         ]
       },
       "post": {
-        "summary": "WORK-IN-PROGRESS: Registers the billing group invoice service discounts. Only available in Ripple.",
+        "summary": "Registers the billing group invoice service discounts. Only available in Ripple.",
         "operationId": "Billing_CreateBillingGroupInvoiceServiceDiscounts",
         "responses": {
           "200": {
@@ -11830,7 +11830,7 @@
         ]
       },
       "put": {
-        "summary": "WORK-IN-PROGRESS: Updates the billing group invoice service discounts. Only available in Ripple.",
+        "summary": "Updates the billing group invoice service discounts. Only available in Ripple.",
         "operationId": "Billing_UpdateBillingGroupInvoiceServiceDiscounts",
         "responses": {
           "200": {
@@ -12027,7 +12027,7 @@
     },
     "/v1/servicediscounts:export": {
       "post": {
-        "summary": "WORK-IN-PROGRESS: Exports service discounts. Only available in Ripple.",
+        "summary": "Exports service discounts. Only available in Ripple.",
         "operationId": "Billing_ExportServiceDiscounts",
         "responses": {
           "200": {
@@ -14278,7 +14278,7 @@
     },
     "/v1/{vendor}/adjustmententries/{id}": {
       "get": {
-        "summary": "WORK-IN-PROGRESS: Gets the adjustment entry. Only available in Ripple.",
+        "summary": "Gets the adjustment entry. Only available in Ripple.",
         "operationId": "Billing_GetAdjustmentEntry",
         "responses": {
           "200": {
@@ -17303,7 +17303,7 @@
     },
     "/v1/{vendor}/untaggedgroups:read": {
       "post": {
-        "summary": "WORK-IN-PROGRESS: Reads the untagged group. Only available in Ripple.",
+        "summary": "Reads the untagged group. Only available in Ripple.",
         "operationId": "Billing_ReadUntaggedGroups",
         "responses": {
           "200": {
