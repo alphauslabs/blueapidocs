@@ -35794,6 +35794,9 @@
         },
         "lastUpdate": {
           "type": "string"
+        },
+        "email": {
+          "type": "string"
         }
       }
     },
