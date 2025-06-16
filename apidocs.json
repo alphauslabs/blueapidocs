@@ -10403,6 +10403,47 @@
         ]
       }
     },
+    "/v1/projecttoteam/all:read": {
+      "post": {
+        "operationId": "Prism_ListProjectToTeam",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1ListProjectToTeamResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of v1ListProjectToTeamResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ListProjectToTeamRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Prism"
+        ]
+      }
+    },
     "/v1/recommendations/all:read": {
       "post": {
         "summary": "Lists recommendations based on specified criteria.",
@@ -34914,6 +34955,26 @@
         }
       },
       "description": "Response message for the Iam.ListPermissions rpc."
+    },
+    "v1ListProjectToTeamRequest": {
+      "type": "object"
+    },
+    "v1ListProjectToTeamResponse": {
+      "type": "object",
+      "properties": {
+        "projectId": {
+          "type": "string"
+        },
+        "projectName": {
+          "type": "string"
+        },
+        "teamId": {
+          "type": "string"
+        },
+        "teamName": {
+          "type": "string"
+        }
+      }
     },
     "v1ListProjectsRequest": {
       "type": "object"
