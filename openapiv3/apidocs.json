@@ -16867,6 +16867,49 @@
         }
       }
     },
+    "/v1/usagecost": {
+      "post": {
+        "tags": [
+          "Flow"
+        ],
+        "summary": "Gets the daily cost and usage details.",
+        "operationId": "Flow_GetDailyUsageCostDetails",
+        "requestBody": {
+          "description": "Request message for the Flow.GetDailyUsageCostDetailsRequest rpc.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1GetDailyUsageCostDetailsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetDailyUsageCostDetailsResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/verify": {
       "post": {
         "tags": [
@@ -38176,6 +38219,60 @@
         },
         "description": "Response message for the Billing.GetCustomizedBillingServiceBillingGroup rpc.\n\nIf there is no account information, it indicates that it is applied to BillingGroup."
       },
+      "v1GetDailyUsageCostDetailsRequest": {
+        "type": "object",
+        "properties": {
+          "payerId": {
+            "type": "string",
+            "description": "Required. The id of the payer to fetch savings plan details for."
+          },
+          "startDate": {
+            "type": "string",
+            "description": "Required. The start date of the range for the savings plan details."
+          },
+          "endDate": {
+            "type": "string",
+            "description": "Required. The end date of the range for the savings plan details."
+          }
+        },
+        "description": "Request message for the Flow.GetDailyUsageCostDetailsRequest rpc."
+      },
+      "v1GetDailyUsageCostDetailsResponse": {
+        "type": "object",
+        "properties": {
+          "payerId": {
+            "type": "string",
+            "description": "The payer account ID for which the savings plan details are fetched."
+          },
+          "monthlyOnDemandCost": {
+            "type": "number",
+            "description": "Actual monthly on-demand cost for the payer account.",
+            "format": "double"
+          },
+          "monthlyEffectiveCost": {
+            "type": "number",
+            "description": "Actual monthly effective cost after applying Savings Plans.",
+            "format": "double"
+          },
+          "monthlyTotalSavings": {
+            "type": "number",
+            "description": "Actual total monthly savings from Savings Plan usage.",
+            "format": "double"
+          },
+          "spDetails": {
+            "type": "string",
+            "description": "Purchased Savings Plan details for the payer account."
+          },
+          "usageCostDetails": {
+            "title": "Daily Savings Plan usage and cost details",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1UsageCostDetails"
+            }
+          }
+        },
+        "description": "Response message for the Flow.GetDailyUsageCostDetailsResponse rpc."
+      },
       "v1GetDefaultCostAccessTemplateUrlResponse": {
         "type": "object",
         "properties": {
@@ -42070,6 +42167,56 @@
             "$ref": "#/components/schemas/coverv1Status"
           }
         }
+      },
+      "v1UsageCostDetails": {
+        "type": "object",
+        "properties": {
+          "currentDate": {
+            "type": "string",
+            "description": "The specific date this entry represents, corresponding to one day within the requested date range."
+          },
+          "ondemandUsage": {
+            "type": "number",
+            "description": "Total On-Demand usage in hours for the date.",
+            "format": "double"
+          },
+          "ondemandCost": {
+            "type": "number",
+            "description": "Total On-Demand cost in USD for the date.",
+            "format": "double"
+          },
+          "reservedUsage": {
+            "type": "number",
+            "description": "Total Reserved Instance usage in hours for the date.",
+            "format": "double"
+          },
+          "reservedCost": {
+            "type": "number",
+            "description": "Total Reserved Instance cost in USD for the date.",
+            "format": "double"
+          },
+          "savingsPlanUsage": {
+            "type": "number",
+            "description": "Total Savings Plan usage in hours for the date.",
+            "format": "double"
+          },
+          "savingsPlanCost": {
+            "type": "number",
+            "description": "Total Savings Plan cost in USD for the date.",
+            "format": "double"
+          },
+          "spotUsage": {
+            "type": "number",
+            "description": "Total Spot Instance usage in hours for the date.",
+            "format": "double"
+          },
+          "spotCost": {
+            "type": "number",
+            "description": "Total Spot Instance cost in USD for the date.",
+            "format": "double"
+          }
+        },
+        "description": "Usage and Cost Details to be used in the GetDailyUsageCostDetailsResponse."
       },
       "v1UsageCostsDrift": {
         "type": "object",
