@@ -13099,6 +13099,56 @@
         }
       }
     },
+    "/v1/product/all:read": {
+      "post": {
+        "tags": [
+          "Prism"
+        ],
+        "operationId": "Prism_ListProducts",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1ListProductsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Stream result of v1Product",
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/components/schemas/v1Product"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/googlerpcStatus"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/project": {
       "post": {
         "tags": [
@@ -39599,6 +39649,9 @@
         },
         "description": "Response message for the Iam.ListPermissions rpc."
       },
+      "v1ListProductsRequest": {
+        "type": "object"
+      },
       "v1ListProjectToTeamRequest": {
         "type": "object"
       },
@@ -40256,6 +40309,26 @@
         "properties": {
           "isAuthorized": {
             "type": "boolean"
+          }
+        }
+      },
+      "v1Product": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "lastUpdate": {
+            "type": "string"
           }
         }
       },
