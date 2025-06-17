@@ -13099,6 +13099,47 @@
         }
       }
     },
+    "/v1/product": {
+      "post": {
+        "tags": [
+          "Prism"
+        ],
+        "operationId": "Prism_CreateProduct",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1CreateProductRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/product/all:read": {
       "post": {
         "tags": [
@@ -36449,6 +36490,17 @@
         },
         "description": "See [https://help.alphaus.cloud/en/articles/3612555-ripple-aws-things-you-need-to-prepare-before-starting] for more information.\n\nSee [https://docs.aws.amazon.com/cur/latest/userguide/cur-create.html] for more information. Requirements include: Additional report details = 'Include Resource IDS' enabled, Prefix = non-empty (recommendation only), Time granularity = 'Hourly', File format = 'text/csv'."
       },
+      "v1CreateProductRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
       "v1CreateProfilingRequest": {
         "type": "object",
         "properties": {
@@ -36515,6 +36567,9 @@
         "type": "object",
         "properties": {
           "name": {
+            "type": "string"
+          },
+          "email": {
             "type": "string"
           }
         }
