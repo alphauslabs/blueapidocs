@@ -42506,14 +42506,24 @@
             "description": "Total Reserved Instance cost in USD for the date.",
             "format": "double"
           },
-          "savingsPlanUsage": {
+          "savingsPlanUsageByFlow": {
             "type": "number",
-            "description": "Total Savings Plan usage in hours for the date.",
+            "description": "Total Savings Plan usage in hours for the date purchased by Flow.",
             "format": "double"
           },
-          "savingsPlanCost": {
+          "savingsPlanCostByFlow": {
             "type": "number",
-            "description": "Total Savings Plan cost in USD for the date.",
+            "description": "Total Savings Plan cost in USD for the date purchased by Flow.",
+            "format": "double"
+          },
+          "savingsPlanUsageByUser": {
+            "type": "number",
+            "description": "Total Savings Plan usage in hours for the date purchased by user.",
+            "format": "double"
+          },
+          "savingsPlanCostByUser": {
+            "type": "number",
+            "description": "Total Savings Plan cost in USD for the date purchased by user.",
             "format": "double"
           },
           "spotUsage": {
