@@ -23576,6 +23576,9 @@
           },
           "calculationType": {
             "type": "string"
+          },
+          "language": {
+            "type": "string"
           }
         }
       },
