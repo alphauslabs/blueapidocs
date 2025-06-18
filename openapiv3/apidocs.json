@@ -13190,6 +13190,47 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/product/{id}": {
+      "delete": {
+        "tags": [
+          "Prism"
+        ],
+        "operationId": "Prism_DeleteProduct",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required product ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/project": {
       "post": {
         "tags": [
@@ -13397,6 +13438,47 @@
                       "$ref": "#/components/schemas/googlerpcStatus"
                     }
                   }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/projecttoteam/assign": {
+      "post": {
+        "tags": [
+          "Prism"
+        ],
+        "operationId": "Prism_AssignProjectToTeam",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1AssignProjectToTeamRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1AssignProjectToTeamResponse"
                 }
               }
             }
@@ -34587,6 +34669,49 @@
           }
         }
       },
+      "v1AssignProjectToTeamRequest": {
+        "type": "object",
+        "properties": {
+          "teamId": {
+            "type": "string"
+          },
+          "projectIds": {
+            "type": "string",
+            "description": "Required. Comma-separated list of project IDs to assign to the team."
+          }
+        }
+      },
+      "v1AssignProjectToTeamResponse": {
+        "type": "object",
+        "properties": {
+          "createNew": {
+            "type": "boolean",
+            "description": "Indicates whether a new project was created as part of the assignment."
+          },
+          "projectEmail": {
+            "type": "string",
+            "description": "Should not be empty if create_new is true."
+          },
+          "projectName": {
+            "type": "string",
+            "description": "Should not be empty if create_new is true."
+          },
+          "teamId": {
+            "type": "string"
+          },
+          "teamName": {
+            "type": "string"
+          },
+          "projectIds": {
+            "type": "string",
+            "description": "Comma-separated list of project IDs that were assigned."
+          },
+          "projectNames": {
+            "type": "string",
+            "description": "Comma-separated list of project names that were assigned."
+          }
+        }
+      },
       "v1Attribute": {
         "type": "object",
         "properties": {
@@ -41565,6 +41690,9 @@
             "type": "string"
           },
           "lastUpdate": {
+            "type": "string"
+          },
+          "email": {
             "type": "string"
           }
         }
