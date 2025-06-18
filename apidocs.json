@@ -37931,6 +37931,10 @@
           "type": "string",
           "description": "The specific date this entry represents, corresponding to one day within the requested date range."
         },
+        "productCode": {
+          "type": "string",
+          "description": "The product code for which the usage and cost details are provided."
+        },
         "ondemandUsage": {
           "type": "number",
           "format": "double",
