@@ -33940,7 +33940,7 @@
           "description": "Actual total monthly savings from Savings Plan usage."
         },
         "spDetails": {
-          "type": "string",
+          "$ref": "#/definitions/v1SpDetails",
           "description": "Purchased Savings Plan details for the payer account."
         },
         "usageCostDetails": {
@@ -37014,38 +37014,123 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "string"
+          "type": "string",
+          "description": "Payer account ID."
         },
         "accountScope": {
-          "type": "string"
+          "type": "string",
+          "description": "Account scope determines if the account is payer or linked account."
         },
         "customization": {
-          "type": "string"
+          "type": "string",
+          "description": "Customization setting for SP."
         },
         "planTerm": {
-          "type": "string"
+          "type": "string",
+          "description": "Term of the SP."
         },
         "paymentOption": {
-          "type": "string"
+          "type": "string",
+          "description": "Payment option for the SP."
         },
         "lookBackPeriod": {
-          "type": "string"
+          "type": "string",
+          "description": "Lookback period for recommendation."
         },
         "instanceFamily": {
-          "type": "string"
+          "type": "string",
+          "title": "If EC2 Instance SP is selected in Customization, request will include list of instance family"
         },
         "annualBudget": {
           "type": "number",
-          "format": "double"
+          "format": "double",
+          "description": "Annual budget input for SP."
         },
         "approval": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Purchase approval from the payer for the SP."
         },
         "lastUpdated": {
-          "type": "string"
+          "type": "string",
+          "description": "Last updated timestamp of the settings configuration."
         }
       },
       "description": "Settings history message."
+    },
+    "v1SpDetails": {
+      "type": "object",
+      "properties": {
+        "payerId": {
+          "type": "string",
+          "description": "The payer account ID for which the savings plan details are fetched."
+        },
+        "savingsPlanType": {
+          "type": "string",
+          "description": "The savings plan type, e.g., `Compute`, `Ec2`."
+        },
+        "state": {
+          "type": "string",
+          "description": "The current state of the savings plan, e.g., `ACTIVE`, `EXPIRED`, `PENDING`."
+        },
+        "startTime": {
+          "type": "string",
+          "description": "The start time of the savings plan."
+        },
+        "endTime": {
+          "type": "string",
+          "description": "The end time of the savings plan."
+        },
+        "returnableUntil": {
+          "type": "string",
+          "description": "The date until which the savings plan is returnable, if applicable."
+        },
+        "currency": {
+          "type": "string",
+          "description": "The currency in which the savings plan is priced, e.g., `USD`."
+        },
+        "commitment": {
+          "type": "number",
+          "format": "double",
+          "description": "The commitment amount per hour for the savings plan in USD."
+        },
+        "description": {
+          "type": "string",
+          "description": "A description of the savings plan, including details like the instance family and payment option."
+        },
+        "paymentOption": {
+          "type": "string",
+          "description": "The payment option for the savings plan, e.g., `All Upfront`, `Partial Upfront`, `No Upfront`."
+        },
+        "productTypes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "The product types covered by the savings plan, e.g., `EC2`, `Lambda`."
+        },
+        "ec2InstanceFamily": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "The EC2 instance families covered by the savings plan, e.g., `m5`, `c5`."
+        },
+        "recurringPaymentAmount": {
+          "type": "number",
+          "format": "double",
+          "description": "The periodic (usually monthly) charge to pay over the term of the plan."
+        },
+        "upfrontPaymentAmount": {
+          "type": "number",
+          "format": "double",
+          "description": "The total amount paid at the start of the Savings Plan, if applicable."
+        },
+        "tags": {
+          "type": "string",
+          "description": "The tag that refers to the one who purchased the Savings Plan."
+        }
+      },
+      "description": "Savings Plan Details to be used in the GetDailyUsageCostDetailsResponse."
     },
     "v1SupportPlan": {
       "type": "string",
