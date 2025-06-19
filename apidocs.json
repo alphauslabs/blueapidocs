@@ -31969,6 +31969,13 @@
         },
         "email": {
           "type": "string"
+        },
+        "domains": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of domains associated with the organization."
         }
       }
     },

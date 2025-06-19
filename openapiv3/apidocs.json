@@ -36665,6 +36665,13 @@
           },
           "email": {
             "type": "string"
+          },
+          "domains": {
+            "type": "array",
+            "description": "List of domains associated with the organization.",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
