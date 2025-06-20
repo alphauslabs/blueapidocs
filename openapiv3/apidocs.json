@@ -10590,6 +10590,36 @@
         }
       }
     },
+    "/v1/integration/status": {
+      "get": {
+        "tags": [
+          "Prism"
+        ],
+        "operationId": "Prism_GetIntegrationStatus",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetIntegrationStatusResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/invoice/displaysettings": {
       "get": {
         "tags": [
@@ -38742,6 +38772,17 @@
           }
         }
       },
+      "v1GetIntegrationStatusResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1IntegrationStatus"
+            }
+          }
+        }
+      },
       "v1GetInvoiceDisplaySettingsResponse": {
         "type": "object",
         "properties": {
@@ -39415,6 +39456,17 @@
           }
         },
         "description": "Request message for the Cost.ImportCurFiles rpc."
+      },
+      "v1IntegrationStatus": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
       },
       "v1InviteMemberRequest": {
         "title": "Request message for InviteMember",
