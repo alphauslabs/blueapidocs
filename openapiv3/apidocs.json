@@ -14244,6 +14244,56 @@
         }
       }
     },
+    "/v1/reportschedule/all:read": {
+      "post": {
+        "tags": [
+          "Prism"
+        ],
+        "operationId": "Prism_ListReportSchedules",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1ListReportSchedulesRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Stream result of v1ReportSchedule",
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/components/schemas/v1ReportSchedule"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/googlerpcStatus"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/reseller/announcement": {
       "post": {
         "tags": [
@@ -40115,6 +40165,9 @@
           }
         }
       },
+      "v1ListReportSchedulesRequest": {
+        "type": "object"
+      },
       "v1ListRolesResponse": {
         "type": "object",
         "properties": {
@@ -41265,6 +41318,33 @@
         "type": "object",
         "properties": {
           "viewId": {
+            "type": "string"
+          }
+        }
+      },
+      "v1ReportSchedule": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "schedule": {
+            "type": "string"
+          },
+          "status": {
+            "title": "Supported values: \"on\", \"off\"",
+            "type": "string"
+          },
+          "scheduleCron": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "lastUpdate": {
             "type": "string"
           }
         }
