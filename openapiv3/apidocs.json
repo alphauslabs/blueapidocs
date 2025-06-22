@@ -14294,6 +14294,57 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/reportschedule/{id}": {
+      "put": {
+        "tags": [
+          "Prism"
+        ],
+        "operationId": "Prism_UpdateReportSchedule",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PrismUpdateReportScheduleBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/reseller/announcement": {
       "post": {
         "tags": [
@@ -26081,6 +26132,30 @@
             "type": "string"
           },
           "email": {
+            "type": "string"
+          }
+        }
+      },
+      "PrismUpdateReportScheduleBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "schedule": {
+            "type": "string"
+          },
+          "status": {
+            "title": "Supported values: \"on\", \"off\"",
+            "type": "string"
+          },
+          "scheduleCron": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "lastUpdate": {
             "type": "string"
           }
         }
