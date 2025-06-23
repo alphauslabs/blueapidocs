@@ -10620,6 +10620,56 @@
         }
       }
     },
+    "/v1/integration/status/all:read": {
+      "post": {
+        "tags": [
+          "Prism"
+        ],
+        "operationId": "Prism_ListIntegrationStatus",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1ListIntegrationStatusRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Stream result of v1IntegrationStatus",
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/components/schemas/v1IntegrationStatus"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/googlerpcStatus"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/invoice/displaysettings": {
       "get": {
         "tags": [
@@ -39694,9 +39744,20 @@
         "type": "object",
         "properties": {
           "type": {
+            "title": "\"github\", \"slack\"",
             "type": "string"
           },
           "status": {
+            "title": "\"on\", \"off\"",
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "teamName": {
+            "type": "string"
+          },
+          "lastUpdate": {
             "type": "string"
           }
         }
@@ -40059,6 +40120,9 @@
           }
         },
         "description": "Response message for the Iam.ListIdentityProviders rpc."
+      },
+      "v1ListIntegrationStatusRequest": {
+        "type": "object"
       },
       "v1ListInvoiceRequest": {
         "type": "object",
