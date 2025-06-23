@@ -42920,6 +42920,16 @@
             "type": "number",
             "description": "Total Spot Instance cost in USD for the date.",
             "format": "double"
+          },
+          "coveragePercentage": {
+            "type": "number",
+            "description": "Percentage of Savings Plan coverage for the date.",
+            "format": "double"
+          },
+          "utilizationPercentage": {
+            "type": "number",
+            "description": "Percentage of Savings Plan utilization for the date.",
+            "format": "double"
           }
         },
         "description": "Usage and Cost Details to be used in the GetDailyUsageCostDetailsResponse."
