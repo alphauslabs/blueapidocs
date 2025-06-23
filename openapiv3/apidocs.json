@@ -12943,6 +12943,58 @@
         }
       }
     },
+    "/v1/org/{id}/timezone": {
+      "put": {
+        "tags": [
+          "Prism"
+        ],
+        "operationId": "Prism_UpdateOrgTimezone",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required organization ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PrismUpdateOrgTimezoneBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/organizations/currency": {
       "get": {
         "tags": [
@@ -26165,6 +26217,15 @@
           }
         },
         "description": "Request message for Pricing.GetPricing rpc."
+      },
+      "PrismUpdateOrgTimezoneBody": {
+        "type": "object",
+        "properties": {
+          "timezone": {
+            "type": "string",
+            "description": "Timezone in IANA format, e.g., \"Asia/Kuala_Lumpur\"."
+          }
+        }
       },
       "PrismUpdateOrganizationBody": {
         "type": "object",
