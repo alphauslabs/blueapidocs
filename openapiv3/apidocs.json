@@ -30220,6 +30220,11 @@
             "type": "boolean",
             "description": "Indicates whether the item is tagged (true) or not (false)."
           },
+          "numberOfUnits": {
+            "type": "number",
+            "description": "Contains the number of units for unit metric. Only used when feature flag for unit cost metric is enabled.",
+            "format": "double"
+          },
           "unitcostmetric": {
             "type": "object",
             "additionalProperties": {
