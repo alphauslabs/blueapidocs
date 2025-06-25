@@ -18217,6 +18217,108 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/workflow/all:read": {
+      "post": {
+        "tags": [
+          "Prism"
+        ],
+        "operationId": "Prism_ListWorkflows",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1ListWorkflowsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Stream result of v1Workflow",
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/components/schemas/v1Workflow"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/googlerpcStatus"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/workflow/{name}": {
+      "put": {
+        "tags": [
+          "Prism"
+        ],
+        "operationId": "Prism_UpdateWorkflow",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Required workflow name.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PrismUpdateWorkflowBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/x/pcc": {
       "post": {
         "tags": [
@@ -26309,6 +26411,15 @@
           },
           "lastUpdate": {
             "type": "string"
+          }
+        }
+      },
+      "PrismUpdateWorkflowBody": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Allowed values are \"on\" and \"off\"."
           }
         }
       },
@@ -40509,6 +40620,9 @@
         },
         "description": "Response message for the Iam.ListUserRoleMappings rpc."
       },
+      "v1ListWorkflowsRequest": {
+        "type": "object"
+      },
       "v1MFAUser": {
         "type": "object",
         "properties": {
@@ -43287,6 +43401,18 @@
             "items": {
               "$ref": "#/components/schemas/v1WaveFeature"
             }
+          }
+        }
+      },
+      "v1Workflow": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "description": "Allowed values are \"on\" and \"off\"."
           }
         }
       },
