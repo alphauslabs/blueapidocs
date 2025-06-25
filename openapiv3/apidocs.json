@@ -42388,9 +42388,14 @@
             "description": "The third profit item cost.",
             "format": "double"
           },
-          "trueUnblendedProfit": {
+          "trueUnblendedProfitRi": {
             "type": "number",
-            "description": "The profit from RI/SP (True Unblended).",
+            "description": "The profit from RI (True Unblended).",
+            "format": "double"
+          },
+          "trueUnblendedProfitSp": {
+            "type": "number",
+            "description": "The profit from SP (True Unblended).",
             "format": "double"
           }
         },
