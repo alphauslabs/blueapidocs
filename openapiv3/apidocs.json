@@ -42387,6 +42387,11 @@
             "type": "number",
             "description": "The third profit item cost.",
             "format": "double"
+          },
+          "trueUnblendedProfit": {
+            "type": "number",
+            "description": "The profit from RI/SP (True Unblended).",
+            "format": "double"
           }
         },
         "description": "TotalDetailSection resource definition."
