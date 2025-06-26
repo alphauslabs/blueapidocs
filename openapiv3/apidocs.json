@@ -43510,6 +43510,9 @@
           },
           "org": {
             "type": "string"
+          },
+          "isOwner": {
+            "type": "boolean"
           }
         }
       },
