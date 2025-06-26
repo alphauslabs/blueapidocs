@@ -12913,6 +12913,47 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/org/join": {
+      "post": {
+        "tags": [
+          "Prism"
+        ],
+        "operationId": "Prism_JoinOrganization",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1JoinOrganizationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/org/{id}": {
       "get": {
         "tags": [
@@ -40075,6 +40116,27 @@
           "value": {
             "type": "string",
             "description": "The IP filter value. Should be in CIDR format."
+          }
+        }
+      },
+      "v1JoinOrganizationRequest": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Required."
+          },
+          "email": {
+            "type": "string",
+            "description": "Required user email."
+          },
+          "name": {
+            "type": "string",
+            "description": "Optional user name."
+          },
+          "social": {
+            "title": "Optional \"google\", \"github\"",
+            "type": "string"
           }
         }
       },
