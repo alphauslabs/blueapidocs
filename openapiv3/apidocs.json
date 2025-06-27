@@ -12913,6 +12913,47 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/org/code": {
+      "post": {
+        "tags": [
+          "Prism"
+        ],
+        "operationId": "Prism_GenerateOrganizationCode",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1GenerateOrganizationCodeRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GenerateOrganizationCodeResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/org/join": {
       "post": {
         "tags": [
@@ -38179,6 +38220,17 @@
           },
           "enabled": {
             "type": "boolean"
+          }
+        }
+      },
+      "v1GenerateOrganizationCodeRequest": {
+        "type": "object"
+      },
+      "v1GenerateOrganizationCodeResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
           }
         }
       },
