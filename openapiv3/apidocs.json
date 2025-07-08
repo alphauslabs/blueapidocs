@@ -42363,7 +42363,15 @@
         "description": "Settings history message."
       },
       "v1ShareGDriveRequest": {
-        "type": "object"
+        "type": "object",
+        "properties": {
+          "driveId": {
+            "type": "string"
+          },
+          "driveName": {
+            "type": "string"
+          }
+        }
       },
       "v1SpDetails": {
         "type": "object",
