@@ -11406,7 +11406,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "WORK-IN-PROGRESS: Reads list of the invoice.",
+        "summary": "Reads list of the invoice.",
         "operationId": "Billing_ListInvoice",
         "requestBody": {
           "description": "Request message for the ListInvoice rpc.",
