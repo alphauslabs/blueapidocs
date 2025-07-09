@@ -42365,10 +42365,7 @@
       "v1ShareGDriveRequest": {
         "type": "object",
         "properties": {
-          "driveId": {
-            "type": "string"
-          },
-          "driveName": {
+          "drivePath": {
             "type": "string"
           }
         }
