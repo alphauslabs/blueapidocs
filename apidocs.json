@@ -38683,50 +38683,25 @@
           "type": "string",
           "description": "The product code for which the usage and cost details are provided."
         },
-        "ondemandUsage": {
-          "type": "number",
-          "format": "double",
-          "description": "Total On-Demand usage in hours for the date."
-        },
         "ondemandCost": {
           "type": "number",
           "format": "double",
           "description": "Total On-Demand cost in USD for the date."
-        },
-        "reservedUsage": {
-          "type": "number",
-          "format": "double",
-          "description": "Total Reserved Instance usage in hours for the date."
         },
         "reservedCost": {
           "type": "number",
           "format": "double",
           "description": "Total Reserved Instance cost in USD for the date."
         },
-        "savingsPlanUsageByFlow": {
-          "type": "number",
-          "format": "double",
-          "description": "Total Savings Plan usage in hours for the date purchased by Flow."
-        },
         "savingsPlanCostByFlow": {
           "type": "number",
           "format": "double",
           "description": "Total Savings Plan cost in USD for the date purchased by Flow."
         },
-        "savingsPlanUsageByUser": {
-          "type": "number",
-          "format": "double",
-          "description": "Total Savings Plan usage in hours for the date purchased by user."
-        },
         "savingsPlanCostByUser": {
           "type": "number",
           "format": "double",
           "description": "Total Savings Plan cost in USD for the date purchased by user."
-        },
-        "spotUsage": {
-          "type": "number",
-          "format": "double",
-          "description": "Total Spot Instance usage in hours for the date."
         },
         "spotCost": {
           "type": "number",
