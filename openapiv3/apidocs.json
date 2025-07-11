@@ -6716,6 +6716,58 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/aws/{billingInternalId}/accounts": {
+      "post": {
+        "tags": [
+          "Flow"
+        ],
+        "summary": "Returns all the aws accounts and its payer of the msp id",
+        "operationId": "Flow_GetAwsAccounts",
+        "parameters": [
+          {
+            "name": "billingInternalId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FlowGetAwsAccountsBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetAwsAccountsResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/azure/credentials/mpn": {
       "post": {
         "tags": [
@@ -26082,6 +26134,10 @@
           "NOT_EQUAL"
         ]
       },
+      "FlowGetAwsAccountsBody": {
+        "type": "object",
+        "description": "Response message for the Flow.GetAwsAccounts rpc."
+      },
       "FlowUpdateSettingsBody": {
         "type": "object",
         "properties": {
@@ -38473,6 +38529,32 @@
             "type": "string"
           }
         }
+      },
+      "v1GetAwsAccountsResponse": {
+        "type": "object",
+        "properties": {
+          "groupId": {
+            "type": "string"
+          },
+          "groupName": {
+            "type": "string"
+          },
+          "payerAccounts": {
+            "title": "all payers registered on billing group",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "linkedAccountToPayerId": {
+            "title": "map of aws accountid to its payer id",
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        },
+        "description": "Response message for the Flow.GetAwsAccounts rpc."
       },
       "v1GetBillingGroupAccountSupportPlanResponse": {
         "type": "object",
