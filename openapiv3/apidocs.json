@@ -39281,33 +39281,21 @@
             "type": "string",
             "description": "The payer account ID for which the savings plan details are fetched."
           },
-          "monthlyOnDemandCost": {
-            "type": "number",
-            "description": "Actual monthly on-demand cost for the payer account.",
-            "format": "double"
-          },
-          "monthlyEffectiveCost": {
-            "type": "number",
-            "description": "Actual monthly effective cost after applying Savings Plans.",
-            "format": "double"
-          },
-          "monthlyTotalSavings": {
-            "type": "number",
-            "description": "Actual total monthly savings from Savings Plan usage.",
-            "format": "double"
-          },
           "spDetails": {
             "$ref": "#/components/schemas/v1SpDetails"
           },
+          "monthlyCosts": {
+            "$ref": "#/components/schemas/v1MonthlyCosts"
+          },
           "usageCostDetails": {
-            "title": "Daily Savings Plan usage and cost details",
             "type": "array",
+            "description": "Daily Savings Plan usage and cost details.",
             "items": {
               "$ref": "#/components/schemas/v1UsageCostDetails"
             }
           }
         },
-        "description": "Response message for the Flow.GetDailyUsageCostDetailsResponse rpc."
+        "description": "A single entry containing Savings Plan, monthly cost summary, and usage breakdown."
       },
       "v1GetDefaultCostAccessTemplateUrlResponse": {
         "type": "object",
@@ -41084,6 +41072,27 @@
           }
         }
       },
+      "v1MonthlyCosts": {
+        "type": "object",
+        "properties": {
+          "monthlyOnDemandCost": {
+            "type": "number",
+            "description": "Actual monthly on-demand cost for the payer account.",
+            "format": "double"
+          },
+          "monthlyEffectiveCost": {
+            "type": "number",
+            "description": "Actual monthly effective cost after applying Savings Plans.",
+            "format": "double"
+          },
+          "monthlyTotalSavings": {
+            "type": "number",
+            "description": "Actual total monthly savings from Savings Plan usage.",
+            "format": "double"
+          }
+        },
+        "description": "Summary of monthly cost values associated with a single Savings Plan."
+      },
       "v1NonTagGroupSetting": {
         "title": "Individual non-tag group setting for UpdateNonTagGroupToBillingGroup",
         "type": "object",
@@ -42455,10 +42464,6 @@
       "v1SpDetails": {
         "type": "object",
         "properties": {
-          "payerId": {
-            "type": "string",
-            "description": "The payer account ID for which the savings plan details are fetched."
-          },
           "savingsPlanType": {
             "type": "string",
             "description": "The savings plan type, e.g., `Compute`, `Ec2`."
@@ -42479,18 +42484,18 @@
             "type": "string",
             "description": "The date until which the savings plan is returnable, if applicable."
           },
-          "currency": {
-            "type": "string",
-            "description": "The currency in which the savings plan is priced, e.g., `USD`."
-          },
           "commitment": {
             "type": "number",
             "description": "The commitment amount per hour for the savings plan in USD.",
             "format": "double"
           },
-          "description": {
+          "currency": {
             "type": "string",
-            "description": "A description of the savings plan, including details like the instance family and payment option."
+            "description": "The currency in which the savings plan is priced, e.g., `USD`."
+          },
+          "planTerm": {
+            "type": "string",
+            "description": "The duration of the plan term, e.g., `1 year`, `3 years`."
           },
           "paymentOption": {
             "type": "string",
@@ -42503,6 +42508,16 @@
               "type": "string"
             }
           },
+          "upfrontPaymentAmount": {
+            "type": "number",
+            "description": "The total amount paid at the start of the Savings Plan, if applicable.",
+            "format": "double"
+          },
+          "recurringPaymentAmount": {
+            "type": "number",
+            "description": "The periodic (usually monthly) charge to pay over the term of the plan.",
+            "format": "double"
+          },
           "ec2InstanceFamily": {
             "type": "array",
             "description": "The EC2 instance families covered by the savings plan, e.g., `m5`, `c5`.",
@@ -42510,19 +42525,13 @@
               "type": "string"
             }
           },
-          "recurringPaymentAmount": {
-            "type": "number",
-            "description": "The periodic (usually monthly) charge to pay over the term of the plan.",
-            "format": "double"
-          },
-          "upfrontPaymentAmount": {
-            "type": "number",
-            "description": "The total amount paid at the start of the Savings Plan, if applicable.",
-            "format": "double"
-          },
           "tags": {
             "type": "string",
             "description": "The tag that refers to the one who purchased the Savings Plan."
+          },
+          "purchasedBy": {
+            "type": "string",
+            "description": "The user or Flow that purchased the Savings Plan."
           }
         },
         "description": "Savings Plan Details to be used in the GetDailyUsageCostDetailsResponse."
