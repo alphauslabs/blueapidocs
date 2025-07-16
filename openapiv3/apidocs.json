@@ -17715,7 +17715,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/v1GetDailyUsageCostDetailsResponses"
+                  "$ref": "#/components/schemas/v1GetDailyUsageCostDetailsResponse"
                 }
               }
             }
@@ -39409,11 +39409,15 @@
             "type": "string",
             "description": "The payer account ID for which the savings plan details are fetched."
           },
-          "spDetails": {
-            "$ref": "#/components/schemas/v1SpDetails"
-          },
           "monthlyCosts": {
             "$ref": "#/components/schemas/v1MonthlyCosts"
+          },
+          "spDetails": {
+            "type": "array",
+            "description": "Purchased Savings Plan details for the payer account.",
+            "items": {
+              "$ref": "#/components/schemas/v1SpDetails"
+            }
           },
           "usageCostDetails": {
             "type": "array",
@@ -39424,18 +39428,6 @@
           }
         },
         "description": "A single entry containing Savings Plan, monthly cost summary, and usage breakdown."
-      },
-      "v1GetDailyUsageCostDetailsResponses": {
-        "type": "object",
-        "properties": {
-          "responses": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/v1GetDailyUsageCostDetailsResponse"
-            }
-          }
-        },
-        "description": "Response message for the Flow.GetDailyUsageCostDetails rpc."
       },
       "v1GetDefaultCostAccessTemplateUrlResponse": {
         "type": "object",
