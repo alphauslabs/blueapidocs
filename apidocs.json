@@ -8041,6 +8041,72 @@
         ]
       }
     },
+    "/v1/demo/populate": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Populate demo data",
+        "operationId": "Cover_PopulateDemoData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1PopulateDemoDataResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1PopulateDemoDataRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
+    "/v1/demo/reset": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Reset demo data",
+        "operationId": "Cover_ResetDemoData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ResetDemoDataResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ResetDemoDataRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
     "/v1/discount": {
       "post": {
         "summary": "Get the discount recommendations for every account in a cost group",
@@ -36733,6 +36799,12 @@
       },
       "description": "PeriodOverPeriodSection resource definition."
     },
+    "v1PopulateDemoDataRequest": {
+      "type": "object"
+    },
+    "v1PopulateDemoDataResponse": {
+      "type": "object"
+    },
     "v1Preference": {
       "type": "object"
     },
@@ -37462,6 +37534,12 @@
           "type": "string"
         }
       }
+    },
+    "v1ResetDemoDataRequest": {
+      "type": "object"
+    },
+    "v1ResetDemoDataResponse": {
+      "type": "object"
     },
     "v1ResetPasswordRequest": {
       "type": "object",

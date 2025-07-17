@@ -10252,6 +10252,90 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/demo/populate": {
+      "post": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "WORK-IN-PROGRESS: Populate demo data",
+        "operationId": "Cover_PopulateDemoData",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1PopulateDemoDataRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1PopulateDemoDataResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/demo/reset": {
+      "post": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "WORK-IN-PROGRESS: Reset demo data",
+        "operationId": "Cover_ResetDemoData",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1ResetDemoDataRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1ResetDemoDataResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/discount": {
       "post": {
         "tags": [
@@ -41464,6 +41548,12 @@
         },
         "description": "PeriodOverPeriodSection resource definition."
       },
+      "v1PopulateDemoDataRequest": {
+        "type": "object"
+      },
+      "v1PopulateDemoDataResponse": {
+        "type": "object"
+      },
       "v1Preference": {
         "type": "object"
       },
@@ -42185,6 +42275,12 @@
             "type": "string"
           }
         }
+      },
+      "v1ResetDemoDataRequest": {
+        "type": "object"
+      },
+      "v1ResetDemoDataResponse": {
+        "type": "object"
       },
       "v1ResetPasswordRequest": {
         "title": "Request message for ResetPassword",
