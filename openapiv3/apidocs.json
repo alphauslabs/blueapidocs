@@ -26796,6 +26796,9 @@
           },
           "lastUpdate": {
             "type": "string"
+          },
+          "workflowId": {
+            "type": "string"
           }
         }
       },
@@ -42272,6 +42275,9 @@
             "type": "string"
           },
           "lastUpdate": {
+            "type": "string"
+          },
+          "workflowId": {
             "type": "string"
           }
         }
