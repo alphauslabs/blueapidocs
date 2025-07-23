@@ -41515,6 +41515,14 @@
       "v1PeriodOverPeriodSection": {
         "type": "object",
         "properties": {
+          "isDataComplete": {
+            "title": "returns true if the previous data range is available",
+            "type": "boolean"
+          },
+          "dateRange": {
+            "title": "a formatted date of the previous data range it was compared",
+            "type": "string"
+          },
           "invoiceCost": {
             "title": "The invoice cost",
             "type": "number",
