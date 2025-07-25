@@ -25410,6 +25410,9 @@
           },
           "monthly": {
             "$ref": "#/components/schemas/apiMonthlyBudgetAlert"
+          },
+          "customPeriod": {
+            "$ref": "#/components/schemas/apiCustomPeriodBudgetAlert"
           }
         },
         "description": "Request message for the UpdateBudgetAlerts rpc."
@@ -27700,6 +27703,31 @@
         },
         "description": "CustomDetails resource definition."
       },
+      "apiCustomPeriodBudgetAlert": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "title": "Required. threshold in budget alerts",
+            "type": "number",
+            "format": "double"
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Required. notification enable/disable \nIf disabled, no alert is sent."
+          },
+          "startDay": {
+            "title": "Required. start date in budget alerts",
+            "type": "integer",
+            "format": "int32"
+          },
+          "endDay": {
+            "title": "Required. end date in budget alerts",
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "description": "CustomPeriodBudgetAlert resource definition."
+      },
       "apiDailyBudgetAlert": {
         "type": "object",
         "properties": {
@@ -29409,7 +29437,7 @@
         "type": "object",
         "properties": {
           "id": {
-            "title": "budget id\n`previousDay` / `daily` / `monthly`",
+            "title": "budget id\n`previousDay` / `daily` / `monthly` / `customPeriod`",
             "type": "string"
           },
           "value": {
@@ -35951,6 +35979,9 @@
           },
           "monthly": {
             "$ref": "#/components/schemas/apiMonthlyBudgetAlert"
+          },
+          "customPeriod": {
+            "$ref": "#/components/schemas/apiCustomPeriodBudgetAlert"
           }
         },
         "description": "Request message for the BudgetAlerts rpc."
@@ -36980,6 +37011,9 @@
           },
           "monthly": {
             "$ref": "#/components/schemas/apiMonthlyBudgetAlert"
+          },
+          "customPeriod": {
+            "$ref": "#/components/schemas/apiCustomPeriodBudgetAlert"
           }
         },
         "description": "Request message for the CreateBudgetAlerts rpc."
