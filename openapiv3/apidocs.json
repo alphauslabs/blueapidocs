@@ -27715,15 +27715,13 @@
             "type": "boolean",
             "description": "Required. notification enable/disable \nIf disabled, no alert is sent."
           },
-          "startDay": {
+          "startDate": {
             "title": "Required. start date in budget alerts",
-            "type": "integer",
-            "format": "int32"
+            "type": "string"
           },
-          "endDay": {
+          "endDate": {
             "title": "Required. end date in budget alerts",
-            "type": "integer",
-            "format": "int32"
+            "type": "string"
           }
         },
         "description": "CustomPeriodBudgetAlert resource definition."
