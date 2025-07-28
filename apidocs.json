@@ -34745,6 +34745,14 @@
             "$ref": "#/definitions/v1UsageCostDetails"
           },
           "description": "Daily Savings Plan usage and cost details."
+        },
+        "utilizationDetails": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1UtilizationDetails"
+          },
+          "description": "Percentage of Savings Plan utilization per ARN."
         }
       },
       "description": "A single entry containing Savings Plan, monthly cost summary, and usage breakdown."
@@ -39059,11 +39067,6 @@
           "type": "number",
           "format": "double",
           "description": "Percentage of Savings Plan coverage for the date."
-        },
-        "utilizationPercentage": {
-          "type": "number",
-          "format": "double",
-          "description": "Percentage of Savings Plan utilization for the date."
         }
       },
       "description": "Usage and Cost Details to be used in the GetDailyUsageCostDetailsResponse."
@@ -39096,6 +39099,21 @@
         }
       },
       "description": "Streaming response message for the Billing.ListUsageCostsDrift rpc."
+    },
+    "v1UtilizationDetails": {
+      "type": "object",
+      "properties": {
+        "arn": {
+          "type": "string",
+          "description": "The ARN of each of the Savings Plan for which utilization is reported."
+        },
+        "utilizationPercentage": {
+          "type": "number",
+          "format": "double",
+          "title": "The percentage of utilization for each of the Savings Plan"
+        }
+      },
+      "description": "Utilization details for Savings Plans, including ARN and utilization percentage."
     },
     "v1ValidateResetPasswordLinkAndChangePasswordRequest": {
       "type": "object",
