@@ -40848,50 +40848,62 @@
           "companyName": {
             "type": "string"
           },
-          "invoiceStatus": {
-            "title": "Created || Not Created",
-            "type": "string"
-          },
           "finalizationStatus": {
-            "title": "In progress || Done",
             "type": "string"
           },
-          "waveStatus": {
-            "title": "Published || Not published",
+          "isCreated": {
+            "title": "invoice creation status",
+            "type": "boolean"
+          },
+          "isSettingModified": {
+            "type": "boolean"
+          },
+          "createdDate": {
             "type": "string"
           },
-          "vendor": {
-            "title": "aws, azure, gcp",
+          "updatedDate": {
+            "type": "string"
+          },
+          "createdVendors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "isPublished": {
+            "title": "wave publish status",
+            "type": "boolean"
+          },
+          "vendorBillingAmount": {
+            "title": "map of vendor to billingAmount Formated in $8,000.12",
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "billingAmountTotal": {
             "type": "string"
           },
           "currency": {
             "title": "The currency of the invoice (usd, jpy, ...)",
             "type": "string"
           },
-          "billingAmountAws": {
-            "title": "Formated in $8,000.12",
-            "type": "string"
-          },
-          "billingAmountAzure": {
-            "type": "string"
-          },
-          "billingAmountGcp": {
-            "type": "string"
-          },
-          "billingAmountTotal": {
-            "type": "string"
-          },
           "urlId": {
             "type": "string"
           },
-          "invoiceSettingsAws": {
-            "$ref": "#/components/schemas/billingv1InvoiceSettings"
+          "createdVendorInvoiceSetting": {
+            "title": "setting used in invoice creation",
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/billingv1InvoiceSettings"
+            }
           },
-          "invoiceSettingsAzure": {
-            "$ref": "#/components/schemas/billingv1InvoiceSettings"
-          },
-          "invoiceSettingsGcp": {
-            "$ref": "#/components/schemas/billingv1InvoiceSettings"
+          "defaultVendorInvoiceSetting": {
+            "title": "default invoice setting",
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/billingv1InvoiceSettings"
+            }
           }
         },
         "description": "Response message for the ListInvoice rpc."
