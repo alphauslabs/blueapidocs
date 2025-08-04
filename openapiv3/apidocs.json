@@ -30307,7 +30307,7 @@
           },
           "discountRate": {
             "type": "number",
-            "format": "float"
+            "format": "double"
           },
           "discountTargetUsage": {
             "type": "string",
@@ -30319,7 +30319,7 @@
           },
           "taxRate": {
             "type": "number",
-            "format": "float"
+            "format": "double"
           },
           "supportFee": {
             "title": "e.g., percent, fix, aws_developer, aws_business, aws_enterprise",
@@ -30327,7 +30327,7 @@
           },
           "supportRate": {
             "type": "number",
-            "format": "float"
+            "format": "double"
           },
           "supportFeeCalcTarget": {
             "type": "string",
@@ -30335,7 +30335,7 @@
           },
           "supportFix": {
             "type": "number",
-            "format": "float"
+            "format": "double"
           },
           "substitutionFee": {
             "title": "e.g., percent, fix, automatic, usagetable",
@@ -30343,11 +30343,11 @@
           },
           "substitutionRate": {
             "type": "number",
-            "format": "float"
+            "format": "double"
           },
           "substitutionFix": {
             "type": "number",
-            "format": "float"
+            "format": "double"
           },
           "substitutionFeeCalcTarget": {
             "type": "string",
@@ -30368,7 +30368,7 @@
           "exchangeRate": {
             "title": "Exchange rate from USD to the invoice currency\nExample: If the invoice currency is \"jpy\" and 1 USD = 150 jpy, exchangeRate = 150",
             "type": "number",
-            "format": "float"
+            "format": "double"
           },
           "memo": {
             "type": "string"
@@ -30380,7 +30380,7 @@
           "additionalItems": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/v1InvoiceAdditionalItems"
+              "$ref": "#/components/schemas/v1FreeFormItem"
             }
           }
         }
@@ -40460,18 +40460,6 @@
           }
         }
       },
-      "v1InvoiceAdditionalItems": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "price": {
-            "type": "number",
-            "format": "float"
-          }
-        }
-      },
       "v1InvoiceConnectedBillingGroups": {
         "title": "Response message to be used for ListInvoiceTemplateResponse",
         "type": "object",
@@ -40898,8 +40886,15 @@
               "$ref": "#/components/schemas/billingv1InvoiceSettings"
             }
           },
+          "savedVendorInvoiceSetting": {
+            "title": "saved invoice setting for the month",
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/billingv1InvoiceSettings"
+            }
+          },
           "defaultVendorInvoiceSetting": {
-            "title": "default invoice setting",
+            "title": "billinggroup's default invoice setting",
             "type": "object",
             "additionalProperties": {
               "$ref": "#/components/schemas/billingv1InvoiceSettings"
