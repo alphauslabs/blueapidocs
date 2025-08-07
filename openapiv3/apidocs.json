@@ -26726,6 +26726,16 @@
         "type": "object",
         "description": "Request message for the Operations.CancelOperation rpc."
       },
+      "PeriodRangeUnit": {
+        "type": "string",
+        "default": "UNIT_UNSPECIFIED",
+        "enum": [
+          "UNIT_UNSPECIFIED",
+          "MONTH",
+          "QUARTER",
+          "YEAR"
+        ]
+      },
       "PricingGetPricingBody": {
         "type": "object",
         "properties": {
@@ -41609,6 +41619,29 @@
         },
         "description": "PeriodOverPeriodSection resource definition."
       },
+      "v1PeriodRange": {
+        "type": "object",
+        "properties": {
+          "unit": {
+            "$ref": "#/components/schemas/PeriodRangeUnit"
+          },
+          "year": {
+            "title": "Year (e.g., 2025)",
+            "type": "integer",
+            "format": "int64"
+          },
+          "starting": {
+            "title": "Start month/quarter (1-based), ignored if YEAR",
+            "type": "integer",
+            "format": "int64"
+          },
+          "duration": {
+            "title": "Length in units of unit",
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
       "v1PopulateDemoDataRequest": {
         "type": "object"
       },
@@ -42109,6 +42142,13 @@
           "endTime": {
             "type": "string",
             "description": "Optional. The UTC date to end the streaming data. If not set, current date will be used. Format: `yyyymmdd`."
+          },
+          "usePeriodRange": {
+            "title": "Set true to use period range as date input, startTime and endTime would be ignored",
+            "type": "boolean"
+          },
+          "periodRange": {
+            "$ref": "#/components/schemas/v1PeriodRange"
           },
           "toCurrency": {
             "type": "string",
