@@ -33630,6 +33630,10 @@
           },
           "priorityLevel": {
             "type": "string"
+          },
+          "additionalData": {
+            "type": "object",
+            "properties": {}
           }
         }
       },
