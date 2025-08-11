@@ -3135,7 +3135,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/v1CreateOrgResponse"
+                  "$ref": "#/components/schemas/blueapiorgv1CreateOrgResponse"
                 }
               }
             }
@@ -13457,7 +13457,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/blueapivortexv1CreateOrgResponse"
                 }
               }
             }
@@ -30922,6 +30922,18 @@
         },
         "description": "Request message for the Organization.CreateOrg rpc."
       },
+      "blueapiorgv1CreateOrgResponse": {
+        "type": "object",
+        "properties": {
+          "org": {
+            "$ref": "#/components/schemas/rippleOrg"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "description": "Response message for the Organization.CreateOrg rpc."
+      },
       "blueapipricingv1GetInfoResponse": {
         "type": "object",
         "properties": {
@@ -30942,6 +30954,20 @@
       "blueapivortexv1CreateOrgRequest": {
         "type": "object",
         "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "blueapivortexv1CreateOrgResponse": {
+        "type": "object",
+        "properties": {
+          "orgId": {
+            "type": "string"
+          },
           "name": {
             "type": "string"
           },
@@ -37627,18 +37653,6 @@
           }
         },
         "description": "Request message for the Admin.CreateNotificationTypeChannels rpc."
-      },
-      "v1CreateOrgResponse": {
-        "type": "object",
-        "properties": {
-          "org": {
-            "$ref": "#/components/schemas/rippleOrg"
-          },
-          "password": {
-            "type": "string"
-          }
-        },
-        "description": "Response message for the Organization.CreateOrg rpc."
       },
       "v1CreateOrganizationRequest": {
         "type": "object",
