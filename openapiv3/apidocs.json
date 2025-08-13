@@ -5903,6 +5903,46 @@
         }
       }
     },
+    "/v1/allocators/source": {
+      "get": {
+        "tags": [
+          "Cover"
+        ],
+        "summary": "Get all values of the allocation source",
+        "operationId": "Cover_GetAllocationSources",
+        "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetAllocationSourcesResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/allocators/{id}": {
       "put": {
         "tags": [
@@ -26569,6 +26609,26 @@
           }
         }
       },
+      "GetAllocationSourcesResponseAllocationSources": {
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string"
+          },
+          "service": {
+            "type": "string"
+          },
+          "tagName": {
+            "type": "string"
+          },
+          "tagValue": {
+            "type": "string"
+          },
+          "costGroup": {
+            "type": "string"
+          }
+        }
+      },
       "GetCloudwatchMetadataResponseDimension": {
         "type": "object",
         "properties": {
@@ -38920,6 +38980,18 @@
           }
         },
         "description": "Response message for the GetAllocationAttributes rpc."
+      },
+      "v1GetAllocationSourcesResponse": {
+        "type": "object",
+        "properties": {
+          "source": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetAllocationSourcesResponseAllocationSources"
+            }
+          }
+        },
+        "description": "Response message for the GetAllocationSources rpc."
       },
       "v1GetAnomalyinCostGroupRequest": {
         "title": "Request message for getting anomaly",
