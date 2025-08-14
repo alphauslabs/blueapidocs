@@ -33483,6 +33483,21 @@
         }
       }
     },
+    "v1DailyUtilization": {
+      "type": "object",
+      "properties": {
+        "currentDate": {
+          "type": "string",
+          "description": "The current date for which the utilization is reported."
+        },
+        "utilizationPercentage": {
+          "type": "number",
+          "format": "double",
+          "title": "The percentage of utilization for this specific date"
+        }
+      },
+      "description": "Daily utilization data for a specific date range."
+    },
     "v1DataAccess": {
       "type": "object",
       "properties": {
@@ -39362,18 +39377,21 @@
     "v1UtilizationDetails": {
       "type": "object",
       "properties": {
-        "currentDate": {
+        "savingsPlanName": {
           "type": "string",
-          "description": "The current date for which the utilization details are reported."
+          "title": "Descriptive name of the Savings Plan"
         },
-        "arn": {
+        "savingsPlanArn": {
           "type": "string",
-          "description": "The ARN of each of the Savings Plan for which utilization is reported."
+          "title": "The ARN of the Savings Plan"
         },
-        "utilizationPercentage": {
-          "type": "number",
-          "format": "double",
-          "title": "The percentage of utilization for each of the Savings Plan"
+        "perDayUtilization": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1DailyUtilization"
+          },
+          "title": "Array of daily utilization data for this Savings Plan"
         }
       },
       "description": "Utilization details for Savings Plans, including ARN and utilization percentage."

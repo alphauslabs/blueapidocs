@@ -38368,6 +38368,21 @@
           }
         }
       },
+      "v1DailyUtilization": {
+        "type": "object",
+        "properties": {
+          "currentDate": {
+            "type": "string",
+            "description": "The current date for which the utilization is reported."
+          },
+          "utilizationPercentage": {
+            "title": "The percentage of utilization for this specific date",
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "description": "Daily utilization data for a specific date range."
+      },
       "v1DataAccess": {
         "title": "Message Response for GetDataAccess. For Azure and GCP",
         "type": "object",
@@ -44118,18 +44133,20 @@
       "v1UtilizationDetails": {
         "type": "object",
         "properties": {
-          "currentDate": {
-            "type": "string",
-            "description": "The current date for which the utilization details are reported."
+          "savingsPlanName": {
+            "title": "Descriptive name of the Savings Plan",
+            "type": "string"
           },
-          "arn": {
-            "type": "string",
-            "description": "The ARN of each of the Savings Plan for which utilization is reported."
+          "savingsPlanArn": {
+            "title": "The ARN of the Savings Plan",
+            "type": "string"
           },
-          "utilizationPercentage": {
-            "title": "The percentage of utilization for each of the Savings Plan",
-            "type": "number",
-            "format": "double"
+          "perDayUtilization": {
+            "title": "Array of daily utilization data for this Savings Plan",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1DailyUtilization"
+            }
           }
         },
         "description": "Utilization details for Savings Plans, including ARN and utilization percentage."
