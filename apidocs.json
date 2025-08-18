@@ -20469,6 +20469,10 @@
         "customPeriod": {
           "$ref": "#/definitions/apiCustomPeriodBudgetAlert",
           "description": "Optional."
+        },
+        "customMonth": {
+          "$ref": "#/definitions/apiCustomMonthBudgetAlert",
+          "description": "Optional."
         }
       },
       "description": "Request message for the UpdateBudgetAlerts rpc."
@@ -22814,6 +22818,25 @@
       },
       "description": "CustomDetails resource definition."
     },
+    "apiCustomMonthBudgetAlert": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "number",
+          "format": "double",
+          "title": "Required. threshold in budget alerts"
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "Required. notification enable/disable \nIf disabled, no alert is sent."
+        },
+        "startDay": {
+          "type": "string",
+          "title": "Required. start day in budget alerts"
+        }
+      },
+      "description": "CustomMonthBudgetAlert resource definition."
+    },
     "apiCustomPeriodBudgetAlert": {
       "type": "object",
       "properties": {
@@ -24566,7 +24589,7 @@
       "properties": {
         "id": {
           "type": "string",
-          "title": "budget id\n`previousDay` / `daily` / `monthly` / `customPeriod`"
+          "title": "budget id\n`previousDay` / `daily` / `monthly` / `customPeriod` / `customMonth`"
         },
         "value": {
           "type": "number",
@@ -31345,6 +31368,10 @@
         "customPeriod": {
           "$ref": "#/definitions/apiCustomPeriodBudgetAlert",
           "description": "Custom Period setting for budget alert."
+        },
+        "customMonth": {
+          "$ref": "#/definitions/apiCustomMonthBudgetAlert",
+          "description": "Custom Month setting for budget alert."
         }
       },
       "description": "Request message for the BudgetAlerts rpc."
@@ -32404,6 +32431,10 @@
         },
         "customPeriod": {
           "$ref": "#/definitions/apiCustomPeriodBudgetAlert",
+          "description": "Optional."
+        },
+        "customMonth": {
+          "$ref": "#/definitions/apiCustomMonthBudgetAlert",
           "description": "Optional."
         }
       },
