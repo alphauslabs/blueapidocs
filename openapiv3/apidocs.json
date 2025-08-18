@@ -6692,6 +6692,47 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/aws/xacct": {
+      "get": {
+        "tags": [
+          "Flow"
+        ],
+        "summary": "Returns the activated cross-account access role for Savings Plan (API only).",
+        "operationId": "Flow_GetCrossAccountAccessDetails",
+        "parameters": [
+          {
+            "name": "target",
+            "in": "query",
+            "description": "Required. The target AWS account to be checked.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetCrossAccountAccessDetailsResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/aws/xacct/cea": {
       "get": {
         "tags": [
@@ -38362,6 +38403,40 @@
           }
         }
       },
+      "v1CrossAccountAccessDetail": {
+        "type": "object",
+        "properties": {
+          "roleArn": {
+            "type": "string",
+            "description": "The role ARN that provides the cross-account access permissions."
+          },
+          "externalId": {
+            "type": "string",
+            "description": "The external id for this role."
+          },
+          "stackId": {
+            "type": "string",
+            "description": "The id of the CloudFormation stack deployed in the target account."
+          },
+          "stackRegion": {
+            "type": "string",
+            "description": "The region where the stack is deployed."
+          },
+          "templateUrl": {
+            "type": "string",
+            "description": "The latest template used to deploy the stack."
+          },
+          "status": {
+            "type": "string",
+            "description": "This can be `latest`, `outdated`, or some error information."
+          },
+          "access": {
+            "title": "The access type:  \"savings_plan_access\" or \"cost_explorer_access\"",
+            "type": "string"
+          }
+        },
+        "description": "Individual cross-access detail record."
+      },
       "v1CsvSetting": {
         "type": "object",
         "properties": {
@@ -39718,6 +39793,23 @@
             }
           }
         }
+      },
+      "v1GetCrossAccountAccessDetailsResponse": {
+        "type": "object",
+        "properties": {
+          "target": {
+            "type": "string",
+            "description": "The queried target account."
+          },
+          "details": {
+            "type": "array",
+            "description": "List of cross-access details for the target account.",
+            "items": {
+              "$ref": "#/components/schemas/v1CrossAccountAccessDetail"
+            }
+          }
+        },
+        "description": "Response message for the Flow.GetCrossAccountAccessDetails rpc."
       },
       "v1GetCurrentViewResponse": {
         "title": "Response message for GetCurrentView",
