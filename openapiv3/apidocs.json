@@ -14142,6 +14142,47 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/prompts:read": {
+      "post": {
+        "tags": [
+          "Vortex"
+        ],
+        "operationId": "Vortex_ListPrompts",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1ListPromptsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1ListPromptsResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/recommendations/all:read": {
       "post": {
         "tags": [
@@ -41722,6 +41763,20 @@
       "v1ListProjectsRequest": {
         "type": "object"
       },
+      "v1ListPromptsRequest": {
+        "type": "object"
+      },
+      "v1ListPromptsResponse": {
+        "type": "object",
+        "properties": {
+          "prompts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1Prompt"
+            }
+          }
+        }
+      },
       "v1ListRecommendationResponse": {
         "type": "object",
         "properties": {
@@ -42518,6 +42573,20 @@
             "type": "string"
           },
           "email": {
+            "type": "string"
+          }
+        }
+      },
+      "v1Prompt": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string"
+          },
+          "fromContainerName": {
+            "type": "string"
+          },
+          "riskLevel": {
             "type": "string"
           }
         }
