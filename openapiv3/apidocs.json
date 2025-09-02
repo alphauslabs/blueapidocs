@@ -11100,6 +11100,47 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/invite/verify": {
+      "post": {
+        "tags": [
+          "Vortex"
+        ],
+        "operationId": "Vortex_VerifyInvitedUser",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1VerifyInvitedUserRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/invoice/displaysettings": {
       "get": {
         "tags": [
@@ -44842,6 +44883,17 @@
         "properties": {
           "result": {
             "type": "boolean"
+          }
+        }
+      },
+      "v1VerifyInvitedUserRequest": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
           }
         }
       },
