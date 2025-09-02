@@ -41779,10 +41779,7 @@
         "type": "object",
         "properties": {
           "prompts": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/v1Prompt"
-            }
+            "$ref": "#/components/schemas/v1Prompt"
           }
         }
       },
