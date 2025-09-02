@@ -14164,11 +14164,11 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "Stream result of v1ListPromptsResponse",
+                  "title": "Stream result of v1Prompt",
                   "type": "object",
                   "properties": {
                     "result": {
-                      "$ref": "#/components/schemas/v1ListPromptsResponse"
+                      "$ref": "#/components/schemas/v1Prompt"
                     },
                     "error": {
                       "$ref": "#/components/schemas/googlerpcStatus"
@@ -41774,14 +41774,6 @@
       },
       "v1ListPromptsRequest": {
         "type": "object"
-      },
-      "v1ListPromptsResponse": {
-        "type": "object",
-        "properties": {
-          "prompts": {
-            "$ref": "#/components/schemas/v1Prompt"
-          }
-        }
       },
       "v1ListRecommendationResponse": {
         "type": "object",
