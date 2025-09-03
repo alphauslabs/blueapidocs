@@ -10420,6 +10420,39 @@
         ]
       }
     },
+    "/v1/notification/slack": {
+      "post": {
+        "summary": "Sends configuration and recommendation to a Slack channel",
+        "operationId": "Flow_CreateMessageToSlack",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateMessageToSlackResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateMessageToSlackRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Flow"
+        ]
+      }
+    },
     "/v1/org": {
       "post": {
         "operationId": "Prism_CreateOrganization",
@@ -21307,6 +21340,115 @@
         }
       },
       "title": "Request message for UpdateViewWidget"
+    },
+    "CreateMessageToSlackRequestConfigurations": {
+      "type": "object",
+      "properties": {
+        "accountScope": {
+          "type": "string"
+        },
+        "customization": {
+          "type": "string"
+        },
+        "planTerm": {
+          "type": "string"
+        },
+        "paymentOption": {
+          "type": "string"
+        },
+        "lookBackPeriod": {
+          "type": "string"
+        },
+        "instanceFamily": {
+          "type": "string"
+        },
+        "annualBudget": {
+          "type": "number",
+          "format": "double"
+        },
+        "approval": {
+          "type": "boolean"
+        },
+        "payerId": {
+          "type": "string"
+        }
+      },
+      "title": "Configurations for the Savings Plan"
+    },
+    "CreateMessageToSlackRequestRecommendation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "currentMonthlyOnDemandSpend": {
+          "type": "number",
+          "format": "double"
+        },
+        "estimatedMonthlySpend": {
+          "type": "number",
+          "format": "double"
+        },
+        "estimatedMonthlySavingsDerived": {
+          "type": "number",
+          "format": "double"
+        },
+        "totalDailyCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "currentSpCommitment": {
+          "type": "number",
+          "format": "double"
+        },
+        "estimatedOnDemandCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "hourlyCommitment": {
+          "type": "number",
+          "format": "double"
+        },
+        "estimatedMonthlySavings": {
+          "type": "number",
+          "format": "double"
+        },
+        "estimatedSavings": {
+          "type": "number",
+          "format": "double"
+        },
+        "recommendationLevel": {
+          "type": "string"
+        },
+        "planType": {
+          "type": "string"
+        },
+        "planTerm": {
+          "type": "string"
+        },
+        "paymentOption": {
+          "type": "string"
+        },
+        "lookBackPeriod": {
+          "type": "string"
+        },
+        "estimatedRoi": {
+          "type": "number",
+          "format": "double"
+        },
+        "estimatedSpCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "estimatedTotalCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "lastUpdated": {
+          "type": "string"
+        }
+      },
+      "title": "Recommendation details for the Savings Plan"
     },
     "CsvSettingColumn": {
       "type": "object",
@@ -33335,6 +33477,30 @@
         }
       },
       "title": "Response message for CreateMember"
+    },
+    "v1CreateMessageToSlackRequest": {
+      "type": "object",
+      "properties": {
+        "configurations": {
+          "$ref": "#/definitions/CreateMessageToSlackRequestConfigurations"
+        },
+        "recommendation": {
+          "$ref": "#/definitions/CreateMessageToSlackRequestRecommendation"
+        }
+      },
+      "title": "Configuration and recommendation details to send to Slack"
+    },
+    "v1CreateMessageToSlackResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "Response after sending to Slack"
     },
     "v1CreateNotificationChannelRequest": {
       "type": "object",
