@@ -26418,7 +26418,8 @@
         "message": {
           "type": "string"
         }
-      }
+      },
+      "title": "Test only"
     },
     "costv1CostAttribute": {
       "type": "object",

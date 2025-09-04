@@ -31501,6 +31501,7 @@
         }
       },
       "blueapivortexv1TestResponse": {
+        "title": "Test only",
         "type": "object",
         "properties": {
           "message": {
