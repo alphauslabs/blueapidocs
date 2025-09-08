@@ -34390,6 +34390,9 @@
           },
           "autoTimeZone": {
             "type": "boolean"
+          },
+          "isDemoAccount": {
+            "type": "boolean"
           }
         }
       },
