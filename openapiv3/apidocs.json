@@ -16830,6 +16830,48 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/sp/purchase/details/{payerId}": {
+      "get": {
+        "tags": [
+          "Flow"
+        ],
+        "summary": "Get savings plan details to be purchased .",
+        "operationId": "Flow_GetSPToPurchaseDetails",
+        "parameters": [
+          {
+            "name": "payerId",
+            "in": "path",
+            "description": "Required. The id of the payer account.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetSPToPurchaseDetailsResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/tags": {
       "get": {
         "tags": [
@@ -26540,7 +26582,7 @@
             "type": "number",
             "format": "double"
           },
-          "currentSpCommitment": {
+          "currentSPCommitment": {
             "type": "number",
             "format": "double"
           },
@@ -26575,11 +26617,11 @@
           "lookBackPeriod": {
             "type": "string"
           },
-          "estimatedRoi": {
+          "estimatedROI": {
             "type": "number",
             "format": "double"
           },
-          "estimatedSpCost": {
+          "estimatedSPCost": {
             "type": "number",
             "format": "double"
           },
@@ -41191,6 +41233,22 @@
         },
         "description": "Response message for the Flow.GetSPPurchaseAccessTemplateUrl rpc."
       },
+      "v1GetSPToPurchaseDetailsResponse": {
+        "type": "object",
+        "properties": {
+          "recommendation": {
+            "$ref": "#/components/schemas/v1SavingsPlanRecommendation"
+          },
+          "purchases": {
+            "title": "List of purchase items",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1SavingsPlanDetailsPurchase"
+            }
+          }
+        },
+        "description": "Response message for the Flow.GetSPToPurchaseDetails rpc."
+      },
       "v1GetServicesResponse": {
         "title": "Response message for GetServices",
         "type": "object",
@@ -43689,6 +43747,106 @@
           }
         },
         "description": "Response message for ListSavings, RestoreSavings, SimulateSavings rpc."
+      },
+      "v1SavingsPlanDetailsPurchase": {
+        "title": "Savings plan details to be purchased",
+        "type": "object",
+        "properties": {
+          "payerId": {
+            "type": "string"
+          },
+          "linkedAccounts": {
+            "type": "string"
+          },
+          "accountScope": {
+            "type": "string"
+          },
+          "savingsPlanType": {
+            "type": "string"
+          },
+          "term": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "region": {
+            "type": "string"
+          },
+          "instanceFamily": {
+            "type": "string"
+          },
+          "recommendedHourlyCommitment": {
+            "type": "number",
+            "format": "double"
+          },
+          "paymentOption": {
+            "type": "string"
+          },
+          "upfrontCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "monthlyCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "expiryDate": {
+            "type": "string"
+          }
+        }
+      },
+      "v1SavingsPlanRecommendation": {
+        "title": "Savings plan recommendation details",
+        "type": "object",
+        "properties": {
+          "payerId": {
+            "type": "string"
+          },
+          "linkedAccounts": {
+            "type": "string"
+          },
+          "accountScope": {
+            "type": "string"
+          },
+          "savingsPlanType": {
+            "type": "string"
+          },
+          "term": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "region": {
+            "type": "string"
+          },
+          "instanceFamily": {
+            "type": "string"
+          },
+          "recommendedHourlyCommitment": {
+            "type": "number",
+            "format": "double"
+          },
+          "paymentOption": {
+            "type": "string"
+          },
+          "upfrontCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "monthlyCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "expiryDate": {
+            "type": "string"
+          }
+        }
       },
       "v1SendRipplePasswordResetCodeRequest": {
         "title": "Request message for ripple account password recovery",
