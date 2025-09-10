@@ -16846,6 +16846,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "yearMonth",
+            "in": "query",
+            "description": "Required. The year and month  for which the savings plan details are requested, formatted as \"YYYYMM\".",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
