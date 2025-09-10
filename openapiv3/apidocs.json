@@ -37081,6 +37081,14 @@
             "type": "number",
             "description": "The unblended cost in CUR.",
             "format": "double"
+          },
+          "name": {
+            "type": "string",
+            "description": "The account name."
+          },
+          "curType": {
+            "type": "string",
+            "description": "The CUR type, valid values are `legacy` and `2.0`."
           }
         }
       },
