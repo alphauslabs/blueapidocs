@@ -16830,7 +16830,7 @@
         "x-codegen-request-body-name": "body"
       }
     },
-    "/v1/sp/purchase/details/{payerId}": {
+    "/v1/sp/purchaseDetails/{payerId}/{yearMonth}": {
       "get": {
         "tags": [
           "Flow"
@@ -16849,8 +16849,9 @@
           },
           {
             "name": "yearMonth",
-            "in": "query",
+            "in": "path",
             "description": "Required. The year and month  for which the savings plan details are requested, formatted as \"YYYYMM\".",
+            "required": true,
             "schema": {
               "type": "string"
             }
