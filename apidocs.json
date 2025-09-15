@@ -7545,6 +7545,47 @@
         ]
       }
     },
+    "/v1/costusage": {
+      "post": {
+        "operationId": "Cover_GetCostUsageV2",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1GetCostUsageV2Response"
+                },
+                "error": {
+                  "$ref": "#/definitions/googlerpcStatus"
+                }
+              },
+              "title": "Stream result of v1GetCostUsageV2Response"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1GetCostUsageV2Request"
+            }
+          }
+        ],
+        "tags": [
+          "Cover"
+        ]
+      }
+    },
     "/v1/costusage:read": {
       "post": {
         "summary": "WORK-IN-PROGRESS: Get usage and usage-based costs for the specified costgroup",
@@ -21858,15 +21899,6 @@
         }
       }
     },
-    "GetAICostAndUsageRequestGranularity": {
-      "type": "string",
-      "enum": [
-        "GRANULARITY_UNSPECIFIED",
-        "DAILY",
-        "MONTHLY"
-      ],
-      "default": "GRANULARITY_UNSPECIFIED"
-    },
     "GetAICostAndUsageResponseMetric": {
       "type": "object",
       "properties": {
@@ -24683,6 +24715,17 @@
         }
       }
     },
+    "apicoverCategory": {
+      "type": "object",
+      "properties": {
+        "display": {
+          "type": "string"
+        },
+        "query": {
+          "type": "string"
+        }
+      }
+    },
     "apicoverCostCalculation": {
       "type": "object",
       "properties": {
@@ -26810,17 +26853,6 @@
           "type": "number",
           "format": "float",
           "title": "total accumulated spending within the budget period"
-        }
-      }
-    },
-    "coverCategory": {
-      "type": "object",
-      "properties": {
-        "display": {
-          "type": "string"
-        },
-        "query": {
-          "type": "string"
         }
       }
     },
@@ -34686,7 +34718,7 @@
           "type": "string"
         },
         "granularity": {
-          "$ref": "#/definitions/GetAICostAndUsageRequestGranularity"
+          "$ref": "#/definitions/v1GetAICostAndUsageRequestGranularity"
         },
         "groupBys": {
           "type": "array",
@@ -34702,6 +34734,15 @@
           }
         }
       }
+    },
+    "v1GetAICostAndUsageRequestGranularity": {
+      "type": "string",
+      "enum": [
+        "GRANULARITY_UNSPECIFIED",
+        "DAILY",
+        "MONTHLY"
+      ],
+      "default": "GRANULARITY_UNSPECIFIED"
     },
     "v1GetAICostAndUsageResponse": {
       "type": "object",
@@ -35051,7 +35092,7 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/coverCategory"
+            "$ref": "#/definitions/apicoverCategory"
           }
         }
       }
@@ -35539,6 +35580,80 @@
         "tagKey": {
           "type": "string",
           "description": "Optional. Tag key, only used when groupBy is set to `tag`."
+        }
+      }
+    },
+    "v1GetCostUsageV2Request": {
+      "type": "object",
+      "properties": {
+        "costGroupId": {
+          "type": "string"
+        },
+        "startTime": {
+          "type": "string"
+        },
+        "endTime": {
+          "type": "string"
+        },
+        "granularity": {
+          "$ref": "#/definitions/v1GetCostUsageV2RequestGranularity"
+        },
+        "groupBys": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "category": {
+          "$ref": "#/definitions/v1GetCostUsageV2RequestCategory"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "awsOptions": {
+          "$ref": "#/definitions/coverCostGroupAwsOptions"
+        },
+        "azurecspOptions": {
+          "$ref": "#/definitions/coverCostGroupAzureCspOptions"
+        },
+        "gcpOptions": {
+          "$ref": "#/definitions/coverCostGroupGcpOptions"
+        }
+      }
+    },
+    "v1GetCostUsageV2RequestCategory": {
+      "type": "string",
+      "enum": [
+        "Category_UNSPECIFIED",
+        "COST",
+        "USAGE"
+      ],
+      "default": "Category_UNSPECIFIED"
+    },
+    "v1GetCostUsageV2RequestGranularity": {
+      "type": "string",
+      "enum": [
+        "GRANULARITY_UNSPECIFIED",
+        "DAILY",
+        "MONTHLY"
+      ],
+      "default": "GRANULARITY_UNSPECIFIED"
+    },
+    "v1GetCostUsageV2Response": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "number",
+          "format": "double"
+        },
+        "date": {
+          "type": "string"
+        },
+        "vendor": {
+          "type": "string"
+        },
+        "details": {
+          "type": "object"
         }
       }
     },
