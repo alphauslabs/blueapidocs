@@ -22835,6 +22835,68 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/{vendor}/payers/basicdetails/{id}": {
+      "put": {
+        "tags": [
+          "Cost"
+        ],
+        "summary": "WORK-IN-PROGRES: Updates a vendor payer account's basics details.",
+        "operationId": "Cost_UpdatePayerAccount",
+        "parameters": [
+          {
+            "name": "vendor",
+            "in": "path",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required. The Payer/Management account Id to update.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CostUpdatePayerAccountBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/{vendor}/payers/{id}": {
       "get": {
         "tags": [
@@ -25852,6 +25914,10 @@
           "curType": {
             "type": "string",
             "description": "Optional. Valid values are `legacy` and `2.0` for now. Defaults to `legacy` if not provided.\nOnly applicable if vendor is set to `aws`. Do not provide if `gcp` or `azure`."
+          },
+          "calculateTUProfit": {
+            "type": "boolean",
+            "description": "Optional. If set to true, TU profit from this payer will be calculated. Default is false."
           }
         },
         "description": "Request message for the RegisterPayerAccountRequest rpc."
@@ -25939,6 +26005,23 @@
           }
         },
         "description": "Request message for the UpdateCostFilters rpc."
+      },
+      "CostUpdatePayerAccountBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Optional. Preferred account name, defaults to id if not provided."
+          },
+          "curType": {
+            "type": "string",
+            "description": "Optional. Valid values are `legacy` and `2.0` for now. Defaults to `legacy` if not provided.\nOnly applicable if vendor is set to `aws`. Do not provide if `gcp` or `azure`."
+          },
+          "calculateTUProfit": {
+            "type": "boolean",
+            "description": "Optional. If set to true, TU profit from this payer will be calculated. Default is false."
+          }
+        }
       },
       "CoverAddSideMenuFavoriteBody": {
         "title": "Request message for AddSideMenuFavorite",

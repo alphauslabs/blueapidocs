@@ -17856,6 +17856,54 @@
         ]
       }
     },
+    "/v1/{vendor}/payers/basicdetails/{id}": {
+      "put": {
+        "summary": "WORK-IN-PROGRES: Updates a vendor payer account's basics details.",
+        "operationId": "Cost_UpdatePayerAccount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "Required. The Payer/Management account Id to update.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CostUpdatePayerAccountBody"
+            }
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      }
+    },
     "/v1/{vendor}/payers/{id}": {
       "get": {
         "summary": "Gets a vendor payer account.",
@@ -20670,6 +20718,10 @@
         "curType": {
           "type": "string",
           "description": "Optional. Valid values are `legacy` and `2.0` for now. Defaults to `legacy` if not provided.\nOnly applicable if vendor is set to `aws`. Do not provide if `gcp` or `azure`."
+        },
+        "calculateTUProfit": {
+          "type": "boolean",
+          "description": "Optional. If set to true, TU profit from this payer will be calculated. Default is false."
         }
       },
       "description": "Request message for the RegisterPayerAccountRequest rpc."
@@ -20765,6 +20817,23 @@
         }
       },
       "description": "Request message for the UpdateCostFilters rpc."
+    },
+    "CostUpdatePayerAccountBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Optional. Preferred account name, defaults to id if not provided."
+        },
+        "curType": {
+          "type": "string",
+          "description": "Optional. Valid values are `legacy` and `2.0` for now. Defaults to `legacy` if not provided.\nOnly applicable if vendor is set to `aws`. Do not provide if `gcp` or `azure`."
+        },
+        "calculateTUProfit": {
+          "type": "boolean",
+          "description": "Optional. If set to true, TU profit from this payer will be calculated. Default is false."
+        }
+      }
     },
     "CoverAddSideMenuFavoriteBody": {
       "type": "object",
