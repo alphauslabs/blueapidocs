@@ -10461,39 +10461,6 @@
         ]
       }
     },
-    "/v1/notification/slack": {
-      "post": {
-        "summary": "Sends configuration and recommendation to a Slack channel",
-        "operationId": "Flow_CreateMessageToSlack",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1CreateMessageToSlackResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1CreateMessageToSlackRequest"
-            }
-          }
-        ],
-        "tags": [
-          "Flow"
-        ]
-      }
-    },
     "/v1/org": {
       "post": {
         "operationId": "Prism_CreateOrganization",
@@ -13247,6 +13214,120 @@
         ]
       }
     },
+    "/v1/sp/purchaseDetails/notification": {
+      "post": {
+        "summary": "Sends savings plan details to be purchased to a Slack channel",
+        "operationId": "Flow_SendSPToPurchaseDetailsNotification",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1SendSPToPurchaseDetailsNotificationsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "approval",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "recommendation.payerId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "recommendation.linkedAccounts",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "recommendation.accountScope",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "recommendation.savingsPlanType",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "recommendation.term",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "recommendation.region",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "recommendation.instanceFamily",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "recommendation.recommendedHourlyCommitment",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "name": "recommendation.paymentOption",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "recommendation.upfrontCost",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "name": "recommendation.monthlyCost",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "name": "recommendation.totalCost",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "name": "recommendation.expiryDate",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Flow"
+        ]
+      }
+    },
     "/v1/sp/purchaseDetails/{payerId}/{yearMonth}": {
       "get": {
         "summary": "Get savings plan details to be purchased .",
@@ -13279,6 +13360,39 @@
             "in": "path",
             "required": true,
             "type": "string"
+          }
+        ],
+        "tags": [
+          "Flow"
+        ]
+      }
+    },
+    "/v1/sp/recommendation/notification": {
+      "post": {
+        "summary": "Sends configuration and recommendation to a Slack channel",
+        "operationId": "Flow_CreateSPRecommendationNotification",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateSPRecommendationNotificationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateSPRecommendationNotificationRequest"
+            }
           }
         ],
         "tags": [
@@ -21490,7 +21604,7 @@
       },
       "title": "Request message for UpdateViewWidget"
     },
-    "CreateMessageToSlackRequestConfigurations": {
+    "CreateSPRecommendationNotificationRequestConfigurations": {
       "type": "object",
       "properties": {
         "accountScope": {
@@ -21524,7 +21638,7 @@
       },
       "title": "Configurations for the Savings Plan"
     },
-    "CreateMessageToSlackRequestRecommendation": {
+    "CreateSPRecommendationNotificationRequestRecommendation": {
       "type": "object",
       "properties": {
         "id": {
@@ -29710,6 +29824,106 @@
       "default": "PENDING",
       "title": "Status of upload file"
     },
+    "flowv1SavingsPlanDetailsPurchase": {
+      "type": "object",
+      "properties": {
+        "payerId": {
+          "type": "string"
+        },
+        "linkedAccounts": {
+          "type": "string"
+        },
+        "accountScope": {
+          "type": "string"
+        },
+        "savingsPlanType": {
+          "type": "string"
+        },
+        "term": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "region": {
+          "type": "string"
+        },
+        "instanceFamily": {
+          "type": "string"
+        },
+        "recommendedHourlyCommitment": {
+          "type": "number",
+          "format": "double"
+        },
+        "paymentOption": {
+          "type": "string"
+        },
+        "upfrontCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "monthlyCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "totalCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "expiryDate": {
+          "type": "string"
+        }
+      },
+      "title": "Savings plan details to be purchased"
+    },
+    "flowv1SavingsPlanRecommendation": {
+      "type": "object",
+      "properties": {
+        "payerId": {
+          "type": "string"
+        },
+        "linkedAccounts": {
+          "type": "string"
+        },
+        "accountScope": {
+          "type": "string"
+        },
+        "savingsPlanType": {
+          "type": "string"
+        },
+        "term": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "region": {
+          "type": "string"
+        },
+        "instanceFamily": {
+          "type": "string"
+        },
+        "recommendedHourlyCommitment": {
+          "type": "number",
+          "format": "double"
+        },
+        "paymentOption": {
+          "type": "string"
+        },
+        "upfrontCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "monthlyCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "totalCost": {
+          "type": "number",
+          "format": "double"
+        },
+        "expiryDate": {
+          "type": "string"
+        }
+      },
+      "title": "Savings plan recommendation details"
+    },
     "gcpGCPRecommendations": {
       "type": "object",
       "properties": {
@@ -33630,30 +33844,6 @@
       },
       "title": "Response message for CreateMember"
     },
-    "v1CreateMessageToSlackRequest": {
-      "type": "object",
-      "properties": {
-        "configurations": {
-          "$ref": "#/definitions/CreateMessageToSlackRequestConfigurations"
-        },
-        "recommendation": {
-          "$ref": "#/definitions/CreateMessageToSlackRequestRecommendation"
-        }
-      },
-      "title": "Configuration and recommendation details to send to Slack"
-    },
-    "v1CreateMessageToSlackResponse": {
-      "type": "object",
-      "properties": {
-        "message": {
-          "type": "string"
-        },
-        "success": {
-          "type": "boolean"
-        }
-      },
-      "title": "Response after sending to Slack"
-    },
     "v1CreateNotificationChannelRequest": {
       "type": "object",
       "properties": {
@@ -33954,6 +34144,30 @@
         }
       },
       "description": "Response message for the Flow.CreateSPPurchaseAccess rpc."
+    },
+    "v1CreateSPRecommendationNotificationRequest": {
+      "type": "object",
+      "properties": {
+        "configurations": {
+          "$ref": "#/definitions/CreateSPRecommendationNotificationRequestConfigurations"
+        },
+        "recommendation": {
+          "$ref": "#/definitions/CreateSPRecommendationNotificationRequestRecommendation"
+        }
+      },
+      "title": "Configuration and recommendation details to send to Slack"
+    },
+    "v1CreateSPRecommendationNotificationResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "Response after sending to Slack"
     },
     "v1CreateSharedResourcesRequest": {
       "type": "object",
@@ -36562,14 +36776,14 @@
       "type": "object",
       "properties": {
         "recommendation": {
-          "$ref": "#/definitions/v1SavingsPlanRecommendation",
+          "$ref": "#/definitions/flowv1SavingsPlanRecommendation",
           "title": "Recommendation details"
         },
         "purchases": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/v1SavingsPlanDetailsPurchase"
+            "$ref": "#/definitions/flowv1SavingsPlanDetailsPurchase"
           },
           "title": "List of purchase items"
         }
@@ -39124,7 +39338,17 @@
       },
       "description": "Response message for ListSavings, RestoreSavings, SimulateSavings rpc."
     },
-    "v1SavingsPlanDetailsPurchase": {
+    "v1SendRipplePasswordResetCodeRequest": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "title": "Required. Ripple account email address"
+        }
+      },
+      "title": "Request message for ripple account password recovery"
+    },
+    "v1SendSPToPurchaseDetailsNotificationsRequestSavingsPlanDetailsPurchase": {
       "type": "object",
       "properties": {
         "payerId": {
@@ -39174,7 +39398,7 @@
       },
       "title": "Savings plan details to be purchased"
     },
-    "v1SavingsPlanRecommendation": {
+    "v1SendSPToPurchaseDetailsNotificationsRequestSavingsPlanRecommendation": {
       "type": "object",
       "properties": {
         "payerId": {
@@ -39224,15 +39448,17 @@
       },
       "title": "Savings plan recommendation details"
     },
-    "v1SendRipplePasswordResetCodeRequest": {
+    "v1SendSPToPurchaseDetailsNotificationsResponse": {
       "type": "object",
       "properties": {
-        "email": {
-          "type": "string",
-          "title": "Required. Ripple account email address"
+        "message": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
         }
       },
-      "title": "Request message for ripple account password recovery"
+      "title": "Response after sending SendSPToPurchaseDetailsNotifications to Slack"
     },
     "v1Service": {
       "type": "object",
