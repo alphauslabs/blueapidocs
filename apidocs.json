@@ -19856,6 +19856,9 @@
         "nonTagSetting": {
           "$ref": "#/definitions/v1NonTagSetting",
           "title": "Non-tag settings for the billing group"
+        },
+        "accountOptions": {
+          "$ref": "#/definitions/v1AccountOptions"
         }
       }
     },

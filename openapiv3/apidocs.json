@@ -25102,6 +25102,9 @@
           },
           "nonTagSetting": {
             "$ref": "#/components/schemas/v1NonTagSetting"
+          },
+          "accountOptions": {
+            "$ref": "#/components/schemas/v1AccountOptions"
           }
         }
       },
