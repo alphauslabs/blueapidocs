@@ -16845,111 +16845,17 @@
         ],
         "summary": "Sends savings plan details to be purchased to a Slack channel",
         "operationId": "Flow_SendSPToPurchaseDetailsNotification",
-        "parameters": [
-          {
-            "name": "approval",
-            "in": "query",
-            "schema": {
-              "type": "string"
+        "requestBody": {
+          "description": "Response message for the Flow.GetSPToPurchaseDetails rpc.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1SendSPToPurchaseDetailsNotificationsRequest"
+              }
             }
           },
-          {
-            "name": "recommendation.payerId",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "recommendation.linkedAccounts",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "recommendation.accountScope",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "recommendation.savingsPlanType",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "recommendation.term",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "recommendation.region",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "recommendation.instanceFamily",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "recommendation.recommendedHourlyCommitment",
-            "in": "query",
-            "schema": {
-              "type": "number",
-              "format": "double"
-            }
-          },
-          {
-            "name": "recommendation.paymentOption",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "recommendation.upfrontCost",
-            "in": "query",
-            "schema": {
-              "type": "number",
-              "format": "double"
-            }
-          },
-          {
-            "name": "recommendation.monthlyCost",
-            "in": "query",
-            "schema": {
-              "type": "number",
-              "format": "double"
-            }
-          },
-          {
-            "name": "recommendation.totalCost",
-            "in": "query",
-            "schema": {
-              "type": "number",
-              "format": "double"
-            }
-          },
-          {
-            "name": "recommendation.expiryDate",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -16971,7 +16877,8 @@
               }
             }
           }
-        }
+        },
+        "x-codegen-request-body-name": "body"
       }
     },
     "/v1/sp/purchaseDetails/{payerId}/{yearMonth}": {
@@ -44331,6 +44238,24 @@
             "type": "string"
           }
         }
+      },
+      "v1SendSPToPurchaseDetailsNotificationsRequest": {
+        "type": "object",
+        "properties": {
+          "approval": {
+            "type": "string"
+          },
+          "recommendation": {
+            "$ref": "#/components/schemas/v1SendSPToPurchaseDetailsNotificationsRequestSavingsPlanRecommendation"
+          },
+          "purchases": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1SendSPToPurchaseDetailsNotificationsRequestSavingsPlanDetailsPurchase"
+            }
+          }
+        },
+        "description": "Response message for the Flow.GetSPToPurchaseDetails rpc."
       },
       "v1SendSPToPurchaseDetailsNotificationsRequestSavingsPlanDetailsPurchase": {
         "title": "Savings plan details to be purchased",

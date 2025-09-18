@@ -13234,93 +13234,13 @@
         },
         "parameters": [
           {
-            "name": "approval",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "recommendation.payerId",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "recommendation.linkedAccounts",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "recommendation.accountScope",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "recommendation.savingsPlanType",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "recommendation.term",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "recommendation.region",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "recommendation.instanceFamily",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "recommendation.recommendedHourlyCommitment",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "double"
-          },
-          {
-            "name": "recommendation.paymentOption",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "recommendation.upfrontCost",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "double"
-          },
-          {
-            "name": "recommendation.monthlyCost",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "double"
-          },
-          {
-            "name": "recommendation.totalCost",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "double"
-          },
-          {
-            "name": "recommendation.expiryDate",
-            "in": "query",
-            "required": false,
-            "type": "string"
+            "name": "body",
+            "description": "Response message for the Flow.GetSPToPurchaseDetails rpc.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1SendSPToPurchaseDetailsNotificationsRequest"
+            }
           }
         ],
         "tags": [
@@ -39442,6 +39362,25 @@
         }
       },
       "title": "Request message for ripple account password recovery"
+    },
+    "v1SendSPToPurchaseDetailsNotificationsRequest": {
+      "type": "object",
+      "properties": {
+        "approval": {
+          "type": "string"
+        },
+        "recommendation": {
+          "$ref": "#/definitions/v1SendSPToPurchaseDetailsNotificationsRequestSavingsPlanRecommendation"
+        },
+        "purchases": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1SendSPToPurchaseDetailsNotificationsRequestSavingsPlanDetailsPurchase"
+          }
+        }
+      },
+      "description": "Response message for the Flow.GetSPToPurchaseDetails rpc."
     },
     "v1SendSPToPurchaseDetailsNotificationsRequestSavingsPlanDetailsPurchase": {
       "type": "object",
