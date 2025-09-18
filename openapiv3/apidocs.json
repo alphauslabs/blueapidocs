@@ -33971,6 +33971,9 @@
           },
           "targetCostGroup": {
             "type": "string"
+          },
+          "allocatorId": {
+            "type": "string"
           }
         }
       },
@@ -34383,6 +34386,9 @@
             "type": "string"
           },
           "targetCostGroup": {
+            "type": "string"
+          },
+          "allocatorId": {
             "type": "string"
           }
         }
