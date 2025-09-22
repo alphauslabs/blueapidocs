@@ -16843,7 +16843,7 @@
         "tags": [
           "Flow"
         ],
-        "summary": "Sends savings plan details to be purchased to a Slack channel",
+        "summary": "Sends savings plan details to be purchased to a Slack channel or user email",
         "operationId": "Flow_SendSPToPurchaseDetailsNotification",
         "requestBody": {
           "description": "Response message for the Flow.GetSPToPurchaseDetails rpc.",
@@ -44256,6 +44256,36 @@
             "items": {
               "$ref": "#/components/schemas/v1SendSPToPurchaseDetailsNotificationsRequestSavingsPlanDetailsPurchase"
             }
+          },
+          "mode": {
+            "title": "\"slack\" or \"email\"",
+            "type": "string"
+          },
+          "userEmail": {
+            "type": "string"
+          },
+          "companyName": {
+            "type": "string"
+          },
+          "ondemandCostBefore": {
+            "title": "On-demand cost before savings plan",
+            "type": "string"
+          },
+          "ondemandCostAfter": {
+            "title": "On-demand cost after savings plan",
+            "type": "string"
+          },
+          "reductionRate": {
+            "title": "Cost reduction percentage",
+            "type": "string"
+          },
+          "approvalLink": {
+            "title": "Link for approval action",
+            "type": "string"
+          },
+          "language": {
+            "title": "Language code (en or ja)",
+            "type": "string"
           }
         },
         "description": "Response message for the Flow.GetSPToPurchaseDetails rpc."
