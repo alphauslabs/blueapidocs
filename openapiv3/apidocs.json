@@ -15041,6 +15041,47 @@
         }
       }
     },
+    "/v1/reports/rate/nonperforming:read": {
+      "post": {
+        "tags": [
+          "Cover"
+        ],
+        "operationId": "Cover_ListNonperformingRate",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1ListNonperformingRateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1ListNonperformingRateResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/reportschedule": {
       "post": {
         "tags": [
@@ -42564,6 +42605,52 @@
           }
         },
         "description": "Response message for ListInvoiceTemplate rpc."
+      },
+      "v1ListNonperformingRateRequest": {
+        "title": "Request message for ListNonperformingRate",
+        "type": "object",
+        "properties": {
+          "vendor": {
+            "type": "string",
+            "description": "Required. At the moment, only `aws` is supported."
+          },
+          "costGroupId": {
+            "type": "string",
+            "description": "Required. Cost Group Id."
+          },
+          "fromDate": {
+            "type": "string",
+            "description": "Optional. The start date of the displayed data. If not set, the first day of the current month will be used. Format: yyyy-mm-dd."
+          },
+          "toDate": {
+            "type": "string",
+            "description": "Optional. The end date of the displayed data. If not set, current date will be used. Format: yyyy-mm-dd."
+          },
+          "type": {
+            "type": "string",
+            "description": "Optional. The type of optimization; `ri`, `sp`, or `all`."
+          }
+        }
+      },
+      "v1ListNonperformingRateResponse": {
+        "title": "Response message for ListNonperformingRate",
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "account": {
+            "type": "string"
+          },
+          "utilization": {
+            "type": "number",
+            "format": "double"
+          },
+          "waste": {
+            "type": "number",
+            "format": "double"
+          }
+        }
       },
       "v1ListNotificationChannelsResponse": {
         "type": "object",
