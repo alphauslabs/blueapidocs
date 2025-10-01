@@ -27566,6 +27566,25 @@
           }
         }
       },
+      "ListNonperformingRateResponseNonperforming": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "account": {
+            "type": "string"
+          },
+          "utilization": {
+            "type": "number",
+            "format": "double"
+          },
+          "waste": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
       "ListRecommendationResponsePurchaseOption": {
         "type": "object",
         "properties": {
@@ -42636,19 +42655,11 @@
         "title": "Response message for ListNonperformingRate",
         "type": "object",
         "properties": {
-          "type": {
-            "type": "string"
-          },
-          "account": {
-            "type": "string"
-          },
-          "utilization": {
-            "type": "number",
-            "format": "double"
-          },
-          "waste": {
-            "type": "number",
-            "format": "double"
+          "nonperforming": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ListNonperformingRateResponseNonperforming"
+            }
           }
         }
       },
