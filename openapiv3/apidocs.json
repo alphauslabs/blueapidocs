@@ -5917,6 +5917,13 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "accountId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -27436,12 +27443,6 @@
           "service": {
             "type": "string"
           },
-          "tagName": {
-            "type": "string"
-          },
-          "tagValue": {
-            "type": "string"
-          },
           "costGroup": {
             "type": "string"
           }
@@ -40305,6 +40306,12 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/GetAllocationSourcesResponseAllocationSources"
+            }
+          },
+          "tagData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/apicoverTagData"
             }
           }
         },
