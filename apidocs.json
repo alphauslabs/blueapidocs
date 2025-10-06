@@ -10469,6 +10469,7 @@
     },
     "/v1/org": {
       "post": {
+        "summary": "Creates a new organization.",
         "operationId": "Prism_CreateOrganization",
         "responses": {
           "200": {
@@ -10567,6 +10568,7 @@
     },
     "/v1/org/{id}": {
       "get": {
+        "summary": "Gets information about an organization by ID.",
         "operationId": "Prism_GetOrganization",
         "responses": {
           "200": {

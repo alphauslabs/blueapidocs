@@ -13355,6 +13355,7 @@
         "tags": [
           "Prism"
         ],
+        "summary": "Creates a new organization.",
         "operationId": "Prism_CreateOrganization",
         "requestBody": {
           "content": {
@@ -13478,6 +13479,7 @@
         "tags": [
           "Prism"
         ],
+        "summary": "Gets information about an organization by ID.",
         "operationId": "Prism_GetOrganization",
         "parameters": [
           {
