@@ -43840,6 +43840,10 @@
           "noCache": {
             "type": "boolean",
             "description": "If true, force API to not use cached data."
+          },
+          "toCurrency": {
+            "type": "string",
+            "description": "Optional. Please note that this feature is currently in BETA and may not work as expected.\nYou can set it to the desired three-letter currency symbol (i.e. JPY, USD)."
           }
         },
         "description": "GCP-specific options for ReadCostsRequest."
