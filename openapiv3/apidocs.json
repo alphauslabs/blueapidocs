@@ -10817,6 +10817,218 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/forecasts": {
+      "post": {
+        "tags": [
+          "Cover"
+        ],
+        "operationId": "Cover_CreateCostForecast",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1CreateCostForecastRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1CreateCostForecastResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/forecasts/{id}": {
+      "get": {
+        "tags": [
+          "Cover"
+        ],
+        "operationId": "Cover_GetCostForecast",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required. Forecast Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetCostForecastResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Cover"
+        ],
+        "operationId": "Cover_UpdateCostForecast",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required. Forecast Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CoverUpdateCostForecastBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1UpdateCostForecastResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      },
+      "delete": {
+        "tags": [
+          "Cover"
+        ],
+        "operationId": "Cover_DeleteCostForecast",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required. Forecast Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1DeleteCostForecastResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/forecasts:read": {
+      "post": {
+        "tags": [
+          "Cover"
+        ],
+        "operationId": "Cover_ListForecasts",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1ListForecastsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1ListForecastsResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/freeformat": {
       "post": {
         "tags": [
@@ -26569,6 +26781,39 @@
           }
         }
       },
+      "CoverUpdateCostForecastBody": {
+        "type": "object",
+        "properties": {
+          "forecastName": {
+            "title": "Optional. Name of the forecast",
+            "type": "string"
+          },
+          "description": {
+            "title": "Optional. Description of the forecast",
+            "type": "string"
+          },
+          "costGroup": {
+            "$ref": "#/components/schemas/coverCostGroup"
+          },
+          "pastActualCostRange": {
+            "title": "Optional. The range of past actual cost to be used in forecasting. Valid values are: '1', '3', '6', and '12' (in months)",
+            "type": "string",
+            "format": "int64"
+          },
+          "lookForwardPeriod": {
+            "title": "Optional. The number of months to look forward in the forecast. Valid values are: '1', '3', '6', and '12' (in months)",
+            "type": "string",
+            "format": "int64"
+          },
+          "externalAdjustments": {
+            "type": "array",
+            "description": "Optional.",
+            "items": {
+              "$ref": "#/components/schemas/coverExternalAdjustment"
+            }
+          }
+        }
+      },
       "CoverUpdateCostGroupColorThemeBody": {
         "title": "Request message for UpdateCostGroupColorTheme",
         "type": "object",
@@ -32370,6 +32615,63 @@
           }
         }
       },
+      "coverCostForecastAdjustment": {
+        "type": "object",
+        "properties": {
+          "month": {
+            "type": "string",
+            "description": "For monthly adjustment, format is yyyy-mm."
+          },
+          "adjustment": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "coverCostForecastDetails": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "forecastName": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "costgroup": {
+            "$ref": "#/components/schemas/coverCostGroup"
+          },
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          },
+          "createdBy": {
+            "type": "string"
+          },
+          "creationDate": {
+            "type": "string"
+          },
+          "lastUpdatedDate": {
+            "type": "string"
+          }
+        }
+      },
+      "coverCostGroup": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "title": "cost group name",
+            "type": "string"
+          }
+        }
+      },
       "coverCostGroupAwsOptions": {
         "type": "object",
         "properties": {
@@ -33117,6 +33419,27 @@
           "differenceFromPreviousPeriod": {
             "type": "number",
             "format": "double"
+          }
+        }
+      },
+      "coverExternalAdjustment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "title": "Name of the adjustment",
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "adjustments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/coverCostForecastAdjustment"
+            }
           }
         }
       },
@@ -38737,6 +39060,70 @@
         },
         "description": "Response message for the CreateCostFilters rpc."
       },
+      "v1CreateCostForecastRequest": {
+        "type": "object",
+        "properties": {
+          "forecastName": {
+            "title": "Required. Name of the forecast",
+            "type": "string"
+          },
+          "description": {
+            "title": "Optional. Description of the forecast",
+            "type": "string"
+          },
+          "costGroup": {
+            "$ref": "#/components/schemas/coverCostGroup"
+          },
+          "pastActualCostRange": {
+            "title": "Required. The range of past actual cost to be used in forecasting. Valid values are: '1', '3', '6', and '12' (in months)",
+            "type": "string",
+            "format": "int64"
+          },
+          "lookForwardPeriod": {
+            "title": "Required. The number of months to look forward in the forecast. Valid values are: '1', '3', '6', and '12' (in months)",
+            "type": "string",
+            "format": "int64"
+          },
+          "externalAdjustments": {
+            "type": "array",
+            "description": "Optional.",
+            "items": {
+              "$ref": "#/components/schemas/coverExternalAdjustment"
+            }
+          }
+        }
+      },
+      "v1CreateCostForecastResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "forecastName": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "costGroup": {
+            "$ref": "#/components/schemas/coverCostGroup"
+          },
+          "pastActualCostRange": {
+            "type": "string",
+            "format": "int64"
+          },
+          "lookForwardPeriod": {
+            "type": "string",
+            "format": "int64"
+          },
+          "externalAdjustments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/coverExternalAdjustment"
+            }
+          }
+        }
+      },
       "v1CreateCostGroupRequest": {
         "title": "Request message for CreateCostGroup",
         "type": "object",
@@ -39790,6 +40177,14 @@
           }
         }
       },
+      "v1DeleteCostForecastResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        }
+      },
       "v1DeleteCostGroupResponse": {
         "title": "Response message for DeleteCostGroup",
         "type": "object",
@@ -40623,6 +41018,46 @@
           }
         },
         "description": "Response message for the Flow.GetCostExplorerAccessTemplateUrl rpc."
+      },
+      "v1GetCostForecastResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "forecastName": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "costGroup": {
+            "$ref": "#/components/schemas/coverCostGroup"
+          },
+          "pastActualCostRange": {
+            "type": "string",
+            "format": "int64"
+          },
+          "lookForwardPeriod": {
+            "type": "string",
+            "format": "int64"
+          },
+          "externalAdjustments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/coverExternalAdjustment"
+            }
+          },
+          "createdBy": {
+            "type": "string"
+          },
+          "creationDate": {
+            "type": "string"
+          },
+          "lastUpdatedDate": {
+            "type": "string"
+          }
+        }
       },
       "v1GetCostGroupAllocationRequest": {
         "type": "object",
@@ -42544,6 +42979,20 @@
           }
         },
         "description": "Request message for the ListFees rpc."
+      },
+      "v1ListForecastsRequest": {
+        "type": "object"
+      },
+      "v1ListForecastsResponse": {
+        "type": "object",
+        "properties": {
+          "costForecastDetails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/coverCostForecastDetails"
+            }
+          }
+        }
       },
       "v1ListIdentityProvidersResponse": {
         "type": "object",
@@ -45246,6 +45695,46 @@
           }
         },
         "description": "Response message for the UpdateCostFilters rpc."
+      },
+      "v1UpdateCostForecastResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "forecastName": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "costGroup": {
+            "$ref": "#/components/schemas/coverCostGroup"
+          },
+          "pastActualCostRange": {
+            "type": "string",
+            "format": "int64"
+          },
+          "lookForwardPeriod": {
+            "type": "string",
+            "format": "int64"
+          },
+          "externalAdjustments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/coverExternalAdjustment"
+            }
+          },
+          "createdBy": {
+            "type": "string"
+          },
+          "creationDate": {
+            "type": "string"
+          },
+          "lastUpdatedDate": {
+            "type": "string"
+          }
+        }
       },
       "v1UpdateCostGroupColorThemeResponse": {
         "title": "Response message for UpdateCostGroupColorTheme",
