@@ -7956,7 +7956,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "Lists all billing groups.",
+        "summary": "Lists all billing groups (streamed).",
         "operationId": "Billing_ListBillingGroups",
         "parameters": [
           {
@@ -8225,6 +8225,120 @@
           }
         },
         "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/billinggroups/paginated": {
+      "get": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Lists all billing groups with pagination support.",
+        "operationId": "Billing_ListBillingGroupsPaginated",
+        "parameters": [
+          {
+            "name": "fieldMask",
+            "in": "query",
+            "description": "Optional. Get only the value that set fieldMask.\n\nsee more info: https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/field_mask.proto",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "vendors",
+            "in": "query",
+            "description": "Optional. Filter vendor accounts included in BillingGroup. Format: vendors=vendor1,vendor2,vendor3.\nFor example, When Aws and Gcp to be filtered vendors=aws,gcp\nIf you want to get all vendors, not set parameter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "calcType",
+            "in": "query",
+            "description": "Optional. Filter by calcType. Format: calType=account\nValid values: account, tag",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "displayCost",
+            "in": "query",
+            "description": "Optional. Filter by displayCost. Format: displayCost=unblended_cost\nvalid values: unblended_cost, true_unblended_cost",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "bgType",
+            "in": "query",
+            "description": "Optional. For aws only, filter will be ignored for other vendors.\nValid values: default, imported",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "companyName",
+            "in": "query",
+            "description": "Optional. Filter by company name.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "billingGroupName",
+            "in": "query",
+            "description": "Optional. Filter by billing group name.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "billingGroupId",
+            "in": "query",
+            "description": "Optional. Filter by billing group id.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Optional. Page size for pagination. Default is 50, maximum is 1000.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageToken",
+            "in": "query",
+            "description": "Optional. Page token for pagination. Use the next_page_token from the previous response.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1ListBillingGroupsPaginatedResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/v1/billinggroups/{billingInternalId}": {
@@ -43045,6 +43159,32 @@
           }
         }
       },
+      "v1ListBillingGroupsPaginatedResponse": {
+        "type": "object",
+        "properties": {
+          "billingGroups": {
+            "type": "array",
+            "description": "List of billing groups.",
+            "items": {
+              "$ref": "#/components/schemas/v1BillingGroup"
+            }
+          },
+          "totalCount": {
+            "type": "integer",
+            "description": "Total count of billing groups matching the filters.",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "description": "Current page size.",
+            "format": "int32"
+          },
+          "links": {
+            "$ref": "#/components/schemas/v1PaginationLinks"
+          }
+        },
+        "description": "Response message for the Billing.ListBillingGroupsPaginated rpc."
+      },
       "v1ListBudgetsRequest": {
         "type": "object",
         "properties": {
@@ -43972,6 +44112,28 @@
           }
         },
         "description": "OverViewSection resource definition."
+      },
+      "v1PaginationLinks": {
+        "type": "object",
+        "properties": {
+          "next": {
+            "type": "string",
+            "description": "URL for the next page. Empty if no more pages."
+          },
+          "prev": {
+            "type": "string",
+            "description": "URL for the previous page. Empty if on the first page."
+          },
+          "first": {
+            "type": "string",
+            "description": "URL for the first page."
+          },
+          "last": {
+            "type": "string",
+            "description": "URL for the last page."
+          }
+        },
+        "description": "Pagination links for navigation."
       },
       "v1PartnerToken": {
         "type": "object",

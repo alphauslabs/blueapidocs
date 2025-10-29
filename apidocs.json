@@ -6256,7 +6256,7 @@
     },
     "/v1/billinggroups": {
       "get": {
-        "summary": "Lists all billing groups.",
+        "summary": "Lists all billing groups (streamed).",
         "operationId": "Billing_ListBillingGroups",
         "responses": {
           "200": {
@@ -6471,6 +6471,102 @@
             "schema": {
               "$ref": "#/definitions/v1CreateBillingGroupMergedRequest"
             }
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      }
+    },
+    "/v1/billinggroups/paginated": {
+      "get": {
+        "summary": "Lists all billing groups with pagination support.",
+        "operationId": "Billing_ListBillingGroupsPaginated",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListBillingGroupsPaginatedResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "fieldMask",
+            "description": "Optional. Get only the value that set fieldMask.\n\nsee more info: https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/field_mask.proto",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "vendors",
+            "description": "Optional. Filter vendor accounts included in BillingGroup. Format: vendors=vendor1,vendor2,vendor3.\nFor example, When Aws and Gcp to be filtered vendors=aws,gcp\nIf you want to get all vendors, not set parameter.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "calcType",
+            "description": "Optional. Filter by calcType. Format: calType=account\nValid values: account, tag",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "displayCost",
+            "description": "Optional. Filter by displayCost. Format: displayCost=unblended_cost\nvalid values: unblended_cost, true_unblended_cost",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "bgType",
+            "description": "Optional. For aws only, filter will be ignored for other vendors.\nValid values: default, imported",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "companyName",
+            "description": "Optional. Filter by company name.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "billingGroupName",
+            "description": "Optional. Filter by billing group name.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "billingGroupId",
+            "description": "Optional. Filter by billing group id.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pageSize",
+            "description": "Optional. Page size for pagination. Default is 50, maximum is 1000.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageToken",
+            "description": "Optional. Page token for pagination. Use the next_page_token from the previous response.",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -38048,6 +38144,34 @@
         }
       }
     },
+    "v1ListBillingGroupsPaginatedResponse": {
+      "type": "object",
+      "properties": {
+        "billingGroups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1BillingGroup"
+          },
+          "description": "List of billing groups."
+        },
+        "totalCount": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Total count of billing groups matching the filters."
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Current page size."
+        },
+        "links": {
+          "$ref": "#/definitions/v1PaginationLinks",
+          "description": "Links for pagination navigation."
+        }
+      },
+      "description": "Response message for the Billing.ListBillingGroupsPaginated rpc."
+    },
     "v1ListBudgetsRequest": {
       "type": "object",
       "properties": {
@@ -39002,6 +39126,28 @@
         }
       },
       "description": "OverViewSection resource definition."
+    },
+    "v1PaginationLinks": {
+      "type": "object",
+      "properties": {
+        "next": {
+          "type": "string",
+          "description": "URL for the next page. Empty if no more pages."
+        },
+        "prev": {
+          "type": "string",
+          "description": "URL for the previous page. Empty if on the first page."
+        },
+        "first": {
+          "type": "string",
+          "description": "URL for the first page."
+        },
+        "last": {
+          "type": "string",
+          "description": "URL for the last page."
+        }
+      },
+      "description": "Pagination links for navigation."
     },
     "v1PartnerToken": {
       "type": "object",
