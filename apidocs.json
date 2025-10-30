@@ -6562,11 +6562,12 @@
             "format": "int32"
           },
           {
-            "name": "pageToken",
-            "description": "Optional. Page token for pagination. Use the next_page_token from the previous response.",
+            "name": "pageNumber",
+            "description": "Optional. Page number for pagination. Starts from 1. Default is 1.",
             "in": "query",
             "required": false,
-            "type": "string"
+            "type": "integer",
+            "format": "int32"
           }
         ],
         "tags": [
@@ -38160,14 +38161,20 @@
           "format": "int32",
           "description": "Total count of billing groups matching the filters."
         },
+        "currentPage": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Current page number (1-based)."
+        },
         "pageSize": {
           "type": "integer",
           "format": "int32",
           "description": "Current page size."
         },
-        "links": {
-          "$ref": "#/definitions/v1PaginationLinks",
-          "description": "Links for pagination navigation."
+        "totalPages": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Total number of pages."
         }
       },
       "description": "Response message for the Billing.ListBillingGroupsPaginated rpc."
@@ -39126,28 +39133,6 @@
         }
       },
       "description": "OverViewSection resource definition."
-    },
-    "v1PaginationLinks": {
-      "type": "object",
-      "properties": {
-        "next": {
-          "type": "string",
-          "description": "URL for the next page. Empty if no more pages."
-        },
-        "prev": {
-          "type": "string",
-          "description": "URL for the previous page. Empty if on the first page."
-        },
-        "first": {
-          "type": "string",
-          "description": "URL for the first page."
-        },
-        "last": {
-          "type": "string",
-          "description": "URL for the last page."
-        }
-      },
-      "description": "Pagination links for navigation."
     },
     "v1PartnerToken": {
       "type": "object",
