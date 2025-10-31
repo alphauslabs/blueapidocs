@@ -8227,7 +8227,109 @@
         "x-codegen-request-body-name": "body"
       }
     },
-    "/v1/billinggroups/paginated": {
+    "/v1/billinggroups/{billingInternalId}": {
+      "get": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Gets a billing group.",
+        "operationId": "Billing_GetBillingGroup",
+        "parameters": [
+          {
+            "name": "billingInternalId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fieldMask",
+            "in": "query",
+            "description": "Optional. Get only the value that set fieldMask.\n\nsee more info: https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/field_mask.proto",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetBillingGroupResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/billinggroups/{id}/invoicetemplate": {
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Creates/Updates a billing group's invoice template. Only available in Ripple.",
+        "operationId": "Billing_UpdateBillingGroupInvoiceTemplate",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required. The billing internal ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BillingUpdateBillingGroupInvoiceTemplateBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/billinggroups:paginated": {
       "get": {
         "tags": [
           "Billing"
@@ -8340,108 +8442,6 @@
             }
           }
         }
-      }
-    },
-    "/v1/billinggroups/{billingInternalId}": {
-      "get": {
-        "tags": [
-          "Billing"
-        ],
-        "summary": "Gets a billing group.",
-        "operationId": "Billing_GetBillingGroup",
-        "parameters": [
-          {
-            "name": "billingInternalId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "fieldMask",
-            "in": "query",
-            "description": "Optional. Get only the value that set fieldMask.\n\nsee more info: https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/field_mask.proto",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/v1GetBillingGroupResponse"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googlerpcStatus"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/billinggroups/{id}/invoicetemplate": {
-      "post": {
-        "tags": [
-          "Billing"
-        ],
-        "summary": "Creates/Updates a billing group's invoice template. Only available in Ripple.",
-        "operationId": "Billing_UpdateBillingGroupInvoiceTemplate",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Required. The billing internal ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/BillingUpdateBillingGroupInvoiceTemplateBody"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googlerpcStatus"
-                }
-              }
-            }
-          }
-        },
-        "x-codegen-request-body-name": "body"
       }
     },
     "/v1/budget": {
