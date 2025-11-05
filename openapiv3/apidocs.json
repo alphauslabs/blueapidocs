@@ -32771,6 +32771,10 @@
             "title": "total accumulated spending within the budget period",
             "type": "number",
             "format": "float"
+          },
+          "budgetName": {
+            "title": "name of the budget",
+            "type": "string"
           }
         }
       },
