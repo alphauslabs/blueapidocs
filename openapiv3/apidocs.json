@@ -25193,6 +25193,20 @@
         },
         "description": "Request message for the Cost.GetInvoiceRequest rpc."
       },
+      "BillingGroupListItemBillingGroupVendor": {
+        "type": "object",
+        "properties": {
+          "vendor": {
+            "type": "string",
+            "description": "Vendor identifier, e.g., aws, azure, gcp."
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Indicates whether the billing group has this vendor active."
+          }
+        },
+        "description": "Vendor availability entries."
+      },
       "BillingListAccountInvoiceServiceDiscountsBody": {
         "type": "object",
         "description": "Request message for the ListAccountInvoiceServiceDiscounts rpc."
@@ -37957,6 +37971,39 @@
         },
         "description": "Invoice settings for a billing group."
       },
+      "v1BillingGroupListItem": {
+        "type": "object",
+        "properties": {
+          "billingGroupName": {
+            "type": "string",
+            "description": "Billing group display name."
+          },
+          "billingGroupId": {
+            "type": "string",
+            "description": "Billing group internal identifier."
+          },
+          "companyName": {
+            "type": "string",
+            "description": "Company name tied to the billing group."
+          },
+          "billingGroupType": {
+            "type": "string",
+            "description": "Billing group classification (e.g., ACCOUNT, TAG)."
+          },
+          "vendors": {
+            "type": "array",
+            "description": "Per-vendor availability list.",
+            "items": {
+              "$ref": "#/components/schemas/BillingGroupListItemBillingGroupVendor"
+            }
+          },
+          "billingInternalId": {
+            "type": "string",
+            "description": "Billing group's internal id reference."
+          }
+        },
+        "description": "Response row for paginated billing groups table."
+      },
       "v1BillingGroupSection": {
         "type": "object",
         "properties": {
@@ -43169,9 +43216,9 @@
         "properties": {
           "billingGroups": {
             "type": "array",
-            "description": "List of billing groups.",
+            "description": "Flattened rows for the billing groups table.",
             "items": {
-              "$ref": "#/components/schemas/v1BillingGroup"
+              "$ref": "#/components/schemas/v1BillingGroupListItem"
             }
           },
           "totalCount": {
