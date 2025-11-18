@@ -10864,6 +10864,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "includeMiscellaneous",
+            "in": "query",
+            "description": "Optional. If true, include miscellaneous items in the settings export.",
+            "schema": {
+              "type": "boolean"
+            }
           }
         ],
         "responses": {
