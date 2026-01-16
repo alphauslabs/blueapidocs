@@ -14776,6 +14776,47 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/recommendation/execute": {
+      "post": {
+        "tags": [
+          "Cover"
+        ],
+        "operationId": "Cover_ExecuteRecommendationV3",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1ExecuteRecommendationV3Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1ExecuteRecommendationV3Response"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/recommendations": {
       "get": {
         "tags": [
@@ -27980,6 +28021,15 @@
       "ExecuteOptimizationResponseGCPOption": {
         "type": "object"
       },
+      "ExecuteRecommendationV3RequestExecuteType": {
+        "type": "string",
+        "default": "DEFAULT",
+        "enum": [
+          "DEFAULT",
+          "MARK_AS_EXECUTED",
+          "UNDO_EXECUTED"
+        ]
+      },
       "FilterCriteriaFilterOperator": {
         "type": "string",
         "default": "OPERATOR_UNSPECIFIED",
@@ -40871,6 +40921,23 @@
           }
         }
       },
+      "v1ExecuteRecommendationV3Request": {
+        "type": "object",
+        "properties": {
+          "recommendationIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "executeType": {
+            "$ref": "#/components/schemas/ExecuteRecommendationV3RequestExecuteType"
+          }
+        }
+      },
+      "v1ExecuteRecommendationV3Response": {
+        "type": "object"
+      },
       "v1ExportAccountInvoiceServiceDiscountsRequest": {
         "required": [
           "format"
@@ -44099,6 +44166,12 @@
           },
           "dateEnd": {
             "type": "string"
+          },
+          "statuses": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
