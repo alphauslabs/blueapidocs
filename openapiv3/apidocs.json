@@ -100,11 +100,11 @@
       }
     },
     {
-      "name": "Archera",
-      "description": "(Alpha) Archera API. Base URL: https://api.alphaus.cloud/m/blue/archera",
+      "name": "GuaranteedCommitment",
+      "description": "(Alpha) GuaranteedCommitment API. Base URL: https://api.alphaus.cloud/m/blue/gc",
       "externalDocs": {
         "description": "Service definition",
-        "url": "https://github.com/alphauslabs/blueapi/tree/main/archera/"
+        "url": "https://github.com/alphauslabs/blueapi/tree/main/gc/"
       }
     },
     {
@@ -9068,6 +9068,610 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/commitment-plans/default": {
+      "get": {
+        "tags": [
+          "GuaranteedCommitment"
+        ],
+        "summary": "Retrieves the three default GuaranteedCommitment commitment plans (High Savings, Balanced, Recommended) for the specified cloud provider.",
+        "operationId": "GuaranteedCommitment_ListDefaultCommitmentPlans",
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "provider",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "PROVIDER_UNSPECIFIED",
+              "enum": [
+                "PROVIDER_UNSPECIFIED",
+                "AWS",
+                "AZURE",
+                "GCP",
+                "KUBERNETES",
+                "UNKNOWN"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1ListDefaultCommitmentPlansResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/commitment-plans/recommended": {
+      "get": {
+        "tags": [
+          "GuaranteedCommitment"
+        ],
+        "summary": "Retrieves only the recommended GuaranteedCommitment commitment plan for the specified cloud provider.",
+        "operationId": "GuaranteedCommitment_GetRecommendedCommitmentPlan",
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "provider",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "PROVIDER_UNSPECIFIED",
+              "enum": [
+                "PROVIDER_UNSPECIFIED",
+                "AWS",
+                "AZURE",
+                "GCP",
+                "KUBERNETES",
+                "UNKNOWN"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1CommitmentPlanDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/commitment-plans/{planId}": {
+      "get": {
+        "tags": [
+          "GuaranteedCommitment"
+        ],
+        "summary": "Retrieves detailed information about a specific commitment plan, including costs, savings projections, and commitment coverage.",
+        "operationId": "GuaranteedCommitment_GetCommitmentPlanDetails",
+        "parameters": [
+          {
+            "name": "planId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orgId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1CommitmentPlanDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/commitment-plans/{planId}/apply": {
+      "post": {
+        "tags": [
+          "GuaranteedCommitment"
+        ],
+        "summary": "Executes a commitment purchase plan, initiating the commitment purchase process.",
+        "operationId": "GuaranteedCommitment_CommitmentPlanApply",
+        "parameters": [
+          {
+            "name": "planId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GuaranteedCommitmentCommitmentPlanApplyBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1CommitmentPlanDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/commitment-plans/{planId}/line-items": {
+      "get": {
+        "tags": [
+          "GuaranteedCommitment"
+        ],
+        "summary": "Retrieves line items for a specific commitment plan.",
+        "operationId": "GuaranteedCommitment_ListCommitmentPlanLineItems",
+        "parameters": [
+          {
+            "name": "planId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orgId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "desc",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "segmentId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "resourceMatchIds",
+            "in": "query",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1ListCommitmentPlanLineItemsResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/commitment-plans/{planId}/resource-matches": {
+      "get": {
+        "tags": [
+          "GuaranteedCommitment"
+        ],
+        "summary": "Retrieves resource matches for a specific commitment plan.",
+        "operationId": "GuaranteedCommitment_ListCommitmentPlanResourceMatches",
+        "parameters": [
+          {
+            "name": "planId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orgId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "desc",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lineItemIds",
+            "in": "query",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1ListCommitmentPlanResourceMatchesResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/commitments": {
+      "get": {
+        "tags": [
+          "GuaranteedCommitment"
+        ],
+        "summary": "Retrieves a paginated list of commitments for the specified organization and time period.",
+        "operationId": "GuaranteedCommitment_ListCommitments",
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "desc",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "provider",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "PROVIDER_UNSPECIFIED",
+              "enum": [
+                "PROVIDER_UNSPECIFIED",
+                "AWS",
+                "AZURE",
+                "GCP",
+                "KUBERNETES",
+                "UNKNOWN"
+              ]
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1ListCommitmentsResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/commitments/chart": {
+      "get": {
+        "tags": [
+          "GuaranteedCommitment"
+        ],
+        "summary": "Generates time-series chart data for commitment metrics over the specified time period.",
+        "operationId": "GuaranteedCommitment_GetCommitmentsChart",
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "provider",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "PROVIDER_UNSPECIFIED",
+              "enum": [
+                "PROVIDER_UNSPECIFIED",
+                "AWS",
+                "AZURE",
+                "GCP",
+                "KUBERNETES",
+                "UNKNOWN"
+              ]
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1CommitmentsChartResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/containers/costusage": {
       "post": {
         "tags": [
@@ -13824,13 +14428,69 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/metrics": {
+      "get": {
+        "tags": [
+          "GuaranteedCommitment"
+        ],
+        "summary": "Retrieves key performance metrics for cloud commitments.",
+        "operationId": "GuaranteedCommitment_GetMetrics",
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "provider",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "PROVIDER_UNSPECIFIED",
+              "enum": [
+                "PROVIDER_UNSPECIFIED",
+                "AWS",
+                "AZURE",
+                "GCP",
+                "KUBERNETES",
+                "UNKNOWN"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1MetricsResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/onboarding": {
       "post": {
         "tags": [
-          "Archera"
+          "GuaranteedCommitment"
         ],
         "summary": "Registers a new child organization under the channel partner.\nCreates the organization, sets up user memberships, and establishes the partnership relationship.",
-        "operationId": "Archera_RegisterOrg",
+        "operationId": "GuaranteedCommitment_RegisterOrg",
         "requestBody": {
           "content": {
             "application/json": {
@@ -13869,15 +14529,15 @@
     "/v1/onboarding/aws/cloudformation-template": {
       "get": {
         "tags": [
-          "Archera"
+          "GuaranteedCommitment"
         ],
         "summary": "Generates CloudFormation template for AWS integration.\nCreates the necessary IAM role and policy template for setting up AWS access.",
-        "operationId": "Archera_GetAwsCloudFormationTemplate",
+        "operationId": "GuaranteedCommitment_GetAwsCloudFormationTemplate",
         "parameters": [
           {
             "name": "mspId",
             "in": "query",
-            "description": "Ripple context (used for lookup/mapping; not sent to Archera)",
+            "description": "Ripple context (used for lookup/mapping; not sent to GuaranteedCommitment)",
             "schema": {
               "type": "string"
             }
@@ -13891,7 +14551,7 @@
             }
           },
           {
-            "name": "archeraOrgId",
+            "name": "gcOrgId",
             "in": "query",
             "schema": {
               "type": "string"
@@ -13925,15 +14585,15 @@
     "/v1/onboarding/aws/launch-stack-url": {
       "get": {
         "tags": [
-          "Archera"
+          "GuaranteedCommitment"
         ],
         "summary": "Generates AWS CloudFormation launch stack URL.\nCreates a pre-configured URL to deploy the CloudFormation stack in the AWS console.",
-        "operationId": "Archera_GetAwsLaunchStackUrl",
+        "operationId": "GuaranteedCommitment_GetAwsLaunchStackUrl",
         "parameters": [
           {
             "name": "mspId",
             "in": "query",
-            "description": "Ripple context (used for lookup/mapping; not sent to Archera)",
+            "description": "Ripple context (used for lookup/mapping; not sent to GuaranteedCommitment)",
             "schema": {
               "type": "string"
             }
@@ -13947,7 +14607,7 @@
             }
           },
           {
-            "name": "archeraOrgId",
+            "name": "gcOrgId",
             "in": "query",
             "schema": {
               "type": "string"
@@ -13981,10 +14641,10 @@
     "/v1/onboarding/aws/start": {
       "post": {
         "tags": [
-          "Archera"
+          "GuaranteedCommitment"
         ],
         "summary": "Starts the onboarding process for an organization.\nCreates or retrieves an onboarding record and sets the provider to AWS.",
-        "operationId": "Archera_StartAwsOnboarding",
+        "operationId": "GuaranteedCommitment_StartAwsOnboarding",
         "requestBody": {
           "content": {
             "application/json": {
@@ -14023,10 +14683,10 @@
     "/v1/onboarding/aws/verify": {
       "post": {
         "tags": [
-          "Archera"
+          "GuaranteedCommitment"
         ],
         "summary": "Runs AWS onboarding verification process.\nCreates a new CUR or uses an existing CUR and verifies AWS integration setup\nand returns validation status for all required features.",
-        "operationId": "Archera_VerifyAwsOnboarding",
+        "operationId": "GuaranteedCommitment_VerifyAwsOnboarding",
         "requestBody": {
           "content": {
             "application/json": {
@@ -14369,1023 +15029,6 @@
         "x-codegen-request-body-name": "body"
       }
     },
-    "/v1/org/{orgId}/commitment-plans/default": {
-      "get": {
-        "tags": [
-          "Archera"
-        ],
-        "summary": "Retrieves the three default Archera commitment plans (High Savings, Balanced, Recommended) for the specified cloud provider.",
-        "operationId": "Archera_ListDefaultCommitmentPlans",
-        "parameters": [
-          {
-            "name": "orgId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "provider",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "default": "PROVIDER_UNSPECIFIED",
-              "enum": [
-                "PROVIDER_UNSPECIFIED",
-                "AWS",
-                "AZURE",
-                "GCP",
-                "KUBERNETES",
-                "UNKNOWN"
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/v1ListDefaultCommitmentPlansResponse"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googleRpcStatus"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/org/{orgId}/commitment-plans/recommended": {
-      "get": {
-        "tags": [
-          "Archera"
-        ],
-        "summary": "Retrieves only the recommended Archera commitment plan for the specified cloud provider.",
-        "operationId": "Archera_GetRecommendedCommitmentPlan",
-        "parameters": [
-          {
-            "name": "orgId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "provider",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "default": "PROVIDER_UNSPECIFIED",
-              "enum": [
-                "PROVIDER_UNSPECIFIED",
-                "AWS",
-                "AZURE",
-                "GCP",
-                "KUBERNETES",
-                "UNKNOWN"
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/v1CommitmentPlanDetails"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googleRpcStatus"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/org/{orgId}/commitment-plans/{planId}": {
-      "get": {
-        "tags": [
-          "Archera"
-        ],
-        "summary": "Retrieves detailed information about a specific commitment plan, including costs, savings projections, and commitment coverage.",
-        "operationId": "Archera_GetCommitmentPlanDetails",
-        "parameters": [
-          {
-            "name": "orgId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "planId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/v1CommitmentPlanDetails"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googleRpcStatus"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/org/{orgId}/commitment-plans/{planId}/apply": {
-      "post": {
-        "tags": [
-          "Archera"
-        ],
-        "summary": "Executes a commitment purchase plan, initiating the commitment purchase process.",
-        "operationId": "Archera_CommitmentPlanApply",
-        "parameters": [
-          {
-            "name": "orgId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "planId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ArcheraCommitmentPlanApplyBody"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/v1CommitmentPlanDetails"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googleRpcStatus"
-                }
-              }
-            }
-          }
-        },
-        "x-codegen-request-body-name": "body"
-      }
-    },
-    "/v1/org/{orgId}/commitment-plans/{planId}/line-items": {
-      "get": {
-        "tags": [
-          "Archera"
-        ],
-        "summary": "Retrieves line items for a specific commitment plan.",
-        "operationId": "Archera_ListCommitmentPlanLineItems",
-        "parameters": [
-          {
-            "name": "orgId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "planId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "orderBy",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "desc",
-            "in": "query",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "segmentId",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "resourceMatchIds",
-            "in": "query",
-            "style": "form",
-            "explode": true,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "pageSize",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/v1ListCommitmentPlanLineItemsResponse"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googleRpcStatus"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/org/{orgId}/commitment-plans/{planId}/resource-matches": {
-      "get": {
-        "tags": [
-          "Archera"
-        ],
-        "summary": "Retrieves resource matches for a specific commitment plan.",
-        "operationId": "Archera_ListCommitmentPlanResourceMatches",
-        "parameters": [
-          {
-            "name": "orgId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "planId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "orderBy",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "desc",
-            "in": "query",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "startDate",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "endDate",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "lineItemIds",
-            "in": "query",
-            "style": "form",
-            "explode": true,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "pageSize",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/v1ListCommitmentPlanResourceMatchesResponse"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googleRpcStatus"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/org/{orgId}/commitments": {
-      "get": {
-        "tags": [
-          "Archera"
-        ],
-        "summary": "Retrieves a paginated list of commitments for the specified organization and time period.",
-        "operationId": "Archera_ListCommitments",
-        "parameters": [
-          {
-            "name": "orgId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "search",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "filter",
-            "in": "query",
-            "schema": {
-              "type": "object"
-            }
-          },
-          {
-            "name": "desc",
-            "in": "query",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "orderBy",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "provider",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "default": "PROVIDER_UNSPECIFIED",
-              "enum": [
-                "PROVIDER_UNSPECIFIED",
-                "AWS",
-                "AZURE",
-                "GCP",
-                "KUBERNETES",
-                "UNKNOWN"
-              ]
-            }
-          },
-          {
-            "name": "startDate",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "endDate",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "pageSize",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/v1ListCommitmentsResponse"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googleRpcStatus"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/org/{orgId}/commitments/chart": {
-      "get": {
-        "tags": [
-          "Archera"
-        ],
-        "summary": "Generates time-series chart data for commitment metrics over the specified time period.",
-        "operationId": "Archera_GetCommitmentsChart",
-        "parameters": [
-          {
-            "name": "orgId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "filter",
-            "in": "query",
-            "schema": {
-              "type": "object"
-            }
-          },
-          {
-            "name": "provider",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "default": "PROVIDER_UNSPECIFIED",
-              "enum": [
-                "PROVIDER_UNSPECIFIED",
-                "AWS",
-                "AZURE",
-                "GCP",
-                "KUBERNETES",
-                "UNKNOWN"
-              ]
-            }
-          },
-          {
-            "name": "startDate",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "endDate",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/v1CommitmentsChartResponse"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googleRpcStatus"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/org/{orgId}/metrics": {
-      "get": {
-        "tags": [
-          "Archera"
-        ],
-        "summary": "Retrieves key performance metrics for cloud commitments.",
-        "operationId": "Archera_GetMetrics",
-        "parameters": [
-          {
-            "name": "orgId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "provider",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "default": "PROVIDER_UNSPECIFIED",
-              "enum": [
-                "PROVIDER_UNSPECIFIED",
-                "AWS",
-                "AZURE",
-                "GCP",
-                "KUBERNETES",
-                "UNKNOWN"
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/v1MetricsResponse"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googleRpcStatus"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/org/{orgId}/purchase-plans-v1/default": {
-      "get": {
-        "tags": [
-          "Archera"
-        ],
-        "summary": "Retrieves default purchase plans for a specific segment.",
-        "operationId": "Archera_ListDefaultPurchasePlans",
-        "parameters": [
-          {
-            "name": "orgId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "segmentId",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/v1ListDefaultPurchasePlansResponse"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googleRpcStatus"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/org/{orgId}/resources": {
-      "get": {
-        "tags": [
-          "Archera"
-        ],
-        "summary": "Retrieves a list of infrastructure resources for the organization.",
-        "operationId": "Archera_ListResources",
-        "parameters": [
-          {
-            "name": "orgId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "provider",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "default": "PROVIDER_UNSPECIFIED",
-              "enum": [
-                "PROVIDER_UNSPECIFIED",
-                "AWS",
-                "AZURE",
-                "GCP",
-                "KUBERNETES",
-                "UNKNOWN"
-              ]
-            }
-          },
-          {
-            "name": "segmentId",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "search",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "desc",
-            "in": "query",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "orderBy",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "pageSize",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/v1ListResourcesResponse"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googleRpcStatus"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/org/{orgId}/resources/{resourceId}/daily-usage": {
-      "get": {
-        "tags": [
-          "Archera"
-        ],
-        "summary": "Retrieves daily usage data for a specific resource within the specified date range.",
-        "operationId": "Archera_GetResourceDailyUsage",
-        "parameters": [
-          {
-            "name": "orgId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "resourceId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "startDate",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "endDate",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "catalogSkuId",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "pageSize",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/v1GetResourceDailyUsageResponse"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googleRpcStatus"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/org/{orgId}/segments/info": {
-      "get": {
-        "tags": [
-          "Archera"
-        ],
-        "summary": "Retrieves all segments for the specified organization and provider.",
-        "operationId": "Archera_ListSegments",
-        "parameters": [
-          {
-            "name": "orgId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "provider",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "default": "PROVIDER_UNSPECIFIED",
-              "enum": [
-                "PROVIDER_UNSPECIFIED",
-                "AWS",
-                "AZURE",
-                "GCP",
-                "KUBERNETES",
-                "UNKNOWN"
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/v1ListSegmentsResponse"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googleRpcStatus"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/org/{orgId}/segments/{segmentId}": {
-      "get": {
-        "tags": [
-          "Archera"
-        ],
-        "summary": "Retrieves detailed information about a specific segment.",
-        "operationId": "Archera_GetSegmentDetails",
-        "parameters": [
-          {
-            "name": "orgId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "segmentId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/v1SegmentDetails"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googleRpcStatus"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/v1/organizations": {
       "post": {
         "tags": [
@@ -15617,9 +15260,9 @@
     "/v1/organizations:read": {
       "post": {
         "tags": [
-          "Archera"
+          "GuaranteedCommitment"
         ],
-        "operationId": "Archera_ListOrgs",
+        "operationId": "GuaranteedCommitment_ListOrgs",
         "requestBody": {
           "content": {
             "application/json": {
@@ -15636,11 +15279,11 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "Stream result of archeraV1Org",
+                  "title": "Stream result of gcV1Org",
                   "type": "object",
                   "properties": {
                     "result": {
-                      "$ref": "#/components/schemas/archeraV1Org"
+                      "$ref": "#/components/schemas/gcV1Org"
                     },
                     "error": {
                       "$ref": "#/components/schemas/googleRpcStatus"
@@ -16110,6 +15753,53 @@
           }
         },
         "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/purchase-plans-v1/default": {
+      "get": {
+        "tags": [
+          "GuaranteedCommitment"
+        ],
+        "summary": "Retrieves default purchase plans for a specific segment.",
+        "operationId": "GuaranteedCommitment_ListDefaultPurchasePlans",
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "segmentId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1ListDefaultPurchasePlansResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/v1/recommendation/execute": {
@@ -17655,6 +17345,106 @@
         }
       }
     },
+    "/v1/resources": {
+      "get": {
+        "tags": [
+          "GuaranteedCommitment"
+        ],
+        "summary": "Retrieves a list of infrastructure resources for the organization.",
+        "operationId": "GuaranteedCommitment_ListResources",
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "provider",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "PROVIDER_UNSPECIFIED",
+              "enum": [
+                "PROVIDER_UNSPECIFIED",
+                "AWS",
+                "AZURE",
+                "GCP",
+                "KUBERNETES",
+                "UNKNOWN"
+              ]
+            }
+          },
+          {
+            "name": "segmentId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "desc",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1ListResourcesResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/resources/accounts/{vendor}": {
       "get": {
         "tags": [
@@ -17714,6 +17504,91 @@
         }
       }
     },
+    "/v1/resources/{resourceId}/daily-usage": {
+      "get": {
+        "tags": [
+          "GuaranteedCommitment"
+        ],
+        "summary": "Retrieves daily usage data for a specific resource within the specified date range.",
+        "operationId": "GuaranteedCommitment_GetResourceDailyUsage",
+        "parameters": [
+          {
+            "name": "resourceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orgId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "catalogSkuId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetResourceDailyUsageResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/rightsizingrecommendation/{costGroupId}": {
       "get": {
         "tags": [
@@ -17739,6 +17614,110 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/v1GetRightSizingRecommendationResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/segments/info": {
+      "get": {
+        "tags": [
+          "GuaranteedCommitment"
+        ],
+        "summary": "Retrieves all segments for the specified organization and provider.",
+        "operationId": "GuaranteedCommitment_ListSegments",
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "provider",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "PROVIDER_UNSPECIFIED",
+              "enum": [
+                "PROVIDER_UNSPECIFIED",
+                "AWS",
+                "AZURE",
+                "GCP",
+                "KUBERNETES",
+                "UNKNOWN"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1ListSegmentsResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/segments/{segmentId}": {
+      "get": {
+        "tags": [
+          "GuaranteedCommitment"
+        ],
+        "summary": "Retrieves detailed information about a specific segment.",
+        "operationId": "GuaranteedCommitment_GetSegmentDetails",
+        "parameters": [
+          {
+            "name": "segmentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orgId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1SegmentDetails"
                 }
               }
             }
@@ -26678,9 +26657,6 @@
           }
         }
       },
-      "ArcheraCommitmentPlanApplyBody": {
-        "type": "object"
-      },
       "AwsOnboardingFeatureCheckAwsOnboardingFeatureStatus": {
         "type": "string",
         "default": "AWS_ONBOARDING_FEATURE_STATUS_UNSPECIFIED",
@@ -29590,6 +29566,14 @@
             "items": {
               "type": "string"
             }
+          }
+        }
+      },
+      "GuaranteedCommitmentCommitmentPlanApplyBody": {
+        "type": "object",
+        "properties": {
+          "orgId": {
+            "type": "string"
           }
         }
       },
@@ -32761,20 +32745,6 @@
         },
         "description": "Notification resource definition."
       },
-      "archeraV1Org": {
-        "type": "object",
-        "properties": {
-          "orgId": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          }
-        }
-      },
       "awsAWSResourceDetailsEBSDetails": {
         "type": "object",
         "properties": {
@@ -33901,163 +33871,6 @@
           }
         }
       },
-      "blueapiArcheraV1DailyUtilization": {
-        "type": "object",
-        "properties": {
-          "date": {
-            "type": "string"
-          },
-          "utilization": {
-            "type": "number",
-            "format": "double"
-          },
-          "netSavings": {
-            "type": "number",
-            "format": "double"
-          }
-        }
-      },
-      "blueapiArcheraV1Resource": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "resourceId": {
-            "type": "string"
-          },
-          "provider": {
-            "$ref": "#/components/schemas/v1Provider"
-          },
-          "providerResourceId": {
-            "type": "string"
-          },
-          "isSpot": {
-            "type": "boolean"
-          },
-          "name": {
-            "type": "string"
-          },
-          "resourceGroup": {
-            "type": "string"
-          },
-          "usageEnd": {
-            "type": "string"
-          },
-          "usageStart": {
-            "type": "string"
-          },
-          "tags": {
-            "type": "object",
-            "properties": {}
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "updatedAt": {
-            "type": "string"
-          },
-          "instanceId": {
-            "type": "string"
-          },
-          "billingAccountId": {
-            "type": "string"
-          },
-          "subAccountId": {
-            "type": "string"
-          },
-          "managementAccountId": {
-            "type": "string"
-          },
-          "ownerAccountId": {
-            "type": "string"
-          },
-          "skuTitle": {
-            "type": "string"
-          },
-          "skuName": {
-            "type": "string"
-          },
-          "availabilityZone": {
-            "type": "string"
-          },
-          "cacheEngine": {
-            "type": "string"
-          },
-          "databaseEngine": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          },
-          "family": {
-            "type": "string"
-          },
-          "fullRegionName": {
-            "type": "string"
-          },
-          "hasOndemandTerms": {
-            "type": "boolean"
-          },
-          "instanceType": {
-            "type": "string"
-          },
-          "instanceTypeFamily": {
-            "type": "string"
-          },
-          "isReservable": {
-            "type": "boolean"
-          },
-          "licenseModel": {
-            "type": "string"
-          },
-          "locationType": {
-            "type": "string"
-          },
-          "normalizationSizeFactor": {
-            "type": "string"
-          },
-          "operatingSystem": {
-            "type": "string"
-          },
-          "preInstalledSw": {
-            "type": "string"
-          },
-          "priceCurrency": {
-            "type": "string"
-          },
-          "providerService": {
-            "type": "string"
-          },
-          "providerSkuId": {
-            "type": "string"
-          },
-          "publicationDate": {
-            "type": "string"
-          },
-          "region": {
-            "type": "string"
-          },
-          "service": {
-            "type": "string"
-          },
-          "tenancy": {
-            "type": "string"
-          },
-          "usageType": {
-            "type": "string"
-          },
-          "version": {
-            "type": "string"
-          },
-          "vpcNetworkingSupport": {
-            "type": "boolean"
-          },
-          "ondemandUsageUnit": {
-            "type": "string"
-          }
-        }
-      },
       "blueapiBillingV1InvoiceServiceDiscounts": {
         "type": "object",
         "properties": {
@@ -34288,6 +34101,163 @@
           }
         },
         "description": "Response message for the Flow.GetInfo rpc."
+      },
+      "blueapiGcV1DailyUtilization": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string"
+          },
+          "utilization": {
+            "type": "number",
+            "format": "double"
+          },
+          "netSavings": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "blueapiGcV1Resource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "resourceId": {
+            "type": "string"
+          },
+          "provider": {
+            "$ref": "#/components/schemas/v1Provider"
+          },
+          "providerResourceId": {
+            "type": "string"
+          },
+          "isSpot": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string"
+          },
+          "resourceGroup": {
+            "type": "string"
+          },
+          "usageEnd": {
+            "type": "string"
+          },
+          "usageStart": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "object",
+            "properties": {}
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          },
+          "instanceId": {
+            "type": "string"
+          },
+          "billingAccountId": {
+            "type": "string"
+          },
+          "subAccountId": {
+            "type": "string"
+          },
+          "managementAccountId": {
+            "type": "string"
+          },
+          "ownerAccountId": {
+            "type": "string"
+          },
+          "skuTitle": {
+            "type": "string"
+          },
+          "skuName": {
+            "type": "string"
+          },
+          "availabilityZone": {
+            "type": "string"
+          },
+          "cacheEngine": {
+            "type": "string"
+          },
+          "databaseEngine": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "family": {
+            "type": "string"
+          },
+          "fullRegionName": {
+            "type": "string"
+          },
+          "hasOndemandTerms": {
+            "type": "boolean"
+          },
+          "instanceType": {
+            "type": "string"
+          },
+          "instanceTypeFamily": {
+            "type": "string"
+          },
+          "isReservable": {
+            "type": "boolean"
+          },
+          "licenseModel": {
+            "type": "string"
+          },
+          "locationType": {
+            "type": "string"
+          },
+          "normalizationSizeFactor": {
+            "type": "string"
+          },
+          "operatingSystem": {
+            "type": "string"
+          },
+          "preInstalledSw": {
+            "type": "string"
+          },
+          "priceCurrency": {
+            "type": "string"
+          },
+          "providerService": {
+            "type": "string"
+          },
+          "providerSkuId": {
+            "type": "string"
+          },
+          "publicationDate": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string"
+          },
+          "service": {
+            "type": "string"
+          },
+          "tenancy": {
+            "type": "string"
+          },
+          "usageType": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "vpcNetworkingSupport": {
+            "type": "boolean"
+          },
+          "ondemandUsageUnit": {
+            "type": "string"
+          }
+        }
       },
       "blueapiOrgV1CreateOrgRequest": {
         "type": "object",
@@ -37649,6 +37619,20 @@
           }
         }
       },
+      "gcV1Org": {
+        "type": "object",
+        "properties": {
+          "orgId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
       "gcpGCPRecommendations": {
         "type": "object",
         "properties": {
@@ -40685,7 +40669,7 @@
           "dailyUtilizations": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/blueapiArcheraV1DailyUtilization"
+              "$ref": "#/components/schemas/blueapiGcV1DailyUtilization"
             }
           }
         }
@@ -46769,7 +46753,7 @@
           "resources": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/blueapiArcheraV1Resource"
+              "$ref": "#/components/schemas/blueapiGcV1Resource"
             }
           }
         }
@@ -48331,7 +48315,7 @@
         "type": "object",
         "properties": {
           "mspId": {
-            "title": "Ripple context (not sent to Archera; used for mapping/persistence)",
+            "title": "Ripple context (not sent to GuaranteedCommitment; used for mapping/persistence)",
             "type": "string"
           },
           "billingId": {
@@ -48379,7 +48363,7 @@
             "type": "string"
           },
           "memberships": {
-            "title": "Archera create-org response fields",
+            "title": "GuaranteedCommitment create-org response fields",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/v1Membership"
@@ -49398,14 +49382,14 @@
         "type": "object",
         "properties": {
           "mspId": {
-            "title": "Ripple context (used for lookup/mapping; not sent to Archera)",
+            "title": "Ripple context (used for lookup/mapping; not sent to GuaranteedCommitment)",
             "type": "string"
           },
           "billingId": {
             "title": "Optional: if present => MSP customer (3rd layer), else MSP-level org (2nd layer)",
             "type": "string"
           },
-          "archeraOrgId": {
+          "gcOrgId": {
             "type": "string"
           }
         }
@@ -50589,14 +50573,14 @@
         "type": "object",
         "properties": {
           "mspId": {
-            "title": "Ripple context (used for lookup/mapping; not sent to Archera)",
+            "title": "Ripple context (used for lookup/mapping; not sent to GuaranteedCommitment)",
             "type": "string"
           },
           "billingId": {
             "title": "Optional: if present => MSP customer (3rd layer), else MSP-level org (2nd layer)",
             "type": "string"
           },
-          "archeraOrgId": {
+          "gcOrgId": {
             "type": "string"
           },
           "onboardingId": {
