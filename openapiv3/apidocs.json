@@ -15262,6 +15262,7 @@
         "tags": [
           "GuaranteedCommitment"
         ],
+        "summary": "List all the registered orgs",
         "operationId": "GuaranteedCommitment_ListOrgs",
         "requestBody": {
           "content": {
