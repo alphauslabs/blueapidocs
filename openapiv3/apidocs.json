@@ -7145,6 +7145,45 @@
       }
     },
     "/v1/billinggroup/child": {
+      "get": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Gets child billing group info",
+        "operationId": "Billing_GetChildBillingGroup",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Required. Internal Id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetChildBillingGroupResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        }
+      },
       "post": {
         "tags": [
           "Billing"
@@ -40389,6 +40428,18 @@
           }
         }
       },
+      "v1ChildBillingGroup": {
+        "type": "object",
+        "properties": {
+          "basicInformation": {
+            "$ref": "#/components/schemas/v1ChildBillingGroupBasicInformation"
+          },
+          "invoiceSettings": {
+            "$ref": "#/components/schemas/v1ChildBillingGroupInvoiceSettings"
+          }
+        },
+        "description": "Contains basic information and invoice settings related data."
+      },
       "v1ChildBillingGroupBasicInformation": {
         "type": "object",
         "properties": {
@@ -43975,6 +44026,14 @@
         "properties": {
           "channelData": {
             "$ref": "#/components/schemas/coverChannelData"
+          }
+        }
+      },
+      "v1GetChildBillingGroupResponse": {
+        "type": "object",
+        "properties": {
+          "details": {
+            "$ref": "#/components/schemas/v1ChildBillingGroup"
           }
         }
       },
