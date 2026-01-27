@@ -8472,6 +8472,57 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/billinggroups:bulkCreate": {
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Create billing group in bulk",
+        "operationId": "Billing_BulkCreateBillingGroup",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1BulkCreateBillingGroupRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Stream result of v1BulkCreateBillingGroupResponse",
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/components/schemas/v1BulkCreateBillingGroupResponse"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/googleRpcStatus"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/billinggroups:paginated": {
       "get": {
         "tags": [
@@ -40167,6 +40218,55 @@
           }
         },
         "description": "Request message for the BudgetAlerts rpc."
+      },
+      "v1BulkCreateBillingGroupError": {
+        "type": "object",
+        "properties": {
+          "index": {
+            "type": "integer",
+            "description": "The index of the request failed (zero-based).",
+            "format": "int32"
+          },
+          "billingGroupId": {
+            "type": "string",
+            "description": "The billing group ID that failed to create."
+          },
+          "message": {
+            "type": "string",
+            "description": "Error message."
+          }
+        }
+      },
+      "v1BulkCreateBillingGroupRequest": {
+        "type": "object",
+        "properties": {
+          "request": {
+            "type": "array",
+            "description": "Required. The list of billing group to create.",
+            "items": {
+              "$ref": "#/components/schemas/v1CreateBillingGroupRequest"
+            }
+          }
+        }
+      },
+      "v1BulkCreateBillingGroupResponse": {
+        "type": "object",
+        "properties": {
+          "billingGroups": {
+            "type": "array",
+            "description": "List of billing groups created in bulk.",
+            "items": {
+              "$ref": "#/components/schemas/v1BillingGroup"
+            }
+          },
+          "errors": {
+            "type": "array",
+            "description": "If an error occurs for a specific billing group, it will be included here.",
+            "items": {
+              "$ref": "#/components/schemas/v1BulkCreateBillingGroupError"
+            }
+          }
+        }
       },
       "v1CalculateCostsRequestAwsOptions": {
         "type": "object",

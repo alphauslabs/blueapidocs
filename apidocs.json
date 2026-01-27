@@ -6672,6 +6672,48 @@
         ]
       }
     },
+    "/v1/billinggroups:bulkCreate": {
+      "post": {
+        "summary": "Create billing group in bulk",
+        "operationId": "Billing_BulkCreateBillingGroup",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1BulkCreateBillingGroupResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/googleRpcStatus"
+                }
+              },
+              "title": "Stream result of v1BulkCreateBillingGroupResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googleRpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1BulkCreateBillingGroupRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      }
+    },
     "/v1/billinggroups:paginated": {
       "get": {
         "summary": "Lists all billing groups with pagination support.",
@@ -34699,6 +34741,58 @@
         }
       },
       "description": "Request message for the BudgetAlerts rpc."
+    },
+    "v1BulkCreateBillingGroupError": {
+      "type": "object",
+      "properties": {
+        "index": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The index of the request failed (zero-based)."
+        },
+        "billingGroupId": {
+          "type": "string",
+          "description": "The billing group ID that failed to create."
+        },
+        "message": {
+          "type": "string",
+          "description": "Error message."
+        }
+      }
+    },
+    "v1BulkCreateBillingGroupRequest": {
+      "type": "object",
+      "properties": {
+        "request": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1CreateBillingGroupRequest"
+          },
+          "description": "Required. The list of billing group to create."
+        }
+      }
+    },
+    "v1BulkCreateBillingGroupResponse": {
+      "type": "object",
+      "properties": {
+        "billingGroups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1BillingGroup"
+          },
+          "description": "List of billing groups created in bulk."
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1BulkCreateBillingGroupError"
+          },
+          "description": "If an error occurs for a specific billing group, it will be included here."
+        }
+      }
     },
     "v1CalculateCostsRequestAwsOptions": {
       "type": "object",
