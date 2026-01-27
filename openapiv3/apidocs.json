@@ -7144,87 +7144,6 @@
         "x-codegen-request-body-name": "body"
       }
     },
-    "/v1/billinggroup/child": {
-      "get": {
-        "tags": [
-          "Billing"
-        ],
-        "summary": "Gets child billing group info",
-        "operationId": "Billing_GetChildBillingGroup",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "description": "Required. Internal Id",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/v1GetChildBillingGroupResponse"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googleRpcStatus"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Billing"
-        ],
-        "summary": "Creates a child billing group under a parent billing group",
-        "operationId": "Billing_CreateChildBillingGroup",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/v1CreateChildBillingGroupRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/v1CreateChildBillingGroupResponse"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googleRpcStatus"
-                }
-              }
-            }
-          }
-        },
-        "x-codegen-request-body-name": "body"
-      }
-    },
     "/v1/billinggroup/customfield": {
       "post": {
         "tags": [
@@ -8271,6 +8190,141 @@
             }
           }
         }
+      }
+    },
+    "/v1/billinggroups/child": {
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Creates a child billing group under a parent billing group",
+        "operationId": "Billing_CreateChildBillingGroup",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1CreateChildBillingGroupRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1CreateChildBillingGroupResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/billinggroups/child/{internalId}": {
+      "get": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Gets child billing group info",
+        "operationId": "Billing_GetChildBillingGroup",
+        "parameters": [
+          {
+            "name": "internalId",
+            "in": "path",
+            "description": "Required. Internal Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetChildBillingGroupResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/billinggroups/child:read": {
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Lists child billing groups under a specific filter",
+        "operationId": "Billing_ListChildBillingGroups",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1ListChildBillingGroupsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Stream result of v1ListChildBillingGroupsResponse",
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/components/schemas/v1ListChildBillingGroupsResponse"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/googleRpcStatus"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
       }
     },
     "/v1/billinggroups/merged": {
@@ -46287,6 +46341,30 @@
           }
         },
         "description": "Response message for the Cost.ListCalculatorRunningAccounts rpc."
+      },
+      "v1ListChildBillingGroupsRequest": {
+        "type": "object",
+        "properties": {
+          "rootId": {
+            "type": "string",
+            "description": "Root parent Id. If not empty return all child billing group under the root parent.\nIf both root and parent are empty returns all child billing groups under the MSP."
+          },
+          "parentId": {
+            "type": "string",
+            "description": "Parent Id. If not empty return all child billing group under the parent only, \nIf both root and parent are empty returns all child billing groups under the MSP."
+          }
+        }
+      },
+      "v1ListChildBillingGroupsResponse": {
+        "type": "object",
+        "properties": {
+          "childBillingGroups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1ChildBillingGroup"
+            }
+          }
+        }
       },
       "v1ListCommitmentPlanLineItemsResponse": {
         "type": "object",
