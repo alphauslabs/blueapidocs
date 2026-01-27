@@ -7142,7 +7142,7 @@
     },
     "/v1/commitment-plans/default": {
       "get": {
-        "summary": "Retrieves the three default GuaranteedCommitment commitment plans (High Savings, Balanced, Recommended) for the specified cloud provider.",
+        "summary": "WORK-IN-PROGRESS: Do not use. Retrieves the three default GuaranteedCommitment commitment plans (High Savings, Balanced, Recommended) for the specified cloud provider.",
         "operationId": "GuaranteedCommitment_ListDefaultCommitmentPlans",
         "responses": {
           "200": {
@@ -7188,7 +7188,7 @@
     },
     "/v1/commitment-plans/recommended": {
       "get": {
-        "summary": "Retrieves only the recommended GuaranteedCommitment commitment plan for the specified cloud provider.",
+        "summary": "WORK-IN-PROGRESS: Do not use. Retrieves only the recommended GuaranteedCommitment commitment plan for the specified cloud provider.",
         "operationId": "GuaranteedCommitment_GetRecommendedCommitmentPlan",
         "responses": {
           "200": {
@@ -7234,7 +7234,7 @@
     },
     "/v1/commitment-plans/{planId}": {
       "get": {
-        "summary": "Retrieves detailed information about a specific commitment plan, including costs, savings projections, and commitment coverage.",
+        "summary": "WORK-IN-PROGRESS: Do not use. Retrieves detailed information about a specific commitment plan, including costs, savings projections, and commitment coverage.",
         "operationId": "GuaranteedCommitment_GetCommitmentPlanDetails",
         "responses": {
           "200": {
@@ -7271,7 +7271,7 @@
     },
     "/v1/commitment-plans/{planId}/apply": {
       "post": {
-        "summary": "Executes a commitment purchase plan, initiating the commitment purchase process.",
+        "summary": "WORK-IN-PROGRESS: Do not use. Executes a commitment purchase plan, initiating the commitment purchase process.",
         "operationId": "GuaranteedCommitment_CommitmentPlanApply",
         "responses": {
           "200": {
@@ -7310,7 +7310,7 @@
     },
     "/v1/commitment-plans/{planId}/line-items": {
       "get": {
-        "summary": "Retrieves line items for a specific commitment plan.",
+        "summary": "WORK-IN-PROGRESS: Do not use. Retrieves line items for a specific commitment plan.",
         "operationId": "GuaranteedCommitment_ListCommitmentPlanLineItems",
         "responses": {
           "200": {
@@ -7389,7 +7389,7 @@
     },
     "/v1/commitment-plans/{planId}/resource-matches": {
       "get": {
-        "summary": "Retrieves resource matches for a specific commitment plan.",
+        "summary": "WORK-IN-PROGRESS: Do not use. Retrieves resource matches for a specific commitment plan.",
         "operationId": "GuaranteedCommitment_ListCommitmentPlanResourceMatches",
         "responses": {
           "200": {
@@ -7474,7 +7474,7 @@
     },
     "/v1/commitments": {
       "get": {
-        "summary": "Retrieves a paginated list of commitments for the specified organization and time period.",
+        "summary": "WORK-IN-PROGRESS: Do not use. Retrieves a paginated list of commitments for the specified organization and time period.",
         "operationId": "GuaranteedCommitment_ListCommitments",
         "responses": {
           "200": {
@@ -7570,7 +7570,7 @@
     },
     "/v1/commitments/chart": {
       "get": {
-        "summary": "Generates time-series chart data for commitment metrics over the specified time period.",
+        "summary": "WORK-IN-PROGRESS: Do not use. Generates time-series chart data for commitment metrics over the specified time period.",
         "operationId": "GuaranteedCommitment_GetCommitmentsChart",
         "responses": {
           "200": {
@@ -11338,7 +11338,7 @@
     },
     "/v1/metrics": {
       "get": {
-        "summary": "Retrieves key performance metrics for cloud commitments.",
+        "summary": "WORK-IN-PROGRESS: Do not use. Retrieves key performance metrics for cloud commitments.",
         "operationId": "GuaranteedCommitment_GetMetrics",
         "responses": {
           "200": {
@@ -11384,7 +11384,7 @@
     },
     "/v1/onboarding": {
       "post": {
-        "summary": "Registers a new child organization under the channel partner.\nCreates the organization, sets up user memberships, and establishes the partnership relationship.",
+        "summary": "WORK-IN-PROGRESS: Registers a new child organization under the channel partner.\nCreates the organization, sets up user memberships, and establishes the partnership relationship.",
         "operationId": "GuaranteedCommitment_RegisterOrg",
         "responses": {
           "200": {
@@ -11417,7 +11417,7 @@
     },
     "/v1/onboarding/aws/cloudformation-template": {
       "get": {
-        "summary": "Generates CloudFormation template for AWS integration.\nCreates the necessary IAM role and policy template for setting up AWS access.",
+        "summary": "WORK-IN-PROGRESS: Generates CloudFormation template for AWS integration.\nCreates the necessary IAM role and policy template for setting up AWS access.",
         "operationId": "GuaranteedCommitment_GetAwsCloudFormationTemplate",
         "responses": {
           "200": {
@@ -11462,7 +11462,7 @@
     },
     "/v1/onboarding/aws/launch-stack-url": {
       "get": {
-        "summary": "Generates AWS CloudFormation launch stack URL.\nCreates a pre-configured URL to deploy the CloudFormation stack in the AWS console.",
+        "summary": "WORK-IN-PROGRESS: Generates AWS CloudFormation launch stack URL.\nCreates a pre-configured URL to deploy the CloudFormation stack in the AWS console.",
         "operationId": "GuaranteedCommitment_GetAwsLaunchStackUrl",
         "responses": {
           "200": {
@@ -11507,7 +11507,7 @@
     },
     "/v1/onboarding/aws/start": {
       "post": {
-        "summary": "Starts the onboarding process for an organization.\nCreates or retrieves an onboarding record and sets the provider to AWS.",
+        "summary": "WORK-IN-PROGRESS: Starts the onboarding process for an organization.\nCreates or retrieves an onboarding record and sets the provider to AWS.",
         "operationId": "GuaranteedCommitment_StartAwsOnboarding",
         "responses": {
           "200": {
@@ -11540,7 +11540,7 @@
     },
     "/v1/onboarding/aws/verify": {
       "post": {
-        "summary": "Runs AWS onboarding verification process.\nCreates a new CUR or uses an existing CUR and verifies AWS integration setup\nand returns validation status for all required features.",
+        "summary": "WORK-IN-PROGRESS: Runs AWS onboarding verification process.\nCreates a new CUR or uses an existing CUR and verifies AWS integration setup\nand returns validation status for all required features.",
         "operationId": "GuaranteedCommitment_VerifyAwsOnboarding",
         "responses": {
           "200": {
@@ -11991,7 +11991,7 @@
     },
     "/v1/organizations:read": {
       "post": {
-        "summary": "List all the registered orgs",
+        "summary": "WORK-IN-PROGRESS: List all the registered orgs",
         "operationId": "GuaranteedCommitment_ListOrgs",
         "responses": {
           "200": {
@@ -12392,7 +12392,7 @@
     },
     "/v1/purchase-plans-v1/default": {
       "get": {
-        "summary": "Retrieves default purchase plans for a specific segment.",
+        "summary": "WORK-IN-PROGRESS: Do not use. Retrieves default purchase plans for a specific segment.",
         "operationId": "GuaranteedCommitment_ListDefaultPurchasePlans",
         "responses": {
           "200": {
@@ -13659,7 +13659,7 @@
     },
     "/v1/resources": {
       "get": {
-        "summary": "Retrieves a list of infrastructure resources for the organization.",
+        "summary": "WORK-IN-PROGRESS: Do not use. Retrieves a list of infrastructure resources for the organization.",
         "operationId": "GuaranteedCommitment_ListResources",
         "responses": {
           "200": {
@@ -13791,7 +13791,7 @@
     },
     "/v1/resources/{resourceId}/daily-usage": {
       "get": {
-        "summary": "Retrieves daily usage data for a specific resource within the specified date range.",
+        "summary": "WORK-IN-PROGRESS: Do not use. Retrieves daily usage data for a specific resource within the specified date range.",
         "operationId": "GuaranteedCommitment_GetResourceDailyUsage",
         "responses": {
           "200": {
@@ -13892,7 +13892,7 @@
     },
     "/v1/segments/info": {
       "get": {
-        "summary": "Retrieves all segments for the specified organization and provider.",
+        "summary": "WORK-IN-PROGRESS: Do not use. Retrieves all segments for the specified organization and provider.",
         "operationId": "GuaranteedCommitment_ListSegments",
         "responses": {
           "200": {
@@ -13938,7 +13938,7 @@
     },
     "/v1/segments/{segmentId}": {
       "get": {
-        "summary": "Retrieves detailed information about a specific segment.",
+        "summary": "WORK-IN-PROGRESS: Retrieves detailed information about a specific segment.",
         "operationId": "GuaranteedCommitment_GetSegmentDetails",
         "responses": {
           "200": {

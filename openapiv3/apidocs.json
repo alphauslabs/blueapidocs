@@ -9073,7 +9073,7 @@
         "tags": [
           "GuaranteedCommitment"
         ],
-        "summary": "Retrieves the three default GuaranteedCommitment commitment plans (High Savings, Balanced, Recommended) for the specified cloud provider.",
+        "summary": "WORK-IN-PROGRESS: Do not use. Retrieves the three default GuaranteedCommitment commitment plans (High Savings, Balanced, Recommended) for the specified cloud provider.",
         "operationId": "GuaranteedCommitment_ListDefaultCommitmentPlans",
         "parameters": [
           {
@@ -9129,7 +9129,7 @@
         "tags": [
           "GuaranteedCommitment"
         ],
-        "summary": "Retrieves only the recommended GuaranteedCommitment commitment plan for the specified cloud provider.",
+        "summary": "WORK-IN-PROGRESS: Do not use. Retrieves only the recommended GuaranteedCommitment commitment plan for the specified cloud provider.",
         "operationId": "GuaranteedCommitment_GetRecommendedCommitmentPlan",
         "parameters": [
           {
@@ -9185,7 +9185,7 @@
         "tags": [
           "GuaranteedCommitment"
         ],
-        "summary": "Retrieves detailed information about a specific commitment plan, including costs, savings projections, and commitment coverage.",
+        "summary": "WORK-IN-PROGRESS: Do not use. Retrieves detailed information about a specific commitment plan, including costs, savings projections, and commitment coverage.",
         "operationId": "GuaranteedCommitment_GetCommitmentPlanDetails",
         "parameters": [
           {
@@ -9233,7 +9233,7 @@
         "tags": [
           "GuaranteedCommitment"
         ],
-        "summary": "Executes a commitment purchase plan, initiating the commitment purchase process.",
+        "summary": "WORK-IN-PROGRESS: Do not use. Executes a commitment purchase plan, initiating the commitment purchase process.",
         "operationId": "GuaranteedCommitment_CommitmentPlanApply",
         "parameters": [
           {
@@ -9285,7 +9285,7 @@
         "tags": [
           "GuaranteedCommitment"
         ],
-        "summary": "Retrieves line items for a specific commitment plan.",
+        "summary": "WORK-IN-PROGRESS: Do not use. Retrieves line items for a specific commitment plan.",
         "operationId": "GuaranteedCommitment_ListCommitmentPlanLineItems",
         "parameters": [
           {
@@ -9382,7 +9382,7 @@
         "tags": [
           "GuaranteedCommitment"
         ],
-        "summary": "Retrieves resource matches for a specific commitment plan.",
+        "summary": "WORK-IN-PROGRESS: Do not use. Retrieves resource matches for a specific commitment plan.",
         "operationId": "GuaranteedCommitment_ListCommitmentPlanResourceMatches",
         "parameters": [
           {
@@ -9486,7 +9486,7 @@
         "tags": [
           "GuaranteedCommitment"
         ],
-        "summary": "Retrieves a paginated list of commitments for the specified organization and time period.",
+        "summary": "WORK-IN-PROGRESS: Do not use. Retrieves a paginated list of commitments for the specified organization and time period.",
         "operationId": "GuaranteedCommitment_ListCommitments",
         "parameters": [
           {
@@ -9600,7 +9600,7 @@
         "tags": [
           "GuaranteedCommitment"
         ],
-        "summary": "Generates time-series chart data for commitment metrics over the specified time period.",
+        "summary": "WORK-IN-PROGRESS: Do not use. Generates time-series chart data for commitment metrics over the specified time period.",
         "operationId": "GuaranteedCommitment_GetCommitmentsChart",
         "parameters": [
           {
@@ -14433,7 +14433,7 @@
         "tags": [
           "GuaranteedCommitment"
         ],
-        "summary": "Retrieves key performance metrics for cloud commitments.",
+        "summary": "WORK-IN-PROGRESS: Do not use. Retrieves key performance metrics for cloud commitments.",
         "operationId": "GuaranteedCommitment_GetMetrics",
         "parameters": [
           {
@@ -14489,7 +14489,7 @@
         "tags": [
           "GuaranteedCommitment"
         ],
-        "summary": "Registers a new child organization under the channel partner.\nCreates the organization, sets up user memberships, and establishes the partnership relationship.",
+        "summary": "WORK-IN-PROGRESS: Registers a new child organization under the channel partner.\nCreates the organization, sets up user memberships, and establishes the partnership relationship.",
         "operationId": "GuaranteedCommitment_RegisterOrg",
         "requestBody": {
           "content": {
@@ -14531,7 +14531,7 @@
         "tags": [
           "GuaranteedCommitment"
         ],
-        "summary": "Generates CloudFormation template for AWS integration.\nCreates the necessary IAM role and policy template for setting up AWS access.",
+        "summary": "WORK-IN-PROGRESS: Generates CloudFormation template for AWS integration.\nCreates the necessary IAM role and policy template for setting up AWS access.",
         "operationId": "GuaranteedCommitment_GetAwsCloudFormationTemplate",
         "parameters": [
           {
@@ -14587,7 +14587,7 @@
         "tags": [
           "GuaranteedCommitment"
         ],
-        "summary": "Generates AWS CloudFormation launch stack URL.\nCreates a pre-configured URL to deploy the CloudFormation stack in the AWS console.",
+        "summary": "WORK-IN-PROGRESS: Generates AWS CloudFormation launch stack URL.\nCreates a pre-configured URL to deploy the CloudFormation stack in the AWS console.",
         "operationId": "GuaranteedCommitment_GetAwsLaunchStackUrl",
         "parameters": [
           {
@@ -14643,7 +14643,7 @@
         "tags": [
           "GuaranteedCommitment"
         ],
-        "summary": "Starts the onboarding process for an organization.\nCreates or retrieves an onboarding record and sets the provider to AWS.",
+        "summary": "WORK-IN-PROGRESS: Starts the onboarding process for an organization.\nCreates or retrieves an onboarding record and sets the provider to AWS.",
         "operationId": "GuaranteedCommitment_StartAwsOnboarding",
         "requestBody": {
           "content": {
@@ -14685,7 +14685,7 @@
         "tags": [
           "GuaranteedCommitment"
         ],
-        "summary": "Runs AWS onboarding verification process.\nCreates a new CUR or uses an existing CUR and verifies AWS integration setup\nand returns validation status for all required features.",
+        "summary": "WORK-IN-PROGRESS: Runs AWS onboarding verification process.\nCreates a new CUR or uses an existing CUR and verifies AWS integration setup\nand returns validation status for all required features.",
         "operationId": "GuaranteedCommitment_VerifyAwsOnboarding",
         "requestBody": {
           "content": {
@@ -15262,7 +15262,7 @@
         "tags": [
           "GuaranteedCommitment"
         ],
-        "summary": "List all the registered orgs",
+        "summary": "WORK-IN-PROGRESS: List all the registered orgs",
         "operationId": "GuaranteedCommitment_ListOrgs",
         "requestBody": {
           "content": {
@@ -15761,7 +15761,7 @@
         "tags": [
           "GuaranteedCommitment"
         ],
-        "summary": "Retrieves default purchase plans for a specific segment.",
+        "summary": "WORK-IN-PROGRESS: Do not use. Retrieves default purchase plans for a specific segment.",
         "operationId": "GuaranteedCommitment_ListDefaultPurchasePlans",
         "parameters": [
           {
@@ -17351,7 +17351,7 @@
         "tags": [
           "GuaranteedCommitment"
         ],
-        "summary": "Retrieves a list of infrastructure resources for the organization.",
+        "summary": "WORK-IN-PROGRESS: Do not use. Retrieves a list of infrastructure resources for the organization.",
         "operationId": "GuaranteedCommitment_ListResources",
         "parameters": [
           {
@@ -17510,7 +17510,7 @@
         "tags": [
           "GuaranteedCommitment"
         ],
-        "summary": "Retrieves daily usage data for a specific resource within the specified date range.",
+        "summary": "WORK-IN-PROGRESS: Do not use. Retrieves daily usage data for a specific resource within the specified date range.",
         "operationId": "GuaranteedCommitment_GetResourceDailyUsage",
         "parameters": [
           {
@@ -17637,7 +17637,7 @@
         "tags": [
           "GuaranteedCommitment"
         ],
-        "summary": "Retrieves all segments for the specified organization and provider.",
+        "summary": "WORK-IN-PROGRESS: Do not use. Retrieves all segments for the specified organization and provider.",
         "operationId": "GuaranteedCommitment_ListSegments",
         "parameters": [
           {
@@ -17693,7 +17693,7 @@
         "tags": [
           "GuaranteedCommitment"
         ],
-        "summary": "Retrieves detailed information about a specific segment.",
+        "summary": "WORK-IN-PROGRESS: Retrieves detailed information about a specific segment.",
         "operationId": "GuaranteedCommitment_GetSegmentDetails",
         "parameters": [
           {
