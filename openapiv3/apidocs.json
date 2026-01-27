@@ -29357,6 +29357,15 @@
           "UNDO_EXECUTED"
         ]
       },
+      "ExecuteRecommendationV3RequestOption": {
+        "type": "string",
+        "default": "OPTION_UNSPECIFIED",
+        "enum": [
+          "OPTION_UNSPECIFIED",
+          "SUBMIT_TEMPLATE",
+          "RETRY_EXECUTE"
+        ]
+      },
       "FilterCriteriaFilterOperator": {
         "type": "string",
         "default": "OPERATOR_UNSPECIFIED",
@@ -43359,7 +43368,7 @@
       "v1ExecuteRecommendationV3Request": {
         "type": "object",
         "properties": {
-          "recommendationIds": {
+          "ids": {
             "type": "array",
             "items": {
               "type": "string"
@@ -43367,11 +43376,20 @@
           },
           "executeType": {
             "$ref": "#/components/schemas/ExecuteRecommendationV3RequestExecuteType"
+          },
+          "option": {
+            "$ref": "#/components/schemas/ExecuteRecommendationV3RequestOption"
           }
         }
       },
       "v1ExecuteRecommendationV3Response": {
-        "type": "object"
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "object",
+            "properties": {}
+          }
+        }
       },
       "v1ExportAccountInvoiceServiceDiscountsRequest": {
         "required": [
@@ -46728,20 +46746,23 @@
           "costgroupId": {
             "type": "string"
           },
-          "dateDetected": {
-            "type": "string"
-          },
-          "dateStart": {
-            "type": "string"
-          },
-          "dateEnd": {
-            "type": "string"
-          },
           "statuses": {
             "type": "array",
             "items": {
               "type": "string"
             }
+          },
+          "lastDetectedStartDate": {
+            "type": "string"
+          },
+          "lastDetectedEndDate": {
+            "type": "string"
+          },
+          "dateDetectedStartDate": {
+            "type": "string"
+          },
+          "dateDetectedEndDate": {
+            "type": "string"
           }
         }
       },
