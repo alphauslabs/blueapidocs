@@ -40430,6 +40430,9 @@
           },
           "invoiceSettings": {
             "$ref": "#/components/schemas/v1ChildBillingGroupInvoiceSettings"
+          },
+          "billingInfo": {
+            "$ref": "#/components/schemas/rippleBillingGroupInfo"
           }
         },
         "description": "Contains basic information and invoice settings related data."

@@ -34976,6 +34976,10 @@
         },
         "invoiceSettings": {
           "$ref": "#/definitions/v1ChildBillingGroupInvoiceSettings"
+        },
+        "billingInfo": {
+          "$ref": "#/definitions/rippleBillingGroupInfo",
+          "title": "AccountInvoiceServiceDiscounts serviceDiscounts = 3;"
         }
       },
       "description": "Contains basic information and invoice settings related data."
