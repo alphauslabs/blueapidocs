@@ -8299,11 +8299,11 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "Stream result of v1ListChildBillingGroupsResponse",
+                  "title": "Stream result of v1ChildBillingGroup",
                   "type": "object",
                   "properties": {
                     "result": {
-                      "$ref": "#/components/schemas/v1ListChildBillingGroupsResponse"
+                      "$ref": "#/components/schemas/v1ChildBillingGroup"
                     },
                     "error": {
                       "$ref": "#/components/schemas/googleRpcStatus"
@@ -46452,17 +46452,6 @@
           "parentId": {
             "type": "string",
             "description": "Parent Id. If not empty return all child billing group under the parent only, \nIf both root and parent are empty returns all child billing groups under the MSP."
-          }
-        }
-      },
-      "v1ListChildBillingGroupsResponse": {
-        "type": "object",
-        "properties": {
-          "childBillingGroups": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/v1ChildBillingGroup"
-            }
           }
         }
       },
