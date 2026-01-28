@@ -8193,46 +8193,6 @@
       }
     },
     "/v1/billinggroups/child": {
-      "put": {
-        "tags": [
-          "Billing"
-        ],
-        "summary": "Updates child billing group's basic information",
-        "operationId": "Billing_UpdateChildBillingGroupBasicInformation",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/v1UpdateChildBillingGroupBasicInformationRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/v1UpdateChildBillingGroupBasicInformationResponse"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googleRpcStatus"
-                }
-              }
-            }
-          }
-        },
-        "x-codegen-request-body-name": "body"
-      },
       "post": {
         "tags": [
           "Billing"
@@ -8314,6 +8274,57 @@
             }
           }
         }
+      },
+      "put": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Updates child billing group's basic info",
+        "operationId": "Billing_UpdateChildBillingGroup",
+        "parameters": [
+          {
+            "name": "internalId",
+            "in": "path",
+            "description": "Required. Internal Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BillingUpdateChildBillingGroupBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1UpdateChildBillingGroupResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
       }
     },
     "/v1/billinggroups/child:read": {
@@ -27438,6 +27449,17 @@
           }
         }
       },
+      "BillingUpdateChildBillingGroupBody": {
+        "type": "object",
+        "properties": {
+          "basicInformation": {
+            "$ref": "#/components/schemas/v1ChildBillingGroupBasicInformation"
+          },
+          "billingInfo": {
+            "$ref": "#/components/schemas/rippleBillingGroupInfo"
+          }
+        }
+      },
       "BillingUpdateCustomFieldBody": {
         "type": "object",
         "properties": {
@@ -40640,7 +40662,7 @@
           },
           "internalId": {
             "type": "string",
-            "description": "Required. Child billing group internal Id."
+            "description": "Child billing group internal Id. Required for get and list, optional for create and update."
           },
           "parentId": {
             "type": "string",
@@ -50004,15 +50026,7 @@
           }
         }
       },
-      "v1UpdateChildBillingGroupBasicInformationRequest": {
-        "type": "object",
-        "properties": {
-          "basicInformation": {
-            "$ref": "#/components/schemas/v1ChildBillingGroupBasicInformation"
-          }
-        }
-      },
-      "v1UpdateChildBillingGroupBasicInformationResponse": {
+      "v1UpdateChildBillingGroupResponse": {
         "type": "object"
       },
       "v1UpdateCostFiltersResponse": {
