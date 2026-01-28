@@ -8367,6 +8367,59 @@
         }
       }
     },
+    "/v1/billinggroups/child/{internalId}/invoiceSettings": {
+      "put": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Updates child billing group's invoice settings",
+        "operationId": "Billing_UpdateChildBillingGroupInvoiceSettings",
+        "parameters": [
+          {
+            "name": "internalId",
+            "in": "path",
+            "description": "Required. Internal Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BillingUpdateChildBillingGroupInvoiceSettingsBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1UpdateChildBillingGroupInvoiceSettingsResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/billinggroups/child:read": {
       "post": {
         "tags": [
@@ -27497,6 +27550,14 @@
           },
           "billingInfo": {
             "$ref": "#/components/schemas/rippleBillingGroupInfo"
+          }
+        }
+      },
+      "BillingUpdateChildBillingGroupInvoiceSettingsBody": {
+        "type": "object",
+        "properties": {
+          "invoiceSettings": {
+            "$ref": "#/components/schemas/v1ChildBillingGroupInvoiceSettings"
           }
         }
       },
@@ -50068,6 +50129,9 @@
             "$ref": "#/components/schemas/coverChannelData"
           }
         }
+      },
+      "v1UpdateChildBillingGroupInvoiceSettingsResponse": {
+        "type": "object"
       },
       "v1UpdateChildBillingGroupResponse": {
         "type": "object"
