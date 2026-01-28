@@ -8193,6 +8193,46 @@
       }
     },
     "/v1/billinggroups/child": {
+      "put": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Updates child billing group's basic information",
+        "operationId": "Billing_UpdateChildBillingGroupBasicInformation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1UpdateChildBillingGroupBasicInformationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1UpdateChildBillingGroupBasicInformationResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      },
       "post": {
         "tags": [
           "Billing"
@@ -49963,6 +50003,17 @@
             "$ref": "#/components/schemas/coverChannelData"
           }
         }
+      },
+      "v1UpdateChildBillingGroupBasicInformationRequest": {
+        "type": "object",
+        "properties": {
+          "basicInformation": {
+            "$ref": "#/components/schemas/v1ChildBillingGroupBasicInformation"
+          }
+        }
+      },
+      "v1UpdateChildBillingGroupBasicInformationResponse": {
+        "type": "object"
       },
       "v1UpdateCostFiltersResponse": {
         "type": "object",
