@@ -8471,6 +8471,206 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/billinggroups/exclude-service-settings": {
+      "get": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "List Exclude Service Entries",
+        "operationId": "Billing_ListExcludeServices",
+        "parameters": [
+          {
+            "name": "mspId",
+            "in": "query",
+            "description": "MSP (Managed Service Provider) ID. Partition key for the exclude service entries.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "vendor",
+            "in": "query",
+            "description": "Cloud vendor (e.g., \"aws\", \"gcp\"). If empty, returns all vendors for the MSP.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1ListExcludeServicesResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Update Exclude Service Entry",
+        "operationId": "Billing_UpdateExcludeServiceEntry",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1UpdateExcludeServiceEntryRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1UpdateExcludeServiceEntryResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      },
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Create Exclude Service Entry",
+        "operationId": "Billing_CreateExcludeServiceEntry",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1CreateExcludeServiceEntryRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1CreateExcludeServiceEntryResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      },
+      "delete": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Delete Exclude Service Entry",
+        "operationId": "Billing_DeleteExcludeServiceEntry",
+        "parameters": [
+          {
+            "name": "mspId",
+            "in": "query",
+            "description": "MSP (Managed Service Provider) ID. Partition key for the exclude service entry.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "vendor",
+            "in": "query",
+            "description": "Cloud vendor (e.g., \"aws\", \"gcp\").",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "payerId",
+            "in": "query",
+            "description": "Payer/account ID to delete. Use \"all\" or \"*\" to apply to all accounts.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "service",
+            "in": "query",
+            "description": "Cloud service name (e.g., \"EC2\", \"BigQuery\").",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "product",
+            "in": "query",
+            "description": "Product or SKU code (used for GCP or detailed exclusions).",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1DeleteExcludeServiceEntryResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/billinggroups/merged": {
       "post": {
         "tags": [
@@ -42429,6 +42629,46 @@
           }
         }
       },
+      "v1CreateExcludeServiceEntryRequest": {
+        "type": "object",
+        "properties": {
+          "mspId": {
+            "type": "string",
+            "description": "MSP (Managed Service Provider) ID. Partition key for the exclude service entry."
+          },
+          "vendor": {
+            "type": "string",
+            "description": "Cloud vendor (e.g., \"aws\", \"gcp\")."
+          },
+          "payerId": {
+            "type": "string",
+            "description": "Payer/account ID to exclude. Use \"all\" or \"*\" to apply to all accounts."
+          },
+          "service": {
+            "type": "string",
+            "description": "Cloud service name (e.g., \"EC2\", \"BigQuery\")."
+          },
+          "product": {
+            "type": "string",
+            "description": "Product or SKU code (used for GCP or detailed exclusions)."
+          },
+          "exceptPayerId": {
+            "type": "array",
+            "description": "List of payer IDs to be excepted from exclusion (used when payer_id is \"all\").",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "v1CreateExcludeServiceEntryResponse": {
+        "type": "object",
+        "properties": {
+          "entry": {
+            "$ref": "#/components/schemas/v1ExcludeServiceEntry"
+          }
+        }
+      },
       "v1CreateFreeFormatRequest": {
         "title": "BillingGroup FreeFormat: Also known as miscellaneous",
         "type": "object",
@@ -43574,6 +43814,14 @@
           }
         }
       },
+      "v1DeleteExcludeServiceEntryResponse": {
+        "type": "object",
+        "properties": {
+          "entry": {
+            "$ref": "#/components/schemas/v1ExcludeServiceEntry"
+          }
+        }
+      },
       "v1DeleteMemberResponse": {
         "title": "Response message for DeleteMember",
         "type": "object",
@@ -43664,6 +43912,50 @@
           },
           "date": {
             "type": "string"
+          }
+        }
+      },
+      "v1ExcludeServiceEntry": {
+        "type": "object",
+        "properties": {
+          "mspId": {
+            "type": "string",
+            "description": "MSP (Managed Service Provider) ID."
+          },
+          "vendor": {
+            "type": "string",
+            "description": "Cloud vendor (e.g., \"aws\", \"gcp\")."
+          },
+          "payerId": {
+            "type": "string",
+            "description": "Payer/account ID."
+          },
+          "service": {
+            "type": "string",
+            "description": "Cloud service name."
+          },
+          "product": {
+            "type": "string",
+            "description": "Product or SKU code."
+          },
+          "exceptPayerId": {
+            "type": "array",
+            "description": "List of payer IDs excepted from exclusion.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "action": {
+            "type": "string",
+            "description": "Action performed (e.g., \"added\", \"updated\", \"deleted\")."
+          },
+          "status": {
+            "type": "string",
+            "description": "Operation status (e.g., \"success\", \"error\")."
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "Optional error message if operation failed."
           }
         }
       },
@@ -46687,6 +46979,18 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/v1DefaultPurchasePlan"
+            }
+          }
+        }
+      },
+      "v1ListExcludeServicesResponse": {
+        "type": "object",
+        "properties": {
+          "entries": {
+            "type": "array",
+            "description": "List of all exclude service entries for the request.",
+            "items": {
+              "$ref": "#/components/schemas/v1ExcludeServiceEntry"
             }
           }
         }
@@ -50253,6 +50557,46 @@
         "properties": {
           "name": {
             "type": "string"
+          }
+        }
+      },
+      "v1UpdateExcludeServiceEntryRequest": {
+        "type": "object",
+        "properties": {
+          "mspId": {
+            "type": "string",
+            "description": "MSP (Managed Service Provider) ID. Partition key for the exclude service entry."
+          },
+          "vendor": {
+            "type": "string",
+            "description": "Cloud vendor (e.g., \"aws\", \"gcp\")."
+          },
+          "payerId": {
+            "type": "string",
+            "description": "Payer/account ID to update. Use \"all\" or \"*\" to apply to all accounts."
+          },
+          "service": {
+            "type": "string",
+            "description": "Cloud service name (e.g., \"EC2\", \"BigQuery\")."
+          },
+          "product": {
+            "type": "string",
+            "description": "Product or SKU code (used for GCP or detailed exclusions)."
+          },
+          "exceptPayerId": {
+            "type": "array",
+            "description": "List of payer IDs to be excepted from exclusion (used when payer_id is \"all\").",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "v1UpdateExcludeServiceEntryResponse": {
+        "type": "object",
+        "properties": {
+          "entry": {
+            "$ref": "#/components/schemas/v1ExcludeServiceEntry"
           }
         }
       },
