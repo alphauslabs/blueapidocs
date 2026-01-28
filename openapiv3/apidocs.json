@@ -8325,6 +8325,46 @@
           }
         },
         "x-codegen-request-body-name": "body"
+      },
+      "delete": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Deletes all child billing group info",
+        "operationId": "Billing_DeleteChildBillingGroup",
+        "parameters": [
+          {
+            "name": "internalId",
+            "in": "path",
+            "description": "Required. Child billing group's internal Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1DeleteChildBillingGroupResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/v1/billinggroups/child:read": {
@@ -43452,6 +43492,9 @@
             "type": "string"
           }
         }
+      },
+      "v1DeleteChildBillingGroupResponse": {
+        "type": "object"
       },
       "v1DeleteCostForecastResponse": {
         "type": "object",
