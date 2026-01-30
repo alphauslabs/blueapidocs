@@ -8367,6 +8367,68 @@
         }
       }
     },
+    "/v1/billinggroups/child/{internalId}/customizedbillingservice/{vendor}": {
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Sets the customized billing service in child billing group. Only available in Ripple.",
+        "operationId": "Billing_SetChildBillingGroupCustomizedBillingService",
+        "parameters": [
+          {
+            "name": "internalId",
+            "in": "path",
+            "description": "Required. internal id of the child billing group.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "vendor",
+            "in": "path",
+            "description": "Required. At the moment, `aws` is supported.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BillingSetChildBillingGroupCustomizedBillingServiceBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/billinggroups/child/{internalId}/invoiceSettings": {
       "put": {
         "tags": [
@@ -8402,6 +8464,59 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/v1UpdateChildBillingGroupInvoiceSettingsResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/billinggroups/child/{internalId}/servicediscounts": {
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Sets the child billing group invoice service discounts. Only available in Ripple.",
+        "operationId": "Billing_SetChildBillingGroupInvoiceServiceDiscounts",
+        "parameters": [
+          {
+            "name": "internalId",
+            "in": "path",
+            "description": "Required. Internal Id of the child billing group.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BillingSetChildBillingGroupInvoiceServiceDiscountsBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
                 }
               }
             }
@@ -27354,6 +27469,30 @@
           }
         },
         "description": "Request message for SetBillingGroupExchangeRate rpc."
+      },
+      "BillingSetChildBillingGroupCustomizedBillingServiceBody": {
+        "required": [
+          "setting"
+        ],
+        "type": "object",
+        "properties": {
+          "setting": {
+            "type": "array",
+            "description": "Required. customized billing service setting.",
+            "items": {
+              "$ref": "#/components/schemas/v1SetChildBillingGroupCustomizedBillingServiceRequestCustomizedBillingServiceBillingSetting"
+            }
+          }
+        }
+      },
+      "BillingSetChildBillingGroupInvoiceServiceDiscountsBody": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Required.\n\nService discount id."
+          }
+        }
       },
       "BillingSetCustomizedBillingServiceBillingGroupBody": {
         "required": [
@@ -49630,6 +49769,30 @@
           "griPremium": {
             "type": "number",
             "format": "double"
+          }
+        }
+      },
+      "v1SetChildBillingGroupCustomizedBillingServiceRequestCustomizedBillingServiceBillingSetting": {
+        "title": "CustomizedBillingServiceBillingSetting",
+        "required": [
+          "chargingTarget",
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Required. [blueapi.api.ripple.CustomizedBillingService.id]",
+            "type": "string"
+          },
+          "chargingTarget": {
+            "$ref": "#/components/schemas/rippleChargingTarget"
+          },
+          "accounts": {
+            "type": "array",
+            "description": "Optional. if chargingTarget is BILLINGGROUP, `accounts` is set emptty.\n\nSpecify the accountIds. For example: [`accountId1`,`accountId2`,`accountId3`]",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
