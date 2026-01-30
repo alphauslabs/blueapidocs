@@ -27472,10 +27472,15 @@
       },
       "BillingSetChildBillingGroupCustomizedBillingServiceBody": {
         "required": [
+          "rootId",
           "setting"
         ],
         "type": "object",
         "properties": {
+          "rootId": {
+            "type": "string",
+            "description": "Required. Root parent Id."
+          },
           "setting": {
             "type": "array",
             "description": "Required. customized billing service setting.",
