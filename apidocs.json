@@ -7030,7 +7030,7 @@
     },
     "/v1/billinggroups:bulkCreate": {
       "post": {
-        "summary": "Create billing group in bulk",
+        "summary": "Create billing group in bulk from CSV file",
         "operationId": "Billing_BulkCreateBillingGroup",
         "responses": {
           "200": {
@@ -35082,13 +35082,18 @@
     "v1BulkCreateBillingGroupRequest": {
       "type": "object",
       "properties": {
-        "request": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1CreateBillingGroupRequest"
-          },
-          "description": "Required. The list of billing group to create."
+        "csvContent": {
+          "type": "string",
+          "format": "byte",
+          "description": "Required. The CSV file content as bytes."
+        },
+        "delimiter": {
+          "type": "string",
+          "description": "Optional. The delimiter used in the CSV file. Defaults to comma (,)."
+        },
+        "hasHeader": {
+          "type": "boolean",
+          "description": "Optional. Whether the CSV file has a header row. Defaults to true."
         }
       }
     },
