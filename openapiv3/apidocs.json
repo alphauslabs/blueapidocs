@@ -8535,6 +8535,59 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/billinggroups/child/{internalId}/servicediscounts/account": {
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Sets the child billing group's account invoice service discounts. Only available in Ripple.",
+        "operationId": "Billing_SetChildBillingGroupAccountInvoiceServiceDiscounts",
+        "parameters": [
+          {
+            "name": "internalId",
+            "in": "path",
+            "description": "Required. child billing group's internal Id.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BillingSetChildBillingGroupAccountInvoiceServiceDiscountsBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/billinggroups/child:read": {
       "post": {
         "tags": [
@@ -27469,6 +27522,18 @@
           }
         },
         "description": "Request message for SetBillingGroupExchangeRate rpc."
+      },
+      "BillingSetChildBillingGroupAccountInvoiceServiceDiscountsBody": {
+        "type": "object",
+        "properties": {
+          "accounts": {
+            "type": "array",
+            "description": "Required.",
+            "items": {
+              "$ref": "#/components/schemas/v1AccountServiceDiscounts"
+            }
+          }
+        }
       },
       "BillingSetChildBillingGroupCustomizedBillingServiceBody": {
         "required": [
