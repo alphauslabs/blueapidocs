@@ -6586,6 +6586,52 @@
       }
     },
     "/v1/billinggroups/child/{internalId}/customizedbillingservice/{vendor}": {
+      "get": {
+        "summary": "Gets the customized billing service in child billing group. Only available in Ripple.",
+        "operationId": "Billing_GetChildBillingGroupCustomizedBillingService",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1GetChildBillingGroupCustomizedBillingServiceResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/googleRpcStatus"
+                }
+              },
+              "title": "Stream result of v1GetChildBillingGroupCustomizedBillingServiceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googleRpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "internalId",
+            "description": "Required. Internal Id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      },
       "post": {
         "summary": "Sets the customized billing service in child billing group. Only available in Ripple.",
         "operationId": "Billing_SetChildBillingGroupCustomizedBillingService",
@@ -39237,6 +39283,36 @@
         }
       },
       "title": "Response message for GetChannels"
+    },
+    "v1GetChildBillingGroupCustomizedBillingServiceResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "Required. [blueapi.api.ripple.CustomizedBillingService.id]"
+        },
+        "vendor": {
+          "type": "string",
+          "description": "Required. vendor that applied to the CustomizedBillingService　config."
+        },
+        "chargingTarget": {
+          "$ref": "#/definitions/rippleChargingTarget",
+          "title": "Required. [blueapi.api.ripple.ChargingTarget]"
+        },
+        "accounts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/blueapiApiAccount"
+          },
+          "description": "Optional. accounts that applied to the CustomizedBillingService　config."
+        }
+      },
+      "required": [
+        "id",
+        "vendor",
+        "chargingTarget"
+      ]
     },
     "v1GetChildBillingGroupResponse": {
       "type": "object",
