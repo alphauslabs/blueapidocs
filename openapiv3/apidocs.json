@@ -9743,21 +9743,115 @@
         "x-codegen-request-body-name": "body"
       }
     },
-    "/v1/commitment-plans/default": {
+    "/v1/commitments": {
       "get": {
         "tags": [
           "GuaranteedCommitments"
         ],
-        "summary": "WORK-IN-PROGRESS: Do not use. Retrieves the three default GuaranteedCommitments commitment plans (High Savings, Balanced, Recommended) for the specified cloud provider.",
-        "operationId": "GuaranteedCommitments_ListDefaultCommitmentPlans",
+        "summary": "WORK-IN-PROGRESS: Retrieves a list of commitments.",
+        "operationId": "GuaranteedCommitments_ListCommitments",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1ListCommitmentsResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/commitments/chart": {
+      "get": {
+        "tags": [
+          "GuaranteedCommitments"
+        ],
+        "summary": "WORK-IN-PROGRESS: Do not use. Generates time-series chart data for commitment metrics over the specified time period.",
+        "operationId": "GuaranteedCommitments_GetCommitmentsChart",
         "parameters": [
           {
-            "name": "orgId",
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "provider",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "PROVIDER_UNSPECIFIED",
+              "enum": [
+                "PROVIDER_UNSPECIFIED",
+                "AWS",
+                "AZURE",
+                "GCP",
+                "KUBERNETES",
+                "UNKNOWN"
+              ]
+            }
+          },
+          {
+            "name": "startDate",
             "in": "query",
             "schema": {
               "type": "string"
             }
           },
+          {
+            "name": "endDate",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1CommitmentsChartResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/commitments/plan/default": {
+      "get": {
+        "tags": [
+          "GuaranteedCommitments"
+        ],
+        "summary": "WORK-IN-PROGRESS: Do not use. Retrieves the three default GuaranteedCommitments commitment plans (High Savings, Balanced, Recommended) for the specified cloud provider.",
+        "operationId": "GuaranteedCommitments_ListDefaultCommitmentsPlan",
+        "parameters": [
           {
             "name": "provider",
             "in": "query",
@@ -9799,21 +9893,14 @@
         }
       }
     },
-    "/v1/commitment-plans/recommended": {
+    "/v1/commitments/plan/recommended": {
       "get": {
         "tags": [
           "GuaranteedCommitments"
         ],
         "summary": "WORK-IN-PROGRESS: Do not use. Retrieves only the recommended GuaranteedCommitments commitment plan for the specified cloud provider.",
-        "operationId": "GuaranteedCommitments_GetRecommendedCommitmentPlan",
+        "operationId": "GuaranteedCommitments_GetRecommendedCommitmentsPlan",
         "parameters": [
-          {
-            "name": "orgId",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "provider",
             "in": "query",
@@ -9855,25 +9942,18 @@
         }
       }
     },
-    "/v1/commitment-plans/{planId}": {
+    "/v1/commitments/plan/{planId}": {
       "get": {
         "tags": [
           "GuaranteedCommitments"
         ],
         "summary": "WORK-IN-PROGRESS: Do not use. Retrieves detailed information about a specific commitment plan, including costs, savings projections, and commitment coverage.",
-        "operationId": "GuaranteedCommitments_GetCommitmentPlanDetails",
+        "operationId": "GuaranteedCommitments_GetCommitmentsPlanDetails",
         "parameters": [
           {
             "name": "planId",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "orgId",
-            "in": "query",
             "schema": {
               "type": "string"
             }
@@ -9903,13 +9983,13 @@
         }
       }
     },
-    "/v1/commitment-plans/{planId}/apply": {
+    "/v1/commitments/plan/{planId}/apply": {
       "post": {
         "tags": [
           "GuaranteedCommitments"
         ],
         "summary": "WORK-IN-PROGRESS: Do not use. Executes a commitment purchase plan, initiating the commitment purchase process.",
-        "operationId": "GuaranteedCommitments_CommitmentPlanApply",
+        "operationId": "GuaranteedCommitments_CommitmentsPlanApply",
         "parameters": [
           {
             "name": "planId",
@@ -9924,7 +10004,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/GuaranteedCommitmentsCommitmentPlanApplyBody"
+                "$ref": "#/components/schemas/GuaranteedCommitmentsCommitmentsPlanApplyBody"
               }
             }
           },
@@ -9955,25 +10035,18 @@
         "x-codegen-request-body-name": "body"
       }
     },
-    "/v1/commitment-plans/{planId}/line-items": {
+    "/v1/commitments/plan/{planId}/line-items": {
       "get": {
         "tags": [
           "GuaranteedCommitments"
         ],
         "summary": "WORK-IN-PROGRESS: Do not use. Retrieves line items for a specific commitment plan.",
-        "operationId": "GuaranteedCommitments_ListCommitmentPlanLineItems",
+        "operationId": "GuaranteedCommitments_ListCommitmentsPlanLineItems",
         "parameters": [
           {
             "name": "planId",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "orgId",
-            "in": "query",
             "schema": {
               "type": "string"
             }
@@ -10052,25 +10125,18 @@
         }
       }
     },
-    "/v1/commitment-plans/{planId}/resource-matches": {
+    "/v1/commitments/plan/{planId}/resource-matches": {
       "get": {
         "tags": [
           "GuaranteedCommitments"
         ],
         "summary": "WORK-IN-PROGRESS: Do not use. Retrieves resource matches for a specific commitment plan.",
-        "operationId": "GuaranteedCommitments_ListCommitmentPlanResourceMatches",
+        "operationId": "GuaranteedCommitments_ListCommitmentsPlanResourceMatches",
         "parameters": [
           {
             "name": "planId",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "orgId",
-            "in": "query",
             "schema": {
               "type": "string"
             }
@@ -10156,97 +10222,20 @@
         }
       }
     },
-    "/v1/commitments": {
+    "/v1/commitments/purchaseplan/default": {
       "get": {
         "tags": [
           "GuaranteedCommitments"
         ],
-        "summary": "WORK-IN-PROGRESS: Retrieves a list of commitments.",
-        "operationId": "GuaranteedCommitments_ListCommitments",
+        "summary": "WORK-IN-PROGRESS: Do not use. Retrieves default purchase plans of a company.",
+        "operationId": "GuaranteedCommitments_ListDefaultPurchasePlans",
         "responses": {
           "200": {
             "description": "A successful response.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/v1ListCommitmentsResponse"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googleRpcStatus"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/commitments/chart": {
-      "get": {
-        "tags": [
-          "GuaranteedCommitments"
-        ],
-        "summary": "WORK-IN-PROGRESS: Do not use. Generates time-series chart data for commitment metrics over the specified time period.",
-        "operationId": "GuaranteedCommitments_GetCommitmentsChart",
-        "parameters": [
-          {
-            "name": "orgId",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "filter",
-            "in": "query",
-            "schema": {
-              "type": "object"
-            }
-          },
-          {
-            "name": "provider",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "default": "PROVIDER_UNSPECIFIED",
-              "enum": [
-                "PROVIDER_UNSPECIFIED",
-                "AWS",
-                "AZURE",
-                "GCP",
-                "KUBERNETES",
-                "UNKNOWN"
-              ]
-            }
-          },
-          {
-            "name": "startDate",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "endDate",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/v1CommitmentsChartResponse"
+                  "$ref": "#/components/schemas/v1ListDefaultPurchasePlansResponse"
                 }
               }
             }
@@ -15029,13 +15018,6 @@
         "operationId": "GuaranteedCommitments_GetMetrics",
         "parameters": [
           {
-            "name": "orgId",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "provider",
             "in": "query",
             "schema": {
@@ -16346,53 +16328,6 @@
           }
         },
         "x-codegen-request-body-name": "body"
-      }
-    },
-    "/v1/purchase-plans-v1/default": {
-      "get": {
-        "tags": [
-          "GuaranteedCommitments"
-        ],
-        "summary": "WORK-IN-PROGRESS: Do not use. Retrieves default purchase plans for a specific segment.",
-        "operationId": "GuaranteedCommitments_ListDefaultPurchasePlans",
-        "parameters": [
-          {
-            "name": "orgId",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "segmentId",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/v1ListDefaultPurchasePlansResponse"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googleRpcStatus"
-                }
-              }
-            }
-          }
-        }
       }
     },
     "/v1/recommendation/execute": {
@@ -17947,13 +17882,6 @@
         "operationId": "GuaranteedCommitments_ListResources",
         "parameters": [
           {
-            "name": "orgId",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "provider",
             "in": "query",
             "schema": {
@@ -18114,13 +18042,6 @@
             }
           },
           {
-            "name": "orgId",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "startDate",
             "in": "query",
             "schema": {
@@ -18233,13 +18154,6 @@
         "operationId": "GuaranteedCommitments_ListSegments",
         "parameters": [
           {
-            "name": "orgId",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "provider",
             "in": "query",
             "schema": {
@@ -18292,13 +18206,6 @@
             "name": "segmentId",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "orgId",
-            "in": "query",
             "schema": {
               "type": "string"
             }
@@ -30231,13 +30138,8 @@
           }
         }
       },
-      "GuaranteedCommitmentsCommitmentPlanApplyBody": {
-        "type": "object",
-        "properties": {
-          "orgId": {
-            "type": "string"
-          }
-        }
+      "GuaranteedCommitmentsCommitmentsPlanApplyBody": {
+        "type": "object"
       },
       "IamCreatePartnerTokenBody": {
         "type": "object",
