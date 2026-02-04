@@ -10317,7 +10317,7 @@
           "GuaranteedCommitments"
         ],
         "summary": "WORK-IN-PROGRESS: Do not use. Retrieves default purchase plans of a company.",
-        "operationId": "GuaranteedCommitments_ListDefaultPurchasePlans",
+        "operationId": "GuaranteedCommitments_ListPurchasePlansBySegment",
         "parameters": [
           {
             "name": "segmentId",
@@ -10334,7 +10334,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/v1ListDefaultPurchasePlansResponse"
+                  "$ref": "#/components/schemas/v1ListPurchasePlansBySegmentResponse"
                 }
               }
             }
@@ -47223,17 +47223,6 @@
           }
         }
       },
-      "v1ListDefaultPurchasePlansResponse": {
-        "type": "object",
-        "properties": {
-          "plans": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/v1DefaultPurchasePlan"
-            }
-          }
-        }
-      },
       "v1ListExcludeServicesResponse": {
         "type": "object",
         "properties": {
@@ -47526,6 +47515,17 @@
       },
       "v1ListPromptsRequest": {
         "type": "object"
+      },
+      "v1ListPurchasePlansBySegmentResponse": {
+        "type": "object",
+        "properties": {
+          "plans": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1DefaultPurchasePlan"
+            }
+          }
+        }
       },
       "v1ListRecommendationResponse": {
         "type": "object",
