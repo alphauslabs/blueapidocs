@@ -30054,14 +30054,7 @@
         "enum": [
           "DEFAULT",
           "MARK_AS_EXECUTED",
-          "UNDO_EXECUTED"
-        ]
-      },
-      "ExecuteRecommendationV3RequestOption": {
-        "type": "string",
-        "default": "OPTION_UNSPECIFIED",
-        "enum": [
-          "OPTION_UNSPECIFIED",
+          "UNDO_EXECUTED",
           "SUBMIT_TEMPLATE",
           "RETRY_EXECUTE"
         ]
@@ -44208,9 +44201,6 @@
           },
           "executeType": {
             "$ref": "#/components/schemas/ExecuteRecommendationV3RequestExecuteType"
-          },
-          "option": {
-            "$ref": "#/components/schemas/ExecuteRecommendationV3RequestOption"
           }
         }
       },
