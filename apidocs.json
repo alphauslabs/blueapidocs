@@ -8121,9 +8121,9 @@
         ]
       }
     },
-    "/v1/commitments/purchaseplan/{segmentId}": {
+    "/v1/commitments/purchaseplan": {
       "get": {
-        "summary": "WORK-IN-PROGRESS: Do not use. Retrieves default purchase plans of a company.",
+        "summary": "WORK-IN-PROGRESS:  Retrieves purchase plan of a company.",
         "operationId": "GuaranteedCommitments_ListPurchasePlansBySegment",
         "responses": {
           "200": {
@@ -8139,14 +8139,6 @@
             }
           }
         },
-        "parameters": [
-          {
-            "name": "segmentId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
         "tags": [
           "GuaranteedCommitments"
         ]
