@@ -36,6 +36,31 @@
     <script src="dist/swagger-ui-bundle.js" charset="UTF-8"> </script>
     <script src="dist/swagger-ui-standalone-preset.js" charset="UTF-8"> </script>
     <script>
+    // Custom plugin: Hide endpoints by path or tag
+    const HideEndpointsPlugin = function() {
+      return {
+        wrapComponents: {
+          // Hide entire tag sections
+          OperationTag: (Original, system) => (props) => {
+            // Specify tags to hide here
+            const hideTags = ['Luster'];
+            
+            // Get tag name
+            const tag = props.tag || 
+                       (props.tagObj && props.tagObj.get && props.tagObj.get('name')) ||
+                       (props.tagObj && props.tagObj.name);
+            
+            // Hide specified tags
+            if (tag && hideTags.includes(tag)) {
+              return null;
+            }
+            
+            return system.React.createElement(Original, props);
+          }
+        }
+      }
+    };
+
     window.onload = function() {
       // Begin Swagger UI call region
       const ui = SwaggerUIBundle({
@@ -48,7 +73,8 @@
           SwaggerUIStandalonePreset
         ],
         plugins: [
-          SwaggerUIBundle.plugins.DownloadUrl
+          SwaggerUIBundle.plugins.DownloadUrl,
+          HideEndpointsPlugin  // Add custom plugin
         ],
         layout: "StandaloneLayout"
       });
