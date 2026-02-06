@@ -103,6 +103,14 @@
       }
     },
     {
+      "name": "Luster",
+      "description": "(ALPHA) Luster API. Base URL: https://api.alphaus.cloud/m/blue/luster",
+      "externalDocs": {
+        "description": "Luster is a service that manages user contexts.",
+        "url": "https://github.com/alphauslabs/blueapi/tree/main/luster/"
+      }
+    },
+    {
       "name": "Preferences",
       "description": "(BETA) Preferences API. Base URL: https://api.alphaus.cloud/m/blue",
       "externalDocs": {
@@ -15425,6 +15433,38 @@
         ],
         "tags": [
           "Flow"
+        ]
+      }
+    },
+    "/v1/spaces": {
+      "get": {
+        "summary": "(ALPHA) Read spaces.",
+        "operationId": "Luster_ReadSpaces",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/lusterSpace"
+                },
+                "error": {
+                  "$ref": "#/definitions/googleRpcStatus"
+                }
+              },
+              "title": "Stream result of lusterSpace"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googleRpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Luster"
         ]
       }
     },
@@ -32707,6 +32747,31 @@
         }
       },
       "description": "The `Status` type defines a logical error model that is suitable for\ndifferent programming environments, including REST APIs and RPC APIs. It is\nused by [gRPC](https://github.com/grpc). Each `Status` message contains\nthree pieces of data: error code, error message, and error details.\n\nYou can find out more about this error model and how to work with it in the\n[API Design Guide](https://cloud.google.com/apis/design/errors)."
+    },
+    "lusterSpace": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The space id."
+        },
+        "name": {
+          "type": "string",
+          "description": "The space name."
+        },
+        "description": {
+          "type": "string",
+          "description": "The space description."
+        },
+        "members": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "The members in space."
+        }
+      },
+      "title": "The message defines the space"
     },
     "octoawsOctoGeneratedAWSRecommendations": {
       "type": "object",

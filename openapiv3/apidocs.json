@@ -108,6 +108,14 @@
       }
     },
     {
+      "name": "Luster",
+      "description": "(ALPHA) Luster API. Base URL: https://api.alphaus.cloud/m/blue/luster",
+      "externalDocs": {
+        "description": "Luster is a service that manages user contexts.",
+        "url": "https://github.com/alphauslabs/blueapi/tree/main/luster/"
+      }
+    },
+    {
       "name": "Preferences",
       "description": "(BETA) Preferences API. Base URL: https://api.alphaus.cloud/m/blue",
       "externalDocs": {
@@ -19630,6 +19638,46 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/spaces": {
+      "get": {
+        "tags": [
+          "Luster"
+        ],
+        "summary": "(ALPHA) Read spaces.",
+        "operationId": "Luster_ReadSpaces",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Stream result of lusterSpace",
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/components/schemas/lusterSpace"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/googleRpcStatus"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/tags": {
       "get": {
         "tags": [
@@ -38372,6 +38420,31 @@
           }
         },
         "description": "The `Status` type defines a logical error model that is suitable for\ndifferent programming environments, including REST APIs and RPC APIs. It is\nused by [gRPC](https://github.com/grpc). Each `Status` message contains\nthree pieces of data: error code, error message, and error details.\n\nYou can find out more about this error model and how to work with it in the\n[API Design Guide](https://cloud.google.com/apis/design/errors)."
+      },
+      "lusterSpace": {
+        "title": "The message defines the space",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The space id."
+          },
+          "name": {
+            "type": "string",
+            "description": "The space name."
+          },
+          "description": {
+            "type": "string",
+            "description": "The space description."
+          },
+          "members": {
+            "type": "array",
+            "description": "The members in space.",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
       },
       "octoawsOctoGeneratedAWSRecommendations": {
         "type": "object",
