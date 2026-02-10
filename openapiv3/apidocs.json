@@ -108,14 +108,6 @@
       }
     },
     {
-      "name": "Luster",
-      "description": "(ALPHA) Luster API. Base URL: https://api.alphaus.cloud/m/blue/luster",
-      "externalDocs": {
-        "description": "Luster is a service that manages user contexts.",
-        "url": "https://github.com/alphauslabs/blueapi/tree/main/luster/"
-      }
-    },
-    {
       "name": "Preferences",
       "description": "(BETA) Preferences API. Base URL: https://api.alphaus.cloud/m/blue",
       "externalDocs": {
@@ -13827,6 +13819,57 @@
         }
       }
     },
+    "/v1/managements/accounts/{companyId}": {
+      "post": {
+        "tags": [
+          "GuaranteedCommitments"
+        ],
+        "operationId": "GuaranteedCommitments_SetPayerAccountEnabled",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GuaranteedCommitmentsSetPayerAccountEnabledBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1SetPayerAccountEnabledResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/marketplace/info": {
       "post": {
         "tags": [
@@ -15231,17 +15274,16 @@
         "operationId": "GuaranteedCommitments_GetAwsLaunchStackUrl",
         "parameters": [
           {
-            "name": "mspId",
+            "name": "billingGroupId",
             "in": "query",
-            "description": "Ripple context (used for lookup/mapping; not sent to GuaranteedCommitments)",
+            "description": "Optional: if present => MSP customer (3rd layer), else MSP-level org (2nd layer)",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "billingId",
+            "name": "companyId",
             "in": "query",
-            "description": "Optional: if present => MSP customer (3rd layer), else MSP-level org (2nd layer)",
             "schema": {
               "type": "string"
             }
@@ -15287,17 +15329,16 @@
         "operationId": "GuaranteedCommitments_GetAwsCloudFormationTemplate",
         "parameters": [
           {
-            "name": "mspId",
+            "name": "billingGroupId",
             "in": "query",
-            "description": "Ripple context (used for lookup/mapping; not sent to GuaranteedCommitments)",
+            "description": "Optional: if present => MSP customer (3rd layer), else MSP-level org (2nd layer)",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "billingId",
+            "name": "companyId",
             "in": "query",
-            "description": "Optional: if present => MSP customer (3rd layer), else MSP-level org (2nd layer)",
             "schema": {
               "type": "string"
             }
@@ -19555,101 +19596,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/v1CreateSPRecommendationNotificationResponse"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googlerpcStatus"
-                }
-              }
-            }
-          }
-        },
-        "x-codegen-request-body-name": "body"
-      }
-    },
-    "/v1/spaces": {
-      "post": {
-        "tags": [
-          "Luster"
-        ],
-        "summary": "(ALPHA) Creates space.",
-        "operationId": "Luster_CreateSpace",
-        "requestBody": {
-          "description": "Request message for the Luster.CreateSpace rpc.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/v1CreateSpaceRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/lusterSpace"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googlerpcStatus"
-                }
-              }
-            }
-          }
-        },
-        "x-codegen-request-body-name": "body"
-      }
-    },
-    "/v1/spaces:read": {
-      "post": {
-        "tags": [
-          "Luster"
-        ],
-        "summary": "(ALPHA) Reads spaces.",
-        "operationId": "Luster_ReadSpaces",
-        "requestBody": {
-          "description": "Request message for the Luster.ReadSpaces rpc.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/v1ReadSpacesRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "A successful response.(streaming responses)",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "title": "Stream result of lusterSpace",
-                  "type": "object",
-                  "properties": {
-                    "result": {
-                      "$ref": "#/components/schemas/lusterSpace"
-                    },
-                    "error": {
-                      "$ref": "#/components/schemas/googlerpcStatus"
-                    }
-                  }
                 }
               }
             }
@@ -30317,6 +30263,14 @@
       "GuaranteedCommitmentsCommitmentsPlanApplyBody": {
         "type": "object"
       },
+      "GuaranteedCommitmentsSetPayerAccountEnabledBody": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean"
+          }
+        }
+      },
       "IamCreatePartnerTokenBody": {
         "type": "object",
         "description": "Request message for the Iam.CreatePartnerToken rpc."
@@ -30499,6 +30453,9 @@
           },
           "status": {
             "$ref": "#/components/schemas/ListPayerAccountsResponsePayerAccountStatus"
+          },
+          "companyId": {
+            "type": "string"
           }
         }
       },
@@ -38440,31 +38397,6 @@
         },
         "description": "The `Status` type defines a logical error model that is suitable for\ndifferent programming environments, including REST APIs and RPC APIs. It is\nused by [gRPC](https://github.com/grpc). Each `Status` message contains\nthree pieces of data: error code, error message, and error details.\n\nYou can find out more about this error model and how to work with it in the\n[API Design Guide](https://cloud.google.com/apis/design/errors)."
       },
-      "lusterSpace": {
-        "title": "The message defines the space",
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The space id."
-          },
-          "name": {
-            "type": "string",
-            "description": "The space name."
-          },
-          "description": {
-            "type": "string",
-            "description": "The space description."
-          },
-          "members": {
-            "type": "array",
-            "description": "The members in space.",
-            "items": {
-              "type": "string"
-            }
-          }
-        }
-      },
       "octoawsOctoGeneratedAWSRecommendations": {
         "type": "object",
         "properties": {
@@ -43440,10 +43372,6 @@
           }
         }
       },
-      "v1CreateSpaceRequest": {
-        "type": "object",
-        "description": "Request message for the Luster.CreateSpace rpc."
-      },
       "v1CreateTeamRequest": {
         "type": "object",
         "properties": {
@@ -46015,12 +45943,11 @@
       "v1GetOnboardingStatusRequest": {
         "type": "object",
         "properties": {
-          "mspId": {
-            "title": "Ripple context",
-            "type": "string"
-          },
           "billingGroupId": {
             "title": "Optional:\n- empty => MSP-level onboarding row (isMsp = true)\n- non-empty => company under MSP (isMsp = false)",
+            "type": "string"
+          },
+          "companyId": {
             "type": "string"
           }
         }
@@ -46052,6 +45979,12 @@
           },
           "accountId": {
             "title": "Latest persisted AWS account id (if any)",
+            "type": "string"
+          },
+          "billingGroupId": {
+            "type": "string"
+          },
+          "companyId": {
             "type": "string"
           }
         }
@@ -49046,10 +48979,6 @@
         },
         "description": "Request message for the ReadInvoiceOverviews rpc."
       },
-      "v1ReadSpacesRequest": {
-        "type": "object",
-        "description": "Request message for the Luster.ReadSpaces rpc."
-      },
       "v1ReadTagCostsRequestAwsOptions": {
         "type": "object",
         "properties": {
@@ -50085,6 +50014,14 @@
           }
         }
       },
+      "v1SetPayerAccountEnabledResponse": {
+        "type": "object",
+        "properties": {
+          "payerAccount": {
+            "$ref": "#/components/schemas/ListPayerAccountsResponsePayerAccount"
+          }
+        }
+      },
       "v1SetSettingsResponse": {
         "type": "object",
         "properties": {
@@ -50236,12 +50173,11 @@
       "v1StartAwsOnboardingRequest": {
         "type": "object",
         "properties": {
-          "mspId": {
-            "title": "Ripple context (used for lookup/mapping; not sent to GuaranteedCommitments)",
+          "billingGroupId": {
+            "title": "Optional: if present => MSP customer (3rd layer), else MSP-level org (2nd layer)",
             "type": "string"
           },
-          "billingId": {
-            "title": "Optional: if present => MSP customer (3rd layer), else MSP-level org (2nd layer)",
+          "companyId": {
             "type": "string"
           },
           "gcOrgId": {
@@ -51473,12 +51409,11 @@
       "v1VerifyAwsOnboardingRequest": {
         "type": "object",
         "properties": {
-          "mspId": {
-            "title": "Ripple context (used for lookup/mapping; not sent to GuaranteedCommitments)",
+          "billingGroupId": {
+            "title": "Optional: if present => MSP customer (3rd layer), else MSP-level org (2nd layer)",
             "type": "string"
           },
-          "billingId": {
-            "title": "Optional: if present => MSP customer (3rd layer), else MSP-level org (2nd layer)",
+          "companyId": {
             "type": "string"
           },
           "gcOrgId": {
