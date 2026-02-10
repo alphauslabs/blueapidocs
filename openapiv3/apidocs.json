@@ -9871,76 +9871,6 @@
         }
       }
     },
-    "/v1/commitments/chart": {
-      "get": {
-        "tags": [
-          "GuaranteedCommitments"
-        ],
-        "summary": "WORK-IN-PROGRESS: Do not use. Generates time-series chart data for commitment metrics over the specified time period.",
-        "operationId": "GuaranteedCommitments_GetCommitmentsChart",
-        "parameters": [
-          {
-            "name": "filter",
-            "in": "query",
-            "schema": {
-              "type": "object"
-            }
-          },
-          {
-            "name": "provider",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "default": "PROVIDER_UNSPECIFIED",
-              "enum": [
-                "PROVIDER_UNSPECIFIED",
-                "AWS",
-                "AZURE",
-                "GCP",
-                "KUBERNETES",
-                "UNKNOWN"
-              ]
-            }
-          },
-          {
-            "name": "startDate",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "endDate",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/v1CommitmentsChartResponse"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googlerpcStatus"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/v1/commitments/plan/default": {
       "get": {
         "tags": [
@@ -10333,6 +10263,70 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/v1ListPurchasePlansBySegmentResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/commitments/{commitmentId}/chart": {
+      "get": {
+        "tags": [
+          "GuaranteedCommitments"
+        ],
+        "summary": "WORK-IN-PROGRESS: Generates time-series chart data for commitment metrics over the specified time period.",
+        "operationId": "GuaranteedCommitments_GetCommitmentsChart",
+        "parameters": [
+          {
+            "name": "commitmentId",
+            "in": "path",
+            "description": "Required. The commitment id.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "groupBy",
+            "in": "query",
+            "description": "Required. The group filter. Available filters include `region`, `service`, `instanceType`, `instanceTypeFamily`, `usageType` and `operation`.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1CommitmentsChartResponse"
                 }
               }
             }
@@ -18315,96 +18309,6 @@
         }
       }
     },
-    "/v1/segments/info": {
-      "get": {
-        "tags": [
-          "GuaranteedCommitments"
-        ],
-        "summary": "WORK-IN-PROGRESS: Do not use. Retrieves all segments for the specified organization and provider.",
-        "operationId": "GuaranteedCommitments_ListSegments",
-        "parameters": [
-          {
-            "name": "provider",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "default": "PROVIDER_UNSPECIFIED",
-              "enum": [
-                "PROVIDER_UNSPECIFIED",
-                "AWS",
-                "AZURE",
-                "GCP",
-                "KUBERNETES",
-                "UNKNOWN"
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/v1ListSegmentsResponse"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googlerpcStatus"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/segments/{segmentId}": {
-      "get": {
-        "tags": [
-          "GuaranteedCommitments"
-        ],
-        "summary": "WORK-IN-PROGRESS: Retrieves detailed information about a specific segment.",
-        "operationId": "GuaranteedCommitments_GetSegmentDetails",
-        "parameters": [
-          {
-            "name": "segmentId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/v1SegmentDetails"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googlerpcStatus"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/v1/servicediscounts": {
       "post": {
         "tags": [
@@ -19670,12 +19574,66 @@
       }
     },
     "/v1/spaces": {
-      "get": {
+      "post": {
         "tags": [
           "Luster"
         ],
-        "summary": "(ALPHA) Read spaces.",
+        "summary": "(ALPHA) Creates space.",
+        "operationId": "Luster_CreateSpace",
+        "requestBody": {
+          "description": "Request message for the Luster.CreateSpace rpc.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1CreateSpaceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/lusterSpace"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/spaces:read": {
+      "post": {
+        "tags": [
+          "Luster"
+        ],
+        "summary": "(ALPHA) Reads spaces.",
         "operationId": "Luster_ReadSpaces",
+        "requestBody": {
+          "description": "Request message for the Luster.ReadSpaces rpc.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1ReadSpacesRequest"
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "A successful response.(streaming responses)",
@@ -19706,7 +19664,8 @@
               }
             }
           }
-        }
+        },
+        "x-codegen-request-body-name": "body"
       }
     },
     "/v1/tags": {
@@ -41846,34 +41805,18 @@
           }
         }
       },
-      "v1CommitmentsChartDataPoint": {
+      "v1CommitmentsChartData": {
         "type": "object",
         "properties": {
           "date": {
             "type": "string"
           },
-          "commitmentSpend": {
+          "chartKey": {
+            "type": "string"
+          },
+          "chartValue": {
             "type": "number",
             "format": "double"
-          },
-          "utilization": {
-            "type": "number",
-            "format": "double"
-          },
-          "lockedCommitments": {
-            "type": "number",
-            "format": "double"
-          },
-          "unlockedCommitments": {
-            "type": "number",
-            "format": "double"
-          },
-          "realizedSavings": {
-            "type": "number",
-            "format": "double"
-          },
-          "isProjection": {
-            "type": "boolean"
           }
         }
       },
@@ -41883,7 +41826,7 @@
           "data": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/v1CommitmentsChartDataPoint"
+              "$ref": "#/components/schemas/v1CommitmentsChartData"
             }
           }
         }
@@ -43496,6 +43439,10 @@
             "$ref": "#/components/schemas/coverSharedResourcesCombination"
           }
         }
+      },
+      "v1CreateSpaceRequest": {
+        "type": "object",
+        "description": "Request message for the Luster.CreateSpace rpc."
       },
       "v1CreateTeamRequest": {
         "type": "object",
@@ -47805,17 +47752,6 @@
         },
         "description": "Response message for the Iam.ListRoles rpc."
       },
-      "v1ListSegmentsResponse": {
-        "type": "object",
-        "properties": {
-          "segments": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/v1Segment"
-            }
-          }
-        }
-      },
       "v1ListSharedResourcesResponse": {
         "type": "object",
         "properties": {
@@ -48804,23 +48740,6 @@
           }
         }
       },
-      "v1PurchasePlan": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "status": {
-            "type": "string"
-          },
-          "isRenewal": {
-            "type": "boolean"
-          }
-        }
-      },
       "v1ReadAdjustmentsRequestAwsOptions": {
         "type": "object",
         "properties": {
@@ -49126,6 +49045,10 @@
           }
         },
         "description": "Request message for the ReadInvoiceOverviews rpc."
+      },
+      "v1ReadSpacesRequest": {
+        "type": "object",
+        "description": "Request message for the Luster.ReadSpaces rpc."
       },
       "v1ReadTagCostsRequestAwsOptions": {
         "type": "object",
@@ -49791,123 +49714,6 @@
           },
           "createdAt": {
             "type": "string"
-          }
-        }
-      },
-      "v1SegmentCreator": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "username": {
-            "type": "string"
-          },
-          "fullName": {
-            "type": "string"
-          }
-        }
-      },
-      "v1SegmentDetails": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          },
-          "provider": {
-            "$ref": "#/components/schemas/v1Provider"
-          },
-          "cloudProviders": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "isDefault": {
-            "type": "boolean"
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "createdBy": {
-            "$ref": "#/components/schemas/v1SegmentCreator"
-          },
-          "parentId": {
-            "type": "string"
-          },
-          "status": {
-            "type": "string"
-          },
-          "segmentClass": {
-            "type": "string"
-          },
-          "params": {
-            "type": "object",
-            "properties": {}
-          },
-          "monthlyCost": {
-            "title": "Cost metrics",
-            "type": "number",
-            "format": "double"
-          },
-          "monthlyNetCost": {
-            "type": "number",
-            "format": "double"
-          },
-          "monthlyIfAllOndemandCost": {
-            "type": "number",
-            "format": "double"
-          },
-          "monthlyOndemandCost": {
-            "type": "number",
-            "format": "double"
-          },
-          "monthlyReservedCost": {
-            "type": "number",
-            "format": "double"
-          },
-          "monthlySpotCost": {
-            "type": "number",
-            "format": "double"
-          },
-          "monthlySavings": {
-            "type": "number",
-            "format": "double"
-          },
-          "monthlyBudget": {
-            "type": "number",
-            "format": "double"
-          },
-          "coverage": {
-            "title": "Coverage metrics",
-            "type": "number",
-            "format": "double"
-          },
-          "recommendedCoverage": {
-            "type": "number",
-            "format": "double"
-          },
-          "targetCoverage": {
-            "type": "number",
-            "format": "double"
-          },
-          "monthlyResourceCount": {
-            "title": "Resource metrics",
-            "type": "integer",
-            "format": "int32"
-          },
-          "purchasePlans": {
-            "title": "Purchase plans",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/v1PurchasePlan"
-            }
           }
         }
       },
