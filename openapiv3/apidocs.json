@@ -13819,6 +13819,36 @@
         }
       }
     },
+    "/v1/managements/accounts/status": {
+      "get": {
+        "tags": [
+          "GuaranteedCommitments"
+        ],
+        "operationId": "GuaranteedCommitments_GetPayerAccountStatus",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetPayerAccountStatusResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/managements/accounts/{companyId}": {
       "post": {
         "tags": [
@@ -41226,6 +41256,17 @@
           }
         }
       },
+      "v1ChildBillingGroupInfo": {
+        "type": "object",
+        "properties": {
+          "parentId": {
+            "type": "string"
+          },
+          "rootParentId": {
+            "type": "string"
+          }
+        }
+      },
       "v1ChildBillingGroupInvoiceSettings": {
         "type": "object",
         "properties": {
@@ -42387,6 +42428,9 @@
           "country": {
             "title": "Optional. Company's country",
             "type": "string"
+          },
+          "childbginfo": {
+            "$ref": "#/components/schemas/v1ChildBillingGroupInfo"
           }
         },
         "description": "Request message for the Billing.CreateBillingGroup rpc."
@@ -46052,6 +46096,14 @@
           }
         },
         "description": "Response message for the Cost.GetPayerAccountImportHistory rpc."
+      },
+      "v1GetPayerAccountStatusResponse": {
+        "type": "object",
+        "properties": {
+          "payerAccount": {
+            "$ref": "#/components/schemas/ListPayerAccountsResponsePayerAccount"
+          }
+        }
       },
       "v1GetPayerProformaReportsResponse": {
         "type": "object",
