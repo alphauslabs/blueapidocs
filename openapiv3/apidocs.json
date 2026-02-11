@@ -108,6 +108,14 @@
       }
     },
     {
+      "name": "Luster",
+      "description": "(ALPHA) Luster API. Base URL: https://api.alphaus.cloud/m/blue/luster",
+      "externalDocs": {
+        "description": "Luster is a service that manages user contexts.",
+        "url": "https://github.com/alphauslabs/blueapi/tree/main/luster/"
+      }
+    },
+    {
       "name": "Preferences",
       "description": "(BETA) Preferences API. Base URL: https://api.alphaus.cloud/m/blue",
       "externalDocs": {
@@ -10007,7 +10015,7 @@
         "tags": [
           "GuaranteedCommitments"
         ],
-        "summary": "WORK-IN-PROGRESS: Do not use. Executes a commitment purchase plan, initiating the commitment purchase process.",
+        "summary": "WORK-IN-PROGRESS: Executes a commitment purchase plan, initiating the commitment purchase process.",
         "operationId": "GuaranteedCommitments_CommitmentsPlanApply",
         "parameters": [
           {
@@ -10054,7 +10062,7 @@
         "x-codegen-request-body-name": "body"
       }
     },
-    "/v1/commitments/plan/{planId}/line-items": {
+    "/v1/commitments/plan/{planId}/lineitems": {
       "get": {
         "tags": [
           "GuaranteedCommitments"
@@ -10144,7 +10152,7 @@
         }
       }
     },
-    "/v1/commitments/plan/{planId}/resource-matches": {
+    "/v1/commitments/plan/{planId}/resourcematches": {
       "get": {
         "tags": [
           "GuaranteedCommitments"
@@ -10246,7 +10254,7 @@
         "tags": [
           "GuaranteedCommitments"
         ],
-        "summary": "WORK-IN-PROGRESS:  Retrieves purchase plan of a company.",
+        "summary": "WORK-IN-PROGRESS: Retrieves purchase plan of a company.",
         "operationId": "GuaranteedCommitments_ListPurchasePlansBySegment",
         "responses": {
           "200": {
@@ -10255,6 +10263,129 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/v1ListPurchasePlansBySegmentResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/commitments/purchaseplan/draft": {
+      "get": {
+        "tags": [
+          "GuaranteedCommitments"
+        ],
+        "summary": "WORK-IN-PROGRESS: Retrieves the drafted purchase plans",
+        "operationId": "GuaranteedCommitments_ListDraftPurchasePlans",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1ListDraftPurchasePlansResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/commitments/purchaseplan/{planId}/draft": {
+      "post": {
+        "tags": [
+          "GuaranteedCommitments"
+        ],
+        "summary": "WORK-IN-PROGRESS: Saves a commitment purchase plan as draft.",
+        "operationId": "GuaranteedCommitments_SaveCommitmentsPlanAsDraft",
+        "parameters": [
+          {
+            "name": "planId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GuaranteedCommitmentsSaveCommitmentsPlanAsDraftBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1DefaultPurchasePlan"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      },
+      "delete": {
+        "tags": [
+          "GuaranteedCommitments"
+        ],
+        "summary": "WORK-IN-PROGRESS: Deletes a draft purchase plan.",
+        "operationId": "GuaranteedCommitments_DeleteDraftPurchasePlan",
+        "parameters": [
+          {
+            "name": "planId",
+            "in": "path",
+            "description": "Required. The plan ID to delete.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1DeleteDraftPurchasePlanResponse"
                 }
               }
             }
@@ -10319,6 +10450,48 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/v1CommitmentsChartResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/commitments/{commitmentId}/utilization": {
+      "get": {
+        "tags": [
+          "GuaranteedCommitments"
+        ],
+        "summary": "WORK-IN-PROGRESS: Generates utilization data for commitment over the active period.",
+        "operationId": "GuaranteedCommitments_GetCommitmentsUtilization",
+        "parameters": [
+          {
+            "name": "commitmentId",
+            "in": "path",
+            "description": "Required. The commitment id.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1CommitmentsUtilizationResponse"
                 }
               }
             }
@@ -18260,7 +18433,7 @@
         }
       }
     },
-    "/v1/resources/{resourceId}/daily-usage": {
+    "/v1/resources/{resourceId}/dailyusage": {
       "get": {
         "tags": [
           "GuaranteedCommitments"
@@ -19626,6 +19799,101 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/v1CreateSPRecommendationNotificationResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/spaces": {
+      "post": {
+        "tags": [
+          "Luster"
+        ],
+        "summary": "(ALPHA) Creates space.",
+        "operationId": "Luster_CreateSpace",
+        "requestBody": {
+          "description": "Request message for the Luster.CreateSpace rpc.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1CreateSpaceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/lusterSpace"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googlerpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/spaces:read": {
+      "post": {
+        "tags": [
+          "Luster"
+        ],
+        "summary": "(ALPHA) Reads spaces.",
+        "operationId": "Luster_ReadSpaces",
+        "requestBody": {
+          "description": "Request message for the Luster.ReadSpaces rpc.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1ReadSpacesRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Stream result of lusterSpace",
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/components/schemas/lusterSpace"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/googlerpcStatus"
+                    }
+                  }
                 }
               }
             }
@@ -30293,6 +30561,126 @@
       "GuaranteedCommitmentsCommitmentsPlanApplyBody": {
         "type": "object"
       },
+      "GuaranteedCommitmentsSaveCommitmentsPlanAsDraftBody": {
+        "type": "object",
+        "properties": {
+          "reservationIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "resourceIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "maxUpfrontCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "provider": {
+            "$ref": "#/components/schemas/v1Provider"
+          },
+          "endDate": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string"
+          },
+          "segmentId": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "preferredPaymentOption": {
+            "type": "string"
+          },
+          "includedContractTerms": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "includedContractSpecs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1ContractSpec"
+            }
+          },
+          "coverageId": {
+            "type": "object"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "createdBy": {
+            "type": "object"
+          },
+          "dataSource": {
+            "type": "string"
+          },
+          "executionPolicy": {
+            "type": "object"
+          },
+          "flaggedActions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "id": {
+            "type": "string"
+          },
+          "isCalculating": {
+            "type": "boolean"
+          },
+          "isDefault": {
+            "type": "boolean"
+          },
+          "isLocked": {
+            "type": "boolean"
+          },
+          "isRecommended": {
+            "type": "boolean"
+          },
+          "isRenewal": {
+            "type": "boolean"
+          },
+          "isSaved": {
+            "type": "boolean"
+          },
+          "lastModified": {
+            "type": "string"
+          },
+          "metaPlanId": {
+            "type": "string"
+          },
+          "minimumUpfrontInterestRate": {
+            "type": "object"
+          },
+          "orgId": {
+            "type": "string"
+          },
+          "planType": {
+            "type": "string"
+          },
+          "recommendWithinCoveredAccounts": {
+            "type": "object"
+          },
+          "segment": {
+            "$ref": "#/components/schemas/v1Segment"
+          }
+        }
+      },
       "GuaranteedCommitmentsSetPayerAccountEnabledBody": {
         "type": "object",
         "properties": {
@@ -38427,6 +38815,31 @@
         },
         "description": "The `Status` type defines a logical error model that is suitable for\ndifferent programming environments, including REST APIs and RPC APIs. It is\nused by [gRPC](https://github.com/grpc). Each `Status` message contains\nthree pieces of data: error code, error message, and error details.\n\nYou can find out more about this error model and how to work with it in the\n[API Design Guide](https://cloud.google.com/apis/design/errors)."
       },
+      "lusterSpace": {
+        "title": "The message defines the space",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The space id."
+          },
+          "name": {
+            "type": "string",
+            "description": "The space name."
+          },
+          "description": {
+            "type": "string",
+            "description": "The space description."
+          },
+          "members": {
+            "type": "array",
+            "description": "The members in space.",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
       "octoawsOctoGeneratedAWSRecommendations": {
         "type": "object",
         "properties": {
@@ -41804,6 +42217,61 @@
           }
         }
       },
+      "v1CommitmentsUtilizationData": {
+        "type": "object",
+        "properties": {
+          "utilizationDate": {
+            "type": "string"
+          },
+          "cost": {
+            "type": "number",
+            "format": "double"
+          },
+          "coveredCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "griFees": {
+            "type": "number",
+            "format": "double"
+          },
+          "netSavings": {
+            "type": "number",
+            "format": "double"
+          },
+          "potentialSavings": {
+            "type": "number",
+            "format": "double"
+          },
+          "reservationUtilization": {
+            "type": "number",
+            "format": "double"
+          },
+          "runningHours": {
+            "type": "number",
+            "format": "double"
+          },
+          "savings": {
+            "type": "number",
+            "format": "double"
+          },
+          "unutilizedCommitment": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "v1CommitmentsUtilizationResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1CommitmentsUtilizationData"
+            }
+          }
+        }
+      },
       "v1ConfirmGoogleSheetAccessRequest": {
         "type": "object",
         "properties": {
@@ -43416,6 +43884,10 @@
           }
         }
       },
+      "v1CreateSpaceRequest": {
+        "type": "object",
+        "description": "Request message for the Luster.CreateSpace rpc."
+      },
       "v1CreateTeamRequest": {
         "type": "object",
         "properties": {
@@ -44059,6 +44531,19 @@
         "properties": {
           "costGroupId": {
             "type": "string"
+          }
+        }
+      },
+      "v1DeleteDraftPurchasePlanResponse": {
+        "type": "object",
+        "properties": {
+          "planId": {
+            "title": "The ID of the deleted plan",
+            "type": "string"
+          },
+          "success": {
+            "title": "Indicates if the plan was successfully deleted",
+            "type": "boolean"
           }
         }
       },
@@ -47268,6 +47753,17 @@
           }
         }
       },
+      "v1ListDraftPurchasePlansResponse": {
+        "type": "object",
+        "properties": {
+          "plans": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1DefaultPurchasePlan"
+            }
+          }
+        }
+      },
       "v1ListExcludeServicesResponse": {
         "type": "object",
         "properties": {
@@ -49030,6 +49526,10 @@
           }
         },
         "description": "Request message for the ReadInvoiceOverviews rpc."
+      },
+      "v1ReadSpacesRequest": {
+        "type": "object",
+        "description": "Request message for the Luster.ReadSpaces rpc."
       },
       "v1ReadTagCostsRequestAwsOptions": {
         "type": "object",
