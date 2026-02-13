@@ -42071,6 +42071,10 @@
             "items": {
               "$ref": "#/components/schemas/v1BulkCreateBillingGroupError"
             }
+          },
+          "jobId": {
+            "type": "string",
+            "description": "The job ID for polling status via GetBulkCreateBillingGroupJob."
           }
         }
       },
