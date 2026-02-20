@@ -117,10 +117,10 @@
     },
     {
       "name": "Flagger",
-      "description": "(ALPHA) Flag API. Base URL: https://api.alphaus.cloud/m/blue/flaggger",
+      "description": "(ALPHA) Flag API. Base URL: https://api.alphaus.cloud/m/blue",
       "externalDocs": {
         "description": "Service definition",
-        "url": "https://github.com/alphauslabs/blueapi/tree/main/luster/"
+        "url": "https://github.com/alphauslabs/blueapi/tree/main/flagger"
       }
     },
     {
@@ -1360,6 +1360,56 @@
                       "$ref": "#/components/schemas/googleRpcStatus"
                     }
                   }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/flagger/v1/namespace/{namespaceId}/flags/boolean/{id}": {
+      "get": {
+        "tags": [
+          "Flagger"
+        ],
+        "operationId": "Flagger_GetBooleanFlag",
+        "parameters": [
+          {
+            "name": "namespaceId",
+            "in": "path",
+            "description": "Required. The namespaceId that the flag belongs to.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required. The flagId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetBooleanFlagResponse"
                 }
               }
             }
@@ -15894,56 +15944,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/v1MetricsResponse"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googleRpcStatus"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/namespace/{namespaceId}/flags/boolean/{id}": {
-      "get": {
-        "tags": [
-          "Flagger"
-        ],
-        "operationId": "Flagger_GetBooleanFlag",
-        "parameters": [
-          {
-            "name": "namespaceId",
-            "in": "path",
-            "description": "Required. The namespace ID for the flag.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Required. The flag ID.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/v1GetBooleanFlagResponse"
                 }
               }
             }
