@@ -31570,6 +31570,13 @@
           },
           "companyId": {
             "type": "string"
+          },
+          "verificationChecks": {
+            "type": "array",
+            "description": "Detailed AWS verification results (best-effort) returned from the last VerifyAwsOnboarding call.\nThis is used by the UI to \"resume\" the onboarding flow and show which verification checks\npassed/failed when a user comes back later (e.g., after stopping at verification).\nEmpty when verification hasn't been attempted yet or when no checks were persisted.",
+            "items": {
+              "$ref": "#/components/schemas/VerifyAwsOnboardingResponseAwsOnboardingFeatureCheck"
+            }
           }
         }
       },
@@ -47487,6 +47494,13 @@
           },
           "companyId": {
             "type": "string"
+          },
+          "verificationChecks": {
+            "type": "array",
+            "description": "Detailed AWS verification results (best-effort) returned from the last VerifyAwsOnboarding call.\nThis is used by the UI to \"resume\" the onboarding flow and show which verification checks\npassed/failed when a user comes back later (e.g., after stopping at verification).\nEmpty when verification hasn't been attempted yet or when no checks were persisted.",
+            "items": {
+              "$ref": "#/components/schemas/VerifyAwsOnboardingResponseAwsOnboardingFeatureCheck"
+            }
           }
         }
       },
