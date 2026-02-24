@@ -16271,6 +16271,47 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/onboarding/billinggroup:validate": {
+      "post": {
+        "tags": [
+          "GuaranteedCommitments"
+        ],
+        "operationId": "GuaranteedCommitments_ValidateBillingGroup",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1ValidateBillingGroupRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1ValidateBillingGroupResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/onboarding/status:read": {
       "post": {
         "tags": [
@@ -52893,6 +52934,28 @@
           }
         },
         "description": "Utilization details for Savings Plans, including ARN and utilization percentage."
+      },
+      "v1ValidateBillingGroupRequest": {
+        "type": "object",
+        "properties": {
+          "companyId": {
+            "type": "string",
+            "description": "Required. Company identifier."
+          }
+        }
+      },
+      "v1ValidateBillingGroupResponse": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "description": "True if the company is allowed to proceed with onboarding; false otherwise."
+          },
+          "message": {
+            "type": "string",
+            "description": "Optional human-readable reason when ok=false."
+          }
+        }
       },
       "v1ValidateResetPasswordLinkAndChangePasswordRequest": {
         "type": "object",
