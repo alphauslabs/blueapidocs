@@ -36,6 +36,14 @@
       }
     },
     {
+      "name": "Flags",
+      "description": "(ALPHA) Flag API. Base URL: https://api.alphaus.cloud/m/blue",
+      "externalDocs": {
+        "description": "Service definition",
+        "url": "https://github.com/alphauslabs/blueapi/tree/main/flags"
+      }
+    },
+    {
       "name": "Cost",
       "description": "Cost API. Base URL: https://api.alphaus.cloud/m/blue/cost",
       "externalDocs": {
@@ -113,14 +121,6 @@
       "externalDocs": {
         "description": "Luster is a service that manages user contexts.",
         "url": "https://github.com/alphauslabs/blueapi/tree/main/luster/"
-      }
-    },
-    {
-      "name": "Flagger",
-      "description": "(ALPHA) Flag API. Base URL: https://api.alphaus.cloud/m/blue",
-      "externalDocs": {
-        "description": "Service definition",
-        "url": "https://github.com/alphauslabs/blueapi/tree/main/flagger"
       }
     },
     {
@@ -1377,13 +1377,13 @@
         }
       }
     },
-    "/flagger/v1/namespace/{namespaceId}/flags/boolean/{id}": {
+    "/flags/v1/namespace/{namespaceId}/boolean/{id}:eval": {
       "post": {
         "tags": [
-          "Flagger"
+          "Flags"
         ],
         "summary": "EvaluateBooleanFlag returns the boolean value of a flag for a given namespace.",
-        "operationId": "Flagger_EvaluateBooleanFlag",
+        "operationId": "Flags_EvaluateBooleanFlag",
         "parameters": [
           {
             "name": "namespaceId",
@@ -1408,7 +1408,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/FlaggerEvaluateBooleanFlagBody"
+                "$ref": "#/components/schemas/FlagsEvaluateBooleanFlagBody"
               }
             }
           },
@@ -1439,13 +1439,13 @@
         "x-codegen-request-body-name": "body"
       }
     },
-    "/flagger/v1/namespace/{namespaceId}/flags/variant/{id}": {
+    "/flags/v1/namespace/{namespaceId}/variant/{id}:eval": {
       "post": {
         "tags": [
-          "Flagger"
+          "Flags"
         ],
         "summary": "EvaluateVariantFlag returns the variant value of a flag for a given namespace.",
-        "operationId": "Flagger_EvaluateVariantFlag",
+        "operationId": "Flags_EvaluateVariantFlag",
         "parameters": [
           {
             "name": "namespaceId",
@@ -1470,7 +1470,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/FlaggerEvaluateVariantFlagBody"
+                "$ref": "#/components/schemas/FlagsEvaluateVariantFlagBody"
               }
             }
           },
@@ -31091,7 +31091,7 @@
           "NOT_EQUAL"
         ]
       },
-      "FlaggerEvaluateBooleanFlagBody": {
+      "FlagsEvaluateBooleanFlagBody": {
         "type": "object",
         "properties": {
           "segment": {
@@ -31107,7 +31107,7 @@
           }
         }
       },
-      "FlaggerEvaluateVariantFlagBody": {
+      "FlagsEvaluateVariantFlagBody": {
         "type": "object",
         "properties": {
           "kv": {
