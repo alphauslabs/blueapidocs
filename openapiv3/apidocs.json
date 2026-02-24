@@ -1439,6 +1439,68 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/flagger/v1/namespace/{namespaceId}/flags/variant/{id}": {
+      "post": {
+        "tags": [
+          "Flagger"
+        ],
+        "summary": "EvaluateVariantFlag returns the variant value of a flag for a given namespace.",
+        "operationId": "Flagger_EvaluateVariantFlag",
+        "parameters": [
+          {
+            "name": "namespaceId",
+            "in": "path",
+            "description": "Required. The namespaceId that the flag belongs to.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required. The flagId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FlaggerEvaluateVariantFlagBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1EvaluateVariantFlagResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/iam/v1/apiclients": {
       "get": {
         "tags": [
@@ -31045,6 +31107,22 @@
           }
         }
       },
+      "FlaggerEvaluateVariantFlagBody": {
+        "type": "object",
+        "properties": {
+          "segment": {
+            "type": "string",
+            "description": "Optional. The segment to evaluate the flag for. If not provided, the default value of the flag will be returned."
+          },
+          "kv": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Optional. Key-value pairs for additional context when evaluating the flag. Must be provided if segment is present."
+          }
+        }
+      },
       "FlowGetAwsAccountsBody": {
         "type": "object",
         "description": "Response message for the Flow.GetAwsAccounts rpc."
@@ -45538,6 +45616,22 @@
           "value": {
             "type": "boolean",
             "description": "The boolean value of the flag."
+          }
+        }
+      },
+      "v1EvaluateVariantFlagResponse": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "The variant value of the flag."
+          },
+          "attachment": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Optional. The attachment attached to the returned variant."
           }
         }
       },
