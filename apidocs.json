@@ -27551,6 +27551,9 @@
         "RegistrationMethod": {
           "type": "string",
           "title": "Valid values for now are: 'console', 'terraform'. default would be 'console'"
+        },
+        "templateVersion": {
+          "type": "string"
         }
       }
     },
@@ -40503,6 +40506,9 @@
         "externalId": {
           "type": "string",
           "description": "The external id for this role. Do not change."
+        },
+        "templateVersion": {
+          "type": "string"
         }
       },
       "description": "Response message for the GetAccountAccessTemplateUrlResponse rpc."
