@@ -2988,6 +2988,68 @@
         }
       }
     },
+    "/iam/v1/{domain}/account/{email}:unlock": {
+      "post": {
+        "tags": [
+          "Iam"
+        ],
+        "summary": "WORK-IN-PROGRESS: Unlocks ripple or wave user account.",
+        "operationId": "Iam_UnlockUserAccount",
+        "parameters": [
+          {
+            "name": "domain",
+            "in": "path",
+            "description": "Required. Valid values are 'ripple' and 'wave'",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "email",
+            "in": "path",
+            "description": "Required. The email of the user account to unlock.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IamUnlockUserAccountBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/iam/v1/{user}/password:verify": {
       "post": {
         "tags": [
@@ -31747,6 +31809,15 @@
           }
         },
         "description": "Request message for the Iam.RefreshPartnerToken rpc."
+      },
+      "IamUnlockUserAccountBody": {
+        "type": "object",
+        "properties": {
+          "isRoot": {
+            "type": "boolean",
+            "description": "IsRoot is true if Ripple or Wave root user, false if sub user."
+          }
+        }
       },
       "IamUpdateFeatureFlagsBody": {
         "type": "object",
