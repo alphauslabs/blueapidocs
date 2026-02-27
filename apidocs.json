@@ -25834,6 +25834,10 @@
         "companyId": {
           "type": "string"
         },
+        "onboardingStatus": {
+          "$ref": "#/definitions/GetOnboardingStatusResponseOnboardingStatus",
+          "title": "Latest persisted onboarding status for this payer account (if any)"
+        },
         "verificationChecks": {
           "type": "array",
           "items": {
