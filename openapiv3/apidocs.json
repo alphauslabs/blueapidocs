@@ -2988,7 +2988,7 @@
         }
       }
     },
-    "/iam/v1/{domain}/account/{email}:unlock": {
+    "/iam/v1/{domain}/account:unlock": {
       "post": {
         "tags": [
           "Iam"
@@ -3000,15 +3000,6 @@
             "name": "domain",
             "in": "path",
             "description": "Required. Valid values are 'ripple' and 'wave'",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "email",
-            "in": "path",
-            "description": "Required. The email of the user account to unlock.",
             "required": true,
             "schema": {
               "type": "string"
@@ -31897,9 +31888,17 @@
       "IamUnlockUserAccountBody": {
         "type": "object",
         "properties": {
+          "email": {
+            "type": "string",
+            "description": "Required. The email of the user account to unlock."
+          },
           "isRoot": {
             "type": "boolean",
             "description": "IsRoot is true if Ripple or Wave root user, false if sub user."
+          },
+          "userName": {
+            "type": "string",
+            "description": "Required if wave sub user."
           }
         }
       },
