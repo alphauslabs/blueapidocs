@@ -16214,6 +16214,89 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/onboarding/aws/cftemplate/guaranteed": {
+      "post": {
+        "tags": [
+          "GuaranteedCommitments"
+        ],
+        "summary": "CreateGuaranteedCommitmentAccess verifies and registers a deployed guaranteed CloudFormation stack.",
+        "operationId": "GuaranteedCommitments_CreateGuaranteedCommitmentAccess",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1CreateGuaranteedCommitmentAccessRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1CreateGuaranteedCommitmentAccessResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/onboarding/aws/cftemplate/guaranteed:url": {
+      "get": {
+        "tags": [
+          "GuaranteedCommitments"
+        ],
+        "summary": "GetGuaranteedCommitmentTemplateUrl returns a CloudFormation launch URL for deploying\nboth Alphaus (Ripple) and Archera IAM roles in a single stack.",
+        "operationId": "GuaranteedCommitments_GetGuaranteedCommitmentTemplateUrl",
+        "parameters": [
+          {
+            "name": "externalId",
+            "in": "query",
+            "description": "The guaranteed-commitments-provided external ID for the guaranteed-commitments IAM role trust policy.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetGuaranteedCommitmentTemplateUrlResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/onboarding/aws/cloudformation/launchstackurl": {
       "get": {
         "tags": [
@@ -44907,6 +44990,68 @@
           }
         }
       },
+      "v1CreateGuaranteedCommitmentAccessRequest": {
+        "type": "object",
+        "properties": {
+          "target": {
+            "type": "string",
+            "description": "The AWS account ID (payer/target) where the stack was deployed."
+          },
+          "externalId": {
+            "type": "string",
+            "description": "The guaranteed-commitments-provided external ID."
+          }
+        }
+      },
+      "v1CreateGuaranteedCommitmentAccessResponse": {
+        "type": "object",
+        "properties": {
+          "target": {
+            "type": "string",
+            "description": "Target environment for the access configuration (for example, AWS account ID or organization)."
+          },
+          "rippleRoleArn": {
+            "type": "string",
+            "description": "ARN of the Ripple/Alphaus IAM role to be assumed for managing guaranteed commitments."
+          },
+          "rippleExternalId": {
+            "type": "string",
+            "description": "External ID required to assume the Ripple/Alphaus IAM role."
+          },
+          "guaranteedCommitmentRoleArn": {
+            "type": "string",
+            "description": "ARN of the customer's IAM role used specifically for guaranteed-commitment operations."
+          },
+          "guaranteedCommitmentExternalId": {
+            "type": "string",
+            "description": "External ID required to assume the guaranteed-commitment IAM role."
+          },
+          "stackId": {
+            "type": "string",
+            "description": "CloudFormation stack ID created or used during the access configuration."
+          },
+          "stackRegion": {
+            "type": "string",
+            "description": "AWS region where the CloudFormation stack is deployed (for example, \"us-east-1\")."
+          },
+          "templateUrl": {
+            "type": "string",
+            "description": "URL of the CloudFormation template used to create or update the stack."
+          },
+          "status": {
+            "type": "string",
+            "description": "Current status of the access configuration or underlying CloudFormation stack."
+          },
+          "lastUpdated": {
+            "type": "string",
+            "description": "Last update time of this configuration, typically as an ISO 8601 timestamp."
+          },
+          "guaranteedCommitmentVerified": {
+            "type": "boolean",
+            "description": "Whether the guaranteed commitment role was successfully verified during registration."
+          }
+        }
+      },
       "v1CreateIdentityProviderRequest": {
         "type": "object",
         "properties": {
@@ -47991,6 +48136,39 @@
             "items": {
               "$ref": "#/components/schemas/v1FreeFormItem"
             }
+          }
+        }
+      },
+      "v1GetGuaranteedCommitmentTemplateUrlResponse": {
+        "type": "object",
+        "properties": {
+          "launchUrl": {
+            "type": "string",
+            "description": "CloudFormation console launch URL pre-filled with all parameters."
+          },
+          "templateUrl": {
+            "type": "string",
+            "description": "S3 URL of the CloudFormation template."
+          },
+          "stackName": {
+            "type": "string",
+            "description": "CloudFormation stack name."
+          },
+          "principal": {
+            "type": "string",
+            "description": "Alphaus AWS account principal."
+          },
+          "externalId": {
+            "type": "string",
+            "description": "Alphaus/Ripple external ID for role assumption."
+          },
+          "guaranteedCommitmentPrincipal": {
+            "type": "string",
+            "description": "Guaranteed commitment AWS principal ARN."
+          },
+          "guaranteedCommitmentExternalId": {
+            "type": "string",
+            "description": "Guaranteed commitment external ID for role assumption."
           }
         }
       },
