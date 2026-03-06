@@ -10560,7 +10560,7 @@
         }
       }
     },
-    "/v1/commitments/purchaseplan": {
+    "/v1/commitments/purchaseplans": {
       "get": {
         "tags": [
           "GuaranteedCommitments"
@@ -10591,7 +10591,7 @@
         }
       }
     },
-    "/v1/commitments/purchaseplan/draft": {
+    "/v1/commitments/purchaseplans/draft": {
       "get": {
         "tags": [
           "GuaranteedCommitments"
@@ -10622,7 +10622,48 @@
         }
       }
     },
-    "/v1/commitments/purchaseplan/{planId}/draft": {
+    "/v1/commitments/purchaseplans/{planId}": {
+      "get": {
+        "tags": [
+          "GuaranteedCommitments"
+        ],
+        "summary": "WORK-IN-PROGRESS: Retrieves details of a specific purchase plan of a company.",
+        "operationId": "GuaranteedCommitments_ListPurchasePlansDetails",
+        "parameters": [
+          {
+            "name": "planId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1ListPurchasePlansDetailsResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/commitments/purchaseplans/{planId}/draft": {
       "post": {
         "tags": [
           "GuaranteedCommitments"
@@ -50134,6 +50175,17 @@
         "type": "object"
       },
       "v1ListPurchasePlansBySegmentResponse": {
+        "type": "object",
+        "properties": {
+          "plans": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1DefaultPurchasePlan"
+            }
+          }
+        }
+      },
+      "v1ListPurchasePlansDetailsResponse": {
         "type": "object",
         "properties": {
           "plans": {

@@ -8311,7 +8311,7 @@
         ]
       }
     },
-    "/v1/commitments/purchaseplan": {
+    "/v1/commitments/purchaseplans": {
       "get": {
         "summary": "WORK-IN-PROGRESS: Retrieves purchase plan of a company.",
         "operationId": "GuaranteedCommitments_ListPurchasePlansBySegment",
@@ -8334,7 +8334,7 @@
         ]
       }
     },
-    "/v1/commitments/purchaseplan/draft": {
+    "/v1/commitments/purchaseplans/draft": {
       "get": {
         "summary": "WORK-IN-PROGRESS: Retrieves the drafted purchase plans",
         "operationId": "GuaranteedCommitments_ListDraftPurchasePlans",
@@ -8357,7 +8357,38 @@
         ]
       }
     },
-    "/v1/commitments/purchaseplan/{planId}/draft": {
+    "/v1/commitments/purchaseplans/{planId}": {
+      "get": {
+        "summary": "WORK-IN-PROGRESS: Retrieves details of a specific purchase plan of a company.",
+        "operationId": "GuaranteedCommitments_ListPurchasePlansDetails",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListPurchasePlansDetailsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googleRpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "planId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "GuaranteedCommitments"
+        ]
+      }
+    },
+    "/v1/commitments/purchaseplans/{planId}/draft": {
       "delete": {
         "summary": "WORK-IN-PROGRESS: Deletes a draft purchase plan.",
         "operationId": "GuaranteedCommitments_DeleteDraftPurchasePlan",
@@ -44315,6 +44346,18 @@
       "type": "object"
     },
     "v1ListPurchasePlansBySegmentResponse": {
+      "type": "object",
+      "properties": {
+        "plans": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1DefaultPurchasePlan"
+          }
+        }
+      }
+    },
+    "v1ListPurchasePlansDetailsResponse": {
       "type": "object",
       "properties": {
         "plans": {
