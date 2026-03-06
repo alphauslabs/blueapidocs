@@ -6603,6 +6603,38 @@
         ]
       }
     },
+    "/v1/billinggroups/bulklinkaccountjobs/{jobId}": {
+      "get": {
+        "summary": "Gets the status of a bulk link account job.",
+        "operationId": "Billing_GetBulkLinkAccountJob",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetBulkLinkAccountJobResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googleRpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "jobId",
+            "description": "Required. The job ID returned by BulkLinkAccount.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      }
+    },
     "/v1/billinggroups/child": {
       "post": {
         "summary": "Creates a child billing group under a parent billing group",
@@ -7435,38 +7467,6 @@
             "schema": {
               "$ref": "#/definitions/v1BulkLinkAccountRequest"
             }
-          }
-        ],
-        "tags": [
-          "Billing"
-        ]
-      }
-    },
-    "/v1/billinggroups:bulkLinkAccount/{jobId}": {
-      "get": {
-        "summary": "Gets the status of a bulk link account job.",
-        "operationId": "Billing_GetBulkLinkAccountJob",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1GetBulkLinkAccountJobResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googleRpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "jobId",
-            "description": "Required. The job ID returned by BulkLinkAccount.",
-            "in": "path",
-            "required": true,
-            "type": "string"
           }
         ],
         "tags": [
@@ -37076,6 +37076,10 @@
     "v1BulkLinkAccountRequest": {
       "type": "object",
       "properties": {
+        "vendor": {
+          "type": "string",
+          "description": "Required. The cloud vendor for all accounts in this CSV.\nMust be one of: aws, azure, gcp."
+        },
         "csvContent": {
           "type": "string",
           "format": "byte",

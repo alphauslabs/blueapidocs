@@ -8385,6 +8385,48 @@
         }
       }
     },
+    "/v1/billinggroups/bulklinkaccountjobs/{jobId}": {
+      "get": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Gets the status of a bulk link account job.",
+        "operationId": "Billing_GetBulkLinkAccountJob",
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "description": "Required. The job ID returned by BulkLinkAccount.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetBulkLinkAccountJobResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/billinggroups/child": {
       "post": {
         "tags": [
@@ -9457,48 +9499,6 @@
           }
         },
         "x-codegen-request-body-name": "body"
-      }
-    },
-    "/v1/billinggroups:bulkLinkAccount/{jobId}": {
-      "get": {
-        "tags": [
-          "Billing"
-        ],
-        "summary": "Gets the status of a bulk link account job.",
-        "operationId": "Billing_GetBulkLinkAccountJob",
-        "parameters": [
-          {
-            "name": "jobId",
-            "in": "path",
-            "description": "Required. The job ID returned by BulkLinkAccount.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/v1GetBulkLinkAccountJobResponse"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googleRpcStatus"
-                }
-              }
-            }
-          }
-        }
       }
     },
     "/v1/billinggroups:paginated": {
@@ -43066,6 +43066,10 @@
       "v1BulkLinkAccountRequest": {
         "type": "object",
         "properties": {
+          "vendor": {
+            "type": "string",
+            "description": "Required. The cloud vendor for all accounts in this CSV.\nMust be one of: aws, azure, gcp."
+          },
           "csvContent": {
             "pattern": "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$",
             "type": "string",
