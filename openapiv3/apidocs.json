@@ -10622,13 +10622,13 @@
         }
       }
     },
-    "/v1/commitments/purchaseplans/{planId}": {
+    "/v1/commitments/purchaseplans/draft/{planId}": {
       "get": {
         "tags": [
           "GuaranteedCommitments"
         ],
-        "summary": "WORK-IN-PROGRESS: Retrieves details of a specific purchase plan of a company.",
-        "operationId": "GuaranteedCommitments_ListPurchasePlansDetails",
+        "summary": "WORK-IN-PROGRESS: Retrieves the details of a specific draft plan.",
+        "operationId": "GuaranteedCommitments_GetDraftPurchasePlansDetails",
         "parameters": [
           {
             "name": "planId",
@@ -10645,7 +10645,48 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/v1ListPurchasePlansDetailsResponse"
+                  "$ref": "#/components/schemas/v1GetDraftPurchasePlansDetailsResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/commitments/purchaseplans/{planId}": {
+      "get": {
+        "tags": [
+          "GuaranteedCommitments"
+        ],
+        "summary": "WORK-IN-PROGRESS: Retrieves details of a specific purchase plan of a company.",
+        "operationId": "GuaranteedCommitments_GetPurchasePlansDetails",
+        "parameters": [
+          {
+            "name": "planId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetPurchasePlansDetailsResponse"
                 }
               }
             }
@@ -48313,6 +48354,17 @@
           }
         }
       },
+      "v1GetDraftPurchasePlansDetailsResponse": {
+        "type": "object",
+        "properties": {
+          "plans": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1DefaultPurchasePlan"
+            }
+          }
+        }
+      },
       "v1GetExecutionStatusResponse": {
         "type": "object",
         "properties": {
@@ -48735,6 +48787,17 @@
           },
           "name": {
             "type": "string"
+          }
+        }
+      },
+      "v1GetPurchasePlansDetailsResponse": {
+        "type": "object",
+        "properties": {
+          "plans": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1DefaultPurchasePlan"
+            }
           }
         }
       },
@@ -50179,17 +50242,6 @@
         "type": "object"
       },
       "v1ListPurchasePlansBySegmentResponse": {
-        "type": "object",
-        "properties": {
-          "plans": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/v1DefaultPurchasePlan"
-            }
-          }
-        }
-      },
-      "v1ListPurchasePlansDetailsResponse": {
         "type": "object",
         "properties": {
           "plans": {
