@@ -25950,7 +25950,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/v1ExportCostFiltersFileResponse"
+                  "$ref": "#/components/schemas/protosOperation"
                 }
               }
             }
@@ -46238,16 +46238,6 @@
           }
         },
         "description": "Request message for the ExportBillingGroupInvoiceServiceDiscounts rpc."
-      },
-      "v1ExportCostFiltersFileResponse": {
-        "type": "object",
-        "properties": {
-          "url": {
-            "type": "string",
-            "description": "Required. URL of exported file."
-          }
-        },
-        "description": "Response message for the ExportCostFiltersFile rpc."
       },
       "v1ExportData": {
         "type": "object",
