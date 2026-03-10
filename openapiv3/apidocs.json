@@ -10179,46 +10179,6 @@
       }
     },
     "/v1/commitments/purchaseplans/draft/{draftPlanId}": {
-      "get": {
-        "tags": [
-          "GuaranteedCommitments"
-        ],
-        "summary": "WORK-IN-PROGRESS: Retrieves the details of a specific draft plan.",
-        "operationId": "GuaranteedCommitments_GetDraftPurchasePlansDetails",
-        "parameters": [
-          {
-            "name": "draftPlanId",
-            "in": "path",
-            "description": "The draft plan ID to retrieve details for.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/v1GetDraftPurchasePlansDetailsResponse"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/googleRpcStatus"
-                }
-              }
-            }
-          }
-        }
-      },
       "delete": {
         "tags": [
           "GuaranteedCommitments"
@@ -10318,7 +10278,7 @@
         "tags": [
           "GuaranteedCommitments"
         ],
-        "summary": "WORK-IN-PROGRESS: Retrieves details of a specific purchase plan of a company.",
+        "summary": "WORK-IN-PROGRESS: Retrieves full details of a specific purchase plan of a company.\nIncludes the basic info, detailed metrics, commitment line items, covered infrastructure resource matches, and audit history.",
         "operationId": "GuaranteedCommitments_GetPurchasePlansDetails",
         "parameters": [
           {
@@ -43487,6 +43447,245 @@
           }
         }
       },
+      "v1CommitmentPlanLineItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "planId": {
+            "type": "string"
+          },
+          "offerId": {
+            "type": "string"
+          },
+          "leaseMenuItemId": {
+            "type": "string"
+          },
+          "accountId": {
+            "type": "string"
+          },
+          "recommendedQuantity": {
+            "type": "number",
+            "format": "double"
+          },
+          "selectedQuantity": {
+            "type": "number",
+            "format": "double"
+          },
+          "recommendedCommitment": {
+            "type": "number",
+            "format": "double"
+          },
+          "selectedCommitment": {
+            "type": "number",
+            "format": "double"
+          },
+          "isSelected": {
+            "type": "boolean"
+          },
+          "afterAmortizedCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "upfrontCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "recurringCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "beforeCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "beforeOndemandCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "beforeReservedCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "coveredOndemandCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "afterCoveredUnits": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "monthlyCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "savings": {
+            "type": "number",
+            "format": "double"
+          },
+          "monthlySavings": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalSavings": {
+            "type": "number",
+            "format": "double"
+          },
+          "fee": {
+            "type": "number",
+            "format": "double"
+          },
+          "discountRate": {
+            "type": "number",
+            "format": "double"
+          },
+          "breakevenHours": {
+            "type": "number",
+            "format": "double"
+          },
+          "contractTerm": {
+            "type": "string"
+          },
+          "paymentOption": {
+            "type": "string"
+          },
+          "contractSpec": {
+            "type": "object",
+            "properties": {}
+          },
+          "offer": {
+            "type": "object",
+            "properties": {}
+          },
+          "renewalReservationId": {
+            "type": "string"
+          },
+          "coveredUnits": {
+            "type": "number",
+            "format": "double"
+          },
+          "amortizedCost": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "v1CommitmentPlanResourceMatch": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "totalUnits": {
+            "type": "number",
+            "format": "double"
+          },
+          "beforeUncoveredUnits": {
+            "type": "number",
+            "format": "double"
+          },
+          "afterCoveredUnits": {
+            "type": "number",
+            "format": "double"
+          },
+          "afterUncoveredUnits": {
+            "type": "number",
+            "format": "double"
+          },
+          "ondemandPrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "ifAllOndemandCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "beforeOndemandCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "afterOndemandCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "coveredOndemandCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "beforeReservedCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "afterReservedCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "beforeCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "afterCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "monthlyBeforeCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "monthlyAfterCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "monthlyAfterReservedCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "monthlyAfterOndemandCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "averageSavings": {
+            "type": "number",
+            "format": "double"
+          },
+          "averageMonthlySavings": {
+            "type": "number",
+            "format": "double"
+          },
+          "usageType": {
+            "type": "string"
+          },
+          "coverage": {
+            "type": "number",
+            "format": "double"
+          },
+          "resource": {
+            "type": "object",
+            "properties": {}
+          },
+          "coveredUnits": {
+            "type": "number",
+            "format": "double"
+          },
+          "explanationUnmatched": {
+            "type": "number",
+            "format": "double"
+          },
+          "ondemandCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "reservedCost": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
       "v1CommitmentsChartData": {
         "type": "object",
         "properties": {
@@ -47813,17 +48012,6 @@
           }
         }
       },
-      "v1GetDraftPurchasePlansDetailsResponse": {
-        "type": "object",
-        "properties": {
-          "plans": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/v1DefaultPurchasePlan"
-            }
-          }
-        }
-      },
       "v1GetExecutionStatusResponse": {
         "type": "object",
         "properties": {
@@ -48252,10 +48440,28 @@
       "v1GetPurchasePlansDetailsResponse": {
         "type": "object",
         "properties": {
-          "plans": {
+          "plan": {
+            "$ref": "#/components/schemas/v1DefaultPurchasePlan"
+          },
+          "lineItems": {
+            "title": "Commitment line item",
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/v1DefaultPurchasePlan"
+              "$ref": "#/components/schemas/v1CommitmentPlanLineItem"
+            }
+          },
+          "resourceMatches": {
+            "title": "Covered infrastructure resource matches",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1CommitmentPlanResourceMatch"
+            }
+          },
+          "history": {
+            "title": "Audit history of the plan",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1PlanHistoryEntry"
             }
           }
         }
@@ -50513,6 +50719,55 @@
             "title": "Length in units of unit",
             "type": "integer",
             "format": "int64"
+          }
+        }
+      },
+      "v1PlanHistoryEntry": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "orgId": {
+            "type": "string"
+          },
+          "relatedObjectId": {
+            "type": "string"
+          },
+          "relatedObjectType": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "data": {
+            "type": "object"
+          },
+          "user": {
+            "$ref": "#/components/schemas/v1PlanHistoryUser"
+          }
+        }
+      },
+      "v1PlanHistoryUser": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "fullName": {
+            "type": "string"
           }
         }
       },
