@@ -31386,14 +31386,10 @@
       "FlagsEvaluateBooleanFlagBody": {
         "type": "object",
         "properties": {
-          "segment": {
-            "type": "string",
-            "description": "Optional. The segment to evaluate the flag for. If not provided, the default value of the flag will be returned."
-          },
           "attributes": {
             "type": "object",
             "properties": {},
-            "description": "Optional. Key-value pairs for additional context when evaluating the flag. Must be provided if segment is present."
+            "description": "Optional. Key-value pairs for additional context when evaluating the flag."
           }
         }
       },
