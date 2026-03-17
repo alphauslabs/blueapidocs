@@ -29950,9 +29950,12 @@
       "CostExportCostFiltersFileBody": {
         "type": "object",
         "properties": {
-          "notificationChannelId": {
-            "type": "string",
-            "description": "Required. The channel id to use for notifications."
+          "notificationChannelIds": {
+            "type": "array",
+            "description": "Required. The channel ids to use for notifications.",
+            "items": {
+              "type": "string"
+            }
           },
           "startTime": {
             "type": "string",
