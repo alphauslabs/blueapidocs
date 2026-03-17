@@ -26032,6 +26032,20 @@
           "type": "string",
           "description": "Required. The context content."
         },
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Optional. The context labels.\n\"labels\": [\"bug\" \"documentation\"]"
+        },
+        "assignees": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Optional. The context assignees.\n\"assignees\": [\"username1\" \"username2\"]"
+        },
         "contextType": {
           "$ref": "#/definitions/lusterContextType",
           "title": "Optional. The context type.\nif not set, default: `any`"
@@ -26069,6 +26083,20 @@
         "content": {
           "type": "string",
           "description": "Optional. The context content."
+        },
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Optional. The context labels.\n\"labels\": [\"bug\" \"documentation\"]"
+        },
+        "assignees": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Optional. The context assignees.\n\"assignees\": [\"username1\" \"username2\"]"
         },
         "contextType": {
           "$ref": "#/definitions/lusterContextType",

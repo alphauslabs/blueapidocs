@@ -32141,6 +32141,20 @@
             "type": "string",
             "description": "Required. The context content."
           },
+          "labels": {
+            "title": "Optional. The context labels.\n\"labels\": [\"bug\" \"documentation\"]",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "assignees": {
+            "title": "Optional. The context assignees.\n\"assignees\": [\"username1\" \"username2\"]",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
           "contextType": {
             "$ref": "#/components/schemas/lusterContextType"
           }
@@ -32180,6 +32194,20 @@
           "content": {
             "type": "string",
             "description": "Optional. The context content."
+          },
+          "labels": {
+            "title": "Optional. The context labels.\n\"labels\": [\"bug\" \"documentation\"]",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "assignees": {
+            "title": "Optional. The context assignees.\n\"assignees\": [\"username1\" \"username2\"]",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           "contextType": {
             "$ref": "#/components/schemas/lusterContextType"
