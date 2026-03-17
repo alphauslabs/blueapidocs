@@ -26102,6 +26102,10 @@
           "$ref": "#/definitions/lusterContextType",
           "title": "Optional. The context type.\nif not set, default: `any`"
         },
+        "state": {
+          "type": "string",
+          "title": "Optional. The context state.\n\"state\": \"open\", \"pending\", \"review\", \"close\""
+        },
         "updateMask": {
           "type": "string",
           "title": "Required.\nsee more info: https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/field_mask.proto"

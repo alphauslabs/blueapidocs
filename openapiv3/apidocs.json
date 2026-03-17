@@ -32212,6 +32212,10 @@
           "contextType": {
             "$ref": "#/components/schemas/lusterContextType"
           },
+          "state": {
+            "title": "Optional. The context state.\n\"state\": \"open\", \"pending\", \"review\", \"close\"",
+            "type": "string"
+          },
           "updateMask": {
             "title": "Required.\nsee more info: https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/field_mask.proto",
             "type": "string"
