@@ -26103,8 +26103,8 @@
           "title": "Optional. The context type.\nif not set, default: `any`"
         },
         "state": {
-          "type": "string",
-          "title": "Optional. The context state.\n\"state\": \"open\", \"pending\", \"review\", \"close\""
+          "$ref": "#/definitions/lusterContextState",
+          "description": "Optional. The context state."
         },
         "updateMask": {
           "type": "string",
@@ -34331,7 +34331,7 @@
         },
         "number": {
           "type": "string",
-          "title": "The context number.\n作成されるごとにnumberが採番されます。"
+          "description": "The context number.\nSequential number assigned to the context."
         },
         "title": {
           "type": "string",
@@ -34339,15 +34339,15 @@
         },
         "content": {
           "type": "string",
-          "title": "The context content.\n \"content\": \"contextの本文詳細...\""
+          "description": "The context content.\nDetailed content or description of the context."
         },
         "contextType": {
           "$ref": "#/definitions/lusterContextType",
           "description": "The context type."
         },
         "state": {
-          "type": "string",
-          "title": "The context state.\n \"state\": \"open\", \"pending\", \"review\", \"close\""
+          "$ref": "#/definitions/lusterContextState",
+          "description": "The context state."
         },
         "labels": {
           "type": "array",
@@ -34392,6 +34392,16 @@
       },
       "title": "The message defines the context"
     },
+    "lusterContextState": {
+      "type": "string",
+      "enum": [
+        "OPEN",
+        "IN_PROGRESS",
+        "CLOSED"
+      ],
+      "default": "OPEN",
+      "description": "The context state.\n\n - OPEN: open\nInitial state when context is created.\n - IN_PROGRESS: in progress\nIndicates work is in progress.\n - CLOSED: closed\nFinal state indicating work is completed."
+    },
     "lusterContextType": {
       "type": "string",
       "enum": [
@@ -34401,7 +34411,7 @@
         "COST"
       ],
       "default": "ANY",
-      "description": "The context type.\n\n - ANY: anyone\n - SPACE: space\n - ACCOUNT: account\n - COST: cost"
+      "description": "The context type.\n\n - ANY: Any type of context.\n - SPACE: Space-related context.\n - ACCOUNT: Account-related context.\n - COST: Cost-related context."
     },
     "lusterSpace": {
       "type": "object",

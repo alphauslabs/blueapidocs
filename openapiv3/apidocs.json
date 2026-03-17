@@ -32213,8 +32213,7 @@
             "$ref": "#/components/schemas/lusterContextType"
           },
           "state": {
-            "title": "Optional. The context state.\n\"state\": \"open\", \"pending\", \"review\", \"close\"",
-            "type": "string"
+            "$ref": "#/components/schemas/lusterContextState"
           },
           "updateMask": {
             "title": "Required.\nsee more info: https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/field_mask.proto",
@@ -40328,23 +40327,22 @@
             "description": "The context name."
           },
           "number": {
-            "title": "The context number.\n作成されるごとにnumberが採番されます。",
-            "type": "string"
+            "type": "string",
+            "description": "The context number.\nSequential number assigned to the context."
           },
           "title": {
             "type": "string",
             "description": "The context title."
           },
           "content": {
-            "title": "The context content.\n \"content\": \"contextの本文詳細...\"",
-            "type": "string"
+            "type": "string",
+            "description": "The context content.\nDetailed content or description of the context."
           },
           "contextType": {
             "$ref": "#/components/schemas/lusterContextType"
           },
           "state": {
-            "title": "The context state.\n \"state\": \"open\", \"pending\", \"review\", \"close\"",
-            "type": "string"
+            "$ref": "#/components/schemas/lusterContextState"
           },
           "labels": {
             "title": "The context labels.\n\"labels\": [\"bug\" \"documentation\"]",
@@ -40388,9 +40386,19 @@
           }
         }
       },
+      "lusterContextState": {
+        "type": "string",
+        "description": "The context state.\n\n - OPEN: open\nInitial state when context is created.\n - IN_PROGRESS: in progress\nIndicates work is in progress.\n - CLOSED: closed\nFinal state indicating work is completed.",
+        "default": "OPEN",
+        "enum": [
+          "OPEN",
+          "IN_PROGRESS",
+          "CLOSED"
+        ]
+      },
       "lusterContextType": {
         "type": "string",
-        "description": "The context type.\n\n - ANY: anyone\n - SPACE: space\n - ACCOUNT: account\n - COST: cost",
+        "description": "The context type.\n\n - ANY: Any type of context.\n - SPACE: Space-related context.\n - ACCOUNT: Account-related context.\n - COST: Cost-related context.",
         "default": "ANY",
         "enum": [
           "ANY",
