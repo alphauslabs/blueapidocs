@@ -8214,6 +8214,77 @@
         ]
       }
     },
+    "/v1/contexts/label/{id}": {
+      "delete": {
+        "summary": "(ALPHA) Deletes label.",
+        "operationId": "Luster_DeleteLabel",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googleRpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Required. the label id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Luster"
+        ]
+      },
+      "put": {
+        "summary": "(ALPHA) Updates label.",
+        "operationId": "Luster_UpdateLabel",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiLusterLabel"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googleRpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Required. the label id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LusterUpdateLabelBody"
+            }
+          }
+        ],
+        "tags": [
+          "Luster"
+        ]
+      }
+    },
     "/v1/contexts/{spaceId}": {
       "post": {
         "summary": "(ALPHA) Creates context.",
@@ -15962,7 +16033,7 @@
     },
     "/v1/spaces": {
       "post": {
-        "summary": "(ALPHA) Creates space.\nスペースの作成。",
+        "summary": "(ALPHA) Creates space.",
         "operationId": "Luster_CreateSpace",
         "responses": {
           "200": {
@@ -15996,7 +16067,7 @@
     },
     "/v1/spaces/{id}": {
       "get": {
-        "summary": "(ALPHA) Gets space.\nスペースの取得。",
+        "summary": "(ALPHA) Gets space.",
         "operationId": "Luster_GetSpace",
         "responses": {
           "200": {
@@ -16033,7 +16104,7 @@
         ]
       },
       "delete": {
-        "summary": "(ALPHA) Deletes space.\nスペースの削除。 削除する場合はスペース内で作成したコンテクストも削除され閲覧できなくなります。",
+        "summary": "(ALPHA) Deletes space. When deleted, contexts created within the space will also be deleted and cannot be viewed.",
         "operationId": "Luster_DeleteSpace",
         "responses": {
           "200": {
@@ -16064,7 +16135,7 @@
         ]
       },
       "put": {
-        "summary": "(ALPHA) Updates space.\nスペースの更新。",
+        "summary": "(ALPHA) Updates space.",
         "operationId": "Luster_UpdateSpace",
         "responses": {
           "200": {
@@ -16104,7 +16175,7 @@
     },
     "/v1/spaces:read": {
       "post": {
-        "summary": "(ALPHA) Reads spaces.\nスペースの読み取り。",
+        "summary": "(ALPHA) Reads spaces.",
         "operationId": "Luster_ReadSpaces",
         "responses": {
           "200": {
@@ -26026,11 +26097,11 @@
       "properties": {
         "title": {
           "type": "string",
-          "description": "Required. The context title."
+          "title": "Required. The context title.\nString length 1-500 characters"
         },
         "content": {
           "type": "string",
-          "description": "Required. The context content."
+          "title": "Required. The context content.\nString length 0-10000 characters"
         },
         "labels": {
           "type": "array",
@@ -26058,7 +26129,7 @@
       "properties": {
         "content": {
           "type": "string",
-          "description": "Required. The comment content."
+          "title": "Required. The comment content.\nString length 1-10000 characters"
         }
       },
       "description": "Request message for the Luster.CreateContextComment rpc."
@@ -26078,11 +26149,11 @@
       "properties": {
         "title": {
           "type": "string",
-          "description": "Optional. The context title."
+          "title": "Optional. The context title.\nString length 1-500 characters"
         },
         "content": {
           "type": "string",
-          "description": "Optional. The context content."
+          "title": "Optional. The context content.\nString length 0-10000 characters"
         },
         "labels": {
           "type": "array",
@@ -26121,7 +26192,7 @@
       "properties": {
         "content": {
           "type": "string",
-          "description": "Required. The comment content."
+          "title": "Required. The comment content.\nString length 1-10000 characters"
         },
         "updateMask": {
           "type": "string",
@@ -26133,16 +26204,41 @@
         "updateMask"
       ]
     },
+    "LusterUpdateLabelBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Optional. the label name."
+        },
+        "color": {
+          "type": "string",
+          "title": "The label color.\nOptional. format: HEX color code (#RRGGBB).\nExample: #FF5733 (valid), #FFF (invalid - must be 6 digits), rgb(255, 87, 51) (invalid format)"
+        },
+        "description": {
+          "type": "string",
+          "title": "Optional. the description.\nString length 0-500 characters"
+        },
+        "updateMask": {
+          "type": "string",
+          "title": "Required.\nsee more info: https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/field_mask.proto"
+        }
+      },
+      "description": "Request message for the Luster.UpdateLabel rpc.",
+      "required": [
+        "updateMask"
+      ]
+    },
     "LusterUpdateSpaceBody": {
       "type": "object",
       "properties": {
         "name": {
           "type": "string",
-          "description": "Optional. the space name."
+          "title": "Optional. the space name.\nString length 1-60 characters"
         },
         "description": {
           "type": "string",
-          "description": "Optional. the space description."
+          "title": "Optional. the space description.\nString length 0-1000 characters"
         },
         "members": {
           "type": "array",
@@ -39308,15 +39404,15 @@
       "properties": {
         "name": {
           "type": "string",
-          "description": "The label name."
+          "title": "The label name.\nString length 1-100 characters"
         },
         "color": {
           "type": "string",
-          "description": "The label color."
+          "title": "The label color.\nRequired format: HEX color code (#RRGGBB).\nExample: #FF5733 (valid), #FFF (invalid - must be 6 digits), rgb(255, 87, 51) (invalid format)"
         },
         "description": {
           "type": "string",
-          "description": "The label description."
+          "title": "The label description.\nString length 0-500 characters"
         }
       },
       "description": "Request message for the Luster.CreateLabel rpc."
@@ -39719,11 +39815,11 @@
       "properties": {
         "name": {
           "type": "string",
-          "description": "Required. the space name."
+          "title": "Required. the space name.\nString length 1-60 characters"
         },
         "description": {
           "type": "string",
-          "description": "Optional. the space description."
+          "title": "Optional. the space description.\nString length 0-1000 characters"
         },
         "members": {
           "type": "array",
