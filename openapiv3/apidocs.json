@@ -10549,10 +10549,9 @@
     "/v1/contexts/label:read": {
       "post": {
         "tags": [
-          "LusterLabel"
+          "Luster"
         ],
-        "summary": "ラベルの読み取り",
-        "description": "ユーザーが管理するラベルの読み取り",
+        "summary": "(ALPHA) [LABEL] Reads labels.",
         "operationId": "Luster_ReadLabels",
         "requestBody": {
           "description": "Request message for the Luster.ReadLabels rpc.",
@@ -20642,7 +20641,8 @@
         "tags": [
           "Luster"
         ],
-        "summary": "(ALPHA) [SPACE] Deletes space. \nWhen deleted, contexts created within the space will also be deleted and cannot be viewed.",
+        "summary": "(ALPHA) [SPACE] Deletes space.",
+        "description": "When deleted, contexts created within the space will also be deleted and cannot be viewed.",
         "operationId": "Luster_DeleteSpace",
         "parameters": [
           {
@@ -34871,7 +34871,7 @@
           },
           "color": {
             "type": "string",
-            "description": "The label color."
+            "description": "The label color.\nformat: HEX color code ( #FF0000 )."
           },
           "description": {
             "type": "string",
