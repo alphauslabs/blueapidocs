@@ -10549,9 +10549,10 @@
     "/v1/contexts/label:read": {
       "post": {
         "tags": [
-          "Luster"
+          "LusterLabel"
         ],
-        "summary": "(ALPHA) [LABEL] Reads labels.",
+        "summary": "ラベルの読み取り",
+        "description": "ユーザーが管理するラベルの読み取り",
         "operationId": "Luster_ReadLabels",
         "requestBody": {
           "description": "Request message for the Luster.ReadLabels rpc.",
