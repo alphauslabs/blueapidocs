@@ -8182,7 +8182,7 @@
     },
     "/v1/contexts/label": {
       "post": {
-        "summary": "(ALPHA) Creates label.",
+        "summary": "(ALPHA) [LABEL] Creates label.",
         "operationId": "Luster_CreateLabel",
         "responses": {
           "200": {
@@ -8216,7 +8216,7 @@
     },
     "/v1/contexts/label/{id}": {
       "delete": {
-        "summary": "(ALPHA) Deletes label.",
+        "summary": "(ALPHA) [LABEL] Deletes label.",
         "operationId": "Luster_DeleteLabel",
         "responses": {
           "200": {
@@ -8247,7 +8247,7 @@
         ]
       },
       "put": {
-        "summary": "(ALPHA) Updates label.",
+        "summary": "(ALPHA) [LABEL] Updates label.",
         "operationId": "Luster_UpdateLabel",
         "responses": {
           "200": {
@@ -8285,9 +8285,52 @@
         ]
       }
     },
+    "/v1/contexts/label:read": {
+      "post": {
+        "summary": "(ALPHA) [LABEL] Reads labels.",
+        "operationId": "Luster_ReadLabels",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/apiLusterLabel"
+                },
+                "error": {
+                  "$ref": "#/definitions/googleRpcStatus"
+                }
+              },
+              "title": "Stream result of apiLusterLabel"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googleRpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Request message for the Luster.ReadLabels rpc.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ReadLabelsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Luster"
+        ]
+      }
+    },
     "/v1/contexts/{spaceId}": {
       "post": {
-        "summary": "(ALPHA) Creates context.",
+        "summary": "(ALPHA) [CONTEXT] Creates context.",
         "operationId": "Luster_CreateContext",
         "responses": {
           "200": {
@@ -8327,7 +8370,7 @@
     },
     "/v1/contexts/{spaceId}/{contextId}/comment": {
       "post": {
-        "summary": "(ALPHA) Creates comment in context.",
+        "summary": "(ALPHA) [COMMENT] Creates comment in context.",
         "operationId": "Luster_CreateContextComment",
         "responses": {
           "200": {
@@ -8374,7 +8417,7 @@
     },
     "/v1/contexts/{spaceId}/{contextId}/comment/{id}": {
       "delete": {
-        "summary": "(ALPHA) Deletes comment in context.",
+        "summary": "(ALPHA) [COMMENT] Deletes comment in context.",
         "operationId": "Luster_DeleteContextComment",
         "responses": {
           "200": {
@@ -8419,7 +8462,7 @@
         ]
       },
       "put": {
-        "summary": "(ALPHA) Updates comment in context.",
+        "summary": "(ALPHA) [COMMENT] Updates comment in context.",
         "operationId": "Luster_UpdateContextComment",
         "responses": {
           "200": {
@@ -8473,7 +8516,7 @@
     },
     "/v1/contexts/{spaceId}/{id}": {
       "get": {
-        "summary": "(ALPHA) Gets context.",
+        "summary": "(ALPHA [CONTEXT]) Gets context.",
         "operationId": "Luster_GetContext",
         "responses": {
           "200": {
@@ -8517,7 +8560,7 @@
         ]
       },
       "delete": {
-        "summary": "(ALPHA) Deletes context.",
+        "summary": "(ALPHA) [CONTEXT] Deletes context.",
         "operationId": "Luster_DeleteContext",
         "responses": {
           "200": {
@@ -8555,7 +8598,7 @@
         ]
       },
       "put": {
-        "summary": "(ALPHA) Updates context.",
+        "summary": "(ALPHA) [CONTEXT] Updates context.",
         "operationId": "Luster_UpdateContext",
         "responses": {
           "200": {
@@ -8602,7 +8645,7 @@
     },
     "/v1/contexts/{spaceId}:read": {
       "post": {
-        "summary": "(ALPHA) Reads contexts.",
+        "summary": "(ALPHA) [CONTEXT] Reads contexts.",
         "operationId": "Luster_ReadContexts",
         "responses": {
           "200": {
@@ -16033,7 +16076,7 @@
     },
     "/v1/spaces": {
       "post": {
-        "summary": "(ALPHA) Creates space.",
+        "summary": "(ALPHA) [SPACE] Creates space.",
         "operationId": "Luster_CreateSpace",
         "responses": {
           "200": {
@@ -16067,7 +16110,7 @@
     },
     "/v1/spaces/{id}": {
       "get": {
-        "summary": "(ALPHA) Gets space.",
+        "summary": "(ALPHA) [SPACE] Gets space.",
         "operationId": "Luster_GetSpace",
         "responses": {
           "200": {
@@ -16104,7 +16147,7 @@
         ]
       },
       "delete": {
-        "summary": "(ALPHA) Deletes space. When deleted, contexts created within the space will also be deleted and cannot be viewed.",
+        "summary": "(ALPHA) [SPACE] Deletes space. \nWhen deleted, contexts created within the space will also be deleted and cannot be viewed.",
         "operationId": "Luster_DeleteSpace",
         "responses": {
           "200": {
@@ -16135,7 +16178,7 @@
         ]
       },
       "put": {
-        "summary": "(ALPHA) Updates space.",
+        "summary": "(ALPHA) [SPACE] Updates space.",
         "operationId": "Luster_UpdateSpace",
         "responses": {
           "200": {
@@ -16175,7 +16218,7 @@
     },
     "/v1/spaces:read": {
       "post": {
-        "summary": "(ALPHA) Reads spaces.",
+        "summary": "(ALPHA) [SPACE] Reads spaces.",
         "operationId": "Luster_ReadSpaces",
         "responses": {
           "200": {
@@ -45776,6 +45819,16 @@
         }
       },
       "description": "Request message for the ReadInvoiceOverviews rpc."
+    },
+    "v1ReadLabelsRequest": {
+      "type": "object",
+      "properties": {
+        "fieldMask": {
+          "type": "string",
+          "title": "Optional. field_mask"
+        }
+      },
+      "description": "Request message for the Luster.ReadLabels rpc."
     },
     "v1ReadSpacesRequest": {
       "type": "object",
