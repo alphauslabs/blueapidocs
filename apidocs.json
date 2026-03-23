@@ -8328,7 +8328,7 @@
         ]
       }
     },
-    "/v1/contexts/{spaceId}": {
+    "/v1/contexts/{spaceId}/context": {
       "post": {
         "summary": "(ALPHA) [CONTEXT] Creates context.",
         "operationId": "Luster_CreateContext",
@@ -8368,7 +8368,7 @@
         ]
       }
     },
-    "/v1/contexts/{spaceId}/{contextId}/comment": {
+    "/v1/contexts/{spaceId}/context/{contextId}/comment": {
       "post": {
         "summary": "(ALPHA) [COMMENT] Creates comment in context.",
         "operationId": "Luster_CreateContextComment",
@@ -8415,7 +8415,7 @@
         ]
       }
     },
-    "/v1/contexts/{spaceId}/{contextId}/comment/{id}": {
+    "/v1/contexts/{spaceId}/context/{contextId}/comment/{id}": {
       "delete": {
         "summary": "(ALPHA) [COMMENT] Deletes comment in context.",
         "operationId": "Luster_DeleteContextComment",
@@ -8514,7 +8514,7 @@
         ]
       }
     },
-    "/v1/contexts/{spaceId}/{id}": {
+    "/v1/contexts/{spaceId}/context/{id}": {
       "get": {
         "summary": "(ALPHA [CONTEXT]) Gets context.",
         "operationId": "Luster_GetContext",
