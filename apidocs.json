@@ -12645,6 +12645,18 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "payerAccountId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "payerAccountName",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -12686,6 +12698,18 @@
           },
           {
             "name": "gcOrgId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "payerAccountId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "payerAccountName",
             "in": "query",
             "required": false,
             "type": "string"
@@ -46046,17 +46070,8 @@
     "v1RegisterOrgRequest": {
       "type": "object",
       "properties": {
-        "mspId": {
-          "type": "string",
-          "title": "Ripple context (not sent to GuaranteedCommitments; used for mapping/persistence)"
-        },
-        "billingId": {
-          "type": "string",
-          "description": "If present =\u003e we're onboarding an MSP customer/org (3rd layer )\nIf empty =\u003e MSP-level org (2nd layer)."
-        },
         "name": {
-          "type": "string",
-          "title": "required"
+          "type": "string"
         },
         "labraSubscriptionId": {
           "type": "string"
@@ -46066,15 +46081,13 @@
           "items": {
             "type": "object",
             "$ref": "#/definitions/v1OrgUser"
-          },
-          "title": "required"
+          }
         },
         "domain": {
           "type": "string"
         },
         "primaryAddress": {
-          "$ref": "#/definitions/v1Address",
-          "title": "required"
+          "$ref": "#/definitions/v1Address"
         },
         "awsMarketplaceOfferLink": {
           "type": "string"
@@ -47044,6 +47057,12 @@
           "type": "string"
         },
         "gcOrgId": {
+          "type": "string"
+        },
+        "payerAccountId": {
+          "type": "string"
+        },
+        "payerAccountName": {
           "type": "string"
         }
       }

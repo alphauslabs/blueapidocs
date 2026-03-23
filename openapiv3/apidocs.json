@@ -16133,6 +16133,20 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "payerAccountId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "payerAccountName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -16184,6 +16198,20 @@
           },
           {
             "name": "gcOrgId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "payerAccountId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "payerAccountName",
             "in": "query",
             "schema": {
               "type": "string"
@@ -51823,23 +51851,13 @@
       "v1RegisterOrgRequest": {
         "type": "object",
         "properties": {
-          "mspId": {
-            "title": "Ripple context (not sent to GuaranteedCommitments; used for mapping/persistence)",
-            "type": "string"
-          },
-          "billingId": {
-            "type": "string",
-            "description": "If present => we're onboarding an MSP customer/org (3rd layer )\nIf empty => MSP-level org (2nd layer)."
-          },
           "name": {
-            "title": "required",
             "type": "string"
           },
           "labraSubscriptionId": {
             "type": "string"
           },
           "users": {
-            "title": "required",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/v1OrgUser"
@@ -52811,6 +52829,12 @@
             "type": "string"
           },
           "gcOrgId": {
+            "type": "string"
+          },
+          "payerAccountId": {
+            "type": "string"
+          },
+          "payerAccountName": {
             "type": "string"
           }
         }
