@@ -28019,26 +28019,6 @@
         }
       }
     },
-    "apiCoverPolicy": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "permissions": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
     "apiCoverRDSDetails": {
       "type": "object",
       "properties": {
@@ -28118,14 +28098,13 @@
         "name": {
           "type": "string"
         },
-        "policies": {
+        "costgroupsIds": {
           "type": "array",
           "items": {
-            "type": "object",
-            "$ref": "#/definitions/apiCoverPolicy"
+            "type": "string"
           }
         },
-        "costgroupsIds": {
+        "permissions": {
           "type": "array",
           "items": {
             "type": "string"
@@ -29038,7 +29017,27 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/blueapiApiPolicy"
+            "$ref": "#/definitions/apiPolicy"
+          }
+        }
+      }
+    },
+    "apiPolicy": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "type": "string"
+        },
+        "effect": {
+          "type": "string"
+        },
+        "key": {
+          "type": "string"
+        },
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "string"
           }
         }
       }
@@ -30456,26 +30455,6 @@
         }
       }
     },
-    "blueapiApiPolicy": {
-      "type": "object",
-      "properties": {
-        "action": {
-          "type": "string"
-        },
-        "effect": {
-          "type": "string"
-        },
-        "key": {
-          "type": "string"
-        },
-        "values": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
     "blueapiApiRole": {
       "type": "object",
       "properties": {
@@ -30495,7 +30474,7 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/blueapiApiPolicy"
+            "$ref": "#/definitions/apiPolicy"
           }
         }
       }
