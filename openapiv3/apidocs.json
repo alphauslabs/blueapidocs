@@ -49913,6 +49913,10 @@
           "vendor": {
             "title": "OPTIONAL: vendor (aws, azure, gcp)",
             "type": "string"
+          },
+          "billingInternalId": {
+            "type": "string",
+            "description": "Optional. If set, return only child invoices for this billing group."
           }
         },
         "description": "Request message for the ListInvoice rpc."
