@@ -13442,6 +13442,58 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/hubs:read": {
+      "post": {
+        "tags": [
+          "Luster"
+        ],
+        "summary": "(ALPHA) [HUB] Reads hubs.",
+        "operationId": "Luster_ReadHubs",
+        "requestBody": {
+          "description": "Request message for the Luster.ReadHubs rpc.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1ReadHubsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Stream result of lusterHub",
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/components/schemas/lusterHub"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/googleRpcStatus"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/info": {
       "get": {
         "tags": [
@@ -40586,6 +40638,34 @@
           "COST"
         ]
       },
+      "lusterHub": {
+        "title": "The message defines the hub",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The hub id."
+          },
+          "name": {
+            "type": "string",
+            "description": "The hub name."
+          },
+          "cost": {
+            "type": "array",
+            "description": "The cost in hub.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "recommendation": {
+            "type": "array",
+            "description": "The recommendation in hub.",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
       "lusterSpace": {
         "title": "The message defines the space",
         "type": "object",
@@ -51537,6 +51617,16 @@
         },
         "description": "Request message for the Billing.ReadCustomizedBillingServices rpc."
       },
+      "v1ReadHubsRequest": {
+        "type": "object",
+        "properties": {
+          "fieldMask": {
+            "title": "Optional. field_mask\nsee more info: https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/field_mask.proto",
+            "type": "string"
+          }
+        },
+        "description": "Request message for the Luster.ReadHubs rpc."
+      },
       "v1ReadInvoiceCostsRequest": {
         "type": "object",
         "properties": {
@@ -51627,7 +51717,7 @@
         "type": "object",
         "properties": {
           "fieldMask": {
-            "title": "Optional. field_mask\nsee more info: https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/field_mask.proto",
+            "title": "Optional. field_mask\nsee more info: https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/field_mask.proto\nAvailable fields: id,name,description,members,created_at,updated_at",
             "type": "string"
           }
         },

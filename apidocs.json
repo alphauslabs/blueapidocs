@@ -10533,6 +10533,49 @@
         ]
       }
     },
+    "/v1/hubs:read": {
+      "post": {
+        "summary": "(ALPHA) [HUB] Reads hubs.",
+        "operationId": "Luster_ReadHubs",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/lusterHub"
+                },
+                "error": {
+                  "$ref": "#/definitions/googleRpcStatus"
+                }
+              },
+              "title": "Stream result of lusterHub"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googleRpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Request message for the Luster.ReadHubs rpc.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ReadHubsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Luster"
+        ]
+      }
+    },
     "/v1/info": {
       "get": {
         "summary": "For Testing Purposes Only.",
@@ -34556,6 +34599,34 @@
       "default": "ANY",
       "description": "The context type.\n\n - ANY: Any type of context.\n - SPACE: Space-related context.\n - ACCOUNT: Account-related context.\n - COST: Cost-related context."
     },
+    "lusterHub": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The hub id."
+        },
+        "name": {
+          "type": "string",
+          "description": "The hub name."
+        },
+        "cost": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "The cost in hub."
+        },
+        "recommendation": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "The recommendation in hub."
+        }
+      },
+      "title": "The message defines the hub"
+    },
     "lusterSpace": {
       "type": "object",
       "properties": {
@@ -45751,6 +45822,16 @@
       },
       "description": "Request message for the Billing.ReadCustomizedBillingServices rpc."
     },
+    "v1ReadHubsRequest": {
+      "type": "object",
+      "properties": {
+        "fieldMask": {
+          "type": "string",
+          "title": "Optional. field_mask\nsee more info: https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/field_mask.proto"
+        }
+      },
+      "description": "Request message for the Luster.ReadHubs rpc."
+    },
     "v1ReadInvoiceCostsRequest": {
       "type": "object",
       "properties": {
@@ -45843,7 +45924,7 @@
       "properties": {
         "fieldMask": {
           "type": "string",
-          "title": "Optional. field_mask\nsee more info: https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/field_mask.proto"
+          "title": "Optional. field_mask\nsee more info: https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/field_mask.proto\nAvailable fields: id,name,description,members,created_at,updated_at"
         }
       },
       "description": "Request message for the Luster.ReadSpaces rpc."
