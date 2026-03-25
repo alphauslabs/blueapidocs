@@ -49918,6 +49918,10 @@
             "additionalProperties": {
               "$ref": "#/components/schemas/billingV1InvoiceSettings"
             }
+          },
+          "hasChild": {
+            "type": "boolean",
+            "description": "True if this invoice/company has a child."
           }
         },
         "description": "Response message for the ListInvoice rpc."
