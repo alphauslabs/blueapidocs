@@ -43660,17 +43660,6 @@
           }
         }
       },
-      "v1ChildBillingGroupInfo": {
-        "type": "object",
-        "properties": {
-          "parentId": {
-            "type": "string"
-          },
-          "rootParentId": {
-            "type": "string"
-          }
-        }
-      },
       "v1ChildBillingGroupInvoiceSettings": {
         "type": "object",
         "properties": {
@@ -44914,9 +44903,6 @@
           "country": {
             "title": "Optional. Company's country",
             "type": "string"
-          },
-          "childbginfo": {
-            "$ref": "#/components/schemas/v1ChildBillingGroupInfo"
           }
         },
         "description": "Request message for the Billing.CreateBillingGroup rpc."
