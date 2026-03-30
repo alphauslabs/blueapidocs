@@ -25942,6 +25942,10 @@
       "properties": {
         "enabled": {
           "type": "boolean"
+        },
+        "newVersion": {
+          "type": "boolean",
+          "description": "temporarily required until we fully transition to the new onboarding flow.\nThis is to avoid any breaks or crash during the transition. Will be removed once the transition is complete.\nDefault value is false."
         }
       }
     },
@@ -44030,6 +44034,9 @@
         "billingGroupName": {
           "type": "string"
         },
+        "companyName": {
+          "type": "string"
+        },
         "payerAccountId": {
           "type": "string"
         },
@@ -44037,6 +44044,9 @@
           "type": "string"
         },
         "segmentId": {
+          "type": "string"
+        },
+        "resourceType": {
           "type": "string"
         },
         "status": {
@@ -44449,6 +44459,13 @@
           "items": {
             "type": "object",
             "$ref": "#/definitions/ListPayerAccountsResponsePayerAccount"
+          }
+        },
+        "payerAccountDetails": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1PayerAccountDetails"
           }
         }
       }
@@ -45215,6 +45232,32 @@
       "properties": {
         "token": {
           "type": "string"
+        }
+      }
+    },
+    "v1PayerAccountDetails": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "string"
+        },
+        "accountName": {
+          "type": "string"
+        },
+        "rippleRegistrationStatus": {
+          "type": "string"
+        },
+        "gcSetupStatus": {
+          "$ref": "#/definitions/GetOnboardingStatusResponseOnboardingStatus",
+          "title": "Latest persisted guaranteed commitment setup/onboarding status for this payer account (if any)"
+        },
+        "verificationChecks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/VerifyAwsOnboardingResponseAwsOnboardingFeatureCheck"
+          },
+          "description": "Detailed AWS verification results (best-effort) returned from the last VerifyAwsOnboarding call.\nThis is used by the UI to \"resume\" the onboarding flow and show which verification checks\npassed/failed when a user comes back later (e.g., after stopping at verification).\nEmpty when verification hasn't been attempted yet or when no checks were persisted."
         }
       }
     },
@@ -48437,6 +48480,10 @@
         "companyId": {
           "type": "string",
           "description": "Required. Company identifier."
+        },
+        "newVersion": {
+          "type": "boolean",
+          "description": "temporarily required until we fully transition to the new onboarding flow.\nThis is to avoid any breaks or crash during the transition. Will be removed once the transition is complete.\nDefault value is false."
         }
       }
     },

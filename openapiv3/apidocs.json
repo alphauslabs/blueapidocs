@@ -32126,6 +32126,10 @@
         "properties": {
           "enabled": {
             "type": "boolean"
+          },
+          "newVersion": {
+            "type": "boolean",
+            "description": "temporarily required until we fully transition to the new onboarding flow.\nThis is to avoid any breaks or crash during the transition. Will be removed once the transition is complete.\nDefault value is false."
           }
         }
       },
@@ -49892,6 +49896,9 @@
           "billingGroupName": {
             "type": "string"
           },
+          "companyName": {
+            "type": "string"
+          },
           "payerAccountId": {
             "type": "string"
           },
@@ -49899,6 +49906,9 @@
             "type": "string"
           },
           "segmentId": {
+            "type": "string"
+          },
+          "resourceType": {
             "type": "string"
           },
           "status": {
@@ -50295,6 +50305,12 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ListPayerAccountsResponsePayerAccount"
+            }
+          },
+          "payerAccountDetails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1PayerAccountDetails"
             }
           }
         }
@@ -51042,6 +51058,30 @@
         "properties": {
           "token": {
             "type": "string"
+          }
+        }
+      },
+      "v1PayerAccountDetails": {
+        "type": "object",
+        "properties": {
+          "accountId": {
+            "type": "string"
+          },
+          "accountName": {
+            "type": "string"
+          },
+          "rippleRegistrationStatus": {
+            "type": "string"
+          },
+          "gcSetupStatus": {
+            "$ref": "#/components/schemas/GetOnboardingStatusResponseOnboardingStatus"
+          },
+          "verificationChecks": {
+            "type": "array",
+            "description": "Detailed AWS verification results (best-effort) returned from the last VerifyAwsOnboarding call.\nThis is used by the UI to \"resume\" the onboarding flow and show which verification checks\npassed/failed when a user comes back later (e.g., after stopping at verification).\nEmpty when verification hasn't been attempted yet or when no checks were persisted.",
+            "items": {
+              "$ref": "#/components/schemas/VerifyAwsOnboardingResponseAwsOnboardingFeatureCheck"
+            }
           }
         }
       },
@@ -54231,6 +54271,10 @@
           "companyId": {
             "type": "string",
             "description": "Required. Company identifier."
+          },
+          "newVersion": {
+            "type": "boolean",
+            "description": "temporarily required until we fully transition to the new onboarding flow.\nThis is to avoid any breaks or crash during the transition. Will be removed once the transition is complete.\nDefault value is false."
           }
         }
       },
