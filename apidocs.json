@@ -12911,6 +12911,278 @@
         ]
       }
     },
+    "/v1/onboarding/azure/integration": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Creates the Azure cloud integration after all onboarding steps complete.",
+        "operationId": "GuaranteedCommitments_CreateAzureIntegration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateAzureIntegrationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googleRpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "CreateAzureIntegrationRequest creates the final Azure integration (Step 8).\nRipple fields are stored alongside Archera integration data to link\nthe Azure tenant to the correct Ripple billing group/company/payer context.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateAzureIntegrationRequest"
+            }
+          }
+        ],
+        "tags": [
+          "GuaranteedCommitments"
+        ]
+      }
+    },
+    "/v1/onboarding/azure/integrations": {
+      "get": {
+        "summary": "WORK-IN-PROGRESS: Lists Azure integrations to verify onboarding completion.",
+        "operationId": "GuaranteedCommitments_ListAzureIntegrations",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListAzureIntegrationsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googleRpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "gcOrgId",
+            "description": "Required. Archera org ID.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "GuaranteedCommitments"
+        ]
+      }
+    },
+    "/v1/onboarding/azure/start": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Starts the Azure onboarding process.\nCreates an onboarding record in Archera for the given org and returns the onboardingId.\nStores the Ripple billingGroupId/companyId association for later use.",
+        "operationId": "GuaranteedCommitments_StartAzureOnboarding",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1StartAzureOnboardingResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googleRpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "StartAzureOnboardingRequest initiates Azure onboarding (Step 1).\nRipple fields are required to link this Azure tenant to the correct\nRipple billing group and company for cost attribution and management.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1StartAzureOnboardingRequest"
+            }
+          }
+        ],
+        "tags": [
+          "GuaranteedCommitments"
+        ]
+      }
+    },
+    "/v1/onboarding/azure/{onboardingId}/accounts": {
+      "get": {
+        "summary": "WORK-IN-PROGRESS: Lists the available Azure subscriptions or billing accounts\nfor the user to select during onboarding.",
+        "operationId": "GuaranteedCommitments_ListAzureOnboardingAccounts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListAzureOnboardingAccountsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googleRpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "onboardingId",
+            "description": "Required. The onboarding ID.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "gcOrgId",
+            "description": "Required. Archera org ID.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "GuaranteedCommitments"
+        ]
+      }
+    },
+    "/v1/onboarding/azure/{onboardingId}/authurl": {
+      "get": {
+        "summary": "WORK-IN-PROGRESS: Returns the Azure OAuth URL the user must visit to authorize Archera.",
+        "operationId": "GuaranteedCommitments_GetAzureOnboardingAuthUrl",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetAzureOnboardingAuthUrlResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googleRpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "onboardingId",
+            "description": "Required. The onboarding ID.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "gcOrgId",
+            "description": "Required. Archera org ID.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "tenantId",
+            "description": "Azure tenant ID.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "subscriptionId",
+            "description": "Azure management subscription ID.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "GuaranteedCommitments"
+        ]
+      }
+    },
+    "/v1/onboarding/azure/{onboardingId}/validate": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Validates that the Azure app was installed and the user authorized it.",
+        "operationId": "GuaranteedCommitments_ValidateAzureAppInstall",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1AzureOnboardingState"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googleRpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "onboardingId",
+            "description": "Required. The onboarding ID.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GuaranteedCommitmentsValidateAzureAppInstallBody"
+            }
+          }
+        ],
+        "tags": [
+          "GuaranteedCommitments"
+        ]
+      }
+    },
+    "/v1/onboarding/azure/{onboardingId}:update": {
+      "post": {
+        "summary": "WORK-IN-PROGRESS: Updates the Azure onboarding record.",
+        "operationId": "GuaranteedCommitments_UpdateAzureOnboarding",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1AzureOnboardingState"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googleRpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "onboardingId",
+            "description": "Required. The onboarding ID returned from StartAzureOnboarding.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GuaranteedCommitmentsUpdateAzureOnboardingBody"
+            }
+          }
+        ],
+        "tags": [
+          "GuaranteedCommitments"
+        ]
+      }
+    },
     "/v1/onboarding/billinggroup:validate": {
       "post": {
         "operationId": "GuaranteedCommitments_ValidateBillingGroup",
@@ -25957,6 +26229,103 @@
         }
       }
     },
+    "GuaranteedCommitmentsUpdateAzureOnboardingBody": {
+      "type": "object",
+      "properties": {
+        "gcOrgId": {
+          "type": "string",
+          "description": "Required. Archera org ID."
+        },
+        "billingGroupId": {
+          "type": "string",
+          "description": "Ripple billing group ID (needed to persist Ripple context)."
+        },
+        "companyId": {
+          "type": "string",
+          "description": "Ripple company ID."
+        },
+        "tenantId": {
+          "type": "string",
+          "description": "Azure fields — set only those that are being updated for this step."
+        },
+        "subscriptionId": {
+          "type": "string"
+        },
+        "accountKind": {
+          "type": "string",
+          "title": "\"subscription\" or \"billing_account\""
+        },
+        "accountIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "blobContainer": {
+          "type": "string"
+        },
+        "resourceGroup": {
+          "type": "string"
+        },
+        "storageAccount": {
+          "type": "string"
+        },
+        "roleName": {
+          "type": "string"
+        },
+        "resourceGroupRegion": {},
+        "storageAccountRegion": {},
+        "resourceGroupTags": {},
+        "storageAccountTags": {}
+      },
+      "description": "UpdateAzureOnboardingRequest updates the onboarding record (Steps 2, 5.5, 7).\nCovers: setting azure resource config, choosing account kind, and selecting accounts."
+    },
+    "GuaranteedCommitmentsValidateAzureAppInstallBody": {
+      "type": "object",
+      "properties": {
+        "gcOrgId": {
+          "type": "string",
+          "description": "Required. Archera org ID."
+        },
+        "type": {
+          "type": "string",
+          "description": "Integration type, e.g. \"cloud/azure\"."
+        },
+        "tenantId": {
+          "type": "string"
+        },
+        "subscriptionId": {
+          "type": "string"
+        },
+        "accountKind": {
+          "type": "string",
+          "title": "\"subscription\" or \"billing_account\""
+        },
+        "accountIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "blobContainer": {
+          "type": "string"
+        },
+        "resourceGroup": {
+          "type": "string"
+        },
+        "storageAccount": {
+          "type": "string"
+        },
+        "roleName": {
+          "type": "string"
+        },
+        "resourceGroupRegion": {},
+        "storageAccountRegion": {},
+        "resourceGroupTags": {},
+        "storageAccountTags": {}
+      },
+      "description": "ValidateAzureAppInstallRequest validates app install after user authorizes (Step 5).\nContains the full azure resource config so Archera can verify permissions."
+    },
     "IamCreatePartnerTokenBody": {
       "type": "object",
       "description": "Request message for the Iam.CreatePartnerToken rpc."
@@ -36925,6 +37294,262 @@
         }
       }
     },
+    "v1AzureAccount": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "string"
+        },
+        "accountName": {
+          "type": "string"
+        },
+        "accountStatus": {
+          "type": "string"
+        },
+        "accountType": {
+          "type": "string",
+          "description": "Azure account type, e.g. \"FreeTrial_2014-09-01\", \"PayAsYouGo\", etc."
+        },
+        "isEligible": {
+          "type": "boolean",
+          "description": "Whether this account is eligible for Archera onboarding."
+        }
+      },
+      "description": "AzureAccount is one available subscription or billing account (Step 6)."
+    },
+    "v1AzureIntegration": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "active": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "description": "Always \"cloud/azure\"."
+        },
+        "orgId": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "managementSubscriptionId": {
+          "type": "string",
+          "title": "Azure-specific"
+        },
+        "providerOrganizationId": {
+          "type": "string",
+          "description": "Azure tenant ID (stored as provider_organization_id in Archera)."
+        },
+        "blobContainer": {
+          "type": "string"
+        },
+        "resourceGroup": {
+          "type": "string"
+        },
+        "storageAccount": {
+          "type": "string"
+        },
+        "costExportFormat": {
+          "type": "string",
+          "title": "\"FOCUS\" or \"ActualCost\""
+        },
+        "curEarliestData": {
+          "type": "string",
+          "title": "CUR/data state"
+        },
+        "curReportName": {
+          "type": "string"
+        },
+        "curUsable": {
+          "type": "boolean"
+        },
+        "hasCurAccess": {
+          "type": "boolean"
+        },
+        "hasFullReservationAccess": {
+          "type": "boolean"
+        },
+        "featureStatuses": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1AzureIntegrationFeatureStatus"
+          },
+          "title": "Feature verification checks"
+        },
+        "onboardings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1AzureIntegrationOnboarding"
+          },
+          "title": "Linked onboarding records"
+        },
+        "config": {
+          "type": "object",
+          "title": "Flexible config blob (etl_enabled, use_vm_ris_not_sps, etc.)"
+        }
+      },
+      "description": "AzureIntegration is the full Azure cloud integration record from Archera."
+    },
+    "v1AzureIntegrationFeatureStatus": {
+      "type": "object",
+      "properties": {
+        "feature": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "title": "\"available\", \"missing\", \"warning\", \"unknown\""
+        },
+        "detail": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Detail strings or JSON describing why a feature is missing/warning."
+        }
+      },
+      "description": "AzureIntegrationFeatureStatus is a single feature check for an Azure integration (Step 9)."
+    },
+    "v1AzureIntegrationOnboarding": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "orgId": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "integrationId": {
+          "type": "string"
+        },
+        "completed": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "createdBy": {
+          "$ref": "#/definitions/v1AzureOnboardingCreatedBy"
+        }
+      },
+      "description": "AzureIntegrationOnboarding is a summary of the onboarding linked to an integration."
+    },
+    "v1AzureOnboardingCreatedBy": {
+      "type": "object",
+      "properties": {
+        "onboardingId": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "fullName": {
+          "type": "string"
+        }
+      },
+      "description": "AzureOnboardingCreatedBy identifies who triggered the onboarding."
+    },
+    "v1AzureOnboardingState": {
+      "type": "object",
+      "properties": {
+        "onboardingId": {
+          "type": "string",
+          "description": "Archera onboarding record ID."
+        },
+        "orgId": {
+          "type": "string",
+          "description": "Archera org ID."
+        },
+        "provider": {
+          "type": "string"
+        },
+        "completed": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "createdBy": {
+          "$ref": "#/definitions/v1AzureOnboardingCreatedBy"
+        },
+        "integration": {
+          "description": "Linked integration object (null until integration is created)."
+        },
+        "integrationId": {
+          "type": "string"
+        },
+        "archeraOutboundIps": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Outbound IPs Archera will use with this onboarding."
+        },
+        "tenantId": {
+          "type": "string",
+          "title": "Azure identity"
+        },
+        "subscriptionId": {
+          "type": "string"
+        },
+        "accountIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "accountKind": {
+          "type": "string",
+          "title": "\"subscription\" or \"billing_account\""
+        },
+        "appAuthValidated": {
+          "title": "Authorization state (nullable, use Value for JSON null interop)"
+        },
+        "appAuthorized": {},
+        "blobContainer": {
+          "type": "string",
+          "title": "Azure resource configuration"
+        },
+        "resourceGroup": {
+          "type": "string"
+        },
+        "storageAccount": {
+          "type": "string"
+        },
+        "roleName": {
+          "type": "string"
+        },
+        "createResources": {},
+        "marketplaceCompleted": {},
+        "permissionLevel": {},
+        "resourceGroupRegion": {},
+        "storageAccountRegion": {},
+        "resourceGroupTags": {},
+        "storageAccountTags": {}
+      },
+      "description": "AzureOnboardingState is the full Archera onboarding record state.\nReturned by StartAzureOnboarding, UpdateAzureOnboarding, ValidateAzureAppInstall."
+    },
     "v1BasicInformation": {
       "type": "object",
       "properties": {
@@ -38720,6 +39345,100 @@
         }
       },
       "description": "Request message for the Iam.CreateApiClient rpc."
+    },
+    "v1CreateAzureIntegrationRequest": {
+      "type": "object",
+      "properties": {
+        "gcOrgId": {
+          "type": "string",
+          "description": "Required. Archera org ID."
+        },
+        "billingGroupId": {
+          "type": "string",
+          "description": "Ripple billing group ID — links this Azure integration to the Ripple billing group."
+        },
+        "companyId": {
+          "type": "string",
+          "description": "Ripple company ID — links this Azure integration to the Ripple company/customer."
+        },
+        "payerAccountId": {
+          "type": "string",
+          "description": "Ripple payer account ID — if applicable, the payer account this Azure spend rolls up to."
+        },
+        "type": {
+          "type": "string",
+          "description": "Integration type, always \"cloud/azure\"."
+        },
+        "tenantId": {
+          "type": "string"
+        },
+        "subscriptionId": {
+          "type": "string"
+        },
+        "onboardingId": {
+          "type": "string"
+        },
+        "accountKind": {
+          "type": "string",
+          "title": "\"subscription\" or \"billing_account\""
+        },
+        "accountIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "blobContainer": {
+          "type": "string"
+        },
+        "resourceGroup": {
+          "type": "string"
+        },
+        "storageAccount": {
+          "type": "string"
+        },
+        "roleName": {
+          "type": "string"
+        },
+        "resourceGroupRegion": {},
+        "storageAccountRegion": {},
+        "resourceGroupTags": {},
+        "storageAccountTags": {}
+      },
+      "description": "CreateAzureIntegrationRequest creates the final Azure integration (Step 8).\nRipple fields are stored alongside Archera integration data to link\nthe Azure tenant to the correct Ripple billing group/company/payer context."
+    },
+    "v1CreateAzureIntegrationResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "description": "True if the integration was successfully created or already existed."
+        },
+        "errorCode": {
+          "type": "string",
+          "description": "Set when the Archera API returned an error (e.g. \"tenant_already_connected\").\n\"tenant_already_connected\" is still considered success."
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "integrationId": {
+          "type": "string",
+          "description": "The Archera integration ID, if available."
+        },
+        "billingGroupId": {
+          "type": "string",
+          "description": "Ripple billing group ID stored with this integration."
+        },
+        "companyId": {
+          "type": "string",
+          "description": "Ripple company ID stored with this integration."
+        },
+        "payerAccountId": {
+          "type": "string",
+          "description": "Ripple payer account ID echoed back."
+        }
+      },
+      "description": "CreateAzureIntegrationResponse is returned after creating the Azure integration (Step 8).\nA \"tenant_already_connected\" error_code is treated as success."
     },
     "v1CreateBillingGroupInvoiceServiceDiscountsResponse": {
       "type": "object",
@@ -41399,6 +42118,16 @@
         }
       }
     },
+    "v1GetAzureOnboardingAuthUrlResponse": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "The Microsoft OAuth URL the user must open to authorize Archera."
+        }
+      },
+      "description": "GetAzureOnboardingAuthUrlResponse contains the OAuth URL (Step 4)."
+    },
     "v1GetBillingGroupAccountSupportPlanResponse": {
       "type": "object",
       "properties": {
@@ -43951,6 +44680,32 @@
         }
       },
       "description": "Request message for the Billing.ListAwsCalculationHistory rpc."
+    },
+    "v1ListAzureIntegrationsResponse": {
+      "type": "object",
+      "properties": {
+        "integrations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1AzureIntegration"
+          }
+        }
+      },
+      "description": "ListAzureIntegrationsResponse contains all Azure integrations for the org (Step 9)."
+    },
+    "v1ListAzureOnboardingAccountsResponse": {
+      "type": "object",
+      "properties": {
+        "accounts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1AzureAccount"
+          }
+        }
+      },
+      "description": "ListAzureOnboardingAccountsResponse returns accounts the user can select."
     },
     "v1ListBillingGroupCustomFieldRequest": {
       "type": "object",
@@ -47361,6 +48116,54 @@
           "type": "string"
         }
       }
+    },
+    "v1StartAzureOnboardingRequest": {
+      "type": "object",
+      "properties": {
+        "billingGroupId": {
+          "type": "string",
+          "description": "Ripple billing group ID. If present =\u003e MSP customer (3rd layer), else MSP-level org (2nd layer)."
+        },
+        "companyId": {
+          "type": "string",
+          "description": "Ripple company ID within the billing group."
+        },
+        "gcOrgId": {
+          "type": "string",
+          "description": "Required. Archera / GuaranteedCommitments org ID."
+        },
+        "tenantId": {
+          "type": "string",
+          "description": "Azure tenant ID."
+        },
+        "subscriptionId": {
+          "type": "string",
+          "description": "Azure management subscription ID."
+        }
+      },
+      "description": "StartAzureOnboardingRequest initiates Azure onboarding (Step 1).\nRipple fields are required to link this Azure tenant to the correct\nRipple billing group and company for cost attribution and management."
+    },
+    "v1StartAzureOnboardingResponse": {
+      "type": "object",
+      "properties": {
+        "onboardingId": {
+          "type": "string",
+          "description": "Archera onboarding ID — pass this to all subsequent Azure onboarding RPCs."
+        },
+        "state": {
+          "$ref": "#/definitions/v1AzureOnboardingState",
+          "description": "Full onboarding state."
+        },
+        "billingGroupId": {
+          "type": "string",
+          "title": "Ripple billing group ID"
+        },
+        "companyId": {
+          "type": "string",
+          "title": "Ripple company ID"
+        }
+      },
+      "description": "StartAzureOnboardingResponse is returned from StartAzureOnboarding."
     },
     "v1SupportPlan": {
       "type": "string",
