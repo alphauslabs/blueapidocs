@@ -28339,6 +28339,56 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/{vendor}/services": {
+      "get": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Lists available cloud services and their associated SKUs for a given vendor.\nUse this to retrieve service codes and names that can be referenced in exclude service settings.",
+        "operationId": "Billing_ListServices",
+        "parameters": [
+          {
+            "name": "vendor",
+            "in": "path",
+            "description": "Required. Cloud vendor (e.g., \"gcp\"). Bound from the URL path.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "code",
+            "in": "query",
+            "description": "Optional. Service code to filter by.\nExample values: \"6F81-5844-456A\" (Cloud Storage), \"95FF-2EF5-5EA1\" (Compute Engine),\n\"152E-C115-5142\" (Cloud SQL).\nUse ListServices without this field to retrieve all available service codes.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1ListServicesResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/{vendor}/services/{costGroupId}": {
       "get": {
         "tags": [
@@ -51618,6 +51668,18 @@
         },
         "description": "Response message for the Iam.ListRoles rpc."
       },
+      "v1ListServicesResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "description": "List of services.",
+            "items": {
+              "$ref": "#/components/schemas/v1ServiceItem"
+            }
+          }
+        }
+      },
       "v1ListSharedResourcesResponse": {
         "type": "object",
         "properties": {
@@ -53900,6 +53962,34 @@
           }
         },
         "description": "ServiceDiscountsExport resource definition."
+      },
+      "v1ServiceItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Service ID."
+          },
+          "code": {
+            "type": "string",
+            "description": "Service code."
+          },
+          "names": {
+            "type": "array",
+            "description": "List of display names for this service.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "skus": {
+            "type": "array",
+            "description": "List of SKU codes under this service.",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "description": "Represents a single service with its associated names and SKUs."
       },
       "v1ServiceSummary": {
         "type": "object",
