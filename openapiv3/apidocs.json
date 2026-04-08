@@ -10061,6 +10061,16 @@
         ],
         "summary": "WORK-IN-PROGRESS: Retrieves the drafted purchase plans",
         "operationId": "GuaranteedCommitments_ListDraftPurchasePlans",
+        "parameters": [
+          {
+            "name": "isDraft",
+            "in": "query",
+            "description": "If set to true, returns plans with Draft status. If set to false, returns plans with Submitted and Executed status.",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "A successful response.",

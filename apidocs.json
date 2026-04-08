@@ -7924,6 +7924,15 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "isDraft",
+            "description": "If set to true, returns plans with Draft status. If set to false, returns plans with Submitted and Executed status.",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
         "tags": [
           "GuaranteedCommitments"
         ]
