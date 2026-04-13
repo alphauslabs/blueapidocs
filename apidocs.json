@@ -10542,6 +10542,45 @@
         ]
       }
     },
+    "/v1/hubs/{hubType}": {
+      "get": {
+        "summary": "(ALPHA) [HUB] Gets hub.",
+        "operationId": "Luster_GetHub",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/lusterHub"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googleRpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "hubType",
+            "description": "Required. the hub type.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "fieldMask",
+            "description": "Optional. field_mask\nsee more info: https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/field_mask.proto",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Luster"
+        ]
+      }
+    },
     "/v1/hubs:read": {
       "post": {
         "summary": "(ALPHA) [HUB] Reads hubs.",

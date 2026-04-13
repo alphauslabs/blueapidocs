@@ -13452,6 +13452,56 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/hubs/{hubType}": {
+      "get": {
+        "tags": [
+          "Luster"
+        ],
+        "summary": "(ALPHA) [HUB] Gets hub.",
+        "operationId": "Luster_GetHub",
+        "parameters": [
+          {
+            "name": "hubType",
+            "in": "path",
+            "description": "Required. the hub type.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fieldMask",
+            "in": "query",
+            "description": "Optional. field_mask\nsee more info: https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/field_mask.proto",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/lusterHub"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/hubs:read": {
       "post": {
         "tags": [
