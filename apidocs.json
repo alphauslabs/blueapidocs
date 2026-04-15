@@ -14866,6 +14866,40 @@
         ]
       }
     },
+    "/v1/reports:export": {
+      "post": {
+        "summary": "Exports a vendor report and delivers results via email notification channel.\nSupports multiple report types per vendor. For AWS, this covers RI/SP utilization reports.",
+        "operationId": "Cost_ExportReport",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ExportReportResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googleRpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Request message for ExportReport.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ExportReportRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Cost"
+        ]
+      }
+    },
     "/v1/reportschedule": {
       "post": {
         "operationId": "Prism_CreateReportSchedule",
@@ -23092,6 +23126,18 @@
         "AWS_ONBOARDING_FEATURE_STATUS_UNKNOWN"
       ],
       "default": "AWS_ONBOARDING_FEATURE_STATUS_UNSPECIFIED"
+    },
+    "AwsRispExportOptionsColumns": {
+      "type": "object",
+      "properties": {
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Per-report column filter container."
     },
     "BillingAllocateAdjustmentEntryBody": {
       "type": "object",
@@ -37425,6 +37471,44 @@
         }
       }
     },
+    "v1AwsRispExportOptions": {
+      "type": "object",
+      "properties": {
+        "includeExpired": {
+          "type": "boolean",
+          "description": "Optional. Include expired RIs/SPs in the results. Default: false."
+        },
+        "language": {
+          "type": "string",
+          "description": "Optional. CSV header language: \"en\" or \"ja\".\nIf empty, defaults to the MSP or login user's language."
+        },
+        "queries": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Required. Report queries to include in the export. Must contain at least 1 value.\nValid values: \"ri_summary\", \"sp_summary\", \"ri_usageaccount\", \"sp_usageaccount\"."
+        },
+        "columns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Optional. Global column filter applied to all reports.\nSuperseded per-report by columns_by_query if that key is present."
+        },
+        "columnsByQuery": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/AwsRispExportOptionsColumns"
+          },
+          "description": "Optional. Per-report column overrides.\nKeys must be valid query names (ri_summary, sp_summary, ri_usageaccount, sp_usageaccount)."
+        }
+      },
+      "description": "AWS RI/SP export options for ExportReport.",
+      "required": [
+        "queries"
+      ]
+    },
     "v1AzureAccount": {
       "type": "object",
       "properties": {
@@ -42028,6 +42112,41 @@
         }
       },
       "description": "Response message for the ExportBillingGroupCsv rpc."
+    },
+    "v1ExportReportRequest": {
+      "type": "object",
+      "properties": {
+        "month": {
+          "type": "string",
+          "description": "Required. Billing month in YYYY-MM format."
+        },
+        "vendor": {
+          "type": "string",
+          "description": "Optional. Cloud vendor.\nAccepted values: \"aws\", \"gcp\", \"azure\".\nIf empty, defaults to \"aws\" for backward compatibility."
+        },
+        "notificationChannelIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Optional. Notification channel IDs to deliver the report.\nIf empty, the MSP default notification channel configured in DynamoDB is used."
+        },
+        "awsOptions": {
+          "$ref": "#/definitions/v1AwsRispExportOptions",
+          "description": "Optional. Valid only for the `aws` vendor. AWS RI/SP export options.\n\nFuture vendor-specific options follow the same pattern (e.g. gcp_options, azure_options)."
+        }
+      },
+      "description": "Request message for ExportReport."
+    },
+    "v1ExportReportResponse": {
+      "type": "object",
+      "properties": {
+        "emailSent": {
+          "type": "boolean",
+          "description": "True if the export email was successfully queued for delivery."
+        }
+      },
+      "description": "Response message for ExportReport."
     },
     "v1ExportServiceDiscountsRequest": {
       "type": "object",
