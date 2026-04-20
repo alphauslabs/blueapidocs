@@ -45452,6 +45452,10 @@
         "billingInternalId": {
           "type": "string",
           "description": "Optional. If set, return only child invoices for this billing group."
+        },
+        "fieldMask": {
+          "type": "string",
+          "description": "Optional. Get only the value that set fieldMask.\n\nsee more info: https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/field_mask.proto"
         }
       },
       "description": "Request message for the ListInvoice rpc."
