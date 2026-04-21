@@ -27963,6 +27963,68 @@
         }
       }
     },
+    "/v1/{vendor}/payers/{id}/billingtransfer": {
+      "post": {
+        "tags": [
+          "Cost"
+        ],
+        "summary": "WORK-IN-PROGRESS: Setup payer's billing transfer information",
+        "operationId": "Cost_SetupPayerAccountBillingTransfer",
+        "parameters": [
+          {
+            "name": "vendor",
+            "in": "path",
+            "description": "Required. The vendor. Only 'aws' is supported for now.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required. The Payer account ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CostSetupPayerAccountBillingTransferBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/{vendor}/payers/{id}/importhistory": {
       "get": {
         "tags": [
@@ -31151,6 +31213,36 @@
           }
         },
         "description": "Request message for the RegisterPayerAccountRequest rpc."
+      },
+      "CostSetupPayerAccountBillingTransferBody": {
+        "title": "Request message for SetupPayerAccountBillingTransfer",
+        "type": "object",
+        "properties": {
+          "month": {
+            "type": "string",
+            "description": "Required. The billing transfer month."
+          },
+          "s3Bucket": {
+            "type": "string",
+            "description": "Required. The s3 bucket where the cost and usage report can be downloaded."
+          },
+          "reportName": {
+            "type": "string",
+            "description": "Required. The actual name of the cost and usage report."
+          },
+          "roleArn": {
+            "type": "string",
+            "description": "Required. The Role ARN needed to access the s3 bucket."
+          },
+          "curType": {
+            "title": "Required. The type of cur. Valid values are: 'legacy' and '2.0'",
+            "type": "string"
+          },
+          "prefix": {
+            "title": "Optional. Prefix of the report inside the bucket",
+            "type": "string"
+          }
+        }
       },
       "CostUpdateAccountBody": {
         "type": "object",
