@@ -10097,6 +10097,90 @@
         }
       }
     },
+    "/v1/commitments/purchaseplans/availabletypes": {
+      "get": {
+        "tags": [
+          "GuaranteedCommitments"
+        ],
+        "summary": "WORK-IN-PROGRESS: Only works for Alphaus for now. Retrieves the available commitment types for a given provider.",
+        "operationId": "GuaranteedCommitments_GetAvailableCommitmentTypes",
+        "parameters": [
+          {
+            "name": "provider",
+            "in": "query",
+            "description": "Required. The cloud provider to query available types for.\nAcceptable values: \"aws\", \"azure\", \"gcp\".",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetAvailableCommitmentTypesResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/commitments/purchaseplans/custom": {
+      "post": {
+        "tags": [
+          "GuaranteedCommitments"
+        ],
+        "summary": "WORK-IN-PROGRESS: Only works for Alphaus for now. Creates a custom (top-down) commitment purchase plan.",
+        "operationId": "GuaranteedCommitments_CreateCustomCommitmentPlan",
+        "requestBody": {
+          "description": "CreateCustomCommitmentPlanRequest creates a new top-down custom commitment plan.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1CreateCustomCommitmentPlanRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1DefaultPurchasePlan"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/commitments/purchaseplans/draft": {
       "get": {
         "tags": [
@@ -10314,6 +10398,47 @@
           }
         },
         "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/commitments/resources": {
+      "get": {
+        "tags": [
+          "GuaranteedCommitments"
+        ],
+        "summary": "WORK-IN-PROGRESS: Only works for Alphaus for now. Retrieves a paginated list of reservable infrastructure resources for a segment.\nSupports filtering, sorting, and a date range for usage aggregation.",
+        "operationId": "GuaranteedCommitments_ListReservableResources",
+        "parameters": [
+          {
+            "name": "segmentId",
+            "in": "query",
+            "description": "Required. The segment ID to scope the query to.\n\n// Optional. Field to sort by. Example: \"ondemand_cost\".\n string orderBy = 2;\n // Optional. If true, sort in descending order.\n bool desc = 3;\n // Optional. URL-encoded JSON filter expression.\n // Example (decoded): {\"and\":[{\"and\":[{\"field\":\"covered_usage\",\"op\":\"<\",\"value\":1}]},{\"and\":[{\"field\":\"is_reservable\",\"op\":\"=\",\"value\":\"true\"}]}]}\n string filter = 4;\n // Required. Start of the usage lookback window (YYYY-MM-DD).\n string startDate = 5;\n // Required. End of the usage lookback window (YYYY-MM-DD).\n string endDate = 6;\n // Optional. Page number (1-based).\n int32 page = 7;\n // Optional. Number of results per page.\n int32 pageSize = 8;",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1ListReservableResourcesResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/googleRpcStatus"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/v1/commitments/{commitmentId}/chart": {
@@ -46685,6 +46810,61 @@
           }
         }
       },
+      "v1CreateCustomCommitmentPlanRequest": {
+        "type": "object",
+        "properties": {
+          "provider": {
+            "type": "string",
+            "description": "Required. The cloud provider. Acceptable values: \"aws\", \"azure\", \"gcp\"."
+          },
+          "startDate": {
+            "type": "string",
+            "description": "Required. ISO 8601 lookback window start timestamp (e.g. \"2026-04-09T02:43:39.717Z\")."
+          },
+          "endDate": {
+            "type": "string",
+            "description": "Required. ISO 8601 lookback window end timestamp (e.g. \"2026-04-16T02:43:39.717Z\")."
+          },
+          "segmentId": {
+            "type": "string",
+            "description": "Required. The segment ID to scope the plan to."
+          },
+          "status": {
+            "type": "string",
+            "description": "Plan status. Use \"draft\" to save without submitting.\nAcceptable values: \"draft\", \"submitted\"."
+          },
+          "description": {
+            "type": "string",
+            "description": "Optional. Human-readable description for the plan."
+          },
+          "name": {
+            "type": "string",
+            "description": "Required. Human-readable name for the plan."
+          },
+          "includedContractSpecs": {
+            "type": "array",
+            "description": "List of contract specifications to include in the plan.\nEach entry selects a commitment category, term, payment option, and optional properties.\n\nAcceptable commitment_type values:\n  \"aws/AmazonEC2\", \"aws/AmazonRDS\", \"aws/AmazonElastiCache\",\n  \"aws/savingsplan/Compute\", \"aws/savingsplan/EC2Instance\", \"aws/savingsplan/Database\"\n\nAcceptable term values:\n  \"thirty_day_gris\"  - 30-day Archera Insured (leased: true)\n  \"one_year_gris\"    - 1-year Archera Insured (leased: true)\n  \"one_year\"         - 1-year Native Uninsured (leased: false)\n  \"three_year\"       - 3-year Native Uninsured (leased: false)\n\nAcceptable payment_option values:\n  \"no_upfront\", \"partial_upfront\", \"all_upfront\"\n  Note: \"partial_upfront\" and \"all_upfront\" are not available for 30-day terms.\n\nAcceptable properties keys:\n  \"leased\" (bool)          - true for Archera Insured terms, false for Native terms.\n  \"offering_class\" (string) - only for \"aws/AmazonEC2\"; \"convertible\" or \"standard\".",
+            "items": {
+              "$ref": "#/components/schemas/v1ContractSpec"
+            }
+          },
+          "includedContractTerms": {
+            "type": "array",
+            "description": "List of contract term keys included in the plan.\nAcceptable values: \"thirty_day_gris\", \"one_year_gris\", \"one_year\", \"three_year\".",
+            "items": {
+              "type": "string"
+            }
+          },
+          "resourceIds": {
+            "type": "array",
+            "description": "Optional. Specific resource IDs to pin the plan to selected infrastructure resources.\nWhen populated, the server returns plan_type \"infrastructure\"; omit for a top-down\n\"purchase\" plan. IDs are composite strings in the format\n\"{resource_id}|{catalog_sku_org_id}|{catalog_sku_id}\" as returned by ListReservableResources.",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "description": "CreateCustomCommitmentPlanRequest creates a new top-down custom commitment plan."
+      },
       "v1CreateCustomFieldRequest": {
         "type": "object",
         "properties": {
@@ -47995,6 +48175,30 @@
           },
           "coverageId": {
             "type": "string"
+          },
+          "monthlyAfterCost": {
+            "title": "Monthly cost breakdowns (returned by CreateCustomCommitmentPlan and related endpoints)",
+            "type": "number",
+            "format": "double"
+          },
+          "monthlyAmortizedCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "monthlyBeforeCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "monthlyFee": {
+            "type": "number",
+            "format": "double"
+          },
+          "allTerms": {
+            "type": "array",
+            "description": "All term keys present across the plan's line items.",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
@@ -48743,6 +48947,18 @@
           "recommendationSummary": {
             "title": "Format: JSON String",
             "type": "string"
+          }
+        }
+      },
+      "v1GetAvailableCommitmentTypesResponse": {
+        "type": "object",
+        "properties": {
+          "types": {
+            "type": "array",
+            "description": "List of available commitment type identifiers for the requested provider.\nExample values: \"aws/AmazonEC2\", \"aws/AmazonRDS\", \"aws/AmazonElastiCache\",\n\"aws/savingsplan/Compute\", \"aws/savingsplan/EC2Instance\", \"aws/savingsplan/Database\".",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
@@ -51977,6 +52193,17 @@
       "v1ListReportSchedulesRequest": {
         "type": "object"
       },
+      "v1ListReservableResourcesResponse": {
+        "type": "object",
+        "properties": {
+          "resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1ReservableResource"
+            }
+          }
+        }
+      },
       "v1ListResourcesResponse": {
         "type": "object",
         "properties": {
@@ -53795,6 +54022,269 @@
           }
         }
       },
+      "v1ReservableResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "resourceId": {
+            "type": "string"
+          },
+          "billingAccountId": {
+            "type": "string"
+          },
+          "subAccountId": {
+            "type": "string"
+          },
+          "provider": {
+            "type": "string",
+            "description": "Cloud provider string, e.g. \"aws\"."
+          },
+          "providerResourceId": {
+            "type": "string"
+          },
+          "providerService": {
+            "type": "string"
+          },
+          "providerSkuId": {
+            "type": "string"
+          },
+          "isSpot": {
+            "type": "boolean"
+          },
+          "isReservable": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "object",
+            "description": "Display name (nullable)."
+          },
+          "resourceGroup": {
+            "type": "object",
+            "description": "Resource group (nullable)."
+          },
+          "usageEnd": {
+            "type": "string"
+          },
+          "usageStart": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "object",
+            "properties": {}
+          },
+          "providerTags": {
+            "type": "object",
+            "properties": {}
+          },
+          "userTags": {
+            "type": "object",
+            "properties": {}
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          },
+          "instanceId": {
+            "type": "string"
+          },
+          "availabilityZone": {
+            "type": "object",
+            "description": "Availability zone (nullable)."
+          },
+          "cacheEngine": {
+            "type": "object",
+            "description": "Cache engine (nullable)."
+          },
+          "catalogSkuId": {
+            "type": "string"
+          },
+          "catalogSkuOrgId": {
+            "type": "string"
+          },
+          "classicNetworkingSupport": {
+            "type": "boolean"
+          },
+          "clockSpeed": {
+            "type": "string"
+          },
+          "commonUsageType": {
+            "type": "string"
+          },
+          "coveredUsage": {
+            "type": "number",
+            "description": "Fraction of usage covered by existing commitments (0.0–1.0).",
+            "format": "double"
+          },
+          "databaseEngine": {
+            "type": "object",
+            "description": "Database engine (nullable)."
+          },
+          "dedicatedEbsThroughput": {
+            "type": "string"
+          },
+          "description": {
+            "type": "object",
+            "description": "Description (nullable)."
+          },
+          "ecu": {
+            "type": "string"
+          },
+          "enhancedNetworkingSupported": {
+            "type": "boolean"
+          },
+          "family": {
+            "type": "string"
+          },
+          "fullRegionName": {
+            "type": "string"
+          },
+          "hasOndemandTerms": {
+            "type": "boolean"
+          },
+          "iconUrl": {
+            "type": "string"
+          },
+          "integrationId": {
+            "type": "string"
+          },
+          "intelAvx2Available": {
+            "type": "boolean"
+          },
+          "intelAvxAvailable": {
+            "type": "boolean"
+          },
+          "intelTurboAvailable": {
+            "type": "boolean"
+          },
+          "io": {
+            "type": "object",
+            "description": "IO descriptor (nullable)."
+          },
+          "isCurrentGeneration": {
+            "type": "boolean"
+          },
+          "isMultiAz": {
+            "type": "object",
+            "description": "Multi-AZ flag (nullable)."
+          },
+          "licenseModel": {
+            "type": "string"
+          },
+          "locationType": {
+            "type": "string"
+          },
+          "memory": {
+            "type": "string",
+            "description": "Memory in bytes as a string, e.g. \"11274289152.0\"."
+          },
+          "skuName": {
+            "type": "object",
+            "description": "SKU name (nullable)."
+          },
+          "skuTitle": {
+            "type": "string"
+          },
+          "netCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "netSavings": {
+            "type": "number",
+            "format": "double"
+          },
+          "networkPerformance": {
+            "type": "string"
+          },
+          "normalizationSizeFactor": {
+            "type": "string"
+          },
+          "ondemandCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "ondemandUsageUnit": {
+            "type": "string"
+          },
+          "operatingSystem": {
+            "type": "string"
+          },
+          "operation": {
+            "type": "string"
+          },
+          "physicalProcessor": {
+            "type": "string"
+          },
+          "preInstalledSw": {
+            "type": "string"
+          },
+          "priceCurrency": {
+            "type": "string"
+          },
+          "processorArchitecture": {
+            "type": "string"
+          },
+          "processorFeatures": {
+            "type": "string"
+          },
+          "publicationDate": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string"
+          },
+          "service": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "storage": {
+            "type": "string"
+          },
+          "taxType": {
+            "type": "object",
+            "description": "Tax type (nullable)."
+          },
+          "tenancy": {
+            "type": "string"
+          },
+          "uptime": {
+            "type": "number",
+            "description": "Fraction of time the resource was running during the lookback period.",
+            "format": "double"
+          },
+          "usageType": {
+            "type": "string"
+          },
+          "vcpu": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "vpcNetworkingSupport": {
+            "type": "boolean"
+          },
+          "instanceType": {
+            "type": "string"
+          },
+          "instanceTypeFamily": {
+            "type": "string"
+          },
+          "dailyUsages": {
+            "type": "array",
+            "description": "Per-day usage breakdown for the requested date range.",
+            "items": {
+              "$ref": "#/components/schemas/v1ResourceDailyUsage"
+            }
+          }
+        },
+        "description": "ReservableResource is a fully-detailed infrastructure resource returned by ListReservableResources.\nIt extends the basic resource shape with usage metrics, daily usage breakdown,\nand hardware/catalog attributes needed for the Reservable Infrastructure view.\n\nComposite ID formatted as\n \"{url_encoded_resource_id}|{url_encoded_catalog_sku_org_id}|{url_encoded_catalog_sku_id}\".\n Each component must be URL/percent-encoded before concatenation so embedded \"|\"\n characters do not break parsing. Consumers must split on \"|\" and URL-decode each part."
+      },
       "v1ResetDemoDataRequest": {
         "type": "object"
       },
@@ -53971,6 +54461,10 @@
           "uptime": {
             "type": "number",
             "format": "double"
+          },
+          "providerUsageType": {
+            "type": "string",
+            "description": "Provider-specific usage type label (e.g. \"BoxUsage:c5n.xlarge\")."
           }
         }
       },
