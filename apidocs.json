@@ -19374,6 +19374,46 @@
         ]
       }
     },
+    "/v1/{vendor}/adjustmententries/customfees": {
+      "post": {
+        "summary": "Creates custom fee entries in the RIPPLE_FEES table.\nUsed to write Guaranteed Commitment entries and Custom Fee entries directly to the fee table. Only available in Ripple.",
+        "operationId": "Billing_CreateCustomFee",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateCustomFeeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googleRpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BillingCreateCustomFeeBody"
+            }
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      }
+    },
     "/v1/{vendor}/adjustmententries/{id}": {
       "get": {
         "summary": "Gets the adjustment entry. Only available in Ripple.",
@@ -19728,6 +19768,55 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/BillingRestoreAdjustmentEntryBody"
+            }
+          }
+        ],
+        "tags": [
+          "Billing"
+        ]
+      }
+    },
+    "/v1/{vendor}/adjustmententryitems:read": {
+      "post": {
+        "summary": "Lists adjustment entry items from the fee table.\nReads fee entries from the RIPPLE_FEES table, optionally filtered by mobingi_type.\nNote: Commitment entries (mobingi_type=\"COMMITMENT\") are excluded from ReadAdjustmentEntries to avoid duplication with the Adjusting Entries UI. Only available in Ripple.",
+        "operationId": "Billing_ListAdjustmentEntryItems",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1AdjustmentEntryItem"
+                },
+                "error": {
+                  "$ref": "#/definitions/googleRpcStatus"
+                }
+              },
+              "title": "Stream result of v1AdjustmentEntryItem"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googleRpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vendor",
+            "description": "Required. At the moment, only `aws` is supported.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BillingListAdjustmentEntryItemsBody"
             }
           }
         ],
@@ -23424,6 +23513,28 @@
       },
       "description": "Request message for the CreateBillingGroupInvoiceServiceDiscounts rpc."
     },
+    "BillingCreateCustomFeeBody": {
+      "type": "object",
+      "properties": {
+        "month": {
+          "type": "string",
+          "description": "Required. The billing month. Format is `yyyymm`."
+        },
+        "entries": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1CustomFeeEntry"
+          },
+          "description": "Required. The fee entries to create."
+        }
+      },
+      "description": "Request message for the Billing.CreateCustomFee rpc.",
+      "required": [
+        "month",
+        "entries"
+      ]
+    },
     "BillingCreateInvoiceBody": {
       "type": "object",
       "properties": {
@@ -23506,6 +23617,27 @@
     "BillingListAccountInvoiceServiceDiscountsBody": {
       "type": "object",
       "description": "Request message for the ListAccountInvoiceServiceDiscounts rpc."
+    },
+    "BillingListAdjustmentEntryItemsBody": {
+      "type": "object",
+      "properties": {
+        "month": {
+          "type": "string",
+          "description": "Required. The billing month. Format is `yyyymm`."
+        },
+        "mobingiType": {
+          "type": "string",
+          "description": "Optional. Filter by entry type (mobingi_type column).\nIf not specified, returns all adjustment entry items."
+        },
+        "status": {
+          "type": "string",
+          "description": "Optional. Filter by apply status.\n\"applied\" returns entries where apply=true, \"pending\" returns entries where apply=false.\nIf empty, returns all entries regardless of status."
+        }
+      },
+      "description": "Request message for the Billing.ListAdjustmentEntryItems rpc.",
+      "required": [
+        "month"
+      ]
     },
     "BillingListInvoiceStatusBody": {
       "type": "object",
@@ -37285,6 +37417,23 @@
       },
       "description": "AdjustmentEntryInfo resource definition."
     },
+    "v1AdjustmentEntryItem": {
+      "type": "object",
+      "properties": {
+        "entry": {
+          "$ref": "#/definitions/v1AdjustmentEntry",
+          "description": "The standard adjustment entry fields (id, account info, entry info, settings)."
+        },
+        "meta": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Additional metadata as key-value pairs."
+        }
+      },
+      "description": "An adjustment entry item with additional metadata for the Guaranteed Commitment Entries UI."
+    },
     "v1AdjustmentEntrySetting": {
       "type": "object",
       "properties": {
@@ -40670,6 +40819,17 @@
       },
       "description": "CreateCustomCommitmentPlanRequest creates a new top-down custom commitment plan."
     },
+    "v1CreateCustomFeeResponse": {
+      "type": "object",
+      "properties": {
+        "created": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The number of entries successfully created."
+        }
+      },
+      "description": "Response message for the Billing.CreateCustomFee rpc."
+    },
     "v1CreateCustomFieldRequest": {
       "type": "object",
       "properties": {
@@ -41699,6 +41859,73 @@
           }
         }
       }
+    },
+    "v1CustomFeeEntry": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "string",
+          "description": "Required. The linked account ID (customer_id in the fee table sort key)."
+        },
+        "payerAccountId": {
+          "type": "string",
+          "description": "Required. The payer account ID (account_id in the fee table sort key)."
+        },
+        "feeType": {
+          "type": "string",
+          "description": "Required. The fee type for the sort key type segment.\nDetermines the main Type column value in Adjusting Entries (e.g., \"Fee\")."
+        },
+        "mobingiType": {
+          "type": "string",
+          "description": "Required. The entry type stored in the mobingi_type column.\nUsed for filtering and categorization (e.g., \"COMMITMENT\" for Guaranteed Commitments, \"CUSTOM\" for Custom Fees).\nAccepted values: UPFRONT, SUPPORT, REGISTRAR, OTHERS, CREDIT, REFUND, COMMITMENT, CUSTOM."
+        },
+        "amount": {
+          "type": "number",
+          "format": "double",
+          "description": "Required. The fee amount (cost). Positive for charges, negative for rebates."
+        },
+        "currencyCode": {
+          "type": "string",
+          "description": "Required. The currency code (e.g., \"USD\")."
+        },
+        "description": {
+          "type": "string",
+          "description": "Required. Human-readable description of the fee.\nFor commitment entries: e.g., \"Guaranteed Compute Savings Plan - Premium\"."
+        },
+        "productCode": {
+          "type": "string",
+          "description": "Optional. The product/service code (e.g., \"aws/savingsplan\")."
+        },
+        "productName": {
+          "type": "string",
+          "description": "Optional. The product/service display name (e.g., \"Compute Savings Plan\")."
+        },
+        "usageStart": {
+          "type": "string",
+          "description": "Optional. The usage start time in RFC 3339 format."
+        },
+        "timeInterval": {
+          "type": "string",
+          "description": "Optional. The time interval in ISO 8601 interval format."
+        },
+        "meta": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Additional metadata as key-value pairs.\nFor Guaranteed Commitment entries, may contain: commitment_id, invoice_id,\ncontract_term, fee_rate, monthly_commitment, monthly_savings, net_savings,\nutilization, billing_account_id, commitment_display_name,\ncommitment_leased_name, provider, commitment_type."
+        }
+      },
+      "description": "A single custom fee entry to write to the adjustments table.",
+      "required": [
+        "accountId",
+        "payerAccountId",
+        "feeType",
+        "mobingiType",
+        "amount",
+        "currencyCode",
+        "description"
+      ]
     },
     "v1CustomField": {
       "type": "object",
