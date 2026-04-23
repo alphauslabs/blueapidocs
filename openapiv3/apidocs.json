@@ -19122,7 +19122,7 @@
         "tags": [
           "Cost"
         ],
-        "summary": "Exports a vendor report and delivers results via email notification channel.\nSupports multiple report types per vendor. For AWS, this covers RI/SP utilization reports.",
+        "summary": "Exports a vendor report and delivers results via email notification channel.\nSupports multiple report types per vendor. For AWS, this covers RI/SP utilization reports.\nReturns a long-running operation; use GetOperation to poll for completion.",
         "operationId": "Cost_ExportReport",
         "requestBody": {
           "description": "Request message for ExportReport.",
@@ -19141,7 +19141,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/v1ExportReportResponse"
+                  "$ref": "#/components/schemas/protosOperation"
                 }
               }
             }
@@ -48873,16 +48873,6 @@
           }
         },
         "description": "Request message for ExportReport."
-      },
-      "v1ExportReportResponse": {
-        "type": "object",
-        "properties": {
-          "emailSent": {
-            "type": "boolean",
-            "description": "True if the export email was successfully queued for delivery."
-          }
-        },
-        "description": "Response message for ExportReport."
       },
       "v1ExportServiceDiscountsRequest": {
         "required": [
