@@ -48817,6 +48817,10 @@
           "endTime": {
             "type": "string",
             "description": "Required. The UTC date to end data from. If not set, the first day of the current year will be used. Format: `yyyymmdd`."
+          },
+          "product": {
+            "type": "string",
+            "description": "Optional. Valid values are 'ripple' and 'wavepro' for now. If empty default is 'ripple'."
           }
         },
         "description": "Request message for the ExportAuditLogs rpc."
