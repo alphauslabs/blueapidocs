@@ -1293,6 +1293,69 @@
         ]
       }
     },
+    "/iam/v1/experimentalui/preferences": {
+      "get": {
+        "summary": "Gets experimental UI preferences for the authenticated MSP.",
+        "operationId": "Iam_GetExperimentalUIPreferences",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetExperimentalUIPreferencesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googleRpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Iam"
+        ]
+      }
+    },
+    "/iam/v1/experimentalui/preferences/{componentId}": {
+      "put": {
+        "summary": "Creates or updates an experimental UI preference for a specific component.",
+        "operationId": "Iam_UpsertExperimentalUIPreference",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpsertExperimentalUIPreferenceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googleRpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "componentId",
+            "description": "The component identifier to create or update a preference for.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/IamUpsertExperimentalUIPreferenceBody"
+            }
+          }
+        ],
+        "tags": [
+          "Iam"
+        ]
+      }
+    },
     "/iam/v1/grouprootusers": {
       "get": {
         "summary": "WORK-IN-PROGRESS: Retrieves all the existing group root users asscoiated with the organization.",
@@ -26934,6 +26997,20 @@
       },
       "description": "Request message for the Iam.UpdateRole rpc."
     },
+    "IamUpsertExperimentalUIPreferenceBody": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string",
+          "description": "The selected UI version for the component (e.g. \"v1\" or \"v2\")."
+        },
+        "bannerDismissed": {
+          "type": "boolean",
+          "description": "Whether the experimental banner has been dismissed for this component."
+        }
+      },
+      "description": "Request message for the Iam.UpsertExperimentalUIPreference rpc."
+    },
     "IdentityProvidersamlInfo": {
       "type": "object",
       "properties": {
@@ -42567,6 +42644,29 @@
         }
       }
     },
+    "v1ExperimentalUIPreference": {
+      "type": "object",
+      "properties": {
+        "componentId": {
+          "type": "string",
+          "description": "The component identifier this preference applies to."
+        },
+        "version": {
+          "type": "string",
+          "description": "The selected UI version for the component (e.g. \"v1\" or \"v2\")."
+        },
+        "bannerDismissed": {
+          "type": "boolean",
+          "description": "Whether the experimental banner has been dismissed for this component."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The timestamp of the last update."
+        }
+      },
+      "description": "ExperimentalUIPreference holds the UI version preference and banner state for a single component."
+    },
     "v1ExportAccountInvoiceServiceDiscountsRequest": {
       "type": "object",
       "properties": {
@@ -44273,6 +44373,20 @@
           "type": "string"
         }
       }
+    },
+    "v1GetExperimentalUIPreferencesResponse": {
+      "type": "object",
+      "properties": {
+        "preferences": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1ExperimentalUIPreference"
+          },
+          "description": "The list of experimental UI preferences for the authenticated MSP."
+        }
+      },
+      "description": "Response message for the Iam.GetExperimentalUIPreferences rpc."
     },
     "v1GetExportRISPRequest": {
       "type": "object",
@@ -50504,6 +50618,16 @@
         }
       },
       "title": "(WIP): Response message for Upload Charge Code"
+    },
+    "v1UpsertExperimentalUIPreferenceResponse": {
+      "type": "object",
+      "properties": {
+        "preference": {
+          "$ref": "#/definitions/v1ExperimentalUIPreference",
+          "description": "The created or updated preference."
+        }
+      },
+      "description": "Response message for the Iam.UpsertExperimentalUIPreference rpc."
     },
     "v1UsageCostDetails": {
       "type": "object",
