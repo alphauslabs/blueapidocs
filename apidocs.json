@@ -8043,7 +8043,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1DefaultPurchasePlan"
+              "$ref": "#/definitions/v1CreateCustomCommitmentPlanResponse"
             }
           },
           "default": {
@@ -40992,9 +40992,28 @@
             "type": "string"
           },
           "description": "Optional. Specific resource IDs to pin the plan to selected infrastructure resources.\nWhen populated, the server returns plan_type \"infrastructure\"; omit for a top-down\n\"purchase\" plan. IDs are composite strings in the format\n\"{resource_id}|{catalog_sku_org_id}|{catalog_sku_id}\" as returned by ListReservableResources."
+        },
+        "companyIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "For top down creation, one or more company IDs to create a plan per segment.\nMutually exclusive with companyId — do not set both."
         }
       },
       "description": "CreateCustomCommitmentPlanRequest creates a new top-down custom commitment plan."
+    },
+    "v1CreateCustomCommitmentPlanResponse": {
+      "type": "object",
+      "properties": {
+        "plans": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1DefaultPurchasePlan"
+          }
+        }
+      }
     },
     "v1CreateCustomFeeResponse": {
       "type": "object",

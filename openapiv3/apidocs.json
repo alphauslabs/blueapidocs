@@ -10246,7 +10246,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/v1DefaultPurchasePlan"
+                  "$ref": "#/components/schemas/v1CreateCustomCommitmentPlanResponse"
                 }
               }
             }
@@ -47245,9 +47245,27 @@
             "items": {
               "type": "string"
             }
+          },
+          "companyIds": {
+            "type": "array",
+            "description": "For top down creation, one or more company IDs to create a plan per segment.\nMutually exclusive with companyId — do not set both.",
+            "items": {
+              "type": "string"
+            }
           }
         },
         "description": "CreateCustomCommitmentPlanRequest creates a new top-down custom commitment plan."
+      },
+      "v1CreateCustomCommitmentPlanResponse": {
+        "type": "object",
+        "properties": {
+          "plans": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1DefaultPurchasePlan"
+            }
+          }
+        }
       },
       "v1CreateCustomFeeResponse": {
         "type": "object",
