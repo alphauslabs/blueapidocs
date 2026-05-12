@@ -8625,6 +8625,99 @@
         }
       }
     },
+    "/v1/billinggroups/{id}/invoicelayoutconfig": {
+      "get": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "WORK-IN-PROGRESS. Gets the billing group invoice layout configs, used for overriding MSP level configs.",
+        "operationId": "Billing_GetBillingGroupInvoiceLayoutConfig",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required. The billing group internal id.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetBillingGroupInvoiceLayoutConfigResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rpcStatus"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "WORK-IN-PROGRESS. Sets the billing group invoice layout configs.",
+        "operationId": "Billing_SetBillingGroupInvoiceLayoutConfig",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required. The billing group internal id.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BillingSetBillingGroupInvoiceLayoutConfigBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/billinggroups/{id}/invoicetemplate": {
       "post": {
         "tags": [
@@ -13983,6 +14076,152 @@
                   "properties": {
                     "result": {
                       "$ref": "#/components/schemas/v1BillingGroupSection"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/rpcStatus"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/invoicelayoutconfig": {
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "WORK-IN-PROGRESS. Creates an invoice layout config.",
+        "operationId": "Billing_CreateInvoiceLayoutConfig",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1CreateInvoiceLayoutConfigRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1CreateInvoiceLayoutConfigResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/invoicelayoutconfig/{id}": {
+      "put": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "WORK-IN-PROGRESS. Updates an invoice layout config.",
+        "operationId": "Billing_UpdateInvoiceLayoutConfig",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required. The layout id to be updated",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BillingUpdateInvoiceLayoutConfigBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/invoicelayoutconfig:read": {
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "WORK-IN-PROGRESS. Reads all invoice layout config under an msp.",
+        "operationId": "Billing_ReadInvoiceLayoutConfig",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1ReadInvoiceLayoutConfigRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Stream result of v1ReadInvoiceLayoutConfigResponse",
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/components/schemas/v1ReadInvoiceLayoutConfigResponse"
                     },
                     "error": {
                       "$ref": "#/components/schemas/rpcStatus"
@@ -28383,6 +28622,15 @@
         },
         "description": "Request message for SetBillingGroupExchangeRate rpc."
       },
+      "BillingSetBillingGroupInvoiceLayoutConfigBody": {
+        "type": "object",
+        "properties": {
+          "layoutId": {
+            "type": "string",
+            "description": "Required. The layout id."
+          }
+        }
+      },
       "BillingSetChildBillingGroupAccountInvoiceServiceDiscountsBody": {
         "type": "object",
         "properties": {
@@ -28796,6 +29044,18 @@
             "items": {
               "type": "string"
             }
+          }
+        }
+      },
+      "BillingUpdateInvoiceLayoutConfigBody": {
+        "type": "object",
+        "properties": {
+          "layout": {
+            "$ref": "#/components/schemas/rippleInvoiceLayout"
+          },
+          "name": {
+            "type": "string",
+            "description": "Optional. The updated name of this invoice layout config."
           }
         }
       },
@@ -43830,6 +44090,27 @@
         },
         "description": "Request message for the Iam.CreateIdentityProvider rpc."
       },
+      "v1CreateInvoiceLayoutConfigRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Required. The name of the invoice layout."
+          },
+          "layout": {
+            "$ref": "#/components/schemas/rippleInvoiceLayout"
+          }
+        }
+      },
+      "v1CreateInvoiceLayoutConfigResponse": {
+        "type": "object",
+        "properties": {
+          "layoutId": {
+            "type": "string",
+            "description": "The id assigned for this layout."
+          }
+        }
+      },
       "v1CreateInvoiceServiceDiscountsRequest": {
         "type": "object",
         "properties": {
@@ -45789,6 +46070,14 @@
             "items": {
               "$ref": "#/components/schemas/v1Announcement"
             }
+          }
+        }
+      },
+      "v1GetBillingGroupInvoiceLayoutConfigResponse": {
+        "type": "object",
+        "properties": {
+          "layout": {
+            "$ref": "#/components/schemas/rippleInvoiceLayout"
           }
         }
       },
@@ -50019,6 +50308,25 @@
           }
         },
         "description": "Response message for the ReadInvoiceIds rpc."
+      },
+      "v1ReadInvoiceLayoutConfigRequest": {
+        "type": "object"
+      },
+      "v1ReadInvoiceLayoutConfigResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Invoice layout config id."
+          },
+          "name": {
+            "type": "string",
+            "description": "Invoice layout config name."
+          },
+          "layout": {
+            "$ref": "#/components/schemas/rippleInvoiceLayout"
+          }
+        }
       },
       "v1ReadInvoiceOverviewsRequest": {
         "type": "object",
