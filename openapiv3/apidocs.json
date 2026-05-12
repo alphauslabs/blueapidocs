@@ -15893,6 +15893,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "recreate",
+            "in": "query",
+            "description": "Optional. If true, recreate the private offer when the existing row is\nin a retryable terminal state: FAILED, EXPIRED, or WITHDRAWN.\nACCEPTED, PENDING, and CREATING are not recreated.",
+            "schema": {
+              "type": "boolean"
+            }
           }
         ],
         "responses": {
