@@ -28926,6 +28926,10 @@
           },
           "language": {
             "type": "string"
+          },
+          "invoiceLayoutConfigId": {
+            "type": "string",
+            "description": "Optional. Invoice Layout Config Id."
           }
         }
       },
@@ -43390,6 +43394,10 @@
           "country": {
             "title": "Optional. Company's country",
             "type": "string"
+          },
+          "invoiceLayoutConfigId": {
+            "type": "string",
+            "description": "Optional. Invoice Layout Config Id."
           }
         },
         "description": "Request message for the Billing.CreateBillingGroup rpc."
