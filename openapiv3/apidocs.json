@@ -29004,6 +29004,10 @@
         "properties": {
           "invoiceSettings": {
             "$ref": "#/components/schemas/v1ChildBillingGroupInvoiceSettings"
+          },
+          "invoiceLayoutConfigId": {
+            "type": "string",
+            "description": "Optional. Invoice layout config id to attach."
           }
         }
       },
@@ -43587,6 +43591,10 @@
           },
           "invoiceSettings": {
             "$ref": "#/components/schemas/v1ChildBillingGroupInvoiceSettings"
+          },
+          "invoiceLayoutConfigId": {
+            "type": "string",
+            "description": "Optional. Invoice layout config id to attach."
           }
         }
       },
