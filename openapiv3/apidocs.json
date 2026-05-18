@@ -14232,6 +14232,46 @@
           }
         },
         "x-codegen-request-body-name": "body"
+      },
+      "delete": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "WORK-IN-PROGRESS. Delete an invoice layout config.",
+        "operationId": "Billing_DeleteInvoiceLayoutConfig",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required. The invoice layout config id.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rpcStatus"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/v1/invoicelayoutconfig:read": {
