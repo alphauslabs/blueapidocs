@@ -49621,6 +49621,18 @@
             "items": {
               "$ref": "#/components/schemas/VerifyAwsOnboardingResponseAwsOnboardingFeatureCheck"
             }
+          },
+          "marketplacePrivateOfferStatus": {
+            "type": "string",
+            "description": "AWS Marketplace private offer status for this payer account.\nValues: NOT_CREATED, CREATING, PENDING, ACCEPTED, EXPIRED, FAILED, WITHDRAWN."
+          },
+          "marketplacePrivateOfferId": {
+            "type": "string",
+            "description": "Optional. AWS Marketplace offer ID if one has already been created."
+          },
+          "marketplacePrivateOfferExpirationDate": {
+            "type": "string",
+            "description": "Optional. Expiration date of the current private offer."
           }
         }
       },
