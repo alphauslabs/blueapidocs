@@ -4409,6 +4409,13 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "includeSPPDiscount",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
           }
         ],
         "responses": {

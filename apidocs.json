@@ -3472,6 +3472,12 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "includeSPPDiscount",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
           }
         ],
         "tags": [
