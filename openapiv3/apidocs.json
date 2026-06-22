@@ -14556,6 +14556,47 @@
         }
       }
     },
+    "/v1/managements/billinggroups/terms:accept": {
+      "post": {
+        "tags": [
+          "GuaranteedCommitments"
+        ],
+        "operationId": "GuaranteedCommitments_AcceptBillingGroupTerms",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1AcceptBillingGroupTermsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1AcceptBillingGroupTermsResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/managements/billinggroups/{companyId}": {
       "post": {
         "tags": [
@@ -40069,6 +40110,17 @@
           }
         }
       },
+      "v1AcceptBillingGroupTermsRequest": {
+        "type": "object"
+      },
+      "v1AcceptBillingGroupTermsResponse": {
+        "type": "object",
+        "properties": {
+          "termsAcceptance": {
+            "$ref": "#/components/schemas/v1TermsAcceptance"
+          }
+        }
+      },
       "v1AccountAccess": {
         "type": "object",
         "properties": {
@@ -46226,6 +46278,9 @@
         "properties": {
           "billingGroup": {
             "$ref": "#/components/schemas/v1ListBillingGroupsResponseBillingGroup"
+          },
+          "termsAcceptance": {
+            "$ref": "#/components/schemas/v1TermsAcceptance"
           }
         }
       },
@@ -47451,6 +47506,9 @@
             "items": {
               "$ref": "#/components/schemas/VerifyAwsOnboardingResponseAwsOnboardingFeatureCheck"
             }
+          },
+          "termsAcceptance": {
+            "$ref": "#/components/schemas/v1TermsAcceptance"
           }
         }
       },
@@ -52029,6 +52087,21 @@
             "type": "string"
           }
         }
+      },
+      "v1TermsAcceptance": {
+        "type": "object",
+        "properties": {
+          "accepted": {
+            "type": "boolean"
+          },
+          "acceptedAt": {
+            "type": "string"
+          },
+          "acceptedBy": {
+            "type": "string"
+          }
+        },
+        "description": "TermsAcceptance represents the current terms acceptance state for an entity."
       },
       "v1ThirdProfitItemSection": {
         "type": "object",
