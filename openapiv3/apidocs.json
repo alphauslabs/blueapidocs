@@ -36046,6 +36046,10 @@
             "items": {
               "$ref": "#/components/schemas/v1FreeFormItem"
             }
+          },
+          "supportFeeAdjustment": {
+            "type": "number",
+            "format": "double"
           }
         }
       },
