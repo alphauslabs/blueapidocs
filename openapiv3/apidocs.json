@@ -41723,6 +41723,9 @@
           },
           "supportFeeCalcTarget": {
             "type": "string"
+          },
+          "supportFeeAdjustment": {
+            "type": "string"
           }
         },
         "description": "Invoice settings that are vendor-specific for each billing group."
