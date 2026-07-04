@@ -43628,6 +43628,10 @@
           },
           "supportFeeCalcTarget": {
             "type": "string"
+          },
+          "supportFeeAdjustment": {
+            "type": "number",
+            "format": "double"
           }
         }
       },

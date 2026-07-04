@@ -37674,6 +37674,10 @@
         },
         "supportFeeCalcTarget": {
           "type": "string"
+        },
+        "supportFeeAdjustment": {
+          "type": "number",
+          "format": "double"
         }
       },
       "title": "Specific settings per vendor"
