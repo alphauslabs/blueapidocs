@@ -17989,6 +17989,119 @@
         }
       }
     },
+    "/v1/reports/invoice/{month}/accounts:read": {
+      "post": {
+        "tags": [
+          "GuaranteedCommitments"
+        ],
+        "summary": "Reads per-account commitment report details for a specific month. Only available in Ripple.",
+        "operationId": "GuaranteedCommitments_ReadCommitmentReportAccounts",
+        "parameters": [
+          {
+            "name": "month",
+            "in": "path",
+            "description": "Required. The billing month. Format: `yyyymm`.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GuaranteedCommitmentsReadCommitmentReportAccountsBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Stream result of v1CommitmentReportAccount",
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/components/schemas/v1CommitmentReportAccount"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/rpcStatus"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/v1/reports/invoice:read": {
+      "post": {
+        "tags": [
+          "GuaranteedCommitments"
+        ],
+        "summary": "Reads monthly commitment reports for the MSP. Only available in Ripple.",
+        "operationId": "GuaranteedCommitments_ReadCommitmentReports",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1ReadCommitmentReportsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Stream result of v1CommitmentReport",
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/components/schemas/v1CommitmentReport"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/rpcStatus"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/reports/rate/nonperforming:read": {
       "post": {
         "tags": [
@@ -31480,6 +31593,9 @@
       "GuaranteedCommitmentsCommitmentsPlanApplyBody": {
         "type": "object"
       },
+      "GuaranteedCommitmentsReadCommitmentReportAccountsBody": {
+        "type": "object"
+      },
       "GuaranteedCommitmentsSaveCommitmentsPlanAsDraftBody": {
         "type": "object",
         "properties": {
@@ -42738,6 +42854,86 @@
           }
         }
       },
+      "v1CommitmentReport": {
+        "type": "object",
+        "properties": {
+          "month": {
+            "type": "string"
+          },
+          "billUnadjusted": {
+            "type": "number",
+            "format": "double"
+          },
+          "billOptimized": {
+            "type": "number",
+            "format": "double"
+          },
+          "grossSavings": {
+            "type": "number",
+            "format": "double"
+          },
+          "riskPremium": {
+            "type": "number",
+            "format": "double"
+          },
+          "rebates": {
+            "type": "number",
+            "format": "double"
+          },
+          "netSavings": {
+            "type": "number",
+            "format": "double"
+          },
+          "revenueShare": {
+            "type": "number",
+            "format": "double"
+          },
+          "revenueShareRate": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "v1CommitmentReportAccount": {
+        "type": "object",
+        "properties": {
+          "billingGroupId": {
+            "type": "string"
+          },
+          "billingGroupName": {
+            "type": "string"
+          },
+          "accountId": {
+            "type": "string"
+          },
+          "accountName": {
+            "type": "string"
+          },
+          "cloud": {
+            "type": "string"
+          },
+          "grossSavings": {
+            "type": "number",
+            "format": "double"
+          },
+          "riskPremium": {
+            "type": "number",
+            "format": "double"
+          },
+          "rebates": {
+            "type": "number",
+            "format": "double"
+          },
+          "netSavings": {
+            "type": "number",
+            "format": "double"
+          },
+          "revenueShare": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
       "v1CommitmentsChartData": {
         "type": "object",
         "properties": {
@@ -50236,6 +50432,9 @@
             "description": "Parent Id. If not empty return all child billing group under the parent only, \nIf both root and parent are empty returns all child billing groups under the MSP."
           }
         }
+      },
+      "v1ReadCommitmentReportsRequest": {
+        "type": "object"
       },
       "v1ReadCostAttributesRequestAwsOptions": {
         "type": "object",
