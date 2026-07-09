@@ -28486,18 +28486,7 @@
           }
         }
       },
-      "AwsOnboardingFeatureCheckAwsOnboardingFeatureStatus": {
-        "type": "string",
-        "default": "AWS_ONBOARDING_FEATURE_STATUS_UNSPECIFIED",
-        "enum": [
-          "AWS_ONBOARDING_FEATURE_STATUS_UNSPECIFIED",
-          "AWS_ONBOARDING_FEATURE_STATUS_AVAILABLE",
-          "AWS_ONBOARDING_FEATURE_STATUS_WARNING",
-          "AWS_ONBOARDING_FEATURE_STATUS_MISSING",
-          "AWS_ONBOARDING_FEATURE_STATUS_UNKNOWN"
-        ]
-      },
-      "AwsRispExportOptionsColumns": {
+      "AwsExportReportOptionsColumns": {
         "type": "object",
         "properties": {
           "values": {
@@ -28508,6 +28497,17 @@
           }
         },
         "description": "Per-report column filter container."
+      },
+      "AwsOnboardingFeatureCheckAwsOnboardingFeatureStatus": {
+        "type": "string",
+        "default": "AWS_ONBOARDING_FEATURE_STATUS_UNSPECIFIED",
+        "enum": [
+          "AWS_ONBOARDING_FEATURE_STATUS_UNSPECIFIED",
+          "AWS_ONBOARDING_FEATURE_STATUS_AVAILABLE",
+          "AWS_ONBOARDING_FEATURE_STATUS_WARNING",
+          "AWS_ONBOARDING_FEATURE_STATUS_MISSING",
+          "AWS_ONBOARDING_FEATURE_STATUS_UNKNOWN"
+        ]
       },
       "BillingAllocateAdjustmentEntryBody": {
         "required": [
@@ -41094,7 +41094,7 @@
           }
         }
       },
-      "v1AwsRispExportOptions": {
+      "v1AwsExportReportOptions": {
         "required": [
           "queries"
         ],
@@ -41110,7 +41110,7 @@
           },
           "queries": {
             "type": "array",
-            "description": "Required. Report queries to include in the export. Must contain at least 1 value.\nValid values: \"ri_summary\", \"sp_summary\", \"ri_usageaccount\", \"sp_usageaccount\".",
+            "description": "Required. Report queries to include in the export. Must contain at least 1 value.",
             "items": {
               "type": "string"
             }
@@ -41125,12 +41125,12 @@
           "columnsByQuery": {
             "type": "object",
             "additionalProperties": {
-              "$ref": "#/components/schemas/AwsRispExportOptionsColumns"
+              "$ref": "#/components/schemas/AwsExportReportOptionsColumns"
             },
-            "description": "Optional. Per-report column overrides.\nKeys must be valid query names (ri_summary, sp_summary, ri_usageaccount, sp_usageaccount)."
+            "description": "Optional. Per-report column overrides.\nKeys must be valid query names for registered AWS export-report queries."
           }
         },
-        "description": "AWS RI/SP export options for ExportReport."
+        "description": "AWS export report options for ExportReport."
       },
       "v1AzureAccount": {
         "type": "object",
@@ -46015,7 +46015,7 @@
             }
           },
           "awsOptions": {
-            "$ref": "#/components/schemas/v1AwsRispExportOptions"
+            "$ref": "#/components/schemas/v1AwsExportReportOptions"
           }
         },
         "description": "Request message for ExportReport."
