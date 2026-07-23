@@ -14281,6 +14281,48 @@
         }
       }
     },
+    "/v1/invoicelayoutconfig/{id}/billinggroups": {
+      "get": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "WORK-IN-PROGRESS. Lists the billing groups attached to an invoice layout config.",
+        "operationId": "Billing_ListInvoiceLayoutConfigBillingGroups",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Required. The invoice layout config id.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1ListInvoiceLayoutConfigBillingGroupsResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/invoicelayoutconfig:read": {
       "post": {
         "tags": [
@@ -48911,6 +48953,18 @@
       },
       "v1ListIntegrationStatusRequest": {
         "type": "object"
+      },
+      "v1ListInvoiceLayoutConfigBillingGroupsResponse": {
+        "type": "object",
+        "properties": {
+          "billinggroupIds": {
+            "type": "array",
+            "description": "The internal ids of the billing groups attached to this layout config.",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
       },
       "v1ListInvoiceRequest": {
         "type": "object",
