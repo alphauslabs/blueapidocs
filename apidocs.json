@@ -34188,6 +34188,10 @@
         "total": {
           "type": "string",
           "title": "The total is name of total.\nex)ALL_TOTAL: \"\""
+        },
+        "customService": {
+          "type": "string",
+          "title": "ex) ALL_CUSTOM_SERVICE: \"請求サービス利用料金\""
         }
       },
       "description": "WORK-IN-PROGRESS: totalInvoiceLayout resource definition."
