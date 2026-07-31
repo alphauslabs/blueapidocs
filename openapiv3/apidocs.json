@@ -40132,6 +40132,13 @@
               "type": "string"
             }
           },
+          "hideSpecificAcctLines": {
+            "title": "ex)BODY_HIDE_SPECIFIC_ACCT_LINES",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
           "serviceDiscountDetail": {
             "title": "The serviceDiscountDetail is setting for service discount detail.\nex)BODY_SERVICE_DISCOUNT_DETAIL: true",
             "type": "boolean"
