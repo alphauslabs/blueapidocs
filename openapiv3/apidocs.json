@@ -31760,8 +31760,8 @@
         }
       },
       "GetOnboardingStatusResponseOnboardingStatus": {
-        "title": "- ONBOARDING_STATUS_NOT_REGISTERED: No row found in archera_users (org not registered yet)\n - ONBOARDING_STATUS_REGISTERED: Existing statuses you already persist",
         "type": "string",
+        "description": "- ONBOARDING_STATUS_NOT_REGISTERED: No row found in archera_users (org not registered yet)\n - ONBOARDING_STATUS_REGISTERED: Existing statuses you already persist",
         "default": "ONBOARDING_STATUS_UNSPECIFIED",
         "enum": [
           "ONBOARDING_STATUS_UNSPECIFIED",
@@ -42263,11 +42263,11 @@
           },
           "accountsOnly": {
             "type": "boolean",
-            "description": "Optional. If set to true, only calculate for account-type billing groups. If both `accountsOnly` and `tagsOnly` are set to true, `accountsOnly` will prevail."
+            "description": "Optional. If set to true, only calculate for account-type billing groups. If both `accountsOnly` and `tagsOnly` are set to true, both flags are ignored and a full run is performed (equivalent to setting neither flag)."
           },
           "tagsOnly": {
             "type": "boolean",
-            "description": "Optional. If set to true, only calculate for tags-type billing groups. Discarded when the organization doesn't have any tag-based billing groups configured. If both `accountsOnly` and `tagsOnly` are set to true, `accountsOnly` will prevail."
+            "description": "Optional. If set to true, only calculate for tags-type billing groups. Discarded when the organization doesn't have any tag-based billing groups configured. If both `accountsOnly` and `tagsOnly` are set to true, both flags are ignored and a full run is performed (equivalent to setting neither flag)."
           }
         }
       },
