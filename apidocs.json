@@ -43499,6 +43499,13 @@
         "hasChild": {
           "type": "boolean",
           "description": "True if this invoice/company has a child."
+        },
+        "attachedVendors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Vendors with a cloud account attached to this billing group, independent of invoice status or usage."
         }
       },
       "description": "Response message for the ListInvoice rpc."
