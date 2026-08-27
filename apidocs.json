@@ -37119,6 +37119,10 @@
             "$ref": "#/definitions/v1BillingGroupAccountSupportPlan"
           },
           "description": "Optional. Only required when accountSupportPlanEnabled is true."
+        },
+        "azure": {
+          "$ref": "#/definitions/v1BillingGroupVendoredInvoiceSetting",
+          "title": "Azure invoice settings"
         }
       }
     },

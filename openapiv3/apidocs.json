@@ -43276,6 +43276,9 @@
             "items": {
               "$ref": "#/components/schemas/v1BillingGroupAccountSupportPlan"
             }
+          },
+          "azure": {
+            "$ref": "#/components/schemas/v1BillingGroupVendoredInvoiceSetting"
           }
         }
       },
