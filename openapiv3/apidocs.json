@@ -51259,6 +51259,13 @@
           "marketplacePrivateOfferExpirationDate": {
             "type": "string",
             "description": "Optional. Expiration date of the current private offer."
+          },
+          "marketplaceSubscriptionStatus": {
+            "type": "string"
+          },
+          "marketplaceAgreementEndDate": {
+            "type": "string",
+            "description": "Optional. Contracted end date of the current marketplace agreement, as reported by AWS."
           }
         }
       },
