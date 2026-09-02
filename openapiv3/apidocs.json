@@ -16769,6 +16769,56 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/onboarding/azure/integration/{onboardingId}": {
+      "delete": {
+        "tags": [
+          "GuaranteedCommitments"
+        ],
+        "summary": "WORK-IN-PROGRESS: Removes an Azure integration from Archera and clears the local record for the given onboardingId.",
+        "operationId": "GuaranteedCommitments_DeleteAzureIntegration",
+        "parameters": [
+          {
+            "name": "onboardingId",
+            "in": "path",
+            "description": "Required. Identifies which onboarding's integration to delete.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gcOrgId",
+            "in": "query",
+            "description": "Required. Archera org ID.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1DeleteAzureIntegrationResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/onboarding/azure/integrations": {
       "get": {
         "tags": [
@@ -46561,6 +46611,26 @@
         "type": "object",
         "properties": {
           "id": {
+            "type": "string"
+          }
+        }
+      },
+      "v1DeleteAzureIntegrationResponse": {
+        "title": "DeleteAzureIntegrationResponse is returned after removing the Azure integration.\nA \"not_found\" errorCode is treated as success",
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "True only when the operation is fully complete: the integration was\nremoved from Archera AND\nall local data for the given onboardingId was cleared."
+          },
+          "errorCode": {
+            "title": "Set on failure, or on the \"not_found\"-as-success case",
+            "type": "string"
+          },
+          "errorMessage": {
+            "type": "string"
+          },
+          "integrationId": {
             "type": "string"
           }
         }
