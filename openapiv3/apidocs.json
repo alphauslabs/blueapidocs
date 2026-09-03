@@ -15784,60 +15784,17 @@
         }
       }
     },
-    "/v1/monthly-misc-fee-imports/{importJobId}": {
-      "get": {
-        "tags": [
-          "Billing"
-        ],
-        "summary": "Gets a completed monthly miscellaneous fee import result.",
-        "operationId": "Billing_GetMonthlyMiscFeeImport",
-        "parameters": [
-          {
-            "name": "importJobId",
-            "in": "path",
-            "description": "Required. Import job ID returned by BulkImportMonthlyMiscFees.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/v1MonthlyMiscFeeImportResult"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/rpcStatus"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/v1/monthly-misc-fees": {
       "get": {
         "tags": [
           "Billing"
         ],
-        "summary": "Lists monthly miscellaneous fee rows.",
+        "summary": "Lists effective monthly FreeFormItems.",
         "operationId": "Billing_ListMonthlyMiscFees",
         "parameters": [
           {
             "name": "billingMonth",
             "in": "query",
-            "description": "Required. Billing cycle in YYYY-MM form; YYYYMM is accepted and normalized by the server.",
             "required": true,
             "schema": {
               "type": "string"
@@ -15846,7 +15803,6 @@
           {
             "name": "billingGroupId",
             "in": "query",
-            "description": "Optional. Exact billing group ID filter.",
             "schema": {
               "type": "string"
             }
@@ -15854,7 +15810,6 @@
           {
             "name": "billingGroupNameQuery",
             "in": "query",
-            "description": "Optional. Case-insensitive billing group name query.",
             "schema": {
               "type": "string"
             }
@@ -15862,39 +15817,6 @@
           {
             "name": "itemQuery",
             "in": "query",
-            "description": "Optional. Case-insensitive item or fee tag query.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "source",
-            "in": "query",
-            "description": "Optional. Source filter, e.g. \"csv\", \"ui\", or \"migration\".",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "updatedBy",
-            "in": "query",
-            "description": "Optional. User identifier that last updated the row.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "updatedAfter",
-            "in": "query",
-            "description": "Optional. RFC3339 lower bound for updated_at.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "updatedBefore",
-            "in": "query",
-            "description": "Optional. RFC3339 upper bound for updated_at.",
             "schema": {
               "type": "string"
             }
@@ -15902,7 +15824,6 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "Optional. Page size for pagination. Default and maximum are server-defined.",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -15911,15 +15832,6 @@
           {
             "name": "pageToken",
             "in": "query",
-            "description": "Optional. Opaque page token from a previous response.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "sort",
-            "in": "query",
-            "description": "Optional. Stable sort expression. Defaults to billing_group_name, item_name, row_id.",
             "schema": {
               "type": "string"
             }
@@ -15947,160 +15859,20 @@
             }
           }
         }
-      },
-      "put": {
-        "tags": [
-          "Billing"
-        ],
-        "summary": "Creates or updates a monthly miscellaneous fee row.",
-        "operationId": "Billing_UpsertMonthlyMiscFee2",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/v1UpsertMonthlyMiscFeeRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/v1MonthlyMiscFee"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/rpcStatus"
-                }
-              }
-            }
-          }
-        },
-        "x-codegen-request-body-name": "body"
       }
     },
     "/v1/monthly-misc-fees/{rowId}": {
-      "get": {
-        "tags": [
-          "Billing"
-        ],
-        "summary": "Gets a monthly miscellaneous fee row.",
-        "operationId": "Billing_GetMonthlyMiscFee",
-        "parameters": [
-          {
-            "name": "rowId",
-            "in": "path",
-            "description": "Required. Server-owned row ID.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "billingMonth",
-            "in": "query",
-            "description": "Required. Billing month used to reject cross-month access or mutation mistakes.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/v1MonthlyMiscFee"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/rpcStatus"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Billing"
-        ],
-        "summary": "Creates or updates a monthly miscellaneous fee row.",
-        "operationId": "Billing_UpsertMonthlyMiscFee",
-        "parameters": [
-          {
-            "name": "rowId",
-            "in": "path",
-            "description": "Optional for create, required for updating an existing server-owned row.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/BillingUpsertMonthlyMiscFeeBody"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/v1MonthlyMiscFee"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/rpcStatus"
-                }
-              }
-            }
-          }
-        },
-        "x-codegen-request-body-name": "body"
-      },
       "delete": {
         "tags": [
           "Billing"
         ],
-        "summary": "Deletes a monthly miscellaneous fee row.",
+        "summary": "Deletes one monthly FreeFormItem through invoice settings.",
         "operationId": "Billing_DeleteMonthlyMiscFee",
         "parameters": [
           {
             "name": "rowId",
             "in": "path",
-            "description": "Required. Server-owned row ID.",
+            "description": "An opaque ID returned by ListMonthlyMiscFees.",
             "required": true,
             "schema": {
               "type": "string"
@@ -16109,7 +15881,6 @@
           {
             "name": "billingMonth",
             "in": "query",
-            "description": "Required. Billing month used to reject cross-month deletion mistakes.",
             "required": true,
             "schema": {
               "type": "string"
@@ -16145,7 +15916,7 @@
         "tags": [
           "Billing"
         ],
-        "summary": "Validates or imports monthly miscellaneous fees from CSV.",
+        "summary": "Validates or imports monthly FreeFormItems from CSV through invoice settings.",
         "operationId": "Billing_BulkImportMonthlyMiscFees",
         "requestBody": {
           "content": {
@@ -16163,7 +15934,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/protosOperation"
+                  "$ref": "#/components/schemas/v1MonthlyMiscFeeImportResult"
                 }
               }
             }
@@ -16182,112 +15953,6 @@
         "x-codegen-request-body-name": "body"
       }
     },
-    "/v1/monthly-misc-fees:export": {
-      "get": {
-        "tags": [
-          "Billing"
-        ],
-        "summary": "Exports monthly miscellaneous fee rows using the list filters.",
-        "operationId": "Billing_ExportMonthlyMiscFees",
-        "parameters": [
-          {
-            "name": "billingMonth",
-            "in": "query",
-            "description": "Required. Billing cycle in YYYY-MM form; YYYYMM is accepted and normalized by the server.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "billingGroupId",
-            "in": "query",
-            "description": "Optional. Exact billing group ID filter.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "billingGroupNameQuery",
-            "in": "query",
-            "description": "Optional. Case-insensitive billing group name query.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "itemQuery",
-            "in": "query",
-            "description": "Optional. Case-insensitive item or fee tag query.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "source",
-            "in": "query",
-            "description": "Optional. Source filter, e.g. \"csv\", \"ui\", or \"migration\".",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "updatedBy",
-            "in": "query",
-            "description": "Optional. User identifier that last updated the row.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "updatedAfter",
-            "in": "query",
-            "description": "Optional. RFC3339 lower bound for updated_at.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "updatedBefore",
-            "in": "query",
-            "description": "Optional. RFC3339 upper bound for updated_at.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "sort",
-            "in": "query",
-            "description": "Optional. Stable sort expression. Defaults to billing_group_name, item_name, row_id.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/v1ExportMonthlyMiscFeesResponse"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/rpcStatus"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/v1/monthly-misc-fees:importTemplate": {
       "get": {
         "tags": [
@@ -16299,7 +15964,7 @@
           {
             "name": "language",
             "in": "query",
-            "description": "Optional. Template language. Supported values are \"en\" and \"ja\". Empty uses the caller's language or server default.",
+            "description": "Optional. Template language. Supported values are \"en\" and \"ja\".",
             "schema": {
               "type": "string"
             }
@@ -30288,21 +29953,6 @@
           }
         }
       },
-      "BillingUpsertMonthlyMiscFeeBody": {
-        "required": [
-          "row"
-        ],
-        "type": "object",
-        "properties": {
-          "row": {
-            "$ref": "#/components/schemas/v1MonthlyMiscFee"
-          },
-          "idempotencyKey": {
-            "type": "string",
-            "description": "Optional. Idempotency key for UI retry safety."
-          }
-        }
-      },
       "ContainerCostUsageRequestFilterCriteria": {
         "type": "object",
         "properties": {
@@ -42878,13 +42528,14 @@
           "csvContent",
           "fileName",
           "format",
-          "formatVersion"
+          "formatVersion",
+          "mode"
         ],
         "type": "object",
         "properties": {
           "billingMonth": {
             "type": "string",
-            "description": "Required. Selected billing cycle in YYYY-MM form; YYYYMM is accepted and normalized by the server."
+            "description": "Required. Selected billing cycle in YYYY-MM form; YYYYMM is normalized."
           },
           "csvContent": {
             "type": "string",
@@ -42892,23 +42543,17 @@
           },
           "fileName": {
             "type": "string",
-            "description": "Required. Original upload file name for audit metadata."
+            "description": "Required. Original upload file name for audit and result display."
           },
           "mode": {
             "type": "string",
-            "description": "Required. One of \"dry-run\", \"replace-month\", or \"merge\". Empty defaults to \"dry-run\"."
+            "description": "Required. \"dry-run\" validates only; \"merge\" upserts FreeFormItems by label."
           },
           "format": {
-            "type": "string",
-            "description": "Required. Import format. Currently \"csv\"."
+            "type": "string"
           },
           "formatVersion": {
-            "type": "string",
-            "description": "Required. Import format version. Currently \"misc_fee_import_v1\"."
-          },
-          "idempotencyKey": {
-            "type": "string",
-            "description": "Optional. Idempotency key for write-mode imports."
+            "type": "string"
           }
         }
       },
@@ -47024,25 +46669,6 @@
         },
         "description": "Response message for the ExportBillingGroupCsv rpc."
       },
-      "v1ExportMonthlyMiscFeesResponse": {
-        "type": "object",
-        "properties": {
-          "csvContent": {
-            "pattern": "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$",
-            "type": "string",
-            "description": "CSV file bytes when the export is returned inline.",
-            "format": "byte"
-          },
-          "exportRef": {
-            "type": "string",
-            "description": "Optional staged export reference or direct download URL."
-          },
-          "fileName": {
-            "type": "string",
-            "description": "Export file name suggested to clients."
-          }
-        }
-      },
       "v1ExportReportRequest": {
         "type": "object",
         "properties": {
@@ -50899,88 +50525,43 @@
           "billingGroupName": {
             "type": "string"
           },
+          "vendor": {
+            "type": "string"
+          },
           "itemName": {
             "type": "string"
           },
           "quantity": {
-            "type": "string"
+            "type": "integer",
+            "format": "int64"
           },
           "unitCost": {
-            "type": "string"
+            "type": "string",
+            "format": "int64"
           },
           "amount": {
-            "type": "string"
+            "type": "string",
+            "format": "int64"
           },
-          "source": {
-            "type": "string"
-          },
-          "importJobId": {
-            "type": "string"
-          },
-          "createdBy": {
-            "type": "string"
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "updatedBy": {
-            "type": "string"
-          },
-          "updatedAt": {
-            "type": "string"
-          }
-        }
-      },
-      "v1MonthlyMiscFeeImportFieldRule": {
-        "type": "object",
-        "properties": {
-          "field": {
-            "type": "string"
-          },
-          "required": {
+          "enabled": {
             "type": "boolean"
           },
-          "format": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          }
-        }
-      },
-      "v1MonthlyMiscFeeImportPreviousValue": {
-        "type": "object",
-        "properties": {
-          "quantity": {
-            "type": "string"
-          },
-          "unitCost": {
-            "type": "string"
-          },
-          "amount": {
-            "type": "string"
+          "source": {
+            "type": "string",
+            "description": "One of \"saved\", \"created\", or \"default\"."
           }
         }
       },
       "v1MonthlyMiscFeeImportResult": {
         "type": "object",
         "properties": {
-          "importJobId": {
-            "type": "string"
-          },
           "status": {
-            "type": "string"
-          },
-          "mode": {
             "type": "string"
           },
           "billingMonth": {
             "type": "string"
           },
           "fileName": {
-            "type": "string"
-          },
-          "fileHash": {
             "type": "string"
           },
           "totalRows": {
@@ -51003,35 +50584,15 @@
             "type": "integer",
             "format": "int32"
           },
-          "deletedRows": {
-            "type": "integer",
-            "format": "int32"
-          },
           "failedRows": {
             "type": "integer",
             "format": "int32"
-          },
-          "replaceMonthExistingRows": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "exportRef": {
-            "type": "string"
           },
           "rowResults": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/v1MonthlyMiscFeeImportRowResult"
             }
-          },
-          "createdBy": {
-            "type": "string"
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "updatedAt": {
-            "type": "string"
           }
         }
       },
@@ -51045,41 +50606,38 @@
           "action": {
             "type": "string"
           },
-          "rowId": {
-            "type": "string"
-          },
-          "billingMonth": {
-            "type": "string"
-          },
           "billingGroupId": {
             "type": "string"
           },
           "billingGroupName": {
             "type": "string"
           },
+          "vendor": {
+            "type": "string"
+          },
           "itemName": {
             "type": "string"
           },
           "quantity": {
-            "type": "string"
+            "type": "integer",
+            "format": "int64"
           },
           "unitCost": {
-            "type": "string"
+            "type": "string",
+            "format": "int64"
           },
           "amount": {
-            "type": "string"
+            "type": "string",
+            "format": "int64"
           },
-          "previousValue": {
-            "$ref": "#/components/schemas/v1MonthlyMiscFeeImportPreviousValue"
+          "enabled": {
+            "type": "boolean"
           },
           "validationErrors": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/v1MonthlyMiscFeeValidationError"
             }
-          },
-          "note": {
-            "type": "string"
           }
         }
       },
@@ -51087,50 +50645,36 @@
         "type": "object",
         "properties": {
           "format": {
-            "type": "string",
-            "description": "Supported import format. Currently \"csv\"."
+            "type": "string"
           },
           "formatVersion": {
-            "type": "string",
-            "description": "Supported format version. Currently \"misc_fee_import_v1\"."
+            "type": "string"
           },
           "headers": {
             "type": "array",
-            "description": "CSV header columns in required order.",
             "items": {
               "type": "string"
             }
           },
           "sampleRow": {
             "type": "array",
-            "description": "Example CSV row matching the current format version.",
             "items": {
               "type": "string"
             }
           },
           "allowedModes": {
             "type": "array",
-            "description": "Supported modes: \"dry-run\", \"replace-month\", and \"merge\".",
             "items": {
               "type": "string"
             }
           },
           "maxFileSizeBytes": {
             "type": "string",
-            "description": "Maximum upload size in bytes.",
             "format": "int64"
           },
           "maxRows": {
             "type": "integer",
-            "description": "Maximum data rows accepted per CSV file.",
             "format": "int32"
-          },
-          "fieldRules": {
-            "type": "array",
-            "description": "Field-level validation rules for UI guidance.",
-            "items": {
-              "$ref": "#/components/schemas/v1MonthlyMiscFeeImportFieldRule"
-            }
           }
         }
       },
@@ -54620,25 +54164,6 @@
           }
         },
         "description": "Response message for the Iam.UpsertExperimentalUIPreference rpc."
-      },
-      "v1UpsertMonthlyMiscFeeRequest": {
-        "required": [
-          "row"
-        ],
-        "type": "object",
-        "properties": {
-          "rowId": {
-            "type": "string",
-            "description": "Optional for create, required for updating an existing server-owned row."
-          },
-          "row": {
-            "$ref": "#/components/schemas/v1MonthlyMiscFee"
-          },
-          "idempotencyKey": {
-            "type": "string",
-            "description": "Optional. Idempotency key for UI retry safety."
-          }
-        }
       },
       "v1UsageCostDetails": {
         "type": "object",
