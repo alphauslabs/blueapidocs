@@ -3585,6 +3585,37 @@
         }
       }
     },
+    "/org/v1:syncFeatureFlags": {
+      "post": {
+        "tags": [
+          "Organization"
+        ],
+        "summary": "Self-heals the caller's own Wave feature-flag state against the MSP's\nroot Ripple state, correcting any drift caused by a missed or delayed\nsync, and returns the corrected state.",
+        "operationId": "Organization_SyncFeatureFlags",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1SyncFeatureFlagsResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/org/v1:verify": {
       "post": {
         "tags": [
@@ -46710,6 +46741,22 @@
         },
         "description": "Request message for the ExportServiceDiscounts rpc."
       },
+      "v1FeatureFlagState": {
+        "type": "object",
+        "properties": {
+          "featureName": {
+            "type": "string"
+          },
+          "featureId": {
+            "type": "string",
+            "description": "The Wave feature UUID, as used by Wave's own $flag(feature_id) checks."
+          },
+          "enabled": {
+            "type": "boolean"
+          }
+        },
+        "description": "A single Wave feature flag's corrected state."
+      },
       "v1FeatureSetting": {
         "title": "For rpc UpdateWaveFeature",
         "type": "object",
@@ -53198,6 +53245,18 @@
             }
           }
         }
+      },
+      "v1SyncFeatureFlagsResponse": {
+        "type": "object",
+        "properties": {
+          "flags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1FeatureFlagState"
+            }
+          }
+        },
+        "description": "Response message for the Organization.SyncFeatureFlags rpc."
       },
       "v1TagSetting": {
         "title": "Settings for a specific customer account for AddTagsToBillingGroup",
