@@ -8976,6 +8976,48 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/billinggroups:bulkUpdate": {
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Update invoice settings on existing billing groups in bulk from a CSV file.\nUnlike BulkCreateBillingGroup, a blank CSV cell preserves the billing group's existing\nvalue for that setting rather than clearing it, and a row referencing a billing group\nthat does not exist fails only that row (no implicit create).\nReturns a long-running operation. Poll status via the Operations service (GET /ops/v1/{name}).",
+        "operationId": "Billing_BulkUpdateBillingGroup",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1BulkUpdateBillingGroupRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/protosOperation"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/billinggroups:paginated": {
       "get": {
         "tags": [
@@ -42631,6 +42673,33 @@
           }
         },
         "description": "Request for BulkTagBillingGroup."
+      },
+      "v1BulkUpdateBillingGroupRequest": {
+        "type": "object",
+        "properties": {
+          "vendor": {
+            "type": "string",
+            "description": "Required. The cloud vendor for all billing groups in this CSV.\nMust be one of: aws, azure, gcp."
+          },
+          "csvContent": {
+            "pattern": "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$",
+            "type": "string",
+            "description": "Required. The CSV file content as bytes.",
+            "format": "byte"
+          },
+          "delimiter": {
+            "type": "string",
+            "description": "Optional. The delimiter used in the CSV file. Defaults to comma (,)."
+          },
+          "hasHeader": {
+            "type": "boolean",
+            "description": "Optional. Whether the first CSV line names the columns. When true, the first\nline is read as a header and columns are matched by name. When false OR omitted\n(proto3 scalar default), the CSV is interpreted using the canonical bulk-update\ncolumn order (the same order as the downloadable template, headerless).\nCallers SHOULD set this field explicitly. Unlike BulkCreateBillingGroup — which\nalways interprets the first CSV line as a header — Bulk Update honors this field\nas given, and the value is preserved on the async execution payload."
+          },
+          "dryRun": {
+            "type": "boolean",
+            "description": "Optional. If true, validate the CSV and resolve/merge against existing billing group\nstate, returning the normalized result, without persisting any change."
+          }
+        }
       },
       "v1CalculateCostsRequestAwsOptions": {
         "type": "object",
