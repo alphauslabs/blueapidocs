@@ -12557,9 +12557,22 @@
           {
             "name": "language",
             "in": "query",
-            "description": "Usually the language of the user information is used, \nbut it may be a different language due to cahce.\nIn that case, you can use this option to change the language of CSV.",
+            "description": "Usually the language of the user information is used,\nbut it may be a different language due to cahce.\nIn that case, you can use this option to change the language of CSV.",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "billingGroupIds",
+            "in": "query",
+            "description": "Optional. Restricts the export to these child billing group internal ids.\nEvery id must resolve to a child of the caller's authorized root billing\ngroup. When empty, the export is unscoped (root-wide), matching prior\nbehavior.",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             }
           }
         ],
@@ -12598,7 +12611,7 @@
           {
             "name": "language",
             "in": "query",
-            "description": "Usually the language of the user information is used, \nbut it may be a different language due to cahce.\nIn that case, you can use this option to change the language of CSV.",
+            "description": "Usually the language of the user information is used,\nbut it may be a different language due to cahce.\nIn that case, you can use this option to change the language of CSV.",
             "schema": {
               "type": "string"
             }
@@ -12609,6 +12622,19 @@
             "description": "Optional. If true, include miscellaneous items in the settings export.",
             "schema": {
               "type": "boolean"
+            }
+          },
+          {
+            "name": "billingGroupIds",
+            "in": "query",
+            "description": "Optional. Restricts the export to these child billing group internal ids.\nEvery id must resolve to a child of the caller's authorized root billing\ngroup. When empty, the export is unscoped (root-wide), matching prior\nbehavior.",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             }
           }
         ],
@@ -46723,11 +46749,18 @@
           },
           "language": {
             "type": "string",
-            "description": "Optional. At the moment, `ja`,`en` is supported.\n\nUsually the language of the user information is used, \nbut it may be a different language due to cahce.\nIn that case, you can use this option to change the language of CSV."
+            "description": "Optional. At the moment, `ja`,`en` is supported.\n\nUsually the language of the user information is used,\nbut it may be a different language due to cahce.\nIn that case, you can use this option to change the language of CSV."
           },
           "directLink": {
             "title": "Returns a directLink if set to true",
             "type": "boolean"
+          },
+          "billingGroupIds": {
+            "type": "array",
+            "description": "Optional. Restricts the export to these child billing group internal ids.\nEvery id must resolve to a child of the caller's authorized root billing\ngroup. When empty, the export is unscoped (root-wide), matching prior\nbehavior.",
+            "items": {
+              "type": "string"
+            }
           }
         },
         "description": "Request message for the ExportAccountInvoiceServiceDiscounts rpc."
@@ -46783,11 +46816,18 @@
           },
           "language": {
             "type": "string",
-            "description": "Optional. At the moment, `ja`,`en` is supported.\n\nUsually the language of the user information is used, \nbut it may be a different language due to cahce.\nIn that case, you can use this option to change the language of CSV."
+            "description": "Optional. At the moment, `ja`,`en` is supported.\n\nUsually the language of the user information is used,\nbut it may be a different language due to cahce.\nIn that case, you can use this option to change the language of CSV."
           },
           "directLink": {
             "title": "Returns a directLink if set to true",
             "type": "boolean"
+          },
+          "billingGroupIds": {
+            "type": "array",
+            "description": "Optional. Restricts the export to these child billing group internal ids.\nEvery id must resolve to a child of the caller's authorized root billing\ngroup. When empty, the export is unscoped (root-wide), matching prior\nbehavior.",
+            "items": {
+              "type": "string"
+            }
           }
         },
         "description": "Request message for the ExportBillingGroupInvoiceServiceDiscounts rpc."
