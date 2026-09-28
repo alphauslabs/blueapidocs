@@ -40732,6 +40732,14 @@
           "hideMarketplace": {
             "title": "The hideMarketplace is setting for hide marketplace.\nex)BODY_HIDE_MARKETPLACE: true",
             "type": "boolean"
+          },
+          "totalOnTop": {
+            "title": "The totalOnTop is setting for showing the amount total section under the header summary.\nex)BODY_TOTAL_ON_TOP: true",
+            "type": "boolean"
+          },
+          "exchangeRateOnTitle": {
+            "title": "The exchangeRateOnTitle is setting for also showing the exchange rate beside the usage details title.\nex)BODY_EXCHANGE_RATE_ON_TITLE: true",
+            "type": "boolean"
           }
         },
         "description": "WORK-IN-PROGRESS: bodyInvoiceLayout resource definition."
