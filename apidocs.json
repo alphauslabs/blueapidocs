@@ -40374,6 +40374,10 @@
             "type": "string"
           },
           "description": "All term keys present across the plan's line items."
+        },
+        "isNothingToPurchase": {
+          "type": "boolean",
+          "description": "True when the plan has zero cost but still has commitment coverage, so there is nothing new to purchase."
         }
       }
     },
