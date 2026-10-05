@@ -32902,6 +32902,13 @@
             "items": {
               "$ref": "#/components/schemas/VerifyAwsOnboardingResponseAwsOnboardingFeatureCheck"
             }
+          },
+          "vendor": {
+            "$ref": "#/components/schemas/v1Provider"
+          },
+          "agreementType": {
+            "type": "string",
+            "description": "Optional. Agreement type, e.g. \"Enterprise Agreement\". Only populated when vendor is AZURE; empty otherwise."
           }
         }
       },
