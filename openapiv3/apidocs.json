@@ -30390,6 +30390,10 @@
           },
           "gcpOptions": {
             "$ref": "#/components/schemas/v1CreateAccountRequestGcpOptions"
+          },
+          "note": {
+            "type": "string",
+            "description": "Optional. A free-text note/memo about this account."
           }
         },
         "description": "Request message for the Cost.CreateAccount rpc."
@@ -30995,6 +30999,10 @@
           "name": {
             "type": "string",
             "description": "Optional."
+          },
+          "note": {
+            "type": "string",
+            "description": "Optional. A free-text note/memo about this account."
           }
         },
         "description": "Request message for the Cost.UpdateAccount rpc."
