@@ -21099,6 +21099,14 @@
               "type": "integer",
               "format": "int32"
             }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Optional. Only return values containing this text, case-insensitive.\nWhen set, totalValueCount and totalPages describe the matching values.",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -50491,7 +50499,7 @@
           },
           "totalValueCount": {
             "type": "integer",
-            "description": "Total distinct-value count for this (customerId, tagKey), consistent\nwith Tags.totalValueCount.",
+            "description": "Total distinct-value count for this (customerId, tagKey), consistent\nwith Tags.totalValueCount. With search set, the count of matching values.",
             "format": "int32"
           },
           "pageNumber": {

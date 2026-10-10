@@ -16538,6 +16538,13 @@
             "required": false,
             "type": "integer",
             "format": "int32"
+          },
+          {
+            "name": "search",
+            "description": "Optional. Only return values containing this text, case-insensitive.\nWhen set, totalValueCount and totalPages describe the matching values.",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -44513,7 +44520,7 @@
         "totalValueCount": {
           "type": "integer",
           "format": "int32",
-          "description": "Total distinct-value count for this (customerId, tagKey), consistent\nwith Tags.totalValueCount."
+          "description": "Total distinct-value count for this (customerId, tagKey), consistent\nwith Tags.totalValueCount. With search set, the count of matching values."
         },
         "pageNumber": {
           "type": "integer",
