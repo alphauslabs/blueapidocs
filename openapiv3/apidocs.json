@@ -50294,6 +50294,13 @@
           "fieldMask": {
             "type": "string",
             "description": "Optional. Get only the value that set fieldMask.\n\nsee more info: https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/field_mask.proto"
+          },
+          "childBillingInternalIds": {
+            "type": "array",
+            "description": "Optional. If set, return only the invoices of these child billing groups\n(any depth, any parent) in one call. Cannot be used with `billingInternalId`.",
+            "items": {
+              "type": "string"
+            }
           }
         },
         "description": "Request message for the ListInvoice rpc."
