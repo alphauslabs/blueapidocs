@@ -140,6 +140,16 @@
         ],
         "summary": "Lists all account groups.",
         "operationId": "Admin_ListAccountGroups",
+        "parameters": [
+          {
+            "name": "vendor",
+            "in": "query",
+            "description": "Optional. Scopes the list to a single vendor for Wave callers (one of 'aws', 'azure', 'gcp'); lists across all vendors when empty. No effect for Ripple callers.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "A successful response.(streaming responses)",
@@ -171,6 +181,47 @@
             }
           }
         }
+      },
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Creates an account group.",
+        "operationId": "Admin_CreateAccountGroup",
+        "requestBody": {
+          "description": "Request message for the Admin.CreateAccountGroup rpc.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1CreateAccountGroupRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1CreateAccountGroupResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
       }
     },
     "/admin/v1/acctgroups/{id}": {
@@ -188,6 +239,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "vendor",
+            "in": "query",
+            "description": "Required for Wave callers (one of 'aws', 'azure', 'gcp'); needed to resolve the group's storage key. No effect for Ripple callers.",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -197,6 +256,103 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/v1GetAccountGroupResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rpcStatus"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Updates an account group. The account id list fully replaces the group's current membership.",
+        "operationId": "Admin_UpdateAccountGroup",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminUpdateAccountGroupBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1UpdateAccountGroupResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      },
+      "delete": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Deletes an account group.",
+        "operationId": "Admin_DeleteAccountGroup",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "vendor",
+            "in": "query",
+            "description": "Required for Wave callers (one of 'aws', 'azure', 'gcp'). No effect for Ripple callers.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
                 }
               }
             }
@@ -29172,6 +29328,26 @@
           }
         }
       },
+      "AdminUpdateAccountGroupBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "accountIds": {
+            "type": "array",
+            "description": "The complete new membership of the group. Fully replaces the current members; not a delta.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "vendor": {
+            "type": "string",
+            "description": "Required for Wave callers (one of 'aws', 'azure', 'gcp'). No effect for Ripple callers."
+          }
+        },
+        "description": "Request message for the Admin.UpdateAccountGroup rpc."
+      },
       "AdminUpdateNotificationBody": {
         "type": "object",
         "properties": {
@@ -44242,6 +44418,34 @@
           }
         }
       },
+      "v1CreateAccountGroupRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "accountIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "vendor": {
+            "type": "string",
+            "description": "Required for Wave callers (one of 'aws', 'azure', 'gcp'). No effect for Ripple callers."
+          }
+        },
+        "description": "Request message for the Admin.CreateAccountGroup rpc."
+      },
+      "v1CreateAccountGroupResponse": {
+        "type": "object",
+        "properties": {
+          "acctGroup": {
+            "$ref": "#/components/schemas/apiAccountGroup"
+          }
+        },
+        "description": "Response message for the Admin.CreateAccountGroup rpc."
+      },
       "v1CreateAccountInvoiceServiceDiscountsResponse": {
         "type": "object",
         "properties": {
@@ -53997,6 +54201,15 @@
             "type": "string"
           }
         }
+      },
+      "v1UpdateAccountGroupResponse": {
+        "type": "object",
+        "properties": {
+          "acctGroup": {
+            "$ref": "#/components/schemas/apiAccountGroup"
+          }
+        },
+        "description": "Response message for the Admin.UpdateAccountGroup rpc."
       },
       "v1UpdateAccountInvoiceServiceDiscountsResponse": {
         "type": "object",
