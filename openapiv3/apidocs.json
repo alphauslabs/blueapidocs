@@ -16519,6 +16519,47 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/v1/onboarding/azure/ea/configure": {
+      "post": {
+        "tags": [
+          "GuaranteedCommitments"
+        ],
+        "operationId": "GuaranteedCommitments_ConfigureAzureEaOnboarding",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1ConfigureAzureEaOnboardingRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1ConfigureAzureEaOnboardingResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/onboarding/azure/integration": {
       "post": {
         "tags": [
@@ -30160,6 +30201,18 @@
             }
           }
         }
+      },
+      "ConfigureAzureEaOnboardingRequestAction": {
+        "type": "string",
+        "default": "START_ONBOARDING",
+        "enum": [
+          "START_ONBOARDING",
+          "SUBMIT_PAYER_DETAILS",
+          "CONFIGURE_GC_RESOURCE_STORAGE",
+          "CHECK_AUTHORIZATION",
+          "SUBMIT_ACCOUNT_SCOPE",
+          "COMPLETE_ONBOARDING"
+        ]
       },
       "ContainerCostUsageRequestFilterCriteria": {
         "type": "object",
@@ -43909,6 +43962,52 @@
           }
         }
       },
+      "v1ConfigureAzureEaOnboardingRequest": {
+        "required": [
+          "action"
+        ],
+        "type": "object",
+        "properties": {
+          "action": {
+            "$ref": "#/components/schemas/ConfigureAzureEaOnboardingRequestAction"
+          },
+          "onboardingId": {
+            "type": "string"
+          },
+          "billingId": {
+            "type": "string"
+          },
+          "billingName": {
+            "type": "string"
+          },
+          "appId": {
+            "type": "string"
+          },
+          "tenantId": {
+            "type": "string"
+          },
+          "clientSecret": {
+            "type": "string"
+          },
+          "accountScopes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "subscriptionId": {
+            "type": "string"
+          }
+        }
+      },
+      "v1ConfigureAzureEaOnboardingResponse": {
+        "type": "object",
+        "properties": {
+          "onboardingId": {
+            "type": "string"
+          }
+        }
+      },
       "v1ConfirmGoogleSheetAccessRequest": {
         "type": "object",
         "properties": {
@@ -51275,7 +51374,7 @@
           },
           "agreementType": {
             "type": "string",
-            "description": "Optional. Agreement type, e.g. \"Enterprise Agreement\". Only populated when vendor is AZURE; empty otherwise."
+            "description": "Optional. Agreement type, e.g. \"azureea\". Only populated when vendor is AZURE; empty otherwise."
           }
         }
       },
