@@ -50393,7 +50393,7 @@
           },
           "attachedVendors": {
             "type": "array",
-            "description": "Vendors with a cloud account attached to this billing group, independent of invoice status or usage.",
+            "description": "Vendors with a cloud account or tag rule attached to this billing group, independent of invoice status or usage.",
             "items": {
               "type": "string"
             }
