@@ -33200,6 +33200,19 @@
           }
         }
       },
+      "ListInvoiceResponsePayers": {
+        "type": "object",
+        "properties": {
+          "ids": {
+            "type": "array",
+            "description": "AWS: management (payer) account ids. GCP: billing account ids. Azure: account ids.",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "description": "Payer account ids of a vendor."
+      },
       "ListNonperformingRateResponseNonperforming": {
         "type": "object",
         "properties": {
@@ -50551,6 +50564,13 @@
             "items": {
               "type": "string"
             }
+          },
+          "vendorPayers": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/ListInvoiceResponsePayers"
+            },
+            "description": "Map of vendor (aws, azure, gcp) to the payer accounts linked to this billing group. Only available in Ripple.\nFor a vendor with a created invoice, these are the payers found in that month's usage data when the invoice\nwas created. Otherwise (no invoice yet, or an invoice created before payers were saved), these are the payers\nof the cloud accounts currently attached to the billing group. Respects the `vendor` filter of the request."
           }
         },
         "description": "Response message for the ListInvoice rpc."
