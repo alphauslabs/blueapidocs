@@ -12768,21 +12768,18 @@
             }
           }
         }
-      }
-    },
-    "/v1/exportcsv/billing-group:exportPreviewed": {
+      },
       "post": {
         "tags": [
           "Billing"
         ],
-        "summary": "(BETA) Exports a previously previewed billing group selection.\nUses the saved root/child IDs and layer assignments without rediscovering\nhierarchy membership. All export types return a signed CSV download link.",
-        "operationId": "Billing_ExportPreviewedBillingGroupCsv",
+        "summary": "Export the billing groups into csv format",
+        "operationId": "Billing_ExportBillingGroupCsv2",
         "requestBody": {
-          "description": "Exports saved IDs/layers with current settings and authorization checks.\nDoes not rediscover membership. Missing/expired/consumed tokens or deleted/\nineligible groups return FailedPrecondition; lost access returns PermissionDenied.\nConcurrent claims return Aborted. Failed exports may retry before token expiry.\nConfirm durable consumption before returning a link, then delete the selection.\nPersistence/write/upload/signing failures must not return a success link.\nDefault request budget: 34 minutes (2 preparation + 30 export + 2 response).\nPre-claim is manifest metadata only; chunk/group checks run after the claim.\nCap accepted work at min(claim time + 30 minutes, caller deadline - 2 minutes).\nHonor shorter caller deadlines and cancellation; exhausted preparation fails\nwith DeadlineExceeded before claiming. Claim release/cleanup use a detached\nbounded context. Detailed lease/cleanup rules are in OpenSpec.\nExisting export RPCs remain supported without preview tokens.",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/v1ExportPreviewedBillingGroupCsvRequest"
+                "$ref": "#/components/schemas/v1ExportBillingGroupCsvRequest"
               }
             }
           },
@@ -12794,7 +12791,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/v1ExportPreviewedBillingGroupCsvResponse"
+                  "$ref": "#/components/schemas/v1ExportBillingGroupCsvResponse"
                 }
               }
             }
@@ -12813,19 +12810,19 @@
         "x-codegen-request-body-name": "body"
       }
     },
-    "/v1/exportcsv/billing-group:preview": {
+    "/v1/exportcsv/billing-group:previewHierarchy": {
       "post": {
         "tags": [
           "Billing"
         ],
-        "summary": "(BETA) Previews eligible billing group counts for a layer-scoped CSV export.\nStores a short-lived selection; does not generate CSVs or download links.",
-        "operationId": "Billing_PreviewBillingGroupCsvExport",
+        "summary": "(BETA, Ripple) Returns exportable IDs by root/layer and counts for confirmation.\nCreates no CSV or saved selection. Count/byte overflow returns ResourceExhausted\nwith limits and no partial result. Request fewer layers to reduce size.\nLimits must fit both preview and export transports.",
+        "operationId": "Billing_PreviewBillingGroupCsvHierarchy",
         "requestBody": {
-          "description": "Stores eligible groups for a layer-scoped CSV export.\nInvalid type/options/layers return InvalidArgument; denied access returns\nPermissionDenied. Capacity overflow returns ResourceExhausted. Read or storage\nfailures return an error, never partial counts or a usable token.",
+          "description": "Ripple export type, options and layers to preview across the MSP.",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/v1PreviewBillingGroupCsvExportRequest"
+                "$ref": "#/components/schemas/v1PreviewBillingGroupCsvHierarchyRequest"
               }
             }
           },
@@ -12837,7 +12834,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/v1PreviewBillingGroupCsvExportResponse"
+                  "$ref": "#/components/schemas/v1PreviewBillingGroupCsvHierarchyResponse"
                 }
               }
             }
@@ -12930,6 +12927,46 @@
             }
           }
         }
+      },
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Exports the invoice settings into csv format",
+        "operationId": "Billing_ExportInvoiceSettingCsv2",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1ExportInvoiceSettingCsvRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1ExportInvoiceSettingCsvResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
       }
     },
     "/v1/exportcsv/payers:export": {
@@ -33683,18 +33720,6 @@
           "YEAR"
         ]
       },
-      "PreviewBillingGroupCsvExportRequestExportType": {
-        "type": "string",
-        "description": "Exporter whose row eligibility rules determine the selection.\n\n - EXPORT_TYPE_UNSPECIFIED: Invalid; choose a supported exporter.\n - EXPORT_TYPE_BILLING_GROUP_DETAIL: ExportBillingGroupCsv.\n - EXPORT_TYPE_INVOICE_SETTINGS: ExportInvoiceSettingCsv, also used for reseller charges.\n - EXPORT_TYPE_BILLING_GROUP_SERVICE_DISCOUNTS: ExportBillingGroupInvoiceServiceDiscounts, CSV format.\n - EXPORT_TYPE_ACCOUNT_SERVICE_DISCOUNTS: ExportAccountInvoiceServiceDiscounts, CSV format.",
-        "default": "EXPORT_TYPE_UNSPECIFIED",
-        "enum": [
-          "EXPORT_TYPE_UNSPECIFIED",
-          "EXPORT_TYPE_BILLING_GROUP_DETAIL",
-          "EXPORT_TYPE_INVOICE_SETTINGS",
-          "EXPORT_TYPE_BILLING_GROUP_SERVICE_DISCOUNTS",
-          "EXPORT_TYPE_ACCOUNT_SERVICE_DISCOUNTS"
-        ]
-      },
       "PricingGetPricingBody": {
         "type": "object",
         "properties": {
@@ -35645,38 +35670,38 @@
         "properties": {
           "email": {
             "type": "string",
-            "description": "The email address associated with the user. If there is no email\r\naddress provided then this field will contain \"Not Set\"."
+            "description": "The email address associated with the user. If there is no email\naddress provided then this field will contain \"Not Set\"."
           },
           "password": {
             "type": "string",
-            "description": "The password associated with the user. This field will only be\r\npopulated when the reseller is first created."
+            "description": "The password associated with the user. This field will only be\npopulated when the reseller is first created."
           },
           "groupId": {
             "type": "string",
-            "description": "The ID of the group to which the user belongs. This will either\r\nbe a billing group ID or an access group ID."
+            "description": "The ID of the group to which the user belongs. This will either\nbe a billing group ID or an access group ID."
           },
           "groupName": {
             "type": "string",
-            "description": "The name of the group to which the user belongs. This will either\r\nbe the name of a billing group or an access group."
+            "description": "The name of the group to which the user belongs. This will either\nbe the name of a billing group or an access group."
           },
           "groupType": {
             "type": "string",
-            "description": "This field describes what type of group to which the user belongs.\r\nThis field will contain either a value of \"billing_group\" or \"access_group\"."
+            "description": "This field describes what type of group to which the user belongs.\nThis field will contain either a value of \"billing_group\" or \"access_group\"."
           },
           "meta": {
             "$ref": "#/components/schemas/apiFeatureFlags"
           },
           "passwordUpdateTime": {
             "type": "string",
-            "description": "The time when the password was last updated. This value will be null if \r\nthe password has never been updated."
+            "description": "The time when the password was last updated. This value will be null if \nthe password has never been updated."
           },
           "updateTime": {
             "type": "string",
-            "description": "The time when the user was last updated. This value will be null if the\r\nuser has never been updated."
+            "description": "The time when the user was last updated. This value will be null if the\nuser has never been updated."
           },
           "userAccessId": {
             "type": "string",
-            "description": "An ID that uniquely identifies the user in the context of its access group.\r\nIf the user does not belong to an access group then this value field will\r\ncontain the same value as the user ID."
+            "description": "An ID that uniquely identifies the user in the context of its access group.\nIf the user does not belong to an access group then this value field will\ncontain the same value as the user ID."
           },
           "userId": {
             "type": "string",
@@ -35684,7 +35709,7 @@
           },
           "waveAvailabilityDays": {
             "type": "integer",
-            "description": "How many days of Wave use remain. This value is only used for trial accounts.\r\nThis field cannot be updated.",
+            "description": "How many days of Wave use remain. This value is only used for trial accounts.\nThis field cannot be updated.",
             "format": "int32"
           },
           "waveRegistered": {
@@ -35693,7 +35718,7 @@
           },
           "waveStatus": {
             "type": "string",
-            "description": "The plan associated with the user. Possible values include \"trial\",\r\n\"limited3\" and \"limited4\"."
+            "description": "The plan associated with the user. Possible values include \"trial\",\n\"limited3\" and \"limited4\"."
           }
         },
         "description": "Describes the fields on an Alphaus root user for a billing group or access group."
@@ -40332,9 +40357,7 @@
             "description": "A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com. As of May 2023, there are no widely used type server\nimplementations and no plans to implement one.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics."
           }
         },
-        "additionalProperties": {
-          "type": "object"
-        },
+        "additionalProperties": true,
         "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(&foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n    // or ...\n    if (any.isSameTypeAs(Foo.getDefaultInstance())) {\n      foo = any.unpack(Foo.getDefaultInstance());\n    }\n\n Example 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\n Example 4: Pack and unpack a message in Go\n\n     foo := &pb.Foo{...}\n     any, err := anypb.New(foo)\n     if err != nil {\n       ...\n     }\n     ...\n     foo := &pb.Foo{}\n     if err := any.UnmarshalTo(foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\nJSON\n====\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": <string>,\n      \"lastName\": <string>\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }"
       },
       "protobufNullValue": {
@@ -42872,6 +42895,69 @@
           }
         },
         "description": "Additional items for a billing group."
+      },
+      "v1BillingGroupCsvExportType": {
+        "type": "string",
+        "description": "CSV type used to preview exportable Ripple billing groups.\n\n - BILLING_GROUP_CSV_EXPORT_TYPE_UNSPECIFIED: Invalid; select a supported exporter.\n - BILLING_GROUP_CSV_EXPORT_TYPE_BILLING_GROUP_DETAIL: Billing-group details, including custom fields.\n - BILLING_GROUP_CSV_EXPORT_TYPE_INVOICE_SETTINGS: Invoice settings, also used for reseller charges.\n - BILLING_GROUP_CSV_EXPORT_TYPE_BILLING_GROUP_SERVICE_DISCOUNTS: Billing-group service discount settings.\n - BILLING_GROUP_CSV_EXPORT_TYPE_ACCOUNT_SERVICE_DISCOUNTS: Account service discount settings.",
+        "default": "BILLING_GROUP_CSV_EXPORT_TYPE_UNSPECIFIED",
+        "enum": [
+          "BILLING_GROUP_CSV_EXPORT_TYPE_UNSPECIFIED",
+          "BILLING_GROUP_CSV_EXPORT_TYPE_BILLING_GROUP_DETAIL",
+          "BILLING_GROUP_CSV_EXPORT_TYPE_INVOICE_SETTINGS",
+          "BILLING_GROUP_CSV_EXPORT_TYPE_BILLING_GROUP_SERVICE_DISCOUNTS",
+          "BILLING_GROUP_CSV_EXPORT_TYPE_ACCOUNT_SERVICE_DISCOUNTS"
+        ]
+      },
+      "v1BillingGroupCsvHierarchy": {
+        "type": "object",
+        "properties": {
+          "rootId": {
+            "type": "string",
+            "description": "Internal root ID. Root rows require an explicit Layer 0 selection."
+          },
+          "layers": {
+            "type": "array",
+            "description": "One list per layer, including all siblings. Layer 0 can contain only root_id.",
+            "items": {
+              "$ref": "#/components/schemas/v1BillingGroupCsvLayerSelection"
+            }
+          }
+        },
+        "description": "Ripple billing-group IDs grouped by layer under a root."
+      },
+      "v1BillingGroupCsvLayerSelection": {
+        "type": "object",
+        "properties": {
+          "layer": {
+            "type": "integer",
+            "description": "0 = Root; 1-4 = parent-hop depth. Other values are invalid.",
+            "format": "int32"
+          },
+          "billingGroupIds": {
+            "type": "array",
+            "description": "Internal IDs, not display IDs. Empty layer lists are valid in both preview\nand export; a selection needs at least one ID overall. Duplicates within\nthis list count once; conflicting assignments are invalid.",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "description": "Ripple billing-group IDs at one layer."
+      },
+      "v1BillingGroupCsvSelection": {
+        "required": [
+          "hierarchies"
+        ],
+        "type": "object",
+        "properties": {
+          "hierarchies": {
+            "type": "array",
+            "description": "Required groups with at least one ID overall. Usually copied from preview.\nRoot context alone does not select Root rows.",
+            "items": {
+              "$ref": "#/components/schemas/v1BillingGroupCsvHierarchy"
+            }
+          }
+        },
+        "description": "Exact Ripple groups to export. No preview call or stored selection is required.\nIDs obtained from preview are only valid for that preview's export type and\noptions (such as include_miscellaneous); reusing them with a different\nexporter or options may fail eligibility checks.\nEmpty selections, invalid layers, duplicate root/layer records and conflicting\nID assignments return InvalidArgument. Current root, depth, access and row\neligibility are checked; new groups are not added.\nMissing, unknown and foreign-MSP IDs return the same generic FailedPrecondition,\nwithout cross-MSP lookups. Changed root/depth/eligibility requires re-preview.\nIdentity/feature denial or denied access to a known in-MSP group is PermissionDenied.\nCount/request-byte overflow returns ResourceExhausted with limits; select fewer\nlayers. Limits must fit preview/export transports. Honor cancellation and fail\nrequired reads/writes/uploads/signing without returning partial success."
       },
       "v1BillingGroupCustomField": {
         "type": "object",
@@ -47264,6 +47350,9 @@
               "type": "integer",
               "format": "int32"
             }
+          },
+          "selection": {
+            "$ref": "#/components/schemas/v1BillingGroupCsvSelection"
           }
         },
         "description": "Request message for the ExportAccountInvoiceServiceDiscounts rpc."
@@ -47296,6 +47385,34 @@
           }
         },
         "description": "Request message for the ExportAuditLogs rpc."
+      },
+      "v1ExportBillingGroupCsvRequest": {
+        "title": "Request message for the ExportBillingGroupCsv rpc.\nport from m/ripple/exportcsv/billing-group",
+        "type": "object",
+        "properties": {
+          "language": {
+            "type": "string",
+            "description": "Usually the language of the user information is used,\nbut it may be a different language due to cahce.\nIn that case, you can use this option to change the language of CSV."
+          },
+          "billingGroupIds": {
+            "type": "array",
+            "description": "Optional. Restricts the export to these child billing group internal ids.\nEvery id must resolve to a child of the caller's authorized root billing\ngroup. When empty, the export is unscoped (root-wide), matching prior\nbehavior.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "layers": {
+            "type": "array",
+            "description": "Optional. Exports every billing group at these layers across all root\nbilling groups under the caller's MSP, in a single file. `0` is Root and\n`1`-`4` are child layers. When set, the file gains a first `Layer` column\n(`Root`, `Layer 1`-`Layer 4`).\nMutually exclusive with `billingGroupIds`. When empty, behavior is\nunchanged.",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "selection": {
+            "$ref": "#/components/schemas/v1BillingGroupCsvSelection"
+          }
+        }
       },
       "v1ExportBillingGroupCsvResponse": {
         "type": "object",
@@ -47339,6 +47456,9 @@
               "type": "integer",
               "format": "int32"
             }
+          },
+          "selection": {
+            "$ref": "#/components/schemas/v1BillingGroupCsvSelection"
           }
         },
         "description": "Request message for the ExportBillingGroupInvoiceServiceDiscounts rpc."
@@ -47383,6 +47503,38 @@
         },
         "description": "Response message for the ExportInvoiceFile rpc."
       },
+      "v1ExportInvoiceSettingCsvRequest": {
+        "title": "port from m/ripple/exportcsv/billing-group-setting",
+        "type": "object",
+        "properties": {
+          "language": {
+            "type": "string",
+            "description": "Usually the language of the user information is used,\nbut it may be a different language due to cahce.\nIn that case, you can use this option to change the language of CSV."
+          },
+          "includeMiscellaneous": {
+            "type": "boolean",
+            "description": "Optional. If true, include miscellaneous items in the settings export."
+          },
+          "billingGroupIds": {
+            "type": "array",
+            "description": "Optional. Restricts the export to these child billing group internal ids.\nEvery id must resolve to a child of the caller's authorized root billing\ngroup. When empty, the export is unscoped (root-wide), matching prior\nbehavior.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "layers": {
+            "type": "array",
+            "description": "Optional. Exports every billing group at these layers across all root\nbilling groups under the caller's MSP, in a single file. `0` is Root and\n`1`-`4` are child layers. When set, the file gains a first `Layer` column\n(`Root`, `Layer 1`-`Layer 4`).\nMutually exclusive with `billingGroupIds`. When empty, behavior is\nunchanged.",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "selection": {
+            "$ref": "#/components/schemas/v1BillingGroupCsvSelection"
+          }
+        }
+      },
       "v1ExportInvoiceSettingCsvResponse": {
         "type": "object",
         "properties": {
@@ -47392,41 +47544,6 @@
           }
         },
         "description": "Response message for the ExportBillingGroupCsv rpc."
-      },
-      "v1ExportPreviewedBillingGroupCsvRequest": {
-        "required": [
-          "layers",
-          "previewToken"
-        ],
-        "type": "object",
-        "properties": {
-          "previewToken": {
-            "type": "string",
-            "description": "Required. Token from PreviewBillingGroupCsvExport, sent in the request body."
-          },
-          "layers": {
-            "type": "array",
-            "description": "Required. Non-empty subset of previewed layers, 0 = Root and 1-4 = children.\nInvalid/uncovered values return InvalidArgument; duplicates count once.\nRoot uses saved root IDs. A zero-group selection returns FailedPrecondition.",
-            "items": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          "language": {
-            "type": "string",
-            "description": "Optional. en or ja; empty uses the user's language. Other values are invalid.\nDoes not change the selection or token-bound options."
-          }
-        },
-        "description": "Exports saved IDs/layers with current settings and authorization checks.\nDoes not rediscover membership. Missing/expired/consumed tokens or deleted/\nineligible groups return FailedPrecondition; lost access returns PermissionDenied.\nConcurrent claims return Aborted. Failed exports may retry before token expiry.\nConfirm durable consumption before returning a link, then delete the selection.\nPersistence/write/upload/signing failures must not return a success link.\nDefault request budget: 34 minutes (2 preparation + 30 export + 2 response).\nPre-claim is manifest metadata only; chunk/group checks run after the claim.\nCap accepted work at min(claim time + 30 minutes, caller deadline - 2 minutes).\nHonor shorter caller deadlines and cancellation; exhausted preparation fails\nwith DeadlineExceeded before claiming. Claim release/cleanup use a detached\nbounded context. Detailed lease/cleanup rules are in OpenSpec.\nExisting export RPCs remain supported without preview tokens."
-      },
-      "v1ExportPreviewedBillingGroupCsvResponse": {
-        "type": "object",
-        "properties": {
-          "downloadLink": {
-            "type": "string",
-            "description": "Signed CSV link after successful artifact creation and durable consumption.\nIncludes the localized Layer column, even for Root only. The saved selection\nis deleted; another export needs a new preview. Link expiry is independent."
-          }
-        }
       },
       "v1ExportReportRequest": {
         "type": "object",
@@ -52045,7 +52162,7 @@
       "v1Preference": {
         "type": "object"
       },
-      "v1PreviewBillingGroupCsvExportRequest": {
+      "v1PreviewBillingGroupCsvHierarchyRequest": {
         "required": [
           "exportType",
           "layers"
@@ -52053,11 +52170,11 @@
         "type": "object",
         "properties": {
           "exportType": {
-            "$ref": "#/components/schemas/PreviewBillingGroupCsvExportRequestExportType"
+            "$ref": "#/components/schemas/v1BillingGroupCsvExportType"
           },
           "layers": {
             "type": "array",
-            "description": "Required. Non-empty MSP-wide layers: 0 = Root, 1-4 = children.\nValues outside 0-4 are invalid; duplicates count once.\nMembership is resolved by the backend, independent of UI filters/flags.",
+            "description": "Required layers 0-4. Duplicates count once; backend resolves membership.",
             "items": {
               "type": "integer",
               "format": "int32"
@@ -52065,12 +52182,12 @@
           },
           "includeMiscellaneous": {
             "type": "boolean",
-            "description": "Optional. Include miscellaneous items. Defaults to false.\nTrue is valid only for EXPORT_TYPE_INVOICE_SETTINGS."
+            "description": "Defaults false. True is only valid for invoice settings/reseller charges;\nother types return InvalidArgument."
           }
         },
-        "description": "Stores eligible groups for a layer-scoped CSV export.\nInvalid type/options/layers return InvalidArgument; denied access returns\nPermissionDenied. Capacity overflow returns ResourceExhausted. Read or storage\nfailures return an error, never partial counts or a usable token."
+        "description": "Ripple export type, options and layers to preview across the MSP."
       },
-      "v1PreviewBillingGroupCsvExportResponse": {
+      "v1PreviewBillingGroupCsvHierarchyResponse": {
         "type": "object",
         "properties": {
           "layerCounts": {
@@ -52079,19 +52196,17 @@
               "type": "integer",
               "format": "int32"
             },
-            "description": "Distinct groups contributing CSV rows per requested layer, including zero.\nCounts groups once despite multiple vendor/account rows. No extra layers."
+            "description": "Every requested layer, including zero. Counts distinct eligible IDs, not rows."
           },
-          "previewToken": {
-            "type": "string",
-            "description": "Sensitive opaque token bound to the authenticated MSP/principal and export\ntype/options. Single-use on successful export; contains no group IDs.\nDo not log it or send it in URLs."
-          },
-          "expiresAt": {
-            "type": "string",
-            "description": "Acceptance expiry: 10 minutes after preview completion.\nStorage cleanup is separate; accepted exports may finish after this time.",
-            "format": "date-time"
+          "hierarchies": {
+            "type": "array",
+            "description": "Sorted roots/layers/IDs. Roots with no eligible IDs may be omitted.\nReturned roots include each requested layer, with empty lists where needed.",
+            "items": {
+              "$ref": "#/components/schemas/v1BillingGroupCsvHierarchy"
+            }
           }
         },
-        "description": "Returned after the complete eligible selection is stored.\nPreview generates no CSV or download link."
+        "description": "Complete exportable Ripple IDs and counts. No selection is stored.\nCount/byte overflow returns ResourceExhausted, never partial results."
       },
       "v1PreviewGoogleSheetRequest": {
         "type": "object",
