@@ -18972,7 +18972,7 @@
         "parameters": [
           {
             "name": "vendor",
-            "description": "Required. At the moment, only `aws` is supported.",
+            "description": "Required. The supported vendors are `aws`, `gcp` and `azure`.",
             "in": "path",
             "required": true,
             "type": "string"
@@ -21711,7 +21711,7 @@
         "parameters": [
           {
             "name": "vendor",
-            "description": "Required. At the moment, only `aws` is supported.",
+            "description": "Required. The supported vendors are `aws`, `gcp` and `azure`. Only available in Ripple for `gcp` and `azure`.",
             "in": "path",
             "required": true,
             "type": "string"
@@ -22108,7 +22108,7 @@
         "parameters": [
           {
             "name": "vendor",
-            "description": "Required. At the moment, only `aws` is supported.",
+            "description": "Required. The supported vendors are `aws`, `gcp` and `azure`. Only available in Ripple for `gcp` and `azure`.",
             "in": "path",
             "required": true,
             "type": "string"
@@ -24403,7 +24403,7 @@
       "properties": {
         "id": {
           "type": "string",
-          "description": "Required. The account id to register."
+          "description": "Required. The account id to register. For `azure`, this is the subscription id."
         },
         "name": {
           "type": "string",
@@ -24424,6 +24424,10 @@
         "note": {
           "type": "string",
           "description": "Optional. A free-text note/memo about this account."
+        },
+        "azureOptions": {
+          "$ref": "#/definitions/v1CreateAccountRequestAzureOptions",
+          "description": "Required for the `azure` vendor. Azure-specific options."
         }
       },
       "description": "Request message for the Cost.CreateAccount rpc."
@@ -38481,6 +38485,16 @@
         }
       },
       "description": "AWS-specific options for registering an account."
+    },
+    "v1CreateAccountRequestAzureOptions": {
+      "type": "object",
+      "properties": {
+        "managementAccountId": {
+          "type": "string",
+          "description": "Required. The payer (management) account of the Azure account."
+        }
+      },
+      "description": "Azure-specific options for registering an account."
     },
     "v1CreateAccountRequestGcpOptions": {
       "type": "object",
