@@ -24199,6 +24199,10 @@
         },
         "accountOptions": {
           "$ref": "#/definitions/v1AccountOptions"
+        },
+        "replaceAccounts": {
+          "type": "boolean",
+          "description": "Optional. Explicit account membership replacement for `byAccounts`\nselection. When true, `accounts` is the complete desired membership for\n`vendor`, including an empty list, which removes all of the vendor's\naccounts from the billing group without deleting the account records.\nWhen false (default), an empty `accounts` together with `accountOptions`\nis treated as an options-only update and membership is left unchanged."
         }
       }
     },
