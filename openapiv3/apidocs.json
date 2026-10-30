@@ -16582,6 +16582,99 @@
         }
       }
     },
+    "/v1/notifications/billinggroups/{companyId}/purchase": {
+      "get": {
+        "tags": [
+          "GuaranteedCommitments"
+        ],
+        "summary": "Ripple only. Gets a billing group's GC purchase notification setting, together with\nthe MSP's Ripple notification channels to choose from. When none has been saved, the\nsetting is disabled with empty notificationChannelIds; availableChannels lists all of\nthe MSP's channels whether or not a setting was saved. Wave callers get PERMISSION_DENIED.",
+        "operationId": "GuaranteedCommitments_GetBillingGroupPurchaseNotification",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "Required. The billing group's company ID. Must be one of the caller's MSP companies.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetBillingGroupPurchaseNotificationResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rpcStatus"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "GuaranteedCommitments"
+        ],
+        "summary": "Ripple only. Replaces a billing group's GC purchase notification setting. Newly added\nchannel IDs must exist and belong to the caller's MSP; channels already saved are not\nre-checked. When enabled, at least one channel must be enabled and have a destination.\nWave callers get PERMISSION_DENIED.",
+        "operationId": "GuaranteedCommitments_UpdateBillingGroupPurchaseNotification",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "Required. The billing group's company ID. Must be one of the caller's MSP companies.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GuaranteedCommitmentsUpdateBillingGroupPurchaseNotificationBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1BillingGroupPurchaseNotification"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/v1/onboarding": {
       "post": {
         "tags": [
@@ -33367,6 +33460,23 @@
           }
         }
       },
+      "GuaranteedCommitmentsUpdateBillingGroupPurchaseNotificationBody": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether to notify on GC purchases made from this billing group."
+          },
+          "notificationChannelIds": {
+            "type": "array",
+            "description": "Ripple notification channel IDs to notify. Replaces the stored list.",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "description": "Request message for the GuaranteedCommitments.UpdateBillingGroupPurchaseNotification rpc."
+      },
       "GuaranteedCommitmentsValidateAzureAppInstallBody": {
         "type": "object",
         "properties": {
@@ -43421,6 +43531,35 @@
         },
         "description": "Response row for paginated billing groups table."
       },
+      "v1BillingGroupPurchaseNotification": {
+        "type": "object",
+        "properties": {
+          "companyId": {
+            "type": "string",
+            "description": "The billing group's company ID."
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether GC purchases from this billing group are notified."
+          },
+          "notificationChannelIds": {
+            "type": "array",
+            "description": "Ripple notification channel IDs, as stored. An ID missing from the MSP's available\nchannels refers to a channel that has since been deleted.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "updatedBy": {
+            "type": "string",
+            "description": "Who last updated the setting. Empty if never saved."
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "When the setting was last updated, RFC3339. Empty if never saved."
+          }
+        },
+        "description": "A billing group's GC purchase notification setting (Ripple only)."
+      },
       "v1BillingGroupRegistration": {
         "type": "object",
         "properties": {
@@ -48798,6 +48937,22 @@
           }
         }
       },
+      "v1GetBillingGroupPurchaseNotificationResponse": {
+        "type": "object",
+        "properties": {
+          "setting": {
+            "$ref": "#/components/schemas/v1BillingGroupPurchaseNotification"
+          },
+          "availableChannels": {
+            "type": "array",
+            "description": "The MSP's Ripple notification channels.",
+            "items": {
+              "$ref": "#/components/schemas/v1NotificationChannelSummary"
+            }
+          }
+        },
+        "description": "Response message for the GuaranteedCommitments.GetBillingGroupPurchaseNotification rpc."
+      },
       "v1GetBillingGroupRegistrationRequest": {
         "type": "object",
         "description": "Request for GetBillingGroupRegistration. The MSP is taken from the caller."
@@ -52640,6 +52795,32 @@
             "format": "double"
           }
         }
+      },
+      "v1NotificationChannelSummary": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The channel ID."
+          },
+          "name": {
+            "type": "string",
+            "description": "The channel's display name."
+          },
+          "type": {
+            "type": "string",
+            "description": "The channel type: \"email\", \"slack\" or \"msteams\"."
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether the channel is enabled in Ripple."
+          },
+          "usable": {
+            "type": "boolean",
+            "description": "Whether the channel can receive notifications: enabled and has a destination."
+          }
+        },
+        "description": "A Ripple notification channel the MSP can choose. Never includes destinations\n(email addresses or webhook URLs)."
       },
       "v1OnboardOrgRequest": {
         "title": "Request message for OnboardOrg",
