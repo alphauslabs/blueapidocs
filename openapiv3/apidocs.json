@@ -48949,6 +48949,10 @@
             "items": {
               "$ref": "#/components/schemas/v1NotificationChannelSummary"
             }
+          },
+          "globalNotificationsOff": {
+            "type": "boolean",
+            "description": "True when the MSP has turned off its global Ripple notification switch. No purchase\nnotification is sent while it is off, even for an enabled setting. False when the\nswitch is on, when the MSP has no Ripple notification settings, or when the switch\ncould not be read."
           }
         },
         "description": "Response message for the GuaranteedCommitments.GetBillingGroupPurchaseNotification rpc."
