@@ -43531,6 +43531,38 @@
         },
         "description": "Response row for paginated billing groups table."
       },
+      "v1BillingGroupOpportunity": {
+        "type": "object",
+        "properties": {
+          "billingGroupId": {
+            "type": "string",
+            "description": "The billing group ID shown in Ripple."
+          },
+          "billingGroupName": {
+            "type": "string",
+            "description": "The billing group name shown in Ripple."
+          },
+          "bucket": {
+            "$ref": "#/components/schemas/v1RegistrationBucket"
+          },
+          "potentialMonthlySavings": {
+            "type": "number",
+            "description": "This billing group's share of `SavingsOpportunities.potentialMonthlySavings`: the sum over its\npriced commitments. USD. Unset when `pricedCommitmentCount` is 0.",
+            "format": "double"
+          },
+          "expiringCommitmentCount": {
+            "type": "integer",
+            "description": "This billing group's expiring RIs/SPs counted in `SavingsOpportunities.expiringCommitmentCount`.",
+            "format": "int32"
+          },
+          "pricedCommitmentCount": {
+            "type": "integer",
+            "description": "How many of those could be priced. When 0, the billing group has no savings figure.",
+            "format": "int32"
+          }
+        },
+        "description": "One billing group's share of the Savings Opportunities figures."
+      },
       "v1BillingGroupPurchaseNotification": {
         "type": "object",
         "properties": {
@@ -54867,6 +54899,13 @@
             "description": "When the Archera and Aqua data was last synced.",
             "items": {
               "$ref": "#/components/schemas/v1DataFreshness"
+            }
+          },
+          "billingGroups": {
+            "type": "array",
+            "description": "The billing groups behind these figures, one per billing group with a counted commitment.\nSorted by `potentialMonthlySavings`, highest first, then by name; billing groups with no\npriced commitment come last.",
+            "items": {
+              "$ref": "#/components/schemas/v1BillingGroupOpportunity"
             }
           }
         },
