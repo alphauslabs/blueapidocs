@@ -29027,6 +29027,27 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "reportType",
+            "in": "query",
+            "description": "Optional. Export report type whose readiness to check.\nAccepted values: \"reserveshield\", \"rdsri\".\nIf empty, defaults to \"reserveshield\", so existing callers are unchanged.\nUnknown report types, or types without a readiness check, return InvalidArgument.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "payerIds",
+            "in": "query",
+            "description": "Optional. Payer account IDs (12 digits each) to limit the check to.\nIf empty, all payers are checked.\nOnly payer-scoped report types accept this field. At the moment that is \"rdsri\".\nA non-empty list with an empty or any other report type returns InvalidArgument.",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
           }
         ],
         "responses": {
@@ -42845,6 +42866,13 @@
               "$ref": "#/components/schemas/AwsExportReportOptionsColumns"
             },
             "description": "Optional. Per-report column overrides.\nKeys must be valid query names for registered AWS export-report queries."
+          },
+          "payerIds": {
+            "type": "array",
+            "description": "Optional. Payer account IDs (12 digits each) to limit the export to.\nIf empty, all payers are included.\nOnly payer-scoped report types accept this field. At the moment that is\nthe RDS RI report type, whose query is \"rds_ri_usage\".\nA non-empty list with queries of any other report type rejects the whole\nrequest with InvalidArgument.",
+            "items": {
+              "type": "string"
+            }
           }
         },
         "description": "AWS export report options for ExportReport."
