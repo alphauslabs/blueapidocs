@@ -10178,6 +10178,48 @@
         }
       }
     },
+    "/v1/commitments/purchaseplans/{planId}/history": {
+      "get": {
+        "tags": [
+          "GuaranteedCommitments"
+        ],
+        "summary": "WORK-IN-PROGRESS: Retrieves the activity history of a specific purchase plan.\nReturns only plan activity events (no comments), oldest first.",
+        "operationId": "GuaranteedCommitments_GetPurchasePlanHistory",
+        "parameters": [
+          {
+            "name": "planId",
+            "in": "path",
+            "description": "Required. The purchase plan ID whose activity history to return.\nReturns NOT_FOUND if the plan doesn't exist.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetPurchasePlanHistoryResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/commitments/purchaseplans:update": {
       "post": {
         "tags": [
@@ -50422,6 +50464,19 @@
             "type": "string"
           }
         }
+      },
+      "v1GetPurchasePlanHistoryResponse": {
+        "type": "object",
+        "properties": {
+          "history": {
+            "title": "Plan activity events only, oldest first",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1PlanHistoryEntry"
+            }
+          }
+        },
+        "description": "Response message for the GuaranteedCommitments.GetPurchasePlanHistory rpc.\nLists the plan's activity events (no comments), oldest first."
       },
       "v1GetPurchasePlansDetailsResponse": {
         "type": "object",
